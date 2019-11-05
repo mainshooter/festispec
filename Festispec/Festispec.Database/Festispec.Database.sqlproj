@@ -60,7 +60,7 @@
     <Folder Include="Scripts\Seed" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Scripts\database-create-tables.sql" />
+    <PreDeploy Include="Scripts\database-create-tables.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
