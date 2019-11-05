@@ -74,7 +74,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="KVK" Type="int" Nullable="false" />
+          <Property Name="COC" Type="int" Nullable="false" />
           <Property Name="BranchNumber" Type="int" Nullable="false" />
           <Property Name="Street" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="HouseNumber" Type="int" Nullable="false" />
@@ -1024,7 +1024,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="KVK" Type="Int32" Nullable="false" />
           <Property Name="BranchNumber" Type="Int32" Nullable="false" />
           <Property Name="Street" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HouseNumber" Type="Int32" Nullable="false" />
@@ -1038,6 +1037,7 @@
           <NavigationProperty Name="Events" Relationship="Self.FK_Event_Customer" FromRole="Customer" ToRole="Event" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
           <NavigationProperty Name="Quotations" Relationship="Self.FK_Quotation_Customer" FromRole="Customer" ToRole="Quotation" />
+          <Property Name="COC" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Day">
           <Key>
@@ -2025,9 +2025,9 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="Festispec.Domain.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="COC" ColumnName="COC" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="KVK" ColumnName="KVK" />
                 <ScalarProperty Name="BranchNumber" ColumnName="BranchNumber" />
                 <ScalarProperty Name="Street" ColumnName="Street" />
                 <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
