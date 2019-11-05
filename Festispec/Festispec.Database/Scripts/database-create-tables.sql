@@ -120,7 +120,7 @@ GO
 CREATE TABLE [dbo].[Customer](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](100) NOT NULL,
-	[KVK] [int] NOT NULL,
+	[COC] [int] NOT NULL,
 	[BranchNumber] [int] NOT NULL,
 	[Street] [nvarchar](45) NOT NULL,
 	[HouseNumber] [int] NOT NULL,
