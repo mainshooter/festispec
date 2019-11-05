@@ -5,13 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Festispec.ViewModel.survey
+namespace Festispec.ViewModel.planning
 {
-    public class SurveyVM
+    public class DayVM
     {
         public int Id { get; set; }
-        public string Description { get; set; }
         public AssignmentVM Assignment { get; set; }
-        public string Status { get; set; }
+
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+
     }
 }

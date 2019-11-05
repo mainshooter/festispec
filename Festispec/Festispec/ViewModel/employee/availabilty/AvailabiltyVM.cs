@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.employee.availabilty
 {
-    class AvailabiltyVM
+    public class AvailabiltyVM
     {
+        public int Id { get; set; }
+        public EmployeeVM Employee { get; set; }
+        public DateTime AvailabiltyStart { get; set; }
+        public DateTime AvailabiltyEnd { get; set; }
     }
 }

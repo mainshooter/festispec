@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Festispec.ViewModel.employee.assignment
+namespace Festispec.ViewModel.survey.question.questionTypes
 {
-    class AssignmentVM
+    public interface IQuestion
     {
+
     }
 }

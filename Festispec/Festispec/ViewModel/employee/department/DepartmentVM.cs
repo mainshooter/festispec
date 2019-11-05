@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.employee.department
 {
-    class DepartmentVM
+    public class DepartmentVM
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }
