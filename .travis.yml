@@ -1,0 +1,8 @@
+language: csharp
+mono:
+  - latest
+solution: Festispec/Festispec.sln
+install:
+  - nuget restore Festispec/Festispec.sln
+script:
+  - msbuild /p:Configuration=Release Festispec/Festispec.sln
