@@ -1,12 +1,12 @@
 ﻿USE [festispec]
 GO
-/****** Object:  Table [dbo].[Answer]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[Answer]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Answer](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[QuestionId] [int] NOT NULL,
 	[CaseId] [int] NOT NULL,
 	[Answer] [text] NOT NULL,
@@ -16,13 +16,13 @@ CREATE TABLE [dbo].[Answer](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AvailabilityInspector]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[AvailabilityInspector]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[AvailabilityInspector](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[EmployeeId] [int] NOT NULL,
 	[AvailableFrom] [datetime] NOT NULL,
 	[AvailableTill] [datetime] NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE [dbo].[AvailabilityInspector](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BetterReportInspector]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[BetterReportInspector]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -47,13 +47,13 @@ CREATE TABLE [dbo].[BetterReportInspector](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Case]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[Case]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Case](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[SurveyId] [int] NOT NULL,
 	[EmployeeId] [int] NOT NULL,
 	[Status] [nvarchar](45) NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE [dbo].[Case](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CaseStatus]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[CaseStatus]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -76,13 +76,13 @@ CREATE TABLE [dbo].[CaseStatus](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CertificateInspector]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[CertificateInspector]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[CertificateInspector](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[EmployeeId] [int] NOT NULL,
 	[DateFrom] [datetime] NOT NULL,
 	[DateTill] [datetime] NOT NULL,
@@ -92,13 +92,13 @@ CREATE TABLE [dbo].[CertificateInspector](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ContactPerson]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[ContactPerson]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[ContactPerson](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Firstname] [nvarchar](45) NOT NULL,
 	[Prefix] [nvarchar](45) NULL,
 	[Lastname] [nvarchar](45) NOT NULL,
@@ -112,13 +112,13 @@ CREATE TABLE [dbo].[ContactPerson](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Customer]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[Customer]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Customer](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](100) NOT NULL,
 	[KVK] [int] NOT NULL,
 	[BranchNumber] [int] NOT NULL,
@@ -136,13 +136,13 @@ CREATE TABLE [dbo].[Customer](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Day]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[Day]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Day](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[OrderId] [int] NOT NULL,
 	[BeginTime] [datetime] NOT NULL,
 	[EndTime] [datetime] NOT NULL,
@@ -153,7 +153,7 @@ CREATE TABLE [dbo].[Day](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Department]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[Department]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -167,7 +167,7 @@ CREATE TABLE [dbo].[Department](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ElementType]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[ElementType]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -181,13 +181,13 @@ CREATE TABLE [dbo].[ElementType](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Employee]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[Employee]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Employee](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Department] [nvarchar](50) NOT NULL,
 	[Status] [nvarchar](45) NOT NULL,
 	[Firstname] [nvarchar](45) NOT NULL,
@@ -209,7 +209,7 @@ CREATE TABLE [dbo].[Employee](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[EmployeeStatus]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[EmployeeStatus]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -222,13 +222,13 @@ CREATE TABLE [dbo].[EmployeeStatus](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Event]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[Event]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Event](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[CustomerId] [int] NOT NULL,
 	[ContactPersonId] [int] NOT NULL,
 	[Name] [nvarchar](100) NOT NULL,
@@ -243,7 +243,7 @@ CREATE TABLE [dbo].[Event](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[InspectorPlanning]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[InspectorPlanning]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -265,7 +265,7 @@ CREATE TABLE [dbo].[InspectorPlanning](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[InspectorPlanningStatus]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[InspectorPlanningStatus]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -278,13 +278,13 @@ CREATE TABLE [dbo].[InspectorPlanningStatus](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Note]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[Note]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Note](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[ContactPersonId] [int] NOT NULL,
 	[Note] [text] NOT NULL,
 	[Time] [datetime] NOT NULL,
@@ -294,13 +294,13 @@ CREATE TABLE [dbo].[Note](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Order]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[Order]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Order](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[CustomerId] [int] NOT NULL,
 	[EventId] [int] NOT NULL,
 	[EmployeeId] [int] NOT NULL,
@@ -313,7 +313,7 @@ CREATE TABLE [dbo].[Order](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[OrderStatus]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[OrderStatus]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -326,13 +326,13 @@ CREATE TABLE [dbo].[OrderStatus](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[QueryTemplate]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[QueryTemplate]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[QueryTemplate](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Query] [text] NOT NULL,
 	[Description] [text] NOT NULL,
  CONSTRAINT [PK_QueryTemplate] PRIMARY KEY CLUSTERED 
@@ -341,13 +341,13 @@ CREATE TABLE [dbo].[QueryTemplate](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Question]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[Question]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Question](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[SurveyId] [int] NOT NULL,
 	[Type] [nvarchar](45) NOT NULL,
 	[Question] [text] NOT NULL,
@@ -359,7 +359,7 @@ CREATE TABLE [dbo].[Question](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[QuestionType]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[QuestionType]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -372,13 +372,13 @@ CREATE TABLE [dbo].[QuestionType](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Quotation]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[Quotation]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Quotation](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[CustomerId] [int] NOT NULL,
 	[EmployeeId] [int] NOT NULL,
 	[EventId] [int] NOT NULL,
@@ -392,13 +392,13 @@ CREATE TABLE [dbo].[Quotation](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Report]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[Report]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Report](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[OrderId] [int] NOT NULL,
 	[Status] [nvarchar](45) NOT NULL,
 	[Title] [nvarchar](100) NOT NULL,
@@ -408,13 +408,13 @@ CREATE TABLE [dbo].[Report](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ReportElement]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[ReportElement]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[ReportElement](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[ReportId] [int] NOT NULL,
 	[ElementType] [nvarchar](100) NOT NULL,
 	[Title] [nvarchar](100) NOT NULL,
@@ -426,7 +426,7 @@ CREATE TABLE [dbo].[ReportElement](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ReportStatus]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[ReportStatus]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -439,13 +439,13 @@ CREATE TABLE [dbo].[ReportStatus](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SickReportInspector]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[SickReportInspector]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[SickReportInspector](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[EmployeeId] [int] NOT NULL,
 	[InspectorPlanningEmployeeId] [int] NOT NULL,
 	[InspoctorPlanningDayId] [int] NOT NULL,
@@ -457,13 +457,13 @@ CREATE TABLE [dbo].[SickReportInspector](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Survey]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[Survey]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Survey](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[OrderId] [int] NOT NULL,
 	[Status] [nvarchar](45) NOT NULL,
 	[Description] [text] NOT NULL,
@@ -473,7 +473,7 @@ CREATE TABLE [dbo].[Survey](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SurveyStatus]    Script Date: 5-11-2019 20:10:02 ******/
+/****** Object:  Table [dbo].[SurveyStatus]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
