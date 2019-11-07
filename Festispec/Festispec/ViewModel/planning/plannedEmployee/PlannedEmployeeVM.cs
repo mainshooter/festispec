@@ -18,8 +18,6 @@ namespace Festispec.ViewModel.planning.plannedEmployee
 
         public DayVM Day { get; set; }
 
-        public OrderVM Order { get; set; }
-
         public string Status {
             get {
                 return _plannedEmployee.Status;
