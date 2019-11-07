@@ -9,6 +9,18 @@ namespace Festispec.ViewModel.customer.contactPerson
 {
     public class ContactPersonVM
     {
+        private ContactPerson _contactPerson;
+
+        public ContactPersonVM(ContactPerson contactPerson)
+        {
+            _contactPerson = contactPerson;
+        }
+
+        public ContactPersonVM()
+        {
+            _contactPerson = new ContactPerson();
+        }
+
         public int Id { 
             get {
                 return _contactPerson.Id;
@@ -17,6 +29,7 @@ namespace Festispec.ViewModel.customer.contactPerson
                 _contactPerson.Id = value;
             }
         }
+
         public string Firstname { 
             get {
                 return _contactPerson.Firstname;
@@ -25,6 +38,7 @@ namespace Festispec.ViewModel.customer.contactPerson
                 _contactPerson.Firstname = value;
             }
         }
+
         public string Lastname {
             get {
                 return _contactPerson.Lastname;
@@ -33,6 +47,7 @@ namespace Festispec.ViewModel.customer.contactPerson
                 _contactPerson.Lastname = value;
             }
         }
+
         public string Phone { 
             get {
                 return _contactPerson.Phone;
@@ -41,6 +56,7 @@ namespace Festispec.ViewModel.customer.contactPerson
                 _contactPerson.Phone = value;
             }
         }
+
         public string Email { 
             get {
                 return _contactPerson.Email;
@@ -49,6 +65,7 @@ namespace Festispec.ViewModel.customer.contactPerson
                 _contactPerson.Email = value;
             }
         }
+
         public string Function { 
             get {
                 return _contactPerson.Function;
@@ -56,16 +73,6 @@ namespace Festispec.ViewModel.customer.contactPerson
             set {
                 _contactPerson.Function = value;
             }
-        }
-
-        private ContactPerson _contactPerson;
-        public ContactPersonVM(ContactPerson contactPerson)
-        {
-            _contactPerson = contactPerson;
-        }
-        public ContactPersonVM()
-        {
-            _contactPerson = new ContactPerson();
         }
     }
 }

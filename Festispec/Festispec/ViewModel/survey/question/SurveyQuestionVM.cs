@@ -10,6 +10,17 @@ namespace Festispec.ViewModel.survey.question
 {
     public class SurveyQuestionVM
     {
+        private Question _question;
+        public SurveyQuestionVM(Question question)
+        {
+            _question = question;
+        }
+
+        public SurveyQuestionVM()
+        {
+            _question = new Question();
+        }
+
         public int Id {
             get {
                 return _question.Id;
@@ -18,6 +29,7 @@ namespace Festispec.ViewModel.survey.question
                 _question.Id = value;
             }
         }
+
         public IQuestion QuestionType { get; set; }
 
         public string Question {
@@ -28,6 +40,7 @@ namespace Festispec.ViewModel.survey.question
                 _question.Question1 = value;
             }
         }
+
         public int Order {
             get {
                 return _question.Order;
@@ -36,6 +49,7 @@ namespace Festispec.ViewModel.survey.question
                 _question.Order = value;
             }
         }
+
         public string Variable {
             get {
                 return _question.Variables;
@@ -43,17 +57,6 @@ namespace Festispec.ViewModel.survey.question
             set {
                 _question.Variables = value;
             }
-        }
-
-        private Question _question;
-        public SurveyQuestionVM(Question question)
-        {
-            _question = question;
-        }
-
-        public SurveyQuestionVM()
-        {
-            _question = new Question();
         }
     }
 }

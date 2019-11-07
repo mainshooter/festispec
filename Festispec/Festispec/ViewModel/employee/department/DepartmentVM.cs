@@ -9,22 +9,6 @@ namespace Festispec.ViewModel.employee.department
 {
     public class DepartmentVM
     {
-        public string Name {
-            get {
-                return _department.Name;
-            }
-            set {
-                _department.Name = value;
-            }
-        }
-        public string Description { 
-            get {
-                return _department.Description;
-            }
-            set {
-                _department.Description = value;
-            }
-        }
         private Department _department;
         public DepartmentVM(Department department)
         {
@@ -34,6 +18,24 @@ namespace Festispec.ViewModel.employee.department
         public DepartmentVM()
         {
             _department = new Department();
+        }
+
+        public string Name {
+            get {
+                return _department.Name;
+            }
+            set {
+                _department.Name = value;
+            }
+        }
+
+        public string Description { 
+            get {
+                return _department.Description;
+            }
+            set {
+                _department.Description = value;
+            }
         }
     }
 }

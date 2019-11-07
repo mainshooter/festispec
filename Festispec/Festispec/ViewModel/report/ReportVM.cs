@@ -12,33 +12,6 @@ namespace Festispec.ViewModel.rapport
 {
     public class ReportVM
     {
-        public int Id {
-            get {
-                return _report.Id;
-            }
-            private set {
-                _report.Id = value;
-            }
-        }
-        public OrderVM Order { get; set; }
-        public string Title {
-            get {
-                return _report.Title;
-            }
-            set {
-                _report.Title = value;
-            }
-        }
-        public string Status {
-            get {
-                return _report.Status;
-            }
-            set {
-                _report.Status = value;
-            }
-        }
-        public ObservableCollection<ReportElementVM> ReportElements { get; set; }
-
         private Report _report;
         public ReportVM(Report report)
         {
@@ -50,5 +23,38 @@ namespace Festispec.ViewModel.rapport
         {
             _report = new Report();
         }
+
+        public int Id {
+            get {
+                return _report.Id;
+            }
+            private set {
+                _report.Id = value;
+            }
+        }
+
+        public OrderVM Order { get; set; }
+
+        public string Title {
+            get {
+                return _report.Title;
+            }
+            set {
+                _report.Title = value;
+            }
+        }
+
+        public string Status {
+            get {
+                return _report.Status;
+            }
+            set {
+                _report.Status = value;
+            }
+        }
+
+        public ObservableCollection<ReportElementVM> ReportElements { get; set; }
+
+
     }
 }

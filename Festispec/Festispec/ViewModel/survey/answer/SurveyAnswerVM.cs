@@ -10,6 +10,19 @@ namespace Festispec.ViewModel.survey.answer
 {
     public class SurveyAnswerVM
     {
+        private Answer _answer;
+
+        public SurveyAnswerVM(Answer answer)
+        {
+            _answer = answer;
+            Question = new SurveyQuestionVM(answer.Question);
+        }
+
+        public SurveyAnswerVM()
+        {
+            _answer = new Answer();
+        }
+
         public int Id {
             get {
                 return _answer.Id;
@@ -27,17 +40,5 @@ namespace Festispec.ViewModel.survey.answer
             }
         }
         public SurveyQuestionVM Question { get; set; }
-        private Answer _answer;
-
-        public SurveyAnswerVM(Answer answer)
-        {
-            _answer = answer;
-            Question = new SurveyQuestionVM(answer.Question);
-        }
-
-        public SurveyAnswerVM()
-        {
-            _answer = new Answer();
-        }
     }
 }

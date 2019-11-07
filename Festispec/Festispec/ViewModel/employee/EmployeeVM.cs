@@ -10,6 +10,19 @@ namespace Festispec.ViewModel.employee
 {
     public class EmployeeVM
     {
+        private DepartmentVM _department;
+        private Employee _employee;
+        public EmployeeVM(Employee employee)
+        {
+            _employee = employee;
+            Department = new DepartmentVM(_employee.Department1);
+        }
+
+        public EmployeeVM()
+        {
+            _employee = new Employee();
+        }
+
         public int Id {
             get {
                 return _employee.Id;
@@ -18,7 +31,7 @@ namespace Festispec.ViewModel.employee
                 _employee.Id = value;
             }
         }
-        private DepartmentVM _department;
+        
         public DepartmentVM Department { 
             get {
                 return _department;
@@ -27,6 +40,7 @@ namespace Festispec.ViewModel.employee
                 _department = value;
             }
         }
+
         public string Firstname { 
             get {
                 return _employee.Firstname;
@@ -44,6 +58,7 @@ namespace Festispec.ViewModel.employee
                 _employee.Lastname = value;
             }
         }
+
         public string Street { 
             get {
                 return _employee.Street;
@@ -52,6 +67,7 @@ namespace Festispec.ViewModel.employee
                 _employee.Street = value;
             }
         }
+
         public int HouseNumber {
             get {
                 return _employee.HouseNumber;
@@ -60,6 +76,7 @@ namespace Festispec.ViewModel.employee
                 _employee.HouseNumber = value;
             }
         }
+
         public string PostalCode { 
             get {
                 return _employee.PostalCode;
@@ -68,6 +85,7 @@ namespace Festispec.ViewModel.employee
                 _employee.PostalCode = value;
             }
         }
+
         public string City {
             get {
                 return _employee.City;
@@ -76,6 +94,7 @@ namespace Festispec.ViewModel.employee
                 _employee.City = value;
             }
         }
+
         public string Email { 
             get {
                 return _employee.Email;
@@ -84,6 +103,7 @@ namespace Festispec.ViewModel.employee
                 _employee.Email = value;
             }
         }
+
         public string Phone { 
             get {
                 return _employee.Phone;
@@ -92,6 +112,7 @@ namespace Festispec.ViewModel.employee
                 _employee.Phone = value;
             }
         }
+
         public string Password { 
             get {
                 return _employee.Password;
@@ -100,6 +121,7 @@ namespace Festispec.ViewModel.employee
                 _employee.Password = value;
             }
         }
+
         private string PasswordResetToken { 
             get {
                 return _employee.PasswordResetToken;
@@ -108,6 +130,7 @@ namespace Festispec.ViewModel.employee
                 _employee.PasswordResetToken = value;
             }
         }
+
         public DateTime ResetTokenEndTime {
             get {
                 return (DateTime) _employee.ResetTokenEndTime;
@@ -116,6 +139,7 @@ namespace Festispec.ViewModel.employee
                 _employee.ResetTokenEndTime = value;
             }
         }
+
         public string Iban { 
             get {
                 return _employee.Iban;
@@ -124,6 +148,7 @@ namespace Festispec.ViewModel.employee
                 _employee.Iban = value;
             }
         }
+
         public string Status {
             get {
                 return _employee.Status;
@@ -132,18 +157,5 @@ namespace Festispec.ViewModel.employee
                 _employee.Status = value;
             }
         }
-
-        private Employee _employee;
-        public EmployeeVM(Employee employee)
-        {
-            _employee = employee;
-            Department = new DepartmentVM(_employee.Department1);
-        }
-
-        public EmployeeVM()
-        {
-            _employee = new Employee();
-        }
-        
     }
 }

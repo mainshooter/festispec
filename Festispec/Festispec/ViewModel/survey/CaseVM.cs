@@ -12,26 +12,6 @@ namespace Festispec.ViewModel.survey
 {
     public class CaseVM
     {
-        public int Id {
-            get {
-                return _surveyCase.Id;
-            }
-            private set {
-                _surveyCase.Id = value;
-            }
-        }
-        public SurveyVM Survey { get; set; }
-        public EmployeeVM Employee { get; set; }
-        public string Status {
-            get {
-                return _surveyCase.Status;
-            }
-            set {
-                _surveyCase.Status = value;
-            }
-        }
-        public ObservableCollection<SurveyAnswerVM> Answers { get; set; }
-
         private Case _surveyCase;
         public CaseVM(Case surveyCase)
         {
@@ -45,5 +25,29 @@ namespace Festispec.ViewModel.survey
         {
             _surveyCase = new Case();
         }
+
+        public int Id {
+            get {
+                return _surveyCase.Id;
+            }
+            private set {
+                _surveyCase.Id = value;
+            }
+        }
+
+        public SurveyVM Survey { get; set; }
+
+        public EmployeeVM Employee { get; set; }
+
+        public string Status {
+            get {
+                return _surveyCase.Status;
+            }
+            set {
+                _surveyCase.Status = value;
+            }
+        }
+
+        public ObservableCollection<SurveyAnswerVM> Answers { get; set; }
     }
 }

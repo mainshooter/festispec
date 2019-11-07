@@ -12,54 +12,8 @@ namespace Festispec.ViewModel.survey
 {
     public class SurveyVM
     {
-        public int Id {
-            get {
-                return _survey.Id;
-            }
-            private set {
-                _survey.Id = value;
-            }
-        }
-        public string Description {
-            get {
-                return _survey.Description;
-            }
-            set {
-                _survey.Description = value;
-            }
-        }
-        public OrderVM Order { get; set; }
-        public string Status {
-            get {
-                return _survey.Status;
-            }
-            set {
-                _survey.Status = value;
-            }
-        }
-
         private ObservableCollection<CaseVM> _cases;
-
-        public ObservableCollection<CaseVM> Cases {
-            get {
-                return _cases;
-            }
-            set {
-                _cases = value;
-            }
-        }
-
         private ObservableCollection<SurveyQuestionVM> _questions;
-        public ObservableCollection<SurveyQuestionVM> Questions {
-            get {
-                return _questions;
-            }
-            set {
-                _questions = value;
-            }
-        }
-
-
         private Survey _survey;
         public SurveyVM(Survey survey)
         {
@@ -71,6 +25,53 @@ namespace Festispec.ViewModel.survey
         public SurveyVM()
         {
             _survey = new Survey();
+        }
+
+        public int Id {
+            get {
+                return _survey.Id;
+            }
+            private set {
+                _survey.Id = value;
+            }
+        }
+
+        public string Description {
+            get {
+                return _survey.Description;
+            }
+            set {
+                _survey.Description = value;
+            }
+        }
+
+        public OrderVM Order { get; set; }
+
+        public string Status {
+            get {
+                return _survey.Status;
+            }
+            set {
+                _survey.Status = value;
+            }
+        }
+
+        public ObservableCollection<CaseVM> Cases {
+            get {
+                return _cases;
+            }
+            set {
+                _cases = value;
+            }
+        }
+        
+        public ObservableCollection<SurveyQuestionVM> Questions {
+            get {
+                return _questions;
+            }
+            set {
+                _questions = value;
+            }
         }
     }
 }

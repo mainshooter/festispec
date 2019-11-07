@@ -9,41 +9,9 @@ namespace Festispec.ViewModel.employee.certificate
 {
     public class CertificateVM
     {
-        public int Id { 
-            get {
-                return _certificate.Id;
-            }
-            private set {
-                _certificate.Id = value;
-            }
-        }
         private EmployeeVM _employee;
-        public EmployeeVM Employee {
-            get {
-                return _employee;
-            }
-            set {
-                _employee = value;
-            }
-        }
-        public DateTime StartDate {
-            get {
-                return _certificate.DateFrom;
-            }
-            set {
-                _certificate.DateFrom = value;
-            }
-        }
-        public DateTime ValidUntil {
-            get {
-                return _certificate.DateTill;
-            }
-            set {
-                _certificate.DateTill = value;
-            }
-        }
-
         private CertificateInspector _certificate;
+
         public CertificateVM(CertificateInspector certificate)
         {
             _certificate = certificate;
@@ -53,6 +21,42 @@ namespace Festispec.ViewModel.employee.certificate
         public CertificateVM()
         {
             _certificate = new CertificateInspector();
+        }
+
+        public int Id { 
+            get {
+                return _certificate.Id;
+            }
+            private set {
+                _certificate.Id = value;
+            }
+        }
+        
+        public EmployeeVM Employee {
+            get {
+                return _employee;
+            }
+            set {
+                _employee = value;
+            }
+        }
+
+        public DateTime StartDate {
+            get {
+                return _certificate.DateFrom;
+            }
+            set {
+                _certificate.DateFrom = value;
+            }
+        }
+
+        public DateTime ValidUntil {
+            get {
+                return _certificate.DateTill;
+            }
+            set {
+                _certificate.DateTill = value;
+            }
         }
     }
 }

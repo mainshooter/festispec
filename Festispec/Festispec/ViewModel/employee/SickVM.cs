@@ -11,43 +11,10 @@ namespace Festispec.ViewModel.employee
 {
     public class SickVM
     {
-        public int Id { 
-            get {
-                return _sick.Id;
-            }
-            private set {
-                _sick.Id = value;
-            }
-        }
         private EmployeeVM _employee;
-        public EmployeeVM Employee {
-            get {
-                return _employee;
-            }
-            set {
-                _employee = value;
-            }
-        }
         private PlannedEmployeeVM _day;
-        public PlannedEmployeeVM Day {
-            get {
-                return _day;
-            }
-            set {
-                _day = value;
-            }
-        }
-        public PlannedEmployeeVM PlannedEmployee { get; set; }
-        public string Reason {
-            get {
-                return _sick.Reason;
-            }
-            set {
-                Reason = value;
-            }
-        }
-
         private SickReportInspector _sick;
+
         public SickVM(SickReportInspector sick)
         {
             _sick = sick;
@@ -58,6 +25,44 @@ namespace Festispec.ViewModel.employee
         public SickVM()
         {
             _sick = new SickReportInspector();
+        }
+
+        public int Id { 
+            get {
+                return _sick.Id;
+            }
+            private set {
+                _sick.Id = value;
+            }
+        }
+        
+        public EmployeeVM Employee {
+            get {
+                return _employee;
+            }
+            set {
+                _employee = value;
+            }
+        }
+        
+        public PlannedEmployeeVM Day {
+            get {
+                return _day;
+            }
+            set {
+                _day = value;
+            }
+        }
+
+        public PlannedEmployeeVM PlannedEmployee { get; set; }
+
+        public string Reason {
+            get {
+                return _sick.Reason;
+            }
+            set {
+                Reason = value;
+            }
         }
     }
 }

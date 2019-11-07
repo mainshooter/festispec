@@ -14,70 +14,12 @@ namespace Festispec.ViewModel.employee.order
 {
     public class OrderVM
     {
-        public int Id { 
-            get {
-                return _order.Id;
-            }
-            private set {
-                _order.Id = value;
-            }
-        }
-        private CustomerVM _customer;
-        public CustomerVM Customer { 
-            get {
-                return _customer;
-            }
-            set {
-                _customer = value;
-            }
-        }
-        private EventVM _event;
-        public EventVM Event { 
-            get {
-                return _event;
-            }
-            set {
-                _event = value;
-            }
-        }
-        private EmployeeVM _employee;
-        public EmployeeVM Employee { 
-            get {
-                return _employee;
-            }
-            set {
-                _employee = value;
-            }
-        }
-        public ObservableCollection<DayVM> Days { get; set; }
-        public string Status { 
-            get {
-                return _order.Status;
-            }
-            set {
-                _order.Status = value;
-            }
-        }
-        public string Description { 
-            get {
-                return _order.Description;
-            }
-            set {
-                _order.Description = value;
-            }
-        }
-
-        private ObservableCollection<ReportVM> _reports;
-        public ObservableCollection<ReportVM> Reports {
-            get {
-                return _reports;
-            }
-            set {
-                _reports = value;
-            }
-        }
-
         private Order _order;
+        private EventVM _event;
+        private CustomerVM _customer;
+        private EmployeeVM _employee;
+        private ObservableCollection<ReportVM> _reports;
+
         public OrderVM(Order orderCon)
         {
             _order = orderCon;
@@ -91,6 +33,70 @@ namespace Festispec.ViewModel.employee.order
         public OrderVM()
         {
             _order = new Order();
+        }
+
+        public int Id { 
+            get {
+                return _order.Id;
+            }
+            private set {
+                _order.Id = value;
+            }
+        }
+        
+        public CustomerVM Customer { 
+            get {
+                return _customer;
+            }
+            set {
+                _customer = value;
+            }
+        }
+        
+        public EventVM Event { 
+            get {
+                return _event;
+            }
+            set {
+                _event = value;
+            }
+        }
+        
+        public EmployeeVM Employee { 
+            get {
+                return _employee;
+            }
+            set {
+                _employee = value;
+            }
+        }
+        public ObservableCollection<DayVM> Days { get; set; }
+
+        public string Status { 
+            get {
+                return _order.Status;
+            }
+            set {
+                _order.Status = value;
+            }
+        }
+
+        public string Description { 
+            get {
+                return _order.Description;
+            }
+            set {
+                _order.Description = value;
+            }
+        }
+        
+        public ObservableCollection<ReportVM> Reports {
+            get {
+                return _reports;
+            }
+            set {
+                _reports = value;
+            }
         }
     }
 }
