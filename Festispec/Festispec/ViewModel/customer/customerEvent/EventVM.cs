@@ -92,5 +92,10 @@ namespace Festispec.ViewModel.customer.customerEvent
             _customer = new CustomerVM(_event.Customer);
             _contactPerson = new ContactPersonVM(_event.ContactPerson);
         }
+
+        public EventVM()
+        {
+            _event = new Domain.Event();
+        }
     }
 }

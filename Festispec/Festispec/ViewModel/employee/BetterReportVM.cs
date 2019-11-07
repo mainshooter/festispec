@@ -33,5 +33,10 @@ namespace Festispec.ViewModel.employee
             _betterReportInspector = betterReport;
             _employee = new EmployeeVM(betterReport.Employee);
         }
+
+        public BetterReportVM()
+        {
+            _betterReportInspector = new BetterReportInspector();
+        }
     }
 }

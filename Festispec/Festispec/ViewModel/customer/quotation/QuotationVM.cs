@@ -87,5 +87,10 @@ namespace Festispec.ViewModel.employee.quotation
             Employee = new EmployeeVM(_quotation.Employee);
             Event = new EventVM(_quotation.Event);
         }
+
+        public QuotationVM()
+        {
+            _quotation = new Quotation();
+        }
     }
 }

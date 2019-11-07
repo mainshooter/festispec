@@ -60,5 +60,10 @@ namespace Festispec.ViewModel.employee.order
             Employee = new EmployeeVM(orderCon.Employee);
             Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d)));
         }
+
+        public OrderVM()
+        {
+            _order = new Order();
+        }
     }
 }

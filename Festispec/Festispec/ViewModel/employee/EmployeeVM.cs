@@ -139,6 +139,11 @@ namespace Festispec.ViewModel.employee
             _employee = employee;
             Department = new DepartmentVM(_employee.Department1);
         }
+
+        public EmployeeVM()
+        {
+            _employee = new Employee();
+        }
         
     }
 }

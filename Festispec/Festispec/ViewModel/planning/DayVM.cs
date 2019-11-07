@@ -40,5 +40,10 @@ namespace Festispec.ViewModel.planning
             InspectorPlannings = new ObservableCollection<PlannedEmployeeVM>(day.InspectorPlannings.ToList().Select(i => new PlannedEmployeeVM(i)));
         }
 
+        public DayVM()
+        {
+            _day = new Day();
+        }
+
     }
 }

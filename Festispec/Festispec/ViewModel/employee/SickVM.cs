@@ -54,5 +54,10 @@ namespace Festispec.ViewModel.employee
             Employee = new EmployeeVM(sick.Employee);
             PlannedEmployee = new PlannedEmployeeVM(sick.InspectorPlanning);
         }
+
+        public SickVM()
+        {
+            _sick = new SickReportInspector();
+        }
     }
 }

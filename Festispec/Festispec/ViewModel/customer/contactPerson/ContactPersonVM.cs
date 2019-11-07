@@ -63,5 +63,9 @@ namespace Festispec.ViewModel.customer.contactPerson
         {
             _contactPerson = contactPerson;
         }
+        public ContactPersonVM()
+        {
+            _contactPerson = new ContactPerson();
+        }
     }
 }

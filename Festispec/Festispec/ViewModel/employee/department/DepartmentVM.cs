@@ -30,5 +30,10 @@ namespace Festispec.ViewModel.employee.department
         {
             _department = department;
         }
+
+        public DepartmentVM()
+        {
+            _department = new Department();
+        }
     }
 }

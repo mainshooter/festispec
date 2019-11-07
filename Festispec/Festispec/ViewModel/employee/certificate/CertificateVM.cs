@@ -49,5 +49,10 @@ namespace Festispec.ViewModel.employee.certificate
             _certificate = certificate;
             Employee = new EmployeeVM(certificate.Employee);
         }
+
+        public CertificateVM()
+        {
+            _certificate = new CertificateInspector();
+        }
     }
 }

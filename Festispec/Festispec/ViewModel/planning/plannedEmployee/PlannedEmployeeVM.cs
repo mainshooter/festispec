@@ -63,5 +63,10 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             Employee = new EmployeeVM(pe.Employee);
             Day = new DayVM(pe.Day);
         }
+
+        public PlannedEmployeeVM()
+        {
+            _plannedEmployee = new InspectorPlanning();
+        }
     }
 }

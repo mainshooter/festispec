@@ -47,5 +47,9 @@ namespace Festispec.ViewModel.customer.contactPerson.note
         {
             _note = note;
         }
+        public NoteVM()
+        {
+            _note = new Note();
+        }
     }
 }

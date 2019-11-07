@@ -50,5 +50,10 @@ namespace Festispec.ViewModel.survey.question
         {
             _question = question;
         }
+
+        public SurveyQuestionVM()
+        {
+            _question = new Question();
+        }
     }
 }

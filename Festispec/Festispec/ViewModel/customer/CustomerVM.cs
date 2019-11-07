@@ -111,5 +111,10 @@ namespace Festispec.ViewModel.customer
             Events = new ObservableCollection<EventVM>(_customer.Events.ToList().Select(e => new EventVM(e)));
             Quotations = new ObservableCollection<QuotationVM>(_customer.Quotations.ToList().Select(q => new QuotationVM(q)));
         }
+
+        public CustomerVM()
+        {
+            _customer = new Customer();
+        }
     }
 }

@@ -55,5 +55,10 @@ namespace Festispec.ViewModel.rapport.element
         {
             _reportElement = element;
         }
+
+        public ReportElementVM()
+        {
+            _reportElement = new ReportElement();
+        }
     }
 }
