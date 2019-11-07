@@ -1,5 +1,4 @@
 ﻿using Festispec.Domain;
-using Festispec.ViewModel.employee.assignment;
 using Festispec.ViewModel.employee.order;
 using Festispec.ViewModel.rapport.element;
 using System;

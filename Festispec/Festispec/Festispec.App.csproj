@@ -99,9 +99,8 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\planning\DayVM.cs" />
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />
-    <Compile Include="ViewModel\planning\PlanningVM.cs" />
-    <Compile Include="ViewModel\rapport\element\RapportElementVM.cs" />
-    <Compile Include="ViewModel\rapport\rapportVM.cs" />
+    <Compile Include="ViewModel\report\element\ReportElementVM.cs" />
+    <Compile Include="ViewModel\report\ReportVM.cs" />
     <Compile Include="ViewModel\survey\answer\SurveyAnswerVM.cs" />
     <Compile Include="ViewModel\survey\CaseVM.cs" />
     <Compile Include="Interface\IQuestion.cs" />
@@ -147,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\survey\question\questionTypes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Festispec.Domain\Festispec.Domain.csproj">
+      <Project>{ee67b2e2-6838-4800-a461-026c192d54d3}</Project>
+      <Name>Festispec.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

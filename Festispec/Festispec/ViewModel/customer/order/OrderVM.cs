@@ -1,9 +1,10 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.customer;
 using Festispec.ViewModel.customer.customerEvent;
-using Festispec.ViewModel.employee.offer;
+using Festispec.ViewModel.planning;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,7 +48,7 @@ namespace Festispec.ViewModel.employee.order
                 _employee = value;
             }
         }
-        public OfferVM Offer { get; set; }
+        public ObservableCollection<DayVM> Days { get; set; }
         public string Status { get; set; }
         public string Description { get; set; }
         private Order _order;
@@ -57,6 +58,7 @@ namespace Festispec.ViewModel.employee.order
             Customer = new CustomerVM(orderCon.Customer);
             Event = new EventVM(orderCon.Event);
             Employee = new EmployeeVM(orderCon.Employee);
+            Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d)));
         }
     }
 }

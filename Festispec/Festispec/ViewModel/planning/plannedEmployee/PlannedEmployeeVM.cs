@@ -1,6 +1,5 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.employee;
-using Festispec.ViewModel.employee.assignment;
 using Festispec.ViewModel.employee.order;
 using Festispec.ViewModel.employee.quotation;
 using System;
