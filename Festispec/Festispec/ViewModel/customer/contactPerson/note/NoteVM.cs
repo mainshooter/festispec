@@ -12,16 +12,6 @@ namespace Festispec.ViewModel.customer.contactPerson.note
         private ContactPersonVM _contactPerson;
         private Note _note;
 
-        public NoteVM(Note note)
-        {
-            _note = note;
-        }
-
-        public NoteVM()
-        {
-            _note = new Note();
-        }
-
         public int Id { 
             get {
                 return _note.Id;
@@ -58,5 +48,14 @@ namespace Festispec.ViewModel.customer.contactPerson.note
             }
         }
 
+        public NoteVM(Note note)
+        {
+            _note = note;
+        }
+
+        public NoteVM()
+        {
+            _note = new Note();
+        }
     }
 }

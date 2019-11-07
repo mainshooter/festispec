@@ -10,15 +10,6 @@ namespace Festispec.ViewModel.rapport.element
     public class ReportElementVM
     {
         private ReportElement _reportElement;
-        public ReportElementVM(ReportElement element)
-        {
-            _reportElement = element;
-        }
-
-        public ReportElementVM()
-        {
-            _reportElement = new ReportElement();
-        }
 
         public int Id {
             get {
@@ -63,6 +54,16 @@ namespace Festispec.ViewModel.rapport.element
             set {
                 _reportElement.Order = value;
             }
+        }
+
+        public ReportElementVM(ReportElement element)
+        {
+            _reportElement = element;
+        }
+
+        public ReportElementVM()
+        {
+            _reportElement = new ReportElement();
         }
     }
 }

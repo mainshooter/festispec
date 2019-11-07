@@ -12,17 +12,6 @@ namespace Festispec.ViewModel.employee
         private EmployeeVM _employee;
         private BetterReportInspector _betterReportInspector;
 
-        public BetterReportVM(BetterReportInspector betterReport)
-        {
-            _betterReportInspector = betterReport;
-            _employee = new EmployeeVM(betterReport.Employee);
-        }
-
-        public BetterReportVM()
-        {
-            _betterReportInspector = new BetterReportInspector();
-        }
-
         public EmployeeVM Employee {
             get {
                 return _employee;
@@ -39,6 +28,17 @@ namespace Festispec.ViewModel.employee
             set {
                 _betterReportInspector.DateTime = value;
             }
+        }
+
+        public BetterReportVM(BetterReportInspector betterReport)
+        {
+            _betterReportInspector = betterReport;
+            _employee = new EmployeeVM(betterReport.Employee);
+        }
+
+        public BetterReportVM()
+        {
+            _betterReportInspector = new BetterReportInspector();
         }
     }
 }

@@ -13,16 +13,6 @@ namespace Festispec.ViewModel.rapport
     public class ReportVM
     {
         private Report _report;
-        public ReportVM(Report report)
-        {
-            _report = report;
-            ReportElements = new ObservableCollection<ReportElementVM>(report.ReportElements.ToList().Select(e => new ReportElementVM(e)));
-        }
-
-        public ReportVM()
-        {
-            _report = new Report();
-        }
 
         public int Id {
             get {
@@ -55,6 +45,15 @@ namespace Festispec.ViewModel.rapport
 
         public ObservableCollection<ReportElementVM> ReportElements { get; set; }
 
+        public ReportVM(Report report)
+        {
+            _report = report;
+            ReportElements = new ObservableCollection<ReportElementVM>(report.ReportElements.ToList().Select(e => new ReportElementVM(e)));
+        }
 
+        public ReportVM()
+        {
+            _report = new Report();
+        }
     }
 }

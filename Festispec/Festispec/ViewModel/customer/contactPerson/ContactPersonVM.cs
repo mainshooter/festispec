@@ -11,16 +11,6 @@ namespace Festispec.ViewModel.customer.contactPerson
     {
         private ContactPerson _contactPerson;
 
-        public ContactPersonVM(ContactPerson contactPerson)
-        {
-            _contactPerson = contactPerson;
-        }
-
-        public ContactPersonVM()
-        {
-            _contactPerson = new ContactPerson();
-        }
-
         public int Id { 
             get {
                 return _contactPerson.Id;
@@ -73,6 +63,16 @@ namespace Festispec.ViewModel.customer.contactPerson
             set {
                 _contactPerson.Function = value;
             }
+        }
+
+        public ContactPersonVM(ContactPerson contactPerson)
+        {
+            _contactPerson = contactPerson;
+        }
+
+        public ContactPersonVM()
+        {
+            _contactPerson = new ContactPerson();
         }
     }
 }

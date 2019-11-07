@@ -14,18 +14,6 @@ namespace Festispec.ViewModel.customer.customerEvent
         private CustomerVM _customer;
         private ContactPersonVM _contactPerson;
 
-        public EventVM(Event eventCon)
-        {
-            _event = eventCon;
-            _customer = new CustomerVM(_event.Customer);
-            _contactPerson = new ContactPersonVM(_event.ContactPerson);
-        }
-
-        public EventVM()
-        {
-            _event = new Domain.Event();
-        }
-
         public int Id { 
             get {
                 return _event.Id;
@@ -105,6 +93,18 @@ namespace Festispec.ViewModel.customer.customerEvent
             set {
                 _event.Description = value;
             }
+        }
+
+        public EventVM(Event eventCon)
+        {
+            _event = eventCon;
+            _customer = new CustomerVM(_event.Customer);
+            _contactPerson = new ContactPersonVM(_event.ContactPerson);
+        }
+
+        public EventVM()
+        {
+            _event = new Domain.Event();
         }
     }
 }

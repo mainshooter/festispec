@@ -12,18 +12,6 @@ namespace Festispec.ViewModel.customer
         private ObservableCollection<QuotationVM> _quotations;
         private Customer _customer;
 
-        public CustomerVM(Customer customer)
-        {
-            _customer = customer;
-            Events = new ObservableCollection<EventVM>(_customer.Events.ToList().Select(e => new EventVM(e)));
-            Quotations = new ObservableCollection<QuotationVM>(_customer.Quotations.ToList().Select(q => new QuotationVM(q)));
-        }
-
-        public CustomerVM()
-        {
-            _customer = new Customer();
-        }
-
         public int Id { 
             get {
                 return _customer.Id;
@@ -127,6 +115,18 @@ namespace Festispec.ViewModel.customer
             set {
                 _quotations = value;
             }
+        }
+
+        public CustomerVM(Customer customer)
+        {
+            _customer = customer;
+            Events = new ObservableCollection<EventVM>(_customer.Events.ToList().Select(e => new EventVM(e)));
+            Quotations = new ObservableCollection<QuotationVM>(_customer.Quotations.ToList().Select(q => new QuotationVM(q)));
+        }
+
+        public CustomerVM()
+        {
+            _customer = new Customer();
         }
     }
 }

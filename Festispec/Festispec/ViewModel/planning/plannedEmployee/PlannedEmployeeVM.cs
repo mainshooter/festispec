@@ -13,17 +13,6 @@ namespace Festispec.ViewModel.planning.plannedEmployee
     public class PlannedEmployeeVM
     {
         private InspectorPlanning _plannedEmployee;
-        public PlannedEmployeeVM(InspectorPlanning pe)
-        {
-            _plannedEmployee = pe;
-            Employee = new EmployeeVM(pe.Employee);
-            Day = new DayVM(pe.Day);
-        }
-
-        public PlannedEmployeeVM()
-        {
-            _plannedEmployee = new InspectorPlanning();
-        }
 
         public EmployeeVM Employee { get; set; }
 
@@ -74,6 +63,18 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             set {
                 _plannedEmployee.WorkedTill = value;
             }
+        }
+
+        public PlannedEmployeeVM(InspectorPlanning pe)
+        {
+            _plannedEmployee = pe;
+            Employee = new EmployeeVM(pe.Employee);
+            Day = new DayVM(pe.Day);
+        }
+
+        public PlannedEmployeeVM()
+        {
+            _plannedEmployee = new InspectorPlanning();
         }
     }
 }

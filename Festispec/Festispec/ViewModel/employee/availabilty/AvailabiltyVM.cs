@@ -11,17 +11,6 @@ namespace Festispec.ViewModel.employee.availabilty
     {
         private AvailabilityInspector _availabilityInspector;
 
-        public AvailabiltyVM(AvailabilityInspector av)
-        {
-            _availabilityInspector = av;
-            Employee = new EmployeeVM(av.Employee);
-        }
-
-        public AvailabiltyVM()
-        {
-            _availabilityInspector = new AvailabilityInspector();
-        }
-
         public int Id {
             get {
                 return _availabilityInspector.Id;
@@ -49,6 +38,17 @@ namespace Festispec.ViewModel.employee.availabilty
             set {
                 _availabilityInspector.AvailableTill = value;
             }
+        }
+
+        public AvailabiltyVM(AvailabilityInspector av)
+        {
+            _availabilityInspector = av;
+            Employee = new EmployeeVM(av.Employee);
+        }
+
+        public AvailabiltyVM()
+        {
+            _availabilityInspector = new AvailabilityInspector();
         }
     }
 }

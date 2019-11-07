@@ -15,17 +15,6 @@ namespace Festispec.ViewModel.survey
         private ObservableCollection<CaseVM> _cases;
         private ObservableCollection<SurveyQuestionVM> _questions;
         private Survey _survey;
-        public SurveyVM(Survey survey)
-        {
-            _survey = survey;
-            Order = new OrderVM(survey.Order);
-            Cases = new ObservableCollection<CaseVM>(survey.Cases.ToList().Select(c => new CaseVM(c)));
-        }
-
-        public SurveyVM()
-        {
-            _survey = new Survey();
-        }
 
         public int Id {
             get {
@@ -72,6 +61,18 @@ namespace Festispec.ViewModel.survey
             set {
                 _questions = value;
             }
+        }
+
+        public SurveyVM(Survey survey)
+        {
+            _survey = survey;
+            Order = new OrderVM(survey.Order);
+            Cases = new ObservableCollection<CaseVM>(survey.Cases.ToList().Select(c => new CaseVM(c)));
+        }
+
+        public SurveyVM()
+        {
+            _survey = new Survey();
         }
     }
 }

@@ -15,18 +15,6 @@ namespace Festispec.ViewModel.employee
         private PlannedEmployeeVM _day;
         private SickReportInspector _sick;
 
-        public SickVM(SickReportInspector sick)
-        {
-            _sick = sick;
-            Employee = new EmployeeVM(sick.Employee);
-            PlannedEmployee = new PlannedEmployeeVM(sick.InspectorPlanning);
-        }
-
-        public SickVM()
-        {
-            _sick = new SickReportInspector();
-        }
-
         public int Id { 
             get {
                 return _sick.Id;
@@ -63,6 +51,18 @@ namespace Festispec.ViewModel.employee
             set {
                 Reason = value;
             }
+        }
+
+        public SickVM(SickReportInspector sick)
+        {
+            _sick = sick;
+            Employee = new EmployeeVM(sick.Employee);
+            PlannedEmployee = new PlannedEmployeeVM(sick.InspectorPlanning);
+        }
+
+        public SickVM()
+        {
+            _sick = new SickReportInspector();
         }
     }
 }

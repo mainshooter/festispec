@@ -12,17 +12,6 @@ namespace Festispec.ViewModel.employee.certificate
         private EmployeeVM _employee;
         private CertificateInspector _certificate;
 
-        public CertificateVM(CertificateInspector certificate)
-        {
-            _certificate = certificate;
-            Employee = new EmployeeVM(certificate.Employee);
-        }
-
-        public CertificateVM()
-        {
-            _certificate = new CertificateInspector();
-        }
-
         public int Id { 
             get {
                 return _certificate.Id;
@@ -57,6 +46,17 @@ namespace Festispec.ViewModel.employee.certificate
             set {
                 _certificate.DateTill = value;
             }
+        }
+
+        public CertificateVM(CertificateInspector certificate)
+        {
+            _certificate = certificate;
+            Employee = new EmployeeVM(certificate.Employee);
+        }
+
+        public CertificateVM()
+        {
+            _certificate = new CertificateInspector();
         }
     }
 }

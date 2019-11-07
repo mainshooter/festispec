@@ -20,21 +20,6 @@ namespace Festispec.ViewModel.employee.order
         private EmployeeVM _employee;
         private ObservableCollection<ReportVM> _reports;
 
-        public OrderVM(Order orderCon)
-        {
-            _order = orderCon;
-            Customer = new CustomerVM(orderCon.Customer);
-            Event = new EventVM(orderCon.Event);
-            Employee = new EmployeeVM(orderCon.Employee);
-            Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d)));
-            Reports = new ObservableCollection<ReportVM>(_order.Reports.ToList().Select(r => new ReportVM(r)));
-        }
-
-        public OrderVM()
-        {
-            _order = new Order();
-        }
-
         public int Id { 
             get {
                 return _order.Id;
@@ -97,6 +82,21 @@ namespace Festispec.ViewModel.employee.order
             set {
                 _reports = value;
             }
+        }
+
+        public OrderVM(Order orderCon)
+        {
+            _order = orderCon;
+            Customer = new CustomerVM(orderCon.Customer);
+            Event = new EventVM(orderCon.Event);
+            Employee = new EmployeeVM(orderCon.Employee);
+            Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d)));
+            Reports = new ObservableCollection<ReportVM>(_order.Reports.ToList().Select(r => new ReportVM(r)));
+        }
+
+        public OrderVM()
+        {
+            _order = new Order();
         }
     }
 }

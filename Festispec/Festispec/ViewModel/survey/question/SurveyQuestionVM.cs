@@ -11,15 +11,6 @@ namespace Festispec.ViewModel.survey.question
     public class SurveyQuestionVM
     {
         private Question _question;
-        public SurveyQuestionVM(Question question)
-        {
-            _question = question;
-        }
-
-        public SurveyQuestionVM()
-        {
-            _question = new Question();
-        }
 
         public int Id {
             get {
@@ -57,6 +48,16 @@ namespace Festispec.ViewModel.survey.question
             set {
                 _question.Variables = value;
             }
+        }
+
+        public SurveyQuestionVM(Question question)
+        {
+            _question = question;
+        }
+
+        public SurveyQuestionVM()
+        {
+            _question = new Question();
         }
     }
 }

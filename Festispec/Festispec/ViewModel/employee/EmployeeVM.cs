@@ -12,16 +12,6 @@ namespace Festispec.ViewModel.employee
     {
         private DepartmentVM _department;
         private Employee _employee;
-        public EmployeeVM(Employee employee)
-        {
-            _employee = employee;
-            Department = new DepartmentVM(_employee.Department1);
-        }
-
-        public EmployeeVM()
-        {
-            _employee = new Employee();
-        }
 
         public int Id {
             get {
@@ -156,6 +146,17 @@ namespace Festispec.ViewModel.employee
             set {
                 _employee.Status = value;
             }
+        }
+
+        public EmployeeVM(Employee employee)
+        {
+            _employee = employee;
+            Department = new DepartmentVM(_employee.Department1);
+        }
+
+        public EmployeeVM()
+        {
+            _employee = new Employee();
         }
     }
 }

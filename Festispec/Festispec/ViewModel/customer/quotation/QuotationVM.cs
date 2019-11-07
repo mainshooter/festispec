@@ -16,19 +16,6 @@ namespace Festispec.ViewModel.employee.quotation
         private EventVM _eventVM;
         private Quotation _quotation;
 
-        public QuotationVM(Quotation quotation)
-        {
-            _quotation = quotation;
-            Customer = new CustomerVM(_quotation.Customer);
-            Employee = new EmployeeVM(_quotation.Employee);
-            Event = new EventVM(_quotation.Event);
-        }
-
-        public QuotationVM()
-        {
-            _quotation = new Quotation();
-        }
-
         public int Id {
             get {
                 return _quotation.Id;
@@ -99,6 +86,19 @@ namespace Festispec.ViewModel.employee.quotation
             set {
                 _quotation.Content = value;
             }
+        }
+
+        public QuotationVM(Quotation quotation)
+        {
+            _quotation = quotation;
+            Customer = new CustomerVM(_quotation.Customer);
+            Employee = new EmployeeVM(_quotation.Employee);
+            Event = new EventVM(_quotation.Event);
+        }
+
+        public QuotationVM()
+        {
+            _quotation = new Quotation();
         }
     }
 }
