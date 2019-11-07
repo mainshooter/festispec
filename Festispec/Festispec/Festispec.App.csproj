@@ -88,13 +88,13 @@
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EventVM.cs" />
     <Compile Include="ViewModel\customer\CustomerVM.cs" />
-    <Compile Include="ViewModel\customer\assignment\AssignmentVM.cs" />
+    <Compile Include="ViewModel\customer\order\OrderVM.cs" />
+    <Compile Include="ViewModel\customer\quotation\QuotationVM.cs" />
     <Compile Include="ViewModel\employee\availabilty\AvailabiltyVM.cs" />
     <Compile Include="ViewModel\employee\BetterReportVM.cs" />
     <Compile Include="ViewModel\employee\certificate\CertificateVM.cs" />
     <Compile Include="ViewModel\employee\department\DepartmentVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeVM.cs" />
-    <Compile Include="ViewModel\customer\offer\OfferVM.cs" />
     <Compile Include="ViewModel\employee\SickVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\planning\DayVM.cs" />

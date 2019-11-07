@@ -28,8 +28,8 @@ namespace Festispec.ViewModel.employee
                 _employee = value;
             }
         }
-        private DayVM _day;
-        public DayVM Day {
+        private PlannedEmployeeVM _day;
+        public PlannedEmployeeVM Day {
             get {
                 return _day;
             }
@@ -52,7 +52,7 @@ namespace Festispec.ViewModel.employee
         {
             _sick = sick;
             Employee = new EmployeeVM(sick.Employee);
-            //Day = new DayVM(sick.);
+            PlannedEmployee = new PlannedEmployeeVM(sick.InspectorPlanning);
         }
     }
 }

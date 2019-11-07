@@ -26,8 +26,22 @@ namespace Festispec.ViewModel.employee.certificate
                 _employee = value;
             }
         }
-        public DateTime StartDate { get; set; }
-        public DateTime ValidUntil { get; set; }
+        public DateTime StartDate {
+            get {
+                return _certificate.DateFrom;
+            }
+            set {
+                _certificate.DateFrom = value;
+            }
+        }
+        public DateTime ValidUntil {
+            get {
+                return _certificate.DateTill;
+            }
+            set {
+                _certificate.DateTill = value;
+            }
+        }
 
         private CertificateInspector _certificate;
         public CertificateVM(CertificateInspector certificate)
