@@ -49,8 +49,22 @@ namespace Festispec.ViewModel.employee.order
             }
         }
         public ObservableCollection<DayVM> Days { get; set; }
-        public string Status { get; set; }
-        public string Description { get; set; }
+        public string Status { 
+            get {
+                return _order.Status;
+            }
+            set {
+                _order.Status = value;
+            }
+        }
+        public string Description { 
+            get {
+                return _order.Description;
+            }
+            set {
+                _order.Description = value;
+            }
+        }
         private Order _order;
         public OrderVM(Order orderCon)
         {
