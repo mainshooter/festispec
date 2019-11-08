@@ -11,6 +11,5 @@
 
     <Grid>
         <control:LineChart></control:LineChart>
-        <Label>DOei doei</Label>
     </Grid>
 </Page>

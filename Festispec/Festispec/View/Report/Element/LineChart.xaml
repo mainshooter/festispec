@@ -5,17 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Festispec.View.Report.Element"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="450" d:DesignWidth="500"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              DataContext="{Binding ChartElement, Source={StaticResource Locator}}">
     <Grid>
-        <lvc:CartesianChart Series="{Binding SeriesCollection}" >
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="{Binding YaxisName}" LabelFormatter="{Binding YaxisLabelFormat}" FontSize="20" Foreground="Black"></lvc:Axis>
-            </lvc:CartesianChart.AxisY>
-            <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="{Binding XaxisName}" Labels="{Binding Labels}" FontSize="20" Foreground="Black"></lvc:Axis>
-            </lvc:CartesianChart.AxisX>
-        </lvc:CartesianChart>
+        <StackPanel>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
+            <lvc:CartesianChart Series="{Binding SeriesCollection}" Height="300">
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="{Binding YaxisName}" LabelFormatter="{Binding YaxisLabelFormat}" FontSize="20" Foreground="Black"></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="{Binding XaxisName}" Labels="{Binding Labels}" FontSize="20" Foreground="Black"></lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
+        </StackPanel>
     </Grid>
 </UserControl>
