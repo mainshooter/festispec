@@ -14,7 +14,8 @@ namespace Festispec.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<ChartElementVM>();
+            SimpleIoc.Default.Register<LineChartVM>();
+            SimpleIoc.Default.Register<PieChartVM>();
         }
 
         public MainViewModel Main
@@ -25,10 +26,9 @@ namespace Festispec.ViewModel
             }
         }
 
-        public ChartElementVM ChartElement 
-        {
+        public LineChartVM LineChart {
             get {
-                var chartElement = ServiceLocator.Current.GetInstance<ChartElementVM>();
+                var chartElement = ServiceLocator.Current.GetInstance<LineChartVM>();
                 chartElement.Title = "Test titel";
                 chartElement.Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
                 chartElement.XaxisName = "Test xas";
@@ -42,6 +42,40 @@ namespace Festispec.ViewModel
             }
         }
         
+        public PieChartVM PieChart {
+            get {
+                var pieChart = ServiceLocator.Current.GetInstance<PieChartVM>();
+                pieChart.SeriesCollection = new SeriesCollection
+            {
+                new PieSeries
+                {
+                    Title = "Bier",
+                    Values = new ChartValues<double> { 20 },
+                    DataLabels = true,
+                },
+                new PieSeries
+                {
+                    Title = "Frisdrank",
+                    Values = new ChartValues<double> { 12 },
+                    DataLabels = true,
+                },
+                new PieSeries
+                {
+                    Title = "Cocktail",
+                    Values = new ChartValues<double> { 8 },
+                    DataLabels = true,
+                },
+                new PieSeries
+                {
+                    Title = "Wijn",
+                    Values = new ChartValues<double> { 2 },
+                    DataLabels = true,
+                }
+            };
+                return pieChart;
+            }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

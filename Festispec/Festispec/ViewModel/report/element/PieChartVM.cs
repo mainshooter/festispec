@@ -8,17 +8,8 @@ using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.report.element
 {
-    public class ChartElementVM: ReportElementVM
+    public class PieChartVM: ReportElementVM
     {
-        public string XaxisName { get; set; }
-
-        public string YaxisName { get; set; }
-
         public SeriesCollection SeriesCollection { get; set; }
-
-        public Func<string, string> YaxisLabelFormat { get; set; }
-
-        public List<string> Labels { get; set; }
-
     }
 }

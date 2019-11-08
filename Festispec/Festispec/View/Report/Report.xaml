@@ -10,6 +10,6 @@
       Title="Report">
 
     <Grid>
-        <control:LineChart></control:LineChart>
+        <control:PieChart></control:PieChart>
     </Grid>
 </Page>
