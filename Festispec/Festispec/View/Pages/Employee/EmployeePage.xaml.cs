@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Pages
+namespace Festispec.View.Pages.Employee
 {
     /// <summary>
     /// Interaction logic for EmployeePage.xaml

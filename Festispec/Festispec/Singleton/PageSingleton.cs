@@ -1,9 +1,11 @@
 ﻿using Festispec.View.Pages;
-using System;
+using Festispec.View.Pages.Availability;
+using Festispec.View.Pages.Customer;
+using Festispec.View.Pages.Employee;
+using Festispec.View.Pages.Event;
+using Festispec.View.Pages.Sick;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace Festispec.Singleton

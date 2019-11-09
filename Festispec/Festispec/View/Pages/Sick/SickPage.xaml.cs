@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Pages
+namespace Festispec.View.Pages.Sick
 {
     /// <summary>
     /// Interaction logic for SickPage.xaml

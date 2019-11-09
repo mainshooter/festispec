@@ -118,22 +118,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\Pages\AvailablePage.xaml.cs">
+    <Compile Include="View\Pages\Availability\AvailablePage.xaml.cs">
       <DependentUpon>AvailablePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\CustomerPage.xaml.cs">
+    <Compile Include="View\Pages\Customer\CustomerPage.xaml.cs">
       <DependentUpon>CustomerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\DashboardPage.xaml.cs">
       <DependentUpon>DashboardPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\EmployeePage.xaml.cs">
+    <Compile Include="View\Pages\Employee\EmployeePage.xaml.cs">
       <DependentUpon>EmployeePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\EventPage.xaml.cs">
+    <Compile Include="View\Pages\Event\EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\SickPage.xaml.cs">
+    <Compile Include="View\Pages\Sick\SickPage.xaml.cs">
       <DependentUpon>SickPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -168,11 +168,11 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="View\Pages\AvailablePage.xaml">
+    <Page Include="View\Pages\Availability\AvailablePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\CustomerPage.xaml">
+    <Page Include="View\Pages\Customer\CustomerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,15 +180,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\EmployeePage.xaml">
+    <Page Include="View\Pages\Employee\EmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\EventPage.xaml">
+    <Page Include="View\Pages\Event\EventPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\SickPage.xaml">
+    <Page Include="View\Pages\Sick\SickPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

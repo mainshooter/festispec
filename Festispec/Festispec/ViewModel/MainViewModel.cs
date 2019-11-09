@@ -10,7 +10,7 @@ namespace Festispec.ViewModel
     {
         //privates
         private Page _page;
-        private PageSingleton _pagesingleton;
+        private PageSingleton _pageSingleton;
 
         //publics
         public ICommand CloseApplication { get; set; }
@@ -37,9 +37,9 @@ namespace Festispec.ViewModel
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
-            _pagesingleton = new PageSingleton();
+            _pageSingleton = new PageSingleton();
 
-            Page = _pagesingleton.GetPage("dashboard");
+            Page = _pageSingleton.GetPage("dashboard");
         }
 
         //methodes
@@ -50,32 +50,32 @@ namespace Festispec.ViewModel
 
         private void OpenDashboardTab()
         {
-            Page = _pagesingleton.GetPage("dashboard");
+            Page = _pageSingleton.GetPage("dashboard");
         }
 
         private void OpenEmployeeTab()
         {
-            Page = _pagesingleton.GetPage("employee");
+            Page = _pageSingleton.GetPage("employee");
         }
 
         private void OpenCustomerTab()
         {
-            Page = _pagesingleton.GetPage("customer");
+            Page = _pageSingleton.GetPage("customer");
         }
 
         private void OpenAvailabilityTab()
         {
-            Page = _pagesingleton.GetPage("availability");
+            Page = _pageSingleton.GetPage("availability");
         }
 
         private void OpenEventTab()
         {
-            Page = _pagesingleton.GetPage("event");
+            Page = _pageSingleton.GetPage("event");
         }
 
         private void OpenSickTab()
         {
-            Page = _pagesingleton.GetPage("sick");
+            Page = _pageSingleton.GetPage("sick");
         }
     }
 }
