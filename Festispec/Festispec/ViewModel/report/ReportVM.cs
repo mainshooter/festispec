@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Festispec.ViewModel.rapport
 {
@@ -46,6 +47,15 @@ namespace Festispec.ViewModel.rapport
         }
 
         public ObservableCollection<ReportElementVM> ReportElements { get; set; }
+        private ObservableCollection<UserControl> _reportElementUserControlls;
+        public ObservableCollection<UserControl> ReportElementUserControlls {
+            get {
+                return _reportElementUserControlls;
+            }
+            set {
+                _reportElementUserControlls = value;
+            }
+        }
 
         public ReportVM(Report report)
         {
@@ -56,12 +66,23 @@ namespace Festispec.ViewModel.rapport
         public ReportVM()
         {
             _report = new Report();
+            test();
         }
 
         public void test()
         {
+            ReportElementUserControlls = new ObservableCollection<UserControl>();
             Table table = new Table();
-            table.DataContext = new TableVM();
+            TableVM tablevm = new TableVM();
+            tablevm.Title = "Titeltje";
+            tablevm.Content = "Lorem ipsum da set a mon";
+            var newList = new List<string>();
+            newList.Add("1");
+            newList.Add("2");
+            tablevm.Dictionary.Add("id", newList);
+            tablevm.ApplyChanges();
+            table.DataContext = tablevm;
+            ReportElementUserControlls.Add(table);
         }
     }
 }

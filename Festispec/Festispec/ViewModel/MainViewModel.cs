@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Festispec.ViewModel.rapport;
 
 namespace Festispec.ViewModel
 {
@@ -42,8 +43,10 @@ namespace Festispec.ViewModel
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
             _pageSingleton = new PageSingleton();
+            var report = new Report();
 
-            Page = _pageSingleton.GetPage("dashboard");
+            report.DataContext = new ReportVM();
+            Page = report;
         }
 
         //methodes

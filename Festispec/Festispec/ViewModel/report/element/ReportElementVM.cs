@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.rapport.element
 {
-    public class ReportElementVM
+    public class ReportElementVM: ViewModelBase
     {
         private ReportElement _reportElement;
 
@@ -35,6 +36,7 @@ namespace Festispec.ViewModel.rapport.element
             }
             set {
                 _reportElement.Title = value;
+                RaisePropertyChanged("Title");
             }
         }
 
