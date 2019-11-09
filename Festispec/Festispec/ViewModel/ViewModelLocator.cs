@@ -20,14 +20,6 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<TableVM>();
         }
 
-        public MainViewModel Main
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
-        }
-
         public LineChartVM LineChart {
             get {
                 var chartElement = ServiceLocator.Current.GetInstance<LineChartVM>();
@@ -92,6 +84,7 @@ namespace Festispec.ViewModel
                 return pieChart;
             }
         }
+        public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
 
         public static void Cleanup()
         {
