@@ -8,6 +8,9 @@ namespace Festispec.ViewModel.survey.question.questionTypes
 {
     public interface IQuestion
     {
-
+        void GetQuestion();
+        void Save();
+        void Delete();
+        void Refresh();
     }
 }

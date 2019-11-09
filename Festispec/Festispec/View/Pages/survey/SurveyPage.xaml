@@ -1,0 +1,19 @@
+﻿<Page x:Class="Festispec.View.Pages.Survey.SurveyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Festispec.View.Pages.survey"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Vragenlijst"
+      DataContext="{Binding Survey, Source={StaticResource Locator}}">
+    <StackPanel>
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Survey {evenement naam}</Label>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <ComboBox Width="150" Margin="0,0,5,0" ItemsSource="{Binding QuestionTypes}" SelectedValue="{Binding SelectedQuestionType}"></ComboBox>
+            <Button Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding AddQuestionCommand}">Vraag toevoegen</Button>
+        </StackPanel>
+        <Label>Alle vragen op volgorde</Label>
+    </StackPanel>
+</Page>
