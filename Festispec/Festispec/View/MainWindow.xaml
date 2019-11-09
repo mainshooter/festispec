@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Festispec"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        DataContext="{Binding Main,Source={StaticResource Locator}}">
     <Grid>
-        
+        <Button Content="Add Employee" HorizontalAlignment="Left" Margin="384,340,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ShowAddEmployeeCommand}"/>
+
     </Grid>
 </Window>
