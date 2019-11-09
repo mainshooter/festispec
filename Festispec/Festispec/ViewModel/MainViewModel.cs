@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Festispec.ViewModel.rapport;
+using Festispec.ViewModel.rapport.element;
 
 namespace Festispec.ViewModel
 {
@@ -44,8 +45,40 @@ namespace Festispec.ViewModel
             OpenSick = new RelayCommand(OpenSickTab);
             _pageSingleton = new PageSingleton();
             var report = new Report();
-
-            report.DataContext = new ReportVM();
+            ReportVM reportVM = new ReportVM();
+            reportVM.ReportElements.Add(
+                    new ReportElementVM()
+                    {
+                        Title = "Leuke titel",
+                        Content = "Hier maak ik titels van",
+                        Type = "table"
+                    }
+                );
+            reportVM.ReportElements.Add(
+                new ReportElementVM()
+                {
+                    Title = "Leuke piechart",
+                    Content = "Taartje beschrijving",
+                    Type = "piechart"
+                }
+            );
+            reportVM.ReportElements.Add(
+                new ReportElementVM()
+                {
+                    Title = "Line chart",
+                    Content = "Wij linecharten",
+                    Type = "linechart"
+                }
+            );
+            reportVM.ReportElements.Add(
+                new ReportElementVM()
+                {
+                    Title = "Leuke piechart",
+                    Content = "Taartje beschrijving",
+                    Type = "piechart"
+                }
+            );
+            report.DataContext = reportVM;
             Page = report;
         }
 

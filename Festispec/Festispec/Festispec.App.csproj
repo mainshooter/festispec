@@ -129,6 +129,9 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View\Report\AddReportElement.xaml.cs">
+      <DependentUpon>AddReportElement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Report\Element\LineChart.xaml.cs">
       <DependentUpon>LineChart.xaml</DependentUpon>
     </Compile>
@@ -158,6 +161,9 @@
     </Compile>
     <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
       <DependentUpon>SickPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\ReportControl.xaml.cs">
+      <DependentUpon>ReportControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +196,10 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Report\AddReportElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Report\Element\LineChart.xaml">
       <SubType>Designer</SubType>
@@ -228,6 +238,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Employee\SickPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Report\ReportControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

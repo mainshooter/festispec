@@ -6,10 +6,22 @@
       xmlns:local="clr-namespace:Festispec.View.Report"
       xmlns:control="clr-namespace:Festispec.View.Report.Element" 
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Title="Report">
 
-    <Grid>
-        <ItemsControl ItemsSource="{Binding ReportElementUserControlls}"></ItemsControl>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"></ColumnDefinition>
+                <ColumnDefinition Width="700"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <local:ReportControl></local:ReportControl>
+                <local:AddReportElement></local:AddReportElement>
+            </StackPanel>
+            <ScrollViewer Grid.Column="1">
+                <StackPanel >
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Content="{Binding Title}"></Label>
+                    <ItemsControl ItemsSource="{Binding ReportElementUserControlls}"></ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
     </Grid>
 </Page>
