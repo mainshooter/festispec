@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:Festispec.View.Report.Element"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500"
-             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-             DataContext="{Binding LineChart, Source={StaticResource Locator}}">
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf">
     <Grid>
         <StackPanel>
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>

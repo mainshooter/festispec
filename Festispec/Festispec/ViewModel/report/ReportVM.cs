@@ -1,6 +1,8 @@
 ﻿using Festispec.Domain;
+using Festispec.View.Report.Element;
 using Festispec.ViewModel.employee.order;
 using Festispec.ViewModel.rapport.element;
+using Festispec.ViewModel.report.element;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -54,6 +56,12 @@ namespace Festispec.ViewModel.rapport
         public ReportVM()
         {
             _report = new Report();
+        }
+
+        public void test()
+        {
+            Table table = new Table();
+            table.DataContext = new TableVM();
         }
     }
 }
