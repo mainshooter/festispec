@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using LiveCharts;
 using LiveCharts.Wpf;
+using System.Collections.Generic;
 
 namespace Festispec.ViewModel
 {
@@ -16,6 +17,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LineChartVM>();
             SimpleIoc.Default.Register<PieChartVM>();
+            SimpleIoc.Default.Register<TableVM>();
         }
 
         public MainViewModel Main
@@ -41,7 +43,22 @@ namespace Festispec.ViewModel
                 return chartElement;
             }
         }
-        
+
+        public TableVM Table {
+            get {
+                var table = ServiceLocator.Current.GetInstance<TableVM>();
+                table.Title = "Titeltje";
+                table.Content = "Lorem ipsum da set a mon";
+                var newList = new List<string>();
+                newList.Add("1");
+                newList.Add("2");
+                table.Dictionary.Add("id", newList);
+                table.ApplyChanges();
+                return table;
+            }
+        }
+
+
         public PieChartVM PieChart {
             get {
                 var pieChart = ServiceLocator.Current.GetInstance<PieChartVM>();

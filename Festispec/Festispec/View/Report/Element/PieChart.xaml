@@ -13,8 +13,8 @@
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
             <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
 
-            <lvc:PieChart Name="Chart" Height="300" Series="{Binding SeriesCollection}" 
-                      LegendLocation="Left" InnerRadius="100" Margin="0 15">
+            <lvc:PieChart Name="Chart" LegendLocation="Bottom" Height="300" Series="{Binding SeriesCollection}" 
+                      InnerRadius="100" Margin="0 15">
                 <lvc:PieChart.ChartLegend>
                     <lvc:DefaultLegend BulletSize="20" FontSize="16"></lvc:DefaultLegend>
                 </lvc:PieChart.ChartLegend>
