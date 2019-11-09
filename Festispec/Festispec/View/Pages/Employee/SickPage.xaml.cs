@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Pages.Event
+namespace Festispec.View.Pages.Employee
 {
     /// <summary>
-    /// Interaction logic for EventPage.xaml
+    /// Interaction logic for SickPage.xaml
     /// </summary>
-    public partial class EventPage : Page
+    public partial class SickPage : Page
     {
-        public EventPage()
+        public SickPage()
         {
             InitializeComponent();
         }

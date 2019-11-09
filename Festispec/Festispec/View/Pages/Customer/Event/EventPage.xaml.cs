@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Pages.Availability
+namespace Festispec.View.Pages.Customer.Event
 {
     /// <summary>
-    /// Interaction logic for AvailablePage.xaml
+    /// Interaction logic for EventPage.xaml
     /// </summary>
-    public partial class AvailablePage : Page
+    public partial class EventPage : Page
     {
-        public AvailablePage()
+        public EventPage()
         {
             InitializeComponent();
         }
