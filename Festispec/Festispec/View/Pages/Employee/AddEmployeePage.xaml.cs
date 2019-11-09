@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Festispec.View
+namespace Festispec.View.Pages.Employee
 {
     /// <summary>
-    /// Interaction logic for AddEmployee.xaml
+    /// Interaction logic for EmployeePage.xaml
     /// </summary>
-    public partial class AddEmployee : Window
+    public partial class AddEmployeePage : Page
     {
-        public AddEmployee()
+        public AddEmployeePage()
         {
             InitializeComponent();
         }

@@ -24,7 +24,7 @@ namespace Festispec.ViewModel
         public Page Page
         {
             get { return _page; }
-            set { _page = value; RaisePropertyChanged("Page"); }
+            set { _page = value; }
         }
 
         //constructor
@@ -76,6 +76,11 @@ namespace Festispec.ViewModel
         private void OpenSickTab()
         {
             Page = _pageSingleton.GetPage("sick");
+        }
+
+        public void OpenAddEmployeeTab()
+        {
+            Page = _pageSingleton.GetPage("addemployee");
         }
     }
 }

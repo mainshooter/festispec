@@ -1,4 +1,4 @@
-﻿<Window x:Class="Festispec.View.AddEmployee"
+﻿<Page x:Class="Festispec.View.Pages.Employee.AddEmployeePage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,7 +8,7 @@
         Title="AddEmployee" Height="450" Width="800"
         DataContext="{Binding AddEmployee,Source={StaticResource Locator}}">
     <Grid>
-        <Button Content="Add Employee" HorizontalAlignment="Left" Margin="362,355,0,0" VerticalAlignment="Top" Width="101" Command="{Binding AddEmployeeCommand}" Height="28"/>
+        <Button Content="Add Employee" HorizontalAlignment="Left" Margin="344,361,0,0" VerticalAlignment="Top" Width="138" Command="{Binding AddEmployeeCommand}" Height="28"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="66,41,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Firstname, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <Label Content="Naam:" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="66,100,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Prefix, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
@@ -36,4 +36,4 @@
         <ComboBox HorizontalAlignment="Left" Margin="362,100,0,0" VerticalAlignment="Top" Width="120" Text="{Binding Path=Employee.Department, Mode=TwoWay}" SelectedIndex="0" ItemsSource="{Binding Path=Departments}" SelectedValue="{Binding Employee.Department}"  DisplayMemberPath="Name"/>
         <Label Content="Afdeling" HorizontalAlignment="Left" Margin="362,69,0,0" VerticalAlignment="Top"/>
     </Grid>
-</Window>
+</Page>
