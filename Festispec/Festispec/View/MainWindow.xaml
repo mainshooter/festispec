@@ -8,6 +8,9 @@
         Title="MainWindow" Height="450" Width="800"
         DataContext="{Binding Main,Source={StaticResource Locator}}">
     <Grid>
+        <DataGrid ItemsSource="{Binding Employees}">
+
+        </DataGrid>
         <Button Content="Add Employee" HorizontalAlignment="Left" Margin="384,340,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ShowAddEmployeeCommand}"/>
 
     </Grid>

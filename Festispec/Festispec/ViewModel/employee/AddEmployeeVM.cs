@@ -44,7 +44,8 @@ namespace Festispec.ViewModel.employee
             {
                 return false;
             }
-//todo validatie phone, iban, email, huisnummer
+
+            //todo validatie phone, iban, email, huisnummer
             return true;
         }
     }
