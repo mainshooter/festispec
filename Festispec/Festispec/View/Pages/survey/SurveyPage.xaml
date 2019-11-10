@@ -15,7 +15,7 @@
         </StackPanel>
         <DataGrid IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedQuestion}" ItemsSource="{Binding Questions}" Background="White" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="DarkGray" HeadersVisibility="Column" BorderThickness="0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Vraag" Binding="{Binding QuestionString}" Width="*" FontWeight="DemiBold" />
+                <DataGridTextColumn Header="Vraag" Binding="{Binding QuestionDetails.Question}" Width="*" FontWeight="DemiBold" />
                 <DataGridTextColumn Header="Type" Binding="{Binding QuestionType}" Width="*" FontWeight="DemiBold" />
                 <DataGridTemplateColumn Width="80">
                     <DataGridTemplateColumn.CellTemplate>

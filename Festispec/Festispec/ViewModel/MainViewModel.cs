@@ -89,13 +89,13 @@ namespace Festispec.ViewModel
             var survey = new Survey();
             survey.Questions.Add(new Question(){
                 Type = "Open vraag",
-                Question1 = "Hoe gaat het",
+                Question1 = "{\r\n    \"Question\"    : \"Bla bla\",\r\n    \"Choices\":\r\n        {\r\n            \"Cols\": [\"Act\",\"Sfeer\"],\r\n            \"Options\": [\"Grimmig\",\"Donken\"]\r\n        },\r\n    \"Description\" : \"Bla bla\",\r\n    \"Images\"      : []\r\n}",
                 Order = 1
             });
             survey.Questions.Add(new Question()
             {
                 Type = "Gesloten vraag",
-                Question1 = "Hoe is het",
+                Question1 = "{\r\n    \"Question\"    : \"Bla bla\",\r\n    \"Choices\":\r\n        {\r\n            \"Cols\": [],\r\n            \"Options\": []\r\n        },\r\n    \"Description\" : \"bla bla\",\r\n    \"Images\"      : [\"234trgderty56et44567irte\", \"234trgderty56et44567irte\"]\r\n}",
                 Order = 2
             });
             var selectedEvent = new EventVM {Name = "Pinkpop"};

@@ -1,6 +1,8 @@
 ﻿using System;
 using Festispec.Domain;
+using Festispec.Model;
 using Festispec.ViewModel.survey.question.questionTypes;
+using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.survey.question.QuestionTypes
 {
@@ -8,7 +10,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
     {
         private Question _surveyQuestion;
 
-        public string QuestionString { get; set; }
+        public QuestionDetails QuestionDetails { get; set; }
         public string QuestionType { get; }
 
         public ClosedQuestionVM()
@@ -20,14 +22,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         {
             _surveyQuestion = surveyQuestion;
             QuestionType = _surveyQuestion.Type;
-            GetQuestion();
-        }
-
-        public void GetQuestion()
-        {
-            // Haal de question uit de json
-            var json = _surveyQuestion.Question1;
-            QuestionString = "test";
+            QuestionDetails = JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1);
         }
 
         public void Save()
