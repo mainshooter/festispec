@@ -209,12 +209,13 @@ namespace Festispec.ViewModel.employee
             }
         }
 
+        [PreferredConstructorAttribute]
         public EmployeeVM(Employee employee)
         {
             _employee = employee;
             Department = new DepartmentVM(_employee.Department1);
         }
-        [PreferredConstructorAttribute]
+    
         public EmployeeVM()
         {
             _employee = new Employee();

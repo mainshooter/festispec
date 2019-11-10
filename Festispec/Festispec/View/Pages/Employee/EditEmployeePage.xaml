@@ -12,7 +12,7 @@
     <Grid>
         <Button Content="Edit Employee" HorizontalAlignment="Left" Margin="344,361,0,0" VerticalAlignment="Top" Width="138" Command="{Binding EditEmployeeCommand}" Height="28"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="66,41,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Firstname, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Naam:" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Voornaam" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="66,100,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Prefix, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <Label Content="Tussenvoegsel" HorizontalAlignment="Left" Margin="66,69,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="66,159,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Lastname, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
