@@ -26,7 +26,7 @@ namespace Festispec.ViewModel
         public Page Page
         {
             get { return _page; }
-            set { _page = value; }
+            set { _page = value; RaisePropertyChanged("Page"); }
         }
 
         //constructor
@@ -42,10 +42,6 @@ namespace Festispec.ViewModel
             _pageSingleton = new PageSingleton();
 
             Page = _pageSingleton.GetPage("dashboard");
-            var employeeList = new EmployeePage();
-            EmployeeListVM employeeListVM = new EmployeeListVM(this);
-            employeeList.DataContext = employeeListVM;
-            Page = employeeList;
         }
 
         //methodes
@@ -59,9 +55,12 @@ namespace Festispec.ViewModel
             Page = _pageSingleton.GetPage("dashboard");
         }
 
-        private void OpenEmployeeTab()
+        public void OpenEmployeeTab()
         {
-            Page = _pageSingleton.GetPage("employee");
+            var page = _pageSingleton.GetPage("employee"); ;
+            EmployeeListVM employeeListVM = new EmployeeListVM(this);
+            page.DataContext = employeeListVM;
+            Page = page;
         }
 
         private void OpenCustomerTab()
@@ -86,7 +85,11 @@ namespace Festispec.ViewModel
 
         public void OpenAddEmployeeTab()
         {
-            Page = _pageSingleton.GetPage("addemployee");
+            var page = _pageSingleton.GetPage("addemployee");
+            EmployeeListVM employeeListVM = new EmployeeListVM(this);
+            AddEmployeeVM addEmployeeVM = new AddEmployeeVM(employeeListVM);
+            page.DataContext = addEmployeeVM;
+            Page = page;
         }
     }
 }

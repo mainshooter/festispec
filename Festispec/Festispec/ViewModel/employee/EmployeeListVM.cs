@@ -43,5 +43,10 @@ namespace Festispec.ViewModel.employee
         {
             _mainViewModel.OpenAddEmployeeTab();
         }
+
+        public void CloseAddEmployee()
+        {
+            _mainViewModel.OpenEmployeeTab();
+        }
     }
 }

@@ -13,13 +13,15 @@ namespace Festispec.ViewModel.employee
 {
     public class AddEmployeeVM
     {
+        public EmployeeListVM EmployeeList { get; set; }
         public EmployeeVM Employee { get; set; }
         public ObservableCollection<DepartmentVM> Departments { get; set; }
         public ObservableCollection<string> Status { get; set; }
         public ICommand AddEmployeeCommand { get; set; }
 
-        public AddEmployeeVM()
+        public AddEmployeeVM(EmployeeListVM employeeList)
         {
+            EmployeeList = employeeList;
             Employee = new EmployeeVM();
             AddEmployeeCommand = new RelayCommand(AddEmployee, CanAddEmployee);
             using (var context = new Entities())
@@ -36,6 +38,7 @@ namespace Festispec.ViewModel.employee
                 context.Employees.Add(Employee.ToModel());
                 context.SaveChanges();
             }
+            EmployeeList.CloseAddEmployee();
         }
 
         public bool CanAddEmployee()
