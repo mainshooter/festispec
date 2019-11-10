@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using Festispec.Domain;
 using Festispec.View.Windows.survey.question.QuestionTypes.ClosedQuestion;
 using Festispec.View.Windows.survey.question.QuestionTypes.OpenQuestion;
+using Festispec.ViewModel.survey.question.questionTypes;
+using Festispec.ViewModel.survey.question.QuestionTypes;
 
 namespace Festispec.Factory
 {
@@ -13,14 +16,29 @@ namespace Festispec.Factory
         {
             _questionTypes = new Dictionary<string, Window>
             {
-                ["Open vraag"] = new AddOpenQuestionWindow(),
-                ["Gesloten vraag"] = new AddClosedQuestionWindow()
+                ["Add Open vraag"] = new AddOpenQuestionWindow(),
+                ["Edit Open vraag"] = new EditOpenQuestionWindow(),
+                ["Add Gesloten vraag"] = new AddClosedQuestionWindow(),
+                ["Edit Gesloten vraag"] = new EditClosedQuestionWindow()
             };
         }
 
         public Window GetQuestionType(string name)
         {
             return _questionTypes[name];
+        }
+
+        public IQuestion CreateQuestionType(Question question)
+        {
+            switch (question.Type)
+            {
+                case "Open vraag":
+                    return new OpenQuestionVM(question);
+                case "Gesloten vraag":
+                    return new ClosedQuestionVM(question);
+                default:
+                    return new OpenQuestionVM(question);
+            }
         }
     }
 }

@@ -3,17 +3,28 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Festispec.View.Pages.survey"
+      xmlns:local="clr-namespace:Festispec.View.Pages.Survey"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Vragenlijst"
-      DataContext="{Binding Survey, Source={StaticResource Locator}}">
+      Title="Vragenlijst">
     <StackPanel>
-        <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Survey {evenement naam}</Label>
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="{Binding EventName}" ContentStringFormat="Vragenlijst {0}"></Label>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <ComboBox Width="150" Margin="0,0,5,0" ItemsSource="{Binding QuestionTypes}" SelectedValue="{Binding SelectedQuestionType}"></ComboBox>
-            <Button Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding AddQuestionCommand}">Vraag toevoegen</Button>
+            <ComboBox Width="150" Margin="0,0,10,0" ItemsSource="{Binding QuestionTypes}" SelectedValue="{Binding SelectedQuestionType}"></ComboBox>
+            <Button HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding AddQuestionCommand}">Vraag toevoegen</Button>
         </StackPanel>
-        <Label>Alle vragen op volgorde</Label>
+        <DataGrid IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedQuestion}" ItemsSource="{Binding Questions}" Background="White" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="DarkGray" HeadersVisibility="Column" BorderThickness="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Vraag" Binding="{Binding QuestionString}" Width="*" FontWeight="DemiBold" />
+                <DataGridTextColumn Header="Type" Binding="{Binding QuestionType}" Width="*" FontWeight="DemiBold" />
+                <DataGridTemplateColumn Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.EditQuestionCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" HorizontalAlignment="Center" VerticalAlignment="Center">Edit</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </StackPanel>
 </Page>

@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Festispec.View.Windows.survey.question.QuestionTypes.ClosedQuestion"
+        xmlns:questionTypes="clr-namespace:Festispec.ViewModel.survey.question.QuestionTypes"
         mc:Ignorable="d"
-        Title="Gesloten vraag toevoegen"
-        DataContext="{Binding ClosedQuestion, Source={StaticResource Locator}}">
+        Title="Gesloten vraag toevoegen">
+    <Window.DataContext>
+        <questionTypes:ClosedQuestionVM />
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
@@ -21,5 +24,6 @@
         <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Gesloten vraag toevoegen</Label>
         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">Vraag:</Label>
         <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionString}"></TextBox>
+        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">Toevoegen</Button>
     </Grid>
 </Window>

@@ -90,6 +90,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Factory\QuestionFactory.cs" />
     <Compile Include="Singleton\PageSingleton.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
@@ -111,12 +112,25 @@
     <Compile Include="ViewModel\survey\answer\SurveyAnswerVM.cs" />
     <Compile Include="ViewModel\survey\CaseVM.cs" />
     <Compile Include="Interface\IQuestion.cs" />
-    <Compile Include="ViewModel\survey\question\SurveyQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\ClosedQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestionVM.cs" />
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\Pages\Survey\SurveyPage.xaml.cs">
+      <DependentUpon>SurveyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\survey\question\QuestionTypes\ClosedQuestion\AddClosedQuestionWindow.xaml.cs">
+      <DependentUpon>AddClosedQuestionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\survey\question\QuestionTypes\ClosedQuestion\EditClosedQuestionWindow.xaml.cs">
+      <DependentUpon>EditClosedQuestionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\survey\question\QuestionTypes\OpenQuestion\AddOpenQuestionWindow.xaml.cs">
+      <DependentUpon>AddOpenQuestionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\Availability\AvailablePage.xaml.cs">
       <DependentUpon>AvailablePage.xaml</DependentUpon>
@@ -135,6 +149,9 @@
     </Compile>
     <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
       <DependentUpon>SickPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\survey\question\QuestionTypes\OpenQuestion\EditOpenQuestionWindow.xaml.cs">
+      <DependentUpon>EditOpenQuestionWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +185,22 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="View\Pages\Survey\SurveyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\survey\question\QuestionTypes\ClosedQuestion\AddClosedQuestionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\survey\question\QuestionTypes\ClosedQuestion\EditClosedQuestionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\survey\question\QuestionTypes\OpenQuestion\AddOpenQuestionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Employee\Availability\AvailablePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,10 +225,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Windows\survey\question\QuestionTypes\OpenQuestion\EditOpenQuestionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\survey\question\questionTypes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Festispec.Domain\Festispec.Domain.csproj">
       <Project>{ee67b2e2-6838-4800-a461-026c192d54d3}</Project>

@@ -1,15 +1,10 @@
 ﻿using Festispec.Domain;
-using Festispec.ViewModel.employee.order;
-using Festispec.ViewModel.survey.question;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Xml.Serialization;
 using Festispec.Factory;
+using Festispec.ViewModel.customer.customerEvent;
+using Festispec.ViewModel.survey.question.questionTypes;
 using GalaSoft.MvvmLight.CommandWpf;
 
 namespace Festispec.ViewModel.survey
@@ -17,78 +12,62 @@ namespace Festispec.ViewModel.survey
     public class SurveyVM
     {
         private ObservableCollection<CaseVM> _cases;
-        private ObservableCollection<SurveyQuestionVM> _questions;
+        private ObservableCollection<IQuestion> _questions;
         private Survey _survey;
+        private EventVM _event;
         private QuestionFactory _questionFactory;
 
         public int Id {
-            get {
-                return _survey.Id;
-            }
-            private set {
-                _survey.Id = value;
-            }
+            get => _survey.Id;
+            private set => _survey.Id = value;
         }
 
         public string Description {
-            get {
-                return _survey.Description;
-            }
-            set {
-                _survey.Description = value;
-            }
+            get => _survey.Description;
+            set => _survey.Description = value;
         }
 
-        public OrderVM Order { get; set; }
-
         public string Status {
-            get {
-                return _survey.Status;
-            }
-            set {
-                _survey.Status = value;
-            }
+            get => _survey.Status;
+            set => _survey.Status = value;
         }
 
         public ObservableCollection<CaseVM> Cases {
-            get {
-                return _cases;
-            }
-            set {
-                _cases = value;
-            }
+            get => _cases;
+            set => _cases = value;
         }
         
-        public ObservableCollection<SurveyQuestionVM> Questions {
-            get {
-                return _questions;
-            }
-            set {
-                _questions = value;
-            }
+        public ObservableCollection<IQuestion> Questions {
+            get => _questions;
+            set => _questions = value;
         }
 
         public ObservableCollection<string> QuestionTypes { get; set; }
+        public string EventName => _event.Name;
         public string SelectedQuestionType { get; set; }
+        public IQuestion SelectedQuestion { get; set; }
         public ICommand AddQuestionCommand { get; set; }
+        public ICommand EditQuestionCommand { get; set; }
 
-        public SurveyVM(Survey survey)
+        public SurveyVM(EventVM selectedEvent, Survey survey)
         {
             _survey = survey;
+            _event = selectedEvent;
             AddQuestionCommand = new RelayCommand(OpenAddQuestion);
-            Order = new OrderVM(survey.Order);
-            Cases = new ObservableCollection<CaseVM>(survey.Cases.ToList().Select(c => new CaseVM(c)));
-            Questions = new ObservableCollection<SurveyQuestionVM>(survey.Questions.ToList().Select(q => new SurveyQuestionVM(q)));
+            EditQuestionCommand = new RelayCommand(OpenEditCommand);
             _questionFactory = new QuestionFactory();
+            Cases = new ObservableCollection<CaseVM>(survey.Cases.ToList().Select(c => new CaseVM(c)));
+            Questions = new ObservableCollection<IQuestion>(survey.Questions.ToList().Select(q => _questionFactory.CreateQuestionType(q)));
             GetQuestionTypes();
         }
 
-        public SurveyVM()
+        public SurveyVM(EventVM selectedEvent)
         {
             _survey = new Survey();
+            _event = selectedEvent;
             AddQuestionCommand = new RelayCommand(OpenAddQuestion);
             Cases = new ObservableCollection<CaseVM>();
-            Questions = new ObservableCollection<SurveyQuestionVM>();
+            Questions = new ObservableCollection<IQuestion>();
             _questionFactory = new QuestionFactory();
             GetQuestionTypes();
         }
@@ -105,12 +84,21 @@ namespace Festispec.ViewModel.survey
                 {
                     QuestionTypes.Add(questionType.Type);
                 }
+
+                SelectedQuestionType = QuestionTypes[0];
             }
         }
 
         private void OpenAddQuestion()
         {
-            var questionTypeWindow = _questionFactory.GetQuestionType(SelectedQuestionType);
+            var questionTypeWindow = _questionFactory.GetQuestionType("Add " + SelectedQuestionType);
+            questionTypeWindow.ShowDialog();
+        }
+
+        private void OpenEditCommand()
+        {
+            var questionTypeWindow = _questionFactory.GetQuestionType("Edit " + SelectedQuestion.QuestionType);
+            questionTypeWindow.DataContext = SelectedQuestion;
             questionTypeWindow.ShowDialog();
         }
     }

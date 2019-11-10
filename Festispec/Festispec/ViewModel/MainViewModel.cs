@@ -3,6 +3,9 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Festispec.Domain;
+using Festispec.ViewModel.customer.customerEvent;
+using Festispec.ViewModel.survey;
 
 namespace Festispec.ViewModel
 {
@@ -20,6 +23,7 @@ namespace Festispec.ViewModel
         public ICommand OpenAvailability { get; set; }
         public ICommand OpenEvent { get; set; }
         public ICommand OpenSick { get; set; }
+        public ICommand OpenSurvey { get; set; }
 
         public Page Page
         {
@@ -37,6 +41,7 @@ namespace Festispec.ViewModel
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
+            OpenSurvey = new RelayCommand(OpenSurveyTab);
             _pageSingleton = new PageSingleton();
 
             Page = _pageSingleton.GetPage("dashboard");
@@ -76,6 +81,25 @@ namespace Festispec.ViewModel
         private void OpenSickTab()
         {
             Page = _pageSingleton.GetPage("sick");
+        }
+
+        private void OpenSurveyTab()
+        {
+            Page = _pageSingleton.GetPage("survey");
+            var survey = new Survey();
+            survey.Questions.Add(new Question(){
+                Type = "Open vraag",
+                Question1 = "Hoe gaat het",
+                Order = 1
+            });
+            survey.Questions.Add(new Question()
+            {
+                Type = "Gesloten vraag",
+                Question1 = "Hoe is het",
+                Order = 2
+            });
+            var selectedEvent = new EventVM {Name = "Pinkpop"};
+            Page.DataContext = new SurveyVM(selectedEvent, survey);
         }
     }
 }

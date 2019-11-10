@@ -1,5 +1,6 @@
 using CommonServiceLocator;
-using GalaSoft.MvvmLight;
+using Festispec.Domain;
+using Festispec.ViewModel.survey;
 using GalaSoft.MvvmLight.Ioc;
 
 namespace Festispec.ViewModel
@@ -14,7 +15,6 @@ namespace Festispec.ViewModel
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
-
 
         public static void Cleanup()
         {
