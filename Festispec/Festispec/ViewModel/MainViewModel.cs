@@ -1,4 +1,6 @@
 using Festispec.Singleton;
+using Festispec.View.Pages.Employee;
+using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
@@ -40,6 +42,10 @@ namespace Festispec.ViewModel
             _pageSingleton = new PageSingleton();
 
             Page = _pageSingleton.GetPage("dashboard");
+            var employeeList = new EmployeePage();
+            EmployeeListVM employeeListVM = new EmployeeListVM(this);
+            employeeList.DataContext = employeeListVM;
+            Page = employeeList;
         }
 
         //methodes

@@ -1,6 +1,7 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.employee.department;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -213,7 +214,7 @@ namespace Festispec.ViewModel.employee
             _employee = employee;
             Department = new DepartmentVM(_employee.Department1);
         }
-
+        [PreferredConstructorAttribute]
         public EmployeeVM()
         {
             _employee = new Employee();

@@ -13,6 +13,6 @@
         <Label Content="Medewerkers" HorizontalAlignment="Left" Margin="42,36,0,0" VerticalAlignment="Top"/>
         <DataGrid ItemsSource="{Binding EmployeeList}" SelectedItem="{Binding SelectedEmployee,Mode=TwoWay}">
         </DataGrid>
-        <Button Content="Add Employee" Command="{Binding OpenAddEmployee}" Margin="370,373,307,45"></Button>
+        <Button Content="Add Employee" Command="{Binding OpenAddEmployee}" Margin="354,375,323,43"></Button>
     </Grid>
 </Page>
