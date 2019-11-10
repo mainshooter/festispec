@@ -102,6 +102,7 @@
     <Compile Include="ViewModel\employee\BetterReportVM.cs" />
     <Compile Include="ViewModel\employee\certificate\CertificateVM.cs" />
     <Compile Include="ViewModel\employee\department\DepartmentVM.cs" />
+    <Compile Include="ViewModel\employee\EditEmployeeVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeListVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeVM.cs" />
     <Compile Include="ViewModel\employee\SickVM.cs" />
@@ -131,6 +132,9 @@
     </Compile>
     <Compile Include="View\Pages\DashboardPage.xaml.cs">
       <DependentUpon>DashboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Employee\EditEmployeePage.xaml.cs">
+      <DependentUpon>EditEmployeePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\EmployeePage.xaml.cs">
       <DependentUpon>EmployeePage.xaml</DependentUpon>
@@ -186,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\DashboardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Employee\EditEmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -11,7 +11,26 @@
 
     <Grid>
         <Label Content="Medewerkers" HorizontalAlignment="Left" Margin="42,36,0,0" VerticalAlignment="Top"/>
-        <DataGrid ItemsSource="{Binding EmployeeList}" SelectedItem="{Binding SelectedEmployee,Mode=TwoWay}">
+        <DataGrid  IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding EmployeeList}" SelectedItem="{Binding Path=SelectedEmployee,Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naam" Binding="{Binding Firstname}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tussenvoegsel" Binding="{Binding Prefix}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Achternaam" Binding="{Binding Lastname}"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Medewerker aanpassen"  Command="{Binding DataContext.OpenEditEmployee, RelativeSource={RelativeSource AncestorType=DataGrid}}"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DeleteEmployee, RelativeSource={RelativeSource AncestorType=DataGrid}}">Medewerker verwijderen</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
         </DataGrid>
         <Button Content="Add Employee" Command="{Binding OpenAddEmployee}" Margin="354,375,323,43"></Button>
     </Grid>

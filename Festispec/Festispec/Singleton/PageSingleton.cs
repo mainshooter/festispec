@@ -23,6 +23,7 @@ namespace Festispec.Singleton
             _pages.Add("event", new EventPage());
             _pages.Add("sick", new SickPage());
             _pages.Add("addemployee", new AddEmployeePage());
+            _pages.Add("editemployee", new EditEmployeePage());
         }
 
         public Page GetPage(string pageName)
