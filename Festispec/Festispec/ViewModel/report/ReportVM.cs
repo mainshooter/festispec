@@ -1,7 +1,9 @@
 ﻿using Festispec.Domain;
+using Festispec.View.Pages.Report.element;
 using Festispec.View.Report.Element;
 using Festispec.ViewModel.employee.order;
 using Festispec.ViewModel.rapport.element;
+using Festispec.ViewModel.report;
 using Festispec.ViewModel.report.element;
 using GalaSoft.MvvmLight.CommandWpf;
 using LiveCharts;
@@ -21,6 +23,7 @@ namespace Festispec.ViewModel.rapport
     public class ReportVM
     {
         private Report _report;
+        private ObservableCollection<UserControl> _reportElementUserControlls;
 
         public int Id {
             get {
@@ -52,7 +55,7 @@ namespace Festispec.ViewModel.rapport
         }
 
         public ObservableCollection<ReportElementVM> ReportElements { get; set; }
-        private ObservableCollection<UserControl> _reportElementUserControlls;
+        
         public ObservableCollection<UserControl> ReportElementUserControlls {
             get {
                 return _reportElementUserControlls;
@@ -61,8 +64,11 @@ namespace Festispec.ViewModel.rapport
                 _reportElementUserControlls = value;
             }
         }
+        public MainViewModel MainViewModel { get; set; }
 
         public ICommand SaveReportCommand { get; set; }
+        public ICommand AddElementCommand { get; set; }
+
 
         public ReportVM(Report report)
         {
@@ -71,6 +77,7 @@ namespace Festispec.ViewModel.rapport
             ReportElements = new ObservableCollection<ReportElementVM>(report.ReportElements.ToList().Select(e => new ReportElementVM(e)));
             ReportElements.CollectionChanged += RenderReportElements;
             SaveReportCommand = new RelayCommand(Save);
+            AddElementCommand = new RelayCommand(GoToAddElementPage);
         }
 
         public ReportVM()
@@ -80,6 +87,17 @@ namespace Festispec.ViewModel.rapport
             ReportElements = new ObservableCollection<ReportElementVM>();
             ReportElements.CollectionChanged += RenderReportElements;
             SaveReportCommand = new RelayCommand(Save);
+            AddElementCommand = new RelayCommand(GoToAddElementPage);
+        }
+
+        private void GoToAddElementPage()
+        {
+            Page addElementPage = new AddElement();
+            AddElementVM addElementVM = new AddElementVM();
+            addElementVM.Report = this;
+            addElementVM.MainViewModel = MainViewModel;
+            addElementPage.DataContext = addElementVM;
+            MainViewModel.Page = addElementPage;
         }
 
         public Report ToModel()

@@ -113,6 +113,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\planning\DayVM.cs" />
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />
+    <Compile Include="ViewModel\report\AddElementVM.cs" />
     <Compile Include="ViewModel\report\DataVM.cs" />
     <Compile Include="ViewModel\report\element\LineChartVM.cs" />
     <Compile Include="ViewModel\report\element\PieChartVM.cs" />
@@ -128,6 +129,9 @@
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\AddElement.xaml.cs">
+      <DependentUpon>AddElement.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Report\AddReportElement.xaml.cs">
       <DependentUpon>AddReportElement.xaml</DependentUpon>
@@ -196,6 +200,10 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\AddElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Report\AddReportElement.xaml">
       <SubType>Designer</SubType>

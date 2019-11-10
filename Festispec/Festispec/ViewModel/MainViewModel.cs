@@ -1,11 +1,8 @@
 using Festispec.View.Report;
-using Festispec.View.Report.Element;
 using GalaSoft.MvvmLight;
 using System.Windows.Controls;
 using Festispec.Singleton;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Festispec.ViewModel.rapport;
 using Festispec.ViewModel.rapport.element;
@@ -79,8 +76,10 @@ namespace Festispec.ViewModel
                 }
             );
             report.DataContext = reportVM;
+            reportVM.MainViewModel = this;
             Page = report;
         }
+
 
         //methodes
         private void CloseApp()
