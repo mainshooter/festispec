@@ -14,7 +14,7 @@
               CanUserReorderColumns="False" 
               CanUserDeleteRows="False"
               CanUserSortColumns="False"
-              ItemsSource="{Binding Data.DefaultView}">
+              ItemsSource="{Binding DataTable.DefaultView}">
         </DataGrid>
     </StackPanel>
 </UserControl>

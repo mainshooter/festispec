@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Factory\ReportElementFactory.cs" />
     <Compile Include="Interface\IReportElement.cs" />
     <Compile Include="Singleton\PageSingleton.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
@@ -130,8 +131,8 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\Pages\Report\element\AddElement.xaml.cs">
-      <DependentUpon>AddElement.xaml</DependentUpon>
+    <Compile Include="View\Pages\Report\element\AddElementPage.xaml.cs">
+      <DependentUpon>AddElementPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Report\AddReportElement.xaml.cs">
       <DependentUpon>AddReportElement.xaml</DependentUpon>
@@ -201,7 +202,7 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="View\Pages\Report\element\AddElement.xaml">
+    <Page Include="View\Pages\Report\element\AddElementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

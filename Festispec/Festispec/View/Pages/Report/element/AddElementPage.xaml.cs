@@ -18,9 +18,9 @@ namespace Festispec.View.Pages.Report.element
     /// <summary>
     /// Interaction logic for AddElement.xaml
     /// </summary>
-    public partial class AddElement : Page
+    public partial class AddElementPage : Page
     {
-        public AddElement()
+        public AddElementPage()
         {
             InitializeComponent();
         }

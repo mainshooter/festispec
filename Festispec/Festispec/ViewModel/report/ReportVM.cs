@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using Festispec.Factory;
 using Festispec.View.Pages.Report.element;
 using Festispec.View.Report.Element;
 using Festispec.ViewModel.employee.order;
@@ -24,6 +25,7 @@ namespace Festispec.ViewModel.rapport
     {
         private Report _report;
         private ObservableCollection<UserControl> _reportElementUserControlls;
+        private ReportElementFactory _reportElementFactory;
 
         public int Id {
             get {
@@ -74,6 +76,7 @@ namespace Festispec.ViewModel.rapport
         {
             _report = report;
             ReportElementUserControlls = new ObservableCollection<UserControl>();
+            _reportElementFactory = new ReportElementFactory();
             ReportElements = new ObservableCollection<ReportElementVM>(report.ReportElements.ToList().Select(e => new ReportElementVM(e)));
             ReportElements.CollectionChanged += RenderReportElements;
             SaveReportCommand = new RelayCommand(Save);
@@ -84,6 +87,7 @@ namespace Festispec.ViewModel.rapport
         {
             _report = new Report();
             ReportElementUserControlls = new ObservableCollection<UserControl>();
+            _reportElementFactory = new ReportElementFactory();
             ReportElements = new ObservableCollection<ReportElementVM>();
             ReportElements.CollectionChanged += RenderReportElements;
             SaveReportCommand = new RelayCommand(Save);
@@ -92,7 +96,7 @@ namespace Festispec.ViewModel.rapport
 
         private void GoToAddElementPage()
         {
-            Page addElementPage = new AddElement();
+            Page addElementPage = new AddElementPage();
             AddElementVM addElementVM = new AddElementVM();
             addElementVM.Report = this;
             addElementVM.MainViewModel = MainViewModel;
@@ -131,71 +135,10 @@ namespace Festispec.ViewModel.rapport
         public void RenderReportElements(object sender, NotifyCollectionChangedEventArgs e)
         {
             ReportElementUserControlls.Clear();
-            foreach (var element in ReportElements)
+            var reportElements = ReportElements.OrderBy(el => el.Order);
+            foreach (var element in reportElements)
             {
-                if (element.Type.Equals("table"))
-                {
-                    Table tableUserControl = new Table();
-                    TableVM tableVM = new TableVM();
-                    tableVM.Title = element.Title;
-                    tableVM.Content = element.Content;
-                    tableVM.Dictionary.Add("id", new List<string>() { "1", "2" });
-                    tableVM.ApplyChanges();
-                    tableUserControl.DataContext = tableVM;
-                    ReportElementUserControlls.Add(tableUserControl);
-                }
-                else if (element.Type.Equals("linechart"))
-                {
-                    LineChart lineChartUserControl = new LineChart();
-                    LineChartVM lineChartVM = new LineChartVM();
-                    lineChartVM.Title = element.Title;
-                    lineChartVM.Content = element.Content;
-                    lineChartVM.XaxisName = "Test xas";
-                    lineChartVM.YaxisName = "Test y";
-                    lineChartVM.SeriesCollection = new SeriesCollection
-                    {
-                        new LineSeries { Title = "Bezoekers", Values = new ChartValues<int> {40, 60, 50, 20, 40, 60}}
-                    };
-                    lineChartVM.SeriesCollection.Add(new LineSeries { Title = "Test 2", Values = new ChartValues<int> { 44, 587, 10, 5, 9, 60 } });
-                    lineChartUserControl.DataContext = lineChartVM;
-                    ReportElementUserControlls.Add(lineChartUserControl);
-                }
-                else if (element.Type.Equals("piechart"))
-                {
-                    View.Report.Element.PieChart pieChartUserControl = new View.Report.Element.PieChart();
-                    PieChartVM pieChartVM = new PieChartVM();
-                    pieChartVM.Title = element.Title;
-                    pieChartVM.Content = element.Content;
-                    pieChartVM.SeriesCollection = new SeriesCollection
-                    {
-                        new PieSeries
-                        {
-                            Title = "Bier",
-                            Values = new ChartValues<double> { 20 },
-                            DataLabels = true,
-                        },
-                        new PieSeries
-                        {
-                            Title = "Frisdrank",
-                            Values = new ChartValues<double> { 12 },
-                            DataLabels = true,
-                        },
-                        new PieSeries
-                        {
-                            Title = "Cocktail",
-                            Values = new ChartValues<double> { 8 },
-                            DataLabels = true,
-                        },
-                        new PieSeries
-                        {
-                            Title = "Wijn",
-                            Values = new ChartValues<double> { 2 },
-                            DataLabels = true,
-                        }
-                    };
-                    pieChartUserControl.DataContext = pieChartVM;
-                    ReportElementUserControlls.Add(pieChartUserControl);
-                }
+                ReportElementUserControlls.Add(_reportElementFactory.CreateElement(element));
             }
         }
     }

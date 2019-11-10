@@ -30,7 +30,7 @@ namespace Festispec.ViewModel.report
                 _previousePage = _mainViewModel.Page;
             }
         }
-        public int SelectedElementType { get; set; }
+        public int SelectedElementIndex { get; set; }
 
         public ICommand GoBackCommand { get; set; }
         public ICommand AddElementCommand { get; set; }
@@ -44,11 +44,11 @@ namespace Festispec.ViewModel.report
 
         private void AddElementToReport()
         {
-            if (SelectedElementType == null)
+            if (SelectedElementIndex == null)
             {
                 return;
             }
-            string elementType = ElementTypes[SelectedElementType];
+            string elementType = ElementTypes[SelectedElementIndex];
             if (elementType.Equals("table"))
             {
                 Table tableUserControl = new Table();
@@ -112,6 +112,7 @@ namespace Festispec.ViewModel.report
                 pieChartUserControl.DataContext = pieChartVM;
                 Report.ReportElementUserControlls.Add(pieChartUserControl);
             }
+            GoBackToReport();
         }
 
         private void GoBackToReport()

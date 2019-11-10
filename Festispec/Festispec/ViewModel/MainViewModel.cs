@@ -6,6 +6,10 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
 using Festispec.ViewModel.rapport;
 using Festispec.ViewModel.rapport.element;
+using System.Collections.Generic;
+using System;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace Festispec.ViewModel
 {
@@ -43,12 +47,17 @@ namespace Festispec.ViewModel
             _pageSingleton = new PageSingleton();
             var report = new Report();
             ReportVM reportVM = new ReportVM();
+
             reportVM.ReportElements.Add(
                     new ReportElementVM()
                     {
                         Title = "Leuke titel",
                         Content = "Hier maak ik titels van",
-                        Type = "table"
+                        Type = "table",
+                        Data = new Dictionary<string, List<string>>()
+                        {
+                            ["id"] = new List<string>() { "1", "2" }
+                        },
                     }
                 );
             reportVM.ReportElements.Add(
@@ -56,7 +65,34 @@ namespace Festispec.ViewModel
                 {
                     Title = "Leuke piechart",
                     Content = "Taartje beschrijving",
-                    Type = "piechart"
+                    Type = "piechart",
+                    Data = new SeriesCollection
+                    {
+                        new PieSeries
+                        {
+                            Title = "Bier",
+                            Values = new ChartValues<double> { 20 },
+                            DataLabels = true,
+                        },
+                        new PieSeries
+                        {
+                            Title = "Frisdrank",
+                            Values = new ChartValues<double> { 12 },
+                            DataLabels = true,
+                        },
+                        new PieSeries
+                        {
+                            Title = "Cocktail",
+                            Values = new ChartValues<double> { 8 },
+                            DataLabels = true,
+                        },
+                        new PieSeries
+                        {
+                            Title = "Wijn",
+                            Values = new ChartValues<double> { 2 },
+                            DataLabels = true,
+                        }
+                    }
                 }
             );
             reportVM.ReportElements.Add(
@@ -64,15 +100,15 @@ namespace Festispec.ViewModel
                 {
                     Title = "Line chart",
                     Content = "Wij linecharten",
-                    Type = "linechart"
-                }
-            );
-            reportVM.ReportElements.Add(
-                new ReportElementVM()
-                {
-                    Title = "Leuke piechart",
-                    Content = "Taartje beschrijving",
-                    Type = "piechart"
+                    Type = "linechart",
+                    Data = new Dictionary<string, Object>() {
+                        ["xaxisName"] = "Test xas",
+                        ["yaxisName"] = "Test yas",
+                        ["seriescollection"] = new SeriesCollection
+                        {
+                            new LineSeries { Title = "Bezoekers", Values = new ChartValues<int> {40, 60, 50, 20, 40, 60}}
+                        }
+                    }
                 }
             );
             report.DataContext = reportVM;

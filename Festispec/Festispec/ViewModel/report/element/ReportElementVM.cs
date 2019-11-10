@@ -1,5 +1,6 @@
 ﻿using Festispec.Domain;
 using GalaSoft.MvvmLight;
+using LiveCharts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +58,8 @@ namespace Festispec.ViewModel.rapport.element
                 _reportElement.Order = value;
             }
         }
+
+        public Object Data { get; set; }
 
         public ReportElementVM(ReportElement element)
         {
