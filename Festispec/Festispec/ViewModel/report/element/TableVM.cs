@@ -12,8 +12,21 @@ namespace Festispec.ViewModel.report.element
 {
     public class TableVM: ReportElementVM
     {
-        public Dictionary<string, List<string>> Dictionary { get; set; }
         private DataTable _dataTable;
+        public Dictionary<string, List<string>> Dictionary { get; set; }
+
+        private Object _data;
+        public override Object Data {
+            get {
+                return _data;
+            }
+            set {
+                _data = value;
+                Dictionary = (Dictionary<string, List<string>>) _data;
+                ApplyChanges();
+            }
+        }
+        
         public DataTable DataTable { 
             get {
                 return _dataTable;
@@ -24,10 +37,14 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public TableVM()
+        public TableVM(ReportElementVM element)
         {
             DataTable = new DataTable();
             Dictionary = new Dictionary<string, List<string>>();
+            Title = element.Title;
+            Content = element.Content;
+            Order = element.Order;
+            Data = element.Data;
         }
 
         public void ApplyChanges()

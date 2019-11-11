@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Festispec.View.Report
 {
     /// <summary>
-    /// Interaction logic for AddReportElement.xaml
+    /// Interaction logic for Report.xaml
     /// </summary>
-    public partial class AddReportElement : UserControl
+    public partial class ReportPage : Page
     {
-        public AddReportElement()
+        public ReportPage()
         {
             InitializeComponent();
         }

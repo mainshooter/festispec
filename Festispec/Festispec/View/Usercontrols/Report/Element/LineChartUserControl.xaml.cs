@@ -18,9 +18,9 @@ namespace Festispec.View.Report.Element
     /// <summary>
     /// Interaction logic for LineChart.xaml
     /// </summary>
-    public partial class LineChart : UserControl
+    public partial class LineChartUserControl : UserControl
     {
-        public LineChart()
+        public LineChartUserControl()
         {
             InitializeComponent();
         }

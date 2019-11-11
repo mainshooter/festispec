@@ -20,36 +20,23 @@ namespace Festispec.Factory
             string type = element.Type;
             if (type.Equals("table"))
             {
-                Table table = new Table();
-                TableVM tableVm = new TableVM();
-                Dictionary<string, List<string>> tableData = (Dictionary<string, List<string>>) element.Data;
-                tableVm.Title = element.Title;
-                tableVm.Content = element.Content;
-                tableVm.Order = element.Order;
-                tableVm.Dictionary = tableData;
-                tableVm.ApplyChanges();
+                TableUserControl table = new TableUserControl();
+                TableVM tableVm = new TableVM(element);
                 table.DataContext = tableVm;
                 returningUserControl = table;
             }
             else if (type.Equals("linechart"))
             {
-                LineChart lineChart = new LineChart();
-                LineChartVM lineChartVm = new LineChartVM();
-                Dictionary<string, Object> lineChartData = (Dictionary<string, Object>) element.Data;
-                lineChartVm.Title = element.Title;
-                lineChartVm.Content = element.Content;
-                lineChartVm.Order = element.Order;
-                lineChartVm.XaxisName = (string) lineChartData["xaxisName"];
-                lineChartVm.YaxisName = (string) lineChartData["yaxisName"];
-                lineChartVm.SeriesCollection = (SeriesCollection)lineChartData["seriescollection"];
+                LineChartUserControl lineChart = new LineChartUserControl();
+                LineChartVM lineChartVm = new LineChartVM(element);
                 lineChart.DataContext = lineChartVm;
                 returningUserControl = lineChart;
             }
             else if (type.Equals("piechart"))
             {
-                PieChart pieChart = new PieChart();
-                PieChartVM pieChartVm = new PieChartVM();
-                pieChartVm.SeriesCollection = (SeriesCollection)element.Data;
+                PieChartUserControl pieChart = new PieChartUserControl();
+                PieChartVM pieChartVm = new PieChartVM(element);
+                
                 pieChart.DataContext = pieChartVm;
                 returningUserControl = pieChart;
             }

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Report
+namespace Festispec.View.Report.Element
 {
     /// <summary>
-    /// Interaction logic for ReportControl.xaml
+    /// Interaction logic for PieChart.xaml
     /// </summary>
-    public partial class ReportControl : UserControl
+    public partial class PieChartUserControl : UserControl
     {
-        public ReportControl()
+        public PieChartUserControl()
         {
             InitializeComponent();
         }

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Report.Element
+namespace Festispec.View.Report
 {
     /// <summary>
-    /// Interaction logic for Table.xaml
+    /// Interaction logic for AddReportElement.xaml
     /// </summary>
-    public partial class Table : UserControl
+    public partial class AddReportElementUserControl : UserControl
     {
-        public Table()
+        public AddReportElementUserControl()
         {
             InitializeComponent();
         }
