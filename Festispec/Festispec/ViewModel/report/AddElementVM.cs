@@ -46,10 +46,6 @@ namespace Festispec.ViewModel.report
 
         private void AddElementToReport()
         {
-            if (SelectedElementIndex == null)
-            {
-                return;
-            }
             string elementType = ElementTypes[SelectedElementIndex];
             if (elementType.Equals("table"))
             {
