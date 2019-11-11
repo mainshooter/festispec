@@ -174,7 +174,6 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[ElementType](
 	[Type] [nvarchar](100) NOT NULL,
-	[ElementPart] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_ElementType] PRIMARY KEY CLUSTERED 
 (
 	[Type] ASC
