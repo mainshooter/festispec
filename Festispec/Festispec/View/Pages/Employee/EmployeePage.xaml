@@ -13,7 +13,7 @@
     <Grid>
         <Label Content="Medewerkers" HorizontalAlignment="Left" Margin="42,36,0,0" VerticalAlignment="Top"/>
         <Viewbox VerticalAlignment="Top">
-            <DataGrid IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding EmployeeList}" SelectedItem="{Binding Path=SelectedEmployee,Mode=TwoWay}">
+            <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding EmployeeList}" SelectedItem="{Binding Path=SelectedEmployee,Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Voornaam" Binding="{Binding Firstname}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Tussenvoegsel" Binding="{Binding Prefix}"></DataGridTextColumn>
