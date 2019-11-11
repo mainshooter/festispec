@@ -118,6 +118,7 @@
     <Compile Include="ViewModel\report\DataVM.cs" />
     <Compile Include="ViewModel\report\element\LineChartVM.cs" />
     <Compile Include="ViewModel\report\element\PieChartVM.cs" />
+    <Compile Include="ViewModel\report\element\ReportElementTypesListVM.cs" />
     <Compile Include="ViewModel\report\element\ReportElementVM.cs" />
     <Compile Include="ViewModel\report\element\TableVM.cs" />
     <Compile Include="ViewModel\report\ReportVM.cs" />
@@ -134,20 +135,20 @@
     <Compile Include="View\Pages\Report\element\AddElementPage.xaml.cs">
       <DependentUpon>AddElementPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Report\AddReportElement.xaml.cs">
+    <Compile Include="View\Usercontrols\Report\AddReportElement.xaml.cs">
       <DependentUpon>AddReportElement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Report\Element\LineChart.xaml.cs">
-      <DependentUpon>LineChart.xaml</DependentUpon>
+    <Compile Include="View\Usercontrols\Report\Element\LineChartUserControl.xaml.cs">
+      <DependentUpon>LineChartUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Report\Element\PieChart.xaml.cs">
-      <DependentUpon>PieChart.xaml</DependentUpon>
+    <Compile Include="View\Usercontrols\Report\Element\PieChartUserControl.xaml.cs">
+      <DependentUpon>PieChartUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Report\Element\Table.xaml.cs">
-      <DependentUpon>Table.xaml</DependentUpon>
+    <Compile Include="View\Usercontrols\Report\Element\TableUserControl.xaml.cs">
+      <DependentUpon>TableUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Report\Report.xaml.cs">
-      <DependentUpon>Report.xaml</DependentUpon>
+    <Compile Include="View\Pages\Report\ReportPage.xaml.cs">
+      <DependentUpon>ReportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\Availability\AvailablePage.xaml.cs">
       <DependentUpon>AvailablePage.xaml</DependentUpon>
@@ -167,7 +168,7 @@
     <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
       <DependentUpon>SickPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Report\ReportControl.xaml.cs">
+    <Compile Include="View\Usercontrols\Report\ReportControl.xaml.cs">
       <DependentUpon>ReportControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -206,23 +207,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Report\AddReportElement.xaml">
+    <Page Include="View\Usercontrols\Report\AddReportElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Report\Element\LineChart.xaml">
+    <Page Include="View\Usercontrols\Report\Element\LineChartUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Report\Element\PieChart.xaml">
+    <Page Include="View\Usercontrols\Report\Element\PieChartUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Report\Element\Table.xaml">
+    <Page Include="View\Usercontrols\Report\Element\TableUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Report\Report.xaml">
+    <Page Include="View\Pages\Report\ReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -250,7 +251,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Report\ReportControl.xaml">
+    <Page Include="View\Usercontrols\Report\ReportControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

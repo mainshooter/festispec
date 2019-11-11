@@ -37,7 +37,8 @@ namespace Festispec.ViewModel.report
 
         public AddElementVM()
         {
-            ElementTypes = new List<string>() { "table", "linechart", "piechart" };
+            ReportElementTypesListVM elementTypesList = new ReportElementTypesListVM();
+            ElementTypes = elementTypesList.ReportElementTypes;
             GoBackCommand = new RelayCommand(GoBackToReport);
             AddElementCommand = new RelayCommand(AddElementToReport);
         }
@@ -51,7 +52,7 @@ namespace Festispec.ViewModel.report
             string elementType = ElementTypes[SelectedElementIndex];
             if (elementType.Equals("table"))
             {
-                Table tableUserControl = new Table();
+                TableUserControl tableUserControl = new TableUserControl();
                 TableVM tableVM = new TableVM();
                 tableVM.Title = "Test tabelletje";
                 tableVM.Content = "Doei doei doei";
@@ -62,7 +63,7 @@ namespace Festispec.ViewModel.report
             }
             else if (elementType.Equals("linechart"))
             {
-                LineChart lineChartUserControl = new LineChart();
+                LineChartUserControl lineChartUserControl = new LineChartUserControl();
                 LineChartVM lineChartVM = new LineChartVM();
                 lineChartVM.Title = "Doei";
                 lineChartVM.Content = "Content doei doei";
@@ -78,7 +79,7 @@ namespace Festispec.ViewModel.report
             }
             else if (elementType.Equals("piechart"))
             {
-                View.Report.Element.PieChart pieChartUserControl = new View.Report.Element.PieChart();
+                PieChartUserControl pieChartUserControl = new PieChartUserControl();
                 PieChartVM pieChartVM = new PieChartVM();
                 pieChartVM.Title = "Test";
                 pieChartVM.Content = "Lorem ipsum";

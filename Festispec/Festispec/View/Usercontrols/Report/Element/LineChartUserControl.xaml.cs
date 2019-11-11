@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Festispec.View.Report.Element
 {
     /// <summary>
-    /// Interaction logic for Table.xaml
+    /// Interaction logic for LineChart.xaml
     /// </summary>
-    public partial class Table : UserControl
+    public partial class LineChartUserControl : UserControl
     {
-        public Table()
+        public LineChartUserControl()
         {
             InitializeComponent();
         }

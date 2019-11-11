@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Report.Element
+namespace Festispec.View.Report
 {
     /// <summary>
-    /// Interaction logic for LineChart.xaml
+    /// Interaction logic for Report.xaml
     /// </summary>
-    public partial class LineChart : UserControl
+    public partial class ReportPage : Page
     {
-        public LineChart()
+        public ReportPage()
         {
             InitializeComponent();
         }

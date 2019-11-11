@@ -20,7 +20,7 @@ namespace Festispec.Factory
             string type = element.Type;
             if (type.Equals("table"))
             {
-                Table table = new Table();
+                TableUserControl table = new TableUserControl();
                 TableVM tableVm = new TableVM();
                 Dictionary<string, List<string>> tableData = (Dictionary<string, List<string>>) element.Data;
                 tableVm.Title = element.Title;
@@ -33,7 +33,7 @@ namespace Festispec.Factory
             }
             else if (type.Equals("linechart"))
             {
-                LineChart lineChart = new LineChart();
+                LineChartUserControl lineChart = new LineChartUserControl();
                 LineChartVM lineChartVm = new LineChartVM();
                 Dictionary<string, Object> lineChartData = (Dictionary<string, Object>) element.Data;
                 lineChartVm.Title = element.Title;
@@ -47,7 +47,7 @@ namespace Festispec.Factory
             }
             else if (type.Equals("piechart"))
             {
-                PieChart pieChart = new PieChart();
+                PieChartUserControl pieChart = new PieChartUserControl();
                 PieChartVM pieChartVm = new PieChartVM();
                 pieChartVm.SeriesCollection = (SeriesCollection)element.Data;
                 pieChart.DataContext = pieChartVm;

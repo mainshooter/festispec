@@ -18,9 +18,9 @@ namespace Festispec.View.Report.Element
     /// <summary>
     /// Interaction logic for PieChart.xaml
     /// </summary>
-    public partial class PieChart : UserControl
+    public partial class PieChartUserControl : UserControl
     {
-        public PieChart()
+        public PieChartUserControl()
         {
             InitializeComponent();
         }

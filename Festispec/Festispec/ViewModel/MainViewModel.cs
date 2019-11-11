@@ -45,7 +45,7 @@ namespace Festispec.ViewModel
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
             _pageSingleton = new PageSingleton();
-            var report = new Report();
+            var report = new ReportPage();
             ReportVM reportVM = new ReportVM();
 
             reportVM.ReportElements.Add(
