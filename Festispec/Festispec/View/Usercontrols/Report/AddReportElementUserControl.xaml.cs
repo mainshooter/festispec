@@ -18,9 +18,9 @@ namespace Festispec.View.Report
     /// <summary>
     /// Interaction logic for AddReportElement.xaml
     /// </summary>
-    public partial class AddReportElement : UserControl
+    public partial class AddReportElementUserControl : UserControl
     {
-        public AddReportElement()
+        public AddReportElementUserControl()
         {
             InitializeComponent();
         }
