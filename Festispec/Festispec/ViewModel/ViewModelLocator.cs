@@ -1,4 +1,5 @@
 using CommonServiceLocator;
+using Festispec.ViewModel.auth;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
@@ -13,9 +14,10 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
-        public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
-
-
+        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public UserLoginVm LoginVm => new UserLoginVm();
+        
+        
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
