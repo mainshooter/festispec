@@ -32,8 +32,17 @@ namespace Festispec.ViewModel.employee
             }
         }
 
+        private void Encrypt()
+        {
+            byte[] data = System.Text.Encoding.ASCII.GetBytes(Employee.Password);
+            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+            String hash = System.Text.Encoding.ASCII.GetString(data);
+            Employee.Password = hash;
+        }
+
         public void AddEmployee()
         {
+            Encrypt();
             using (var context = new Entities())
             {
                 context.Employees.Add(Employee.ToModel());
@@ -44,7 +53,7 @@ namespace Festispec.ViewModel.employee
 
         public bool CanAddEmployee()
         {
-            if (Employee.Firstname == null || Employee.Lastname == null || Employee.Password == null || Employee.City == null || Employee.Department == null || Employee.Email == null || Employee.HouseNumber <= 0 || Employee.Phone == null || Employee.PostalCode == null || Employee.Status == null || Employee.Street == null)
+            if (Employee.Firstname == null || Employee.Lastname == null || Employee.Password == null || Employee.City == null || Employee.Department == null || Employee.Email == null || Employee.HouseNumber <= 0 || Employee.Phone == null || Employee.PostalCode == null || Employee.Status == null || Employee.Street == null || Employee.Birthday == null)
             {
                 return false;
             }

@@ -209,13 +209,25 @@ namespace Festispec.ViewModel.employee
             }
         }
 
+        public DateTime Birthday
+        {
+            get
+            {
+                return _employee.Birthday;
+            }
+            set
+            {
+                _employee.Birthday = value;
+            }
+        }
+
         [PreferredConstructorAttribute]
         public EmployeeVM(Employee employee)
         {
             _employee = employee;
             Department = new DepartmentVM(_employee.Department1);
         }
-    
+
         public EmployeeVM()
         {
             _employee = new Employee();

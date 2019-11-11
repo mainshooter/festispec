@@ -43,6 +43,7 @@ namespace Festispec.Domain
         public string PasswordResetToken { get; set; }
         public Nullable<System.DateTime> ResetTokenEndTime { get; set; }
         public string Iban { get; set; }
+        public System.DateTime Birthday { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AvailabilityInspector> AvailabilityInspectors { get; set; }
