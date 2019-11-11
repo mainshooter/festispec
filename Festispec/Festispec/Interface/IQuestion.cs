@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using Festispec.Model;
+using Festispec.Survey.Question;
 
 namespace Festispec.ViewModel.survey.question.questionTypes
 {

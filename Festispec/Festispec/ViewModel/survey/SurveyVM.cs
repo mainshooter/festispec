@@ -13,7 +13,7 @@ namespace Festispec.ViewModel.survey
     {
         private ObservableCollection<CaseVM> _cases;
         private ObservableCollection<IQuestion> _questions;
-        private Survey _survey;
+        private Domain.Survey _survey;
         private EventVM _event;
 
         public int Id {
@@ -49,7 +49,7 @@ namespace Festispec.ViewModel.survey
         public ICommand AddQuestionCommand { get; set; }
         public ICommand EditQuestionCommand { get; set; }
 
-        public SurveyVM(MainViewModel mainViewModel, EventVM selectedEvent, Survey survey)
+        public SurveyVM(MainViewModel mainViewModel, EventVM selectedEvent, Domain.Survey survey)
         {
             MainViewModel = mainViewModel;
             _survey = survey;
@@ -63,7 +63,7 @@ namespace Festispec.ViewModel.survey
 
         public SurveyVM(EventVM selectedEvent)
         {
-            _survey = new Survey();
+            _survey = new Domain.Survey();
             _event = selectedEvent;
             AddQuestionCommand = new RelayCommand(OpenAddQuestion);
             Cases = new ObservableCollection<CaseVM>();

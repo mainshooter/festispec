@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Festispec.Model
+namespace Festispec.Survey.Question
 {
     public class QuestionDetails
     {

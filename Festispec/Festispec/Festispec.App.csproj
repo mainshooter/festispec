@@ -93,8 +93,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\QuestionChoices.cs" />
-    <Compile Include="Model\QuestionDetails.cs" />
     <Compile Include="Singleton\PageSingleton.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
@@ -239,6 +237,10 @@
     <ProjectReference Include="..\Festispec.Domain\Festispec.Domain.csproj">
       <Project>{ee67b2e2-6838-4800-a461-026c192d54d3}</Project>
       <Name>Festispec.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Festispec.Survey\Festispec.Survey.csproj">
+      <Project>{af4eba3c-c4e2-4703-a1e8-1a6e1f7212e4}</Project>
+      <Name>Festispec.Survey</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

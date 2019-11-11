@@ -86,7 +86,7 @@ namespace Festispec.ViewModel
         private void OpenSurveyTab()
         {
             Page = PageSingleton.GetPage("survey");
-            var survey = new Survey();
+            var survey = new Domain.Survey();
             survey.Questions.Add(new Question(){
                 Type = "Open vraag",
                 Question1 = "{\r\n    \"Question\"    : \"Bla bla\",\r\n    \"Choices\":\r\n        {\r\n            \"Cols\": [\"Act\",\"Sfeer\"],\r\n            \"Options\": [\"Grimmig\",\"Donken\"]\r\n        },\r\n    \"Description\" : \"Bla bla\",\r\n    \"Images\"      : []\r\n}",
