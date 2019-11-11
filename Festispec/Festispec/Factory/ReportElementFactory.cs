@@ -53,6 +53,22 @@ namespace Festispec.Factory
                 pieChart.DataContext = pieChartVm;
                 returningUserControl = pieChart;
             }
+            else if (type.Equals("barchart"))
+            {
+                BarChart barChart = new BarChart();
+                BarChartVM barChartVm = new BarChartVM();
+                Dictionary<string, Object> barChartData = (Dictionary<string, Object>) element.Data;
+                barChartVm.Title = element.Title;
+                barChartVm.Content = element.Content;
+                barChartVm.Order = element.Order;
+                barChartVm.Labels = (List<string>)barChartData["labels"];
+                barChartVm.XaxisName = (string)barChartData["xaxisName"];
+                barChartVm.YaxisName = (string)barChartData["yaxisName"];
+                barChartVm.SeriesCollection = (SeriesCollection)barChartData["seriescollection"];
+                barChart.DataContext = barChartVm;
+                returningUserControl = barChart;
+
+            }
             return returningUserControl;
         }
     }

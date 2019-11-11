@@ -37,7 +37,7 @@ namespace Festispec.ViewModel.report
 
         public AddElementVM()
         {
-            ElementTypes = new List<string>() { "table", "linechart", "piechart" };
+            ElementTypes = new List<string>() { "table", "linechart", "piechart", "barchart"};
             GoBackCommand = new RelayCommand(GoBackToReport);
             AddElementCommand = new RelayCommand(AddElementToReport);
         }
@@ -111,6 +111,33 @@ namespace Festispec.ViewModel.report
                     };
                 pieChartUserControl.DataContext = pieChartVM;
                 Report.ReportElementUserControlls.Add(pieChartUserControl);
+            }
+            else if (elementType.Equals("barchart"))
+            {
+                BarChart barChartUserControl = new BarChart();
+                BarChartVM barChartVM = new BarChartVM();
+                barChartVM.Title = "PleaseWork";
+                barChartVM.Content = "Random stuff";
+                barChartVM.SeriesCollection = new SeriesCollection
+                {
+                    new ColumnSeries
+                    {
+                        Title = "test",
+                        Values = new ChartValues<double>{20,40,50,78}
+                    }
+                };
+                barChartVM.SeriesCollection.Add(new ColumnSeries
+                {
+                    Title = "test2",
+                    Values = new ChartValues<double> {10,20,25,39}
+                });
+                barChartVM.Labels.Add("testname");
+                barChartVM.Labels.Add("testname1");
+                barChartVM.Labels.Add("testname2");
+                barChartVM.Labels.Add("testname3");
+                barChartVM.Formatter = value => value.ToString("N");
+                barChartUserControl.DataContext = barChartVM;
+                Report.ReportElementUserControlls.Add(barChartUserControl);
             }
             GoBackToReport();
         }
