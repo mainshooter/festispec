@@ -14,7 +14,6 @@ namespace Festispec.ViewModel.survey
         private ObservableCollection<CaseVM> _cases;
         private ObservableCollection<IQuestion> _questions;
         private Domain.Survey _survey;
-        private EventVM _event;
 
         public int Id {
             get => _survey.Id;
@@ -43,32 +42,36 @@ namespace Festispec.ViewModel.survey
 
         public MainViewModel MainViewModel { get; set; }
         public ObservableCollection<string> QuestionTypes { get; set; }
-        public string EventName => _event.Name;
         public string SelectedQuestionType { get; set; }
         public IQuestion SelectedQuestion { get; set; }
         public ICommand AddQuestionCommand { get; set; }
         public ICommand EditQuestionCommand { get; set; }
+        public ICommand DeleteQuestionCommand { get; set; }
 
-        public SurveyVM(MainViewModel mainViewModel, EventVM selectedEvent, Domain.Survey survey)
+        public SurveyVM(MainViewModel mainViewModel, Domain.Survey survey)
         {
             MainViewModel = mainViewModel;
             _survey = survey;
-            _event = selectedEvent;
             AddQuestionCommand = new RelayCommand(OpenAddQuestion);
-            EditQuestionCommand = new RelayCommand(OpenEditCommand);
+            EditQuestionCommand = new RelayCommand(OpenEditQuestion);
+            DeleteQuestionCommand = new RelayCommand(DeleteQuestion);
             Cases = new ObservableCollection<CaseVM>(survey.Cases.ToList().Select(c => new CaseVM(c)));
             Questions = new ObservableCollection<IQuestion>(survey.Questions.ToList().Select(CreateQuestionType));
             GetQuestionTypes();
+            MainViewModel.PageSingleton.SetSurveyPages(this);
         }
 
-        public SurveyVM(EventVM selectedEvent)
+        public SurveyVM(MainViewModel mainViewModel)
         {
+            MainViewModel = mainViewModel;
             _survey = new Domain.Survey();
-            _event = selectedEvent;
             AddQuestionCommand = new RelayCommand(OpenAddQuestion);
+            EditQuestionCommand = new RelayCommand(OpenEditQuestion);
+            DeleteQuestionCommand = new RelayCommand(DeleteQuestion);
             Cases = new ObservableCollection<CaseVM>();
             Questions = new ObservableCollection<IQuestion>();
             GetQuestionTypes();
+            MainViewModel.PageSingleton.SetSurveyPages(this);
         }
 
         private void GetQuestionTypes()
@@ -93,12 +96,11 @@ namespace Festispec.ViewModel.survey
             switch (question.Type)
             {
                 case "Open vraag":
-                    var openQuestionVm = new OpenQuestionVM(question) {MainViewModel = MainViewModel};
-                    return openQuestionVm;
+                    return new OpenQuestionVM(this, question) { MainViewModel = MainViewModel };
                 case "Gesloten vraag":
-                    return new ClosedQuestionVM(question) { MainViewModel = MainViewModel };
+                    return new ClosedQuestionVM(this, question) { MainViewModel = MainViewModel };
                 default:
-                    return new OpenQuestionVM(question) { MainViewModel = MainViewModel };
+                    return new OpenQuestionVM(this, question) { MainViewModel = MainViewModel };
             }
         }
 
@@ -108,11 +110,22 @@ namespace Festispec.ViewModel.survey
             MainViewModel.Page = questionTypePage;
         }
 
-        private void OpenEditCommand()
+        private void OpenEditQuestion()
         {
             var questionTypePage = MainViewModel.PageSingleton.GetPage("Edit " + SelectedQuestion.QuestionType);
             questionTypePage.DataContext = SelectedQuestion;
             MainViewModel.Page = questionTypePage;
+        }
+
+        private void DeleteQuestion()
+        {
+            using (var context = new Entities())
+            {
+                context.Questions.Attach(SelectedQuestion.ToModel());
+                context.Questions.Remove(SelectedQuestion.ToModel());
+                context.SaveChanges();
+                Questions.Remove(SelectedQuestion);
+            }
         }
     }
 }

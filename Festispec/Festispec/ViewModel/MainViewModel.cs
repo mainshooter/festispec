@@ -1,3 +1,4 @@
+using System.Linq;
 using Festispec.Singleton;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -85,21 +86,12 @@ namespace Festispec.ViewModel
 
         private void OpenSurveyTab()
         {
-            Page = PageSingleton.GetPage("survey");
-            var survey = new Domain.Survey();
-            survey.Questions.Add(new Question(){
-                Type = "Open vraag",
-                Question1 = "{\r\n    \"Question\"    : \"Bla bla\",\r\n    \"Choices\":\r\n        {\r\n            \"Cols\": [\"Act\",\"Sfeer\"],\r\n            \"Options\": [\"Grimmig\",\"Donken\"]\r\n        },\r\n    \"Description\" : \"Bla bla\",\r\n    \"Images\"      : []\r\n}",
-                Order = 1
-            });
-            survey.Questions.Add(new Question()
+            using (var context = new Entities())
             {
-                Type = "Gesloten vraag",
-                Question1 = "{\r\n    \"Question\"    : \"Bla bla\",\r\n    \"Choices\":\r\n        {\r\n            \"Cols\": [],\r\n            \"Options\": []\r\n        },\r\n    \"Description\" : \"bla bla\",\r\n    \"Images\"      : [\"234trgderty56et44567irte\", \"234trgderty56et44567irte\"]\r\n}",
-                Order = 2
-            });
-            var selectedEvent = new EventVM {Name = "Pinkpop"};
-            Page.DataContext = new SurveyVM(this, selectedEvent, survey);
+                Page = PageSingleton.GetPage("survey");
+                var survey = context.Surveys.First();
+                Page.DataContext = new SurveyVM(this, survey);
+            }
         }
     }
 }

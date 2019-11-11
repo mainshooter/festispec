@@ -11,6 +11,7 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -20,7 +21,9 @@
         <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Open vraag bewerken</Label>
         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">Vraag:</Label>
         <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionDetails.Question}"></TextBox>
-        <Button Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding GoBackCommand}">Terug</Button>
-        <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="10,0,0,0" Command="{Binding SaveCommand}">Opslaan</Button>
+        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">Omschrijving:</Label>
+        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionDetails.Description}"></TextBox>
+        <Button Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding GoBackCommand}">Terug</Button>
+        <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Margin="10,0,0,0" Command="{Binding SaveCommand}">Opslaan</Button>
     </Grid>
 </Page>

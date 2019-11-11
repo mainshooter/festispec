@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Festispec.Domain;
 using Festispec.Survey.Question;
 
 namespace Festispec.ViewModel.survey.question.questionTypes
@@ -13,5 +14,7 @@ namespace Festispec.ViewModel.survey.question.questionTypes
         void Delete();
         void GoBack();
         void Refresh();
+        bool ValidateQuestionDetails();
+        Question ToModel();
     }
 }

@@ -10,6 +10,7 @@ using Festispec.View.Pages.Survey;
 using Festispec.View.Pages.Survey.QuestionTypes.ClosedQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using Festispec.ViewModel;
+using Festispec.ViewModel.survey;
 using Festispec.ViewModel.survey.question.questionTypes;
 using Festispec.ViewModel.survey.question.QuestionTypes;
 
@@ -34,8 +35,6 @@ namespace Festispec.Singleton
                 {"sick", new SickPage()},
                 {"survey", new SurveyPage()}
             };
-
-            SetSurveyPages();
         }
 
         public Page GetPage(string pageName)
@@ -43,10 +42,10 @@ namespace Festispec.Singleton
             return _pages[pageName];
         }
 
-        private void SetSurveyPages()
+        public void SetSurveyPages(SurveyVM surveyVm)
         {
             var addOpenQuestionPage = new AddOpenQuestionPage();
-            var openQuestionVm = new OpenQuestionVM();
+            var openQuestionVm = new OpenQuestionVM(surveyVm);
             openQuestionVm.MainViewModel = _mainViewModel;
             addOpenQuestionPage.DataContext = openQuestionVm;
             _pages["Add Open vraag"] = addOpenQuestionPage;
@@ -54,7 +53,7 @@ namespace Festispec.Singleton
             _pages["Edit Open vraag"] = new EditOpenQuestionPage();
 
             var addClosedQuestionPage = new AddClosedQuestionPage();
-            var closedQuestionVm = new ClosedQuestionVM();
+            var closedQuestionVm = new ClosedQuestionVM(surveyVm);
             closedQuestionVm.MainViewModel = _mainViewModel;
             addClosedQuestionPage.DataContext = closedQuestionVm;
             _pages["Add Gesloten vraag"] = addClosedQuestionPage;
