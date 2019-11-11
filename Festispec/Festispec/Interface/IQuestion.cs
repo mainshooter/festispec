@@ -1,4 +1,5 @@
-﻿using Festispec.Model;
+﻿using System.Windows.Input;
+using Festispec.Model;
 
 namespace Festispec.ViewModel.survey.question.questionTypes
 {
@@ -6,8 +7,11 @@ namespace Festispec.ViewModel.survey.question.questionTypes
     {
         QuestionDetails QuestionDetails { get; set; }
         string QuestionType { get; }
+        ICommand SaveCommand { get; set; }
+        ICommand GoBackCommand { get; set; }
         void Save();
         void Delete();
+        void GoBack();
         void Refresh();
     }
 }

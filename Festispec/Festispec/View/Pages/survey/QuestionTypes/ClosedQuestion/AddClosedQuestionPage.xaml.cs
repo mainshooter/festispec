@@ -12,14 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Windows.survey.question.QuestionTypes.ClosedQuestion
+namespace Festispec.View.Pages.Survey.QuestionTypes.ClosedQuestion
 {
-    /// <summary>
-    /// Interaction logic for EditClosedQuestion.xaml
-    /// </summary>
-    public partial class EditClosedQuestionWindow : Window
+    public partial class AddClosedQuestionPage : Page
     {
-        public EditClosedQuestionWindow()
+        public AddClosedQuestionPage()
         {
             InitializeComponent();
         }

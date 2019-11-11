@@ -13,9 +13,9 @@ namespace Festispec.ViewModel
     {
         //privates
         private Page _page;
-        private PageSingleton _pageSingleton;
 
         //publics
+        public PageSingleton PageSingleton { get; set; }
         public ICommand CloseApplication { get; set; }
         public ICommand OpenDashboard { get; set; }
         public ICommand OpenEmployee { get; set; }
@@ -42,9 +42,9 @@ namespace Festispec.ViewModel
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
             OpenSurvey = new RelayCommand(OpenSurveyTab);
-            _pageSingleton = new PageSingleton();
+            PageSingleton = new PageSingleton(this);
 
-            Page = _pageSingleton.GetPage("dashboard");
+            Page = PageSingleton.GetPage("dashboard");
         }
 
         //methodes
@@ -55,37 +55,37 @@ namespace Festispec.ViewModel
 
         private void OpenDashboardTab()
         {
-            Page = _pageSingleton.GetPage("dashboard");
+            Page = PageSingleton.GetPage("dashboard");
         }
 
         private void OpenEmployeeTab()
         {
-            Page = _pageSingleton.GetPage("employee");
+            Page = PageSingleton.GetPage("employee");
         }
 
         private void OpenCustomerTab()
         {
-            Page = _pageSingleton.GetPage("customer");
+            Page = PageSingleton.GetPage("customer");
         }
 
         private void OpenAvailabilityTab()
         {
-            Page = _pageSingleton.GetPage("availability");
+            Page = PageSingleton.GetPage("availability");
         }
 
         private void OpenEventTab()
         {
-            Page = _pageSingleton.GetPage("event");
+            Page = PageSingleton.GetPage("event");
         }
 
         private void OpenSickTab()
         {
-            Page = _pageSingleton.GetPage("sick");
+            Page = PageSingleton.GetPage("sick");
         }
 
         private void OpenSurveyTab()
         {
-            Page = _pageSingleton.GetPage("survey");
+            Page = PageSingleton.GetPage("survey");
             var survey = new Survey();
             survey.Questions.Add(new Question(){
                 Type = "Open vraag",
@@ -99,7 +99,7 @@ namespace Festispec.ViewModel
                 Order = 2
             });
             var selectedEvent = new EventVM {Name = "Pinkpop"};
-            Page.DataContext = new SurveyVM(selectedEvent, survey);
+            Page.DataContext = new SurveyVM(this, selectedEvent, survey);
         }
     }
 }

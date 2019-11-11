@@ -12,14 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Windows.survey.question.QuestionTypes.OpenQuestion
+namespace Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion
 {
-    /// <summary>
-    /// Interaction logic for AddOpenQuestionWindow.xaml
-    /// </summary>
-    public partial class AddOpenQuestionWindow : Window
+    public partial class EditOpenQuestionPage : Page
     {
-        public AddOpenQuestionWindow()
+        public EditOpenQuestionPage()
         {
             InitializeComponent();
         }

@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using Festispec.Factory;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.survey.question.questionTypes;
+using Festispec.ViewModel.survey.question.QuestionTypes;
 using GalaSoft.MvvmLight.CommandWpf;
 
 namespace Festispec.ViewModel.survey
@@ -15,7 +15,6 @@ namespace Festispec.ViewModel.survey
         private ObservableCollection<IQuestion> _questions;
         private Survey _survey;
         private EventVM _event;
-        private QuestionFactory _questionFactory;
 
         public int Id {
             get => _survey.Id;
@@ -42,6 +41,7 @@ namespace Festispec.ViewModel.survey
             set => _questions = value;
         }
 
+        public MainViewModel MainViewModel { get; set; }
         public ObservableCollection<string> QuestionTypes { get; set; }
         public string EventName => _event.Name;
         public string SelectedQuestionType { get; set; }
@@ -49,15 +49,15 @@ namespace Festispec.ViewModel.survey
         public ICommand AddQuestionCommand { get; set; }
         public ICommand EditQuestionCommand { get; set; }
 
-        public SurveyVM(EventVM selectedEvent, Survey survey)
+        public SurveyVM(MainViewModel mainViewModel, EventVM selectedEvent, Survey survey)
         {
+            MainViewModel = mainViewModel;
             _survey = survey;
             _event = selectedEvent;
             AddQuestionCommand = new RelayCommand(OpenAddQuestion);
             EditQuestionCommand = new RelayCommand(OpenEditCommand);
-            _questionFactory = new QuestionFactory();
             Cases = new ObservableCollection<CaseVM>(survey.Cases.ToList().Select(c => new CaseVM(c)));
-            Questions = new ObservableCollection<IQuestion>(survey.Questions.ToList().Select(q => _questionFactory.CreateQuestionType(q)));
+            Questions = new ObservableCollection<IQuestion>(survey.Questions.ToList().Select(CreateQuestionType));
             GetQuestionTypes();
         }
 
@@ -68,7 +68,6 @@ namespace Festispec.ViewModel.survey
             AddQuestionCommand = new RelayCommand(OpenAddQuestion);
             Cases = new ObservableCollection<CaseVM>();
             Questions = new ObservableCollection<IQuestion>();
-            _questionFactory = new QuestionFactory();
             GetQuestionTypes();
         }
 
@@ -89,17 +88,31 @@ namespace Festispec.ViewModel.survey
             }
         }
 
+        private IQuestion CreateQuestionType(Question question)
+        {
+            switch (question.Type)
+            {
+                case "Open vraag":
+                    var openQuestionVm = new OpenQuestionVM(question) {MainViewModel = MainViewModel};
+                    return openQuestionVm;
+                case "Gesloten vraag":
+                    return new ClosedQuestionVM(question) { MainViewModel = MainViewModel };
+                default:
+                    return new OpenQuestionVM(question) { MainViewModel = MainViewModel };
+            }
+        }
+
         private void OpenAddQuestion()
         {
-            var questionTypeWindow = _questionFactory.GetQuestionType("Add " + SelectedQuestionType);
-            questionTypeWindow.ShowDialog();
+            var questionTypePage = MainViewModel.PageSingleton.GetPage("Add " + SelectedQuestionType);
+            MainViewModel.Page = questionTypePage;
         }
 
         private void OpenEditCommand()
         {
-            var questionTypeWindow = _questionFactory.GetQuestionType("Edit " + SelectedQuestion.QuestionType);
-            questionTypeWindow.DataContext = SelectedQuestion;
-            questionTypeWindow.ShowDialog();
+            var questionTypePage = MainViewModel.PageSingleton.GetPage("Edit " + SelectedQuestion.QuestionType);
+            questionTypePage.DataContext = SelectedQuestion;
+            MainViewModel.Page = questionTypePage;
         }
     }
 }
