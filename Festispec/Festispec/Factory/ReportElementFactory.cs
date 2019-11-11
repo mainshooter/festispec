@@ -21,35 +21,22 @@ namespace Festispec.Factory
             if (type.Equals("table"))
             {
                 TableUserControl table = new TableUserControl();
-                TableVM tableVm = new TableVM();
-                Dictionary<string, List<string>> tableData = (Dictionary<string, List<string>>) element.Data;
-                tableVm.Title = element.Title;
-                tableVm.Content = element.Content;
-                tableVm.Order = element.Order;
-                tableVm.Dictionary = tableData;
-                tableVm.ApplyChanges();
+                TableVM tableVm = new TableVM(element);
                 table.DataContext = tableVm;
                 returningUserControl = table;
             }
             else if (type.Equals("linechart"))
             {
                 LineChartUserControl lineChart = new LineChartUserControl();
-                LineChartVM lineChartVm = new LineChartVM();
-                Dictionary<string, Object> lineChartData = (Dictionary<string, Object>) element.Data;
-                lineChartVm.Title = element.Title;
-                lineChartVm.Content = element.Content;
-                lineChartVm.Order = element.Order;
-                lineChartVm.XaxisName = (string) lineChartData["xaxisName"];
-                lineChartVm.YaxisName = (string) lineChartData["yaxisName"];
-                lineChartVm.SeriesCollection = (SeriesCollection)lineChartData["seriescollection"];
+                LineChartVM lineChartVm = new LineChartVM(element);
                 lineChart.DataContext = lineChartVm;
                 returningUserControl = lineChart;
             }
             else if (type.Equals("piechart"))
             {
                 PieChartUserControl pieChart = new PieChartUserControl();
-                PieChartVM pieChartVm = new PieChartVM();
-                pieChartVm.SeriesCollection = (SeriesCollection)element.Data;
+                PieChartVM pieChartVm = new PieChartVM(element);
+                
                 pieChart.DataContext = pieChartVm;
                 returningUserControl = pieChart;
             }

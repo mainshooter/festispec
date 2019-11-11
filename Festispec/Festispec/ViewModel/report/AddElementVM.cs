@@ -1,5 +1,6 @@
 ﻿using Festispec.View.Report.Element;
 using Festispec.ViewModel.rapport;
+using Festispec.ViewModel.rapport.element;
 using Festispec.ViewModel.report.element;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -53,37 +54,51 @@ namespace Festispec.ViewModel.report
             if (elementType.Equals("table"))
             {
                 TableUserControl tableUserControl = new TableUserControl();
-                TableVM tableVM = new TableVM();
-                tableVM.Title = "Test tabelletje";
-                tableVM.Content = "Doei doei doei";
-                tableVM.Dictionary.Add("id", new List<string>() { "1", "2" });
-                tableVM.ApplyChanges();
+                var element = new ReportElementVM()
+                {
+                    Title = "Leuke titel",
+                    Content = "Hier maak ik titels van",
+                    Type = "table",
+                    Data = new Dictionary<string, List<string>>()
+                    {
+                        ["id"] = new List<string>() { "1", "2" }
+                    },
+                };
+                TableVM tableVM = new TableVM(element);
                 tableUserControl.DataContext = tableVM;
                 Report.ReportElementUserControlls.Add(tableUserControl);
             }
             else if (elementType.Equals("linechart"))
             {
                 LineChartUserControl lineChartUserControl = new LineChartUserControl();
-                LineChartVM lineChartVM = new LineChartVM();
-                lineChartVM.Title = "Doei";
-                lineChartVM.Content = "Content doei doei";
-                lineChartVM.XaxisName = "Test xas";
-                lineChartVM.YaxisName = "Test y";
-                lineChartVM.SeriesCollection = new SeriesCollection
+                var element = new ReportElementVM()
+                {
+                    Title = "Line chart",
+                    Content = "Wij linecharten",
+                    Type = "linechart",
+                    Data = new Dictionary<string, Object>()
                     {
-                        new LineSeries { Title = "Bezoekers", Values = new ChartValues<int> {40, 60, 50, 20, 40, 60}}
-                    };
-                lineChartVM.SeriesCollection.Add(new LineSeries { Title = "Test 2", Values = new ChartValues<int> { 44, 587, 10, 5, 9, 60 } });
+                        ["xaxisName"] = "Test xas",
+                        ["yaxisName"] = "Test yas",
+                        ["seriescollection"] = new SeriesCollection
+                        {
+                            new LineSeries { Title = "Bezoekers", Values = new ChartValues<int> {40, 60, 50, 20, 40, 60}}
+                        }
+                    }
+                };
+                LineChartVM lineChartVM = new LineChartVM(element);
                 lineChartUserControl.DataContext = lineChartVM;
                 Report.ReportElementUserControlls.Add(lineChartUserControl);
             }
             else if (elementType.Equals("piechart"))
             {
                 PieChartUserControl pieChartUserControl = new PieChartUserControl();
-                PieChartVM pieChartVM = new PieChartVM();
-                pieChartVM.Title = "Test";
-                pieChartVM.Content = "Lorem ipsum";
-                pieChartVM.SeriesCollection = new SeriesCollection
+                var element = new ReportElementVM()
+                {
+                    Title = "Leuke piechart",
+                    Content = "Taartje beschrijving",
+                    Type = "piechart",
+                    Data = new SeriesCollection
                     {
                         new PieSeries
                         {
@@ -109,7 +124,9 @@ namespace Festispec.ViewModel.report
                             Values = new ChartValues<double> { 2 },
                             DataLabels = true,
                         }
-                    };
+                    }
+                };
+                PieChartVM pieChartVM = new PieChartVM(element);
                 pieChartUserControl.DataContext = pieChartVM;
                 Report.ReportElementUserControlls.Add(pieChartUserControl);
             }

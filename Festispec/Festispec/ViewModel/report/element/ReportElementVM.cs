@@ -59,7 +59,7 @@ namespace Festispec.ViewModel.rapport.element
             }
         }
 
-        public Object Data { get; set; }
+        public virtual Object Data { get; set; }
 
         public ReportElementVM(ReportElement element)
         {
