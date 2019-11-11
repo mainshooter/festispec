@@ -20,12 +20,14 @@ namespace Festispec.ViewModel.employee
         public ObservableCollection<DepartmentVM> Departments { get; set; }
         public ObservableCollection<string> Status { get; set; }
         public ICommand EditEmployeeCommand { get; set; }
+        public ICommand CloseEditEmployeeCommand { get; set; }
 
         public EditEmployeeVM(EmployeeListVM employeeList)
         {
             EmployeeList = employeeList;
             Employee = EmployeeList.SelectedEmployee;
             EditEmployeeCommand = new RelayCommand(EditEmployee, CanEditEmployee);
+            CloseEditEmployeeCommand = new RelayCommand(CloseEditEmployee);
             using (var context = new Entities())
             {
                 Departments = new ObservableCollection<DepartmentVM>(context.Departments.ToList().Select(department => new DepartmentVM(department)));
@@ -40,6 +42,11 @@ namespace Festispec.ViewModel.employee
                 context.Entry(Employee.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
             }
+            EmployeeList.CloseEditEmployee();
+        }
+
+        private void CloseEditEmployee()
+        {
             EmployeeList.CloseEditEmployee();
         }
 

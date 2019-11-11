@@ -4,12 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Festispec.View.Pages.Employee"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EditEmployeePage"
       DataContext="{Binding EditEmployeeVM,Source={StaticResource Locator}}">
 
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Command="{Binding CloseEditEmployeeCommand}" Margin="0,0,757,432" Height="17" Width="43" VerticalAlignment="Top" HorizontalAlignment="Left" >
+            <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
+        </Button>
         <Button Content="Edit Employee" HorizontalAlignment="Left" Margin="344,361,0,0" VerticalAlignment="Top" Width="138" Command="{Binding EditEmployeeCommand}" Height="28"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="66,41,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Firstname, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <Label Content="Voornaam" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top"/>
@@ -29,15 +33,13 @@
         <Label Content="Plaats" HorizontalAlignment="Left" Margin="66,305,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="213,159,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Email, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <Label Content="Email" HorizontalAlignment="Left" Margin="213,128,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="213,218,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Password, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Wachtwoord" HorizontalAlignment="Left" Margin="213,187,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="213,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Iban, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Iban" HorizontalAlignment="Left" Margin="218,246,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Height="23" Margin="213,336,0,0" Text="{Binding Path=Employee.Birthday, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Birthday" HorizontalAlignment="Left" Margin="217,305,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="213,218,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Iban, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Iban" HorizontalAlignment="Left" Margin="213,187,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Height="23" Margin="213,277,0,0" Text="{Binding Path=Employee.Birthday, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Birthday" HorizontalAlignment="Left" Margin="217,246,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,-1.631"/>
         <ComboBox HorizontalAlignment="Left" Margin="362,41,0,0" VerticalAlignment="Top" Width="120" Text="{Binding Path=Employee.Status, Mode=TwoWay}" SelectedIndex="0" ItemsSource="{Binding Path=Status}" SelectedValue="{Binding Employee.Status}" />
         <Label Content="Status" HorizontalAlignment="Left" Margin="362,10,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="362,100,0,0" VerticalAlignment="Top" Width="120" Text="{Binding Path=Employee.Department, Mode=TwoWay}" SelectedIndex="0" ItemsSource="{Binding Path=Departments}" SelectedValue="{Binding Employee.Department}"  DisplayMemberPath="Name"/>
+        <ComboBox HorizontalAlignment="Left" Margin="362,100,0,0" VerticalAlignment="Top" Width="120" Text="{Binding Path=Department, Mode=TwoWay}" ItemsSource="{Binding Path=Departments}" SelectedValuePath="Department" SelectedValue="{Binding Employee.Department}" DisplayMemberPath="Name"/>
         <Label Content="Afdeling" HorizontalAlignment="Left" Margin="362,69,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

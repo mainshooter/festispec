@@ -213,11 +213,19 @@ namespace Festispec.ViewModel.employee
         {
             get
             {
-                return _employee.Birthday;
+                return _employee.Birthday.Date;
             }
             set
             {
-                _employee.Birthday = value;
+                _employee.Birthday = value.Date;
+            }
+        }
+
+        public string BirthdayDate
+        {
+            get
+            {
+                return Birthday.ToString("d");
             }
         }
 
