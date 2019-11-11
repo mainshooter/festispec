@@ -1,3 +1,6 @@
+using System.Windows;
+using System.Windows.Media.Animation;
+using Festispec.View;
 using GalaSoft.MvvmLight;
 
 namespace Festispec.ViewModel
@@ -6,6 +9,8 @@ namespace Festispec.ViewModel
     {
         public MainViewModel()
         {
+            var login = new LoginWindow();
+            login.Show();
         }
     }
 }

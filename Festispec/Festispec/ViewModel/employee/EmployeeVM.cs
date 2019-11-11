@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Festispec.Interface;
 
 namespace Festispec.ViewModel.employee
 {
@@ -157,6 +158,11 @@ namespace Festispec.ViewModel.employee
         public EmployeeVM()
         {
             _employee = new Employee();
+        }
+
+        public bool IsInDepartment(string department)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -84,6 +84,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Exceptions\Auth\PasswordNoMatchException.cs" />
+    <Compile Include="Exceptions\Employee\EmployeeNotFoundException.cs" />
+    <Compile Include="Interface\IEmployee.cs" />
+    <Compile Include="ViewModel\auth\SessionVm.cs" />
+    <Compile Include="ViewModel\auth\UserLoginVm.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EventVM.cs" />
@@ -107,6 +112,9 @@
     <Compile Include="ViewModel\survey\question\SurveyQuestionVM.cs" />
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -131,7 +139,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
-    <None Include="App.config.example" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -139,6 +146,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
