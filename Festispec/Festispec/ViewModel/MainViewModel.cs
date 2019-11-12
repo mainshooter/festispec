@@ -56,7 +56,8 @@ namespace Festispec.ViewModel
                         Type = "table",
                         Data = new Dictionary<string, List<string>>()
                         {
-                            ["id"] = new List<string>() { "1", "2" }
+                            ["id"] = new List<string>() { "1", "2" },
+                            ["namen"] = new List<string>() { "Peter", "Mike", "Wout"}
                         },
                     }
                 );
