@@ -10,24 +10,21 @@ using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.survey.question.QuestionTypes
 {
-    public class SliderQuestionVM : ViewModelBase, IQuestion
+    public class ImageGalleryQuestionVM : ViewModelBase, IQuestion
     {
         private Question _surveyQuestion;
         private SurveyVM _surveyVm;
         private string _question;
-        private string _description;
-        private int _lowestNumber;
-        private int _highestNumber;
+        private int _maxImages;
 
         public MainViewModel MainViewModel { get; set; }
         public QuestionDetails QuestionDetails { get; set; }
         public string QuestionType => _surveyQuestion.Type;
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
-        public int LowestNumber { get; set; }
-        public int HighestNumber { get; set; }
+        public int MaxImages { get; set; }
 
-        public SliderQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
+        public ImageGalleryQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
@@ -35,8 +32,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             if (_surveyQuestion.Question1 != null)
             {
                 QuestionDetails = JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1);
-                LowestNumber = Convert.ToInt32(QuestionDetails.Choices.Cols[0]);
-                HighestNumber = Convert.ToInt32(QuestionDetails.Choices.Cols[1]);
+                MaxImages = Convert.ToInt32(QuestionDetails.Choices.Cols[0]);
             }
             else
             {
@@ -48,9 +44,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
             // temp variables for when you want to go back and discard changes
             _question = QuestionDetails.Question;
-            _description = QuestionDetails.Description;
-            _lowestNumber = LowestNumber;
-            _highestNumber = HighestNumber;
+            _maxImages = MaxImages;
         }
 
         public void Save()
@@ -60,16 +54,13 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 if (!ValidateQuestionDetails()) return;
 
                 QuestionDetails.Choices.Cols.Clear();
-                QuestionDetails.Choices.Cols.Add(LowestNumber.ToString());
-                QuestionDetails.Choices.Cols.Add(HighestNumber.ToString());
+                QuestionDetails.Choices.Cols.Add(MaxImages.ToString());
                 _surveyQuestion.Question1 = JsonConvert.SerializeObject(QuestionDetails);
 
                 if (_surveyQuestion.Id == 0)
                 {
                     _question = QuestionDetails.Question;
-                    _description = QuestionDetails.Description;
-                    _lowestNumber = LowestNumber;
-                    _highestNumber = HighestNumber;
+                    _maxImages = MaxImages;
                     context.Questions.Add(_surveyQuestion);
                     _surveyVm.Questions.Add(this);
                     context.SaveChanges();
@@ -88,12 +79,9 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public void GoBack()
         {
             QuestionDetails.Question = _question;
-            QuestionDetails.Description = _description;
-            LowestNumber = _lowestNumber;
-            HighestNumber = _highestNumber;
+            MaxImages = _maxImages;
             RaisePropertyChanged("QuestionDetails");
-            RaisePropertyChanged("LowestNumber");
-            RaisePropertyChanged("HighestNumber");
+            RaisePropertyChanged("MaxImages");
             MainViewModel.Page.NavigationService?.GoBack();
         }
 
@@ -105,27 +93,15 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 return false;
             }
 
-            if (QuestionDetails.Description == "" || QuestionDetails.Description.Length > 500)
+            if (MaxImages > 20)
             {
-                MessageBox.Show("De omschrijving mag niet leeg zijn of langer zijn dan 500 karakters.");
+                MessageBox.Show("Het maximum aantal afbeeldingen is 20.");
                 return false;
             }
 
-            if (LowestNumber <= 0)
+            if (MaxImages <= 0)
             {
-                MessageBox.Show("De cijfers moeten positief zijn.");
-                return false;
-            }
-
-            if (HighestNumber > 1000)
-            {
-                MessageBox.Show("De cijfers mogen niet hoger dan 1000 zijn.");
-                return false;
-            }
-
-            if (LowestNumber >= HighestNumber)
-            {
-                MessageBox.Show("Het laagste cijfer mag niet gelijk of groter zijn dan het hoogste nummer en het moeten cijfers zijn.");
+                MessageBox.Show("Het minimum aantal afbeeldingen is 1.");
                 return false;
             }
 
