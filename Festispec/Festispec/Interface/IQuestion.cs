@@ -1,8 +1,9 @@
 ﻿using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Survey.Question;
+using Festispec.ViewModel;
 
-namespace Festispec.ViewModel.survey.question.questionTypes
+namespace Festispec.Interface
 {
     public interface IQuestion
     {

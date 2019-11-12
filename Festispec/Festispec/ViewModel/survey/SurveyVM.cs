@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using Festispec.ViewModel.survey.question.questionTypes;
+using Festispec.Interface;
 using Festispec.ViewModel.survey.question.QuestionTypes;
 using GalaSoft.MvvmLight.CommandWpf;
 
