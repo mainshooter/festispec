@@ -4,17 +4,20 @@ using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Interface;
 using Festispec.Survey.Question;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.survey.question.QuestionTypes
 {
-    class SliderQuestionVM : IQuestion
+    class SliderQuestionVM : ViewModelBase, IQuestion
     {
         private Question _surveyQuestion;
         private SurveyVM _surveyVm;
-
         private string _question;
+        private string _description;
+        private int _lowestNumber;
+        private int _highestNumber;
 
         public MainViewModel MainViewModel { get; set; }
         public QuestionDetails QuestionDetails { get; set; }
@@ -42,6 +45,12 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
             SaveCommand = new RelayCommand(Save);
             GoBackCommand = new RelayCommand(GoBack);
+
+            // temp variables for when you want to go back and discard changes
+            _question = QuestionDetails.Question;
+            _description = QuestionDetails.Description;
+            _lowestNumber = LowestNumber;
+            _highestNumber = HighestNumber;
         }
 
         public void Save()
@@ -74,6 +83,13 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
         public void GoBack()
         {
+            QuestionDetails.Question = _question;
+            QuestionDetails.Description = _description;
+            LowestNumber = _lowestNumber;
+            HighestNumber = _highestNumber;
+            RaisePropertyChanged("QuestionDetails");
+            RaisePropertyChanged("LowestNumber");
+            RaisePropertyChanged("HighestNumber");
             MainViewModel.Page.NavigationService?.GoBack();
         }
 

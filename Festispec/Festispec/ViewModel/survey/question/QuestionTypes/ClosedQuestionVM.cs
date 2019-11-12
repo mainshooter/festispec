@@ -3,15 +3,18 @@ using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Interface;
 using Festispec.Survey.Question;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.survey.question.QuestionTypes
 {
-    public class ClosedQuestionVM : IQuestion
+    public class ClosedQuestionVM : ViewModelBase, IQuestion
     {
         private Question _surveyQuestion;
         private SurveyVM _surveyVm;
+        private string _question;
+        private string _description;
 
         public MainViewModel MainViewModel { get; set; }
         public QuestionDetails QuestionDetails { get; set; }
@@ -26,6 +29,10 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
             SaveCommand = new RelayCommand(Save);
             GoBackCommand = new RelayCommand(GoBack);
+
+            // temp variables for when you want to go back and discard changes
+            _question = QuestionDetails.Question;
+            _description = QuestionDetails.Description;
         }
 
         public void Save()
@@ -57,6 +64,9 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
         public void GoBack()
         {
+            QuestionDetails.Question = _question;
+            QuestionDetails.Description = _description;
+            RaisePropertyChanged("QuestionDetails");
             MainViewModel.Page.NavigationService?.GoBack();
         }
 
