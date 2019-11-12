@@ -1,4 +1,5 @@
-﻿using Festispec.Domain;
+﻿using BingMapsRESTToolkit;
+using Festispec.Domain;
 using Festispec.ViewModel.customer.contactPerson;
 using System;
 using System.Collections.Generic;
@@ -95,6 +96,54 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
+        public string Street
+        {
+            get
+            {
+                return _event.Street;
+            }
+            set
+            {
+                _event.Street = value;
+            }
+        }
+
+        public int HouseNumber
+        {
+            get
+            {
+                return _event.HouseNumber;
+            }
+            set
+            {
+                _event.HouseNumber = value;
+            }
+        }
+
+        public string PostalCode
+        {
+            get
+            {
+                return _event.PostalCode;
+            }
+            set
+            {
+                _event.PostalCode = value;
+            }
+        }
+
+        public string City
+        {
+            get
+            {
+                return _event.City;
+            }
+            set
+            {
+                _event.City = value;
+            }
+        }
+
         public EventVM(Event eventCon)
         {
             _event = eventCon;
@@ -105,6 +154,34 @@ namespace Festispec.ViewModel.customer.customerEvent
         public EventVM()
         {
             _event = new Domain.Event();
+        }
+
+        public async Task<SimpleWaypoint> AdressToCoor()
+        {
+            GeocodeRequest geocode = new GeocodeRequest();
+            SimpleAddress address = new SimpleAddress();
+
+            address.AddressLine = Street + HouseNumber;
+            address.Locality = City;
+            address.PostalCode = PostalCode;
+
+            geocode.Address = address;
+            geocode.BingMapsKey = "ITBT6VEQtWQIP2Nt0sEo~GvONPsboTGlj2F7N16RX1Q~AuuacnuDtvdGIIkJJsITb1P2J1Cr0vNjAgb3KKNYIiUUa2su3wzy_67N4XpmXffL";
+
+            var response = await geocode.Execute();
+
+            if (response != null &&
+                response.ResourceSets != null &&
+                response.ResourceSets.Length > 0 &&
+                response.ResourceSets[0].Resources != null &&
+                response.ResourceSets[0].Resources.Length > 0)
+            {
+                Location result = response.ResourceSets[0].Resources[0] as BingMapsRESTToolkit.Location;
+                SimpleWaypoint waypoint = new SimpleWaypoint(result.GeocodePoints[1].Coordinates[0], result.GeocodePoints[1].Coordinates[1]);
+                return waypoint;
+            }
+
+            return null;
         }
     }
 }

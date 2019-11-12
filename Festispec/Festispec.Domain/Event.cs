@@ -30,6 +30,10 @@ namespace Festispec.Domain
         public int AmountVisitors { get; set; }
         public int SurfaceM2 { get; set; }
         public string Description { get; set; }
+        public string Street { get; set; }
+        public int HouseNumber { get; set; }
+        public string PostalCode { get; set; }
+        public string City { get; set; }
     
         public virtual ContactPerson ContactPerson { get; set; }
         public virtual Customer Customer { get; set; }
