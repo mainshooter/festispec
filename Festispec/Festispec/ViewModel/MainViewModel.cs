@@ -152,6 +152,8 @@ namespace Festispec.ViewModel
             reportVM.MainViewModel = this;
             Page = report;
 
+            _pageSingleton = new PageSingleton(this);
+            Page = _pageSingleton.GetPage("report");
         }
 
 

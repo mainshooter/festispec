@@ -15,6 +15,7 @@ namespace Festispec.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<MainViewModel>();
+
             SimpleIoc.Default.Register<LineChartVM>();
             SimpleIoc.Default.Register<PieChartVM>();
             SimpleIoc.Default.Register<TableVM>();
