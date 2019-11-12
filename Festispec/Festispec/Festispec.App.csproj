@@ -116,11 +116,18 @@
     <Compile Include="Interface\IQuestion.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\ClosedQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestionVM.cs" />
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\SliderQuestion\AddSliderQuestionPage.xaml.cs">
+      <DependentUpon>AddSliderQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\SliderQuestion\EditSliderQuestionPage.xaml.cs">
+      <DependentUpon>EditSliderQuestionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Survey\SurveyPage.xaml.cs">
       <DependentUpon>SurveyPage.xaml</DependentUpon>
@@ -186,6 +193,14 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\SliderQuestion\AddSliderQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\SliderQuestion\EditSliderQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Survey\SurveyPage.xaml">
       <SubType>Designer</SubType>

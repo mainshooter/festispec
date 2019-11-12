@@ -7,13 +7,13 @@ namespace Festispec.ViewModel.survey.question.questionTypes
     public interface IQuestion
     {
         MainViewModel MainViewModel { get; set; }
-        int Id { get; }
-        string Question { get; set; }
         QuestionDetails QuestionDetails { get; set; }
-        string QuestionType { get; }
-        int Order { get; set; }
         ICommand SaveCommand { get; set; }
         ICommand GoBackCommand { get; set; }
+        int Id { get; }
+        string QuestionType { get; }
+        string Question { get; set; }
+        int Order { get; set; }
         void Save();
         void GoBack();
         bool ValidateQuestionDetails();

@@ -3,13 +3,12 @@ using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Employee;
 using System.Collections.Generic;
 using System.Windows.Controls;
-using Festispec.Domain;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Survey;
 using Festispec.View.Pages.Survey.QuestionTypes.ClosedQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
-using Festispec.ViewModel;
+using Festispec.View.Pages.Survey.QuestionTypes.SliderQuestion;
 using Festispec.ViewModel.survey;
 
 namespace Festispec.Singleton
@@ -43,6 +42,8 @@ namespace Festispec.Singleton
             _pages["Edit Open vraag"] = new EditOpenQuestionPage();
             _pages["Add Gesloten vraag"] = new AddClosedQuestionPage();
             _pages["Edit Gesloten vraag"] = new EditClosedQuestionPage();
+            _pages["Add Schuifbalk vraag"] = new AddSliderQuestionPage();
+            _pages["Edit Schuifbalk vraag"] = new EditSliderQuestionPage();
         }
     }
 }

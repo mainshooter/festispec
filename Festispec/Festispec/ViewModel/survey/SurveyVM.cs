@@ -90,6 +90,8 @@ namespace Festispec.ViewModel.survey
                     return new OpenQuestionVM(this, question) { MainViewModel = MainViewModel };
                 case "Gesloten vraag":
                     return new ClosedQuestionVM(this, question) { MainViewModel = MainViewModel };
+                case "Schuifbalk vraag":
+                    return new SliderQuestionVM(this, question) { MainViewModel = MainViewModel };
                 default:
                     return new OpenQuestionVM(this, question) { MainViewModel = MainViewModel };
             }
