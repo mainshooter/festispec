@@ -11,6 +11,7 @@ namespace Festispec.ViewModel.report.element
     public class ReportElementTypesListVM
     {
         public List<string> ReportElementTypes { get; set; }
+
         public ReportElementTypesListVM()
         {
             ReportElementTypes = new List<string>();

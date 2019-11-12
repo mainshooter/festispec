@@ -13,9 +13,10 @@ namespace Festispec.ViewModel.report.element
     public class TableVM: ReportElementVM
     {
         private DataTable _dataTable;
+        private Object _data;
         public Dictionary<string, List<string>> Dictionary { get; set; }
 
-        private Object _data;
+        
         public override Object Data {
             get {
                 return _data;

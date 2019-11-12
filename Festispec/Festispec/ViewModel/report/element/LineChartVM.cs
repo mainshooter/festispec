@@ -50,6 +50,5 @@ namespace Festispec.ViewModel.report.element
             YaxisName = (string)Dictionary["yaxisName"];
             SeriesCollection = (SeriesCollection)Dictionary["seriescollection"];
         }
-
     }
 }

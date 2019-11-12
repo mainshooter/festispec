@@ -11,6 +11,7 @@ namespace Festispec.ViewModel.report.element
     public class PieChartVM: ReportElementVM
     {
         private Object _data;
+
         public override Object Data {
             get {
                 return _data;
@@ -20,12 +21,13 @@ namespace Festispec.ViewModel.report.element
                 ApplyChanges();
             }
         }
+
         public SeriesCollection SeriesCollection { get; set; }
 
         public PieChartVM(ReportElementVM element)
         {
-            Title = "Test";
-            Content = "Lorem ipsum";
+            Title = element.Title;
+            Content = element.Content;
             Data = element.Data;
         }
 
