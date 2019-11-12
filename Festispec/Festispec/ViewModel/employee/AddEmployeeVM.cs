@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Festispec.ViewModel.auth;
 
 namespace Festispec.ViewModel.employee
 {
@@ -34,10 +35,8 @@ namespace Festispec.ViewModel.employee
 
         private void Encrypt()
         {
-            byte[] data = System.Text.Encoding.ASCII.GetBytes(Employee.Password);
-            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-            String hash = System.Text.Encoding.ASCII.GetString(data);
-            Employee.Password = hash;
+            var passwordEncrypter = new PasswordEncryptVm();
+            Employee.Password = passwordEncrypter.ToPassword(Employee.Password);
         }
 
         public void AddEmployee()

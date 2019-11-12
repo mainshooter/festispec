@@ -94,6 +94,7 @@
     <Compile Include="Exceptions\Employee\EmployeeNotFoundException.cs" />
     <Compile Include="Interface\IEmployee.cs" />
     <Compile Include="Singleton\PageSingleton.cs" />
+    <Compile Include="ViewModel\auth\PasswordEncryptVm.cs" />
     <Compile Include="ViewModel\auth\SessionVm.cs" />
     <Compile Include="ViewModel\auth\UserLoginVm.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
