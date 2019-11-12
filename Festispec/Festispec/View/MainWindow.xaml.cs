@@ -24,10 +24,5 @@ namespace Festispec.View
         {
             InitializeComponent();
         }
-
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
-
-        }
     }
 }

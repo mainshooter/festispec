@@ -14,9 +14,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
-        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
         public UserLoginVm LoginVm => new UserLoginVm();
-        
         
         public static void Cleanup()
         {

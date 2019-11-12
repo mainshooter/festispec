@@ -7,11 +7,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Festispec.Domain;
+using Festispec.View;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
 namespace Festispec.ViewModel.auth
 {
-    public class UserLoginVm
+    public class UserLoginVm : ViewModelBase
     {
         public string Email { get; set; }
         public ICommand DoLogin { get; set; }
@@ -29,14 +31,17 @@ namespace Festispec.ViewModel.auth
             {
                 var employee = context.Employees.FirstOrDefault(e => e.Email == Email);
 
-                if (employee != null && PasswordsCompare(password, employee.Password))
+                if (employee == null)
                 {
-                    Application.Current.Resources["session"] = new SessionVm(employee);
-                    //Vanuit hier kun je doorverwijzen naar een andere pagina oid
+                    MessageBox.Show("No user has been found with the specified email.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                } else if (!PasswordsCompare(password, employee.Password))
+                {
+                    MessageBox.Show("Invalid password.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Invalid password.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Application.Current.Resources["session"] = new SessionVm(employee);
+                    //Vanuit hier kun je doorverwijzen naar een andere pagina oid
                 }
             }
         }
