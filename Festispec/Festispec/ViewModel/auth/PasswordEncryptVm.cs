@@ -11,7 +11,7 @@ namespace Festispec.ViewModel.auth
     {
         public string ToPassword(string text)
         {
-            byte[] data = Encoding.ASCII.GetBytes(text);
+            var data = Encoding.ASCII.GetBytes(text);
             data = new SHA256Managed().ComputeHash(data);
             return Encoding.ASCII.GetString(data);
         }
