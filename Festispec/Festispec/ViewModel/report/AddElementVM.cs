@@ -158,7 +158,7 @@ namespace Festispec.ViewModel.report
 
         private void GoBackToReport()
         {
-            MainViewModel.Page = _previousePage;
+            MainViewModel.Page.NavigationService.GoBack();
         }
     }
 }
