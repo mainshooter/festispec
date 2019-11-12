@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Survey.Question;
@@ -38,27 +37,12 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             set => _surveyQuestion.Order = value;
         }
 
-        public string variables
-        {
-            get => _surveyQuestion.Variables;
-            set => _surveyQuestion.Variables = value;
-        }
-
-        public OpenQuestionVM(SurveyVM surveyVm)
-        {
-            _surveyVm = surveyVm;
-            _surveyQuestion = new Question { SurveyId = _surveyVm.Id };
-            QuestionDetails = new QuestionDetails();
-            SaveCommand = new RelayCommand(Save);
-            GoBackCommand = new RelayCommand(GoBack);
-        }
-
         public OpenQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
             QuestionType = _surveyQuestion.Type;
-            QuestionDetails = JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1);
+            QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
             SaveCommand = new RelayCommand(Save);
             GoBackCommand = new RelayCommand(GoBack);
         }
@@ -73,12 +57,9 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
                 if (_surveyQuestion.Id == 0)
                 {
-                    /*_surveyQuestion.Order = _surveyVm.Questions.Count + 1;
-                    QuestionType = _surveyVm.SelectedQuestionType;
-                    variables = "test";
                     context.Questions.Add(_surveyQuestion);
                     _surveyVm.Questions.Add(this);
-                    context.SaveChanges();*/
+                    context.SaveChanges();
                 }
                 else
                 {
@@ -91,19 +72,9 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             GoBack();
         }
 
-        public void Delete()
-        {
-            throw new NotImplementedException();
-        }
-
         public void GoBack()
         {
             MainViewModel.Page.NavigationService?.GoBack();
-        }
-
-        public void Refresh()
-        {
-            throw new NotImplementedException();
         }
 
         public bool ValidateQuestionDetails()

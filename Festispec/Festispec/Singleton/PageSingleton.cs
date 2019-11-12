@@ -11,20 +11,15 @@ using Festispec.View.Pages.Survey.QuestionTypes.ClosedQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using Festispec.ViewModel;
 using Festispec.ViewModel.survey;
-using Festispec.ViewModel.survey.question.questionTypes;
-using Festispec.ViewModel.survey.question.QuestionTypes;
 
 namespace Festispec.Singleton
 {
     public class PageSingleton
     {
         private Dictionary<string, Page> _pages;
-        private MainViewModel _mainViewModel;
 
-        public PageSingleton(MainViewModel mainViewModel)
+        public PageSingleton()
         {
-            _mainViewModel = mainViewModel;
-
             _pages = new Dictionary<string, Page>
             {
                 {"dashboard", new DashboardPage()},
@@ -44,20 +39,9 @@ namespace Festispec.Singleton
 
         public void SetSurveyPages(SurveyVM surveyVm)
         {
-            var addOpenQuestionPage = new AddOpenQuestionPage();
-            var openQuestionVm = new OpenQuestionVM(surveyVm);
-            openQuestionVm.MainViewModel = _mainViewModel;
-            addOpenQuestionPage.DataContext = openQuestionVm;
-            _pages["Add Open vraag"] = addOpenQuestionPage;
-
+            _pages["Add Open vraag"] = new AddOpenQuestionPage();
             _pages["Edit Open vraag"] = new EditOpenQuestionPage();
-
-            var addClosedQuestionPage = new AddClosedQuestionPage();
-            var closedQuestionVm = new ClosedQuestionVM(surveyVm);
-            closedQuestionVm.MainViewModel = _mainViewModel;
-            addClosedQuestionPage.DataContext = closedQuestionVm;
-            _pages["Add Gesloten vraag"] = addClosedQuestionPage;
-
+            _pages["Add Gesloten vraag"] = new AddClosedQuestionPage();
             _pages["Edit Gesloten vraag"] = new EditClosedQuestionPage();
         }
     }

@@ -5,7 +5,6 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Festispec.Domain;
-using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.survey;
 
 namespace Festispec.ViewModel
@@ -28,7 +27,7 @@ namespace Festispec.ViewModel
 
         public Page Page
         {
-            get { return _page; }
+            get => _page;
             set { _page = value; RaisePropertyChanged("Page"); }
         }
 
@@ -43,7 +42,7 @@ namespace Festispec.ViewModel
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
             OpenSurvey = new RelayCommand(OpenSurveyTab);
-            PageSingleton = new PageSingleton(this);
+            PageSingleton = new PageSingleton();
 
             Page = PageSingleton.GetPage("dashboard");
         }

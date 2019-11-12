@@ -1,6 +1,7 @@
 ﻿using Festispec.Domain;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.survey.question.questionTypes;
@@ -11,8 +12,6 @@ namespace Festispec.ViewModel.survey
 {
     public class SurveyVM
     {
-        private ObservableCollection<CaseVM> _cases;
-        private ObservableCollection<IQuestion> _questions;
         private Domain.Survey _survey;
 
         public int Id {
@@ -30,16 +29,8 @@ namespace Festispec.ViewModel.survey
             set => _survey.Status = value;
         }
 
-        public ObservableCollection<CaseVM> Cases {
-            get => _cases;
-            set => _cases = value;
-        }
-        
-        public ObservableCollection<IQuestion> Questions {
-            get => _questions;
-            set => _questions = value;
-        }
-
+        public ObservableCollection<CaseVM> Cases { get; set; }
+        public ObservableCollection<IQuestion> Questions { get; set; }
         public MainViewModel MainViewModel { get; set; }
         public ObservableCollection<string> QuestionTypes { get; set; }
         public string SelectedQuestionType { get; set; }
@@ -107,6 +98,9 @@ namespace Festispec.ViewModel.survey
         private void OpenAddQuestion()
         {
             var questionTypePage = MainViewModel.PageSingleton.GetPage("Add " + SelectedQuestionType);
+            var questionVm = CreateQuestionType(new Question() { Type = SelectedQuestionType, Order = Questions.Count + 1, SurveyId = _survey.Id, Variables = "test" });
+            questionVm.MainViewModel = MainViewModel;
+            questionTypePage.DataContext = questionVm;
             MainViewModel.Page = questionTypePage;
         }
 

@@ -11,7 +11,9 @@ namespace Festispec.Survey.Question
 
         public QuestionDetails()
         {
+            Question = "";
             Choices = new QuestionChoices();
+            Description = "";
             Images = new List<byte[]>();
         }
     }
