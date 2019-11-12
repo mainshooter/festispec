@@ -47,7 +47,7 @@ namespace Festispec.ViewModel.survey
             Cases = new ObservableCollection<CaseVM>(survey.Cases.ToList().Select(c => new CaseVM(c)));
             Questions = new ObservableCollection<IQuestion>(survey.Questions.ToList().Select(CreateQuestionType));
             GetQuestionTypes();
-            MainViewModel.PageSingleton.SetSurveyPages(this);
+            MainViewModel.PageSingleton.SetSurveyPages();
         }
 
         public SurveyVM(MainViewModel mainViewModel)
@@ -60,7 +60,7 @@ namespace Festispec.ViewModel.survey
             Cases = new ObservableCollection<CaseVM>();
             Questions = new ObservableCollection<IQuestion>();
             GetQuestionTypes();
-            MainViewModel.PageSingleton.SetSurveyPages(this);
+            MainViewModel.PageSingleton.SetSurveyPages();
         }
 
         private void GetQuestionTypes()
@@ -90,6 +90,8 @@ namespace Festispec.ViewModel.survey
                     return new ClosedQuestionVM(this, question) { MainViewModel = MainViewModel };
                 case "Schuifbalk vraag":
                     return new SliderQuestionVM(this, question) { MainViewModel = MainViewModel };
+                case "Opmerking veld":
+                    return new CommentFieldVM(this, question) { MainViewModel = MainViewModel };
                 default:
                     return new OpenQuestionVM(this, question) { MainViewModel = MainViewModel };
             }

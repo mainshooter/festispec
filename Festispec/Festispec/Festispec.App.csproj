@@ -115,6 +115,7 @@
     <Compile Include="ViewModel\survey\CaseVM.cs" />
     <Compile Include="Interface\IQuestion.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\ClosedQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\CommentFieldVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestionVM.cs" />
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
@@ -122,6 +123,12 @@
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\CommentField\AddCommentFieldPage.xaml.cs">
+      <DependentUpon>AddCommentFieldPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\CommentField\EditCommentFieldPage.xaml.cs">
+      <DependentUpon>EditCommentFieldPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Survey\QuestionTypes\SliderQuestion\AddSliderQuestionPage.xaml.cs">
       <DependentUpon>AddSliderQuestionPage.xaml</DependentUpon>
@@ -193,6 +200,14 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\CommentField\AddCommentFieldPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\CommentField\EditCommentFieldPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Survey\QuestionTypes\SliderQuestion\AddSliderQuestionPage.xaml">
       <SubType>Designer</SubType>

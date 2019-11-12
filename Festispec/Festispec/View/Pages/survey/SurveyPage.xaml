@@ -11,7 +11,7 @@
         <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="Vragenlijst"></Label>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <ComboBox Width="150" Margin="0,0,10,0" ItemsSource="{Binding QuestionTypes}" SelectedValue="{Binding SelectedQuestionType}"></ComboBox>
-            <Button HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding AddQuestionCommand}">Vraag toevoegen</Button>
+            <Button HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding AddQuestionCommand}">toevoegen</Button>
         </StackPanel>
         <DataGrid IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedQuestion}" ItemsSource="{Binding Questions}" Background="White" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="DarkGray" HeadersVisibility="Column" BorderThickness="0">
             <DataGrid.Columns>

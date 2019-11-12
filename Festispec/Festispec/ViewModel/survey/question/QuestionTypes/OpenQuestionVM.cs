@@ -45,6 +45,8 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
                 if (_surveyQuestion.Id == 0)
                 {
+                    _question = QuestionDetails.Question;
+                    _description = QuestionDetails.Description;
                     context.Questions.Add(_surveyQuestion);
                     _surveyVm.Questions.Add(this);
                     context.SaveChanges();
@@ -57,7 +59,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 }
             }
 
-            GoBack();
+            MainViewModel.Page.NavigationService?.GoBack();
         }
 
         public void GoBack()

@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.survey.question.QuestionTypes
 {
-    class SliderQuestionVM : ViewModelBase, IQuestion
+    public class SliderQuestionVM : ViewModelBase, IQuestion
     {
         private Question _surveyQuestion;
         private SurveyVM _surveyVm;
@@ -66,6 +66,10 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
                 if (_surveyQuestion.Id == 0)
                 {
+                    _question = QuestionDetails.Question;
+                    _description = QuestionDetails.Description;
+                    _lowestNumber = LowestNumber;
+                    _highestNumber = HighestNumber;
                     context.Questions.Add(_surveyQuestion);
                     _surveyVm.Questions.Add(this);
                     context.SaveChanges();
@@ -78,7 +82,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 }
             }
 
-            GoBack();
+            MainViewModel.Page.NavigationService?.GoBack();
         }
 
         public void GoBack()

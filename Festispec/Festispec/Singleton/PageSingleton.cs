@@ -7,9 +7,9 @@ using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Survey;
 using Festispec.View.Pages.Survey.QuestionTypes.ClosedQuestion;
+using Festispec.View.Pages.Survey.QuestionTypes.CommentField;
 using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.SliderQuestion;
-using Festispec.ViewModel.survey;
 
 namespace Festispec.Singleton
 {
@@ -36,7 +36,7 @@ namespace Festispec.Singleton
             return _pages[pageName];
         }
 
-        public void SetSurveyPages(SurveyVM surveyVm)
+        public void SetSurveyPages()
         {
             _pages["Add Open vraag"] = new AddOpenQuestionPage();
             _pages["Edit Open vraag"] = new EditOpenQuestionPage();
@@ -44,6 +44,8 @@ namespace Festispec.Singleton
             _pages["Edit Gesloten vraag"] = new EditClosedQuestionPage();
             _pages["Add Schuifbalk vraag"] = new AddSliderQuestionPage();
             _pages["Edit Schuifbalk vraag"] = new EditSliderQuestionPage();
+            _pages["Add Opmerking veld"] = new AddCommentFieldPage();
+            _pages["Edit Opmerking veld"] = new EditCommentFieldPage();
         }
     }
 }
