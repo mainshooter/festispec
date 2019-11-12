@@ -42,12 +42,12 @@ namespace Festispec.ViewModel.employee
                 context.Entry(Employee.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
             }
-            EmployeeList.CloseEditEmployee();
+            EmployeeList.CloseTab();
         }
 
         private void CloseEditEmployee()
         {
-            EmployeeList.CloseEditEmployee();
+            EmployeeList.CloseTab();
         }
 
         public bool CanEditEmployee()

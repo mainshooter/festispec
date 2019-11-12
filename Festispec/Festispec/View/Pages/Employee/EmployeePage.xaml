@@ -24,6 +24,17 @@
                     <DataGridTextColumn Header="Straat" Binding="{Binding Street}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Huisnummer" Binding="{Binding HouseNumber}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Geboortedatum" Binding="{Binding BirthdayDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Afdeling" Binding="{Binding Department.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}"></DataGridTextColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding DataContext.OpenSingleEmployee, RelativeSource={RelativeSource AncestorType=DataGrid}}">
+                                    <materialDesign:PackIcon Kind="ArrowForward"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

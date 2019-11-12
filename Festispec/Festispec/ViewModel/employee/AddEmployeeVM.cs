@@ -50,12 +50,12 @@ namespace Festispec.ViewModel.employee
                 context.Employees.Add(Employee.ToModel());
                 context.SaveChanges();
             }
-            EmployeeList.CloseAddEmployee();
+            EmployeeList.CloseTab();
         }
 
         private void CloseAddEmployee()
         {
-            EmployeeList.CloseAddEmployee();
+            EmployeeList.CloseTab();
         }
 
         public bool CanAddEmployee()

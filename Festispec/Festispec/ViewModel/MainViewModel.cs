@@ -101,5 +101,13 @@ namespace Festispec.ViewModel
             page.DataContext = editEmployeeVM;
             Page = page;
         }
+
+        public void OpenSingleEmployeeTab()
+        {
+            var page = _pageSingleton.GetPage("singleemployee");
+            EmployeeVM EmployeeVM = new EmployeeVM(EmployeeList.SelectedEmployee.ToModel(), EmployeeList);
+            page.DataContext = EmployeeVM;
+            Page = page;
+        }
     }
 }

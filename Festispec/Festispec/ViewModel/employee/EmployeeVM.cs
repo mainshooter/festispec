@@ -1,12 +1,14 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.employee.department;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Ioc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Festispec.ViewModel.employee
 {
@@ -14,6 +16,8 @@ namespace Festispec.ViewModel.employee
     {
         private DepartmentVM _department;
         private Employee _employee;
+        private EmployeeListVM _employeeList;
+        public ICommand CloseSingleEmployeeCommand { get; set; }
 
         public int Id
         {
@@ -241,9 +245,22 @@ namespace Festispec.ViewModel.employee
             _employee = new Employee();
         }
 
+        public EmployeeVM(Employee employee, EmployeeListVM employeeList)
+        {
+            _employeeList = employeeList;
+            _employee = employee;
+            Department = new DepartmentVM(_employee.Department1);
+            CloseSingleEmployeeCommand = new RelayCommand(CloseSingleEmployee);
+        }
+
         public Employee ToModel()
         {
             return _employee;
+        }
+
+        public void CloseSingleEmployee()
+        {
+            _employeeList.CloseTab();
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Festispec.ViewModel.employee
     {
         public ICommand OpenAddEmployee { get; set; }
         public ICommand OpenEditEmployee { get; set; }
+        public ICommand OpenSingleEmployee { get; set; }
         public ICommand DeleteEmployeeCommand { get; set; }
         private MainViewModel _mainViewModel;
         public ObservableCollection<EmployeeVM> EmployeeList { get; set; }
@@ -48,6 +49,7 @@ namespace Festispec.ViewModel.employee
             OpenAddEmployee = new RelayCommand(OpenAddEmployeePage);
             OpenEditEmployee = new RelayCommand(OpenEditEmployeePage);
             DeleteEmployeeCommand = new RelayCommand(DeleteEmployee);
+            OpenSingleEmployee = new RelayCommand(OpenSingleEmployeePage);
         }
 
         private void OpenAddEmployeePage()
@@ -60,12 +62,12 @@ namespace Festispec.ViewModel.employee
             _mainViewModel.OpenEditEmployeeTab();
         }
 
-        public void CloseAddEmployee()
+        public void OpenSingleEmployeePage()
         {
-            _mainViewModel.OpenEmployeeTab();
+            _mainViewModel.OpenSingleEmployeeTab();
         }
 
-        public void CloseEditEmployee()
+        public void CloseTab()
         {
             _mainViewModel.OpenEmployeeTab();
         }
