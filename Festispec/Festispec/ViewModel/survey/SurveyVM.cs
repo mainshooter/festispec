@@ -1,9 +1,7 @@
 ﻿using Festispec.Domain;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
-using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.survey.question.questionTypes;
 using Festispec.ViewModel.survey.question.QuestionTypes;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -108,7 +106,7 @@ namespace Festispec.ViewModel.survey
 
         private void OpenEditQuestion()
         {
-            var questionTypePage = MainViewModel.PageSingleton.GetPage("Edit " + SelectedQuestion.QuestionType);
+            var questionTypePage = MainViewModel.PageSingleton.GetPage("Edit " + SelectedQuestion.ToModel().Type);
             questionTypePage.DataContext = SelectedQuestion;
             MainViewModel.Page = questionTypePage;
         }

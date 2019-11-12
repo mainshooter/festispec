@@ -8,12 +8,9 @@ namespace Festispec.ViewModel.survey.question.questionTypes
     {
         MainViewModel MainViewModel { get; set; }
         QuestionDetails QuestionDetails { get; set; }
+        string QuestionType { get; }
         ICommand SaveCommand { get; set; }
         ICommand GoBackCommand { get; set; }
-        int Id { get; }
-        string QuestionType { get; }
-        string Question { get; set; }
-        int Order { get; set; }
         void Save();
         void GoBack();
         bool ValidateQuestionDetails();

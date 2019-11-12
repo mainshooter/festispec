@@ -15,33 +15,14 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
         public MainViewModel MainViewModel { get; set; }
         public QuestionDetails QuestionDetails { get; set; }
+        public string QuestionType => _surveyQuestion.Type;
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
-        public int Id => _surveyQuestion.Id;
-
-        public string QuestionType
-        {
-            get => _surveyQuestion.Type;
-            set => _surveyQuestion.Type = value;
-        }
-
-        public string Question
-        {
-            get => _surveyQuestion.Question1;
-            set => _surveyQuestion.Question1 = value;
-        }
-
-        public int Order
-        {
-            get => _surveyQuestion.Order;
-            set => _surveyQuestion.Order = value;
-        }
 
         public OpenQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
-            QuestionType = _surveyQuestion.Type;
             QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
             SaveCommand = new RelayCommand(Save);
             GoBackCommand = new RelayCommand(GoBack);
