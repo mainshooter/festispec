@@ -1,4 +1,6 @@
 using Festispec.Singleton;
+using Festispec.View.Pages.Employee;
+using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
@@ -27,6 +29,8 @@ namespace Festispec.ViewModel
             set { _page = value; RaisePropertyChanged("Page"); }
         }
 
+        public EmployeeListVM EmployeeList { get; set; }
+
         //constructor
         public MainViewModel()
         {
@@ -53,9 +57,12 @@ namespace Festispec.ViewModel
             Page = _pageSingleton.GetPage("dashboard");
         }
 
-        private void OpenEmployeeTab()
+        public void OpenEmployeeTab()
         {
-            Page = _pageSingleton.GetPage("employee");
+            var page = _pageSingleton.GetPage("employee"); ;
+            EmployeeList = new EmployeeListVM(this);
+            page.DataContext = EmployeeList;
+            Page = page;
         }
 
         private void OpenCustomerTab()
@@ -76,6 +83,23 @@ namespace Festispec.ViewModel
         private void OpenSickTab()
         {
             Page = _pageSingleton.GetPage("sick");
+        }
+
+        public void OpenAddEmployeeTab()
+        {
+            var page = _pageSingleton.GetPage("addemployee");
+            EmployeeListVM employeeListVM = new EmployeeListVM(this);
+            AddEmployeeVM addEmployeeVM = new AddEmployeeVM(employeeListVM);
+            page.DataContext = addEmployeeVM;
+            Page = page;
+        }
+
+        public void OpenEditEmployeeTab()
+        {
+            var page = _pageSingleton.GetPage("editemployee");
+            EditEmployeeVM editEmployeeVM = new EditEmployeeVM(EmployeeList);
+            page.DataContext = editEmployeeVM;
+            Page = page;
         }
     }
 }

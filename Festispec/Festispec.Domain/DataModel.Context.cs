@@ -54,6 +54,5 @@ namespace Festispec.Domain
         public virtual DbSet<SickReportInspector> SickReportInspectors { get; set; }
         public virtual DbSet<Survey> Surveys { get; set; }
         public virtual DbSet<SurveyStatu> SurveyStatus { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
