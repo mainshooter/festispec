@@ -17,7 +17,7 @@ namespace Festispec.View.Report.Element
     /// <summary>
     /// Interaction logic for Image.xaml
     /// </summary>
-    public partial class Image : Window
+    public partial class Image : UserControl
     {
         public Image()
         {

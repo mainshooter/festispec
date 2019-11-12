@@ -17,11 +17,12 @@ namespace Festispec.View.Report.Element
     /// <summary>
     /// Interaction logic for Text.xaml
     /// </summary>
-    public partial class Text : Window
+    public partial class Text : UserControl
     {
         public Text()
         {
             InitializeComponent();
         }
+
     }
 }

@@ -129,7 +129,8 @@ namespace Festispec.ViewModel.report
             else if (elementType.Equals("barchart"))
             {
                 BarChart barChartUserControl = new BarChart();
-                BarChartVM barChartVM = new BarChartVM();
+                var element = new ReportElementVM();
+                BarChartVM barChartVM = new BarChartVM(element);
                 barChartVM.Title = "PleaseWork";
                 barChartVM.Content = "Random stuff";
                 barChartVM.SeriesCollection = new SeriesCollection
@@ -152,6 +153,23 @@ namespace Festispec.ViewModel.report
                 barChartVM.Formatter = value => value.ToString("N");
                 barChartUserControl.DataContext = barChartVM;
                 Report.ReportElementUserControlls.Add(barChartUserControl);
+            }
+            else if (elementType.Equals("text"))
+            {
+                Text text = new Text();
+                var element = new ReportElementVM();
+                TextVM textVM = new TextVM(element);
+                text.DataContext = textVM;
+                Report.ReportElementUserControlls.Add(text);
+
+            }
+            else if (elementType.Equals("image"))
+            {
+                View.Report.Element.Image image = new View.Report.Element.Image();
+                var element = new ReportElementVM();
+                ImageVM imageVM = new ImageVM(element);
+                image.DataContext = imageVM;
+                Report.ReportElementUserControlls.Add(image);
             }
             GoBackToReport();
         }

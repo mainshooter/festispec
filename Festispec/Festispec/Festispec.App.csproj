@@ -139,11 +139,11 @@
     <Compile Include="View\Usercontrols\Report\AddReportElementUserControl.xaml.cs">
       <DependentUpon>AddReportElementUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Report\Element\BarChart.xaml.cs">
-      <DependentUpon>BarChart.xaml</DependentUpon>
+    <Compile Include="View\Usercontrols\Report\Element\BarChartUserControl.xaml.cs">
+      <DependentUpon>BarChartUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Report\Element\Image.xaml.cs">
-      <DependentUpon>Image.xaml</DependentUpon>
+    <Compile Include="View\Usercontrols\Report\Element\ImageUserControl.xaml.cs">
+      <DependentUpon>ImageUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usercontrols\Report\Element\LineChartUserControl.xaml.cs">
       <DependentUpon>LineChartUserControl.xaml</DependentUpon>
@@ -154,8 +154,8 @@
     <Compile Include="View\Usercontrols\Report\Element\TableUserControl.xaml.cs">
       <DependentUpon>TableUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Report\Element\Text.xaml.cs">
-      <DependentUpon>Text.xaml</DependentUpon>
+    <Compile Include="View\Usercontrols\Report\Element\TextUserControl.xaml.cs">
+      <DependentUpon>TextUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Report\ReportPage.xaml.cs">
       <DependentUpon>ReportPage.xaml</DependentUpon>
@@ -221,11 +221,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Report\Element\BarChart.xaml">
+    <Page Include="View\Usercontrols\Report\Element\BarChartUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Report\Element\Image.xaml">
+    <Page Include="View\Usercontrols\Report\Element\ImageUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -241,7 +241,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Report\Element\Text.xaml">
+    <Page Include="View\Usercontrols\Report\Element\TextUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -280,6 +280,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\survey\question\questionTypes\" />
+    <Folder Include="View\Report\Element\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Festispec.Domain\Festispec.Domain.csproj">

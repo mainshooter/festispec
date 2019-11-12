@@ -131,11 +131,27 @@ namespace Festispec.ViewModel
                    
                }
             );
+            reportVM.ReportElements.Add(
+            new ReportElementVM()
+            {
+                Title = "text",
+                Content = "test text smiley",
+                Type = "text"
+            }
+            );
+            reportVM.ReportElements.Add(
+            new ReportElementVM()
+            {
+                Title = "image",
+                Content = @"C:\Users\joky1\Downloads\tate_no_yuusha.png",
+                Type = "image"
+            }
+            );
+
             report.DataContext = reportVM;
             reportVM.MainViewModel = this;
             Page = report;
 
-           
         }
 
 
