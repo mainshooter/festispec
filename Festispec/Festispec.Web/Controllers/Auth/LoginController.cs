@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using Festispec.Domain;
+using Festispec.Lib.Auth;
 
 namespace Festispec.Web.Controllers.Auth
 {
@@ -18,16 +23,32 @@ namespace Festispec.Web.Controllers.Auth
         }
 
         [HttpPost]
-        public ActionResult Login(string email, string password)
+        public HttpResponseMessage Login(string email, string password)
         {
             Employee result = null;
 
-            using (var ctx = new Entities())
+            using (var context = new Entities())
             {
-                var employee = ctx.Employees.FirstOrDefault(i => i.Email == email);
+                var employee = context.Employees.FirstOrDefault(e => e.Email == email);
+                var passwordService = new PasswordService();
+
+                if (employee == null)
+                {
+                    //TODO
+                }
+                else if (!passwordService.PasswordsCompare(password, employee.Password))
+                {
+                    //TODO
+                }
+                else
+                {
+                    Session["loggedInUser"] = employee;
+                    Session["loggedIn"] = true;
+                    result = employee;
+                }
             }
 
-            return View(result);
+            return new HttpResponseMessage(HttpStatusCode.NotImplemented);
         }
     }
 }
