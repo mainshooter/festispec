@@ -122,8 +122,9 @@ CREATE TABLE [dbo].[Customer](
 	[Name] [nvarchar](100) NOT NULL,
 	[COC] [int] NOT NULL,
 	[BranchNumber] [int] NOT NULL,
-	[Street] [nvarchar](45) NOT NULL,
+	[Street] [nvarchar](100) NOT NULL,
 	[HouseNumber] [int] NOT NULL,
+	[HouseNumber Addition] [VARCHAR](5) NULL,
 	[PostalCode] [nvarchar](6) NOT NULL,
 	[City] [nvarchar](45) NOT NULL,
 	[Phone] [nvarchar](15) NOT NULL,
@@ -174,7 +175,6 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[ElementType](
 	[Type] [nvarchar](100) NOT NULL,
-	[ElementPart] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_ElementType] PRIMARY KEY CLUSTERED 
 (
 	[Type] ASC
@@ -194,8 +194,9 @@ CREATE TABLE [dbo].[Employee](
 	[Prefix] [nvarchar](45) NULL,
 	[Lastname] [nvarchar](45) NOT NULL,
 	[Birthday] [datetime] NOT NULL,
-	[Street] [nvarchar](45) NOT NULL,
+	[Street] [nvarchar](100) NOT NULL,
 	[HouseNumber] [int] NOT NULL,
+	[HouseNumber Addition] [VARCHAR](5) NULL,
 	[PostalCode] [nvarchar](6) NOT NULL,
 	[City] [nvarchar](45) NOT NULL,
 	[Phone] [nvarchar](15) NOT NULL,
