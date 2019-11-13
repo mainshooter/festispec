@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Festispec.Lib.Auth
 {
-    class PasswordService
+    public class PasswordService
     {
         public string StringToPassword(string text)
         {

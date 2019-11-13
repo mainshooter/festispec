@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.View;
+using Festispec.Lib.Auth;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
@@ -30,11 +31,12 @@ namespace Festispec.ViewModel.auth
             using (var context = new Entities())
             {
                 var employee = context.Employees.FirstOrDefault(e => e.Email == Email);
+                var passwordService = new PasswordService();
 
                 if (employee == null)
                 {
                     MessageBox.Show("No user has been found with the specified email.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-                } else if (!PasswordsCompare(password, employee.Password))
+                } else if (!passwordService.PasswordsCompare(password, employee.Password))
                 {
                     MessageBox.Show("Invalid password.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
