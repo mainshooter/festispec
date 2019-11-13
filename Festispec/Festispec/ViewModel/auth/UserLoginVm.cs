@@ -47,13 +47,5 @@ namespace Festispec.ViewModel.auth
                 }
             }
         }
-
-        private bool PasswordsCompare(string pwUnHashed, string pwHashed)
-        {
-            var encrypt = new PasswordEncryptVm();
-            var encrypted = encrypt.ToPassword(pwUnHashed);
-
-            return encrypted == pwHashed;
-        }
     }
 }

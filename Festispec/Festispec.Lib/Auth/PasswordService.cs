@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using Festispec.Lib.Interfaces;
 
 namespace Festispec.Lib.Auth
 {
-    public class PasswordService
+    public class PasswordService : IPasswordValidator
     {
         public string StringToPassword(string text)
         {
