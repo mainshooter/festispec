@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 using Festispec.Domain;
-using Festispec.Survey.Question;
+using Festispec.Lib.Survey.Question;
 using Festispec.ViewModel;
 
 namespace Festispec.Interface

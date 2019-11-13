@@ -2,10 +2,9 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using Festispec.Domain;
 using Festispec.Interface;
-using Festispec.Survey.Question;
+using Festispec.Lib.Survey.Question;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Win32;

@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Interface;
-using Festispec.Survey.Question;
+using Festispec.Lib.Survey.Question;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Newtonsoft.Json;
