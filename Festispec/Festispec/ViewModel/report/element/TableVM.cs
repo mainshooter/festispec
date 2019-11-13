@@ -14,8 +14,8 @@ namespace Festispec.ViewModel.report.element
     {
         private DataTable _dataTable;
         private Object _data;
-        public Dictionary<string, List<string>> Dictionary { get; set; }
 
+        public Dictionary<string, List<string>> Dictionary { get; set; }
         
         public override Object Data {
             get {

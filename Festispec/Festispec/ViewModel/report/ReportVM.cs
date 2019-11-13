@@ -66,9 +66,11 @@ namespace Festispec.ViewModel.rapport
                 _reportElementUserControlls = value;
             }
         }
+
         public MainViewModel MainViewModel { get; set; }
 
         public ICommand SaveReportCommand { get; set; }
+
         public ICommand AddElementCommand { get; set; }
 
 

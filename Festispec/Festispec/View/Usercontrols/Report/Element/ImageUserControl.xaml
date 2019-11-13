@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Festispec.View.Report.Element"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
-        Height="400" Width="670">
-    <Grid>
-        <StackPanel>
+        mc:Ignorable="d">
+    <StackPanel>
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <materialDesign:PackIcon Kind="Pencil" HorizontalAlignment="Right"></materialDesign:PackIcon>
-            <materialDesign:PackIcon Kind="DeleteForever" HorizontalAlignment="Right" ></materialDesign:PackIcon>
-        </StackPanel>
-        <StackPanel Height="350" Width="670">
-            <Image Source="{Binding Photo}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Stretch="Fill" Height="300" Width="670"></Image>
-        </StackPanel>
-        </StackPanel>
-    </Grid>
+        <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
+        <Image Source="{Binding Photo}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Stretch="Fill" Height="300" Width="670"></Image>
+        <Grid HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="{materialDesign:PackIcon Pencil}"/>
+            <Button Grid.Column="1" Content="{materialDesign:PackIcon DeleteForever}"/>
+        </Grid>
+    </StackPanel>
 </UserControl>

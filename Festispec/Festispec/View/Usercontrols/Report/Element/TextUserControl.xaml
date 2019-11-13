@@ -5,25 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Festispec.View.Report.Element"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
-        Height="400" Width="670">
-    <Grid>
-        <StackPanel Height="400" Width="670">
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Command="{Binding ChangeToInput}">
-                <materialDesign:PackIcon Kind="Pencil" Foreground="Black"></materialDesign:PackIcon>
-                </Button>
-                <Button HorizontalAlignment="Right" Background="Transparent" BorderThickness="0">
-                    <materialDesign:PackIcon Kind="DeleteForever" Foreground="Black"></materialDesign:PackIcon>
-                </Button>
-            </StackPanel>
-            <TextBox IsReadOnly="{Binding ReadOnly}" Height="260" Width="670" Text="{Binding Text}" TextAlignment="Left" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,0">
+        mc:Ignorable="d">
+    <StackPanel>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
+        <TextBox IsReadOnly="{Binding ReadOnly}" Height="260" Width="670" Text="{Binding Text}" TextAlignment="Left" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,0">
                 
-            </TextBox>
-            <Button Height="25" Width="85" HorizontalAlignment="Right" Command="{Binding ChangeToReadOnly}">
-                Opslaan
-            </Button>
-        </StackPanel>
-    </Grid>
+        </TextBox>
+        <Grid HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="{materialDesign:PackIcon Pencil}"/>
+            <Button Grid.Column="1" Content="{materialDesign:PackIcon DeleteForever}"/>
+        </Grid>
+    </StackPanel>
 </UserControl>
