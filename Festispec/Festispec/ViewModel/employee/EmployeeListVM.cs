@@ -22,6 +22,65 @@ namespace Festispec.ViewModel.employee
         public ObservableCollection<EmployeeVM> EmployeeList { get; set; }
         private EmployeeVM _selectedEmployee;
         public MessageBox MessageBox { get; set; }
+        private string _filter;
+        public string Filter
+        {
+            get
+            {
+                return _filter;
+            }
+            set
+            {
+                _filter = value;
+                RaisePropertyChanged("EmployeeListFiltered");
+            }
+        }
+
+        public string SelectedFilter { get; set; }
+        private List<string> _filters;
+        public List<string> Filters
+        {
+            get
+            {
+                return _filters;
+            }
+            set
+            {
+                _filters = new List<string>();
+                _filters.Add("Voornaam");
+                _filters.Add("Achternaam");
+                _filters.Add("Plaats");
+                _filters.Add("E-mail");
+                _filters.Add("Afdeling");
+                _filters.Add("Status");
+            }
+        }
+        public ObservableCollection<EmployeeVM> EmployeeListFiltered
+        {
+            get
+            {
+                if (Filter != null || !Filter.Equals(""))
+                {
+                    switch (SelectedFilter)
+                    {
+                        case "Voornaam":
+                            return new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.Firstname.ToLower().Contains(Filter.ToLower())).ToList());
+                        case "Achternaam":
+                            return new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.Lastname.ToLower().Contains(Filter.ToLower())).ToList());
+                        case "Plaats":
+                            return new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.City.ToLower().Contains(Filter.ToLower())).ToList());
+                        case "E-mail":
+                            return new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.Email.ToLower().Contains(Filter.ToLower())).ToList());
+                        case "Afdeling":
+                            return new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.Department.Name.ToLower().Contains(Filter.ToLower())).ToList());
+                        case "Status":
+                            return new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.Status.ToLower().Contains(Filter.ToLower())).ToList());
+                    }
+                }
+                return EmployeeList;
+
+            }
+        }
         public EmployeeVM SelectedEmployee
         {
             get
@@ -41,6 +100,9 @@ namespace Festispec.ViewModel.employee
 
         public EmployeeListVM(MainViewModel mainViewModel)
         {
+            Filters = new List<string>();
+            SelectedFilter = Filters.First();
+            Filter = "";
             _mainViewModel = mainViewModel;
             using (var context = new Entities())
             {

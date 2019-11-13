@@ -10,10 +10,16 @@
       Title="EmployeePage"
       DataContext="{Binding EmployeeList,Source={StaticResource Locator}}">
 
-    <Grid>
-        <Label Content="Medewerkers" HorizontalAlignment="Left" Margin="42,36,0,0" VerticalAlignment="Top"/>
+    <StackPanel>
+        <Label Panel.ZIndex="1" Content="Medewerkers" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <WrapPanel>
+            <Label Margin="3, 3, 10, 3">Filter:</Label>
+            <ComboBox Margin="3, 3, 10, 3" SelectedIndex="0" SelectedValuePath="SelectedFilter" ItemsSource="{Binding Filters}" SelectedItem="{Binding SelectedFilter,Mode=TwoWay}" Width="128"></ComboBox>
+            <TextBox Margin="3, 3, 10, 3" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="122"/>
+        </WrapPanel>
+
         <Viewbox VerticalAlignment="Top">
-            <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding EmployeeList}" SelectedItem="{Binding Path=SelectedEmployee,Mode=TwoWay}">
+            <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding EmployeeListFiltered}" SelectedItem="{Binding Path=SelectedEmployee,Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Voornaam" Binding="{Binding Firstname}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Tussenvoegsel" Binding="{Binding Prefix}"></DataGridTextColumn>
@@ -57,6 +63,6 @@
             </DataGrid>
         </Viewbox>
         <Button Content="Medewerker toevoegen" Command="{Binding OpenAddEmployee}" Margin="354,375,323,43"></Button>
-    </Grid>
+    </StackPanel>
 
 </Page>
