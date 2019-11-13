@@ -43,6 +43,7 @@ namespace Festispec.ViewModel.auth
                 else
                 {
                     Application.Current.Resources["session"] = new SessionVm(employee);
+                    MessageBox.Show("Login successful", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     //Vanuit hier kun je doorverwijzen naar een andere pagina oid
                 }
             }
