@@ -13,9 +13,6 @@ namespace Festispec.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<EmployeeVM>();
-            SimpleIoc.Default.Register<EmployeeListVM>();
-            SimpleIoc.Default.Register<AddEmployeeVM>();
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
