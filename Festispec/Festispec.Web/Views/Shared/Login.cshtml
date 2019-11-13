@@ -1,0 +1,18 @@
+﻿<h2>Login</h2>
+
+<form asp-action="DoLogin" asp-controller="Login">
+    <fieldset>
+        <legend>Enter credentials</legend>
+        <div>
+            <label for="Email">Email:</label>
+            <input type="text" name="Email" value="" />
+        </div>
+        <div>
+            <label for="Password">Password:</label>
+            <input type="password" name="Password" value="" />
+        </div>
+        <div>
+            <input type="submit" value="Submit" class="btn-submit" />
+        </div>
+    </fieldset>
+</form>
