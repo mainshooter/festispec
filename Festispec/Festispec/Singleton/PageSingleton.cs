@@ -125,6 +125,31 @@ namespace Festispec.Singleton
 
                }
             );
+            reportVM.ReportElements.Add(
+            new ReportElementVM()
+            {
+                Title = "text",
+                Content = "test text",
+                Type = "text",
+                Data = new Dictionary<string, Object>()
+                {
+                    ["text"] = "test text smiley"
+                }
+            }
+            );
+            reportVM.ReportElements.Add(
+            new ReportElementVM()
+            {
+                Title = "image",
+                Content = "local image",
+                Type = "image",
+                Data = new Dictionary<string, Object>()
+                {
+                    ["image"] = @"C:\Users\joky1\Downloads\tate_no_yuusha.png"
+                }
+            }
+            );
+
             reportVM.MainViewModel = _mainViewModel;
             report.DataContext = reportVM;
 

@@ -17,9 +17,9 @@ namespace Festispec.View.Report.Element
     /// <summary>
     /// Interaction logic for BarChart.xaml
     /// </summary>
-    public partial class BarChart : UserControl
+    public partial class BarChartUserControl : UserControl
     {
-        public BarChart()
+        public BarChartUserControl()
         {
             InitializeComponent();
         }

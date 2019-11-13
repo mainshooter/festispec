@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using Image = Festispec.View.Report.Element.Image;
+using ImageUserControl = Festispec.View.Report.Element.ImageUserControl;
 
 namespace Festispec.Factory
 {
@@ -42,7 +42,7 @@ namespace Festispec.Factory
             }
             else if (type.Equals("barchart"))
             {
-                BarChart barChart = new BarChart();
+                BarChartUserControl barChart = new BarChartUserControl();
                 BarChartVM barChartVm = new BarChartVM(element);
                 barChart.DataContext = barChartVm;
                 returningUserControl = barChart;
@@ -50,14 +50,14 @@ namespace Festispec.Factory
             }
             else if (type.Equals("image"))
             {
-                Image image = new Image();
+                ImageUserControl image = new ImageUserControl();
                 ImageVM imageVm = new ImageVM(element);
                 image.DataContext = imageVm;
                 returningUserControl = image;
             }
             else if (type.Equals("text"))
             {
-                Text text = new Text();
+                TextUserControl text = new TextUserControl();
                 TextVM textVM = new TextVM(element);
                 text.DataContext = textVM;
                 returningUserControl = text;

@@ -26,14 +26,20 @@ namespace Festispec.ViewModel.report.element
             set
             {
                 _data = value;
+                Dictionary = (Dictionary<string, Object>)Data;
+                ApplyChanges();
             }
         }
+        public Dictionary<string, Object> Dictionary { get; set; }
         public ImageVM(ReportElementVM element)
         {
-            Photo = element.Content;
-            Title = element.Title;
             Data = element.Data;
-
+            Title = element.Title;
+            Content = element.Content;
+        }
+        private void ApplyChanges()
+        {
+            Photo = (string)Dictionary["image"];
         }
     }
 }

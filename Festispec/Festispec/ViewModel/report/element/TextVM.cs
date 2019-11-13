@@ -27,7 +27,7 @@ namespace Festispec.ViewModel.report.element
         }
 
         public string Text { get; set; }
-
+        public Dictionary<string, Object> Dictionary { get; set; }
         public ICommand ChangeToReadOnly { get; set; }
         public ICommand ChangeToInput { get; set; }
 
@@ -40,16 +40,22 @@ namespace Festispec.ViewModel.report.element
             set
             {
                 _data = value;
+                Dictionary = (Dictionary<string, Object>)Data;
+                ApplyChanges();
             }
         }
         public TextVM(ReportElementVM element)
         {
-            Title = element.Title;
-            Text = element.Content;
             Data = element.Data;
+            Title = element.Title;
+            Content = element.Content;
             ReadOnly = true;
             ChangeToReadOnly = new RelayCommand(()=> ReadOnly = true);
             ChangeToInput = new RelayCommand(() => ReadOnly = false);
+        }
+        private void ApplyChanges()
+        {
+            Text = (string)Dictionary["text"];
         }
     }
 }

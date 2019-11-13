@@ -128,7 +128,7 @@ namespace Festispec.ViewModel.report
             }
             else if (elementType.Equals("barchart"))
             {
-                BarChart barChartUserControl = new BarChart();
+                BarChartUserControl barChartUserControl = new BarChartUserControl();
                 var element = new ReportElementVM();
                 BarChartVM barChartVM = new BarChartVM(element);
                 barChartVM.Title = "PleaseWork";
@@ -156,7 +156,7 @@ namespace Festispec.ViewModel.report
             }
             else if (elementType.Equals("text"))
             {
-                Text text = new Text();
+                TextUserControl text = new TextUserControl();
                 var element = new ReportElementVM();
                 TextVM textVM = new TextVM(element);
                 text.DataContext = textVM;
@@ -165,7 +165,7 @@ namespace Festispec.ViewModel.report
             }
             else if (elementType.Equals("image"))
             {
-                View.Report.Element.Image image = new View.Report.Element.Image();
+                View.Report.Element.ImageUserControl image = new View.Report.Element.ImageUserControl();
                 var element = new ReportElementVM();
                 ImageVM imageVM = new ImageVM(element);
                 image.DataContext = imageVM;

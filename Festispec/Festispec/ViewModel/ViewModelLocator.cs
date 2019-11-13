@@ -16,12 +16,6 @@ namespace Festispec.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
 
-            SimpleIoc.Default.Register<LineChartVM>();
-            SimpleIoc.Default.Register<PieChartVM>();
-            SimpleIoc.Default.Register<TableVM>();
-            SimpleIoc.Default.Register<BarChartVM>();
-            SimpleIoc.Default.Register<TextVM>();
-            SimpleIoc.Default.Register<ImageVM>();
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
