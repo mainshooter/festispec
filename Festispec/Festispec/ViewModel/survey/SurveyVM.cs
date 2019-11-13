@@ -94,6 +94,8 @@ namespace Festispec.ViewModel.survey
                     return new CommentFieldVM(this, question) { MainViewModel = MainViewModel };
                 case "Afbeelding galerij vraag":
                     return new ImageGalleryQuestionVM(this, question) { MainViewModel = MainViewModel };
+                case "Teken vraag":
+                    return new DrawQuestionVM(this, question) { MainViewModel = MainViewModel };
                 default:
                     return new OpenQuestionVM(this, question) { MainViewModel = MainViewModel };
             }

@@ -8,6 +8,7 @@ using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Survey;
 using Festispec.View.Pages.Survey.QuestionTypes.ClosedQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.CommentField;
+using Festispec.View.Pages.Survey.QuestionTypes.DrawQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.ImageGalleryQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.SliderQuestion;
@@ -49,6 +50,8 @@ namespace Festispec.Singleton
             _pages["Edit Opmerking veld"] = new EditCommentFieldPage();
             _pages["Add Afbeelding galerij vraag"] = new AddImageGalleryQuestionPage();
             _pages["Edit Afbeelding galerij vraag"] = new EditImageGalleryQuestionPage();
+            _pages["Add Teken vraag"] = new AddDrawQuestionPage();
+            _pages["Edit Teken vraag"] = new EditDrawQuestionPage();
         }
     }
 }

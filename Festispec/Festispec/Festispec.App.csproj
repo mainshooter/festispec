@@ -116,6 +116,7 @@
     <Compile Include="Interface\IQuestion.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\ClosedQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\CommentFieldVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\DrawQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\ImageGalleryQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestionVM.cs" />
@@ -130,6 +131,12 @@
     </Compile>
     <Compile Include="View\Pages\Survey\QuestionTypes\CommentField\EditCommentFieldPage.xaml.cs">
       <DependentUpon>EditCommentFieldPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\DrawQuestion\AddDrawQuestionPage.xaml.cs">
+      <DependentUpon>AddDrawQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\DrawQuestion\EditDrawQuestionPage.xaml.cs">
+      <DependentUpon>EditDrawQuestionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Survey\QuestionTypes\ImageGalleryQuestion\AddImageGalleryQuestionPage.xaml.cs">
       <DependentUpon>AddImageGalleryQuestionPage.xaml</DependentUpon>
@@ -213,6 +220,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Survey\QuestionTypes\CommentField\EditCommentFieldPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\DrawQuestion\AddDrawQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\DrawQuestion\EditDrawQuestionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
