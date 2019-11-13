@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Festispec.WebApp")]
+[assembly: AssemblyTitle("Festispec.Web.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Festispec.WebApp")]
+[assembly: AssemblyProduct("Festispec.Web.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9870ddb9-2f06-406d-8815-ab670ddb6241")]
+[assembly: Guid("d7e413d5-d6f8-443c-af72-891967aec66e")]
 
 // Version information for an assembly consists of the following four values:
 //

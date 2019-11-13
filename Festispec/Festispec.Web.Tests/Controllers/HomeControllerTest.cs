@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Festispec.WebApp;
-using Festispec.WebApp.Controllers;
+using Festispec.Web;
+using Festispec.Web.Controllers;
 
-namespace Festispec.WebApp.Tests.Controllers
+namespace Festispec.Web.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest
