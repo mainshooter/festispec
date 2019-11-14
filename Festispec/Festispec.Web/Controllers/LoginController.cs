@@ -11,9 +11,9 @@ using System.Web.UI.WebControls;
 using Festispec.Domain;
 using Festispec.Lib.Auth;
 
-namespace Festispec.Web.Controllers.Auth
+namespace Festispec.Web.Controllers
 {
-    [RoutePrefix("login")]
+    
     public class LoginController : Controller
     {
         [HttpGet]
