@@ -39,8 +39,6 @@ namespace Festispec.ViewModel.planning
         public DayVM(Day day)
         {
             _day = day;
-            Order = new OrderVM(day.Order);
-            InspectorPlannings = new ObservableCollection<PlannedEmployeeVM>(day.InspectorPlannings.ToList().Select(i => new PlannedEmployeeVM(i)));
         }
 
         public DayVM()
