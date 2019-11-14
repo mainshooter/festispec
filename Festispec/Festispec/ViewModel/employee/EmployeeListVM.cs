@@ -21,6 +21,7 @@ namespace Festispec.ViewModel.employee
         private MainViewModel _mainViewModel;
         public ObservableCollection<EmployeeVM> EmployeeList { get; set; }
         private EmployeeVM _selectedEmployee;
+        public MainViewModel MainViewModel { get; set; }
         public MessageBox MessageBox { get; set; }
         private string _filter;
         public string Filter
@@ -100,6 +101,8 @@ namespace Festispec.ViewModel.employee
 
         public EmployeeListVM(MainViewModel mainViewModel)
         {
+            MainViewModel = mainViewModel;
+            MainViewModel.PageSingleton.SetEmployeePages();
             Filters = new List<string>();
             SelectedFilter = Filters.First();
             Filter = "";
@@ -127,11 +130,6 @@ namespace Festispec.ViewModel.employee
         public void OpenSingleEmployeePage()
         {
             _mainViewModel.OpenSingleEmployeeTab();
-        }
-
-        public void CloseTab()
-        {
-            _mainViewModel.OpenEmployeeTab();
         }
 
         private void DeleteEmployee()

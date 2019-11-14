@@ -35,8 +35,11 @@ namespace Festispec.ViewModel.employee
             }
             set
             {
-                _department = value;
-                _employee.Department = value.Name;
+                if (value != null)
+                {
+                    _department = value;
+                    _employee.Department = value.Name;
+                }
             }
         }
 
@@ -260,7 +263,7 @@ namespace Festispec.ViewModel.employee
 
         public void CloseSingleEmployee()
         {
-            _employeeList.CloseTab();
+            _employeeList.MainViewModel.Page.NavigationService?.GoBack();
         }
     }
 }

@@ -29,6 +29,13 @@ namespace Festispec.ViewModel
             set { _page = value; RaisePropertyChanged("Page"); }
         }
 
+        public PageSingleton PageSingleton
+        {
+            get { return _pageSingleton; }
+            set { _pageSingleton = value; }
+
+        }
+
         public EmployeeListVM EmployeeList { get; set; }
 
         //constructor
@@ -88,8 +95,7 @@ namespace Festispec.ViewModel
         public void OpenAddEmployeeTab()
         {
             var page = _pageSingleton.GetPage("addemployee");
-            EmployeeListVM employeeListVM = new EmployeeListVM(this);
-            AddEmployeeVM addEmployeeVM = new AddEmployeeVM(employeeListVM);
+            AddEmployeeVM addEmployeeVM = new AddEmployeeVM(EmployeeList);
             page.DataContext = addEmployeeVM;
             Page = page;
         }

@@ -9,7 +9,7 @@ using Festispec.View.Pages.Employee.Availability;
 
 namespace Festispec.Singleton
 {
-    class PageSingleton
+    public class PageSingleton
     {
         private Dictionary<string, Page> _pages;
 
@@ -17,14 +17,11 @@ namespace Festispec.Singleton
         {
             _pages = new Dictionary<string, Page>();
             _pages.Add("dashboard", new DashboardPage());
-            _pages.Add("employee", new EmployeePage());
             _pages.Add("customer", new CustomerPage());
             _pages.Add("availability", new AvailablePage());
             _pages.Add("event", new EventPage());
             _pages.Add("sick", new SickPage());
-            _pages.Add("addemployee", new AddEmployeePage());
-            _pages.Add("editemployee", new EditEmployeePage());
-            _pages.Add("singleemployee", new SingleEmployeePage());
+            _pages.Add("employee", new EmployeePage());
         }
 
         public Page GetPage(string pageName)
@@ -32,5 +29,13 @@ namespace Festispec.Singleton
             var result = _pages.Where(p => p.Key.Equals(pageName));
             return result.FirstOrDefault().Value;
         }
+
+        public void SetEmployeePages()
+        {
+            _pages.Add("addemployee", new AddEmployeePage());
+            _pages.Add("editemployee", new EditEmployeePage());
+            _pages.Add("singleemployee", new SingleEmployeePage());
+        }
     }
+
 }

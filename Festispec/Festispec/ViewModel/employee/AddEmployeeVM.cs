@@ -32,6 +32,7 @@ namespace Festispec.ViewModel.employee
                 Departments = new ObservableCollection<DepartmentVM>(context.Departments.ToList().Select(department => new DepartmentVM(department)));
                 Status = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
             }
+            Employee.Department = Departments.First();
         }
 
         private void Encrypt()
@@ -50,24 +51,24 @@ namespace Festispec.ViewModel.employee
                 context.Employees.Add(Employee.ToModel());
                 context.SaveChanges();
             }
-            EmployeeList.CloseTab();
+            CloseAddEmployee();
         }
 
         private void CloseAddEmployee()
         {
-            EmployeeList.CloseTab();
+            EmployeeList.MainViewModel.Page.NavigationService?.GoBack();
         }
 
         public bool CanAddEmployee()
         {
-            if (Employee.Firstname == null || Employee.Lastname == null || Employee.Password == null || Employee.City == null || Employee.Department == null || Employee.Email == null || Employee.HouseNumber <= 0 || Employee.Phone == null || Employee.PostalCode == null || Employee.Status == null || Employee.Street == null || Employee.Birthday == null)
+            if (Employee.Firstname == null || Employee.Lastname == null || Employee.Password == null || Employee.City == null || Employee.Department == null || Employee.Email == null || Employee.HouseNumber <= 0 || Employee.Phone == null || Employee.PostalCode == null || Employee.Status == null || Employee.Street == null || Employee.Birthday == null || Employee.Iban == null)
             {
                 return false;
             }
             string regexEmail = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
             string regexPhone = "^\\s*(?:\\+?(\\d{1,3}))?([-. (]*(\\d{3})[-. )]*)?((\\d{3})[-. ]*(\\d{2,4})(?:[-.x ]*(\\d+))?)\\s*$";
             string regexIban = "[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}";
-            if (!Regex.IsMatch(Employee.Email, regexEmail) || !Regex.IsMatch(Employee.Phone, regexPhone) || !Regex.IsMatch(Employee.Iban, regexIban))
+            if (!Regex.IsMatch(Employee.Email, regexEmail) || !Regex.IsMatch(Employee.Phone, regexPhone) || !Regex.IsMatch(Employee.Iban, regexIban) || Employee.Birthday.Year < 1900)
             {
                 return false;
             }

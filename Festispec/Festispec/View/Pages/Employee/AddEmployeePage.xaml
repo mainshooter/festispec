@@ -7,10 +7,10 @@
         xmlns:local="clr-namespace:Festispec.View"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d"
-        Title="AddEmployee" Height="450" Width="800"
+        Title="AddEmployee"
         DataContext="{Binding AddEmployee,Source={StaticResource Locator}}">
-    <Grid>
-        <Button Command="{Binding CloseAddEmployeeCommand}" Margin="0,0,758,432" Height="Auto">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Command="{Binding CloseAddEmployeeCommand}" Margin="0,0,758,432"  Height="17" Width="43" VerticalAlignment="Top" HorizontalAlignment="Left" >
             <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
         </Button>
         <Button Content="Add Employee" HorizontalAlignment="Left" Margin="344,412,0,0" VerticalAlignment="Top" Width="138" Command="{Binding AddEmployeeCommand}" Height="28"/>
@@ -40,7 +40,7 @@
         <Label Content="Birthday" HorizontalAlignment="Left" Margin="327,305,0,0" VerticalAlignment="Top" Width="77"/>
         <ComboBox HorizontalAlignment="Left" Margin="526,41,0,0" VerticalAlignment="Top" Width="174" Text="{Binding Path=Employee.Status, Mode=TwoWay}" SelectedIndex="0" ItemsSource="{Binding Path=Status}" SelectedValue="{Binding Employee.Status}" />
         <Label Content="Status" HorizontalAlignment="Left" Margin="526,10,0,0" VerticalAlignment="Top" Width="50"/>
-        <ComboBox HorizontalAlignment="Left" Margin="526,100,0,0" VerticalAlignment="Top" Width="174" Text="{Binding Path=Employee.Department, Mode=TwoWay}" SelectedIndex="0" SelectedValuePath="Department" ItemsSource="{Binding Path=Departments}" SelectedValue="{Binding Employee.Department}"  DisplayMemberPath="Name"/>
+        <ComboBox HorizontalAlignment="Left" Margin="526,100,0,0" VerticalAlignment="Top" Width="174" SelectedIndex="0" ItemsSource="{Binding Path=Departments}" SelectedItem="{Binding Employee.Department, Mode=OneWayToSource    }" DisplayMemberPath="Name"/>
         <Label Content="Afdeling" HorizontalAlignment="Left" Margin="526,69,0,0" VerticalAlignment="Top" Width="66"/>
     </Grid>
 </Page>
