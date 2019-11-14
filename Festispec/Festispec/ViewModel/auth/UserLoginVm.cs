@@ -35,15 +35,15 @@ namespace Festispec.ViewModel.auth
 
                 if (employee == null)
                 {
-                    MessageBox.Show("No user has been found with the specified email.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Er is geen gebruiker gevonden met de ingevoerde email.", "Waarschuwing", MessageBoxButton.OK, MessageBoxImage.Information);
                 } else if (!passwordService.PasswordsCompare(password, employee.Password))
                 {
-                    MessageBox.Show("Invalid password.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Ongeldig wachtwoord.", "Waarschuwing", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
                     Application.Current.Resources["session"] = new SessionVm(employee);
-                    MessageBox.Show("Login successful", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Login succesvol", "Geslaagd", MessageBoxButton.OK, MessageBoxImage.Information);
                     //Vanuit hier kun je doorverwijzen naar een andere pagina oid
                 }
             }

@@ -92,7 +92,6 @@
     </Compile>
     <Compile Include="Exceptions\Auth\PasswordNoMatchException.cs" />
     <Compile Include="Exceptions\Employee\EmployeeNotFoundException.cs" />
-    <Compile Include="Interface\IEmployee.cs" />
     <Compile Include="Singleton\PageSingleton.cs" />
     <Compile Include="ViewModel\auth\PasswordEncryptVm.cs" />
     <Compile Include="ViewModel\auth\SessionVm.cs" />
@@ -148,7 +147,7 @@
     <Compile Include="View\Pages\Employee\EmployeePage.xaml.cs">
       <DependentUpon>EmployeePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Employee\LoginPage.xaml.cs">
+    <Compile Include="View\Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
@@ -173,6 +172,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.config.example" />
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -213,7 +213,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Pages\Employee\LoginPage.xaml">
+    <Page Include="View\Pages\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

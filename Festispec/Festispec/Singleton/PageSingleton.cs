@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Controls;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Employee.Availability;
+using EmployeePage = Festispec.View.Pages.Employee.EmployeePage;
 
 namespace Festispec.Singleton
 {
