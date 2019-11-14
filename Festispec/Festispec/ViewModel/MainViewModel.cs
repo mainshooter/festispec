@@ -1,4 +1,5 @@
 using Festispec.Singleton;
+using Festispec.ViewModel.planning;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
@@ -33,6 +34,8 @@ namespace Festispec.ViewModel
             set { _pageSingleton = value; }
         }
 
+        public PlanningOverviewVM PlanningOverviewList { get; set; }
+
         //constructor
         public MainViewModel()
         {
@@ -45,7 +48,8 @@ namespace Festispec.ViewModel
             OpenSick = new RelayCommand(OpenSickTab);
             _pageSingleton = new PageSingleton();
 
-            Page = _pageSingleton.GetPage("dashboard");
+            //Page = _pageSingleton.GetPage("dashboard");
+            OpenDashboardTab();
         }
 
         //methodes
@@ -56,7 +60,10 @@ namespace Festispec.ViewModel
 
         private void OpenDashboardTab()
         {
-            Page = _pageSingleton.GetPage("dashboard");
+            var page = _pageSingleton.GetPage("dashboard");
+            PlanningOverviewList = new PlanningOverviewVM(this);
+            page.DataContext = PlanningOverviewList;
+            Page = page;
         }
 
         private void OpenEmployeeTab()

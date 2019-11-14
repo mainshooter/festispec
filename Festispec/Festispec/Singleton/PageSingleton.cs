@@ -10,7 +10,7 @@ using Festispec.View.Pages.Planning;
 
 namespace Festispec.Singleton
 {
-    class PageSingleton
+    public class PageSingleton
     {
         private Dictionary<string, Page> _pages;
 

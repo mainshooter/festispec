@@ -12,12 +12,12 @@ namespace Festispec.ViewModel.planning
 {
     public class PlanningOverviewVM : ViewModelBase
     {
-        //private MainViewModel _mainViewModel;
+        private MainViewModel _mainViewModel;
         public ObservableCollection<PlannedEmployeeVM> PlannedEmployeeList { get; set; }
 
-        public PlanningOverviewVM()
+        public PlanningOverviewVM(MainViewModel mainViewModel)
         {
-            //this._mainViewModel = mainViewModel;
+            this._mainViewModel = mainViewModel;
 
             using (var context = new Entities())
             {

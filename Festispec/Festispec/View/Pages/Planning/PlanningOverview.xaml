@@ -7,14 +7,17 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PlanningOverview"
-      DataContext="{Binding PlanningOverviewVM,Source={StaticResource Locator}}">
+      Title="PlanningOverview">
 
     <StackPanel Background="White">
         <Viewbox>
             <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding PlannedEmployeeList}">
                 <DataGrid.Columns>
-                    
+                    <DataGridTextColumn Header="Voornaam" Binding="{Binding Employee.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tussenvoegsel" Binding="{Binding Day}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Achternaam" Binding="{Binding Status}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Telefoonnummer" Binding="{Binding Phone}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Viewbox>
