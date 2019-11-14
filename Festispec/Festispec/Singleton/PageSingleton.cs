@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Controls;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Employee.Availability;
+using Festispec.View.Pages.Planning;
 
 namespace Festispec.Singleton
 {
@@ -16,7 +17,7 @@ namespace Festispec.Singleton
         public PageSingleton()
         {
             _pages = new Dictionary<string, Page>();
-            _pages.Add("dashboard", new DashboardPage());
+            _pages.Add("dashboard", new PlanningOverview());
             _pages.Add("employee", new EmployeePage());
             _pages.Add("customer", new CustomerPage());
             _pages.Add("availability", new AvailablePage());

@@ -27,6 +27,12 @@ namespace Festispec.ViewModel
             set { _page = value; RaisePropertyChanged("Page"); }
         }
 
+        public PageSingleton PageSingleton
+        {
+            get { return _pageSingleton; }
+            set { _pageSingleton = value; }
+        }
+
         //constructor
         public MainViewModel()
         {
