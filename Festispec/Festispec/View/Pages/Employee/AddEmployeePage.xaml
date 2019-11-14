@@ -32,7 +32,7 @@
         <Label Content="Plaats" HorizontalAlignment="Left" Margin="108,305,0,0" VerticalAlignment="Top" Width="49"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="320,159,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Email, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
         <Label Content="Email" HorizontalAlignment="Left" Margin="320,128,0,0" VerticalAlignment="Top" Width="55"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="320,218,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Password, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
+        <PasswordBox HorizontalAlignment="Left" Height="23" Margin="320,218,0,0" TextWrapping="Wrap" Password="{Binding Path=Employee.Password, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
         <Label Content="Wachtwoord" HorizontalAlignment="Left" Margin="320,187,0,0" VerticalAlignment="Top" Width="113"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="320,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Iban, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
         <Label Content="Iban" HorizontalAlignment="Left" Margin="330,246,0,0" VerticalAlignment="Top" Width="48"/>
