@@ -1,4 +1,5 @@
-﻿using Festispec.View.Report.Element;
+﻿using Festispec.Factory;
+using Festispec.View.Report.Element;
 using Festispec.ViewModel.report.element;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -15,6 +16,7 @@ namespace Festispec.ViewModel.report
     {
         private Page _previousePage;
         private MainViewModel _mainViewModel;
+        private ReportElementFactory _reportElementFactory;
 
         public List<string> ElementTypes { get; set; }
 
@@ -38,6 +40,7 @@ namespace Festispec.ViewModel.report
 
         public AddElementVM()
         {
+            _reportElementFactory = new ReportElementFactory();
             ReportElementTypesListVM elementTypesList = new ReportElementTypesListVM();
             ElementTypes = elementTypesList.ReportElementTypes;
             GoBackCommand = new RelayCommand(GoBackToReport);
@@ -47,147 +50,92 @@ namespace Festispec.ViewModel.report
         private void AddElementToReport()
         {
             string elementType = ElementTypes[SelectedElementIndex];
+            var element = new ReportElementVM();
+            element.Title = "Leuke titel";
+            element.Content = "Test description";
+            element.Type = elementType;
+            
             if (elementType.Equals("table"))
             {
-                TableUserControl tableUserControl = new TableUserControl();
-                var element = new ReportElementVM()
+                element.Data = new Dictionary<string, List<string>>()
                 {
-                    Title = "Leuke titel",
-                    Content = "Hier maak ik titels van",
-                    Type = "table",
-                    Data = new Dictionary<string, List<string>>()
-                    {
-                        ["id"] = new List<string>() { "1", "2" }
-                    },
+                    ["id"] = new List<string>() { "1", "2" }
                 };
-                TableVM tableVM = new TableVM(element);
-                tableUserControl.DataContext = tableVM;
-                Report.ReportElementUserControlls.Add(tableUserControl);
             }
             else if (elementType.Equals("linechart"))
             {
-                LineChartUserControl lineChartUserControl = new LineChartUserControl();
-                var element = new ReportElementVM()
+                element.Data = new Dictionary<string, Object>()
                 {
-                    Title = "Line chart",
-                    Content = "Wij linecharten",
-                    Type = "linechart",
-                    Data = new Dictionary<string, Object>()
+                    ["xaxisName"] = "Test xas",
+                    ["yaxisName"] = "Test yas",
+                    ["seriescollection"] = new SeriesCollection
                     {
-                        ["xaxisName"] = "Test xas",
-                        ["yaxisName"] = "Test yas",
-                        ["seriescollection"] = new SeriesCollection
-                        {
-                            new LineSeries { Title = "Bezoekers", Values = new ChartValues<int> {40, 60, 50, 20, 40, 60}}
-                        }
+                        new LineSeries { Title = "Bezoekers", Values = new ChartValues<int> {40, 60, 50, 20, 40, 60}}
                     }
                 };
-                LineChartVM lineChartVM = new LineChartVM(element);
-                lineChartUserControl.DataContext = lineChartVM;
-                Report.ReportElementUserControlls.Add(lineChartUserControl);
             }
             else if (elementType.Equals("piechart"))
             {
-                PieChartUserControl pieChartUserControl = new PieChartUserControl();
-                var element = new ReportElementVM()
+                element.Data = new SeriesCollection
                 {
-                    Title = "Leuke piechart",
-                    Content = "Taartje beschrijving",
-                    Type = "piechart",
-                    Data = new SeriesCollection
+                    new PieSeries
                     {
-                        new PieSeries
-                        {
-                            Title = "Bier",
-                            Values = new ChartValues<double> { 20 },
-                            DataLabels = true,
-                        },
-                        new PieSeries
-                        {
-                            Title = "Frisdrank",
-                            Values = new ChartValues<double> { 12 },
-                            DataLabels = true,
-                        },
-                        new PieSeries
-                        {
-                            Title = "Cocktail",
-                            Values = new ChartValues<double> { 8 },
-                            DataLabels = true,
-                        },
-                        new PieSeries
-                        {
-                            Title = "Wijn",
-                            Values = new ChartValues<double> { 2 },
-                            DataLabels = true,
-                        }
+                        Title = "Bier",
+                        Values = new ChartValues<double> { 20 },
+                        DataLabels = true,
+                    },
+                    new PieSeries
+                    {
+                        Title = "Frisdrank",
+                        Values = new ChartValues<double> { 12 },
+                        DataLabels = true,
+                    },
+                    new PieSeries
+                    {
+                        Title = "Cocktail",
+                        Values = new ChartValues<double> { 8 },
+                        DataLabels = true,
+                    },
+                    new PieSeries
+                    {
+                        Title = "Wijn",
+                        Values = new ChartValues<double> { 2 },
+                        DataLabels = true,
                     }
                 };
-                PieChartVM pieChartVM = new PieChartVM(element);
-                pieChartUserControl.DataContext = pieChartVM;
-                Report.ReportElementUserControlls.Add(pieChartUserControl);
             }
             else if (elementType.Equals("barchart"))
             {
-                BarChartUserControl barChartUserControl = new BarChartUserControl();
-                var element = new ReportElementVM()
+                element.Data = new Dictionary<string, Object>()
                 {
-                    Title = "test",
-                    Content = "ttest",
-                    Type = "barchart",
-                    Data = new Dictionary<string, Object>()
+                    ["xaxisName"] = "Place",
+                    ["yaxisName"] = "Amount",
+                    ["labels"] = new List<string> { "test1", "test2", "test3", "test4", "test5" },
+                    ["seriescollection"] = new SeriesCollection
                     {
-                        ["xaxisName"] = "Place",
-                        ["yaxisName"] = "Amount",
-                        ["labels"] = new List<string> { "test1", "test2", "test3", "test4", "test5" },
-                        ["seriescollection"] = new SeriesCollection
-                        {
-                            new ColumnSeries {Title = "testdata" , Values = new ChartValues<int>{10,20,30,40,50} },
+                        new ColumnSeries {Title = "testdata" , Values = new ChartValues<int>{10,20,30,40,50} },
 
-                            new ColumnSeries {Title = "testdata2" , Values = new ChartValues<int>{15,25,35,45,55} }
-                        }
+                        new ColumnSeries {Title = "testdata2" , Values = new ChartValues<int>{15,25,35,45,55} }
                     }
                 };
-                BarChartVM barChartVM = new BarChartVM(element);
-                barChartVM.Labels = new List<string>();
-                
-                barChartUserControl.DataContext = barChartVM;
-                Report.ReportElementUserControlls.Add(barChartUserControl);
             }        
             else if (elementType.Equals("text"))
             {
-                TextUserControl text = new TextUserControl();
-                var element = new ReportElementVM()
+                element.Data = new Dictionary<string, Object>()
                 {
-                    Title = "text",
-                    Content = "test text",
-                    Type = "text",
-                    Data = new Dictionary<string, Object>()
-                    {
-                        ["text"] = "test text smiley"
-                    }
+                    ["text"] = "test text smiley"
                 };
-                TextVM textVM = new TextVM(element);
-                text.DataContext = textVM;
-                Report.ReportElementUserControlls.Add(text);
 
             }
             else if (elementType.Equals("image"))
             {
-                ImageUserControl image = new ImageUserControl();
-                var element = new ReportElementVM()
+                element.Data = new Dictionary<string, Object>()
                 {
-                    Title = "image",
-                    Content = "local image",
-                    Type = "image",
-                    Data = new Dictionary<string, Object>()
-                    {
-                        ["image"] = new byte[0]
-                    }
+                    ["image"] = new byte[0]
                 };
-                ImageVM imageVM = new ImageVM(element);
-                image.DataContext = imageVM;
-                Report.ReportElementUserControlls.Add(image);
             }
+            var userControl = _reportElementFactory.CreateElement(element);
+            Report.ReportElementUserControlls.Add(userControl);
             GoBackToReport();
         }
 
