@@ -85,21 +85,21 @@ namespace Festispec.ViewModel.survey
             switch (question.Type)
             {
                 case "Open vraag":
-                    return new OpenQuestionVM(this, question) { MainViewModel = MainViewModel };
+                    return new OpenQuestionVM(this, MainViewModel, question);
                 case "Gesloten vraag":
-                    return new ClosedQuestionVM(this, question) { MainViewModel = MainViewModel };
+                    return new ClosedQuestionVM(this, MainViewModel, question);
                 case "Schuifbalk vraag":
-                    return new SliderQuestionVM(this, question) { MainViewModel = MainViewModel };
+                    return new SliderQuestionVM(this, MainViewModel, question);
                 case "Opmerking veld":
-                    return new CommentFieldVM(this, question) { MainViewModel = MainViewModel };
+                    return new CommentFieldVM(this, MainViewModel, question);
                 case "Afbeelding galerij vraag":
-                    return new ImageGalleryQuestionVM(this, question) { MainViewModel = MainViewModel };
+                    return new ImageGalleryQuestionVM(this, MainViewModel, question);
                 case "Teken vraag":
-                    return new DrawQuestionVM(this, question) { MainViewModel = MainViewModel };
+                    return new DrawQuestionVM(this, MainViewModel, question);
                 case "Meerkeuze vraag":
-                    return new MultipleChoiceQuestionVM(this, question) { MainViewModel = MainViewModel };
+                    return new MultipleChoiceQuestionVM(this, MainViewModel, question);
                 default:
-                    return new OpenQuestionVM(this, question) { MainViewModel = MainViewModel };
+                    return new OpenQuestionVM(this, MainViewModel, question);
             }
         }
 

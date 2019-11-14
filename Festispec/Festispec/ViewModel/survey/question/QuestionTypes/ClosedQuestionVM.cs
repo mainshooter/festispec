@@ -22,10 +22,11 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
 
-        public ClosedQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
+        public ClosedQuestionVM(SurveyVM surveyVm, MainViewModel mainViewModel, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
+            MainViewModel = mainViewModel;
             QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
             SaveCommand = new RelayCommand(Save);
             GoBackCommand = new RelayCommand(GoBack);

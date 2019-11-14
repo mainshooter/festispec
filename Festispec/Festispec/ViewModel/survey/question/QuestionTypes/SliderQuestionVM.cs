@@ -27,10 +27,11 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public int LowestNumber { get; set; }
         public int HighestNumber { get; set; }
 
-        public SliderQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
+        public SliderQuestionVM(SurveyVM surveyVm, MainViewModel mainViewModel, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
+            MainViewModel = mainViewModel;
 
             if (_surveyQuestion.Question1 != null)
             {

@@ -39,10 +39,11 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public string SelectedOptionName { get; set; }
         public ObservableCollection<string> Options { get; set; }
 
-        public MultipleChoiceQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
+        public MultipleChoiceQuestionVM(SurveyVM surveyVm, MainViewModel mainViewModel, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
+            MainViewModel = mainViewModel;
             Options = new ObservableCollection<string>();
 
             if (_surveyQuestion.Question1 != null)

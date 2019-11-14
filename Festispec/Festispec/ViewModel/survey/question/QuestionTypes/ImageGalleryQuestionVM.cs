@@ -24,10 +24,11 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public ICommand GoBackCommand { get; set; }
         public int MaxImages { get; set; }
 
-        public ImageGalleryQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
+        public ImageGalleryQuestionVM(SurveyVM surveyVm, MainViewModel mainViewModel, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
+            MainViewModel = mainViewModel;
 
             if (_surveyQuestion.Question1 != null)
             {

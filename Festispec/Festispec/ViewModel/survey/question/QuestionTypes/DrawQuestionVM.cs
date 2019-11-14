@@ -26,10 +26,11 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public ICommand GoBackCommand { get; set; }
         public ICommand AddImageCommand { get; set; }
 
-        public DrawQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
+        public DrawQuestionVM(SurveyVM surveyVm, MainViewModel mainViewModel, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
+            MainViewModel = mainViewModel;
 
             if (_surveyQuestion.Question1 != null)
             {
