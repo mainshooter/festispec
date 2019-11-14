@@ -102,7 +102,6 @@ namespace Festispec.ViewModel.employee
         public EmployeeListVM(MainViewModel mainViewModel)
         {
             MainViewModel = mainViewModel;
-            MainViewModel.PageSingleton.SetEmployeePages();
             Filters = new List<string>();
             SelectedFilter = Filters.First();
             Filter = "";

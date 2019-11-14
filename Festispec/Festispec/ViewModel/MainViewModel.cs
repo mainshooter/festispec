@@ -51,6 +51,7 @@ namespace Festispec.ViewModel
             _pageSingleton = new PageSingleton();
 
             Page = _pageSingleton.GetPage("dashboard");
+            PageSingleton.SetEmployeePages();
         }
 
         //methodes
