@@ -155,33 +155,5 @@ namespace Festispec.ViewModel.customer.customerEvent
         {
             _event = new Domain.Event();
         }
-
-        public async Task<SimpleWaypoint> AdressToCoor()
-        {
-            GeocodeRequest geocode = new GeocodeRequest();
-            SimpleAddress address = new SimpleAddress();
-
-            address.AddressLine = Street + HouseNumber;
-            address.Locality = City;
-            address.PostalCode = PostalCode;
-
-            geocode.Address = address;
-            geocode.BingMapsKey = "ITBT6VEQtWQIP2Nt0sEo~GvONPsboTGlj2F7N16RX1Q~AuuacnuDtvdGIIkJJsITb1P2J1Cr0vNjAgb3KKNYIiUUa2su3wzy_67N4XpmXffL";
-
-            var response = await geocode.Execute();
-
-            if (response != null &&
-                response.ResourceSets != null &&
-                response.ResourceSets.Length > 0 &&
-                response.ResourceSets[0].Resources != null &&
-                response.ResourceSets[0].Resources.Length > 0)
-            {
-                Location result = response.ResourceSets[0].Resources[0] as BingMapsRESTToolkit.Location;
-                SimpleWaypoint waypoint = new SimpleWaypoint(result.GeocodePoints[1].Coordinates[0], result.GeocodePoints[1].Coordinates[1]);
-                return waypoint;
-            }
-
-            return null;
-        }
     }
 }
