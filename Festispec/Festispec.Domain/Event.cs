@@ -34,6 +34,7 @@ namespace Festispec.Domain
         public int HouseNumber { get; set; }
         public string PostalCode { get; set; }
         public string City { get; set; }
+        public string HouseNumber_Addition { get; set; }
     
         public virtual ContactPerson ContactPerson { get; set; }
         public virtual Customer Customer { get; set; }

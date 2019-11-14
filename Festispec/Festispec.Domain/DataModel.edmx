@@ -76,8 +76,9 @@
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="COC" Type="int" Nullable="false" />
           <Property Name="BranchNumber" Type="int" Nullable="false" />
-          <Property Name="Street" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="HouseNumber" Type="int" Nullable="false" />
+          <Property Name="HouseNumber Addition" Type="varchar" MaxLength="5" />
           <Property Name="PostalCode" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="15" Nullable="false" />
@@ -107,7 +108,6 @@
             <PropertyRef Name="Type" />
           </Key>
           <Property Name="Type" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="ElementPart" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -119,8 +119,9 @@
           <Property Name="Firstname" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="Prefix" Type="nvarchar" MaxLength="45" />
           <Property Name="Lastname" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="Street" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="HouseNumber" Type="int" Nullable="false" />
+          <Property Name="HouseNumber Addition" Type="varchar" MaxLength="5" />
           <Property Name="PostalCode" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="15" Nullable="false" />
@@ -144,8 +145,9 @@
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="ContactPersonId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Street" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="HouseNumber" Type="int" Nullable="false" />
+          <Property Name="HouseNumber Addition" Type="nvarchar" MaxLength="5" />
           <Property Name="PostalCode" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="BeginDate" Type="datetime" Nullable="false" />
@@ -1018,7 +1020,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="BranchNumber" Type="Int32" Nullable="false" />
-          <Property Name="Street" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HouseNumber" Type="Int32" Nullable="false" />
           <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
@@ -1031,6 +1033,7 @@
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
           <NavigationProperty Name="Quotations" Relationship="Self.FK_Quotation_Customer" FromRole="Customer" ToRole="Quotation" />
           <Property Name="COC" Type="Int32" Nullable="false" />
+          <Property Name="HouseNumber_Addition" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Day">
           <Key>
@@ -1070,7 +1073,7 @@
           <Property Name="Firstname" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Prefix" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="Lastname" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Street" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HouseNumber" Type="Int32" Nullable="false" />
           <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
@@ -1090,6 +1093,7 @@
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Employee" FromRole="Employee" ToRole="Order" />
           <NavigationProperty Name="Quotations" Relationship="Self.FK_Quotation_Employee" FromRole="Employee" ToRole="Quotation" />
           <NavigationProperty Name="SickReportInspectors" Relationship="Self.FK_SickReportInspector_Employee" FromRole="Employee" ToRole="SickReportInspector" />
+          <Property Name="HouseNumber_Addition" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="EmployeeStatu">
           <Key>
@@ -1115,10 +1119,11 @@
           <NavigationProperty Name="Customer" Relationship="Self.FK_Event_Customer" FromRole="Event" ToRole="Customer" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Event" FromRole="Event" ToRole="Order" />
           <NavigationProperty Name="Quotations" Relationship="Self.FK_Quotation_Event" FromRole="Event" ToRole="Quotation" />
-          <Property Name="Street" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="HouseNumber" Type="Int32" Nullable="false" />
           <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="HouseNumber_Addition" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="InspectorPlanning">
           <Key>
@@ -2022,6 +2027,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="Festispec.Domain.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="HouseNumber_Addition" ColumnName="HouseNumber Addition" />
                 <ScalarProperty Name="COC" ColumnName="COC" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2059,13 +2065,13 @@
             <EntityTypeMapping TypeName="Festispec.Domain.ElementType">
               <MappingFragment StoreEntitySet="ElementType">
                 <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="ElementPart" ColumnName="ElementPart" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="Festispec.Domain.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="HouseNumber_Addition" ColumnName="HouseNumber Addition" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -2095,6 +2101,7 @@
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="Festispec.Domain.Event">
               <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="HouseNumber_Addition" ColumnName="HouseNumber Addition" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
                 <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
