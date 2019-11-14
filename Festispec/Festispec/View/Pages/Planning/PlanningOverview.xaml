@@ -11,13 +11,13 @@
 
     <StackPanel Background="White">
         <Viewbox>
-            <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding PlannedEmployeeList}">
+            <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding PlannedEmployeeList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="900">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Voornaam" Binding="{Binding Employee.Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tussenvoegsel" Binding="{Binding Day}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Achternaam" Binding="{Binding Status}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Telefoonnummer" Binding="{Binding Phone}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Volledige naam" Binding="{Binding Employee.Fullname}"/>
+                    <DataGridTextColumn Header="Evenement" Binding="{Binding Day.Order.Event.Name}"/>
+                    <DataGridTextColumn Header="Starttijd" Binding="{Binding PlannedStartTime}"/>
+                    <DataGridTextColumn Header="Eindtijd" Binding="{Binding PlannedEndTime}"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Viewbox>

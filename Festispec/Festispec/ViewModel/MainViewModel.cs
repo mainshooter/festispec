@@ -48,8 +48,8 @@ namespace Festispec.ViewModel
             OpenSick = new RelayCommand(OpenSickTab);
             _pageSingleton = new PageSingleton();
 
-            Page = _pageSingleton.GetPage("dashboard");
-            //OpenDashboardTab();
+            //Page = _pageSingleton.GetPage("dashboard");
+            OpenDashboardTab();
         }
 
         //methodes

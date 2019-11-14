@@ -105,7 +105,7 @@
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1">
-            <Frame x:Name="frame" Margin="30" Background="White" Content="{Binding Page}" NavigationUIVisibility="Hidden">
+            <Frame x:Name="frame" Margin="30" Background="White" Content="{Binding Page}" NavigationUIVisibility="Hidden" Width="1020">
                 <Frame.BitmapEffect>
                     <DropShadowBitmapEffect Color="Black" Direction="50" ShadowDepth="3" Softness="100" Opacity="0.5" />
                 </Frame.BitmapEffect>

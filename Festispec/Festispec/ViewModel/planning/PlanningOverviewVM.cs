@@ -21,7 +21,14 @@ namespace Festispec.ViewModel.planning
 
             using (var context = new Entities())
             {
-                PlannedEmployeeList = new ObservableCollection<PlannedEmployeeVM>(context.InspectorPlannings.ToList().Select(i => new PlannedEmployeeVM(i)));
+                PlannedEmployeeList = new ObservableCollection<PlannedEmployeeVM>(context.InspectorPlannings.ToList().Select(i => new PlannedEmployeeVM(i)).Where(i => i.PlannedEndTime.Date >= DateTime.Now).ToList());
+                Console.WriteLine(DateTime.Today);
+                //new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.Firstname.ToLower().Contains(Filter.ToLower())).ToList());
+
+
+
+                //alles
+                //PlannedEmployeeList = new ObservableCollection<PlannedEmployeeVM>(context.InspectorPlannings.ToList().Select(i => new PlannedEmployeeVM(i)));
             }
         }
     }

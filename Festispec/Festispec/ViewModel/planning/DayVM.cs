@@ -39,6 +39,7 @@ namespace Festispec.ViewModel.planning
         public DayVM(Day day)
         {
             _day = day;
+            Order = new OrderVM(day.Order);
         }
 
         public DayVM()

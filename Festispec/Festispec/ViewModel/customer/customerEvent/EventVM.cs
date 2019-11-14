@@ -98,8 +98,8 @@ namespace Festispec.ViewModel.customer.customerEvent
         public EventVM(Event eventCon)
         {
             _event = eventCon;
-            _customer = new CustomerVM(_event.Customer);
-            _contactPerson = new ContactPersonVM(_event.ContactPerson);
+            //_customer = new CustomerVM(_event.Customer);
+            //_contactPerson = new ContactPersonVM(_event.ContactPerson);
         }
 
         public EventVM()

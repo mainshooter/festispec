@@ -148,6 +148,14 @@ namespace Festispec.ViewModel.employee
             }
         }
 
+        public string Fullname
+        {
+            get
+            {
+                return Firstname + " " + Lastname;
+            }
+        }
+
         public EmployeeVM(Employee employee)
         {
             _employee = employee;
