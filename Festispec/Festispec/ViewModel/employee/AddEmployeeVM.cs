@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.employee
@@ -25,7 +26,7 @@ namespace Festispec.ViewModel.employee
         {
             EmployeeList = employeeList;
             Employee = new EmployeeVM();
-            AddEmployeeCommand = new RelayCommand(AddEmployee, CanAddEmployee);
+            AddEmployeeCommand = new RelayCommand<PasswordBox>(AddEmployee, CanAddEmployee);
             CloseAddEmployeeCommand = new RelayCommand(CloseAddEmployee);
             using (var context = new Entities())
             {
@@ -43,14 +44,16 @@ namespace Festispec.ViewModel.employee
             Employee.Password = hash;
         }
 
-        public void AddEmployee()
+        public void AddEmployee(PasswordBox password)
         {
+            Employee.Password = password.Password;
             Encrypt();
             using (var context = new Entities())
             {
                 context.Employees.Add(Employee.ToModel());
                 context.SaveChanges();
             }
+            EmployeeList.RaisePropertyChanged("EmployeeListFiltered");
             CloseAddEmployee();
         }
 
@@ -59,9 +62,9 @@ namespace Festispec.ViewModel.employee
             EmployeeList.MainViewModel.Page.NavigationService?.GoBack();
         }
 
-        public bool CanAddEmployee()
+        public bool CanAddEmployee(PasswordBox password)
         {
-            if (Employee.Firstname == null || Employee.Lastname == null || Employee.Password == null || Employee.City == null || Employee.Department == null || Employee.Email == null || Employee.HouseNumber <= 0 || Employee.Phone == null || Employee.PostalCode == null || Employee.Status == null || Employee.Street == null || Employee.Birthday == null || Employee.Iban == null)
+            if (Employee.Firstname == null || Employee.Lastname == null || password == null || Employee.City == null || Employee.Department == null || Employee.Email == null || Employee.HouseNumber <= 0 || Employee.Phone == null || Employee.PostalCode == null || Employee.Status == null || Employee.Street == null || Employee.Birthday == null || Employee.Iban == null)
             {
                 return false;
             }
