@@ -14,6 +14,7 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -25,7 +26,9 @@
         <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionDetails.Question}"></TextBox>
         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">Limiet aantal afbeeldingen:</Label>
         <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding MaxImages}"></TextBox>
-        <Button Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding GoBackCommand}">Terug</Button>
-        <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Margin="10,0,0,0" Command="{Binding SaveCommand}">Opslaan</Button>
+        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right">Omschrijving:</Label>
+        <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionDetails.Description}"></TextBox>
+        <Button Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding GoBackCommand}">Terug</Button>
+        <Button Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Margin="10,0,0,0" Command="{Binding SaveCommand}">Opslaan</Button>
     </Grid>
 </Page>

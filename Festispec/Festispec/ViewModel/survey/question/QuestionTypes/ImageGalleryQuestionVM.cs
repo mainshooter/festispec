@@ -15,6 +15,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private Question _surveyQuestion;
         private SurveyVM _surveyVm;
         private string _question;
+        private string _description;
         private int _maxImages;
 
         public MainViewModel MainViewModel { get; set; }
@@ -45,6 +46,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
             // temp variables for when you want to go back and discard changes
             _question = QuestionDetails.Question;
+            _description = QuestionDetails.Description;
             _maxImages = MaxImages;
         }
 
@@ -61,6 +63,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 if (_surveyQuestion.Id == 0)
                 {
                     _question = QuestionDetails.Question;
+                    _description = QuestionDetails.Description;
                     _maxImages = MaxImages;
                     context.Questions.Add(_surveyQuestion);
                     _surveyVm.Questions.Add(this);
@@ -80,6 +83,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public void GoBack()
         {
             QuestionDetails.Question = _question;
+            QuestionDetails.Description = _description;
             MaxImages = _maxImages;
             RaisePropertyChanged("QuestionDetails");
             RaisePropertyChanged("MaxImages");
@@ -91,6 +95,12 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             if (QuestionDetails.Question == "" || QuestionDetails.Question.Length > 255)
             {
                 MessageBox.Show("De vraag mag niet leeg zijn of langer zijn dan 255 karakters.");
+                return false;
+            }
+
+            if (QuestionDetails.Description.Length > 500)
+            {
+                MessageBox.Show("De omschrijving mag niet langer zijn dan 500 karakters.");
                 return false;
             }
 

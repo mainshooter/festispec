@@ -81,9 +81,9 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 return false;
             }
 
-            if (QuestionDetails.Description == "" || QuestionDetails.Description.Length > 500)
+            if (QuestionDetails.Description.Length > 500)
             {
-                MessageBox.Show("De omschrijving mag niet leeg zijn of langer zijn dan 500 karakters.");
+                MessageBox.Show("De omschrijving mag niet langer zijn dan 500 karakters.");
                 return false;
             }
 
