@@ -13,6 +13,8 @@ using System;
 using Festispec.ViewModel.rapport;
 using Festispec.View.Report;
 using Festispec.ViewModel;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Festispec.Singleton
 {
@@ -20,6 +22,7 @@ namespace Festispec.Singleton
     {
         private Dictionary<string, Page> _pages;
         private MainViewModel _mainViewModel;
+        private byte[] test;
 
         public PageSingleton(MainViewModel mainViewModel)
         {
@@ -31,6 +34,7 @@ namespace Festispec.Singleton
             _pages.Add("availability", new AvailablePage());
             _pages.Add("event", new EventPage());
             _pages.Add("sick", new SickPage());
+            Test();
             AddReportPage();
         }
 
@@ -145,11 +149,10 @@ namespace Festispec.Singleton
                 Type = "image",
                 Data = new Dictionary<string, Object>()
                 {
-                    ["image"] = @"C:\Users\joky1\Downloads\tate_no_yuusha.png"
+                    ["image"] = test
                 }
             }
             );
-
             reportVM.MainViewModel = _mainViewModel;
             report.DataContext = reportVM;
 
@@ -160,6 +163,16 @@ namespace Festispec.Singleton
         {
             var result = _pages.Where(p => p.Key.Equals(pageName));
             return result.FirstOrDefault().Value;
+        }
+        private void Test()
+        {
+            var fd = new OpenFileDialog { Filter = "All Image Files | *.*", Multiselect = false };
+            if (fd.ShowDialog() != true) return;
+            using (var fs = new FileStream(fd.FileName, FileMode.Open, FileAccess.Read))
+            {
+                test = new byte[fs.Length];
+                fs.Read(test, 0, Convert.ToInt32(fs.Length));
+            }
         }
     }
 }

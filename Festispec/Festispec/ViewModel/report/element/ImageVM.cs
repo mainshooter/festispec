@@ -14,7 +14,7 @@ namespace Festispec.ViewModel.report.element
         private object _data;
 
 
-        public string Photo { get; set; }
+        public byte[] Photo { get; set; }
 
 
         public override Object Data
@@ -39,7 +39,7 @@ namespace Festispec.ViewModel.report.element
         }
         private void ApplyChanges()
         {
-            Photo = (string)Dictionary["image"];
+            Photo = (byte[])Dictionary["image"];
         }
     }
 }
