@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using Festispec.ViewModel.rapport.element;
 
 namespace Festispec.ViewModel.report.element
 {
@@ -13,30 +7,29 @@ namespace Festispec.ViewModel.report.element
     {
         private object _data;
 
-
         public byte[] Photo { get; set; }
-
 
         public override Object Data
         {
-            get
-            {
+            get {
                 return _data;
             }
-            set
-            {
+            set {
                 _data = value;
                 Dictionary = (Dictionary<string, Object>)Data;
                 ApplyChanges();
             }
         }
+
         public Dictionary<string, Object> Dictionary { get; set; }
+
         public ImageVM(ReportElementVM element)
         {
             Data = element.Data;
             Title = element.Title;
             Content = element.Content;
         }
+
         private void ApplyChanges()
         {
             Photo = (byte[])Dictionary["image"];

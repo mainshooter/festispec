@@ -1,6 +1,4 @@
 ﻿using Festispec.View.Report.Element;
-using Festispec.ViewModel.rapport;
-using Festispec.ViewModel.rapport.element;
 using Festispec.ViewModel.report.element;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -8,20 +6,20 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.report
 {
-    public class AddElementVM: ViewModelBase
+    public class AddElementVM : ViewModelBase
     {
         private Page _previousePage;
         private MainViewModel _mainViewModel;
+
         public List<string> ElementTypes { get; set; }
+
         public ReportVM Report { get; set; }
+
         public MainViewModel MainViewModel {
             get {
                 return _mainViewModel;
@@ -31,9 +29,11 @@ namespace Festispec.ViewModel.report
                 _previousePage = _mainViewModel.Page;
             }
         }
+
         public int SelectedElementIndex { get; set; }
 
         public ICommand GoBackCommand { get; set; }
+
         public ICommand AddElementCommand { get; set; }
 
         public AddElementVM()
@@ -129,35 +129,43 @@ namespace Festispec.ViewModel.report
             else if (elementType.Equals("barchart"))
             {
                 BarChartUserControl barChartUserControl = new BarChartUserControl();
-                var element = new ReportElementVM();
-                BarChartVM barChartVM = new BarChartVM(element);
-                barChartVM.Title = "PleaseWork";
-                barChartVM.Content = "Random stuff";
-                barChartVM.SeriesCollection = new SeriesCollection
+                var element = new ReportElementVM()
                 {
-                    new ColumnSeries
+                    Title = "test",
+                    Content = "ttest",
+                    Type = "barchart",
+                    Data = new Dictionary<string, Object>()
                     {
-                        Title = "test",
-                        Values = new ChartValues<double>{20,40,50,78}
+                        ["xaxisName"] = "Place",
+                        ["yaxisName"] = "Amount",
+                        ["labels"] = new List<string> { "test1", "test2", "test3", "test4", "test5" },
+                        ["seriescollection"] = new SeriesCollection
+                        {
+                            new ColumnSeries {Title = "testdata" , Values = new ChartValues<int>{10,20,30,40,50} },
+
+                            new ColumnSeries {Title = "testdata2" , Values = new ChartValues<int>{15,25,35,45,55} }
+                        }
                     }
                 };
-                barChartVM.SeriesCollection.Add(new ColumnSeries
-                {
-                    Title = "test2",
-                    Values = new ChartValues<double> {10,20,25,39}
-                });
-                barChartVM.Labels.Add("testname");
-                barChartVM.Labels.Add("testname1");
-                barChartVM.Labels.Add("testname2");
-                barChartVM.Labels.Add("testname3");
-                barChartVM.Formatter = value => value.ToString("N");
+                BarChartVM barChartVM = new BarChartVM(element);
+                barChartVM.Labels = new List<string>();
+                
                 barChartUserControl.DataContext = barChartVM;
                 Report.ReportElementUserControlls.Add(barChartUserControl);
-            }
+            }        
             else if (elementType.Equals("text"))
             {
                 TextUserControl text = new TextUserControl();
-                var element = new ReportElementVM();
+                var element = new ReportElementVM()
+                {
+                    Title = "text",
+                    Content = "test text",
+                    Type = "text",
+                    Data = new Dictionary<string, Object>()
+                    {
+                        ["text"] = "test text smiley"
+                    }
+                };
                 TextVM textVM = new TextVM(element);
                 text.DataContext = textVM;
                 Report.ReportElementUserControlls.Add(text);
@@ -165,8 +173,17 @@ namespace Festispec.ViewModel.report
             }
             else if (elementType.Equals("image"))
             {
-                View.Report.Element.ImageUserControl image = new View.Report.Element.ImageUserControl();
-                var element = new ReportElementVM();
+                ImageUserControl image = new ImageUserControl();
+                var element = new ReportElementVM()
+                {
+                    Title = "image",
+                    Content = "local image",
+                    Type = "image",
+                    Data = new Dictionary<string, Object>()
+                    {
+                        ["image"] = new byte[0]
+                    }
+                };
                 ImageVM imageVM = new ImageVM(element);
                 image.DataContext = imageVM;
                 Report.ReportElementUserControlls.Add(image);

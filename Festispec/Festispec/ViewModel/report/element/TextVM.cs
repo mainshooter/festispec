@@ -1,10 +1,6 @@
-﻿using Festispec.ViewModel.rapport.element;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element
@@ -13,6 +9,7 @@ namespace Festispec.ViewModel.report.element
     {
         private object _data;
         private Boolean _readOnly;
+
         public Boolean ReadOnly {
             get
             {
@@ -23,16 +20,17 @@ namespace Festispec.ViewModel.report.element
                 _readOnly = value;
                 RaisePropertyChanged("ReadOnly");
             }
-
         }
 
         public string Text { get; set; }
+
         public Dictionary<string, Object> Dictionary { get; set; }
+
         public ICommand ChangeToReadOnly { get; set; }
+
         public ICommand ChangeToInput { get; set; }
 
-        public override Object Data
-        {
+        public override Object Data {
             get
             {
                 return _data;
@@ -44,6 +42,7 @@ namespace Festispec.ViewModel.report.element
                 ApplyChanges();
             }
         }
+
         public TextVM(ReportElementVM element)
         {
             Data = element.Data;
@@ -53,6 +52,7 @@ namespace Festispec.ViewModel.report.element
             ChangeToReadOnly = new RelayCommand(()=> ReadOnly = true);
             ChangeToInput = new RelayCommand(() => ReadOnly = false);
         }
+
         private void ApplyChanges()
         {
             Text = (string)Dictionary["text"];

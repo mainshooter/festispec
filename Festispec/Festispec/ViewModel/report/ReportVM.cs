@@ -1,30 +1,21 @@
 ﻿using Festispec.Domain;
 using Festispec.Factory;
 using Festispec.View.Pages.Report.element;
-using Festispec.View.Report.Element;
 using Festispec.ViewModel.employee.order;
-using Festispec.ViewModel.rapport.element;
-using Festispec.ViewModel.report;
 using Festispec.ViewModel.report.element;
+using Festispec.ViewModel.report;
 using GalaSoft.MvvmLight.CommandWpf;
-using LiveCharts;
-using LiveCharts.Wpf;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Festispec.ViewModel.rapport
+namespace Festispec.ViewModel.report
 {
     public class ReportVM
     {
         private Report _report;
-        private ObservableCollection<UserControl> _reportElementUserControlls;
         private ReportElementFactory _reportElementFactory;
 
         public int Id {
@@ -58,21 +49,13 @@ namespace Festispec.ViewModel.rapport
 
         public ObservableCollection<ReportElementVM> ReportElements { get; set; }
         
-        public ObservableCollection<UserControl> ReportElementUserControlls {
-            get {
-                return _reportElementUserControlls;
-            }
-            set {
-                _reportElementUserControlls = value;
-            }
-        }
+        public ObservableCollection<UserControl> ReportElementUserControlls { get; set; }
 
         public MainViewModel MainViewModel { get; set; }
 
         public ICommand SaveReportCommand { get; set; }
 
         public ICommand AddElementCommand { get; set; }
-
 
         public ReportVM(Report report)
         {
@@ -125,6 +108,7 @@ namespace Festispec.ViewModel.rapport
                 context.SaveChanges();
             }
         }
+
         private void Insert()
         {
             using (var context = new Entities())

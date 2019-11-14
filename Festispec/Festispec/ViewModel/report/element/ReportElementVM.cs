@@ -1,13 +1,8 @@
 ﻿using Festispec.Domain;
 using GalaSoft.MvvmLight;
-using LiveCharts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Festispec.ViewModel.rapport.element
+namespace Festispec.ViewModel.report.element
 {
     public class ReportElementVM: ViewModelBase
     {

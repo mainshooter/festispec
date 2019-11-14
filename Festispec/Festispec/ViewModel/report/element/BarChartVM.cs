@@ -1,17 +1,15 @@
-﻿using Festispec.ViewModel.rapport.element;
-using LiveCharts;
+﻿using LiveCharts;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.report.element
 {
     public class BarChartVM : ReportElementVM
     {
         private Object _data;
+
         public Dictionary<string, Object> Dictionary { get; set; }
+
         public string XaxisName { get; set; }
 
         public string YaxisName { get; set; }
@@ -22,16 +20,13 @@ namespace Festispec.ViewModel.report.element
 
         public Func<double,string> Formatter { set; get;}
 
-        public override Object Data
-        {
-            get
-            {
+        public override Object Data {
+            get {
                 return _data;
             }
-            set
-            {
+            set {
                 _data = value;
-                Dictionary = (Dictionary<string, Object>)Data;
+                Dictionary = (Dictionary<string, Object>) Data;
                 ApplyChanges();
             }
         }
@@ -43,6 +38,7 @@ namespace Festispec.ViewModel.report.element
             Content = element.Content;
             Order = element.Order;
         }
+
         private void ApplyChanges()
         {
             Labels = (List<string>)Dictionary["labels"];
@@ -50,6 +46,5 @@ namespace Festispec.ViewModel.report.element
             YaxisName = (string)Dictionary["yaxisName"];
             SeriesCollection = (SeriesCollection)Dictionary["seriescollection"];
         }
-
     }
 }

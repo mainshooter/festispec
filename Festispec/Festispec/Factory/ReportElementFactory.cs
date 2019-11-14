@@ -1,20 +1,11 @@
 ﻿using Festispec.View.Report.Element;
-using Festispec.ViewModel.rapport.element;
 using Festispec.ViewModel.report.element;
-using LiveCharts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-using ImageUserControl = Festispec.View.Report.Element.ImageUserControl;
 
 namespace Festispec.Factory
 {
     public class ReportElementFactory
     {
-
         public UserControl CreateElement(ReportElementVM element)
         {
             UserControl returningUserControl = null;

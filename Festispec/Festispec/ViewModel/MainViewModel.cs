@@ -1,15 +1,8 @@
-using Festispec.View.Report;
 using GalaSoft.MvvmLight;
 using System.Windows.Controls;
 using Festispec.Singleton;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
-using Festispec.ViewModel.rapport;
-using Festispec.ViewModel.rapport.element;
-using System.Collections.Generic;
-using System;
-using LiveCharts;
-using LiveCharts.Wpf;
 
 namespace Festispec.ViewModel
 {

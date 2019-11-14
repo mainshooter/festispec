@@ -8,25 +8,20 @@ using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Employee.Availability;
 using LiveCharts.Wpf;
 using LiveCharts;
-using Festispec.ViewModel.rapport.element;
+using Festispec.ViewModel.report.element;
 using System;
-using Festispec.ViewModel.rapport;
+using Festispec.ViewModel.report;
 using Festispec.View.Report;
 using Festispec.ViewModel;
-using Microsoft.Win32;
-using System.IO;
 
 namespace Festispec.Singleton
 {
     class PageSingleton
     {
         private Dictionary<string, Page> _pages;
-        private MainViewModel _mainViewModel;
-        private byte[] test;
 
         public PageSingleton(MainViewModel mainViewModel)
-        {
-            _mainViewModel = mainViewModel;
+        {          
             _pages = new Dictionary<string, Page>();
             _pages.Add("dashboard", new DashboardPage());
             _pages.Add("employee", new EmployeePage());
@@ -34,11 +29,10 @@ namespace Festispec.Singleton
             _pages.Add("availability", new AvailablePage());
             _pages.Add("event", new EventPage());
             _pages.Add("sick", new SickPage());
-            Test();
-            AddReportPage();
+            AddReportPage(mainViewModel);
         }
 
-        private void AddReportPage()
+        private void AddReportPage(MainViewModel mainViewModel)
         {
             var report = new ReportPage();
             ReportVM reportVM = new ReportVM();
@@ -126,34 +120,33 @@ namespace Festispec.Singleton
                             new ColumnSeries {Title = "testdata2" , Values = new ChartValues<int>{15,25,35,45,55} }
                        }
                    }
-
                }
             );
             reportVM.ReportElements.Add(
-            new ReportElementVM()
-            {
-                Title = "text",
-                Content = "test text",
-                Type = "text",
-                Data = new Dictionary<string, Object>()
+                new ReportElementVM()
                 {
-                    ["text"] = "test text smiley"
+                    Title = "text",
+                    Content = "test text",
+                    Type = "text",
+                    Data = new Dictionary<string, Object>()
+                    {
+                        ["text"] = "test text smiley"
+                    }
                 }
-            }
             );
             reportVM.ReportElements.Add(
-            new ReportElementVM()
-            {
-                Title = "image",
-                Content = "local image",
-                Type = "image",
-                Data = new Dictionary<string, Object>()
+                new ReportElementVM()
                 {
-                    ["image"] = test
+                    Title = "image",
+                    Content = "local image",
+                    Type = "image",
+                    Data = new Dictionary<string, Object>()
+                    {
+                        ["image"] = new byte[0]
+                    }
                 }
-            }
             );
-            reportVM.MainViewModel = _mainViewModel;
+            reportVM.MainViewModel = mainViewModel;
             report.DataContext = reportVM;
 
             _pages.Add("report", report);
@@ -163,16 +156,6 @@ namespace Festispec.Singleton
         {
             var result = _pages.Where(p => p.Key.Equals(pageName));
             return result.FirstOrDefault().Value;
-        }
-        private void Test()
-        {
-            var fd = new OpenFileDialog { Filter = "All Image Files | *.*", Multiselect = false };
-            if (fd.ShowDialog() != true) return;
-            using (var fs = new FileStream(fd.FileName, FileMode.Open, FileAccess.Read))
-            {
-                test = new byte[fs.Length];
-                fs.Read(test, 0, Convert.ToInt32(fs.Length));
-            }
         }
     }
 }
