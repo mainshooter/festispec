@@ -81,10 +81,10 @@ INSERT INTO ContactPerson VALUES ('Harrie', NULL, 'Manen', '068434834', 'H.Manen
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO [Event] VALUES (1,1,'Defqon 1', '20190628 11:00:00', '20190630 11:00:00', 30000, 20000, 'Dance evenement')
-INSERT INTO [Event] VALUES (1,2,'Xqlusive Holland', '20200919 23:00:00', '20200920 07:00:00', 8100, 6300, 'Hollands dance evenement')
-INSERT INTO [Event] VALUES (2,3,'Ed Sheeran in Concert', '20210216 17:00:00', '20210216 23:00:00', 8100, 17000, 'Concert van Ed Sheeran')
-INSERT INTO [Event] VALUES (3,4,'Snollebollekes', '20200420 17:00:00', '20200421 01:30:00', 3000, 6000, 'Snollebollekes in concert')
+INSERT INTO [Event] VALUES (1,1,'Defqon 1','Spijkweg', 30, NULL, '8256RJ', 'Biddinghuizen', '20190628 11:00:00', '20190630 11:00:00', 30000, 20000, 'Dance evenement')
+INSERT INTO [Event] VALUES (1,2,'Xqlusive Holland','Holterbergweg', 3, NULL, '1101CE', 'Amsterdam', '20200919 23:00:00', '20200920 07:00:00', 8100, 6300, 'Hollands dance evenement')
+INSERT INTO [Event] VALUES (2,3,'Ed Sheeran in Concert','Holterbergweg', 3, NULL, '1101CE', 'Amsterdam', '20210216 17:00:00', '20210216 23:00:00', 8100, 17000, 'Concert van Ed Sheeran')
+INSERT INTO [Event] VALUES (3,4,'Snollebollekes','ArenA Boulevard', 590, NULL, '1101DS', 'Amsterdam Zuidoost', '20200420 17:00:00', '20200421 01:30:00', 3000, 6000, 'Snollebollekes in concert')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
