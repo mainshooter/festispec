@@ -34,11 +34,11 @@
         <Label Content="Email" HorizontalAlignment="Left" Margin="320,128,0,0" VerticalAlignment="Top" Width="56"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="320,218,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Iban, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
         <Label Content="Iban" HorizontalAlignment="Left" Margin="320,187,0,0" VerticalAlignment="Top" Width="48"/>
-        <DatePicker HorizontalAlignment="Left" Height="23" Margin="320,277,0,0" Text="{Binding Path=Employee.Birthday, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
+        <DatePicker HorizontalAlignment="Left" Height="23" Margin="320,277,0,0" SelectedDate="{Binding Path=Employee.Birthday, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
         <Label Content="Birthday" HorizontalAlignment="Left" Margin="326,246,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,-1.631" Width="78"/>
-        <ComboBox HorizontalAlignment="Left" Margin="517,41,0,0" VerticalAlignment="Top" Width="175" Text="{Binding Path=Employee.Status, Mode=TwoWay}" SelectedIndex="0" ItemsSource="{Binding Path=Status}" SelectedValue="{Binding Employee.Status}" />
+        <ComboBox HorizontalAlignment="Left" Margin="517,41,0,0" VerticalAlignment="Top" Width="175" Text="{Binding Path=Employee.Status, Mode=TwoWay}" ItemsSource="{Binding Path=Status}" SelectedValue="{Binding Employee.Status}" />
         <Label Content="Status" HorizontalAlignment="Left" Margin="517,10,0,0" VerticalAlignment="Top" Width="61"/>
-        <ComboBox HorizontalAlignment="Left" Margin="517,100,0,0" VerticalAlignment="Top" Width="175" Text="{Binding Path=Department, Mode=TwoWay}" ItemsSource="{Binding Path=Departments}" SelectedValuePath="Department" SelectedValue="{Binding Employee.Department}" DisplayMemberPath="Name"/>
+        <ComboBox HorizontalAlignment="Left" Margin="517,100,0,0" VerticalAlignment="Top" Width="175" ItemsSource="{Binding Path=Departments}" SelectedItem="{Binding Employee.Department, Mode=OneWayToSource}" SelectedIndex="{Binding DepartmentIndex, Mode=OneWay}" DisplayMemberPath="Name"/>
         <Label Content="Afdeling" HorizontalAlignment="Left" Margin="517,69,0,0" VerticalAlignment="Top" Width="81"/>
     </Grid>
 </Page>

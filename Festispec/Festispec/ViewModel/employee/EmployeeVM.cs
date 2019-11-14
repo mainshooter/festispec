@@ -39,7 +39,20 @@ namespace Festispec.ViewModel.employee
                 {
                     _department = value;
                     _employee.Department = value.Name;
+                    _employee.Department1 = value.ToModel();
                 }
+            }
+        }
+
+        public Department DepartmentModel
+        {
+            get
+            {
+                return _employee.Department1;
+            }
+            set
+            {
+                _employee.Department1 = value;
             }
         }
 

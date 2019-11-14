@@ -22,6 +22,14 @@ namespace Festispec.ViewModel.employee
         public ICommand EditEmployeeCommand { get; set; }
         public ICommand CloseEditEmployeeCommand { get; set; }
 
+        public int DepartmentIndex
+        {
+            get
+            {
+                int index = Departments.IndexOf(Departments.Select(department => department).Where(department => department.Name == Employee.Department.Name).FirstOrDefault());
+                return index;
+            }
+        }
         public EditEmployeeVM(EmployeeListVM employeeList)
         {
             EmployeeList = employeeList;
@@ -42,6 +50,7 @@ namespace Festispec.ViewModel.employee
                 context.Entry(Employee.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
             }
+            EmployeeList.RaisePropertyChanged("EmployeeListFiltered");
             CloseEditEmployee();
         }
 
