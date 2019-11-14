@@ -133,18 +133,18 @@ INSERT INTO QuestionType VALUES ('Teken vraag')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO Question VALUES (1, 'Gesloten vraag', 'Hoe vaak heeft u dit festival bezocht?', 1, 'V1Defqon1')
-INSERT INTO Question VALUES (1, 'Meerkeuze vraag', 'Welke acts vond u een van de betere?', 2, 'V2Defqon1')
-INSERT INTO Question VALUES (1, 'Open vraag', 'Hoe vaak heeft u dit festival bezocht?', 3, 'V3Defqon1')
-INSERT INTO Question VALUES (2, 'Gesloten vraag', 'Hoe vaak heeft u dit festival bezocht?', 1, 'V1Xqlusive')
-INSERT INTO Question VALUES (2, 'Meerkeuze vraag', 'Welke acts zou je liever gezien hebben?', 2, 'V2Xqlusive')
-INSERT INTO Question VALUES (2, 'Open vraag', 'Wat vond u van de afsluiting en is hier verbetering?', 3, 'V3Xqlusive')
-INSERT INTO Question VALUES (3, 'Gesloten vraag', 'Hoe vaak heeft u een concert van deze artiest bezocht?', 1, 'V1EdSheeran')
-INSERT INTO Question VALUES (3, 'Open vraag', 'Hoe verliep de kaartjes controlen?', 2, 'V2EdSheeran')
-INSERT INTO Question VALUES (3, 'Open vraag', 'Zou u het concert van deze artiest aanraden?', 3, 'V2EdSheeran')
-INSERT INTO Question VALUES (4, 'Gesloten vraag', 'Hoe vaak heeft u dit festival bezocht?', 1, 'V1Snollebollekes')
-INSERT INTO Question VALUES (4, 'Schuifbalk vraag', 'Wat denkt u van de sfeer?', 2, 'V2Snollebollekes')
-INSERT INTO Question VALUES (4, 'Open vraag', 'Ben je al bij veel optredens geweest van Snollebollekes?', 3, 'V3Snollebollekes')
+INSERT INTO Question VALUES (1, 'Gesloten vraag', '{"Question":"Bent u vaker op dit festival geweest?","Choices":{"Cols":["Ja","Nee"],"Options":[]},"Description":"Vind ik gewoon interessant","Images":[]}', 1, 'V1Defqon1')
+INSERT INTO Question VALUES (1, 'Meerkeuze vraag', '{"Question":"Welke acts vond u een van de betere","Choices":{"Cols":["Act 1","Act 2"],"Options":[]},"Description":"Vind ik gewoon interessant","Images":[]}', 2, 'V2Defqon1')
+INSERT INTO Question VALUES (1, 'Open vraag', '{"Question":"Wat vond u van de kaartjes controlen?","Choices":{"Cols":[],"Options":[]},"Description":"Gewoon om te testen","Images":[]}', 3, 'V3Defqon1')
+INSERT INTO Question VALUES (2, 'Gesloten vraag', '{"Question":"Heeft u het naar uw zin?","Choices":{"Cols":["Ja","Nee"],"Options":[]},"Description":"Vind ik gewoon interessant","Images":[]}', 1, 'V1Xqlusive')
+INSERT INTO Question VALUES (2, 'Meerkeuze vraag', '{"Question":"Welke acts zou u liever gezien hebben?","Choices":{"Cols":["Ran-D","Bassmodulators", "Sefa"],"Options":[]},"Description":"Vind ik gewoon interessant","Images":[]}', 2, 'V2Xqlusive')
+INSERT INTO Question VALUES (2, 'Open vraag', '{"Question":"Wat vond u van de afsluiting en is hier verbetering?","Choices":{"Cols":[],"Options":[]},"Description":"Gewoon om te testen","Images":[]}', 3, 'V3Xqlusive')
+INSERT INTO Question VALUES (3, 'Gesloten vraag', '{"Question":"Hoe vaak heeft u een concert van deze artiest bezocht?","Choices":{"Cols":["Eerste keer","al een paar keer"],"Options":[]},"Description":"Vind ik gewoon interessant","Images":[]}', 1, 'V1EdSheeran')
+INSERT INTO Question VALUES (3, 'Open vraag', '{"Question":"Hoe verliep de kaartjes controlen?","Choices":{"Cols":[],"Options":[]},"Description":"Gewoon om te testen","Images":[]}', 2, 'V2EdSheeran')
+INSERT INTO Question VALUES (3, 'Open vraag', '{"Question":"Zou u het concert aanraden aan anderen?","Choices":{"Cols":[],"Options":[]},"Description":"Gewoon om te testen","Images":[]}', 3, 'V2EdSheeran')
+INSERT INTO Question VALUES (4, 'Gesloten vraag', '{"Question":"Hoe vaak heeft u dit festival bezocht","Choices":{"Cols":["Eerste keer","al een paar keer", "ik kom al sinds het begin"],"Options":[]},"Description":"Vind ik gewoon interessant","Images":[]}', 1, 'V1Snollebollekes')
+INSERT INTO Question VALUES (4, 'Schuifbalk vraag', '{"Question":"Geef tussen de 1 en de 10 aan wat u van de sfeer vind.","Choices":{"Cols":["0","10"],"Options":[]},"Description":"","Images":[]}', 2, 'V2Snollebollekes')
+INSERT INTO Question VALUES (4, 'Open vraag', '{"Question":"Ben je al bij veel optredens geweest van Snollebollekes?","Choices":{"Cols":[],"Options":[]},"Description":"Gewoon om te testen","Images":[]}', 3, 'V3Snollebollekes')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
