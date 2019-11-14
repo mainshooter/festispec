@@ -62,6 +62,7 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.6.0.325, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.6.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -118,6 +119,7 @@
     <Compile Include="ViewModel\survey\question\QuestionTypes\CommentFieldVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\DrawQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\ImageGalleryQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\MultipleChoiceQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestionVM.cs" />
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
@@ -143,6 +145,12 @@
     </Compile>
     <Compile Include="View\Pages\Survey\QuestionTypes\ImageGalleryQuestion\EditImageGalleryQuestionPage.xaml.cs">
       <DependentUpon>EditImageGalleryQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\MultipleChoiceQuestion\AddMultipleChoiceQuestionPage.xaml.cs">
+      <DependentUpon>AddMultipleChoiceQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\MultipleChoiceQuestion\EditMultipleChoiceQuestionPage.xaml.cs">
+      <DependentUpon>EditMultipleChoiceQuestionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Survey\QuestionTypes\SliderQuestion\AddSliderQuestionPage.xaml.cs">
       <DependentUpon>AddSliderQuestionPage.xaml</DependentUpon>
@@ -236,6 +244,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Survey\QuestionTypes\ImageGalleryQuestion\EditImageGalleryQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\MultipleChoiceQuestion\AddMultipleChoiceQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\MultipleChoiceQuestion\EditMultipleChoiceQuestionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
