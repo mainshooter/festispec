@@ -54,7 +54,7 @@
             </DataGrid>
             <Separator Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2"/>
             <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Right">Meerkeuze toevoegen aan kolom:</Label>
-            <ComboBox Grid.Column="1" Grid.Row="7" Width="420" HorizontalAlignment="Left" ItemsSource="{Binding Columns}"></ComboBox>
+            <ComboBox Grid.Column="1" Grid.Row="7" Width="420" HorizontalAlignment="Left" ItemsSource="{Binding ComboBoxItems}" SelectedItem="{Binding SelectedColumn}"></ComboBox>
             <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Right">Optie:</Label>
             <StackPanel Grid.Column="1" Grid.Row="8" Orientation="Horizontal">
                 <TextBox VerticalAlignment="Center" Width="300" MinLines="2" Text="{Binding OptionName}"></TextBox>

@@ -18,6 +18,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private string _description;
         private string _optionName;
         private string _columnName;
+        private string _selectedColumn;
 
         public MainViewModel MainViewModel { get; set; }
         public QuestionDetails QuestionDetails { get; set; }
@@ -51,7 +52,17 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
         public string SelectedOptionName { get; set; }
         public string SelectedColumnName { get; set; }
-        public string SelectedColumn { get; set; }
+
+        public string SelectedColumn
+        {
+            get => _selectedColumn;
+            set
+            {
+                _selectedColumn = value;
+                if (_selectedColumn == "Geen") Options.Clear();
+            }
+        }
+
         public ObservableCollection<string> Options { get; set; }
         public ObservableCollection<string> Columns { get; set; }
         public ObservableCollection<string> ComboBoxItems { get; set; }
@@ -68,16 +79,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             if (_surveyQuestion.Question1 != null)
             {
                 QuestionDetails = JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1);
-
-                foreach (var option in QuestionDetails.Choices.Cols)
-                {
-                    Options.Add(option);
-                }
-
-                foreach (var column in QuestionDetails.Choices.Options)
-                {
-                    Columns.Add(column);
-                }
+                SetDataGrids();
             }
             else
             {
@@ -86,7 +88,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
             SaveCommand = new RelayCommand(Save);
             GoBackCommand = new RelayCommand(GoBack);
-            AddOptionCommand = new RelayCommand(AddOption);
+            AddOptionCommand = new RelayCommand(AddOption, CanAddOption);
             AddColumnCommand = new RelayCommand(AddColumn);
             DeleteOptionCommand = new RelayCommand(DeleteOption);
             DeleteColumnCommand = new RelayCommand(DeleteColumn);
@@ -96,6 +98,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             _description = QuestionDetails.Description;
 
             SetComboBox();
+            SelectedColumn = ComboBoxItems[0];
         }
 
         public void Save()
@@ -105,10 +108,16 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 if (!ValidateQuestionDetails()) return;
 
                 QuestionDetails.Choices.Cols.Clear();
+                QuestionDetails.Choices.Options.Clear();
 
                 foreach (var option in Options)
                 {
                     QuestionDetails.Choices.Cols.Add(option);
+                }
+
+                foreach (var column in Columns)
+                {
+                    QuestionDetails.Choices.Options.Add(column);
                 }
 
                 _surveyQuestion.Question1 = JsonConvert.SerializeObject(QuestionDetails);
@@ -132,17 +141,26 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             MainViewModel.Page.NavigationService?.GoBack();
         }
 
-        public void GoBack()
+        private void SetDataGrids()
         {
-            QuestionDetails.Question = _question;
-            QuestionDetails.Description = _description;
-            Options.Clear();
-
             foreach (var options in QuestionDetails.Choices.Cols)
             {
                 Options.Add(options);
             }
 
+            foreach (var column in QuestionDetails.Choices.Options)
+            {
+                Columns.Add(column);
+            }
+        }
+
+        public void GoBack()
+        {
+            QuestionDetails.Question = _question;
+            QuestionDetails.Description = _description;
+            Options.Clear();
+            Columns.Clear();
+            SetDataGrids();
             RaisePropertyChanged("QuestionDetails");
             MainViewModel.Page.NavigationService?.GoBack();
         }
@@ -164,6 +182,12 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             if (Columns.Count < 2)
             {
                 MessageBox.Show("Deze vraag moet minimaal 2 kolommen hebben.");
+                return false;
+            }
+
+            if (SelectedColumn != "Geen" && Options.Count < 2)
+            {
+                MessageBox.Show("Deze vraag moet minimaal 2 opties hebben.");
                 return false;
             }
 
@@ -224,6 +248,11 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             OptionName = "";
         }
 
+        private bool CanAddOption()
+        {
+            return SelectedColumn != "Geen";
+        }
+
         private void DeleteOption()
         {
             Options.Remove(SelectedOptionName);
@@ -246,6 +275,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             }
 
             SelectedColumn = selected;
+            RaisePropertyChanged("SelectedColumn");
         }
     }
 }
