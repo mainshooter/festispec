@@ -30,8 +30,9 @@ namespace Festispec.ViewModel.employee
                 RaisePropertyChanged("Employee");
             }
         }
+        public EmployeeVM TempEmployee { get; set; }
         public ObservableCollection<DepartmentVM> Departments { get; set; }
-        public ObservableCollection<string> Statuses { get; set; }
+        public ObservableCollection<string> Status { get; set; }
         public ICommand EditEmployeeCommand { get; set; }
         public ICommand CloseEditEmployeeCommand { get; set; }
 
@@ -52,6 +53,7 @@ namespace Festispec.ViewModel.employee
             this.MessengerInstance.Register<ChangeSelectedEmployeeMessage>(this, message =>
             {
                 Employee = message.Employee;
+                TempEmployee = message.Employee;
                 DepartmentIndex = Departments.IndexOf(Departments.Select(department => department).Where(department => department.Name == Employee.Department.Name).FirstOrDefault());
             });
             EditEmployeeCommand = new RelayCommand(EditEmployee, CanEditEmployee);
@@ -59,7 +61,7 @@ namespace Festispec.ViewModel.employee
             using (var context = new Entities())
             {
                 Departments = new ObservableCollection<DepartmentVM>(context.Departments.ToList().Select(department => new DepartmentVM(department)));
-                Statuses = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
+                Status = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
             }
         }
 
@@ -76,6 +78,7 @@ namespace Festispec.ViewModel.employee
 
         private void CloseEditEmployee()
         {
+            Employee = TempEmployee;
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage) });
         }
 
