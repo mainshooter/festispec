@@ -13,6 +13,7 @@ using Festispec.View.Pages.Survey.QuestionTypes.ImageGalleryQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.MultipleChoiceQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.SliderQuestion;
+using Festispec.View.Pages.Survey.QuestionTypes.TableQuestion;
 
 namespace Festispec.Singleton
 {
@@ -55,6 +56,8 @@ namespace Festispec.Singleton
             _pages["Edit Teken vraag"] = new EditDrawQuestionPage();
             _pages["Add Meerkeuze vraag"] = new AddMultipleChoiceQuestionPage();
             _pages["Edit Meerkeuze vraag"] = new EditMultipleChoiceQuestionPage();
+            _pages["Add Tabel vraag"] = new AddTableQuestionPage();
+            _pages["Edit Tabel vraag"] = new EditTableQuestionPage();
         }
     }
 }

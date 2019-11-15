@@ -7,13 +7,20 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Vragenlijst">
-    <StackPanel>
-        <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="Vragenlijst"></Label>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="Vragenlijst"></Label>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <ComboBox Width="150" Margin="0,0,10,0" ItemsSource="{Binding QuestionTypes}" SelectedValue="{Binding SelectedQuestionType}"></ComboBox>
             <Button HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding AddQuestionCommand}">toevoegen</Button>
         </StackPanel>
-        <DataGrid IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedQuestion}" ItemsSource="{Binding Questions}" Background="White" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="DarkGray" HeadersVisibility="Column" BorderThickness="0">
+        <DataGrid Grid.Row="2" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedQuestion}" ItemsSource="{Binding Questions}" Background="White" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="DarkGray" HeadersVisibility="Column" BorderThickness="0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Vraag" Binding="{Binding QuestionDetails.Question}" Width="*" FontWeight="DemiBold" />
                 <DataGridTextColumn Header="Type" Binding="{Binding QuestionType}" Width="*" FontWeight="DemiBold" />
@@ -33,5 +40,5 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-    </StackPanel>
+    </Grid>
 </Page>

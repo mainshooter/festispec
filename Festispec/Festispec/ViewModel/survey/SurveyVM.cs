@@ -98,6 +98,8 @@ namespace Festispec.ViewModel.survey
                     return new DrawQuestionVM(this, MainViewModel, question);
                 case "Meerkeuze vraag":
                     return new MultipleChoiceQuestionVM(this, MainViewModel, question);
+                case "Tabel vraag":
+                    return new TableQuestionVM(this, MainViewModel, question);
                 default:
                     return new OpenQuestionVM(this, MainViewModel, question);
             }

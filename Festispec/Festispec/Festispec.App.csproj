@@ -122,6 +122,7 @@
     <Compile Include="ViewModel\survey\question\QuestionTypes\MultipleChoiceQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\TableQuestionVM.cs" />
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
@@ -157,6 +158,12 @@
     </Compile>
     <Compile Include="View\Pages\Survey\QuestionTypes\SliderQuestion\EditSliderQuestionPage.xaml.cs">
       <DependentUpon>EditSliderQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\TableQuestion\AddTableQuestionPage.xaml.cs">
+      <DependentUpon>AddTableQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\TableQuestion\EditTableQuestionPage.xaml.cs">
+      <DependentUpon>EditTableQuestionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Survey\SurveyPage.xaml.cs">
       <DependentUpon>SurveyPage.xaml</DependentUpon>
@@ -260,6 +267,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Survey\QuestionTypes\SliderQuestion\EditSliderQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\TableQuestion\AddTableQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\TableQuestion\EditTableQuestionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
