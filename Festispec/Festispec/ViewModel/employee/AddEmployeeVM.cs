@@ -1,5 +1,8 @@
 ﻿using Festispec.Domain;
+using Festispec.Message;
+using Festispec.View.Pages.Employee;
 using Festispec.ViewModel.employee.department;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
@@ -13,7 +16,7 @@ using System.Windows.Input;
 
 namespace Festispec.ViewModel.employee
 {
-    public class AddEmployeeVM
+    public class AddEmployeeVM: ViewModelBase
     {
         public EmployeeListVM EmployeeList { get; set; }
         public EmployeeVM Employee { get; set; }
@@ -61,7 +64,7 @@ namespace Festispec.ViewModel.employee
 
         private void CloseAddEmployee()
         {
-            EmployeeList.MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage)});
         }
 
         public bool CanAddEmployee(PasswordBox password)

@@ -1,10 +1,16 @@
-using Festispec.Singleton;
 using Festispec.View.Pages.Employee;
 using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
+using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
+using CommonServiceLocator;
+using Festispec.View.Pages;
+using Festispec.View.Pages.Customer;
+using Festispec.View.Pages.Employee.Availability;
+using Festispec.View.Pages.Customer.Event;
+using Festispec.Message;
+using Festispec.View.Pages.Report;
 
 namespace Festispec.ViewModel
 {
@@ -12,7 +18,6 @@ namespace Festispec.ViewModel
     {
         //privates
         private Page _page;
-        private PageSingleton _pageSingleton;
 
         //publics
         public ICommand CloseApplication { get; set; }
@@ -29,15 +34,6 @@ namespace Festispec.ViewModel
             set { _page = value; RaisePropertyChanged("Page"); }
         }
 
-        public PageSingleton PageSingleton
-        {
-            get { return _pageSingleton; }
-            set { _pageSingleton = value; }
-
-        }
-
-        public EmployeeListVM EmployeeList { get; set; }
-
         //constructor
         public MainViewModel()
         {
@@ -48,11 +44,15 @@ namespace Festispec.ViewModel
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
-            _pageSingleton = new PageSingleton();
 
-            Page = _pageSingleton.GetPage("dashboard");
-            PageSingleton.SetEmployeePages();
+            Page = ServiceLocator.Current.GetInstance<ReportPage>();
+
+            this.MessengerInstance.Register<ChangePageMessage>(this, message =>
+            {
+                this.Page = ServiceLocator.Current.GetInstance(message.NextPageType) as Page;
+            });
         }
+
 
         //methodes
         private void CloseApp()
@@ -62,59 +62,47 @@ namespace Festispec.ViewModel
 
         private void OpenDashboardTab()
         {
-            Page = _pageSingleton.GetPage("dashboard");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage)});
         }
 
         public void OpenEmployeeTab()
         {
-            var page = _pageSingleton.GetPage("employee"); ;
-            EmployeeList = new EmployeeListVM(this);
-            page.DataContext = EmployeeList;
-            Page = page;
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage)});
         }
 
         private void OpenCustomerTab()
         {
-            Page = _pageSingleton.GetPage("customer");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
         }
 
         private void OpenAvailabilityTab()
         {
-            Page = _pageSingleton.GetPage("availability");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AvailablePage) });
         }
 
         private void OpenEventTab()
         {
-            Page = _pageSingleton.GetPage("event");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
         }
 
         private void OpenSickTab()
         {
-            Page = _pageSingleton.GetPage("sick");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage) });
         }
 
         public void OpenAddEmployeeTab()
         {
-            var page = _pageSingleton.GetPage("addemployee");
-            AddEmployeeVM addEmployeeVM = new AddEmployeeVM(EmployeeList);
-            page.DataContext = addEmployeeVM;
-            Page = page;
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddEmployeePage) });
         }
 
         public void OpenEditEmployeeTab()
         {
-            var page = _pageSingleton.GetPage("editemployee");
-            EditEmployeeVM editEmployeeVM = new EditEmployeeVM(EmployeeList);
-            page.DataContext = editEmployeeVM;
-            Page = page;
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditEmployeePage) });
         }
 
         public void OpenSingleEmployeeTab()
         {
-            var page = _pageSingleton.GetPage("singleemployee");
-            EmployeeVM EmployeeVM = new EmployeeVM(EmployeeList.SelectedEmployee.ToModel(), EmployeeList);
-            page.DataContext = EmployeeVM;
-            Page = page;
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SingleEmployeePage) });
         }
     }
 }
