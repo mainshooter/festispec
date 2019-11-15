@@ -1,6 +1,4 @@
 using CommonServiceLocator;
-using Festispec.ViewModel.employee;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 namespace Festispec.ViewModel
