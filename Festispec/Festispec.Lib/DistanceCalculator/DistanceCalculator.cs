@@ -11,14 +11,14 @@ namespace DistanceCalculator
         private static string bingMapKey = "ITBT6VEQtWQIP2Nt0sEo~GvONPsboTGlj2F7N16RX1Q~AuuacnuDtvdGIIkJJsITb1P2J1Cr0vNjAgb3KKNYIiUUa2su3wzy_67N4XpmXffL";
 
         //Gebaseerd op twee SimpleWaypoints wordt de afstand berekent tussen die twee punten een een double van die afstand in kilometers teruggegeven
-        public async Task<double> TravelDistance(SimpleWaypoint originCoor, SimpleWaypoint eventCoor)
+        public async Task<double> TravelDistance(SimpleWaypoint originCoor, SimpleWaypoint destinationCoor)
         {
 
             List<SimpleWaypoint> origin = new List<SimpleWaypoint>();
             List<SimpleWaypoint> destination = new List<SimpleWaypoint>();
 
             origin.Add(originCoor);
-            destination.Add(eventCoor);
+            destination.Add(destinationCoor);
 
             DistanceMatrixRequest distance = new DistanceMatrixRequest();
 
