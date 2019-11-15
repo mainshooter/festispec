@@ -4,72 +4,72 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c7e820f1a27e49018b5d7fd7f6d856cd" Name="Diagram1">
-        <EntityTypeShape EntityType="Festispec.Domain.Answer" Width="1.5" PointX="13.5" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.AvailabilityInspector" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.BetterReportInspector" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.Case" Width="1.5" PointX="8.25" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.CaseStatu" Width="1.5" PointX="6" PointY="24.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.CertificateInspector" Width="1.5" PointX="5.25" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.ContactPerson" Width="1.5" PointX="0.75" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.Customer" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.Day" Width="1.5" PointX="10.5" PointY="19.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.Department" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.ElementType" Width="1.5" PointX="10.5" PointY="29.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.Employee" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.EmployeeStatu" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.Event" Width="1.5" PointX="3" PointY="20.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.InspectorPlanning" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.InspectorPlanningStatu" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.Note" Width="1.5" PointX="3" PointY="25.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.Order" Width="1.5" PointX="8.25" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.OrderStatu" Width="1.5" PointX="6" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.QueryTemplate" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.Question" Width="1.5" PointX="15.75" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.QuestionType" Width="1.5" PointX="13.5" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.Quotation" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.Report" Width="1.5" PointX="10.5" PointY="22.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.ReportElement" Width="1.5" PointX="12.75" PointY="23.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.ReportStatu" Width="1.5" PointX="8.25" PointY="23.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.SickReportInspector" Width="1.5" PointX="10.5" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.Survey" Width="1.5" PointX="13.5" PointY="19.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.SurveyStatu" Width="1.5" PointX="11.25" PointY="26.625" IsExpanded="true" />
-        <AssociationConnector Association="Festispec.Domain.FK_Answer_Case" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Answer_Question" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_AvailabilityInspector_Employee" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_BetterReportInspector_Employee" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Case_CaseStatus" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Case_Employee" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Case_Survey" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_CertificateInspector_Employee" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_ContactPerson_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Event_ContactPerson" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Note_ContactPerson" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Event_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Order_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Quotation_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Day_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_InspectorPlanning_Day" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Employee_Department" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_ReportElement_ElementType" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Employee_EmployeeStatus" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_InspectorPlanning_Employee" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Order_Employee" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Quotation_Employee" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_SickReportInspector_Employee" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Order_Event" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Quotation_Event" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_InspectorPlanning_InspectorPlanningStatus" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_SickReportInspector_InspectorPlanning" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Order_OrderStatus" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Order_Quotation" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Report_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Survey_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Question_QuestionType" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Question_Survey" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Report_ReportStatus" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_ReportElement_Report" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_Survey_SurveyStatus" ManuallyRouted="false" />
+      <Diagram DiagramId="0fbf1b8592104ccfbdd542fa5cb3002f" Name="Diagram1">
+        <EntityTypeShape EntityType="DataModel.Answer" Width="1.5" PointX="13.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.AvailabilityInspector" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.BetterReportInspector" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.Case" Width="1.5" PointX="8.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.CaseStatu" Width="1.5" PointX="6" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.CertificateInspector" Width="1.5" PointX="5.25" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.ContactPerson" Width="1.5" PointX="0.75" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.Customer" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.Day" Width="1.5" PointX="10.5" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.Department" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.ElementType" Width="1.5" PointX="10.5" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.Employee" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.EmployeeStatu" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.Event" Width="1.5" PointX="3" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.InspectorPlanning" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.InspectorPlanningStatu" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.Note" Width="1.5" PointX="3" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.Order" Width="1.5" PointX="8.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.OrderStatu" Width="1.5" PointX="6" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.QueryTemplate" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.Question" Width="1.5" PointX="15.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.QuestionType" Width="1.5" PointX="13.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.Quotation" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.Report" Width="1.5" PointX="10.5" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.ReportElement" Width="1.5" PointX="12.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.ReportStatu" Width="1.5" PointX="8.25" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.SickReportInspector" Width="1.5" PointX="10.5" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.Survey" Width="1.5" PointX="13.5" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.SurveyStatu" Width="1.5" PointX="11.25" PointY="26.625" IsExpanded="true" />
+        <AssociationConnector Association="DataModel.FK_Answer_Case" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Answer_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_AvailabilityInspector_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_BetterReportInspector_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Case_CaseStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Case_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Case_Survey" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_CertificateInspector_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_ContactPerson_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Event_ContactPerson" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Note_ContactPerson" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Event_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Quotation_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Day_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_InspectorPlanning_Day" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Employee_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_ReportElement_ElementType" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Employee_EmployeeStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_InspectorPlanning_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Order_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Quotation_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_SickReportInspector_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Order_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Quotation_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_InspectorPlanning_InspectorPlanningStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_SickReportInspector_InspectorPlanning" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Order_OrderStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Order_Quotation" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Report_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Survey_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Question_QuestionType" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Question_Survey" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Report_ReportStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_ReportElement_Report" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_Survey_SurveyStatus" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

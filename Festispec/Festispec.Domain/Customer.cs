@@ -11,7 +11,7 @@ namespace Festispec.Domain
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +22,7 @@ namespace Festispec.Domain
             this.Orders = new HashSet<Order>();
             this.Quotations = new HashSet<Quotation>();
         }
-
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public int COC { get; set; }
@@ -36,7 +36,7 @@ namespace Festispec.Domain
         public string Email { get; set; }
         public string Website { get; set; }
         public string Logo { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ContactPerson> ContactPersons { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
