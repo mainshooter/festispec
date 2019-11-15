@@ -25,6 +25,11 @@ namespace Festispec.Domain
         public int CustomerId { get; set; }
         public int ContactPersonId { get; set; }
         public string Name { get; set; }
+        public string Street { get; set; }
+        public int HouseNumber { get; set; }
+        public string HouseNumber_Addition { get; set; }
+        public string PostalCode { get; set; }
+        public string City { get; set; }
         public System.DateTime BeginDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public int AmountVisitors { get; set; }

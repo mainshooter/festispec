@@ -1,60 +1,30 @@
-﻿using Festispec.View.Pages;
-using Festispec.View.Pages.Customer;
-using Festispec.View.Pages.Employee;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Controls;
-using Festispec.View.Pages.Customer.Event;
-using Festispec.View.Pages.Employee.Availability;
-<<<<<<< HEAD
-using Festispec.View.Pages.Planning;
-=======
-using LiveCharts.Wpf;
+﻿using Festispec.ViewModel.report.element;
 using LiveCharts;
-using Festispec.ViewModel.report.element;
+using LiveCharts.Wpf;
 using System;
-using Festispec.ViewModel.report;
-using Festispec.View.Report;
-using Festispec.ViewModel;
->>>>>>> develop
+using System.Collections.Generic;
 
-namespace Festispec.Singleton
+namespace Festispec.Repository
 {
-    public class PageSingleton
+    public class ReportRepository
     {
-        private Dictionary<string, Page> _pages;
-
-        public PageSingleton(MainViewModel mainViewModel)
-        {          
-            _pages = new Dictionary<string, Page>();
-            _pages.Add("dashboard", new PlanningOverview());
-            _pages.Add("employee", new EmployeePage());
-            _pages.Add("customer", new CustomerPage());
-            _pages.Add("availability", new AvailablePage());
-            _pages.Add("event", new EventPage());
-            _pages.Add("sick", new SickPage());
-            AddReportPage(mainViewModel);
-        }
-
-        private void AddReportPage(MainViewModel mainViewModel)
+        public List<ReportElementVM> GetReportElements()
         {
-            var report = new ReportPage();
-            ReportVM reportVM = new ReportVM();
-
-            reportVM.ReportElements.Add(
-                    new ReportElementVM()
+            var reportElements = new List<ReportElementVM>();
+            reportElements.Add(
+                new ReportElementVM()
+                {
+                    Title = "Leuke titel",
+                    Content = "Hier maak ik titels van",
+                    Type = "table",
+                    Data = new Dictionary<string, List<string>>()
                     {
-                        Title = "Leuke titel",
-                        Content = "Hier maak ik titels van",
-                        Type = "table",
-                        Data = new Dictionary<string, List<string>>()
-                        {
-                            ["id"] = new List<string>() { "1", "2" },
-                            ["namen"] = new List<string>() { "Peter", "Mike", "Wout" }
-                        },
-                    }
-                );
-            reportVM.ReportElements.Add(
+                        ["id"] = new List<string>() { "1", "2" },
+                        ["namen"] = new List<string>() { "Peter", "Mike", "Wout" }
+                    },
+                }
+            );
+            reportElements.Add(
                 new ReportElementVM()
                 {
                     Title = "Leuke piechart",
@@ -89,7 +59,7 @@ namespace Festispec.Singleton
                     }
                 }
             );
-            reportVM.ReportElements.Add(
+            reportElements.Add(
                 new ReportElementVM()
                 {
                     Title = "Line chart",
@@ -106,7 +76,7 @@ namespace Festispec.Singleton
                     }
                 }
             );
-            reportVM.ReportElements.Add(
+            reportElements.Add(
                new ReportElementVM()
                {
                    Title = "test",
@@ -126,7 +96,7 @@ namespace Festispec.Singleton
                    }
                }
             );
-            reportVM.ReportElements.Add(
+            reportElements.Add(
                 new ReportElementVM()
                 {
                     Title = "text",
@@ -138,7 +108,7 @@ namespace Festispec.Singleton
                     }
                 }
             );
-            reportVM.ReportElements.Add(
+            reportElements.Add(
                 new ReportElementVM()
                 {
                     Title = "image",
@@ -150,16 +120,7 @@ namespace Festispec.Singleton
                     }
                 }
             );
-            reportVM.MainViewModel = mainViewModel;
-            report.DataContext = reportVM;
-
-            _pages.Add("report", report);
-        }
-
-        public Page GetPage(string pageName)
-        {
-            var result = _pages.Where(p => p.Key.Equals(pageName));
-            return result.FirstOrDefault().Value;
+            return reportElements;
         }
     }
 }

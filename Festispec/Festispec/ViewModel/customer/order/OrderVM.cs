@@ -1,16 +1,13 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.customer;
 using Festispec.ViewModel.customer.customerEvent;
+using Festispec.ViewModel.employee;
 using Festispec.ViewModel.planning;
-using Festispec.ViewModel.rapport;
-using System;
-using System.Collections.Generic;
+using Festispec.ViewModel.report;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Festispec.ViewModel.employee.order
+namespace Festispec.ViewModel.Customer.order
 {
     public class OrderVM
     {

@@ -18,9 +18,9 @@ namespace Festispec.View.Pages.Planning
     /// <summary>
     /// Interaction logic for PlanningOverview.xaml
     /// </summary>
-    public partial class PlanningOverview : Page
+    public partial class PlanningOverviewPage : Page
     {
-        public PlanningOverview()
+        public PlanningOverviewPage()
         {
             InitializeComponent();
         }

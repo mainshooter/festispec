@@ -1,10 +1,18 @@
-using Festispec.Singleton;
 using Festispec.ViewModel.planning;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
+using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
+using CommonServiceLocator;
+using Festispec.View.Pages;
+using Festispec.View.Pages.Employee;
+using Festispec.View.Pages.Customer;
+using Festispec.View.Pages.Employee.Availability;
+using Festispec.View.Pages.Customer.Event;
+using Festispec.Message;
+using Festispec.View.Pages.Report;
+using Festispec.View.Pages.Planning;
 
 namespace Festispec.ViewModel
 {
@@ -12,7 +20,6 @@ namespace Festispec.ViewModel
     {
         //privates
         private Page _page;
-        private PageSingleton _pageSingleton;
         private ToastVM _toastVM;
 
         //publics
@@ -30,12 +37,6 @@ namespace Festispec.ViewModel
             set { _page = value; RaisePropertyChanged("Page"); }
         }
 
-        public PageSingleton PageSingleton
-        {
-            get { return _pageSingleton; }
-            set { _pageSingleton = value; }
-        }
-
         public PlanningOverviewVM PlanningOverviewList { get; set; }
 
         //constructor
@@ -48,12 +49,18 @@ namespace Festispec.ViewModel
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
-            _pageSingleton = new PageSingleton();
             _toastVM = new ToastVM();
+            
 
-            //Page = _pageSingleton.GetPage("dashboard");
+            //Page = ServiceLocator.Current.GetInstance<ReportPage>();
+
+            this.MessengerInstance.Register<ChangePageMessage>(this, message =>
+            {
+                this.Page = ServiceLocator.Current.GetInstance(message.NextPageType) as Page;
+            });
             OpenDashboardTab();
         }
+
 
         //methodes
         private void CloseApp()
@@ -63,36 +70,33 @@ namespace Festispec.ViewModel
 
         private void OpenDashboardTab()
         {
-            var page = _pageSingleton.GetPage("dashboard");
-            PlanningOverviewList = new PlanningOverviewVM(this);
-            page.DataContext = PlanningOverviewList;
-            Page = page;
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage)});
+            //MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage)});
         }
 
         private void OpenEmployeeTab()
         {
-            Page = _pageSingleton.GetPage("employee");
-
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage)});
         }
 
         private void OpenCustomerTab()
         {
-            Page = _pageSingleton.GetPage("customer");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
         }
 
         private void OpenAvailabilityTab()
         {
-            Page = _pageSingleton.GetPage("availability");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AvailablePage) });
         }
 
         private void OpenEventTab()
         {
-            Page = _pageSingleton.GetPage("event");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
         }
 
         private void OpenSickTab()
         {
-            Page = _pageSingleton.GetPage("sick");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage) });
         }
     }
 }
