@@ -34,7 +34,6 @@ namespace Festispec.ViewModel
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
         public ReportVM ReportVM => ServiceLocator.Current.GetInstance<ReportVM>();
 
-
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

@@ -1,4 +1,5 @@
 ﻿using Festispec.Factory;
+using Festispec.View.Report;
 using Festispec.View.Report.Element;
 using Festispec.ViewModel.report.element;
 using GalaSoft.MvvmLight;
@@ -15,22 +16,11 @@ namespace Festispec.ViewModel.report
     public class AddElementVM : ViewModelBase
     {
         private Page _previousePage;
-        private MainViewModel _mainViewModel;
         private ReportElementFactory _reportElementFactory;
 
         public List<string> ElementTypes { get; set; }
 
         public ReportVM Report { get; set; }
-
-        public MainViewModel MainViewModel {
-            get {
-                return _mainViewModel;
-            }
-            set {
-                _mainViewModel = value;
-                _previousePage = _mainViewModel.Page;
-            }
-        }
 
         public int SelectedElementIndex { get; set; }
 
@@ -141,7 +131,7 @@ namespace Festispec.ViewModel.report
 
         private void GoBackToReport()
         {
-            MainViewModel.Page.NavigationService.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
         }
     }
 }

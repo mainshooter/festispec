@@ -3,17 +3,12 @@ using Festispec.Factory;
 using Festispec.View.Pages.Report.element;
 using Festispec.ViewModel.employee.order;
 using Festispec.ViewModel.report.element;
-using Festispec.ViewModel.report;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Ioc;
-using Festispec.View.Pages;
-using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using Festispec.Repository;
 using Festispec.View.Report;
@@ -84,7 +79,6 @@ namespace Festispec.ViewModel.report
             Page addElementPage = new AddElementPage();
             AddElementVM addElementVM = new AddElementVM();
             addElementVM.Report = this;
-            addElementVM.MainViewModel = MainViewModel;
             addElementPage.DataContext = addElementVM;
             MainViewModel.Page = addElementPage;
         }
