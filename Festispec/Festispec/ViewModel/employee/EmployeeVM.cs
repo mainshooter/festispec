@@ -1,7 +1,6 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.employee.department;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Ioc;
 using System;
 
