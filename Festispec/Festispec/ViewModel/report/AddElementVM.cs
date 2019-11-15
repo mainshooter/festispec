@@ -1,6 +1,5 @@
 ﻿using Festispec.Factory;
 using Festispec.View.Report;
-using Festispec.View.Report.Element;
 using Festispec.ViewModel.report.element;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -15,7 +14,6 @@ namespace Festispec.ViewModel.report
 {
     public class AddElementVM : ViewModelBase
     {
-        private Page _previousePage;
         private ReportElementFactory _reportElementFactory;
 
         public List<string> ElementTypes { get; set; }
