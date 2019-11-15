@@ -5,23 +5,20 @@ using Festispec.ViewModel.employee.department;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.employee
 {
-    public class AddEmployeeVM: ViewModelBase
+    public class AddEmployeeVM : ViewModelBase
     {
         public EmployeeListVM EmployeeList { get; set; }
         public EmployeeVM Employee { get; set; }
         public ObservableCollection<DepartmentVM> Departments { get; set; }
-        public ObservableCollection<string> Status { get; set; }
+        public ObservableCollection<string> Statuses { get; set; }
         public ICommand AddEmployeeCommand { get; set; }
         public ICommand CloseAddEmployeeCommand { get; set; }
 
@@ -34,7 +31,7 @@ namespace Festispec.ViewModel.employee
             using (var context = new Entities())
             {
                 Departments = new ObservableCollection<DepartmentVM>(context.Departments.ToList().Select(department => new DepartmentVM(department)));
-                Status = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
+                Statuses = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
             }
             Employee.Department = Departments.First();
         }
@@ -64,7 +61,7 @@ namespace Festispec.ViewModel.employee
 
         private void CloseAddEmployee()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage)});
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage) });
         }
 
         public bool CanAddEmployee(PasswordBox password)
@@ -76,7 +73,7 @@ namespace Festispec.ViewModel.employee
             string regexEmail = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
             string regexPhone = "^\\s*(?:\\+?(\\d{1,3}))?([-. (]*(\\d{3})[-. )]*)?((\\d{3})[-. ]*(\\d{2,4})(?:[-.x ]*(\\d+))?)\\s*$";
             string regexIban = "[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}";
-            if (!Regex.IsMatch(Employee.Email, regexEmail) || !Regex.IsMatch(Employee.Phone, regexPhone) || !Regex.IsMatch(Employee.Iban, regexIban) || Employee.Birthday.Year < 1900 || Employee.HouseNumber_Addition.Length > 5 || Employee.Iban.Length > 27 || Employee.Password.Length > 255 || Employee.Email.Length > 100 || Employee.Phone.Length > 15 || Employee.City.Length > 45 || Employee.PostalCode.Length > 6 || Employee.HouseNumber > 9999 || Employee.Street.Length > 100 || Employee.Lastname.Length > 45 || Employee.Prefix.Length > 45 || Employee.Firstname.Length > 45)
+            if (!Regex.IsMatch(Employee.Email, regexEmail) || !Regex.IsMatch(Employee.Phone, regexPhone) || !Regex.IsMatch(Employee.Iban, regexIban) || Employee.Birthday.Year < 1900 || Employee.HouseNumberAddition.Length > 5 || Employee.Iban.Length > 27 || Employee.Password.Length > 255 || Employee.Email.Length > 100 || Employee.Phone.Length > 15 || Employee.City.Length > 45 || Employee.PostalCode.Length > 6 || Employee.HouseNumber > 9999 || Employee.Street.Length > 100 || Employee.Lastname.Length > 45 || Employee.Prefix.Length > 45 || Employee.Firstname.Length > 45)
             {
                 return false;
             }

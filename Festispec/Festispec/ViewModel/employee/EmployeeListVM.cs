@@ -4,12 +4,9 @@ using Festispec.Repository;
 using Festispec.View.Pages.Employee;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -17,15 +14,18 @@ namespace Festispec.ViewModel.employee
 {
     public class EmployeeListVM : ViewModelBase
     {
+        private string _filter;
+        private List<string> _filters;
+        private EmployeeVM _selectedEmployee;
+
         public ICommand OpenAddEmployee { get; set; }
         public ICommand OpenEditEmployee { get; set; }
         public ICommand OpenSingleEmployee { get; set; }
         public ICommand DeleteEmployeeCommand { get; set; }
         public ObservableCollection<EmployeeVM> EmployeeList { get; set; }
-        private EmployeeVM _selectedEmployee;
         public MainViewModel MainViewModel { get; set; }
         public MessageBox MessageBox { get; set; }
-        private string _filter;
+
         public string Filter
         {
             get
@@ -40,7 +40,7 @@ namespace Festispec.ViewModel.employee
         }
 
         public string SelectedFilter { get; set; }
-        private List<string> _filters;
+
         public List<string> Filters
         {
             get
@@ -100,7 +100,6 @@ namespace Festispec.ViewModel.employee
             }
         }
 
-
         public EmployeeListVM()
         {
             Filters = new List<string>();
@@ -128,8 +127,8 @@ namespace Festispec.ViewModel.employee
         public void OpenSingleEmployeePage()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SingleEmployeePage) });
-            MessengerInstance.Send<ChangeSelectedEmployeeMessage>(new ChangeSelectedEmployeeMessage() { Employee = SelectedEmployee});
-            
+            MessengerInstance.Send<ChangeSelectedEmployeeMessage>(new ChangeSelectedEmployeeMessage() { Employee = SelectedEmployee });
+
         }
 
         private void DeleteEmployee()

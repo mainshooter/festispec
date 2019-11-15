@@ -24,7 +24,7 @@
         <Label Content="Straat" HorizontalAlignment="Left" Margin="105,187,0,0" VerticalAlignment="Top" Width="59"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="108,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="80"/>
         <Label Content="Huisnummer" HorizontalAlignment="Left" Margin="108,246,0,0" VerticalAlignment="Top" Width="94"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="208,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumber_Addition, Mode=TwoWay}" VerticalAlignment="Top" Width="76"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="208,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumberAddition, Mode=TwoWay}" VerticalAlignment="Top" Width="76"/>
         <Label Content="Toevoeging" HorizontalAlignment="Left" Margin="202,246,0,0" VerticalAlignment="Top" Width="94"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="105,336,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.City, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
         <Label Content="Postcode" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="84"/>
@@ -38,7 +38,7 @@
         <Label Content="Iban" HorizontalAlignment="Left" Margin="320,187,0,0" VerticalAlignment="Top" Width="48"/>
         <DatePicker HorizontalAlignment="Left" Height="23" Margin="320,277,0,0" SelectedDate="{Binding Path=Employee.Birthday, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
         <Label Content="Birthday" HorizontalAlignment="Left" Margin="326,246,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,-1.631" Width="78"/>
-        <ComboBox HorizontalAlignment="Left" Margin="517,41,0,0" VerticalAlignment="Top" Width="175" Text="{Binding Path=Employee.Status, Mode=TwoWay}" ItemsSource="{Binding Path=Status}" SelectedValue="{Binding Employee.Status}" />
+        <ComboBox HorizontalAlignment="Left" Margin="517,41,0,0" VerticalAlignment="Top" Width="175" Text="{Binding Path=Employee.Status, Mode=TwoWay}" ItemsSource="{Binding Path=Statuses}" SelectedValue="{Binding Employee.Status}" />
         <Label Content="Status" HorizontalAlignment="Left" Margin="517,10,0,0" VerticalAlignment="Top" Width="61"/>
         <ComboBox HorizontalAlignment="Left" Margin="517,100,0,0" VerticalAlignment="Top" Width="175" ItemsSource="{Binding Path=Departments}" SelectedItem="{Binding Employee.Department, Mode=OneWayToSource}" SelectedIndex="{Binding DepartmentIndex, Mode=OneWay}" DisplayMemberPath="Name"/>
         <Label Content="Afdeling" HorizontalAlignment="Left" Margin="517,69,0,0" VerticalAlignment="Top" Width="81"/>

@@ -13,22 +13,25 @@ using System.Windows.Input;
 
 namespace Festispec.ViewModel.employee
 {
-    public class EditEmployeeVM: ViewModelBase
+    public class EditEmployeeVM : ViewModelBase
     {
         private EmployeeVM _employeeVM;
         private int _departmentIndex;
         public EmployeeListVM EmployeeList { get; set; }
-        public EmployeeVM Employee { 
-            get {
+        public EmployeeVM Employee
+        {
+            get
+            {
                 return _employeeVM;
             }
-            set {
+            set
+            {
                 _employeeVM = value;
                 RaisePropertyChanged("Employee");
             }
         }
         public ObservableCollection<DepartmentVM> Departments { get; set; }
-        public ObservableCollection<string> Status { get; set; }
+        public ObservableCollection<string> Statuses { get; set; }
         public ICommand EditEmployeeCommand { get; set; }
         public ICommand CloseEditEmployeeCommand { get; set; }
 
@@ -38,7 +41,8 @@ namespace Festispec.ViewModel.employee
             {
                 return _departmentIndex;
             }
-            set {
+            set
+            {
                 _departmentIndex = value;
                 RaisePropertyChanged("DepartmentIndex");
             }
@@ -55,7 +59,7 @@ namespace Festispec.ViewModel.employee
             using (var context = new Entities())
             {
                 Departments = new ObservableCollection<DepartmentVM>(context.Departments.ToList().Select(department => new DepartmentVM(department)));
-                Status = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
+                Statuses = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
             }
         }
 

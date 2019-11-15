@@ -21,7 +21,7 @@
         <Label FontWeight="Bold" Content="Achternaam" HorizontalAlignment="Left" Margin="108,129,0,0" VerticalAlignment="Top" Width="108"/>
         <Label HorizontalAlignment="Left" Height="23" Margin="108,219,0,0" Content="{Binding Path=Employee.Street, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Straat" HorizontalAlignment="Left" Margin="108,188,0,0" VerticalAlignment="Top" Width="60"/>
-        <Label HorizontalAlignment="Left" Height="23" Margin="108,278,0,0"  Content="{Binding Path=Employee.HouseNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label HorizontalAlignment="Left" Height="23" Margin="108,278,0,0"  Content="{Binding Path=Employee.FullHouseNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Huisnummer" HorizontalAlignment="Left" Margin="108,247,0,0" VerticalAlignment="Top" Width="114"/>
         <Label HorizontalAlignment="Left" Height="23" Margin="108,337,0,0" Content="{Binding Path=Employee.City, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Postcode" HorizontalAlignment="Left" Margin="305,10,0,0" VerticalAlignment="Top" Width="74"/>

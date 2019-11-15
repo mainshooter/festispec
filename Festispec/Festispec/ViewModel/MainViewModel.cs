@@ -1,5 +1,4 @@
 using Festispec.View.Pages.Employee;
-using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
@@ -62,12 +61,12 @@ namespace Festispec.ViewModel
 
         private void OpenDashboardTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage)});
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage) });
         }
 
         public void OpenEmployeeTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage)});
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage) });
         }
 
         private void OpenCustomerTab()
