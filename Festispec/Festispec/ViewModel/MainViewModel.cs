@@ -1,7 +1,7 @@
-using Festispec.Singleton;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
+using Festispec.Singleton;
+using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel
@@ -37,10 +37,11 @@ namespace Festispec.ViewModel
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
-            _pageSingleton = new PageSingleton();
 
-            Page = _pageSingleton.GetPage("dashboard");
+            _pageSingleton = new PageSingleton(this);
+            Page = _pageSingleton.GetPage("report");
         }
+
 
         //methodes
         private void CloseApp()

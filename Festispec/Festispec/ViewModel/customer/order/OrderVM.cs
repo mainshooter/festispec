@@ -2,7 +2,7 @@
 using Festispec.ViewModel.customer;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.planning;
-using Festispec.ViewModel.rapport;
+using Festispec.ViewModel.report;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
