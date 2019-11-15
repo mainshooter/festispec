@@ -61,7 +61,7 @@ namespace Festispec.ViewModel.employee
 
         public bool CanEditEmployee()
         {
-            if (Employee.Firstname == null || Employee.Lastname == null || Employee.Password == null || Employee.City == null || Employee.Department == null || Employee.Email == null || Employee.HouseNumber <= 0 || Employee.Phone == null || Employee.PostalCode == null || Employee.Status == null || Employee.Street == null)
+            if (Employee.Firstname == null || Employee.Lastname == null || Employee.Password == null || Employee.City == null || Employee.Department == null || Employee.Email == null || Employee.HouseNumber <= 0 || Employee.Phone == null || Employee.Iban == null || Employee.PostalCode == null || Employee.Status == null || Employee.Street == null)
             {
                 return false;
             }

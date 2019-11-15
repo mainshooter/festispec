@@ -4,34 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c89df2400fa24346a9916d5b14049083" Name="Diagram1">
+      <Diagram DiagramId="1a39175ec6734794a98344fa1d5ea671" Name="Diagram1">
         <EntityTypeShape EntityType="FestispecModel.Answer" Width="1.5" PointX="13.5" PointY="15.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.AvailabilityInspector" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.BetterReportInspector" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.Case" Width="1.5" PointX="8.25" PointY="15.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.CaseStatu" Width="1.5" PointX="6" PointY="24.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.CertificateInspector" Width="1.5" PointX="5.25" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FestispecModel.ContactPerson" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FestispecModel.Customer" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FestispecModel.ContactPerson" Width="1.5" PointX="0.75" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FestispecModel.Customer" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.Day" Width="1.5" PointX="10.5" PointY="19.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.Department" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FestispecModel.ElementType" Width="1.5" PointX="10.5" PointY="29.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FestispecModel.Employee" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FestispecModel.ElementType" Width="1.5" PointX="10.5" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FestispecModel.Employee" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.EmployeeStatu" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FestispecModel.Event" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FestispecModel.Event" Width="1.5" PointX="3" PointY="20.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.InspectorPlanning" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.InspectorPlanningStatu" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FestispecModel.Note" Width="1.5" PointX="3" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FestispecModel.Note" Width="1.5" PointX="3" PointY="25.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.Order" Width="1.5" PointX="8.25" PointY="18.375" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.OrderStatu" Width="1.5" PointX="6" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FestispecModel.QueryTemplate" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FestispecModel.QueryTemplate" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.Question" Width="1.5" PointX="15.75" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.QuestionType" Width="1.5" PointX="13.5" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.Quotation" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.Report" Width="1.5" PointX="10.5" PointY="22.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.ReportElement" Width="1.5" PointX="12.75" PointY="23.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.ReportStatu" Width="1.5" PointX="8.25" PointY="23.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FestispecModel.SickReportInspector" Width="1.5" PointX="10.5" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FestispecModel.SickReportInspector" Width="1.5" PointX="10.5" PointY="13.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.Survey" Width="1.5" PointX="13.5" PointY="19.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FestispecModel.SurveyStatu" Width="1.5" PointX="11.25" PointY="26.625" IsExpanded="true" />
         <AssociationConnector Association="FestispecModel.FK_Answer_Case" ManuallyRouted="false" />

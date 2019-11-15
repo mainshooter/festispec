@@ -117,6 +117,26 @@ namespace Festispec.ViewModel.employee
             }
         }
 
+        public string HouseNumber_Addition
+        {
+            get
+            {
+                return _employee.HouseNumber_Addition;
+            }
+            set
+            {
+                _employee.HouseNumber_Addition = value;
+            }
+        }
+
+        public string FullHouseNumber
+        {
+            get
+            {
+                return (HouseNumber + HouseNumber_Addition);
+            }
+        }
+
         public string PostalCode
         {
             get

@@ -22,8 +22,10 @@
         <Label Content="Achternaam" HorizontalAlignment="Left" Margin="108,128,0,0" VerticalAlignment="Top" Width="89"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="108,218,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Street, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
         <Label Content="Straat" HorizontalAlignment="Left" Margin="108,187,0,0" VerticalAlignment="Top" Width="49"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="80"/>
         <Label Content="Huisnummer" HorizontalAlignment="Left" Margin="108,246,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="208,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumber_Addition, Mode=TwoWay}" VerticalAlignment="Top" Width="76"/>
+        <Label Content="Toevoeging" HorizontalAlignment="Left" Margin="202,246,0,0" VerticalAlignment="Top" Width="94"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="108,336,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.City, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
         <Label Content="Postcode" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="84"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="320,41,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.PostalCode, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
