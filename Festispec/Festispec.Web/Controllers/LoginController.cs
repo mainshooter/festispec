@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Festispec.Domain;
 using Festispec.Lib.Auth;
+using Festispec.Lib.Interfaces;
 
 namespace Festispec.Web.Controllers
 {
@@ -23,32 +24,37 @@ namespace Festispec.Web.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage Login(string email, string password)
-        {
-            Employee result = null;
+        public ActionResult Login(string email, string password)
+        { 
+           ActionResult result = View();
 
-            using (var context = new Entities())
-            {
-                var employee = context.Employees.FirstOrDefault(e => e.Email == email);
-                var passwordService = new PasswordService();
+           if (ModelState.IsValid)
+           {
+               using (var context = new Entities())
+               {
+                   var employee = context.Employees.FirstOrDefault(e => e.Email == email);
+                   IPasswordValidator passwordService = new PasswordService();
 
-                if (employee == null)
-                {
-                    //TODO
-                }
-                else if (!passwordService.PasswordsCompare(password, employee.Password))
-                {
-                    //TODO
-                }
-                else
-                {
-                    Session["loggedInUser"] = employee;
-                    Session["loggedIn"] = true;
-                    result = employee;
-                }
-            }
+                   if (employee == null)
+                   {
+                       ModelState.AddModelError("", "Gebruiker niet gevonden met de ingevoerde email.");
+                   }
+                   else if (!passwordService.PasswordsCompare(password, employee.Password))
+                   {
+                       ModelState.AddModelError("", "Wachtwoord ongeldig");
+                   }
+                   else
+                   {
+                       Session["loggedInUser"] = employee;
+                       Session["loggedIn"] = true;
 
-            return new HttpResponseMessage(HttpStatusCode.NotImplemented);
+                       //Redirect naar pagina
+                       result = RedirectToAction("Index", "Home");
+                   }
+               }
+           }
+
+           return result;
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Festispec.Lib.Interfaces
 {
-    interface IPasswordValidator
+    public interface IPasswordValidator
     {
         string StringToPassword(string toPassword);
         bool PasswordsCompare(string unHashed, string hashed);
