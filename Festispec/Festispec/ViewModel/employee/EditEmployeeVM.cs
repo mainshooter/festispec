@@ -32,7 +32,7 @@ namespace Festispec.ViewModel.employee
         }
         public EmployeeVM TempEmployee { get; set; }
         public ObservableCollection<DepartmentVM> Departments { get; set; }
-        public ObservableCollection<string> Status { get; set; }
+        public ObservableCollection<string> Statuses { get; set; }
         public ICommand EditEmployeeCommand { get; set; }
         public ICommand CloseEditEmployeeCommand { get; set; }
 
@@ -53,7 +53,7 @@ namespace Festispec.ViewModel.employee
             this.MessengerInstance.Register<ChangeSelectedEmployeeMessage>(this, message =>
             {
                 Employee = message.Employee;
-                TempEmployee = message.Employee;
+                //TempEmployee = Employee.Clone();
                 DepartmentIndex = Departments.IndexOf(Departments.Select(department => department).Where(department => department.Name == Employee.Department.Name).FirstOrDefault());
             });
             EditEmployeeCommand = new RelayCommand(EditEmployee, CanEditEmployee);
@@ -61,7 +61,7 @@ namespace Festispec.ViewModel.employee
             using (var context = new Entities())
             {
                 Departments = new ObservableCollection<DepartmentVM>(context.Departments.ToList().Select(department => new DepartmentVM(department)));
-                Status = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
+                Statuses = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
             }
         }
 
