@@ -3,7 +3,6 @@ using Festispec.Factory;
 using Festispec.View.Pages.Report.element;
 using Festispec.ViewModel.employee.order;
 using Festispec.ViewModel.report.element;
-using Festispec.ViewModel.report;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
