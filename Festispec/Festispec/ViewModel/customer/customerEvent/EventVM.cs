@@ -1,11 +1,6 @@
-﻿using BingMapsRESTToolkit;
-using Festispec.Domain;
+﻿using Festispec.Domain;
 using Festispec.ViewModel.customer.contactPerson;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
