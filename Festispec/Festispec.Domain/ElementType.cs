@@ -21,7 +21,6 @@ namespace Festispec.Domain
         }
     
         public string Type { get; set; }
-        public string ElementPart { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReportElement> ReportElements { get; set; }
