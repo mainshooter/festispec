@@ -97,6 +97,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Factory\ReportElementFactory.cs" />
+    <Compile Include="Repository\ReportRepository.cs" />
     <Compile Include="Singleton\PageSingleton.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />

@@ -46,10 +46,10 @@ namespace Festispec.ViewModel
             //Page = _pageSingleton.GetPage("report");
             Page = ServiceLocator.Current.GetInstance<ReportPage>();
 
-            //this.MessengerInstance.Register<ChangePageMessage>(this, message =>
-            //{
-            //    this.Page = ServiceLocator.Current.GetInstance(message.NextPageType) as Page;
-            //});
+            this.MessengerInstance.Register<ChangePageMessage>(this, message =>
+            {
+                this.Page = ServiceLocator.Current.GetInstance(message.NextPageType) as Page;
+            });
         }
 
 
