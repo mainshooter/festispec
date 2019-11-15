@@ -1,6 +1,4 @@
 using CommonServiceLocator;
-using Festispec.Domain;
-using Festispec.ViewModel.survey;
 using GalaSoft.MvvmLight.Ioc;
 
 namespace Festispec.ViewModel

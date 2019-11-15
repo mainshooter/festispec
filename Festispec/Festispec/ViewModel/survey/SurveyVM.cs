@@ -12,10 +12,7 @@ namespace Festispec.ViewModel.survey
     {
         private Domain.Survey _survey;
 
-        public int Id {
-            get => _survey.Id;
-            private set => _survey.Id = value;
-        }
+        public int Id => _survey.Id;
 
         public string Description {
             get => _survey.Description;
