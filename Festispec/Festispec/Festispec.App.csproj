@@ -90,8 +90,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Exceptions\Auth\PasswordNoMatchException.cs" />
-    <Compile Include="Exceptions\Employee\EmployeeNotFoundException.cs" />
     <Compile Include="Singleton\PageSingleton.cs" />
     <Compile Include="ViewModel\auth\PasswordEncryptVm.cs" />
     <Compile Include="ViewModel\auth\SessionVm.cs" />
