@@ -114,7 +114,7 @@
     <Compile Include="ViewModel\planning\DayVM.cs" />
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\report\AddElementVM.cs" />
-    <Compile Include="ViewModel\report\ChangePageMessage.cs" />
+    <Compile Include="Message\ChangePageMessage.cs" />
     <Compile Include="ViewModel\report\element\BarChartVM.cs" />
     <Compile Include="ViewModel\report\element\ImageVM.cs" />
     <Compile Include="ViewModel\report\element\LineChartVM.cs" />

@@ -42,6 +42,7 @@ namespace Festispec.ViewModel.report
             }
             set {
                 _report.Title = value;
+                RaisePropertyChanged("Title");
             }
         }
 
@@ -74,6 +75,7 @@ namespace Festispec.ViewModel.report
             ReportElements.CollectionChanged += RenderReportElements;
             SaveReportCommand = new RelayCommand(Save);
             AddElementCommand = new RelayCommand(GoToAddElementPage);
+            _report.Title = "Test titel";
             this.RenderReportElements(null, null);
         }
 

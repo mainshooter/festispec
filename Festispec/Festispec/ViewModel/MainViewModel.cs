@@ -9,6 +9,7 @@ using Festispec.View.Pages.Employee;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Customer.Event;
+using Festispec.View.Report;
 
 namespace Festispec.ViewModel
 {
@@ -43,7 +44,7 @@ namespace Festispec.ViewModel
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
 
-            Page = ServiceLocator.Current.GetInstance<DashboardPage>();
+            Page = ServiceLocator.Current.GetInstance<ReportPage>();
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
