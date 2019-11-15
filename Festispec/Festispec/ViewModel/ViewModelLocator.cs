@@ -4,8 +4,8 @@ using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Employee;
 using Festispec.View.Pages.Employee.Availability;
+using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Report.element;
-using Festispec.View.Report;
 using Festispec.ViewModel.report;
 using GalaSoft.MvvmLight.Ioc;
 

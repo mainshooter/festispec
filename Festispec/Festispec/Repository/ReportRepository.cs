@@ -3,9 +3,6 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.Repository
 {
@@ -15,18 +12,18 @@ namespace Festispec.Repository
         {
             var reportElements = new List<ReportElementVM>();
             reportElements.Add(
-        new ReportElementVM()
-        {
-            Title = "Leuke titel",
-            Content = "Hier maak ik titels van",
-            Type = "table",
-            Data = new Dictionary<string, List<string>>()
-            {
-                ["id"] = new List<string>() { "1", "2" },
-                ["namen"] = new List<string>() { "Peter", "Mike", "Wout" }
-            },
-        }
-    );
+                new ReportElementVM()
+                {
+                    Title = "Leuke titel",
+                    Content = "Hier maak ik titels van",
+                    Type = "table",
+                    Data = new Dictionary<string, List<string>>()
+                    {
+                        ["id"] = new List<string>() { "1", "2" },
+                        ["namen"] = new List<string>() { "Peter", "Mike", "Wout" }
+                    },
+                }
+            );
             reportElements.Add(
                 new ReportElementVM()
                 {

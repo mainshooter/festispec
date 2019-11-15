@@ -1,7 +1,6 @@
 ﻿using Festispec.Domain;
 using Festispec.Factory;
 using Festispec.View.Pages.Report.element;
-using Festispec.ViewModel.employee.order;
 using Festispec.ViewModel.report.element;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.ObjectModel;
@@ -11,8 +10,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using Festispec.Repository;
-using Festispec.View.Report;
 using Festispec.Message;
+using Festispec.View.Pages.Report;
+using Festispec.ViewModel.Customer.order;
 
 namespace Festispec.ViewModel.report
 {

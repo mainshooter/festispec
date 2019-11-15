@@ -8,8 +8,8 @@ using Festispec.View.Pages.Employee;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Customer.Event;
-using Festispec.View.Report;
 using Festispec.Message;
+using Festispec.View.Pages.Report;
 
 namespace Festispec.ViewModel
 {

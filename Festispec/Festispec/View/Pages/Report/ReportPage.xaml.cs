@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace Festispec.View.Report
+namespace Festispec.View.Pages.Report
 {
     /// <summary>
     /// Interaction logic for Report.xaml

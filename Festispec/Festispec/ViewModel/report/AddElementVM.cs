@@ -1,6 +1,6 @@
 ﻿using Festispec.Factory;
 using Festispec.Message;
-using Festispec.View.Report;
+using Festispec.View.Pages.Report;
 using Festispec.ViewModel.report.element;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
