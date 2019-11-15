@@ -56,6 +56,12 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.0.325, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.0\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -90,7 +96,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Singleton\PageSingleton.cs" />
+    <Compile Include="Factory\ReportElementFactory.cs" />
+    <Compile Include="Message\ChangeSelectedEmployeeMessage.cs" />
+    <Compile Include="Repository\EmployeeRepository.cs" />
+    <Compile Include="Repository\ReportRepository.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EventVM.cs" />
@@ -103,13 +112,23 @@
     <Compile Include="ViewModel\employee\certificate\CertificateVM.cs" />
     <Compile Include="ViewModel\employee\department\DepartmentVM.cs" />
     <Compile Include="ViewModel\employee\EditEmployeeVM.cs" />
+    <Compile Include="ViewModel\employee\EmployeeInfoVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeListVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeVM.cs" />
     <Compile Include="ViewModel\employee\SickVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\planning\DayVM.cs" />
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />
+    <Compile Include="ViewModel\report\AddElementVM.cs" />
+    <Compile Include="Message\ChangePageMessage.cs" />
+    <Compile Include="ViewModel\report\element\BarChartVM.cs" />
+    <Compile Include="ViewModel\report\element\ImageVM.cs" />
+    <Compile Include="ViewModel\report\element\LineChartVM.cs" />
+    <Compile Include="ViewModel\report\element\PieChartVM.cs" />
+    <Compile Include="ViewModel\report\element\ReportElementTypesListVM.cs" />
     <Compile Include="ViewModel\report\element\ReportElementVM.cs" />
+    <Compile Include="ViewModel\report\element\TableVM.cs" />
+    <Compile Include="ViewModel\report\element\TextVM.cs" />
     <Compile Include="ViewModel\report\ReportVM.cs" />
     <Compile Include="ViewModel\survey\answer\SurveyAnswerVM.cs" />
     <Compile Include="ViewModel\survey\CaseVM.cs" />
@@ -123,6 +142,36 @@
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
+      <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\AddElementPage.xaml.cs">
+      <DependentUpon>AddElementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usercontrols\Report\AddReportElementUserControl.xaml.cs">
+      <DependentUpon>AddReportElementUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usercontrols\Report\Element\BarChartUserControl.xaml.cs">
+      <DependentUpon>BarChartUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usercontrols\Report\Element\ImageUserControl.xaml.cs">
+      <DependentUpon>ImageUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usercontrols\Report\Element\LineChartUserControl.xaml.cs">
+      <DependentUpon>LineChartUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usercontrols\Report\Element\PieChartUserControl.xaml.cs">
+      <DependentUpon>PieChartUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usercontrols\Report\Element\TableUserControl.xaml.cs">
+      <DependentUpon>TableUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usercontrols\Report\Element\TextUserControl.xaml.cs">
+      <DependentUpon>TextUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\ReportPage.xaml.cs">
+      <DependentUpon>ReportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\Availability\AvailablePage.xaml.cs">
       <DependentUpon>AvailablePage.xaml</DependentUpon>
@@ -145,8 +194,8 @@
     <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
       <DependentUpon>SickPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
-      <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
+    <Compile Include="View\Usercontrols\Report\ReportControlUserControl.xaml.cs">
+      <DependentUpon>ReportControlUserControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +233,46 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="View\Pages\Employee\SingleEmployeePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\AddElementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usercontrols\Report\AddReportElementUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usercontrols\Report\Element\BarChartUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usercontrols\Report\Element\ImageUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usercontrols\Report\Element\LineChartUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usercontrols\Report\Element\PieChartUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usercontrols\Report\Element\TableUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usercontrols\Report\Element\TextUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\ReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Employee\Availability\AvailablePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -212,7 +301,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Employee\SingleEmployeePage.xaml">
+    <Page Include="View\Usercontrols\Report\ReportControlUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

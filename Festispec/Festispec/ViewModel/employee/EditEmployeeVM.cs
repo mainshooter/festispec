@@ -1,22 +1,32 @@
 ﻿using Festispec.Domain;
+using Festispec.Message;
+using Festispec.View.Pages.Employee;
 using Festispec.ViewModel.employee.department;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.employee
 {
-    public class EditEmployeeVM
+    public class EditEmployeeVM: ViewModelBase
     {
+        private EmployeeVM _employeeVM;
+        private int _departmentIndex;
         public EmployeeListVM EmployeeList { get; set; }
-        public EmployeeVM Employee { get; set; }
+        public EmployeeVM Employee { 
+            get {
+                return _employeeVM;
+            }
+            set {
+                _employeeVM = value;
+                RaisePropertyChanged("Employee");
+            }
+        }
         public ObservableCollection<DepartmentVM> Departments { get; set; }
         public ObservableCollection<string> Status { get; set; }
         public ICommand EditEmployeeCommand { get; set; }
@@ -26,14 +36,20 @@ namespace Festispec.ViewModel.employee
         {
             get
             {
-                int index = Departments.IndexOf(Departments.Select(department => department).Where(department => department.Name == Employee.Department.Name).FirstOrDefault());
-                return index;
+                return _departmentIndex;
+            }
+            set {
+                _departmentIndex = value;
+                RaisePropertyChanged("DepartmentIndex");
             }
         }
-        public EditEmployeeVM(EmployeeListVM employeeList)
+        public EditEmployeeVM()
         {
-            EmployeeList = employeeList;
-            Employee = EmployeeList.SelectedEmployee;
+            this.MessengerInstance.Register<ChangeSelectedEmployeeMessage>(this, message =>
+            {
+                Employee = message.Employee;
+                DepartmentIndex = Departments.IndexOf(Departments.Select(department => department).Where(department => department.Name == Employee.Department.Name).FirstOrDefault());
+            });
             EditEmployeeCommand = new RelayCommand(EditEmployee, CanEditEmployee);
             CloseEditEmployeeCommand = new RelayCommand(CloseEditEmployee);
             using (var context = new Entities())
@@ -56,11 +72,15 @@ namespace Festispec.ViewModel.employee
 
         private void CloseEditEmployee()
         {
-            EmployeeList.MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage) });
         }
 
         public bool CanEditEmployee()
         {
+            if (Employee == null)
+            {
+                return false;
+            }
             if (Employee.Firstname == null || Employee.Lastname == null || Employee.Password == null || Employee.City == null || Employee.Department == null || Employee.Email == null || Employee.HouseNumber <= 0 || Employee.Phone == null || Employee.Iban == null || Employee.PostalCode == null || Employee.Status == null || Employee.Street == null)
             {
                 return false;

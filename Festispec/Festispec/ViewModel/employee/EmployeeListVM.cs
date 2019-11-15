@@ -1,4 +1,7 @@
 ﻿using Festispec.Domain;
+using Festispec.Message;
+using Festispec.Repository;
+using Festispec.View.Pages.Employee;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
@@ -18,7 +21,6 @@ namespace Festispec.ViewModel.employee
         public ICommand OpenEditEmployee { get; set; }
         public ICommand OpenSingleEmployee { get; set; }
         public ICommand DeleteEmployeeCommand { get; set; }
-        private MainViewModel _mainViewModel;
         public ObservableCollection<EmployeeVM> EmployeeList { get; set; }
         private EmployeeVM _selectedEmployee;
         public MainViewModel MainViewModel { get; set; }
@@ -99,17 +101,13 @@ namespace Festispec.ViewModel.employee
         }
 
 
-        public EmployeeListVM(MainViewModel mainViewModel)
+        public EmployeeListVM()
         {
-            MainViewModel = mainViewModel;
             Filters = new List<string>();
             SelectedFilter = Filters.First();
             Filter = "";
-            _mainViewModel = mainViewModel;
-            using (var context = new Entities())
-            {
-                EmployeeList = new ObservableCollection<EmployeeVM>(context.Employees.ToList().Select(employee => new EmployeeVM(employee)));
-            }
+            EmployeeRepository employeeRepository = new EmployeeRepository();
+            EmployeeList = new ObservableCollection<EmployeeVM>(employeeRepository.GetEmployees());
             OpenAddEmployee = new RelayCommand(OpenAddEmployeePage);
             OpenEditEmployee = new RelayCommand(OpenEditEmployeePage);
             DeleteEmployeeCommand = new RelayCommand(DeleteEmployee);
@@ -118,17 +116,20 @@ namespace Festispec.ViewModel.employee
 
         private void OpenAddEmployeePage()
         {
-            _mainViewModel.OpenAddEmployeeTab();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddEmployeePage) });
         }
 
         private void OpenEditEmployeePage()
         {
-            _mainViewModel.OpenEditEmployeeTab();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditEmployeePage) });
+            MessengerInstance.Send<ChangeSelectedEmployeeMessage>(new ChangeSelectedEmployeeMessage() { Employee = SelectedEmployee });
         }
 
         public void OpenSingleEmployeePage()
         {
-            _mainViewModel.OpenSingleEmployeeTab();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SingleEmployeePage) });
+            MessengerInstance.Send<ChangeSelectedEmployeeMessage>(new ChangeSelectedEmployeeMessage() { Employee = SelectedEmployee});
+            
         }
 
         private void DeleteEmployee()
