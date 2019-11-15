@@ -1,12 +1,14 @@
 using GalaSoft.MvvmLight;
 using System.Windows.Controls;
-using Festispec.Singleton;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
-using Festispec.View.Report;
 using CommonServiceLocator;
 using Festispec.ViewModel.report;
-using System;
+using Festispec.View.Pages;
+using Festispec.View.Pages.Employee;
+using Festispec.View.Pages.Customer;
+using Festispec.View.Pages.Employee.Availability;
+using Festispec.View.Pages.Customer.Event;
 
 namespace Festispec.ViewModel
 {
@@ -14,7 +16,6 @@ namespace Festispec.ViewModel
     {
         //privates
         private Page _page;
-        private PageSingleton _pageSingleton;
 
         //publics
         public ICommand CloseApplication { get; set; }
@@ -42,9 +43,7 @@ namespace Festispec.ViewModel
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
 
-            //_pageSingleton = new PageSingleton(this);
-            //Page = _pageSingleton.GetPage("report");
-            Page = ServiceLocator.Current.GetInstance<ReportPage>();
+            Page = ServiceLocator.Current.GetInstance<DashboardPage>();
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -61,32 +60,32 @@ namespace Festispec.ViewModel
 
         private void OpenDashboardTab()
         {
-            Page = _pageSingleton.GetPage("dashboard");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage)});
         }
 
         private void OpenEmployeeTab()
         {
-            Page = _pageSingleton.GetPage("employee");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage)});
         }
 
         private void OpenCustomerTab()
         {
-            Page = _pageSingleton.GetPage("customer");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
         }
 
         private void OpenAvailabilityTab()
         {
-            Page = _pageSingleton.GetPage("availability");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AvailablePage) });
         }
 
         private void OpenEventTab()
         {
-            Page = _pageSingleton.GetPage("event");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
         }
 
         private void OpenSickTab()
         {
-            Page = _pageSingleton.GetPage("sick");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage) });
         }
     }
 }

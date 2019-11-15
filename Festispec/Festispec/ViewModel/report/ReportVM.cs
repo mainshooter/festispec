@@ -12,16 +12,16 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Ioc;
-using Festispec.Singleton;
 using Festispec.View.Pages;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
+using Festispec.Repository;
+using Festispec.View.Report;
 
 namespace Festispec.ViewModel.report
 {
     public class ReportVM : ViewModelBase
     {
-        private PageSingleton pageSingleton;
         private Report _report;
         private ReportElementFactory _reportElementFactory;
 
@@ -64,14 +64,13 @@ namespace Festispec.ViewModel.report
 
         public ICommand AddElementCommand { get; set; }
 
-        public ReportVM(PageSingleton pageSingleton)
+        public ReportVM()
         {
-            this.pageSingleton = pageSingleton;
             _report = new Report();
-            this.ReportElements = new ObservableCollection<ReportElementVM>(pageSingleton.CurrentReportElements);
+            var reportRepository = new ReportRepository();
+            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements());
             ReportElementUserControlls = new ObservableCollection<UserControl>();
             _reportElementFactory = new ReportElementFactory();
-            //ReportElements = new ObservableCollection<ReportElementVM>();
             ReportElements.CollectionChanged += RenderReportElements;
             SaveReportCommand = new RelayCommand(Save);
             AddElementCommand = new RelayCommand(GoToAddElementPage);
@@ -95,18 +94,19 @@ namespace Festispec.ViewModel.report
 
         public void Save()
         {
-            //if (Id == 0)
-            //{
-            //    Insert();
-            //    return;
-            //}
-            //using (var context = new Entities())
-            //{
-            //    context.Reports.Attach(_report);
-            //    context.Entry(_report).State = System.Data.Entity.EntityState.Modified;
-            //    context.SaveChanges();
-            //}
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage { NextPageType = typeof(DashboardPage) });
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage { NextPageType = typeof(ReportPage) });
+            return;
+            if (Id == 0)
+            {
+                Insert();
+                return;
+            }
+            using (var context = new Entities())
+            {
+                context.Reports.Attach(_report);
+                context.Entry(_report).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
         }
 
         private void Insert()
