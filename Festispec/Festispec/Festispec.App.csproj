@@ -97,7 +97,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Factory\ReportElementFactory.cs" />
-    <Compile Include="Singleton\PageSingleton.cs" />
+    <Compile Include="Repository\ReportRepository.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EventVM.cs" />
@@ -114,6 +114,7 @@
     <Compile Include="ViewModel\planning\DayVM.cs" />
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\report\AddElementVM.cs" />
+    <Compile Include="Message\ChangePageMessage.cs" />
     <Compile Include="ViewModel\report\element\BarChartVM.cs" />
     <Compile Include="ViewModel\report\element\ImageVM.cs" />
     <Compile Include="ViewModel\report\element\LineChartVM.cs" />
