@@ -1,12 +1,6 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.employee;
-using Festispec.ViewModel.employee.order;
-using Festispec.ViewModel.employee.quotation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.planning.plannedEmployee
 {

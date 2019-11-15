@@ -1,12 +1,8 @@
 ﻿using Festispec.Domain;
-using Festispec.ViewModel.employee.order;
+using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.survey.question;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.survey
 {

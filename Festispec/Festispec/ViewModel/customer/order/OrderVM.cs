@@ -1,16 +1,13 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.customer;
 using Festispec.ViewModel.customer.customerEvent;
+using Festispec.ViewModel.employee;
 using Festispec.ViewModel.planning;
 using Festispec.ViewModel.report;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Festispec.ViewModel.employee.order
+namespace Festispec.ViewModel.Customer.order
 {
     public class OrderVM
     {
@@ -91,7 +88,7 @@ namespace Festispec.ViewModel.employee.order
             Event = new EventVM(orderCon.Event);
             Employee = new EmployeeVM(orderCon.Employee);
             Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d)));
-            Reports = new ObservableCollection<ReportVM>(_order.Reports.ToList().Select(r => new ReportVM(r)));
+            Reports = new ObservableCollection<ReportVM>(_order.Reports.ToList().Select(r => new ReportVM()));
         }
 
         public OrderVM()

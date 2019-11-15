@@ -1,7 +1,6 @@
 ﻿using Festispec.Domain;
 using Festispec.Factory;
 using Festispec.View.Pages.Report.element;
-using Festispec.ViewModel.employee.order;
 using Festispec.ViewModel.report.element;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.ObjectModel;
@@ -9,10 +8,15 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
+using GalaSoft.MvvmLight;
+using Festispec.Repository;
+using Festispec.Message;
+using Festispec.View.Pages.Report;
+using Festispec.ViewModel.Customer.order;
 
 namespace Festispec.ViewModel.report
 {
-    public class ReportVM
+    public class ReportVM : ViewModelBase
     {
         private Report _report;
         private ReportElementFactory _reportElementFactory;
@@ -34,6 +38,7 @@ namespace Festispec.ViewModel.report
             }
             set {
                 _report.Title = value;
+                RaisePropertyChanged("Title");
             }
         }
 
@@ -56,26 +61,18 @@ namespace Festispec.ViewModel.report
 
         public ICommand AddElementCommand { get; set; }
 
-        public ReportVM(Report report)
-        {
-            _report = report;
-            ReportElementUserControlls = new ObservableCollection<UserControl>();
-            _reportElementFactory = new ReportElementFactory();
-            ReportElements = new ObservableCollection<ReportElementVM>(report.ReportElements.ToList().Select(e => new ReportElementVM(e)));
-            ReportElements.CollectionChanged += RenderReportElements;
-            SaveReportCommand = new RelayCommand(Save);
-            AddElementCommand = new RelayCommand(GoToAddElementPage);
-        }
-
         public ReportVM()
         {
             _report = new Report();
+            var reportRepository = new ReportRepository();
+            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements());
             ReportElementUserControlls = new ObservableCollection<UserControl>();
             _reportElementFactory = new ReportElementFactory();
-            ReportElements = new ObservableCollection<ReportElementVM>();
             ReportElements.CollectionChanged += RenderReportElements;
             SaveReportCommand = new RelayCommand(Save);
             AddElementCommand = new RelayCommand(GoToAddElementPage);
+            _report.Title = "Test titel";
+            this.RenderReportElements(null, null);
         }
 
         private void GoToAddElementPage()
@@ -83,7 +80,6 @@ namespace Festispec.ViewModel.report
             Page addElementPage = new AddElementPage();
             AddElementVM addElementVM = new AddElementVM();
             addElementVM.Report = this;
-            addElementVM.MainViewModel = MainViewModel;
             addElementPage.DataContext = addElementVM;
             MainViewModel.Page = addElementPage;
         }
@@ -95,6 +91,8 @@ namespace Festispec.ViewModel.report
 
         public void Save()
         {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage { NextPageType = typeof(ReportPage) });
+            return;
             if (Id == 0)
             {
                 Insert();
