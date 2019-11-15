@@ -11,11 +11,12 @@
 
     <StackPanel>
         <Label Panel.ZIndex="1" Content="Medewerkers" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <WrapPanel>
+        <Grid>
             <Label Margin="3, 3, 10, 3">Filter:</Label>
-            <ComboBox Margin="3, 3, 10, 3" SelectedIndex="0" SelectedValuePath="SelectedFilter" ItemsSource="{Binding Filters}" SelectedItem="{Binding SelectedFilter,Mode=TwoWay}" Width="128"></ComboBox>
-            <TextBox Margin="3, 3, 10, 3" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="122"/>
-        </WrapPanel>
+            <ComboBox Margin="46,3,887,3" SelectedIndex="0" SelectedValuePath="SelectedFilter" ItemsSource="{Binding Filters}" SelectedItem="{Binding SelectedFilter,Mode=TwoWay}"/>
+            <TextBox Margin="183,3,765,3" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Content="Medewerker toevoegen" Command="{Binding OpenAddEmployee}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        </Grid>
 
         <Viewbox VerticalAlignment="Top">
             <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding EmployeeListFiltered}" SelectedItem="{Binding Path=SelectedEmployee,Mode=TwoWay}">
@@ -61,7 +62,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Viewbox>
-        <Button Content="Medewerker toevoegen" Command="{Binding OpenAddEmployee}" Margin="354,375,323,43"/>
     </StackPanel>
 
 </Page>
