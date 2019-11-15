@@ -280,7 +280,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\survey\question\questionTypes\" />
-    <Folder Include="View\Report\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Festispec.Domain\Festispec.Domain.csproj">

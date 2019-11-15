@@ -1,5 +1,4 @@
 ﻿using Festispec.Factory;
-using Festispec.View.Report.Element;
 using Festispec.ViewModel.report.element;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -22,14 +21,15 @@ namespace Festispec.ViewModel.report
 
         public ReportVM Report { get; set; }
 
-        public MainViewModel MainViewModel {
-            get {
-                return _mainViewModel;
-            }
-            set {
-                _mainViewModel = value;
-                _previousePage = _mainViewModel.Page;
-            }
+        public MainViewModel MainViewModel 
+            {
+                get {
+                    return _mainViewModel;
+                }
+                set {
+                    _mainViewModel = value;
+                    _previousePage = _mainViewModel.Page;
+                }
         }
 
         public int SelectedElementIndex { get; set; }
