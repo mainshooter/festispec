@@ -1,5 +1,6 @@
 using Festispec.Singleton;
 using Festispec.ViewModel.planning;
+using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
@@ -12,6 +13,7 @@ namespace Festispec.ViewModel
         //privates
         private Page _page;
         private PageSingleton _pageSingleton;
+        private ToastVM _toastVM;
 
         //publics
         public ICommand CloseApplication { get; set; }
@@ -47,6 +49,7 @@ namespace Festispec.ViewModel
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
             _pageSingleton = new PageSingleton();
+            _toastVM = new ToastVM();
 
             //Page = _pageSingleton.GetPage("dashboard");
             OpenDashboardTab();
@@ -69,6 +72,7 @@ namespace Festispec.ViewModel
         private void OpenEmployeeTab()
         {
             Page = _pageSingleton.GetPage("employee");
+
         }
 
         private void OpenCustomerTab()

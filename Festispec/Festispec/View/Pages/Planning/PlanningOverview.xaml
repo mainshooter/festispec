@@ -10,8 +10,14 @@
       Title="PlanningOverview">
 
     <StackPanel Background="White">
+        <WrapPanel>
+            <Label Margin="3, 3, 10, 3">Filter:</Label>
+            <ComboBox Margin="3, 3, 10, 3" SelectedIndex="0" SelectedValuePath="SelectedFilter" ItemsSource="{Binding FilterItems}" SelectedItem="{Binding SelectedFilter,Mode=TwoWay}" Width="128"></ComboBox>
+            <TextBox Margin="3, 3, 10, 3" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="122"/>
+        </WrapPanel>
+        
         <Viewbox>
-            <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding PlannedEmployeeList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="900">
+            <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding FilteredPlannedEmployeeList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="900">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Volledige naam" Binding="{Binding Employee.Fullname}"/>
                     <DataGridTextColumn Header="Evenement" Binding="{Binding Day.Order.Event.Name}"/>
