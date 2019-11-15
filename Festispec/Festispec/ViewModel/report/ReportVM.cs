@@ -7,14 +7,21 @@ using Festispec.ViewModel.report;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Ioc;
+using Festispec.Singleton;
+using Festispec.View.Pages;
+using CommonServiceLocator;
+using GalaSoft.MvvmLight;
 
 namespace Festispec.ViewModel.report
 {
-    public class ReportVM
+    public class ReportVM : ViewModelBase
     {
+        private PageSingleton pageSingleton;
         private Report _report;
         private ReportElementFactory _reportElementFactory;
 
@@ -57,26 +64,18 @@ namespace Festispec.ViewModel.report
 
         public ICommand AddElementCommand { get; set; }
 
-        public ReportVM(Report report)
+        public ReportVM(PageSingleton pageSingleton)
         {
-            _report = report;
-            ReportElementUserControlls = new ObservableCollection<UserControl>();
-            _reportElementFactory = new ReportElementFactory();
-            ReportElements = new ObservableCollection<ReportElementVM>(report.ReportElements.ToList().Select(e => new ReportElementVM(e)));
-            ReportElements.CollectionChanged += RenderReportElements;
-            SaveReportCommand = new RelayCommand(Save);
-            AddElementCommand = new RelayCommand(GoToAddElementPage);
-        }
-
-        public ReportVM()
-        {
+            this.pageSingleton = pageSingleton;
             _report = new Report();
+            this.ReportElements = new ObservableCollection<ReportElementVM>(pageSingleton.CurrentReportElements);
             ReportElementUserControlls = new ObservableCollection<UserControl>();
             _reportElementFactory = new ReportElementFactory();
-            ReportElements = new ObservableCollection<ReportElementVM>();
+            //ReportElements = new ObservableCollection<ReportElementVM>();
             ReportElements.CollectionChanged += RenderReportElements;
             SaveReportCommand = new RelayCommand(Save);
             AddElementCommand = new RelayCommand(GoToAddElementPage);
+            this.RenderReportElements(null, null);
         }
 
         private void GoToAddElementPage()
@@ -96,17 +95,18 @@ namespace Festispec.ViewModel.report
 
         public void Save()
         {
-            if (Id == 0)
-            {
-                Insert();
-                return;
-            }
-            using (var context = new Entities())
-            {
-                context.Reports.Attach(_report);
-                context.Entry(_report).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();
-            }
+            //if (Id == 0)
+            //{
+            //    Insert();
+            //    return;
+            //}
+            //using (var context = new Entities())
+            //{
+            //    context.Reports.Attach(_report);
+            //    context.Entry(_report).State = System.Data.Entity.EntityState.Modified;
+            //    context.SaveChanges();
+            //}
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage { NextPageType = typeof(DashboardPage) });
         }
 
         private void Insert()

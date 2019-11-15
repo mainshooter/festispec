@@ -90,8 +90,8 @@ namespace Festispec.ViewModel.employee.order
             Customer = new CustomerVM(orderCon.Customer);
             Event = new EventVM(orderCon.Event);
             Employee = new EmployeeVM(orderCon.Employee);
-            Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d)));
-            Reports = new ObservableCollection<ReportVM>(_order.Reports.ToList().Select(r => new ReportVM(r)));
+            //Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d)));
+            //Reports = new ObservableCollection<ReportVM>(_order.Reports.ToList().Select(r => new ReportVM(r)));
         }
 
         public OrderVM()

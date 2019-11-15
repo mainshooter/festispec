@@ -3,6 +3,10 @@ using System.Windows.Controls;
 using Festispec.Singleton;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
+using Festispec.View.Report;
+using CommonServiceLocator;
+using Festispec.ViewModel.report;
+using System;
 
 namespace Festispec.ViewModel
 {
@@ -38,8 +42,14 @@ namespace Festispec.ViewModel
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
 
-            _pageSingleton = new PageSingleton(this);
-            Page = _pageSingleton.GetPage("report");
+            //_pageSingleton = new PageSingleton(this);
+            //Page = _pageSingleton.GetPage("report");
+            Page = ServiceLocator.Current.GetInstance<ReportPage>();
+
+            //this.MessengerInstance.Register<ChangePageMessage>(this, message =>
+            //{
+            //    this.Page = ServiceLocator.Current.GetInstance(message.NextPageType) as Page;
+            //});
         }
 
 
