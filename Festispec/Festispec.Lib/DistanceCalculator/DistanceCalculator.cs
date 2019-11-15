@@ -7,6 +7,9 @@ namespace DistanceCalculator
 {
     public class DistanceCalculator
     {
+
+        private static string bingMapKey = "ITBT6VEQtWQIP2Nt0sEo~GvONPsboTGlj2F7N16RX1Q~AuuacnuDtvdGIIkJJsITb1P2J1Cr0vNjAgb3KKNYIiUUa2su3wzy_67N4XpmXffL";
+
         //Gebaseerd op twee SimpleWaypoints wordt de afstand berekent tussen die twee punten een een double van die afstand in kilometers teruggegeven
         public async Task<double> TravelDistance(SimpleWaypoint originCoor, SimpleWaypoint eventCoor)
         {
@@ -21,7 +24,7 @@ namespace DistanceCalculator
 
             distance.Origins = origin;
             distance.Destinations = destination;
-            distance.BingMapsKey = "ITBT6VEQtWQIP2Nt0sEo~GvONPsboTGlj2F7N16RX1Q~AuuacnuDtvdGIIkJJsITb1P2J1Cr0vNjAgb3KKNYIiUUa2su3wzy_67N4XpmXffL";
+            distance.BingMapsKey = bingMapKey;
             distance.TravelMode = TravelModeType.Driving;
 
             var response = await distance.Execute();
@@ -49,7 +52,7 @@ namespace DistanceCalculator
             address.PostalCode = postalCode;
 
             geocode.Address = address;
-            geocode.BingMapsKey = "ITBT6VEQtWQIP2Nt0sEo~GvONPsboTGlj2F7N16RX1Q~AuuacnuDtvdGIIkJJsITb1P2J1Cr0vNjAgb3KKNYIiUUa2su3wzy_67N4XpmXffL";
+            geocode.BingMapsKey = bingMapKey;
 
             var response = await geocode.Execute();
 
