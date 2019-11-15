@@ -12,6 +12,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using Festispec.Repository;
 using Festispec.View.Report;
+using Festispec.Message;
 
 namespace Festispec.ViewModel.report
 {

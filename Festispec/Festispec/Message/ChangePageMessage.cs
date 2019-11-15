@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Windows.Controls;
 
-namespace Festispec.ViewModel.report
+namespace Festispec.Message
 {
     public class ChangePageMessage
     {

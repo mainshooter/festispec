@@ -3,13 +3,13 @@ using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
 using CommonServiceLocator;
-using Festispec.ViewModel.report;
 using Festispec.View.Pages;
 using Festispec.View.Pages.Employee;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Report;
+using Festispec.Message;
 
 namespace Festispec.ViewModel
 {
