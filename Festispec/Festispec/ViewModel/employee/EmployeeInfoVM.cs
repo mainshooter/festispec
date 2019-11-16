@@ -11,13 +11,14 @@ namespace Festispec.ViewModel.employee
         private EmployeeVM _employee;
 
         public ICommand CloseSingleEmployeeCommand { get; set; }
-        public EmployeeVM Employee {
-            get {
-                return _employee;
-            }
-            set {
+
+        public EmployeeVM Employee
+        {
+            get => _employee;
+            set
+            {
                 _employee = value;
-                RaisePropertyChanged("Employee");
+                RaisePropertyChanged();
             }
         }
 

@@ -18,6 +18,11 @@ namespace Festispec.ViewModel.employee
         private EmployeeVM _employeeVM;
         private int _departmentIndex;
         public EmployeeListVM EmployeeList { get; set; }
+        public ObservableCollection<DepartmentVM> Departments { get; set; }
+        public ObservableCollection<string> Statuses { get; set; }
+        public ICommand EditEmployeeCommand { get; set; }
+        public ICommand CloseEditEmployeeCommand { get; set; }
+
         public EmployeeVM Employee
         {
             get
@@ -27,13 +32,9 @@ namespace Festispec.ViewModel.employee
             set
             {
                 _employeeVM = value;
-                RaisePropertyChanged("Employee");
+                RaisePropertyChanged();
             }
         }
-        public ObservableCollection<DepartmentVM> Departments { get; set; }
-        public ObservableCollection<string> Statuses { get; set; }
-        public ICommand EditEmployeeCommand { get; set; }
-        public ICommand CloseEditEmployeeCommand { get; set; }
 
         public int DepartmentIndex
         {
@@ -44,9 +45,10 @@ namespace Festispec.ViewModel.employee
             set
             {
                 _departmentIndex = value;
-                RaisePropertyChanged("DepartmentIndex");
+                RaisePropertyChanged();
             }
         }
+
         public EditEmployeeVM()
         {
             this.MessengerInstance.Register<ChangeSelectedEmployeeMessage>(this, message =>
@@ -55,13 +57,16 @@ namespace Festispec.ViewModel.employee
                 Employee = message.Employee;
                 DepartmentIndex = Departments.IndexOf(Departments.Select(department => department).Where(department => department.Name == Employee.Department.Name).FirstOrDefault());
             });
+
             EditEmployeeCommand = new RelayCommand(EditEmployee, CanEditEmployee);
             CloseEditEmployeeCommand = new RelayCommand(CloseEditEmployee);
+
             using (var context = new Entities())
             {
                 Departments = new ObservableCollection<DepartmentVM>(context.Departments.ToList().Select(department => new DepartmentVM(department)));
                 Statuses = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
             }
+
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
                 if (message.NextPageType == typeof(EmployeePage) && EmployeeList != null)
@@ -78,6 +83,7 @@ namespace Festispec.ViewModel.employee
                 context.Entry(Employee.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
             }
+
             CloseEditEmployee();
         }
 
@@ -92,13 +98,16 @@ namespace Festispec.ViewModel.employee
             {
                 return false;
             }
+
             if (Employee.Firstname == null || Employee.Lastname == null || Employee.City == null || Employee.Department == null || Employee.Email == null || Employee.HouseNumber <= 0 || Employee.Phone == null || Employee.PostalCode == null || Employee.Status == null || Employee.Street == null || Employee.Birthday.ToString().Equals("") || Employee.Birthday == null || Employee.Iban == null)
             {
                 return false;
             }
+
             string regexEmail = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
             string regexPhone = "^\\s*(?:\\+?(\\d{1,3}))?([-. (]*(\\d{3})[-. )]*)?((\\d{3})[-. ]*(\\d{2,4})(?:[-.x ]*(\\d+))?)\\s*$";
             string regexIban = "[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}";
+
             if (Employee.Prefix != null)
             {
                 if (Employee.Prefix.Length > 45)
@@ -106,10 +115,12 @@ namespace Festispec.ViewModel.employee
                     return false;
                 }
             }
+
             if (!Regex.IsMatch(Employee.Email, regexEmail) || !Regex.IsMatch(Employee.Phone, regexPhone) || !Regex.IsMatch(Employee.Iban, regexIban) || Employee.Birthday.Year < 1900 || Employee.HouseNumberAddition.Length > 5 || Employee.Iban.Length > 27 || Employee.Password.Length > 255 || Employee.Email.Length > 100 || Employee.Phone.Length > 15 || Employee.City.Length > 45 || Employee.PostalCode.Length > 6 || Employee.HouseNumber > 9999 || Employee.Street.Length > 100 || Employee.Lastname.Length > 45 || Employee.Firstname.Length > 45)
             {
                 return false;
             }
+
             return true;
         }
     }

@@ -28,11 +28,13 @@ namespace Festispec.ViewModel.employee
             Employee = new EmployeeVM();
             AddEmployeeCommand = new RelayCommand<PasswordBox>(AddEmployee, CanAddEmployee);
             CloseAddEmployeeCommand = new RelayCommand(CloseAddEmployee);
+
             using (var context = new Entities())
             {
                 Departments = new ObservableCollection<DepartmentVM>(context.Departments.ToList().Select(department => new DepartmentVM(department)));
                 Statuses = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
             }
+
             Employee.Department = Departments.First();
         }
 
@@ -48,12 +50,14 @@ namespace Festispec.ViewModel.employee
         {
             Employee.Password = password.Password;
             Encrypt();
+
             using (var context = new Entities())
             {
                 Employee.DepartmentModel = null;
                 context.Employees.Add(Employee.ToModel());
                 context.SaveChanges();
             }
+
             EmployeeList.EmployeeList.Add(Employee);
             EmployeeList.RaisePropertyChanged("EmployeeListFiltered");
             CloseAddEmployee();
@@ -70,9 +74,11 @@ namespace Festispec.ViewModel.employee
             {
                 return false;
             }
+
             string regexEmail = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
             string regexPhone = "^\\s*(?:\\+?(\\d{1,3}))?([-. (]*(\\d{3})[-. )]*)?((\\d{3})[-. ]*(\\d{2,4})(?:[-.x ]*(\\d+))?)\\s*$";
             string regexIban = "[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}";
+
             if (Employee.Prefix != null)
             {
                 if (Employee.Prefix.Length > 45)
@@ -80,10 +86,12 @@ namespace Festispec.ViewModel.employee
                     return false;
                 }
             }
+
             if (!Regex.IsMatch(Employee.Email, regexEmail) || !Regex.IsMatch(Employee.Phone, regexPhone) || !Regex.IsMatch(Employee.Iban, regexIban) || Employee.Birthday.Year < 1900 || Employee.HouseNumberAddition.Length > 5 || Employee.Iban.Length > 27 || Employee.Password.Length > 255 || Employee.Email.Length > 100 || Employee.Phone.Length > 15 || Employee.City.Length > 45 || Employee.PostalCode.Length > 6 || Employee.HouseNumber > 9999 || Employee.Street.Length > 100 || Employee.Lastname.Length > 45 || Employee.Firstname.Length > 45)
             {
                 return false;
             }
+
             return true;
         }
     }
