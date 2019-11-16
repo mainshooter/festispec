@@ -31,7 +31,7 @@ namespace Festispec.ViewModel.employee
             }
         }
         public ObservableCollection<DepartmentVM> Departments { get; set; }
-        public ObservableCollection<string> Status { get; set; }
+        public ObservableCollection<string> Statuses { get; set; }
         public ICommand EditEmployeeCommand { get; set; }
         public ICommand CloseEditEmployeeCommand { get; set; }
 
@@ -59,7 +59,7 @@ namespace Festispec.ViewModel.employee
             using (var context = new Entities())
             {
                 Departments = new ObservableCollection<DepartmentVM>(context.Departments.ToList().Select(department => new DepartmentVM(department)));
-                Status = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
+                Statuses = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
             }
         }
 
