@@ -121,7 +121,11 @@ namespace Festispec.ViewModel.employee
         private void OpenEditEmployeePage()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditEmployeePage) });
-            MessengerInstance.Send<ChangeSelectedEmployeeMessage>(new ChangeSelectedEmployeeMessage() { Employee = SelectedEmployee });
+            MessengerInstance.Send<ChangeSelectedEmployeeMessage>(new ChangeSelectedEmployeeMessage()
+            {
+                Employee = SelectedEmployee,
+                EmployeeList = this
+            });
         }
 
         public void OpenSingleEmployeePage()
@@ -145,6 +149,13 @@ namespace Festispec.ViewModel.employee
                 EmployeeList.Remove(SelectedEmployee);
                 RaisePropertyChanged("EmployeeListFiltered");
             }
+        }
+
+        public void RefreshEmployees()
+        {
+            EmployeeRepository employeeRepository = new EmployeeRepository();
+            EmployeeList = new ObservableCollection<EmployeeVM>(employeeRepository.GetEmployees());
+            RaisePropertyChanged("EmployeeListFiltered");
         }
     }
 }
