@@ -20,31 +20,24 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private string _question;
         private string _description;
         private int _maxImages;
-        private int __maxImages;
         private string _questionType;
-
         private QuestionDetails _questionDetails;
-        public QuestionDetails QuestionDetails { 
+
+        public QuestionDetails QuestionDetails
+        { 
             get {
                 return _questionDetails;
             }
             set {
                 _questionDetails = value;
-                RaisePropertyChanged("QuestionDetails");
+                RaisePropertyChanged();
             }
         }
+
         public string QuestionType => _surveyQuestion.Type;
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
-        public int MaxImages { 
-            get {
-                return __maxImages;
-            }
-            set {
-                __maxImages = value;
-                RaisePropertyChanged("MaxImages");
-            }
-        }
+        public int MaxImages { get; set; }
 
         [PreferredConstructor]
         public ImageGalleryQuestionVM()

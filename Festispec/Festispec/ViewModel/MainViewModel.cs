@@ -14,7 +14,6 @@ using Festispec.View.Pages.Report;
 using Festispec.Domain;
 using Festispec.View.Pages.Survey;
 using Festispec.ViewModel.survey;
-using System;
 
 namespace Festispec.ViewModel
 {

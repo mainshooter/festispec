@@ -23,17 +23,21 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private string _columnName;
         private string _selectedColumn;
         private string _questionType;
-
         private QuestionDetails _questionDetails;
-        public QuestionDetails QuestionDetails {
-            get {
-                return _questionDetails;
-            }
-            set {
+        private ObservableCollection<string> _options;
+        private ObservableCollection<string> _columns;
+        private ObservableCollection<string> _comboBoxItems;
+
+        public QuestionDetails QuestionDetails
+        {
+            get => _questionDetails;
+            set
+            {
                 _questionDetails = value;
-                RaisePropertyChanged("QuestionDetails");
+                RaisePropertyChanged();
             }
         }
+
         public string QuestionType => _surveyQuestion.Type;
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
@@ -41,6 +45,8 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public ICommand AddOptionCommand { get; set; }
         public ICommand DeleteColumnCommand { get; set; }
         public ICommand DeleteOptionCommand { get; set; }
+        public string SelectedOptionName { get; set; }
+        public string SelectedColumnName { get; set; }
 
         public string OptionName
         {
@@ -62,9 +68,6 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             }
         }
 
-        public string SelectedOptionName { get; set; }
-        public string SelectedColumnName { get; set; }
-
         public string SelectedColumn
         {
             get => _selectedColumn;
@@ -74,34 +77,26 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 if (_selectedColumn == "Geen") Options.Clear();
             }
         }
-        private ObservableCollection<string> _options;
-        private ObservableCollection<string> _columns;
-        private ObservableCollection<string> _comboBoxItems;
+
         public ObservableCollection<string> Options {
-            get {
-                return _options;
-            }
+            get => _options;
             set {
                 _options = value;
-                RaisePropertyChanged("Options");
+                RaisePropertyChanged();
             }
         }
         public ObservableCollection<string> Columns {
-            get {
-                return _columns;
-            }
+            get => _columns;
             set {
                 _columns = value;
-                RaisePropertyChanged("Columns");
+                RaisePropertyChanged();
             }
         }
         public ObservableCollection<string> ComboBoxItems {
-            get {
-                return _comboBoxItems;
-            }
+            get => _comboBoxItems;
             set {
                 _comboBoxItems = value;
-                RaisePropertyChanged("ComboBoxItems");
+                RaisePropertyChanged();
             }
         }
 

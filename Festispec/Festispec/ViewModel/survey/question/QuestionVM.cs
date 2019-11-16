@@ -1,55 +1,37 @@
 ﻿using Festispec.ViewModel.survey.answer;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.survey.question
 {
     public class QuestionVM
     {
         private Domain.Question _question;
-        public int Id {
-            get {
-                return _question.Id;
-            }
-        }
 
-        public string Question {
-            get {
-                return _question.Question1;
-            }
-            set {
-                _question.Question1 = value;
-            }
-        }
-
-        public int Order { 
-            get {
-                return _question.Order;
-            }
-            set {
-                _question.Order = value;
-            }
-        }
-        public string Type { 
-            get {
-                return _question.Type;
-            }
-            set {
-                _question.Type = value;
-            }
-        }
+        public int Id => _question.Id;
         public ObservableCollection<SurveyAnswerVM> Answers { get; set; }
-        public string Variable { 
-            get {
-                return _question.Variables;
-            }
-            set {
-                _question.Variables = value;
-            }
+
+        public string Question
+        {
+            get => _question.Question1;
+            set => _question.Question1 = value;
+        }
+
+        public int Order
+        { 
+            get => _question.Order;
+            set => _question.Order = value;
+        }
+
+        public string Type
+        { 
+            get => _question.Type;
+            set => _question.Type = value;
+        }
+
+        public string Variable
+        { 
+            get => _question.Variables;
+            set => _question.Variables = value;
         }
 
         public QuestionVM()

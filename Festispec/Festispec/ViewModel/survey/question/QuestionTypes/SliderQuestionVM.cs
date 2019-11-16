@@ -22,22 +22,22 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private int _lowestNumber;
         private int _highestNumber;
         private string _questionType;
-
         private QuestionDetails _questionDetails;
-        public QuestionDetails QuestionDetails {
-            get {
-                return _questionDetails;
-            }
-            set {
-                _questionDetails = value;
-                RaisePropertyChanged("QuestionDetails");
-            }
-        }
+
         public string QuestionType => _surveyQuestion.Type;
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
         public int LowestNumber { get; set; }
         public int HighestNumber { get; set; }
+
+        public QuestionDetails QuestionDetails
+        {
+            get => _questionDetails;
+            set {
+                _questionDetails = value;
+                RaisePropertyChanged();
+            }
+        }
 
         [PreferredConstructor]
         public SliderQuestionVM()

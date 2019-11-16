@@ -23,17 +23,17 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private string _description;
         private byte[] _image;
         private string _questionType;
-
         private QuestionDetails _questionDetails;
-        public QuestionDetails QuestionDetails { 
-            get {
-                return _questionDetails;
-            }
+
+        public QuestionDetails QuestionDetails
+        { 
+            get => _questionDetails;
             set {
                 _questionDetails = value;
-                RaisePropertyChanged("QuestionDetails");
+                RaisePropertyChanged();
             }
         }
+
         public string QuestionType => _surveyQuestion.Type;
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
@@ -56,8 +56,6 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 catch (Exception)
                 {
                 }
-                
-                
             });
             MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
                 _surveyVm = message.NextSurvey;

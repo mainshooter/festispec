@@ -19,17 +19,17 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private string _question;
         private string _description;
         private string _questionType;
-
         private QuestionDetails _questionDetails;
-        public QuestionDetails QuestionDetails {
-            get {
-                return _questionDetails;
-            }
+
+        public QuestionDetails QuestionDetails
+        {
+            get => _questionDetails;
             set {
                 _questionDetails = value;
-                RaisePropertyChanged("QuestionDetails");
+                RaisePropertyChanged();
             }
         }
+
         public string QuestionType => _surveyQuestion.Type;
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }

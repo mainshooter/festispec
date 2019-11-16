@@ -4,7 +4,6 @@ using System.Linq;
 using Festispec.Interface;
 using Festispec.ViewModel.survey.question.QuestionTypes;
 using GalaSoft.MvvmLight;
-using Festispec.Message;
 using GalaSoft.MvvmLight.Ioc;
 using Festispec.ViewModel.survey.question;
 
@@ -12,33 +11,33 @@ namespace Festispec.ViewModel.survey
 {
     public class SurveyVM : ViewModelBase
     {
-        private Domain.Survey _survey;
-
+        private Survey _survey;
+        private ObservableCollection<IQuestion> _questions;
 
         public int Id => _survey.Id;
+        public ObservableCollection<CaseVM> Cases { get; set; }
+        public ObservableCollection<string> QuestionTypes { get; set; }
 
-        public string Description {
+        public string Description
+        {
             get => _survey.Description;
             set => _survey.Description = value;
         }
 
-        public string Status {
+        public string Status
+        {
             get => _survey.Status;
             set => _survey.Status = value;
         }
 
-        public ObservableCollection<CaseVM> Cases { get; set; }
-        private ObservableCollection<IQuestion> _questions;
-        public ObservableCollection<IQuestion> Questions {
-            get {
-                return _questions;
-            }
+        public ObservableCollection<IQuestion> Questions
+        {
+            get => _questions;
             set {
                 _questions = value;
-                RaisePropertyChanged("Questions");
+                RaisePropertyChanged();
             }
         }
-        public ObservableCollection<string> QuestionTypes { get; set; }
 
         [PreferredConstructor]
         public SurveyVM()
@@ -48,7 +47,7 @@ namespace Festispec.ViewModel.survey
             Questions = new ObservableCollection<IQuestion>();
         }
 
-        public SurveyVM(Domain.Survey survey)
+        public SurveyVM(Survey survey)
         {
             _survey = survey;
             Cases = new ObservableCollection<CaseVM>(survey.Cases.ToList().Select(c => new CaseVM(c)));
@@ -64,8 +63,6 @@ namespace Festispec.ViewModel.survey
         {
             Questions = new ObservableCollection<IQuestion>(_survey.Questions.ToList().Select(q => CreateQuestionType(new QuestionVM(q))));
         }
-
-
 
         private IQuestion CreateQuestionType(QuestionVM question)
         {

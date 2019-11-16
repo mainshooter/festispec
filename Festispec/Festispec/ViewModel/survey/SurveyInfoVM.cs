@@ -10,15 +10,12 @@ using Festispec.View.Pages.Survey.QuestionTypes.MultipleChoiceQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.SliderQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.TableQuestion;
-using Festispec.ViewModel.survey.question;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.survey
@@ -29,18 +26,18 @@ namespace Festispec.ViewModel.survey
         private Dictionary<string, Type> _editSurveyPageTypes;
         private Dictionary<string, Type> _addSurveyPageTypes;
 
-        public SurveyVM SurveyVM { 
-            get {
-                return _surveyVM;
-            }
-            set {
+        public SurveyVM SurveyVM
+        { 
+            get => _surveyVM;
+            set
+            {
                 _surveyVM = value;
                 RaisePropertyChanged("SurveyVM");
             }
         }
+
         public ObservableCollection<string> QuestionTypes { get; set; }
         public string SelectedQuestionType { get; set; }
-
         public IQuestion SelectedQuestion { get; set; }
         public ICommand AddQuestionCommand { get; set; }
         public ICommand EditQuestionCommand { get; set; }
@@ -103,14 +100,14 @@ namespace Festispec.ViewModel.survey
 
         private void OpenAddQuestion()
         {
-            Type surveyPageType = _addSurveyPageTypes[SelectedQuestionType];
+            var surveyPageType = _addSurveyPageTypes[SelectedQuestionType];
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = surveyPageType});
             MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = SurveyVM});
         }
 
         private void OpenEditQuestion()
         {
-            Type surveyPageType = _editSurveyPageTypes[SelectedQuestion.QuestionType];
+            var surveyPageType = _editSurveyPageTypes[SelectedQuestion.QuestionType];
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = surveyPageType });
             MessengerInstance.Send<ChangeSelectedSurveyQuestionMessage>(new ChangeSelectedSurveyQuestionMessage() { NextQuestion = SelectedQuestion.ToModel(), SurveyVM = _surveyVM });
         }
