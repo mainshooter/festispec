@@ -89,19 +89,5 @@ namespace Festispec.ViewModel
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage) });
         }
 
-        public void OpenAddEmployeeTab()
-        {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddEmployeePage) });
-        }
-
-        public void OpenEditEmployeeTab()
-        {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditEmployeePage) });
-        }
-
-        public void OpenSingleEmployeeTab()
-        {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SingleEmployeePage) });
-        }
     }
 }
