@@ -28,11 +28,13 @@ namespace Festispec.ViewModel.employee
             Employee = new EmployeeVM();
             AddEmployeeCommand = new RelayCommand<PasswordBox>(AddEmployee, CanAddEmployee);
             CloseAddEmployeeCommand = new RelayCommand(CloseAddEmployee);
+
             using (var context = new Entities())
             {
                 Departments = new ObservableCollection<DepartmentVM>(context.Departments.ToList().Select(department => new DepartmentVM(department)));
                 Statuses = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
             }
+
             Employee.Department = Departments.First();
         }
 
@@ -48,12 +50,14 @@ namespace Festispec.ViewModel.employee
         {
             Employee.Password = password.Password;
             Encrypt();
+
             using (var context = new Entities())
             {
                 Employee.DepartmentModel = null;
                 context.Employees.Add(Employee.ToModel());
                 context.SaveChanges();
             }
+
             EmployeeList.EmployeeList.Add(Employee);
             EmployeeList.RaisePropertyChanged("EmployeeListFiltered");
             CloseAddEmployee();
@@ -72,6 +76,7 @@ namespace Festispec.ViewModel.employee
             {
                 return false;
             }
+
             string regexEmail = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
             string regexPhone = "^\\s*(?:\\+?(\\d{1,3}))?([-. (]*(\\d{3})[-. )]*)?((\\d{3})[-. ]*(\\d{2,4})(?:[-.x ]*(\\d+))?)\\s*$";
             string regexIban = "^([A-Z]{2}[ -]?[0-9]{2})(?=(?:[ -]?[A-Z0-9]){9,30}$)((?:[ -]?[A-Z0-9]{3,5}){2,7})([ -]?[A-Z0-9]{1,3})?$";
@@ -93,6 +98,7 @@ namespace Festispec.ViewModel.employee
             {
                 return false;
             }
+
             return true;
         }
     }

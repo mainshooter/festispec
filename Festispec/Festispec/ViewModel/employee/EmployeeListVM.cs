@@ -23,15 +23,11 @@ namespace Festispec.ViewModel.employee
         public ICommand OpenSingleEmployee { get; set; }
         public ICommand DeleteEmployeeCommand { get; set; }
         public ObservableCollection<EmployeeVM> EmployeeList { get; set; }
-        public MainViewModel MainViewModel { get; set; }
-        public MessageBox MessageBox { get; set; }
+        public string SelectedFilter { get; set; }
 
         public string Filter
         {
-            get
-            {
-                return _filter;
-            }
+            get => _filter;
             set
             {
                 _filter = value;
@@ -39,14 +35,9 @@ namespace Festispec.ViewModel.employee
             }
         }
 
-        public string SelectedFilter { get; set; }
-
         public List<string> Filters
         {
-            get
-            {
-                return _filters;
-            }
+            get => _filters;
             set
             {
                 _filters = new List<string>();
@@ -58,6 +49,7 @@ namespace Festispec.ViewModel.employee
                 _filters.Add("Status");
             }
         }
+
         public ObservableCollection<EmployeeVM> EmployeeListFiltered
         {
             get
@@ -80,16 +72,14 @@ namespace Festispec.ViewModel.employee
                             return new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.Status.ToLower().Contains(Filter.ToLower())).ToList());
                     }
                 }
-                return EmployeeList;
 
+                return EmployeeList;
             }
         }
+
         public EmployeeVM SelectedEmployee
         {
-            get
-            {
-                return _selectedEmployee;
-            }
+            get => _selectedEmployee;
             set
             {
                 if (value != null)
@@ -138,6 +128,7 @@ namespace Festispec.ViewModel.employee
         private void DeleteEmployee()
         {
             MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze medewerker wilt verwijderen?", "Medewerker Verwijderen", MessageBoxButton.YesNo);
+
             if (result.Equals(MessageBoxResult.Yes))
             {
                 using (var context = new Entities())
@@ -146,6 +137,7 @@ namespace Festispec.ViewModel.employee
                     context.Employees.Remove(context.Employees.Select(employee => employee).Where(employee => employee.Id == temp.Id).First());
                     context.SaveChanges();
                 }
+
                 EmployeeList.Remove(SelectedEmployee);
                 RaisePropertyChanged("EmployeeListFiltered");
             }
