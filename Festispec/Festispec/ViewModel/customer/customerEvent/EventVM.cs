@@ -1,10 +1,6 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.customer.contactPerson;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
@@ -92,6 +88,54 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
             set {
                 _event.Description = value;
+            }
+        }
+
+        public string Street
+        {
+            get
+            {
+                return _event.Street;
+            }
+            set
+            {
+                _event.Street = value;
+            }
+        }
+
+        public int HouseNumber
+        {
+            get
+            {
+                return _event.HouseNumber;
+            }
+            set
+            {
+                _event.HouseNumber = value;
+            }
+        }
+
+        public string PostalCode
+        {
+            get
+            {
+                return _event.PostalCode;
+            }
+            set
+            {
+                _event.PostalCode = value;
+            }
+        }
+
+        public string City
+        {
+            get
+            {
+                return _event.City;
+            }
+            set
+            {
+                _event.City = value;
             }
         }
 

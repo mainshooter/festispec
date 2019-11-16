@@ -4,8 +4,11 @@ using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Interface;
 using Festispec.Lib.Survey.Question;
+using Festispec.Message;
+using Festispec.View.Pages.Survey;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Ioc;
 using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.survey.question.QuestionTypes
@@ -19,9 +22,18 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private string _optionName;
         private string _columnName;
         private string _selectedColumn;
+        private string _questionType;
 
-        public MainViewModel MainViewModel { get; set; }
-        public QuestionDetails QuestionDetails { get; set; }
+        private QuestionDetails _questionDetails;
+        public QuestionDetails QuestionDetails {
+            get {
+                return _questionDetails;
+            }
+            set {
+                _questionDetails = value;
+                RaisePropertyChanged("QuestionDetails");
+            }
+        }
         public string QuestionType => _surveyQuestion.Type;
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
@@ -62,16 +74,84 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 if (_selectedColumn == "Geen") Options.Clear();
             }
         }
+        private ObservableCollection<string> _options;
+        private ObservableCollection<string> _columns;
+        private ObservableCollection<string> _comboBoxItems;
+        public ObservableCollection<string> Options {
+            get {
+                return _options;
+            }
+            set {
+                _options = value;
+                RaisePropertyChanged("Options");
+            }
+        }
+        public ObservableCollection<string> Columns {
+            get {
+                return _columns;
+            }
+            set {
+                _columns = value;
+                RaisePropertyChanged("Columns");
+            }
+        }
+        public ObservableCollection<string> ComboBoxItems {
+            get {
+                return _comboBoxItems;
+            }
+            set {
+                _comboBoxItems = value;
+                RaisePropertyChanged("ComboBoxItems");
+            }
+        }
 
-        public ObservableCollection<string> Options { get; set; }
-        public ObservableCollection<string> Columns { get; set; }
-        public ObservableCollection<string> ComboBoxItems { get; set; }
+        [PreferredConstructor]
+        public TableQuestionVM()
+        {
+            Options = new ObservableCollection<string>();
+            Columns = new ObservableCollection<string>();
+            ComboBoxItems = new ObservableCollection<string>();
+            _questionType = "Tabel vraag";
+            MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
+                Options = new ObservableCollection<string>();
+                Columns = new ObservableCollection<string>();
+                ComboBoxItems = new ObservableCollection<string>();
 
-        public TableQuestionVM(SurveyVM surveyVm, MainViewModel mainViewModel, Question surveyQuestion)
+                _surveyVm = message.SurveyVM;
+                _surveyQuestion = message.NextQuestion;
+                QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
+                _question = QuestionDetails.Question;
+                _description = QuestionDetails.Description;
+
+                SetComboBox();
+                SetDataGrids();
+                SelectedColumn = ComboBoxItems[0];
+                RaisePropertyChanged();
+            });
+            MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
+                _surveyVm = message.NextSurvey;
+                _surveyQuestion = new Question();
+                QuestionDetails = new QuestionDetails();
+                Options = new ObservableCollection<string>();
+                Columns = new ObservableCollection<string>();
+                ComboBoxItems = new ObservableCollection<string>();
+
+                SetComboBox();
+                SelectedColumn = ComboBoxItems[0];
+            });
+
+            SaveCommand = new RelayCommand(Save);
+            GoBackCommand = new RelayCommand(GoBack);
+            AddOptionCommand = new RelayCommand(AddOption, CanAddOption);
+            AddColumnCommand = new RelayCommand(AddColumn);
+            DeleteOptionCommand = new RelayCommand(DeleteOption);
+            DeleteColumnCommand = new RelayCommand(DeleteColumn);
+        }
+
+        public TableQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
-            MainViewModel = mainViewModel;
             Options = new ObservableCollection<string>();
             Columns = new ObservableCollection<string>();
             ComboBoxItems = new ObservableCollection<string>();
@@ -126,6 +206,9 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 {
                     _question = QuestionDetails.Question;
                     _description = QuestionDetails.Description;
+                    _surveyQuestion.Variables = "test";
+                    _surveyQuestion.Type = _questionType;
+                    _surveyQuestion.SurveyId = _surveyVm.ToModel().Id;
                     context.Questions.Add(_surveyQuestion);
                     _surveyVm.Questions.Add(this);
                     context.SaveChanges();
@@ -138,7 +221,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 }
             }
 
-            MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
         }
 
         private void SetDataGrids()
@@ -162,7 +245,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             Columns.Clear();
             SetDataGrids();
             RaisePropertyChanged("QuestionDetails");
-            MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
         }
 
         public bool ValidateQuestionDetails()

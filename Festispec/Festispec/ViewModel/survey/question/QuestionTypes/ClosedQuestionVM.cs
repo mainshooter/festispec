@@ -3,8 +3,11 @@ using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Interface;
 using Festispec.Lib.Survey.Question;
+using Festispec.Message;
+using Festispec.View.Pages.Survey;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Ioc;
 using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.survey.question.QuestionTypes
@@ -15,18 +18,51 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private SurveyVM _surveyVm;
         private string _question;
         private string _description;
+        private string _questionType;
 
-        public MainViewModel MainViewModel { get; set; }
-        public QuestionDetails QuestionDetails { get; set; }
+        private QuestionDetails _questionDetails;
+        public QuestionDetails QuestionDetails { 
+            get {
+                return _questionDetails;
+            }
+            set {
+                _questionDetails = value;
+                RaisePropertyChanged("QuestionDetails");
+            }
+        }
         public string QuestionType => _surveyQuestion.Type;
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
 
-        public ClosedQuestionVM(SurveyVM surveyVm, MainViewModel mainViewModel, Question surveyQuestion)
+        [PreferredConstructor]
+        public ClosedQuestionVM()
+        {
+            MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
+                _surveyVm = message.SurveyVM;
+                _surveyQuestion = message.NextQuestion;
+                QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
+                _question = QuestionDetails.Question;
+                _description = QuestionDetails.Description;
+            });
+            MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
+                _surveyVm = message.NextSurvey;
+                _surveyQuestion = new Question();
+                QuestionDetails = new QuestionDetails();
+            });
+
+            _questionType = "Gesloten vraag";
+
+
+            SaveCommand = new RelayCommand(Save);
+            GoBackCommand = new RelayCommand(GoBack);
+
+            // temp variables for when you want to go back and discard changes
+        }
+
+        public ClosedQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
-            MainViewModel = mainViewModel;
             QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
             SaveCommand = new RelayCommand(Save);
             GoBackCommand = new RelayCommand(GoBack);
@@ -49,8 +85,12 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                     QuestionDetails.Choices.Cols.Add("Ja");
                     QuestionDetails.Choices.Cols.Add("Nee");
                     _surveyQuestion.Question1 = JsonConvert.SerializeObject(QuestionDetails);
+                    _surveyQuestion.Variables = "test";
+                    _surveyQuestion.Type = _questionType;
+                    _surveyQuestion.SurveyId = _surveyVm.ToModel().Id;
                     context.Questions.Add(_surveyQuestion);
                     _surveyVm.Questions.Add(this);
+                    
                     context.SaveChanges();
                 }
                 else
@@ -61,8 +101,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                     context.SaveChanges();
                 }
             }
-
-            MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage)});
         }
 
         public void GoBack()
@@ -70,7 +109,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             QuestionDetails.Question = _question;
             QuestionDetails.Description = _description;
             RaisePropertyChanged("QuestionDetails");
-            MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
         }
 
         public bool ValidateQuestionDetails()

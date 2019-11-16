@@ -4,8 +4,11 @@ using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Interface;
 using Festispec.Lib.Survey.Question;
+using Festispec.Message;
+using Festispec.View.Pages.Survey;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Ioc;
 using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.survey.question.QuestionTypes
@@ -18,20 +21,63 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private string _description;
         private int _lowestNumber;
         private int _highestNumber;
+        private string _questionType;
 
-        public MainViewModel MainViewModel { get; set; }
-        public QuestionDetails QuestionDetails { get; set; }
+        private QuestionDetails _questionDetails;
+        public QuestionDetails QuestionDetails {
+            get {
+                return _questionDetails;
+            }
+            set {
+                _questionDetails = value;
+                RaisePropertyChanged("QuestionDetails");
+            }
+        }
         public string QuestionType => _surveyQuestion.Type;
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
         public int LowestNumber { get; set; }
         public int HighestNumber { get; set; }
 
-        public SliderQuestionVM(SurveyVM surveyVm, MainViewModel mainViewModel, Question surveyQuestion)
+        [PreferredConstructor]
+        public SliderQuestionVM()
+        {
+            _questionType = "Schuifbalk vraag";
+            MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
+                _surveyVm = message.SurveyVM;
+                _surveyQuestion = message.NextQuestion;
+                QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
+                QuestionDetails = JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1);
+                try
+                {
+                    LowestNumber = Convert.ToInt32(QuestionDetails.Choices.Cols[0]);
+                    HighestNumber = Convert.ToInt32(QuestionDetails.Choices.Cols[1]);
+
+                    _question = QuestionDetails.Question;
+                    _description = QuestionDetails.Description;
+                    _lowestNumber = LowestNumber;
+                    _highestNumber = HighestNumber;
+                    RaisePropertyChanged("LowestNumber");
+                    RaisePropertyChanged("HighestNumber");
+                }
+                catch (Exception)
+                {
+                }
+
+            });
+            MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
+                _surveyVm = message.NextSurvey;
+                _surveyQuestion = new Question();
+                QuestionDetails = new QuestionDetails();
+            });
+            SaveCommand = new RelayCommand(Save);
+            GoBackCommand = new RelayCommand(GoBack);
+        }
+
+        public SliderQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
-            MainViewModel = mainViewModel;
 
             if (_surveyQuestion.Question1 != null)
             {
@@ -71,6 +117,9 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                     _description = QuestionDetails.Description;
                     _lowestNumber = LowestNumber;
                     _highestNumber = HighestNumber;
+                    _surveyQuestion.SurveyId = _surveyVm.ToModel().Id;
+                    _surveyQuestion.Variables = "test";
+                    _surveyQuestion.Type = _questionType;
                     context.Questions.Add(_surveyQuestion);
                     _surveyVm.Questions.Add(this);
                     context.SaveChanges();
@@ -83,7 +132,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 }
             }
 
-            MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
         }
 
         public void GoBack()
@@ -95,7 +144,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             RaisePropertyChanged("QuestionDetails");
             RaisePropertyChanged("LowestNumber");
             RaisePropertyChanged("HighestNumber");
-            MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
         }
 
         public bool ValidateQuestionDetails()

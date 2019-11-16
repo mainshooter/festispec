@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:Festispec.View.Pages.Survey.QuestionTypes.MultipleChoiceQuestion"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="AddMultipleChoiceQuestionPage">
+      Title="AddMultipleChoiceQuestionPage"
+      DataContext="{Binding MultipleChoiceQuestionVM, Source={StaticResource Locator}}">
 
     <ScrollViewer>
         <Grid>

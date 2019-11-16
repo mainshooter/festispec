@@ -3,8 +3,11 @@ using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Interface;
 using Festispec.Lib.Survey.Question;
+using Festispec.Message;
+using Festispec.View.Pages.Survey;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Ioc;
 using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.survey.question.QuestionTypes
@@ -15,18 +18,46 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private SurveyVM _surveyVm;
         private string _question;
         private string _description;
+        private string _questionType;
 
-        public MainViewModel MainViewModel { get; set; }
-        public QuestionDetails QuestionDetails { get; set; }
+        private QuestionDetails _questionDetails;
+        public QuestionDetails QuestionDetails {
+            get {
+                return _questionDetails;
+            }
+            set {
+                _questionDetails = value;
+                RaisePropertyChanged("QuestionDetails");
+            }
+        }
         public string QuestionType => _surveyQuestion.Type;
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
 
-        public OpenQuestionVM(SurveyVM surveyVm, MainViewModel mainViewModel, Question surveyQuestion)
+        [PreferredConstructor]
+        public OpenQuestionVM()
+        {
+            _questionType = "Open vraag";
+            MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
+                _surveyVm = message.SurveyVM;
+                _surveyQuestion = message.NextQuestion;
+                QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
+                _question = QuestionDetails.Question;
+                _description = QuestionDetails.Description;
+            });
+            MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
+                _surveyVm = message.NextSurvey;
+                _surveyQuestion = new Question();
+                QuestionDetails = new QuestionDetails();
+            });
+            SaveCommand = new RelayCommand(Save);
+            GoBackCommand = new RelayCommand(GoBack);
+        }
+
+        public OpenQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
-            MainViewModel = mainViewModel;
             QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
             SaveCommand = new RelayCommand(Save);
             GoBackCommand = new RelayCommand(GoBack);
@@ -48,6 +79,9 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 {
                     _question = QuestionDetails.Question;
                     _description = QuestionDetails.Description;
+                    _surveyQuestion.Variables = "test";
+                    _surveyQuestion.Type = _questionType;
+                    _surveyQuestion.SurveyId = _surveyVm.ToModel().Id;
                     context.Questions.Add(_surveyQuestion);
                     _surveyVm.Questions.Add(this);
                     context.SaveChanges();
@@ -60,7 +94,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 }
             }
 
-            MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage)});
         }
 
         public void GoBack()
@@ -68,7 +102,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             QuestionDetails.Question = _question;
             QuestionDetails.Description = _description;
             RaisePropertyChanged("QuestionDetails");
-            MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
         }
 
         public bool ValidateQuestionDetails()

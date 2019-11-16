@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:Festispec.View.Pages.Survey.QuestionTypes.CommentField"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="EditCommentFieldPage">
+      Title="EditCommentFieldPage"
+      DataContext="{Binding CommentFieldVM, Source={StaticResource Locator}}">
 
     <Grid>
         <Grid.RowDefinitions>

@@ -4,8 +4,11 @@ using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Interface;
 using Festispec.Lib.Survey.Question;
+using Festispec.Message;
+using Festispec.View.Pages.Survey;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Ioc;
 using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.survey.question.QuestionTypes
@@ -17,9 +20,18 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private string _question;
         private string _description;
         private string _optionName;
+        private string _questionType;
 
-        public MainViewModel MainViewModel { get; set; }
-        public QuestionDetails QuestionDetails { get; set; }
+        private QuestionDetails _questionDetails;
+        public QuestionDetails QuestionDetails {
+            get {
+                return _questionDetails;
+            }
+            set {
+                _questionDetails = value;
+                RaisePropertyChanged("QuestionDetails");
+            }
+        }
         public string QuestionType => _surveyQuestion.Type;
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
@@ -32,18 +44,47 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             set
             {
                 _optionName = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged("OptionName");
             }
         }
 
         public string SelectedOptionName { get; set; }
         public ObservableCollection<string> Options { get; set; }
 
-        public MultipleChoiceQuestionVM(SurveyVM surveyVm, MainViewModel mainViewModel, Question surveyQuestion)
+        [PreferredConstructor]
+        public MultipleChoiceQuestionVM()
+        {
+            _questionType = "Meerkeuze vraag";
+            Options = new ObservableCollection<string>();
+            MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
+                _surveyVm = message.SurveyVM;
+                _surveyQuestion = message.NextQuestion;
+                QuestionDetails = JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1);
+                _question = QuestionDetails.Question;
+                _description = QuestionDetails.Description;
+                Options.Clear();
+                foreach (var choice in QuestionDetails.Choices.Cols)
+                {
+                    Options.Add(choice);
+                }
+                _question = QuestionDetails.Question;
+                _description = QuestionDetails.Description;
+            });
+            MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
+                _surveyVm = message.NextSurvey;
+                _surveyQuestion = new Question();
+                QuestionDetails = new QuestionDetails();
+            });
+            SaveCommand = new RelayCommand(Save);
+            GoBackCommand = new RelayCommand(GoBack);
+            AddOptionCommand = new RelayCommand(AddOption);
+            DeleteOptionCommand = new RelayCommand(DeleteOption);
+        }
+
+        public MultipleChoiceQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
-            MainViewModel = mainViewModel;
             Options = new ObservableCollection<string>();
 
             if (_surveyQuestion.Question1 != null)
@@ -75,7 +116,6 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             using (var context = new Entities())
             {
                 if (!ValidateQuestionDetails()) return;
-
                 QuestionDetails.Choices.Cols.Clear();
 
                 foreach (var option in Options)
@@ -89,6 +129,9 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 {
                     _question = QuestionDetails.Question;
                     _description = QuestionDetails.Description;
+                    _surveyQuestion.Variables = "test";
+                    _surveyQuestion.Type = _questionType;
+                    _surveyQuestion.SurveyId = _surveyVm.ToModel().Id;
                     context.Questions.Add(_surveyQuestion);
                     _surveyVm.Questions.Add(this);
                     context.SaveChanges();
@@ -101,7 +144,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 }
             }
 
-            MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
         }
 
         public void GoBack()
@@ -116,7 +159,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             }
 
             RaisePropertyChanged("QuestionDetails");
-            MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage)});
         }
 
         public bool ValidateQuestionDetails()
@@ -149,6 +192,10 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
         private void AddOption()
         {
+            if (OptionName == null)
+            {
+                return;
+            }
             if (OptionName == "" || OptionName.Length > 50)
             {
                 MessageBox.Show("De optie mag niet leeg zijn of langer zijn dan 50 karakters.");

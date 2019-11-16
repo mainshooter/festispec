@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion"
         xmlns:questionTypes="clr-namespace:Festispec.ViewModel.survey.question.QuestionTypes"
         mc:Ignorable="d"
-        Title="Open vraag toevoegen">
+        Title="Open vraag toevoegen"
+        DataContext="{Binding OpenQuestionVM, Source={StaticResource Locator}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>

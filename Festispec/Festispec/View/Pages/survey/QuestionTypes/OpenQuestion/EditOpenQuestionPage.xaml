@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion"
         mc:Ignorable="d"
-        Title="EditOpenQuestion" Height="450" Width="800">
+        Title="EditOpenQuestion" Height="450" Width="800"
+        DataContext="{Binding OpenQuestionVM, Source={StaticResource Locator}}">
     <Grid Height="419" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>

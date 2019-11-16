@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Festispec.View.Pages.Survey.QuestionTypes.ClosedQuestion"
         xmlns:questionTypes="clr-namespace:Festispec.ViewModel.survey.question.QuestionTypes"
         mc:Ignorable="d"
-        Title="Gesloten vraag toevoegen">
+        Title="Gesloten vraag toevoegen"
+        DataContext="{Binding ClosedQuestionVM, Source={StaticResource Locator}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>

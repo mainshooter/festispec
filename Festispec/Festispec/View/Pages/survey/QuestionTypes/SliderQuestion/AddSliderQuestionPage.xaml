@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:Festispec.View.Pages.Survey.QuestionTypes.SliderQuestion"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddSliderQuestionPage">
+      Title="AddSliderQuestionPage"
+      DataContext="{Binding SliderQuestionVM, Source={StaticResource Locator}}">
 
     <Grid>
         <Grid.RowDefinitions>

@@ -5,33 +5,74 @@ using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Interface;
 using Festispec.Lib.Survey.Question;
+using Festispec.Message;
+using Festispec.View.Pages.Survey;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.survey.question.QuestionTypes
 {
-    class DrawQuestionVM : ViewModelBase, IQuestion
+    public class DrawQuestionVM : ViewModelBase, IQuestion
     {
         private Question _surveyQuestion;
         private SurveyVM _surveyVm;
         private string _question;
         private string _description;
         private byte[] _image;
+        private string _questionType;
 
-        public MainViewModel MainViewModel { get; set; }
-        public QuestionDetails QuestionDetails { get; set; }
+        private QuestionDetails _questionDetails;
+        public QuestionDetails QuestionDetails { 
+            get {
+                return _questionDetails;
+            }
+            set {
+                _questionDetails = value;
+                RaisePropertyChanged("QuestionDetails");
+            }
+        }
         public string QuestionType => _surveyQuestion.Type;
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
         public ICommand AddImageCommand { get; set; }
 
-        public DrawQuestionVM(SurveyVM surveyVm, MainViewModel mainViewModel, Question surveyQuestion)
+        [PreferredConstructor]
+        public DrawQuestionVM()
+        {
+            _questionType = "Teken vraag";
+            MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
+                _surveyVm = message.SurveyVM;
+                _surveyQuestion = message.NextQuestion;
+                QuestionDetails = JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1);
+                _question = QuestionDetails.Question;
+                _description = QuestionDetails.Description;
+                try
+                {
+                    _image = QuestionDetails.Images[0];
+                }
+                catch (Exception)
+                {
+                }
+                
+                
+            });
+            MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
+                _surveyVm = message.NextSurvey;
+                QuestionDetails = new QuestionDetails();
+                _surveyQuestion = new Question();
+            });
+            SaveCommand = new RelayCommand(Save);
+            GoBackCommand = new RelayCommand(GoBack);
+            AddImageCommand = new RelayCommand(AddImage);
+        }
+
+        public DrawQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
         {
             _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
-            MainViewModel = mainViewModel;
 
             if (_surveyQuestion.Question1 != null)
             {
@@ -66,6 +107,9 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                     _question = QuestionDetails.Question;
                     _description = QuestionDetails.Description;
                     _image = QuestionDetails.Images[0];
+                    _surveyQuestion.Variables = "test";
+                    _surveyQuestion.Type = _questionType;
+                    _surveyQuestion.SurveyId = _surveyVm.ToModel().Id;
                     context.Questions.Add(_surveyQuestion);
                     _surveyVm.Questions.Add(this);
                     context.SaveChanges();
@@ -77,8 +121,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                     context.SaveChanges();
                 }
             }
-
-            MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage)});
         }
 
         public void GoBack()
@@ -87,7 +130,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             QuestionDetails.Description = _description;
             QuestionDetails.Images[0] = _image;
             RaisePropertyChanged("QuestionDetails");
-            MainViewModel.Page.NavigationService?.GoBack();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
         }
 
         public bool ValidateQuestionDetails()

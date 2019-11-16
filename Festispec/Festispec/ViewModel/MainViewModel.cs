@@ -1,11 +1,20 @@
 using System.Linq;
-using Festispec.Singleton;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
+using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
+using CommonServiceLocator;
+using Festispec.View.Pages;
+using Festispec.View.Pages.Employee;
+using Festispec.View.Pages.Customer;
+using Festispec.View.Pages.Employee.Availability;
+using Festispec.View.Pages.Customer.Event;
+using Festispec.Message;
+using Festispec.View.Pages.Report;
 using Festispec.Domain;
+using Festispec.View.Pages.Survey;
 using Festispec.ViewModel.survey;
+using System;
 
 namespace Festispec.ViewModel
 {
@@ -15,7 +24,6 @@ namespace Festispec.ViewModel
         private Page _page;
 
         //publics
-        public PageSingleton PageSingleton { get; set; }
         public ICommand CloseApplication { get; set; }
         public ICommand OpenDashboard { get; set; }
         public ICommand OpenEmployee { get; set; }
@@ -42,10 +50,15 @@ namespace Festispec.ViewModel
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
             OpenSurvey = new RelayCommand(OpenSurveyTab);
-            PageSingleton = new PageSingleton();
 
-            Page = PageSingleton.GetPage("dashboard");
+            Page = ServiceLocator.Current.GetInstance<ReportPage>();
+
+            this.MessengerInstance.Register<ChangePageMessage>(this, message =>
+            {
+                this.Page = ServiceLocator.Current.GetInstance(message.NextPageType) as Page;
+            });
         }
+
 
         //methodes
         private void CloseApp()
@@ -55,41 +68,43 @@ namespace Festispec.ViewModel
 
         private void OpenDashboardTab()
         {
-            Page = PageSingleton.GetPage("dashboard");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage)});
         }
 
         private void OpenEmployeeTab()
         {
-            Page = PageSingleton.GetPage("employee");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage)});
         }
 
         private void OpenCustomerTab()
         {
-            Page = PageSingleton.GetPage("customer");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
         }
 
         private void OpenAvailabilityTab()
         {
-            Page = PageSingleton.GetPage("availability");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AvailablePage) });
         }
 
         private void OpenEventTab()
         {
-            Page = PageSingleton.GetPage("event");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
         }
 
         private void OpenSickTab()
         {
-            Page = PageSingleton.GetPage("sick");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage)});
         }
 
         private void OpenSurveyTab()
         {
             using (var context = new Entities())
             {
-                Page = PageSingleton.GetPage("survey");
-                var survey = context.Surveys.First();
-                Page.DataContext = new SurveyVM(this, survey);
+                var surveyDomain = context.Surveys.First();
+                var survey = new SurveyVM(surveyDomain);
+                
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage)});
+                MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = survey });
             }
         }
     }

@@ -7,7 +7,6 @@ namespace Festispec.Interface
 {
     public interface IQuestion
     {
-        MainViewModel MainViewModel { get; set; }
         QuestionDetails QuestionDetails { get; set; }
         string QuestionType { get; }
         ICommand SaveCommand { get; set; }
