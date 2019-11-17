@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Festispec.Domain;
+using Festispec.ViewModel.employee;
 
 namespace Festispec.ViewModel.auth
 {
@@ -22,7 +23,7 @@ namespace Festispec.ViewModel.auth
             }
         }
 
-        public Employee Employee { get; set; }
+        public EmployeeVM Employee { get; set; }
 
         public bool LoggedIn { get; private set; } = true;
 

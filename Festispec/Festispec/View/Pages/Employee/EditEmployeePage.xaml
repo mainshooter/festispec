@@ -4,40 +4,43 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Festispec.View.Pages.Employee"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Title="EditEmployeePage"
       DataContext="{Binding EditEmployeeVM,Source={StaticResource Locator}}">
 
-    <Grid>
-        <Button Content="Edit Employee" HorizontalAlignment="Left" Margin="344,361,0,0" VerticalAlignment="Top" Width="138" Command="{Binding EditEmployeeCommand}" Height="28"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="66,41,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Firstname, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Voornaam" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="66,100,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Prefix, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Tussenvoegsel" HorizontalAlignment="Left" Margin="66,69,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="66,159,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Lastname, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Achternaam" HorizontalAlignment="Left" Margin="66,128,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="66,218,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Street, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Straat" HorizontalAlignment="Left" Margin="66,187,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="66,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Huisnummer" HorizontalAlignment="Left" Margin="66,246,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="66,336,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.City, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Postcode" HorizontalAlignment="Left" Margin="213,10,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="213,41,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.PostalCode, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Telefoon nummer" HorizontalAlignment="Left" Margin="213,69,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="213,100,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Phone, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Plaats" HorizontalAlignment="Left" Margin="66,305,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="213,159,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Email, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="213,128,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="213,218,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Password, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Wachtwoord" HorizontalAlignment="Left" Margin="213,187,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="213,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Iban, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Iban" HorizontalAlignment="Left" Margin="218,246,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Height="23" Margin="213,336,0,0" Text="{Binding Path=Employee.Birthday, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Birthday" HorizontalAlignment="Left" Margin="217,305,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="362,41,0,0" VerticalAlignment="Top" Width="120" Text="{Binding Path=Employee.Status, Mode=TwoWay}" SelectedIndex="0" ItemsSource="{Binding Path=Status}" SelectedValue="{Binding Employee.Status}" />
-        <Label Content="Status" HorizontalAlignment="Left" Margin="362,10,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="362,100,0,0" VerticalAlignment="Top" Width="120" Text="{Binding Path=Employee.Department, Mode=TwoWay}" SelectedIndex="0" ItemsSource="{Binding Path=Departments}" SelectedValue="{Binding Employee.Department}"  DisplayMemberPath="Name"/>
-        <Label Content="Afdeling" HorizontalAlignment="Left" Margin="362,69,0,0" VerticalAlignment="Top"/>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Command="{Binding CloseEditEmployeeCommand}" Margin="0,0,757,432" Height="17" Width="43" VerticalAlignment="Top" HorizontalAlignment="Left" >
+            <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
+        </Button>
+        <Button Content="Edit Employee" HorizontalAlignment="Left" Margin="344,411,0,0" VerticalAlignment="Top" Width="138" Command="{Binding EditEmployeeCommand}" Height="28"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="105,41,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Firstname, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label Content="Voornaam" HorizontalAlignment="Left" Margin="105,10,0,0" VerticalAlignment="Top" Width="93"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="105,100,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Prefix, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label Content="Tussenvoegsel" HorizontalAlignment="Left" Margin="105,69,0,0" VerticalAlignment="Top" Width="127"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="105,159,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Lastname, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label Content="Achternaam" HorizontalAlignment="Left" Margin="105,128,0,0" VerticalAlignment="Top" Width="108"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="105,218,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Street, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label Content="Straat" HorizontalAlignment="Left" Margin="105,187,0,0" VerticalAlignment="Top" Width="59"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="80"/>
+        <Label Content="Huisnummer" HorizontalAlignment="Left" Margin="108,246,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="208,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumberAddition, Mode=TwoWay}" VerticalAlignment="Top" Width="76"/>
+        <Label Content="Toevoeging" HorizontalAlignment="Left" Margin="202,246,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="105,336,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.City, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label Content="Postcode" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="84"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="320,41,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.PostalCode, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
+        <Label Content="Telefoon nummer" HorizontalAlignment="Left" Margin="320,69,0,0" VerticalAlignment="Top" Width="152"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="320,100,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Phone, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
+        <Label Content="Plaats" HorizontalAlignment="Left" Margin="105,305,0,0" VerticalAlignment="Top" Width="59"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="320,159,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Email, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="320,128,0,0" VerticalAlignment="Top" Width="56"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="320,218,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Iban, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
+        <Label Content="Iban" HorizontalAlignment="Left" Margin="320,187,0,0" VerticalAlignment="Top" Width="48"/>
+        <DatePicker HorizontalAlignment="Left" Height="23" Margin="320,277,0,0" SelectedDate="{Binding Path=Employee.Birthday, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
+        <Label Content="Geboortedatum" HorizontalAlignment="Left" Margin="326,246,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,-1.631" Width="101"/>
+        <ComboBox HorizontalAlignment="Left" Margin="517,41,0,0" VerticalAlignment="Top" Width="175" Text="{Binding Path=Employee.Status, Mode=TwoWay}" ItemsSource="{Binding Path=Statuses}" SelectedValue="{Binding Employee.Status}" />
+        <Label Content="Status" HorizontalAlignment="Left" Margin="517,10,0,0" VerticalAlignment="Top" Width="61"/>
+        <ComboBox HorizontalAlignment="Left" Margin="517,100,0,0" VerticalAlignment="Top" Width="175" ItemsSource="{Binding Path=Departments}" SelectedItem="{Binding Employee.Department}" SelectedIndex="{Binding DepartmentIndex, Mode=OneWay}" DisplayMemberPath="Name"/>
+        <Label Content="Afdeling" HorizontalAlignment="Left" Margin="517,69,0,0" VerticalAlignment="Top" Width="81"/>
     </Grid>
 </Page>

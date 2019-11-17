@@ -1,12 +1,12 @@
 ﻿using Festispec.Domain;
+using Festispec.Message;
+using Festispec.Repository;
+using Festispec.View.Pages.Employee;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -14,19 +14,72 @@ namespace Festispec.ViewModel.employee
 {
     public class EmployeeListVM : ViewModelBase
     {
+        private string _filter;
+        private List<string> _filters;
+        private EmployeeVM _selectedEmployee;
+
         public ICommand OpenAddEmployee { get; set; }
         public ICommand OpenEditEmployee { get; set; }
+        public ICommand OpenSingleEmployee { get; set; }
         public ICommand DeleteEmployeeCommand { get; set; }
-        private MainViewModel _mainViewModel;
         public ObservableCollection<EmployeeVM> EmployeeList { get; set; }
-        private EmployeeVM _selectedEmployee;
-        public MessageBox MessageBox { get; set; }
-        public EmployeeVM SelectedEmployee
+        public string SelectedFilter { get; set; }
+
+        public string Filter
+        {
+            get => _filter;
+            set
+            {
+                _filter = value;
+                RaisePropertyChanged("EmployeeListFiltered");
+            }
+        }
+
+        public List<string> Filters
+        {
+            get => _filters;
+            set
+            {
+                _filters = new List<string>();
+                _filters.Add("Voornaam");
+                _filters.Add("Achternaam");
+                _filters.Add("Plaats");
+                _filters.Add("E-mail");
+                _filters.Add("Afdeling");
+                _filters.Add("Status");
+            }
+        }
+
+        public ObservableCollection<EmployeeVM> EmployeeListFiltered
         {
             get
             {
-                return _selectedEmployee;
+                if (Filter != null || !Filter.Equals(""))
+                {
+                    switch (SelectedFilter)
+                    {
+                        case "Voornaam":
+                            return new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.Firstname.ToLower().Contains(Filter.ToLower())).ToList());
+                        case "Achternaam":
+                            return new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.Lastname.ToLower().Contains(Filter.ToLower())).ToList());
+                        case "Plaats":
+                            return new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.City.ToLower().Contains(Filter.ToLower())).ToList());
+                        case "E-mail":
+                            return new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.Email.ToLower().Contains(Filter.ToLower())).ToList());
+                        case "Afdeling":
+                            return new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.Department.Name.ToLower().Contains(Filter.ToLower())).ToList());
+                        case "Status":
+                            return new ObservableCollection<EmployeeVM>(EmployeeList.Select(employee => employee).Where(employee => employee.Status.ToLower().Contains(Filter.ToLower())).ToList());
+                    }
+                }
+
+                return EmployeeList;
             }
+        }
+
+        public EmployeeVM SelectedEmployee
+        {
+            get => _selectedEmployee;
             set
             {
                 if (value != null)
@@ -36,38 +89,39 @@ namespace Festispec.ViewModel.employee
                 }
             }
         }
-
-
-        public EmployeeListVM(MainViewModel mainViewModel)
+        public EmployeeListVM()
         {
-            _mainViewModel = mainViewModel;
-            using (var context = new Entities())
-            {
-                EmployeeList = new ObservableCollection<EmployeeVM>(context.Employees.ToList().Select(employee => new EmployeeVM(employee)));
-            }
+            Filters = new List<string>();
+            SelectedFilter = Filters.First();
+            Filter = "";
+            EmployeeRepository employeeRepository = new EmployeeRepository();
+            EmployeeList = new ObservableCollection<EmployeeVM>(employeeRepository.GetEmployees());
             OpenAddEmployee = new RelayCommand(OpenAddEmployeePage);
             OpenEditEmployee = new RelayCommand(OpenEditEmployeePage);
             DeleteEmployeeCommand = new RelayCommand(DeleteEmployee);
+            OpenSingleEmployee = new RelayCommand(OpenSingleEmployeePage);
         }
 
         private void OpenAddEmployeePage()
         {
-            _mainViewModel.OpenAddEmployeeTab();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddEmployeePage) });
         }
 
         private void OpenEditEmployeePage()
         {
-            _mainViewModel.OpenEditEmployeeTab();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditEmployeePage) });
+            MessengerInstance.Send<ChangeSelectedEmployeeMessage>(new ChangeSelectedEmployeeMessage()
+            {
+                Employee = SelectedEmployee,
+                EmployeeList = this
+            });
         }
 
-        public void CloseAddEmployee()
+        public void OpenSingleEmployeePage()
         {
-            _mainViewModel.OpenEmployeeTab();
-        }
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SingleEmployeePage) });
+            MessengerInstance.Send<ChangeSelectedEmployeeMessage>(new ChangeSelectedEmployeeMessage() { Employee = SelectedEmployee });
 
-        public void CloseEditEmployee()
-        {
-            _mainViewModel.OpenEmployeeTab();
         }
 
         private void DeleteEmployee()
@@ -84,6 +138,13 @@ namespace Festispec.ViewModel.employee
                 EmployeeList.Remove(SelectedEmployee);
                 RaisePropertyChanged("EmployeeList");
             }
+        }
+
+        public void RefreshEmployees()
+        {
+            EmployeeRepository employeeRepository = new EmployeeRepository();
+            EmployeeList = new ObservableCollection<EmployeeVM>(employeeRepository.GetEmployees());
+            RaisePropertyChanged("EmployeeListFiltered");
         }
     }
 }

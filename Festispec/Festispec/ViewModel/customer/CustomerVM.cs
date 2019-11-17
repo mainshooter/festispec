@@ -10,7 +10,7 @@ namespace Festispec.ViewModel.customer
     {
         private ObservableCollection<EventVM> _events;
         private ObservableCollection<QuotationVM> _quotations;
-        private Customer _customer;
+        private Domain.Customer _customer;
 
         public int Id { 
             get {
@@ -117,7 +117,7 @@ namespace Festispec.ViewModel.customer
             }
         }
 
-        public CustomerVM(Customer customer)
+        public CustomerVM(Domain.Customer customer)
         {
             _customer = customer;
             Events = new ObservableCollection<EventVM>(_customer.Events.ToList().Select(e => new EventVM(e)));
@@ -126,7 +126,7 @@ namespace Festispec.ViewModel.customer
 
         public CustomerVM()
         {
-            _customer = new Customer();
+            _customer = new Domain.Customer();
         }
     }
 }
