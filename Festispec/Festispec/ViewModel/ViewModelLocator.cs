@@ -81,6 +81,10 @@ namespace Festispec.ViewModel
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
         public ReportVM ReportVM => ServiceLocator.Current.GetInstance<ReportVM>();
+        public AddEmployeeVM AddEmployeeVM => ServiceLocator.Current.GetInstance<AddEmployeeVM>();
+        public EmployeeListVM EmployeeListVM => ServiceLocator.Current.GetInstance<EmployeeListVM>();
+        public EmployeeInfoVM EmployeeInfoVM => ServiceLocator.Current.GetInstance<EmployeeInfoVM>();
+        public EditEmployeeVM EditEmployeeVM => ServiceLocator.Current.GetInstance<EditEmployeeVM>();
         public SurveyInfoVM SurveyInfoVM => ServiceLocator.Current.GetInstance<SurveyInfoVM>();
         public CommentFieldVM CommentFieldVM => ServiceLocator.Current.GetInstance<CommentFieldVM>();
         public DrawQuestionVM DrawQuestionVM => ServiceLocator.Current.GetInstance<DrawQuestionVM>();
