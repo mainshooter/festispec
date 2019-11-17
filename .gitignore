@@ -9,6 +9,7 @@ Web.conifg
 *.suo
 *.user
 *.userosscache
+*.DotSettings
 *.sln.docstates
 !*.sln
 
