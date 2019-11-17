@@ -1,147 +1,270 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.employee.department;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
 using System;
 
 namespace Festispec.ViewModel.employee
 {
-    public class EmployeeVM
+    public class EmployeeVM : ViewModelBase
     {
         private DepartmentVM _department;
         private Employee _employee;
 
-        public int Id {
-            get {
+        public int Id
+        {
+            get
+            {
                 return _employee.Id;
             }
-            private set {
-                _employee.Id = value;
-            }
         }
-        
-        public DepartmentVM Department { 
-            get {
+
+        public DepartmentVM Department
+        {
+            get
+            {
                 return _department;
             }
-            set {
-                _department = value;
+            set
+            {
+                if (value != null)
+                {
+                    _department = value;
+                    _employee.Department = value.Name;
+                    _employee.Department1 = value.ToModel();
+                }
             }
         }
 
-        public string Firstname { 
-            get {
+        public Department DepartmentModel
+        {
+            get
+            {
+                return _employee.Department1;
+            }
+            set
+            {
+                _employee.Department1 = value;
+            }
+        }
+
+        public string Firstname
+        {
+            get
+            {
                 return _employee.Firstname;
             }
-            set {
+            set
+            {
                 _employee.Firstname = value;
+                RaisePropertyChanged();
             }
         }
 
-        public string Lastname { 
-            get {
+        public string Prefix
+        {
+            get
+            {
+                return _employee.Prefix;
+            }
+            set
+            {
+                _employee.Prefix = value;
+            }
+        }
+
+        public string Lastname
+        {
+            get
+            {
                 return _employee.Lastname;
             }
-            set {
+            set
+            {
                 _employee.Lastname = value;
             }
         }
 
-        public string Street { 
-            get {
+        public string Street
+        {
+            get
+            {
                 return _employee.Street;
             }
-            set {
+            set
+            {
                 _employee.Street = value;
             }
         }
 
-        public int HouseNumber {
-            get {
+        public int HouseNumber
+        {
+            get
+            {
                 return _employee.HouseNumber;
             }
-            set {
+            set
+            {
                 _employee.HouseNumber = value;
             }
         }
 
-        public string PostalCode { 
-            get {
+        public string HouseNumberAddition
+        {
+            get
+            {
+                return _employee.HouseNumber_Addition;
+            }
+            set
+            {
+                _employee.HouseNumber_Addition = value;
+            }
+        }
+
+        public string FullHouseNumber
+        {
+            get
+            {
+                return (HouseNumber + HouseNumberAddition);
+            }
+        }
+
+        public string PostalCode
+        {
+            get
+            {
                 return _employee.PostalCode;
             }
-            set {
+            set
+            {
                 _employee.PostalCode = value;
             }
         }
 
-        public string City {
-            get {
+        public string City
+        {
+            get
+            {
                 return _employee.City;
             }
-            set {
+            set
+            {
                 _employee.City = value;
             }
         }
 
-        public string Email { 
-            get {
+        public string Email
+        {
+            get
+            {
                 return _employee.Email;
             }
-            set {
+            set
+            {
                 _employee.Email = value;
             }
         }
 
-        public string Phone { 
-            get {
+        public string Phone
+        {
+            get
+            {
                 return _employee.Phone;
             }
-            set {
+            set
+            {
                 _employee.Phone = value;
             }
         }
 
-        public string Password { 
-            get {
+        public string Password
+        {
+            get
+            {
                 return _employee.Password;
             }
-            set {
+            set
+            {
                 _employee.Password = value;
             }
         }
 
-        private string PasswordResetToken { 
-            get {
+        private string PasswordResetToken
+        {
+            get
+            {
                 return _employee.PasswordResetToken;
             }
-            set {
+            set
+            {
                 _employee.PasswordResetToken = value;
             }
         }
 
-        public DateTime ResetTokenEndTime {
-            get {
-                return (DateTime) _employee.ResetTokenEndTime;
+        public DateTime ResetTokenEndTime
+        {
+            get
+            {
+                if (_employee.ResetTokenEndTime != null)
+                {
+                    return (DateTime)_employee.ResetTokenEndTime;
+                }
+                return DateTime.MinValue;
             }
-            set {
+            set
+            {
                 _employee.ResetTokenEndTime = value;
             }
         }
 
-        public string Iban { 
-            get {
+        public string Iban
+        {
+            get
+            {
                 return _employee.Iban;
             }
-            set {
+            set
+            {
                 _employee.Iban = value;
             }
         }
 
-        public string Status {
-            get {
+        public string Status
+        {
+            get
+            {
                 return _employee.Status;
             }
-            set {
+            set
+            {
                 _employee.Status = value;
             }
+        }
+
+        public DateTime Birthday
+        {
+            get
+            {
+                return _employee.Birthday.Date;
+            }
+            set
+            {
+                _employee.Birthday = value.Date;
+            }
+        }
+
+        public string BirthdayDate
+        {
+            get
+            {
+                return Birthday.ToString("d");
+            }
+        }
+
+        [PreferredConstructor]
+        public EmployeeVM()
+        {
+            _employee = new Employee();
         }
 
         public EmployeeVM(Employee employee)
@@ -150,9 +273,9 @@ namespace Festispec.ViewModel.employee
             Department = new DepartmentVM(_employee.Department1);
         }
 
-        public EmployeeVM()
+        public Employee ToModel()
         {
-            _employee = new Employee();
+            return _employee;
         }
     }
 }

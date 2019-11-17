@@ -1,10 +1,10 @@
+using Festispec.View.Pages.Employee;
 using GalaSoft.MvvmLight;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
 using CommonServiceLocator;
 using Festispec.View.Pages;
-using Festispec.View.Pages.Employee;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Customer.Event;
@@ -61,12 +61,12 @@ namespace Festispec.ViewModel
 
         private void OpenDashboardTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage)});
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage) });
         }
 
-        private void OpenEmployeeTab()
+        public void OpenEmployeeTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage)});
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage) });
         }
 
         private void OpenCustomerTab()
@@ -88,5 +88,6 @@ namespace Festispec.ViewModel
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage) });
         }
+
     }
 }

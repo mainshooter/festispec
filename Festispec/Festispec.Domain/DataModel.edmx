@@ -119,6 +119,7 @@
           <Property Name="Firstname" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="Prefix" Type="nvarchar" MaxLength="45" />
           <Property Name="Lastname" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Birthday" Type="datetime" Nullable="false" />
           <Property Name="Street" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="HouseNumber" Type="int" Nullable="false" />
           <Property Name="HouseNumber Addition" Type="varchar" MaxLength="5" />
@@ -1073,6 +1074,7 @@
           <Property Name="Firstname" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Prefix" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="Lastname" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HouseNumber" Type="Int32" Nullable="false" />
           <Property Name="HouseNumber_Addition" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
@@ -2066,6 +2068,7 @@
                 <ScalarProperty Name="Firstname" ColumnName="Firstname" />
                 <ScalarProperty Name="Prefix" ColumnName="Prefix" />
                 <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
                 <ScalarProperty Name="Street" ColumnName="Street" />
                 <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
                 <ScalarProperty Name="HouseNumber_Addition" ColumnName="HouseNumber Addition" />
