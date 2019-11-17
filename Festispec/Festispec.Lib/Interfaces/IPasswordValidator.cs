@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Festispec.Lib.Interfaces
+﻿namespace Festispec.Lib.Interfaces
 {
     public interface IPasswordValidator
     {

@@ -100,7 +100,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
-    <Compile Include="ViewModel\auth\PasswordEncryptVM.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSession.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />

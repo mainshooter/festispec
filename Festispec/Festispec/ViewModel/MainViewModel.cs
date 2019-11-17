@@ -10,8 +10,6 @@ using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.Message;
-using Festispec.View.Pages.Report;
-using Festispec.ViewModel.auth;
 
 namespace Festispec.ViewModel
 {
