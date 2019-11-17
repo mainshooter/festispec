@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="Festispec.Domain.Day" Width="1.5" PointX="10.5" PointY="19.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.Department" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.ElementType" Width="1.5" PointX="10.5" PointY="29.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.Employee" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.Employee" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.EmployeeStatu" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.Event" Width="1.5" PointX="3" PointY="20.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.InspectorPlanning" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
@@ -31,7 +31,7 @@
         <EntityTypeShape EntityType="Festispec.Domain.Report" Width="1.5" PointX="10.5" PointY="22.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.ReportElement" Width="1.5" PointX="12.75" PointY="23.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.ReportStatu" Width="1.5" PointX="8.25" PointY="23.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.SickReportInspector" Width="1.5" PointX="10.5" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.SickReportInspector" Width="1.5" PointX="10.5" PointY="13.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.Survey" Width="1.5" PointX="13.5" PointY="19.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.SurveyStatu" Width="1.5" PointX="11.25" PointY="26.625" IsExpanded="true" />
         <AssociationConnector Association="Festispec.Domain.FK_Answer_Case" ManuallyRouted="false" />

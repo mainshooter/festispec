@@ -193,6 +193,7 @@ CREATE TABLE [dbo].[Employee](
 	[Firstname] [nvarchar](45) NOT NULL,
 	[Prefix] [nvarchar](45) NULL,
 	[Lastname] [nvarchar](45) NOT NULL,
+	[Birthday] [datetime] NOT NULL,
 	[Street] [nvarchar](100) NOT NULL,
 	[HouseNumber] [int] NOT NULL,
 	[HouseNumber Addition] [VARCHAR](5) NULL,

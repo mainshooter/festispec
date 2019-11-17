@@ -15,6 +15,7 @@ using Festispec.View.Pages.Survey.QuestionTypes.MultipleChoiceQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.SliderQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.TableQuestion;
+using Festispec.ViewModel.employee;
 using Festispec.ViewModel.report;
 using Festispec.ViewModel.survey;
 using Festispec.ViewModel.survey.question.QuestionTypes;
@@ -36,6 +37,10 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EmployeePage>();
             SimpleIoc.Default.Register<SickPage>();
             SimpleIoc.Default.Register<AddElementPage>();
+            SimpleIoc.Default.Register<EmployeePage>();
+            SimpleIoc.Default.Register<AddEmployeePage>();
+            SimpleIoc.Default.Register<SingleEmployeePage>();
+            SimpleIoc.Default.Register<EditEmployeePage>();
             SimpleIoc.Default.Register<SurveyPage>();
             SimpleIoc.Default.Register<AddClosedQuestionPage>();
             SimpleIoc.Default.Register<EditClosedQuestionPage>();
@@ -57,6 +62,11 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<ReportVM>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<AddElementVM>();
+            SimpleIoc.Default.Register<EmployeeListVM>();
+            SimpleIoc.Default.Register<AddEmployeeVM>();
+            SimpleIoc.Default.Register<EmployeeVM>();
+            SimpleIoc.Default.Register<EmployeeInfoVM>();
+            SimpleIoc.Default.Register<EditEmployeeVM>();
             SimpleIoc.Default.Register<SurveyVM>();
             SimpleIoc.Default.Register<SurveyInfoVM>();
             SimpleIoc.Default.Register<ClosedQuestionVM>();
@@ -72,18 +82,13 @@ namespace Festispec.ViewModel
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
         public ReportVM ReportVM => ServiceLocator.Current.GetInstance<ReportVM>();
         public SurveyInfoVM SurveyInfoVM => ServiceLocator.Current.GetInstance<SurveyInfoVM>();
-
         public CommentFieldVM CommentFieldVM => ServiceLocator.Current.GetInstance<CommentFieldVM>();
-
         public DrawQuestionVM DrawQuestionVM => ServiceLocator.Current.GetInstance<DrawQuestionVM>();
-
         public ImageGalleryQuestionVM ImageGalleryQuestionVM => ServiceLocator.Current.GetInstance<ImageGalleryQuestionVM>();
         public MultipleChoiceQuestionVM MultipleChoiceQuestionVM => ServiceLocator.Current.GetInstance<MultipleChoiceQuestionVM>();
         public OpenQuestionVM OpenQuestionVM => ServiceLocator.Current.GetInstance<OpenQuestionVM>();
-
         public SliderQuestionVM SliderQuestionVM => ServiceLocator.Current.GetInstance<SliderQuestionVM>();
         public TableQuestionVM TableQuestionVM => ServiceLocator.Current.GetInstance<TableQuestionVM>();
-
         public ClosedQuestionVM ClosedQuestionVM => ServiceLocator.Current.GetInstance<ClosedQuestionVM>();
 
         public static void Cleanup()
