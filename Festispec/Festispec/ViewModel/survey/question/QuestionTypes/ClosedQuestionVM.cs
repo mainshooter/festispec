@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Interface;
+using Festispec.Lib.Slugify;
 using Festispec.Lib.Survey.Question;
 using Festispec.Message;
 using Festispec.View.Pages.Survey;
@@ -85,7 +86,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                     QuestionDetails.Choices.Cols.Add("Ja");
                     QuestionDetails.Choices.Cols.Add("Nee");
                     _surveyQuestion.Question1 = JsonConvert.SerializeObject(QuestionDetails);
-                    _surveyQuestion.Variables = "test";
+                    _surveyQuestion.Variables = StringToSlug.Slugify(QuestionDetails.Question);
                     _surveyQuestion.Type = _questionType;
                     _surveyQuestion.SurveyId = _surveyVm.ToModel().Id;
                     context.Questions.Add(_surveyQuestion);

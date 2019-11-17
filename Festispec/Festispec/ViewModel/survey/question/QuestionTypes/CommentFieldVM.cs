@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Interface;
+using Festispec.Lib.Slugify;
 using Festispec.Lib.Survey.Question;
 using Festispec.Message;
 using Festispec.View.Pages.Survey;
@@ -76,7 +77,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 {
                     _question = QuestionDetails.Question;
                     context.Questions.Add(_surveyQuestion);
-                    _surveyQuestion.Variables = "test";
+                    _surveyQuestion.Variables = StringToSlug.Slugify(QuestionDetails.Question);
                     _surveyQuestion.Type = _questionType;
                     _surveyQuestion.SurveyId = _surveyVm.ToModel().Id;
                     _surveyVm.Questions.Add(this);
