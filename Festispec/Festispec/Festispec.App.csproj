@@ -228,10 +228,6 @@
       <Project>{ee67b2e2-6838-4800-a461-026c192d54d3}</Project>
       <Name>Festispec.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Festispec.Lib\Festispec.Lib.csproj">
-      <Project>{5b0b3cbf-ffbc-4100-897e-a4f0d2094b4a}</Project>
-      <Name>Festispec.Lib</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
