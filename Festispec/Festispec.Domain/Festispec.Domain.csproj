@@ -158,6 +158,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config.example" />
     <None Include="App.config" />
     <EntityDeploy Include="DataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
