@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Festispec.Domain;
+using Festispec.Lib.auth;
 using Festispec.View;
 using Festispec.Lib.Auth;
 using GalaSoft.MvvmLight;
@@ -42,7 +43,8 @@ namespace Festispec.ViewModel.auth
                 }
                 else
                 {
-                    Application.Current.Resources["session"] = new SessionVm(employee);
+                    var userSession = UserSession.Current;
+                    userSession.Employee = employee;
                     MessageBox.Show("Login succesvol", "Geslaagd", MessageBoxButton.OK, MessageBoxImage.Information);
                     //Vanuit hier kun je doorverwijzen naar een andere pagina oid
                 }

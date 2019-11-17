@@ -11,16 +11,24 @@ using System.Web.UI.WebControls;
 using Festispec.Domain;
 using Festispec.Lib.Auth;
 using Festispec.Lib.Interfaces;
+using Festispec.Web.Models.Auth;
 
 namespace Festispec.Web.Controllers
 {
     
-    public class LoginController : Controller
+    public class UserController : Controller
     {
         [HttpGet]
         public ActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public void Logout()
+        {
+            Session["loggedInUser"] = null;
+            Session["loggedIn"] = false;
         }
 
         [HttpPost]
@@ -37,7 +45,7 @@ namespace Festispec.Web.Controllers
 
                    if (employee == null)
                    {
-                       ModelState.AddModelError("", "Gebruiker niet gevonden met de ingevoerde email.");
+                       ModelState.AddModelError("", "Gebruiker niet gevonden met het ingevoerde emailadres.");
                    }
                    else if (!passwordService.PasswordsCompare(password, employee.Password))
                    {
@@ -45,8 +53,8 @@ namespace Festispec.Web.Controllers
                    }
                    else
                    {
-                       Session["loggedInUser"] = employee;
-                       Session["loggedIn"] = true;
+                       var userSession = UserSession.Current;
+                       userSession.Employee = employee;
 
                        //Redirect naar pagina
                        result = RedirectToAction("Index", "Home");

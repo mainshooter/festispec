@@ -92,8 +92,8 @@
     </Compile>
     <Compile Include="Singleton\PageSingleton.cs" />
     <Compile Include="ViewModel\auth\PasswordEncryptVm.cs" />
-    <Compile Include="ViewModel\auth\SessionVm.cs" />
     <Compile Include="ViewModel\auth\UserLoginVm.cs" />
+    <Compile Include="ViewModel\auth\UserSession.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EventVM.cs" />
