@@ -27,8 +27,8 @@ namespace Festispec.Web.Controllers
         [HttpPost]
         public void Logout()
         {
-            Session["loggedInUser"] = null;
-            Session["loggedIn"] = false;
+            var session = UserSession.Current;
+            session.Clear();
         }
 
         [HttpPost]
