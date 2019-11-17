@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.auth
 {
-    class PasswordEncryptVm
+    class PasswordEncryptVM
     {
         public string ToPassword(string text)
         {

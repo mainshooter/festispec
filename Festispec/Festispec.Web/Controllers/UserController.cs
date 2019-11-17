@@ -40,8 +40,9 @@ namespace Festispec.Web.Controllers
 
            if (ModelState.IsValid)
            {
-               using (var context = new Entities())
+               using (var context = new Domain.Entities())
                {
+                    
                    var employee = context.Employees.FirstOrDefault(e => e.Email == email);
                    IPasswordValidator passwordService = new PasswordService();
 

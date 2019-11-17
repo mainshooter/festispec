@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Festispec.Domain;
-using Festispec.Lib.auth;
-using Festispec.View;
 using Festispec.Lib.Auth;
+using Festispec.Message;
+using Festispec.View.Pages;
+using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
 namespace Festispec.ViewModel.auth
 {
-    public class UserLoginVm : ViewModelBase
+    public class UserLoginVM : ViewModelBase
     {
         public string Email { get; set; }
         public ICommand DoLogin { get; set; }
 
-        public UserLoginVm()
+        public UserLoginVM()
         {
             DoLogin = new RelayCommand<PasswordBox>(Login);
         }
@@ -44,9 +41,10 @@ namespace Festispec.ViewModel.auth
                 else
                 {
                     var userSession = UserSession.Current;
-                    userSession.Employee = employee;
-                    MessageBox.Show("Login succesvol", "Geslaagd", MessageBoxButton.OK, MessageBoxImage.Information);
+                    userSession.Employee = new EmployeeVM(employee);
                     //Vanuit hier kun je doorverwijzen naar een andere pagina oid
+                    MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage) });
+                    MessengerInstance.Send<ChangeLoggedinUserMessage>(new ChangeLoggedinUserMessage() { LoggedinEmployee = userSession.Employee});
                 }
             }
         }

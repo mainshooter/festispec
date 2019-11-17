@@ -98,6 +98,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Festispec.Lib\Festispec.Lib.csproj">
+      <Project>{3dcba89e-3bee-4324-a8ec-d33519d47f1c}</Project>
+      <Name>Festispec.Lib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Festispec.Web\Festispec.Web.csproj">
       <Project>{211AF01A-6056-4D0F-889D-296F2703E219}</Project>
       <Name>Festispec.Web</Name>

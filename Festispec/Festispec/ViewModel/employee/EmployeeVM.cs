@@ -3,10 +3,6 @@ using Festispec.ViewModel.employee.department;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.employee
 {
@@ -23,16 +19,26 @@ namespace Festispec.ViewModel.employee
             }
         }
 
-        public DepartmentVM Department
-        {
-            get
-            {
+        public DepartmentVM Department {
+            get {
                 return _department;
             }
-            set
-            {
-                _department = value;
-                _employee.Department = value.Name;
+            set {
+                if (value != null)
+                {
+                    _department = value;
+                    _employee.Department = value.Name;
+                    _employee.Department1 = value.ToModel();
+                }
+            }
+        }
+
+        public Department DepartmentModel {
+            get {
+                return _employee.Department1;
+            }
+            set {
+                _employee.Department1 = value;
             }
         }
 
@@ -73,6 +79,12 @@ namespace Festispec.ViewModel.employee
             }
         }
 
+        public string Fullname {
+            get {
+                return Firstname + " " + Prefix + " " + Lastname;
+            }
+        }
+
         public string Street
         {
             get
@@ -94,6 +106,25 @@ namespace Festispec.ViewModel.employee
             set
             {
                 _employee.HouseNumber = value;
+            }
+        }
+        public string HouseNumberAddition
+        {
+            get
+            {
+                return _employee.HouseNumber_Addition;
+            }
+            set
+            {
+                _employee.HouseNumber_Addition = value;
+            }
+        }
+
+        public string FullHouseNumber
+        {
+            get
+            {
+                return (HouseNumber + HouseNumberAddition);
             }
         }
 
@@ -213,24 +244,32 @@ namespace Festispec.ViewModel.employee
         {
             get
             {
-                return _employee.Birthday;
+                return _employee.Birthday.Date;
             }
             set
             {
-                _employee.Birthday = value;
+                _employee.Birthday = value.Date;
             }
         }
 
-        [PreferredConstructorAttribute]
+        public string BirthdayDate
+        {
+            get
+            {
+                return Birthday.ToString("d");
+            }
+        }
+
+        [PreferredConstructor]
+        public EmployeeVM()
+        {
+            _employee = new Employee();
+        }
+
         public EmployeeVM(Employee employee)
         {
             _employee = employee;
             Department = new DepartmentVM(_employee.Department1);
-        }
-
-        public EmployeeVM()
-        {
-            _employee = new Employee();
         }
 
         public Employee ToModel()
