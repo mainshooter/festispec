@@ -85,6 +85,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 RaisePropertyChanged();
             }
         }
+
         public ObservableCollection<string> Columns {
             get => _columns;
             set {
@@ -92,6 +93,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 RaisePropertyChanged();
             }
         }
+
         public ObservableCollection<string> ComboBoxItems {
             get => _comboBoxItems;
             set {
@@ -107,32 +109,25 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             Columns = new ObservableCollection<string>();
             ComboBoxItems = new ObservableCollection<string>();
             _questionType = "Tabel vraag";
-            MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
-                Options = new ObservableCollection<string>();
-                Columns = new ObservableCollection<string>();
-                ComboBoxItems = new ObservableCollection<string>();
 
+            MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
                 _surveyVm = message.SurveyVM;
                 _surveyQuestion = message.NextQuestion;
                 QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
                 _question = QuestionDetails.Question;
                 _description = QuestionDetails.Description;
-
-                SetComboBox();
                 SetDataGrids();
-                SelectedColumn = ComboBoxItems[0];
-                RaisePropertyChanged();
+                SetComboBox();
             });
+
             MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
                 _surveyVm = message.NextSurvey;
                 _surveyQuestion = new Question();
                 QuestionDetails = new QuestionDetails();
-                Options = new ObservableCollection<string>();
-                Columns = new ObservableCollection<string>();
-                ComboBoxItems = new ObservableCollection<string>();
-
+                _question = QuestionDetails.Question;
+                _description = QuestionDetails.Description;
+                SetDataGrids();
                 SetComboBox();
-                SelectedColumn = ComboBoxItems[0];
             });
 
             SaveCommand = new RelayCommand(Save);
@@ -221,6 +216,9 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
         private void SetDataGrids()
         {
+            Options.Clear();
+            Columns.Clear();
+
             foreach (var options in QuestionDetails.Choices.Cols)
             {
                 Options.Add(options);
@@ -352,7 +350,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 ComboBoxItems.Add(column);
             }
 
-            SelectedColumn = selected;
+            SelectedColumn = selected ?? ComboBoxItems[0];
             RaisePropertyChanged("SelectedColumn");
         }
     }

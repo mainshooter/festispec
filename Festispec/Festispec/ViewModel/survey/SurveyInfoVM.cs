@@ -1,7 +1,6 @@
 ﻿using Festispec.Domain;
 using Festispec.Interface;
 using Festispec.Message;
-using Festispec.View.Pages.Survey;
 using Festispec.View.Pages.Survey.QuestionTypes.ClosedQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.CommentField;
 using Festispec.View.Pages.Survey.QuestionTypes.DrawQuestion;
@@ -23,8 +22,8 @@ namespace Festispec.ViewModel.survey
     public class SurveyInfoVM: ViewModelBase
     {
         private SurveyVM _surveyVM;
-        private Dictionary<string, Type> _editSurveyPageTypes;
-        private Dictionary<string, Type> _addSurveyPageTypes;
+        private Dictionary<string, Type> _editQuestionPageTypes;
+        private Dictionary<string, Type> _addQuestionPageTypes;
 
         public SurveyVM SurveyVM
         { 
@@ -32,7 +31,7 @@ namespace Festispec.ViewModel.survey
             set
             {
                 _surveyVM = value;
-                RaisePropertyChanged("SurveyVM");
+                RaisePropertyChanged();
             }
         }
 
@@ -45,7 +44,7 @@ namespace Festispec.ViewModel.survey
 
         public SurveyInfoVM()
         {
-            _editSurveyPageTypes = new Dictionary<string, Type>() {
+            _editQuestionPageTypes = new Dictionary<string, Type>() {
                 ["Gesloten vraag"] = typeof(EditClosedQuestionPage),
                 ["Opmerking vraag"] = typeof(EditCommentFieldPage),
                 ["Teken vraag"] = typeof(EditDrawQuestionPage),
@@ -55,7 +54,8 @@ namespace Festispec.ViewModel.survey
                 ["Schuifbalk vraag"] = typeof(EditSliderQuestionPage),
                 ["Tabel vraag"] = typeof(EditTableQuestionPage),
             };
-            _addSurveyPageTypes = new Dictionary<string, Type>()
+
+            _addQuestionPageTypes = new Dictionary<string, Type>()
             {
                 ["Gesloten vraag"] = typeof(AddClosedQuestionPage),
                 ["Opmerking vraag"] = typeof(AddCommentFieldPage),
@@ -66,18 +66,15 @@ namespace Festispec.ViewModel.survey
                 ["Schuifbalk vraag"] = typeof(AddSliderQuestionPage),
                 ["Tabel vraag"] = typeof(AddTableQuestionPage),
             };
+
             MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
                 SurveyVM = message.NextSurvey;
             });
+
             AddQuestionCommand = new RelayCommand(OpenAddQuestion);
             EditQuestionCommand = new RelayCommand(OpenEditQuestion);
             DeleteQuestionCommand = new RelayCommand(DeleteQuestion);
-            MessengerInstance.Register<ChangePageMessage>(this, message => { 
-                if (message.NextPageType == typeof(SurveyPage))
-                {
-                    SurveyVM.RefreshQuestions();
-                }
-            });
+
             GetQuestionTypes();
         }
 
@@ -97,17 +94,16 @@ namespace Festispec.ViewModel.survey
             }
         }
 
-
         private void OpenAddQuestion()
         {
-            var surveyPageType = _addSurveyPageTypes[SelectedQuestionType];
+            var surveyPageType = _addQuestionPageTypes[SelectedQuestionType];
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = surveyPageType});
             MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = SurveyVM});
         }
 
         private void OpenEditQuestion()
         {
-            var surveyPageType = _editSurveyPageTypes[SelectedQuestion.QuestionType];
+            var surveyPageType = _editQuestionPageTypes[SelectedQuestion.QuestionType];
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = surveyPageType });
             MessengerInstance.Send<ChangeSelectedSurveyQuestionMessage>(new ChangeSelectedSurveyQuestionMessage() { NextQuestion = SelectedQuestion.ToModel(), SurveyVM = _surveyVM });
         }

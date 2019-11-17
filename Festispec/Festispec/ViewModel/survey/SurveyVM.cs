@@ -51,17 +51,12 @@ namespace Festispec.ViewModel.survey
         {
             _survey = survey;
             Cases = new ObservableCollection<CaseVM>(survey.Cases.ToList().Select(c => new CaseVM(c)));
-            RefreshQuestions();
+            Questions = new ObservableCollection<IQuestion>(_survey.Questions.ToList().Select(q => CreateQuestionType(new QuestionVM(q))));
         }
 
         public Survey ToModel()
         {
             return _survey;
-        }
-
-        public void RefreshQuestions()
-        {
-            Questions = new ObservableCollection<IQuestion>(_survey.Questions.ToList().Select(q => CreateQuestionType(new QuestionVM(q))));
         }
 
         private IQuestion CreateQuestionType(QuestionVM question)
