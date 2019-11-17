@@ -25,10 +25,12 @@ namespace Festispec.Web.Controllers
         }
 
         [HttpPost]
-        public void Logout()
+        public ActionResult Logout()
         {
             var session = UserSession.Current;
             session.Clear();
+
+            return RedirectToAction("index", "Home");
         }
 
         [HttpPost]
