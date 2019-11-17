@@ -1,17 +1,16 @@
 ﻿using System.Windows;
-using Festispec.Domain;
 using Festispec.ViewModel.employee;
 
 namespace Festispec.ViewModel.auth
 {
-    class UserSession
+    class UserSessionVm
     {
-        public static UserSession Current { 
+        public static UserSessionVm Current { 
             get
             {
-                if (Application.Current.Resources["session"] is UserSession current) return current;
+                if (Application.Current.Resources["session"] is UserSessionVm current) return current;
 
-                current = new UserSession();
+                current = new UserSessionVm();
                 Application.Current.Resources["session"] = current;
 
                 return current;

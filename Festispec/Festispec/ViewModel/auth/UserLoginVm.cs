@@ -40,7 +40,7 @@ namespace Festispec.ViewModel.auth
                 }
                 else
                 {
-                    var userSession = UserSession.Current;
+                    var userSession = UserSessionVm.Current;
                     userSession.Employee = new EmployeeVM(employee);
                     //Vanuit hier kun je doorverwijzen naar een andere pagina oid
                     MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage) });
