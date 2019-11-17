@@ -10,7 +10,6 @@ using Festispec.ViewModel.auth;
 using Festispec.ViewModel.employee;
 using Festispec.ViewModel.report;
 using GalaSoft.MvvmLight.Ioc;
-using System.Collections.Generic;
 
 namespace Festispec.ViewModel
 {
