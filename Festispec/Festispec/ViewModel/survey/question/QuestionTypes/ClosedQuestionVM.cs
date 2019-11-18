@@ -53,11 +53,8 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
             _questionType = "Gesloten vraag";
 
-
             SaveCommand = new RelayCommand(Save);
             GoBackCommand = new RelayCommand(GoBack);
-
-            // temp variables for when you want to go back and discard changes
         }
 
         public ClosedQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
