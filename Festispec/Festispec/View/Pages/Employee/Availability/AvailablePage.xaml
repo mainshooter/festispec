@@ -8,19 +8,35 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AvailablePage"
-      Background="White">
+      Background="White"
+      DataContext="{Binding AvailabilityManagerVM,Source={StaticResource Locator}}">
 
     <Grid>
         <Label Content="Available" HorizontalAlignment="Left" Margin="42,36,0,0" VerticalAlignment="Top"/>
         <Label Margin="325,10,-325,-10">Week:</Label>
-        <StackPanel Orientation="Horizontal" Height="25" HorizontalAlignment="Center" >
-            <xctk:TimePicker></xctk:TimePicker>
-            <xctk:TimePicker></xctk:TimePicker>
-            <xctk:TimePicker></xctk:TimePicker>
-            <xctk:TimePicker></xctk:TimePicker>
-            <xctk:TimePicker></xctk:TimePicker>
-            <xctk:TimePicker></xctk:TimePicker>
-            <xctk:TimePicker></xctk:TimePicker>
+        <Label Margin="366,10,-366,-10" Content="{Binding WeekNumber}"></Label>
+        <Label Margin="401,10,-401,-10" Content="{Binding Year}"></Label>
+        <Button Margin="0,67,700,351" Command="{Binding PreviousWeekCommand}"></Button>
+        <Button Margin="700,67,0,351" Command="{Binding NextWeekCommand}"></Button>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Height="25" Margin="0,25">
+                <xctk:TimePicker Value="{Binding SelectedWeek.Monday.AvailabiltyStart}"></xctk:TimePicker>
+                <xctk:TimePicker Value="{Binding SelectedWeek.Tuesday.AvailabiltyStart}"></xctk:TimePicker>
+                <xctk:TimePicker Value="{Binding SelectedWeek.Wednesday.AvailabiltyStart}"></xctk:TimePicker>
+                <xctk:TimePicker Value="{Binding SelectedWeek.Thursday.AvailabiltyStart}"></xctk:TimePicker>
+                <xctk:TimePicker Value="{Binding SelectedWeek.Friday.AvailabiltyStart}"></xctk:TimePicker>
+                <xctk:TimePicker Value="{Binding SelectedWeek.Saturday.AvailabiltyStart}"></xctk:TimePicker>
+                <xctk:TimePicker Value="{Binding SelectedWeek.Sunday.AvailabiltyStart}"></xctk:TimePicker>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="25">
+                <xctk:TimePicker Value="{Binding SelectedWeek.Monday.AvailabiltyEnd}"></xctk:TimePicker>
+                <xctk:TimePicker Value="{Binding SelectedWeek.Tuesday.AvailabiltyEnd}"></xctk:TimePicker>
+                <xctk:TimePicker Value="{Binding SelectedWeek.Wednesday.AvailabiltyEnd}"></xctk:TimePicker>
+                <xctk:TimePicker Value="{Binding SelectedWeek.Thursday.AvailabiltyEnd}"></xctk:TimePicker>
+                <xctk:TimePicker Value="{Binding SelectedWeek.Friday.AvailabiltyEnd}"></xctk:TimePicker>
+                <xctk:TimePicker Value="{Binding SelectedWeek.Saturday.AvailabiltyEnd}"></xctk:TimePicker>
+                <xctk:TimePicker Value="{Binding SelectedWeek.Sunday.AvailabiltyEnd}"></xctk:TimePicker>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

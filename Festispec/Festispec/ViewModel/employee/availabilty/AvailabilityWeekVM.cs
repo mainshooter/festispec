@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Festispec.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,11 @@ namespace Festispec.ViewModel.employee.availabilty
         public AvailabilityWeekVM(DateTime week)
         {
             Week = week;
+            //using (var context = new Entities())
+            //{
+            //    context.AvailabilityInspectors
+            //    switch()
+            //}
             Monday = new AvailabiltyVM();
             Tuesday = new AvailabiltyVM();
             Wednesday = new AvailabiltyVM();

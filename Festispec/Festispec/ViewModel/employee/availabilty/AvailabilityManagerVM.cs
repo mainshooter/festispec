@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,11 @@ using System.Windows.Input;
 
 namespace Festispec.ViewModel.employee.availabilty
 {
-    public class AvailabilityManagerVM
+    public class AvailabilityManagerVM : ViewModelBase
     {
-        public ObservableCollection<AvailabilityWeekVM> Weeks { get; set; }
         private AvailabilityWeekVM _selectedWeek;
+
+        public ObservableCollection<AvailabilityWeekVM> Weeks { get; set; }
         public AvailabilityWeekVM SelectedWeek
         {
             get
@@ -24,8 +26,26 @@ namespace Festispec.ViewModel.employee.availabilty
             set
             {
                 _selectedWeek = value;
+                RaisePropertyChanged("WeekNumber");
             }
         }
+
+        public int WeekNumber
+        {
+            get
+            {
+                return SelectedWeek.Week.DayOfYear / 7;
+            }
+        }
+
+        public int Year
+        {
+            get
+            {
+                return SelectedWeek.Week.Year;
+            }
+        }
+
         public ICommand NextWeekCommand { get; set; }
         public ICommand PreviousWeekCommand { get; set; }
 
@@ -40,12 +60,14 @@ namespace Festispec.ViewModel.employee.availabilty
 
         public void NextWeek()
         {
+            var temp = SelectedWeek;
             if (SelectedWeek.NextWeek == null)
             {
                 SelectedWeek.NextWeek = new AvailabilityWeekVM(SelectedWeek.Week.AddDays(7));
                 Weeks.Add(SelectedWeek.NextWeek);
             }
             SelectedWeek = SelectedWeek.NextWeek;
+            SelectedWeek.PreviousWeek = temp;
         }
 
         public void PreviousWeek()

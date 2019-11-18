@@ -7,6 +7,7 @@ using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Report.element;
 using Festispec.ViewModel.employee;
+using Festispec.ViewModel.employee.availabilty;
 using Festispec.ViewModel.report;
 using GalaSoft.MvvmLight.Ioc;
 
@@ -39,6 +40,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EmployeeVM>();
             SimpleIoc.Default.Register<EmployeeInfoVM>();
             SimpleIoc.Default.Register<EditEmployeeVM>();
+            SimpleIoc.Default.Register<AvailabilityManagerVM>();
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
@@ -52,6 +54,7 @@ namespace Festispec.ViewModel
         public EmployeeInfoVM EmployeeInfoVM => ServiceLocator.Current.GetInstance<EmployeeInfoVM>();
 
         public EditEmployeeVM EditEmployeeVM => ServiceLocator.Current.GetInstance<EditEmployeeVM>();
+        public AvailabilityManagerVM AvailabilityManagerVM => ServiceLocator.Current.GetInstance<AvailabilityManagerVM>();
 
         public static void Cleanup()
         {
