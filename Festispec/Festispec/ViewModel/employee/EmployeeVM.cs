@@ -19,27 +19,22 @@ namespace Festispec.ViewModel.employee
             }
         }
 
-        public DepartmentVM Department {
-            get {
-                return _department;
-            }
-            set {
-                if (value != null)
-                {
-                    _department = value;
-                    _employee.Department = value.Name;
-                    _employee.Department1 = value.ToModel();
-                }
+        public DepartmentVM Department 
+        {
+            get => _department;
+            set 
+            {
+                if (value == null) return;
+                _department = value;
+                _employee.Department = value.Name;
+                _employee.Department1 = value.ToModel();
             }
         }
 
-        public Department DepartmentModel {
-            get {
-                return _employee.Department1;
-            }
-            set {
-                _employee.Department1 = value;
-            }
+        public Department DepartmentModel 
+        {
+            get => _employee.Department1;
+            set => _employee.Department1 = value;
         }
 
         public string Firstname
