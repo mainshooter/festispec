@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace Festispec.ViewModel.employee.availabilty
             set
             {
                 _selectedWeek = value;
-                RaisePropertyChanged("WeekNumber");
+                RaisePropertyChanged();
             }
         }
 
@@ -34,7 +35,14 @@ namespace Festispec.ViewModel.employee.availabilty
         {
             get
             {
-                return SelectedWeek.Week.DayOfYear / 7;
+                DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+                Calendar cal = dfi.Calendar;
+                var week = cal.GetWeekOfYear(SelectedWeek.Week, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+                if (week == 53)
+                {
+                    week = 1;
+                }
+                return week;
             }
         }
 
@@ -42,7 +50,8 @@ namespace Festispec.ViewModel.employee.availabilty
         {
             get
             {
-                return SelectedWeek.Week.Year;
+                var year = SelectedWeek.Week;
+                return year.AddDays(7).Year;
             }
         }
 

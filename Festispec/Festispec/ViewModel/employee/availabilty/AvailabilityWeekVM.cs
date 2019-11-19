@@ -23,18 +23,93 @@ namespace Festispec.ViewModel.employee.availabilty
         public AvailabilityWeekVM(DateTime week)
         {
             Week = week;
-            //using (var context = new Entities())
-            //{
-            //    context.AvailabilityInspectors
-            //    switch()
-            //}
-            Monday = new AvailabiltyVM();
-            Tuesday = new AvailabiltyVM();
-            Wednesday = new AvailabiltyVM();
-            Thursday = new AvailabiltyVM();
-            Friday = new AvailabiltyVM();
-            Saturday = new AvailabiltyVM();
-            Sunday = new AvailabiltyVM();
+            bool HasMonday = false;
+            bool HasTuesday = false;
+            bool HasWednesday = false;
+            bool HasThursday = false;
+            bool HasFriday = false;
+            bool HasSaturday = false;
+            bool HasSunday = false;
+            using (var context = new Entities())
+            {
+                var cal = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
+                var availabilities = context.AvailabilityInspectors.Select(availabilty => availabilty).Where(availabilty => availabilty.Employee.Id == 2);
+                foreach (var availability in availabilities)
+                {
+                    if (DatesAreInTheSameWeek(week, availability.AvailableFrom))
+                    {
+                        switch (availability.AvailableFrom.DayOfWeek)
+                        {
+                            case DayOfWeek.Monday:
+                                Monday = new AvailabiltyVM(availability);
+                                HasMonday = true;
+                                break;
+                            case DayOfWeek.Tuesday:
+                                Tuesday = new AvailabiltyVM(availability);
+                                HasTuesday = true;
+                                break;
+                            case DayOfWeek.Wednesday:
+                                Wednesday = new AvailabiltyVM(availability);
+                                HasWednesday = true;
+                                break;
+                            case DayOfWeek.Thursday:
+                                Thursday = new AvailabiltyVM(availability);
+                                HasThursday = true;
+                                break;
+                            case DayOfWeek.Friday:
+                                Friday = new AvailabiltyVM(availability);
+                                HasFriday = true;
+                                break;
+                            case DayOfWeek.Saturday:
+                                Saturday = new AvailabiltyVM(availability);
+                                HasSaturday = true;
+                                break;
+                            case DayOfWeek.Sunday:
+                                Sunday = new AvailabiltyVM(availability);
+                                HasSunday = true;
+                                break;
+                        }
+                    }
+                }
+            }
+
+            if (!HasMonday)
+            {
+                Monday = new AvailabiltyVM();
+            }
+            if (!HasTuesday)
+            {
+                Tuesday = new AvailabiltyVM();
+            }
+            if (!HasWednesday)
+            {
+                Wednesday = new AvailabiltyVM();
+            }
+            if (!HasThursday)
+            {
+                Thursday = new AvailabiltyVM();
+            }
+            if (!HasFriday)
+            {
+                Friday = new AvailabiltyVM();
+            }
+            if (!HasSaturday)
+            {
+                Saturday = new AvailabiltyVM();
+            }
+            if (!HasSunday)
+            {
+                Sunday = new AvailabiltyVM();
+            }
+        }
+
+        private bool DatesAreInTheSameWeek(DateTime date1, DateTime date2)
+        {
+            var cal = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
+            var d1 = date1.Date.AddDays(-1 * (int)cal.GetDayOfWeek(date1));
+            var d2 = date2.Date.AddDays(-1 * (int)cal.GetDayOfWeek(date2));
+
+            return d1 == d2;
         }
 
     }

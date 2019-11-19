@@ -11,31 +11,40 @@ namespace Festispec.ViewModel.employee.availabilty
     {
         private AvailabilityInspector _availabilityInspector;
 
-        public int Id {
-            get {
+        public int Id
+        {
+            get
+            {
                 return _availabilityInspector.Id;
             }
-            private set {
+            private set
+            {
                 _availabilityInspector.Id = value;
             }
         }
 
         public EmployeeVM Employee { get; set; }
 
-        public DateTime AvailabiltyStart {
-            get {
+        public DateTime AvailabiltyStart
+        {
+            get
+            {
                 return _availabilityInspector.AvailableFrom;
             }
-            set {
+            set
+            {
                 _availabilityInspector.AvailableFrom = value;
             }
         }
 
-        public DateTime AvailabiltyEnd { 
-            get {
+        public DateTime AvailabiltyEnd
+        {
+            get
+            {
                 return _availabilityInspector.AvailableTill;
             }
-            set {
+            set
+            {
                 _availabilityInspector.AvailableTill = value;
             }
         }
