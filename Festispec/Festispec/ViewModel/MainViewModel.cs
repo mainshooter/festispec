@@ -1,4 +1,6 @@
 using System.Linq;
+using Festispec.View.Pages.Employee;
+using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
@@ -21,6 +23,7 @@ namespace Festispec.ViewModel
     {
         //privates
         private Page _page;
+        private EmployeeVM _loggedInEmployee;
 
         //publics
         public ICommand CloseApplication { get; set; }
@@ -38,6 +41,16 @@ namespace Festispec.ViewModel
             set { _page = value; RaisePropertyChanged("Page"); }
         }
 
+        public EmployeeVM LoggedInEmployee {
+            get {
+                return _loggedInEmployee;
+            }
+            set {
+                _loggedInEmployee = value;
+                RaisePropertyChanged("LoggedInEmployee");
+            }
+        }
+
         //constructor
         public MainViewModel()
         {
@@ -50,11 +63,15 @@ namespace Festispec.ViewModel
             OpenSick = new RelayCommand(OpenSickTab);
             OpenSurvey = new RelayCommand(OpenSurveyTab);
 
-            Page = ServiceLocator.Current.GetInstance<ReportPage>();
+            Page = ServiceLocator.Current.GetInstance<LoginPage>();
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
                 this.Page = ServiceLocator.Current.GetInstance(message.NextPageType) as Page;
+            });
+            this.MessengerInstance.Register<ChangeLoggedinUserMessage>(this, message =>
+            {
+                LoggedInEmployee = message.LoggedinEmployee;
             });
         }
 

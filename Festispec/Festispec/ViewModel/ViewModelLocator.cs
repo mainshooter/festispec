@@ -15,6 +15,7 @@ using Festispec.View.Pages.Survey.QuestionTypes.MultipleChoiceQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.SliderQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.TableQuestion;
+using Festispec.ViewModel.auth;
 using Festispec.ViewModel.employee;
 using Festispec.ViewModel.report;
 using Festispec.ViewModel.survey;
@@ -58,13 +59,14 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditSliderQuestionPage>();
             SimpleIoc.Default.Register<AddTableQuestionPage>();
             SimpleIoc.Default.Register<EditTableQuestionPage>();
+            SimpleIoc.Default.Register<LoginPage>();
 
             SimpleIoc.Default.Register<ReportVM>();
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<AddElementVM>();
+            SimpleIoc.Default.Register<EmployeeVM>();
             SimpleIoc.Default.Register<EmployeeListVM>();
             SimpleIoc.Default.Register<AddEmployeeVM>();
-            SimpleIoc.Default.Register<EmployeeVM>();
+            SimpleIoc.Default.Register<AddElementVM>();
             SimpleIoc.Default.Register<EmployeeInfoVM>();
             SimpleIoc.Default.Register<EditEmployeeVM>();
             SimpleIoc.Default.Register<SurveyVM>();
@@ -77,10 +79,12 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<OpenQuestionVM>();
             SimpleIoc.Default.Register<SliderQuestionVM>();
             SimpleIoc.Default.Register<TableQuestionVM>();
+            SimpleIoc.Default.Register<UserLoginVM>();
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
         public ReportVM ReportVM => ServiceLocator.Current.GetInstance<ReportVM>();
+        public UserLoginVM UserLoginVM => ServiceLocator.Current.GetInstance<UserLoginVM>();
         public AddEmployeeVM AddEmployeeVM => ServiceLocator.Current.GetInstance<AddEmployeeVM>();
         public EmployeeListVM EmployeeListVM => ServiceLocator.Current.GetInstance<EmployeeListVM>();
         public EmployeeInfoVM EmployeeInfoVM => ServiceLocator.Current.GetInstance<EmployeeInfoVM>();
