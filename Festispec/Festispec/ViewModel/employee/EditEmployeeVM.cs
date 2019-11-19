@@ -9,7 +9,6 @@ using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Text.RegularExpressions;
-
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.employee
@@ -84,7 +83,6 @@ namespace Festispec.ViewModel.employee
                 context.Entry(Employee.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
             }
-
             CloseEditEmployee();
         }
 
@@ -129,7 +127,6 @@ namespace Festispec.ViewModel.employee
             {
                 return false;
             }
-
             return true;
         }
     }
