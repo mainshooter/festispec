@@ -62,7 +62,7 @@ namespace Festispec.ViewModel.employee
             {
                 return false;
             }
-            if (Employee.Firstname == null || Employee.Lastname == null || password.Password == null || Employee.City == null || Employee.Department == null || Employee.Email == null || Employee.HouseNumber <= 0 || Employee.Phone == null || Employee.PostalCode == null || Employee.Status == null || Employee.Street == null || Employee.Birthday == null || Employee.Iban == null)
+            if (Employee.Firstname == null || Employee.Lastname == null || password.Password == null || password.Password.Equals("") || Employee.City == null || Employee.Department == null || Employee.Email == null || Employee.HouseNumber <= 0 || Employee.Phone == null || Employee.PostalCode == null || Employee.Status == null || Employee.Street == null || Employee.Birthday.ToString().Equals("") || Employee.Birthday == null || Employee.Iban == null)
             {
                 return false;
             }
