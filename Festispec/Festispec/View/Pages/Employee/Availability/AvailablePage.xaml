@@ -16,6 +16,7 @@
         <Label Margin="325,10,-325,-10">Week:</Label>
         <Label Margin="366,10,-366,-10" Content="{Binding WeekNumber}"></Label>
         <Label Margin="401,10,-401,-10" Content="{Binding Year}"></Label>
+        <Label Margin="487,10,-487,-10" Content="{Binding SelectedWeek.Week}"></Label>
         <Button Margin="0,67,700,351" Command="{Binding PreviousWeekCommand}"></Button>
         <Button Margin="700,67,0,351" Command="{Binding NextWeekCommand}"></Button>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">

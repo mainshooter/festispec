@@ -125,6 +125,5 @@ namespace Festispec.ViewModel.employee.availabilty
 
             return d1 == d2;
         }
-
     }
 }

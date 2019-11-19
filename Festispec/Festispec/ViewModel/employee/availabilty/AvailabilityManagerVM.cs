@@ -28,7 +28,9 @@ namespace Festispec.ViewModel.employee.availabilty
             set
             {
                 _selectedWeek = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged("SelectedWeek");
+                RaisePropertyChanged("WeekNumber");
+                RaisePropertyChanged("Year");
             }
         }
 
@@ -36,14 +38,7 @@ namespace Festispec.ViewModel.employee.availabilty
         {
             get
             {
-                DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
-                Calendar cal = dfi.Calendar;
-                var week = cal.GetWeekOfYear(SelectedWeek.Week, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
-                if (week == 53)
-                {
-                    week = 1;
-                }
-                return week;
+                return GetIso8601WeekOfYear(SelectedWeek.Week);
             }
         }
 
@@ -51,8 +46,7 @@ namespace Festispec.ViewModel.employee.availabilty
         {
             get
             {
-                var year = SelectedWeek.Week;
-                return year.AddDays(7).Year;
+                return SelectedWeek.Week.Year;
             }
         }
 
@@ -102,13 +96,13 @@ namespace Festispec.ViewModel.employee.availabilty
             {
                 foreach (var week in Weeks)
                 {
-                    ModifyAvailability(context, week.Monday);
-                    ModifyAvailability(context, week.Tuesday);
-                    ModifyAvailability(context, week.Wednesday);
-                    ModifyAvailability(context, week.Thursday);
-                    ModifyAvailability(context, week.Friday);
-                    ModifyAvailability(context, week.Saturday);
-                    ModifyAvailability(context, week.Sunday);
+                    ModifyAvailability(context, week.Monday, 1);
+                    ModifyAvailability(context, week.Tuesday, 2);
+                    ModifyAvailability(context, week.Wednesday, 3);
+                    ModifyAvailability(context, week.Thursday, 4);
+                    ModifyAvailability(context, week.Friday, 5);
+                    ModifyAvailability(context, week.Saturday, 6);
+                    ModifyAvailability(context, week.Sunday, 0);
                 }
                 context.SaveChanges();
             }
@@ -125,13 +119,14 @@ namespace Festispec.ViewModel.employee.availabilty
             return DateTime.Today.AddDays(-1 * diff).Date;
         }
 
-        private void ModifyAvailability(Entities context, AvailabiltyVM availabiltyVM)
+        private void ModifyAvailability(Entities context, AvailabiltyVM availabiltyVM, int dayOfWeek)
         {
             if (availabiltyVM.AvailabiltyStart != null && availabiltyVM.AvailabiltyEnd != null)
             {
                 if (context.AvailabilityInspectors.Select(availability => availability).Where(availability => availability.Id == availabiltyVM.Id).FirstOrDefault() == null)
                 {
-                    context.AvailabilityInspectors.Add(availabiltyVM.ToModel());
+                    SetDate(availabiltyVM, dayOfWeek);
+                    context.Set<AvailabilityInspector>().AddOrUpdate(availabiltyVM.ToModel());
                 }
                 else
                 {
@@ -140,9 +135,48 @@ namespace Festispec.ViewModel.employee.availabilty
             }
             else if (context.AvailabilityInspectors.Select(availability => availability).Where(availability => availability.Id == availabiltyVM.Id).FirstOrDefault() != null)
             {
-                context.AvailabilityInspectors.Remove(availabiltyVM.ToModel());
-                context.Entry(availabiltyVM.ToModel()).State = EntityState.Deleted;
+                context.AvailabilityInspectors.Remove(context.AvailabilityInspectors.Where(a => a.Id == availabiltyVM.Id).FirstOrDefault());
             }
+        }
+
+        private void SetDate(AvailabiltyVM availabilty, int dayOfWeek)
+        {
+            if (dayOfWeek == 0)
+            {
+                dayOfWeek = 7;
+            }
+
+            var daysUntilDay = (int)(dayOfWeek - SelectedWeek.Week.DayOfWeek);
+            var SelectedDay = SelectedWeek.Week;
+            var startTimeHour = availabilty.AvailabiltyStart.Value.Hour;
+            var startTimeMinute = availabilty.AvailabiltyStart.Value.Minute;
+            var endTimeHour = availabilty.AvailabiltyEnd.Value.Hour;
+            var endTimeMinute = availabilty.AvailabiltyEnd.Value.Minute;
+            SelectedDay = SelectedDay.AddDays(daysUntilDay);
+
+            availabilty.AvailabiltyStart = SelectedDay;
+            availabilty.AvailabiltyEnd = SelectedDay;
+            availabilty.AvailabiltyStart = availabilty.AvailabiltyStart.Value.AddHours(startTimeHour);
+            availabilty.AvailabiltyStart = availabilty.AvailabiltyStart.Value.AddMinutes(startTimeMinute);
+            availabilty.AvailabiltyEnd = availabilty.AvailabiltyEnd.Value.AddHours(endTimeHour);
+            availabilty.AvailabiltyEnd = availabilty.AvailabiltyEnd.Value.AddMinutes(endTimeMinute);
+        }
+
+        // This presumes that weeks start with Monday.
+        // Week 1 is the 1st week of the year with a Thursday in it.
+        public static int GetIso8601WeekOfYear(DateTime time)
+        {
+            // Seriously cheat.  If its Monday, Tuesday or Wednesday, then it'll 
+            // be the same week# as whatever Thursday, Friday or Saturday are,
+            // and we always get those right
+            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
+            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
+            {
+                time = time.AddDays(3);
+            }
+
+            // Return the week of our adjusted day
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
         }
     }
 }
