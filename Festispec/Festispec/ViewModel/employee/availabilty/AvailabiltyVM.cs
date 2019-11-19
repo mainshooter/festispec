@@ -10,6 +10,8 @@ namespace Festispec.ViewModel.employee.availabilty
     public class AvailabiltyVM
     {
         private AvailabilityInspector _availabilityInspector;
+        private DateTime? _availabilityStart;
+        private DateTime? _availabilityEnd;
 
         public int Id
         {
@@ -25,27 +27,43 @@ namespace Festispec.ViewModel.employee.availabilty
 
         public EmployeeVM Employee { get; set; }
 
-        public DateTime AvailabiltyStart
+        public DateTime? AvailabiltyStart
         {
             get
             {
+                if (_availabilityStart == null)
+                {
+                    return _availabilityStart;
+                }
                 return _availabilityInspector.AvailableFrom;
             }
             set
             {
-                _availabilityInspector.AvailableFrom = value;
+                if (value != null)
+                {
+                    _availabilityInspector.AvailableFrom = (DateTime)value;
+                }
+                _availabilityStart = value;
             }
         }
 
-        public DateTime AvailabiltyEnd
+        public DateTime? AvailabiltyEnd
         {
             get
             {
+                if (_availabilityEnd == null)
+                {
+                    return _availabilityStart;
+                }
                 return _availabilityInspector.AvailableTill;
             }
             set
             {
-                _availabilityInspector.AvailableTill = value;
+                if (value != null)
+                {
+                    _availabilityInspector.AvailableTill = (DateTime)value;
+                }
+                _availabilityEnd = value;
             }
         }
 

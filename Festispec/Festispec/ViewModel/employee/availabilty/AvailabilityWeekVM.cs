@@ -42,30 +42,44 @@ namespace Festispec.ViewModel.employee.availabilty
                         {
                             case DayOfWeek.Monday:
                                 Monday = new AvailabiltyVM(availability);
+                                Monday.AvailabiltyStart = availability.AvailableFrom;
+                                Monday.AvailabiltyEnd = availability.AvailableTill;
                                 HasMonday = true;
                                 break;
                             case DayOfWeek.Tuesday:
                                 Tuesday = new AvailabiltyVM(availability);
+                                Tuesday.AvailabiltyStart = availability.AvailableFrom;
+                                Tuesday.AvailabiltyEnd = availability.AvailableTill;
                                 HasTuesday = true;
                                 break;
                             case DayOfWeek.Wednesday:
                                 Wednesday = new AvailabiltyVM(availability);
+                                Wednesday.AvailabiltyStart = availability.AvailableFrom;
+                                Wednesday.AvailabiltyEnd = availability.AvailableTill;
                                 HasWednesday = true;
                                 break;
                             case DayOfWeek.Thursday:
                                 Thursday = new AvailabiltyVM(availability);
+                                Thursday.AvailabiltyStart = availability.AvailableFrom;
+                                Thursday.AvailabiltyEnd = availability.AvailableTill;
                                 HasThursday = true;
                                 break;
                             case DayOfWeek.Friday:
                                 Friday = new AvailabiltyVM(availability);
+                                Friday.AvailabiltyStart = availability.AvailableFrom;
+                                Friday.AvailabiltyEnd = availability.AvailableTill;
                                 HasFriday = true;
                                 break;
                             case DayOfWeek.Saturday:
                                 Saturday = new AvailabiltyVM(availability);
+                                Saturday.AvailabiltyStart = availability.AvailableFrom;
+                                Saturday.AvailabiltyEnd = availability.AvailableTill;
                                 HasSaturday = true;
                                 break;
                             case DayOfWeek.Sunday:
                                 Sunday = new AvailabiltyVM(availability);
+                                Sunday.AvailabiltyStart = availability.AvailableFrom;
+                                Sunday.AvailabiltyEnd = availability.AvailableTill;
                                 HasSunday = true;
                                 break;
                         }
