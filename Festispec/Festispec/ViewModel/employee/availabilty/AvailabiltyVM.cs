@@ -76,6 +76,15 @@ namespace Festispec.ViewModel.employee.availabilty
         public AvailabiltyVM()
         {
             _availabilityInspector = new AvailabilityInspector();
+            using (var context = new Entities())
+            {
+                Employee = new EmployeeVM(context.Employees.Select(employee => employee).Where(employee => employee.Id == 2).FirstOrDefault());
+            }
+        }
+
+        public AvailabilityInspector ToModel()
+        {
+            return _availabilityInspector;
         }
     }
 }

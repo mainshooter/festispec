@@ -37,6 +37,7 @@
                 <xctk:TimePicker Value="{Binding SelectedWeek.Saturday.AvailabiltyEnd}"></xctk:TimePicker>
                 <xctk:TimePicker Value="{Binding SelectedWeek.Sunday.AvailabiltyEnd}"></xctk:TimePicker>
             </StackPanel>
+            <Button Command="{Binding SaveChangesCommand}" Content="Beschikbaarheid Opslaan"></Button>
         </StackPanel>
     </Grid>
 </Page>
