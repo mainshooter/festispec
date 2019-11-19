@@ -40,6 +40,7 @@ namespace Festispec.ViewModel.report.element
             Content = element.Content;
             Order = element.Order;
             Data = element.Data;
+            EditElementCommand = new RelayCommand(GoToEdit);
         }
 
         public void ApplyChanges()

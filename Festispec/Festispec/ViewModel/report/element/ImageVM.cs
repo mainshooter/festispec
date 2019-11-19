@@ -28,6 +28,7 @@ namespace Festispec.ViewModel.report.element
             Data = element.Data;
             Title = element.Title;
             Content = element.Content;
+            EditElementCommand = new RelayCommand(GoToEdit);
         }
 
         private void ApplyChanges()

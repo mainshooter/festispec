@@ -1,6 +1,7 @@
 ﻿using Festispec.Domain;
 using GalaSoft.MvvmLight;
 using System;
+using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element
 {
@@ -55,6 +56,7 @@ namespace Festispec.ViewModel.report.element
         }
 
         public virtual Object Data { get; set; }
+        public ICommand EditElementCommand { get; set; }
 
         public ReportElementVM(ReportElement element)
         {
@@ -64,6 +66,11 @@ namespace Festispec.ViewModel.report.element
         public ReportElementVM()
         {
             _reportElement = new ReportElement();
+        }
+
+        protected void GoToEdit()
+        {
+
         }
     }
 }

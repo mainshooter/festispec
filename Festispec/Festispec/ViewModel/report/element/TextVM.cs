@@ -51,6 +51,7 @@ namespace Festispec.ViewModel.report.element
             ReadOnly = true;
             ChangeToReadOnly = new RelayCommand(()=> ReadOnly = true);
             ChangeToInput = new RelayCommand(() => ReadOnly = false);
+            EditElementCommand = new RelayCommand(GoToEdit);
         }
 
         private void ApplyChanges()

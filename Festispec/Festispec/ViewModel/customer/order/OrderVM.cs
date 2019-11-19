@@ -4,6 +4,7 @@ using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.employee;
 using Festispec.ViewModel.planning;
 using Festispec.ViewModel.report;
+using Festispec.ViewModel.survey;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -81,6 +82,8 @@ namespace Festispec.ViewModel.Customer.order
             }
         }
 
+        public SurveyVM Survey { get; set; }
+
         public OrderVM(Order orderCon)
         {
             _order = orderCon;
@@ -89,11 +92,13 @@ namespace Festispec.ViewModel.Customer.order
             Employee = new EmployeeVM(orderCon.Employee);
             Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d)));
             Reports = new ObservableCollection<ReportVM>(_order.Reports.ToList().Select(r => new ReportVM()));
+            Survey = new SurveyVM(orderCon.Surveys.FirstOrDefault());
         }
 
         public OrderVM()
         {
             _order = new Order();
+            Survey = new SurveyVM(_order.Surveys.FirstOrDefault());
         }
     }
 }
