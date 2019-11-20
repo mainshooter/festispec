@@ -1,9 +1,4 @@
 ﻿using Festispec.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.employee.department
 {
@@ -11,20 +6,26 @@ namespace Festispec.ViewModel.employee.department
     {
         private Department _department;
 
-        public string Name {
-            get {
+        public string Name
+        {
+            get
+            {
                 return _department.Name;
             }
-            set {
+            set
+            {
                 _department.Name = value;
             }
         }
 
-        public string Description { 
-            get {
+        public string Description
+        {
+            get
+            {
                 return _department.Description;
             }
-            set {
+            set
+            {
                 _department.Description = value;
             }
         }
@@ -37,6 +38,11 @@ namespace Festispec.ViewModel.employee.department
         public DepartmentVM()
         {
             _department = new Department();
+        }
+
+        public Department ToModel()
+        {
+            return _department;
         }
     }
 }

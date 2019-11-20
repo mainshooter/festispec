@@ -33,8 +33,10 @@ namespace Festispec.Domain
         public string Firstname { get; set; }
         public string Prefix { get; set; }
         public string Lastname { get; set; }
+        public System.DateTime Birthday { get; set; }
         public string Street { get; set; }
         public int HouseNumber { get; set; }
+        public string HouseNumber_Addition { get; set; }
         public string PostalCode { get; set; }
         public string City { get; set; }
         public string Phone { get; set; }

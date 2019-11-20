@@ -25,16 +25,17 @@ namespace Festispec.Domain
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public int COC { get; set; }
         public int BranchNumber { get; set; }
         public string Street { get; set; }
         public int HouseNumber { get; set; }
+        public string HouseNumber_Addition { get; set; }
         public string PostalCode { get; set; }
         public string City { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Website { get; set; }
         public string Logo { get; set; }
-        public int COC { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ContactPerson> ContactPersons { get; set; }
