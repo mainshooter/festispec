@@ -42,6 +42,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddElementVM>();
             SimpleIoc.Default.Register<EmployeeInfoVM>();
             SimpleIoc.Default.Register<EditEmployeeVM>();
+            SimpleIoc.Default.Register<AvailabilityManagerVM>();
             SimpleIoc.Default.Register<UserLoginVM>();
 
         }
