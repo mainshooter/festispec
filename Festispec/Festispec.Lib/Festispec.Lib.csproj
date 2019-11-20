@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C461B915-1FA7-459A-BDAD-BB5B1ED26BE5}</ProjectGuid>
+    <ProjectGuid>{3DCBA89E-3BEE-4324-A8EC-D33519D47F1C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Festispec.Lib</RootNamespace>
@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth\PasswordService.cs" />
+    <Compile Include="Interfaces\IPasswordValidator.cs" />
     <Compile Include="DistanceCalculator\DistanceCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

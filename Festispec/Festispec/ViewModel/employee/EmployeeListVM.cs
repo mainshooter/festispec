@@ -89,7 +89,6 @@ namespace Festispec.ViewModel.employee
                 }
             }
         }
-
         public EmployeeListVM()
         {
             Filters = new List<string>();
@@ -128,7 +127,6 @@ namespace Festispec.ViewModel.employee
         private void DeleteEmployee()
         {
             MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze medewerker wilt verwijderen?", "Medewerker Verwijderen", MessageBoxButton.YesNo);
-
             if (result.Equals(MessageBoxResult.Yes))
             {
                 using (var context = new Entities())
@@ -137,7 +135,6 @@ namespace Festispec.ViewModel.employee
                     context.Employees.Remove(context.Employees.Select(employee => employee).Where(employee => employee.Id == temp.Id).First());
                     context.SaveChanges();
                 }
-
                 EmployeeList.Remove(SelectedEmployee);
                 RaisePropertyChanged("EmployeeListFiltered");
             }
