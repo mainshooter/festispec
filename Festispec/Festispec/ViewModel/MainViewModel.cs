@@ -34,8 +34,6 @@ namespace Festispec.ViewModel
             set { _page = value; RaisePropertyChanged("Page"); }
         }
 
-        public EmployeeListVM EmployeeList { get; set; }
-
         public EmployeeVM LoggedInEmployee {
             get {
                 return _loggedInEmployee;
