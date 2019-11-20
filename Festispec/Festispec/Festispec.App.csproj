@@ -99,9 +99,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
-    <Compile Include="ViewModel\auth\UserLoginVM.cs" />
-    <Compile Include="ViewModel\auth\UserSessionVm.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
     <Compile Include="Message\ChangeSelectedEmployeeMessage.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
@@ -185,9 +182,6 @@
     <Compile Include="View\Pages\Customer\CustomerPage.xaml.cs">
       <DependentUpon>CustomerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Customer\Event\EventPage.xaml.cs">
-      <DependentUpon>EventPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Pages\DashboardPage.xaml.cs">
       <DependentUpon>DashboardPage.xaml</DependentUpon>
     </Compile>
@@ -197,8 +191,8 @@
     <Compile Include="View\Pages\Employee\EmployeePage.xaml.cs">
       <DependentUpon>EmployeePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
+    <Compile Include="View\Pages\Customer\Event\EventPage.xaml.cs">
+      <DependentUpon>EventPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
       <DependentUpon>SickPage.xaml</DependentUpon>
@@ -225,8 +219,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App.config.example" />
     <None Include="App.config" />
+    <None Include="App.config.example" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -241,10 +235,6 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
-    </Page>
-    <Page Include="View\Pages\Customer\CustomerPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Employee\SingleEmployeePage.xaml">
       <SubType>Designer</SubType>
@@ -287,18 +277,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Employee\Availability\AvailablePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Customer\Event\EventPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="View\Pages\Customer\CustomerPage.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\DashboardPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\Pages\Employee\EditEmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -307,16 +293,16 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Employee\EmployeePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\LoginPage.xaml">
+    <Page Include="View\Pages\Customer\Event\EventPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Employee\SickPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Usercontrols\Report\ReportControlUserControl.xaml">
       <SubType>Designer</SubType>
@@ -330,10 +316,6 @@
     <ProjectReference Include="..\Festispec.Domain\Festispec.Domain.csproj">
       <Project>{ee67b2e2-6838-4800-a461-026c192d54d3}</Project>
       <Name>Festispec.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Festispec.Lib\Festispec.Lib.csproj">
-      <Project>{3dcba89e-3bee-4324-a8ec-d33519d47f1c}</Project>
-      <Name>Festispec.Lib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

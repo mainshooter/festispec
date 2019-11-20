@@ -10,7 +10,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Festispec.Lib.Auth;
 
 namespace Festispec.ViewModel.employee
 {
@@ -41,8 +40,10 @@ namespace Festispec.ViewModel.employee
 
         private void Encrypt()
         {
-            var passwordService = new PasswordService();
-            Employee.Password = passwordService.StringToPassword(Employee.Password);
+            byte[] data = System.Text.Encoding.ASCII.GetBytes(Employee.Password);
+            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+            String hash = System.Text.Encoding.ASCII.GetString(data);
+            Employee.Password = hash;
         }
 
         public void AddEmployee(PasswordBox password)
@@ -78,8 +79,8 @@ namespace Festispec.ViewModel.employee
 
             string regexEmail = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
             string regexPhone = "^\\s*(?:\\+?(\\d{1,3}))?([-. (]*(\\d{3})[-. )]*)?((\\d{3})[-. ]*(\\d{2,4})(?:[-.x ]*(\\d+))?)\\s*$";
-            string regexIban = "^(?i)([A-Z]{2}[ -]?[0-9]{2})(?=(?:[ -]?[A-Z0-9]){9,30}$)((?:[ -]?[A-Z0-9]{3,5}){2,7})([ -]?[A-Z0-9]{1,3})?$";
-
+            string regexIban = "^([A-Z]{2}[ -]?[0-9]{2})(?=(?:[ -]?[A-Z0-9]){9,30}$)((?:[ -]?[A-Z0-9]{3,5}){2,7})([ -]?[A-Z0-9]{1,3})?$";
+           
             if (Employee.Prefix != null)
             {
                 if (Employee.Prefix.Length > 45)

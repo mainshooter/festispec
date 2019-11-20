@@ -11,29 +11,49 @@ namespace Festispec.ViewModel.employee
         private DepartmentVM _department;
         private Employee _employee;
 
-        public int Id => _employee.Id;
+        public int Id
+        {
+            get
+            {
+                return _employee.Id;
+            }
+        }
 
         public DepartmentVM Department
         {
-            get => _department;
+            get
+            {
+                return _department;
+            }
             set
             {
-                if (value == null) return;
-                _department = value;
-                _employee.Department = value.Name;
-                _employee.Department1 = value.ToModel();
+                if (value != null)
+                {
+                    _department = value;
+                    _employee.Department = value.Name;
+                    _employee.Department1 = value.ToModel();
+                }
             }
         }
 
         public Department DepartmentModel
         {
-            get => _employee.Department1;
-            set => _employee.Department1 = value;
+            get
+            {
+                return _employee.Department1;
+            }
+            set
+            {
+                _employee.Department1 = value;
+            }
         }
 
         public string Firstname
         {
-            get => _employee.Firstname;
+            get
+            {
+                return _employee.Firstname;
+            }
             set
             {
                 _employee.Firstname = value;
@@ -43,71 +63,142 @@ namespace Festispec.ViewModel.employee
 
         public string Prefix
         {
-            get => _employee.Prefix;
-            set => _employee.Prefix = value;
+            get
+            {
+                return _employee.Prefix;
+            }
+            set
+            {
+                _employee.Prefix = value;
+            }
         }
 
         public string Lastname
         {
-            get => _employee.Lastname;
-            set => _employee.Lastname = value;
+            get
+            {
+                return _employee.Lastname;
+            }
+            set
+            {
+                _employee.Lastname = value;
+            }
         }
-
-        public string Fullname => Firstname + " " + Prefix + " " + Lastname;
 
         public string Street
         {
-            get => _employee.Street;
-            set => _employee.Street = value;
+            get
+            {
+                return _employee.Street;
+            }
+            set
+            {
+                _employee.Street = value;
+            }
         }
 
         public int HouseNumber
         {
-            get => _employee.HouseNumber;
-            set => _employee.HouseNumber = value;
-        }
-        public string HouseNumberAddition
-        {
-            get => _employee.HouseNumber_Addition;
-            set => _employee.HouseNumber_Addition = value;
+            get
+            {
+                return _employee.HouseNumber;
+            }
+            set
+            {
+                _employee.HouseNumber = value;
+            }
         }
 
-        public string FullHouseNumber => (HouseNumber + HouseNumberAddition);
+        public string HouseNumberAddition
+        {
+            get
+            {
+                return _employee.HouseNumber_Addition;
+            }
+            set
+            {
+                _employee.HouseNumber_Addition = value;
+            }
+        }
+
+        public string FullHouseNumber
+        {
+            get
+            {
+                return (HouseNumber + HouseNumberAddition);
+            }
+        }
 
         public string PostalCode
         {
-            get => _employee.PostalCode;
-            set => _employee.PostalCode = value;
+            get
+            {
+                return _employee.PostalCode;
+            }
+            set
+            {
+                _employee.PostalCode = value;
+            }
         }
 
         public string City
         {
-            get => _employee.City;
-            set => _employee.City = value;
+            get
+            {
+                return _employee.City;
+            }
+            set
+            {
+                _employee.City = value;
+            }
         }
 
         public string Email
         {
-            get => _employee.Email;
-            set => _employee.Email = value;
+            get
+            {
+                return _employee.Email;
+            }
+            set
+            {
+                _employee.Email = value;
+            }
         }
 
         public string Phone
         {
-            get => _employee.Phone;
-            set => _employee.Phone = value;
+            get
+            {
+                return _employee.Phone;
+            }
+            set
+            {
+                _employee.Phone = value;
+            }
         }
 
         public string Password
         {
-            get => _employee.Password;
-            set => _employee.Password = value;
+            get
+            {
+                return _employee.Password;
+            }
+            set
+            {
+                _employee.Password = value;
+            }
         }
 
         private string PasswordResetToken
         {
-            get => _employee.PasswordResetToken;
-            set => _employee.PasswordResetToken = value;
+            get
+            {
+                return _employee.PasswordResetToken;
+            }
+            set
+            {
+                _employee.PasswordResetToken = value;
+            }
         }
 
         public DateTime ResetTokenEndTime
@@ -120,33 +211,34 @@ namespace Festispec.ViewModel.employee
                 }
                 return DateTime.MinValue;
             }
-            set => _employee.ResetTokenEndTime = value;
+            set
+            {
+                _employee.ResetTokenEndTime = value;
+            }
         }
 
         public string Iban
         {
-            get => _employee.Iban;
-            set => _employee.Iban = value;
+            get
+            {
+                return _employee.Iban;
+            }
+            set
+            {
+                _employee.Iban = value;
+            }
         }
 
         public string Status
         {
-            get => _employee.Status;
-            set => _employee.Status = value;
-        }
-
-        public DateTime Birthday
-        {
-            get => _employee.Birthday.Date;
-            set => _employee.Birthday = value.Date;
-        }
-
-        public string BirthdayDate => Birthday.ToString("d");
-
-        [PreferredConstructor]
-        public EmployeeVM()
-        {
-            _employee = new Employee();
+            get
+            {
+                return _employee.Status;
+            }
+            set
+            {
+                _employee.Status = value;
+            }
         }
 
         public DateTime Birthday
@@ -184,11 +276,6 @@ namespace Festispec.ViewModel.employee
         public Employee ToModel()
         {
             return _employee;
-        }
-
-        public bool IsInDepartment(string department)
-        {
-            throw new NotImplementedException();
         }
     }
 }
