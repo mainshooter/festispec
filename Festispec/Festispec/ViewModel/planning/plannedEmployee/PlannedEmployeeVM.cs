@@ -57,6 +57,12 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             }
         }
 
+        public int OrderId {
+            get {
+                return _plannedEmployee.OrderId;
+            }
+        }
+
         public PlannedEmployeeVM(InspectorPlanning pe)
         {
             _plannedEmployee = pe;

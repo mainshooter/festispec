@@ -11,11 +11,13 @@
       DataContext="{Binding PlanningOverviewVM, Source={StaticResource Locator}}">
 
     <StackPanel Background="White">
-        <Label>Test</Label>
         <WrapPanel>
             <Label Margin="3, 3, 10, 3">Filter:</Label>
             <ComboBox Margin="3, 3, 10, 3" SelectedIndex="0" SelectedValuePath="SelectedFilter" ItemsSource="{Binding FilterItems}" SelectedItem="{Binding SelectedFilter,Mode=TwoWay}" Width="128"></ComboBox>
             <TextBox Margin="3, 3, 10, 3" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="122"/>
+
+            <Label VerticalAlignment="Center"> In de toekomst: </Label>
+            <ToggleButton VerticalAlignment="Center" IsChecked="{Binding ShowOnlyFuture, Mode=TwoWay}"></ToggleButton>
         </WrapPanel>
         
         <Viewbox>

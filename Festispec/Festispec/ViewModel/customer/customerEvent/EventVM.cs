@@ -1,5 +1,6 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.customer.contactPerson;
+using Festispec.ViewModel.Customer.order;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,6 +95,8 @@ namespace Festispec.ViewModel.customer.customerEvent
                 _event.Description = value;
             }
         }
+
+        public OrderVM OrderVM { get; set; }
 
         public EventVM(Event eventCon)
         {
