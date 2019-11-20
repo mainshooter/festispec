@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.employee.availabilty
 {
-    public class AvailabiltyVM
+    public class AvailabiltyVM : ViewModelBase
     {
         private AvailabilityInspector _availabilityInspector;
         private EmployeeVM _employee;
@@ -57,6 +58,12 @@ namespace Festispec.ViewModel.employee.availabilty
                     _availabilityInspector.AvailableFrom = (DateTime)value;
                 }
                 _availabilityStart = value;
+                if (AvailabiltyStart > AvailabiltyEnd)
+                {
+                    AvailabiltyEnd = AvailabiltyStart;
+                }
+                RaisePropertyChanged("AvailabiltyStart");
+                RaisePropertyChanged("AvailabiltyEnd");
             }
         }
 
@@ -77,6 +84,12 @@ namespace Festispec.ViewModel.employee.availabilty
                     _availabilityInspector.AvailableTill = (DateTime)value;
                 }
                 _availabilityEnd = value;
+                if (AvailabiltyEnd < AvailabiltyStart)
+                {
+                    AvailabiltyEnd = AvailabiltyStart;
+                }
+                RaisePropertyChanged("AvailabiltyEnd");
+                RaisePropertyChanged("AvailabiltyStart");
             }
         }
 

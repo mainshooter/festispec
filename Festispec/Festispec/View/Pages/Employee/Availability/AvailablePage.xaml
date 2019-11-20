@@ -30,7 +30,7 @@
                 <xctk:TimePicker Value="{Binding SelectedWeek.Sunday.AvailabiltyStart}"></xctk:TimePicker>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="25">
-                <xctk:TimePicker Value="{Binding SelectedWeek.Monday.AvailabiltyEnd}"></xctk:TimePicker>
+                <xctk:TimePicker Minimum="{Binding SelectedWeek.Monday.AvailabiltyStart}" Value="{Binding SelectedWeek.Monday.AvailabiltyEnd}"></xctk:TimePicker>
                 <xctk:TimePicker Value="{Binding SelectedWeek.Tuesday.AvailabiltyEnd}"></xctk:TimePicker>
                 <xctk:TimePicker Value="{Binding SelectedWeek.Wednesday.AvailabiltyEnd}"></xctk:TimePicker>
                 <xctk:TimePicker Value="{Binding SelectedWeek.Thursday.AvailabiltyEnd}"></xctk:TimePicker>
