@@ -31,6 +31,15 @@ namespace Festispec.ViewModel.employee.availabilty
                 RaisePropertyChanged("SelectedWeek");
                 RaisePropertyChanged("WeekNumber");
                 RaisePropertyChanged("Year");
+                RaisePropertyChanged("WeekEnd");
+            }
+        }
+
+        public DateTime WeekEnd
+        {
+            get
+            {
+                return SelectedWeek.Week.AddDays(6);
             }
         }
 
