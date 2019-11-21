@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddCommentFieldPage"
-      DataContext="{Binding CommentFieldVM, Source={StaticResource Locator}}">
+      DataContext="{Binding AddCommentFieldVM, Source={StaticResource Locator}}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -22,7 +22,7 @@
 
         <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Opmerking veld toevoegen</Label>
         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">Opmerking titel:</Label>
-        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionDetails.Question}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionVm.QuestionDetails.Question}"></TextBox>
         <Button Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding GoBackCommand}">Terug</Button>
         <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="10,0,0,0" Command="{Binding SaveCommand}">Toevoegen</Button>
     </Grid>

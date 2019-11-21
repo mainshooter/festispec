@@ -166,6 +166,8 @@
     <Compile Include="ViewModel\survey\question\QuestionTypes\ClosedQuestion\AddClosedQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\ClosedQuestion\EditClosedQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\CommentFieldVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\CommentField\AddCommentFieldVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\CommentField\EditCommentFieldVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\DrawQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\ImageGalleryQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\MultipleChoiceQuestionVM.cs" />
