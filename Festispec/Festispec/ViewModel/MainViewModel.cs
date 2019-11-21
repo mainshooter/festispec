@@ -24,7 +24,6 @@ namespace Festispec.ViewModel
     {
         //privates
         private Page _page;
-        private ToastVM _toastVM;
         private EmployeeVM _loggedInEmployee;
 
         //publics
@@ -62,8 +61,6 @@ namespace Festispec.ViewModel
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
-
-            _toastVM = new ToastVM();
 
             Page = ServiceLocator.Current.GetInstance<LoginPage>();
 

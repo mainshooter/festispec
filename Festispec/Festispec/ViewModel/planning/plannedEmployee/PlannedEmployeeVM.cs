@@ -1,7 +1,6 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.employee;
 using System;
-using System.Globalization;
 
 namespace Festispec.ViewModel.planning.plannedEmployee
 {
