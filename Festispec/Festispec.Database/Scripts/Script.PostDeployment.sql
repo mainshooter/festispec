@@ -48,17 +48,19 @@ INSERT INTO Department VALUES ('Marketing', 'Zorgt voor reclame en sponsoren')
 INSERT INTO Department VALUES ('Inspectie', 'Mensen die de daadwerkelijke inspectie doen')
 INSERT INTO Department VALUES ('Planning', 'Zorgt voor het inplannen van inspecties en inspecteurs')
 COMMIT TRANSACTION
-
+--- Password of users ---
+-- t.deenik@gmail.com, GamerBoy95
+-------------------------
 BEGIN TRANSACTION
-INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password]) 
+INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
 VALUES ('Sales', 'Actief', 'Bart', NULL, 'Fransen', 'Burgemeester de leeuwstraat', 5, NULL, CAST('02-21-2012' AS DATETIME),'6651BW', 'Druten', '0642346706', 'Bartfransen66@gmail.com', 'JanSmitLover69')
-INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])  
+INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
 VALUES ('Inspectie', 'Actief', 'Jesse', NULL, 'Kuijpers', 'Roodhekkenpas', 16, 'a', CAST('02-21-2012' AS DATETIME),'6651CZ','Druten', '0487515968', 'j.Kuijpers@gmail.com', 'AnneJesse15')
-INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])  
-VALUES ('Inspectie', 'Actief', 'Thijs', NULL, 'Deenik', 'Hegakker', 74, NULL, CAST('02-21-2012' AS DATETIME),'6652BC', 'Druten','0487516859', 't.deenik@gmail.com', 'GamerBoy95')
-INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])  
+INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
+VALUES ('Inspectie', 'Actief', 'Thijs', NULL, 'Deenik', 'Hegakker', 74, NULL, CAST('02-21-2012' AS DATETIME),'6652BC', 'Druten','0487516859', 't.deenik@gmail.com', 'a???k*ix??t????;iL%???g?????$?')
+INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
 VALUES ('Marketing', 'Actief', 'Martina', 'van', 'Dinteren', 'De Tolboom', 15, NULL,CAST('02-21-2012' AS DATETIME),'6654BT','Affereden', '0685463584', 'MvDinteren@dinter.nl', 'bunny952')
-INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])  
+INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
 VALUES ('Planning', 'Actief', 'Martijn', NULL, 'Huisman', 'Grasakker', 76, 'a', CAST('02-21-2012' AS DATETIME),'6652BC', 'Druten','0695438736', 'M.Huisman@hotmail.com', 'DafTrucks2006')
 COMMIT TRANSACTION
 -------- END EMPLOYEE DATA ------------
@@ -105,9 +107,9 @@ COMMIT TRANSACTION
 -------- BEGIN ORDER DATA ------------
 BEGIN TRANSACTION
 INSERT INTO [Order] VALUES (1,1,4,1,'Afgerond', 'Order is afgerond')
-INSERT INTO [Order] VALUES (1,2,4,2,'Opgenomen', 'Order is opgenomen en in behandeling') 
-INSERT INTO [Order] VALUES (2,3,4,3,'Aanvraag', 'Order momenteel in aanvraag') 
-INSERT INTO [Order] VALUES (3,4,4,4,'Aanvraag', 'Order momenteel in aanvraag')  
+INSERT INTO [Order] VALUES (1,2,4,2,'Opgenomen', 'Order is opgenomen en in behandeling')
+INSERT INTO [Order] VALUES (2,3,4,3,'Aanvraag', 'Order momenteel in aanvraag')
+INSERT INTO [Order] VALUES (3,4,4,4,'Aanvraag', 'Order momenteel in aanvraag')
 COMMIT TRANSACTION
 -------- END ORDER DATA ------------
 
