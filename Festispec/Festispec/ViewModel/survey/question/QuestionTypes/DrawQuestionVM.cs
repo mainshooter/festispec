@@ -1,15 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
-using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Interface;
-using Festispec.Lib.Slugify;
 using Festispec.Lib.Survey.Question;
 using Festispec.Message;
 using Festispec.View.Pages.Survey;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -18,117 +15,51 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 {
     public class DrawQuestionVM : ViewModelBase, IQuestion
     {
-        private Question _surveyQuestion;
-        private SurveyVM _surveyVm;
-        private string _question;
-        private string _description;
-        private byte[] _image;
-        private string _questionType;
-        private QuestionDetails _questionDetails;
+        private readonly Question _surveyQuestion;
 
-        public QuestionDetails QuestionDetails
-        { 
-            get => _questionDetails;
-            set {
-                _questionDetails = value;
-                RaisePropertyChanged();
-            }
+        public QuestionDetails QuestionDetails { get; set; }
+        public string QuestionType => _surveyQuestion.Type;
+
+        public int SurveyId
+        {
+            get => _surveyQuestion.SurveyId;
+            set => _surveyQuestion.SurveyId = value;
         }
 
-        public string QuestionType => _surveyQuestion.Type;
-        public ICommand SaveCommand { get; set; }
-        public ICommand GoBackCommand { get; set; }
-        public ICommand AddImageCommand { get; set; }
+        public string Question
+        {
+            get => _surveyQuestion.Question1;
+            set => _surveyQuestion.Question1 = value;
+        }
+
+        public string Variables
+        {
+            get => _surveyQuestion.Variables;
+            set => _surveyQuestion.Variables = value;
+        }
+
+        public string Type
+        {
+            get => _surveyQuestion.Type;
+            set => _surveyQuestion.Type = value;
+        }
 
         [PreferredConstructor]
         public DrawQuestionVM()
         {
-            _questionType = "Teken vraag";
-            MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
-                _surveyVm = message.SurveyVM;
-                //_surveyQuestion = message.NextQuestion;
-                QuestionDetails = JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1);
-                _question = QuestionDetails.Question;
-                _description = QuestionDetails.Description;
-                try
-                {
-                    _image = QuestionDetails.Images[0];
-                }
-                catch (Exception)
-                {
-                }
-            });
-            MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
-                _surveyVm = message.NextSurvey;
-                QuestionDetails = new QuestionDetails();
-                _surveyQuestion = new Question();
-            });
-            SaveCommand = new RelayCommand(Save);
-            GoBackCommand = new RelayCommand(GoBack);
-            AddImageCommand = new RelayCommand(AddImage);
+            _surveyQuestion = new Question();
+            QuestionDetails = new QuestionDetails();
+            QuestionDetails.Images.Add(new byte[0]);
         }
 
-        public DrawQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
+        public DrawQuestionVM(Question surveyQuestion)
         {
-            _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
-
-            if (_surveyQuestion.Question1 != null)
-            {
-                QuestionDetails = JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1);
-            }
-            else
-            {
-                QuestionDetails = new QuestionDetails();
-                QuestionDetails.Images.Add(new byte[0]);
-            }
-
-            SaveCommand = new RelayCommand(Save);
-            GoBackCommand = new RelayCommand(GoBack);
-            AddImageCommand = new RelayCommand(AddImage);
-
-            // temp variables for when you want to go back and discard changes
-            _question = QuestionDetails.Question;
-            _description = QuestionDetails.Description;
-            _image = QuestionDetails.Images[0];
-        }
-
-        public void Save()
-        {
-            using (var context = new Entities())
-            {
-                if (!ValidateQuestionDetails()) return;
-
-                _surveyQuestion.Question1 = JsonConvert.SerializeObject(QuestionDetails);
-
-                if (_surveyQuestion.Id == 0)
-                {
-                    _question = QuestionDetails.Question;
-                    _description = QuestionDetails.Description;
-                    _image = QuestionDetails.Images[0];
-                    _surveyQuestion.Variables = StringToSlug.Slugify(QuestionDetails.Question);
-                    _surveyQuestion.Type = _questionType;
-                    _surveyQuestion.SurveyId = _surveyVm.ToModel().Id;
-                    context.Questions.Add(_surveyQuestion);
-                    _surveyVm.Questions.Add(this);
-                    context.SaveChanges();
-                }
-                else
-                {
-                    context.Questions.Attach(_surveyQuestion);
-                    context.Entry(_surveyQuestion).State = System.Data.Entity.EntityState.Modified;
-                    context.SaveChanges();
-                }
-            }
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage)});
+            QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
         }
 
         public void GoBack()
         {
-            QuestionDetails.Question = _question;
-            QuestionDetails.Description = _description;
-            QuestionDetails.Images[0] = _image;
-            RaisePropertyChanged("QuestionDetails");
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
         }
 
@@ -160,7 +91,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             return _surveyQuestion;
         }
 
-        private void AddImage()
+        public void AddImage()
         {
             var fd = new OpenFileDialog { Filter = "All Image Files | *.*", Multiselect = false };
 
@@ -176,9 +107,8 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
                 var image = new byte[fs.Length];
                 fs.Read(image, 0, Convert.ToInt32(fs.Length));
-                QuestionDetails.Images.Clear();
-                QuestionDetails.Images.Add(image);
-                RaisePropertyChanged("QuestionDetails");
+                QuestionDetails.Images[0] = image;
+                RaisePropertyChanged(() => QuestionDetails);
             }
         }
     }

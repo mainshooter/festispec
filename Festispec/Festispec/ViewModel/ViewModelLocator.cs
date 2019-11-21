@@ -21,6 +21,7 @@ using Festispec.ViewModel.report;
 using Festispec.ViewModel.survey;
 using Festispec.ViewModel.survey.question.QuestionTypes.ClosedQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.CommentField;
+using Festispec.ViewModel.survey.question.QuestionTypes.DrawQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.ImageGalleryQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.OpenQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.SliderQuestion;
@@ -86,6 +87,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditCommentFieldVM>();
             SimpleIoc.Default.Register<AddImageGalleryQuestionVM>();
             SimpleIoc.Default.Register<EditImageGalleryQuestionVM>();
+            SimpleIoc.Default.Register<AddDrawQuestionVM>();
+            SimpleIoc.Default.Register<EditDrawQuestionVM>();
 
             SimpleIoc.Default.Register<UserLoginVM>();
         }
@@ -109,6 +112,8 @@ namespace Festispec.ViewModel
         public EditCommentFieldVM EditCommentFieldVM => ServiceLocator.Current.GetInstance<EditCommentFieldVM>();
         public AddImageGalleryQuestionVM AddImageQuestionVM => ServiceLocator.Current.GetInstance<AddImageGalleryQuestionVM>();
         public EditImageGalleryQuestionVM EditImageQuestionVM => ServiceLocator.Current.GetInstance<EditImageGalleryQuestionVM>();
+        public AddDrawQuestionVM AddDrawQuestionVM => ServiceLocator.Current.GetInstance<AddDrawQuestionVM>();
+        public EditDrawQuestionVM EditDrawQuestionVM => ServiceLocator.Current.GetInstance<EditDrawQuestionVM>();
 
         public static void Cleanup()
         {
