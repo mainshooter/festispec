@@ -85,6 +85,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             {
                 QuestionDetails.Choices.SelectedCol = value;
                 if (QuestionDetails.Choices.SelectedCol == "Geen") QuestionDetails.Choices.Options.Clear();
+                RaisePropertyChanged(() => SelectedColumn);
             }
         }
 
@@ -226,7 +227,6 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             }
 
             SelectedColumn = selected ?? ComboBoxItems[0];
-            RaisePropertyChanged(() => SelectedColumn);
         }
     }
 }
