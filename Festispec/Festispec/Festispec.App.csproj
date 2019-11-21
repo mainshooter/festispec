@@ -102,11 +102,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Interface\IData.cs" />
+    <Compile Include="Interface\ISurveyAnswer.cs" />
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
     <Compile Include="Message\ChangeSelectedOrderMessage.cs" />
     <Compile Include="Message\ChangeSelectedReportElementMessage.cs" />
     <Compile Include="Message\ChangeSelectedReportMessage.cs" />
     <Compile Include="Repository\DataTypesRepository.cs" />
+    <Compile Include="Repository\SurveyRepository.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSessionVm.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
@@ -135,6 +138,7 @@
     <Compile Include="ViewModel\report\AddElementVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
     <Compile Include="ViewModel\report\data\DataVM.cs" />
+    <Compile Include="ViewModel\report\data\MinDataVM.cs" />
     <Compile Include="ViewModel\report\element\BarChartVM.cs" />
     <Compile Include="ViewModel\report\element\ImageVM.cs" />
     <Compile Include="ViewModel\report\element\LineChartVM.cs" />
@@ -162,13 +166,6 @@
     </Compile>
     <Compile Include="View\Pages\Report\element\AddElementPage.xaml.cs">
       <DependentUpon>AddElementPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Usercontrols\Report\AddReportElementUserControl.xaml.cs">
-      <DependentUpon>AddReportElementUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\report\data\AddDataVM.cs" />
-    <Compile Include="View\Usercontrols\Report\data\AddDataUserControl.xaml.cs">
-      <DependentUpon>AddDataUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usercontrols\Report\Element\BarChartUserControl.xaml.cs">
       <DependentUpon>BarChartUserControl.xaml</DependentUpon>
@@ -263,14 +260,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Report\element\AddElementPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Usercontrols\Report\AddReportElementUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Usercontrols\Report\data\AddDataUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

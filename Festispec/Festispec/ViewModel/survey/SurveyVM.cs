@@ -62,8 +62,8 @@ namespace Festispec.ViewModel.survey
         public SurveyVM(Survey survey)
         {
             _survey = survey;
-            Order = new OrderVM(survey.Order);
             Cases = new ObservableCollection<CaseVM>(survey.Cases.ToList().Select(c => new CaseVM(c)));
+            Questions = new ObservableCollection<SurveyQuestionVM>(survey.Questions.Select(q => new SurveyQuestionVM(q)));
         }
 
         public SurveyVM()

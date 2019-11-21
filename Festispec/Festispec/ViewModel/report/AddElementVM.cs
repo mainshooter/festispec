@@ -1,7 +1,11 @@
 ﻿using Festispec.Factory;
 using Festispec.Message;
+using Festispec.Repository;
 using Festispec.View.Pages.Report;
+using Festispec.ViewModel.Customer.order;
+using Festispec.ViewModel.report.data;
 using Festispec.ViewModel.report.element;
+using Festispec.ViewModel.survey;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using LiveCharts;
@@ -15,6 +19,10 @@ namespace Festispec.ViewModel.report
     public class AddElementVM : ViewModelBase
     {
         private ReportElementFactory _reportElementFactory;
+        private DataTypesRepository _dataTypesRepository;
+        private DataVM _dataVM;
+        private OrderVM _orderVM;
+        private SurveyVM _survey;
 
         public List<string> ElementTypes { get; set; }
 
@@ -26,10 +34,35 @@ namespace Festispec.ViewModel.report
 
         public ICommand AddElementCommand { get; set; }
 
+        public List<string> QueryTypes { get; set; }
+
+        public List<string> SurveyQuestions { get; set; }
+
+        public DataVM DataVM { 
+            get {
+                return _dataVM;
+            }
+            set {
+                _dataVM = value;
+            }
+        }
+
         public AddElementVM()
         {
+            MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
+                Report = message.SelectedReport;
+                _orderVM = Report.Order;
+                _survey = _orderVM.Survey;
+                foreach (var item in _survey.Questions)
+                {
+                    SurveyQuestions.Add(item.Question);
+                }
+            });
+            _dataTypesRepository = CommonServiceLocator.ServiceLocator.Current.GetInstance<DataTypesRepository>();
             _reportElementFactory = new ReportElementFactory();
             ReportElementTypesListVM elementTypesList = new ReportElementTypesListVM();
+            SurveyQuestions = new List<string>();
+            QueryTypes = _dataTypesRepository.DataTypes;
             ElementTypes = elementTypesList.ReportElementTypes;
             GoBackCommand = new RelayCommand(GoBackToReport);
             AddElementCommand = new RelayCommand(AddElementToReport);

@@ -11,6 +11,7 @@ using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.Message;
 using Festispec.View.Pages.Report;
+using System.Linq;
 
 namespace Festispec.ViewModel
 {
@@ -66,6 +67,11 @@ namespace Festispec.ViewModel
             {
                 LoggedInEmployee = message.LoggedinEmployee;
             });
+            using (var context = new Domain.Entities())
+            {
+                this.MessengerInstance.Send<ChangeSelectedOrderMessage>(new ChangeSelectedOrderMessage() { SelectedOrder = new Customer.order.OrderVM(context.Orders.FirstOrDefault()) });
+            }
+                
         }
 
 

@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using Festispec.ViewModel.survey.question.questionTypes;
+using GalaSoft.MvvmLight.Ioc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
@@ -11,6 +12,8 @@ namespace Festispec.ViewModel.report.data
         public string Where { get; set; }
 
         public string GroupBy { get; set; }
+
+        public IQuestion Question { get; set; }
 
         [PreferredConstructor]
         public DataVM()

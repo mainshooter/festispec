@@ -16,7 +16,7 @@ namespace Festispec.ViewModel.Customer.order
         private EventVM _event;
         private CustomerVM _customer;
         private EmployeeVM _employee;
-        private ObservableCollection<ReportVM> _reports;
+        private ReportVM _report;
 
         public int Id { 
             get {
@@ -73,12 +73,12 @@ namespace Festispec.ViewModel.Customer.order
             }
         }
         
-        public ObservableCollection<ReportVM> Reports {
+        public ReportVM Report {
             get {
-                return _reports;
+                return _report;
             }
             set {
-                _reports = value;
+                _report = value;
             }
         }
 
@@ -91,7 +91,8 @@ namespace Festispec.ViewModel.Customer.order
             Event = new EventVM(orderCon.Event);
             Employee = new EmployeeVM(orderCon.Employee);
             Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d)));
-            Reports = new ObservableCollection<ReportVM>(_order.Reports.ToList().Select(r => new ReportVM()));
+            Report = new ReportVM(_order.Reports.FirstOrDefault());
+            Report.Order = this;
             Survey = new SurveyVM(orderCon.Surveys.FirstOrDefault());
         }
 

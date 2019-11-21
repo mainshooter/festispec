@@ -13,6 +13,7 @@ using Festispec.Repository;
 using Festispec.Message;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.Customer.order;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace Festispec.ViewModel.report
 {
@@ -20,6 +21,7 @@ namespace Festispec.ViewModel.report
     {
         private Report _report;
         private ReportElementFactory _reportElementFactory;
+        private Report report;
 
         public int Id {
             get {
@@ -61,8 +63,13 @@ namespace Festispec.ViewModel.report
 
         public ICommand AddElementCommand { get; set; }
 
+
+        [PreferredConstructor]
         public ReportVM()
         {
+            MessengerInstance.Register<ChangeSelectedOrderMessage>(this, message => {
+                Order = message.SelectedOrder;
+            });
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { SelectedReport = this });
             _report = new Report();
             var reportRepository = new ReportRepository();
@@ -74,6 +81,11 @@ namespace Festispec.ViewModel.report
             AddElementCommand = new RelayCommand(GoToAddElementPage);
             _report.Title = "Test titel";
             this.RenderReportElements(null, null);
+        }
+
+        public ReportVM(Report report)
+        {
+            this.report = report;
         }
 
         private void GoToAddElementPage()

@@ -1,4 +1,5 @@
 using CommonServiceLocator;
+using Festispec.Repository;
 using Festispec.View.Pages;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Customer.Event;
@@ -6,7 +7,6 @@ using Festispec.View.Pages.Employee;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Report.element;
-using Festispec.View.Usercontrols.Report.Data;
 using Festispec.ViewModel.auth;
 using Festispec.ViewModel.employee;
 using Festispec.ViewModel.report;
@@ -43,8 +43,11 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EmployeeInfoVM>();
             SimpleIoc.Default.Register<EditEmployeeVM>();
             SimpleIoc.Default.Register<UserLoginVM>();
-            SimpleIoc.Default.Register<AddDataVM>();
+
+            SimpleIoc.Default.Register<DataTypesRepository>();
         }
+
+        public AddElementVM AddElementVM => ServiceLocator.Current.GetInstance<AddElementVM>();
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
 
@@ -59,8 +62,6 @@ namespace Festispec.ViewModel
         public EmployeeInfoVM EmployeeInfoVM => ServiceLocator.Current.GetInstance<EmployeeInfoVM>();
 
         public EditEmployeeVM EditEmployeeVM => ServiceLocator.Current.GetInstance<EditEmployeeVM>();
-
-        public AddDataVM AddDataVM => ServiceLocator.Current.GetInstance<AddDataVM>();
 
         public static void Cleanup()
         {
