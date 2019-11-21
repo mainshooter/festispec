@@ -36,8 +36,6 @@
                     <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Telefoonnummer" Binding="{Binding Phone}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Plaats" Binding="{Binding City}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Straat" Binding="{Binding Street}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Huisnummer" Binding="{Binding FullHouseNumber}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Geboortedatum" Binding="{Binding BirthdayDate}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Afdeling" Binding="{Binding Department.Name}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}"></DataGridTextColumn>
