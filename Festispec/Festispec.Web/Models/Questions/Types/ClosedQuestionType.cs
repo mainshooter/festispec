@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Festispec.Domain;
 
 namespace Festispec.Web.Models.Questions.Types
 {
-    public class ClosedQuestionType : IQuestion
+    public class ClosedQuestionType : BaseQuestionType
     {
-        public string RenderHtml()
+        public ClosedQuestionType(Question questionData) : base(questionData)
         {
-            throw new NotImplementedException();
+        }
+
+        public override string RenderHtml()
+        {
+            return base.RenderHtml();
         }
     }
 }

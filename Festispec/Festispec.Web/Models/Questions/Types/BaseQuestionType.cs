@@ -8,7 +8,7 @@ namespace Festispec.Web.Models.Questions.Types
 {
     public abstract class BaseQuestionType : IQuestion
     {
-        public Question QuestionData { get; private set; }
+        public Question QuestionData { get; }
         protected BaseQuestionType(Question questionData)
         {
             QuestionData = questionData;

@@ -9,7 +9,7 @@ namespace Festispec.Web.Models.Questions
 {
     public class QuestionTypeRepository
     {
-        private Dictionary<string, IQuestion> _questionTypes;
+        private readonly Dictionary<string, IQuestion> _questionTypes;
 
         public QuestionTypeRepository(Question question)
         {
