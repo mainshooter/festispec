@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EditMultipleChoiceQuestionPage"
-      DataContext="{Binding MultipleChoiceQuestionVM, Source={StaticResource Locator}}">
+      DataContext="{Binding EditMultipleChoiceQuestionVM, Source={StaticResource Locator}}">
 
     <ScrollViewer>
         <Grid>
@@ -28,16 +28,16 @@
 
             <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Meerkeuze vraag bewerken</Label>
             <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">Vraag:</Label>
-            <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionDetails.Question}"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionVm.QuestionDetails.Question}"></TextBox>
             <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">Omschrijving:</Label>
-            <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionDetails.Description}"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionVm.QuestionDetails.Description}"></TextBox>
             <Separator Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
             <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right">Optie:</Label>
             <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
-                <TextBox VerticalAlignment="Center" Width="300" MinLines="2" Text="{Binding OptionName}"></TextBox>
+                <TextBox VerticalAlignment="Center" Width="300" MinLines="2" Text="{Binding QuestionVm.OptionName}"></TextBox>
                 <Button VerticalAlignment="Center" Margin="20,0,0,0" Command="{Binding AddOptionCommand}">Toevoegen</Button>
             </StackPanel>
-            <DataGrid Grid.Column="1" Grid.Row="5" Width="420" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedOptionName}" ItemsSource="{Binding Options}" Background="White" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="DarkGray" HorizontalAlignment="Left" HeadersVisibility="None" BorderBrush="DarkGray" BorderThickness="1">
+            <DataGrid Grid.Column="1" Grid.Row="5" Width="420" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding QuestionVm.SelectedOptionName}" ItemsSource="{Binding QuestionVm.QuestionDetails.Choices.Cols}" Background="White" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="DarkGray" HorizontalAlignment="Left" HeadersVisibility="None" BorderBrush="DarkGray" BorderThickness="1">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Opties" Binding="{Binding}" Width="*" FontWeight="DemiBold" />
                     <DataGridTemplateColumn Width="130">

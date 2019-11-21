@@ -73,7 +73,7 @@ namespace Festispec.ViewModel.survey
                 case "Teken vraag":
                     return new DrawQuestionVM(question);
                 case "Meerkeuze vraag":
-                    return new MultipleChoiceQuestionVM(this, question);
+                    return new MultipleChoiceQuestionVM(question);
                 case "Tabel vraag":
                     return new TableQuestionVM(this, question);
                 default:

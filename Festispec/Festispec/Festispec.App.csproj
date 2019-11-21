@@ -175,6 +175,8 @@
     <Compile Include="ViewModel\survey\question\QuestionTypes\ImageGalleryQuestion\AddImageGalleryQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\ImageGalleryQuestion\EditImageGalleryQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\MultipleChoiceQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\MultipleChoiceQuestion\AddMultipleChoiceQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\MultipleChoiceQuestion\EditMultipleChoiceQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestion\AddOpenQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestion\EditOpenQuestionVM.cs" />
