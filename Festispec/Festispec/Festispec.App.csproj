@@ -170,6 +170,8 @@
     <Compile Include="ViewModel\survey\question\QuestionTypes\CommentField\EditCommentFieldVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\DrawQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\ImageGalleryQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\ImageGalleryQuestion\AddImageGalleryQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\ImageGalleryQuestion\EditImageGalleryQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\MultipleChoiceQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestion\AddOpenQuestionVM.cs" />

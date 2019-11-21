@@ -69,7 +69,7 @@ namespace Festispec.ViewModel.survey
                 case "Opmerking vraag":
                     return new CommentFieldVM(question);
                 case "Afbeelding galerij vraag":
-                    return new ImageGalleryQuestionVM(this, question);
+                    return new ImageGalleryQuestionVM(question);
                 case "Teken vraag":
                     return new DrawQuestionVM(this, question);
                 case "Meerkeuze vraag":
