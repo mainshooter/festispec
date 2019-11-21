@@ -25,8 +25,8 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Volledige naam" Binding="{Binding Employee.Fullname}"/>
                     <DataGridTextColumn Header="Evenement" Binding="{Binding Day.Order.Event.Name}"/>
-                    <DataGridTextColumn Header="Starttijd" Binding="{Binding PlannedStartTime}"/>
-                    <DataGridTextColumn Header="Eindtijd" Binding="{Binding PlannedEndTime}"/>
+                    <DataGridTextColumn Header="Starttijd" Binding="{Binding ActualStartDateTime}"/>
+                    <DataGridTextColumn Header="Eindtijd" Binding="{Binding ActualEndDateTime}"/>
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
                 </DataGrid.Columns>
             </DataGrid>

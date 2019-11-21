@@ -1,6 +1,7 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.employee;
 using System;
+using System.Globalization;
 
 namespace Festispec.ViewModel.planning.plannedEmployee
 {
@@ -30,12 +31,30 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             }
         }
 
+        public string ActualStartDateTime
+        {
+            get
+            {
+                var time = PlannedStartTime;
+                return Convert.ToDateTime(time).ToString("dd-MM-yyyy HH:mm");
+            }
+        }
+
         public DateTime PlannedEndTime {
             get {
                 return _plannedEmployee.PlannedTill;
             }
             set {
                 _plannedEmployee.PlannedTill = value;
+            }
+        }
+
+        public string ActualEndDateTime
+        {
+            get
+            {
+                var time = PlannedEndTime;
+                return Convert.ToDateTime(time).ToString("dd-MM-yyyy HH:mm");
             }
         }
 
