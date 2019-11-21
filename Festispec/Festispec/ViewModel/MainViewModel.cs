@@ -11,7 +11,6 @@ using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.Message;
-using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Planning;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.customer.customerEvent;
@@ -55,9 +54,6 @@ namespace Festispec.ViewModel
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenSick = new RelayCommand(OpenSickTab);
             _toastVM = new ToastVM();
-            
-
-            //Page = ServiceLocator.Current.GetInstance<ReportPage>();
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -108,6 +104,7 @@ namespace Festispec.ViewModel
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
         }
 
+        //Voorbeeld van specifieke event
         private void OpenSpecificPlanningTab()
         {
             using (var context = new Entities())
