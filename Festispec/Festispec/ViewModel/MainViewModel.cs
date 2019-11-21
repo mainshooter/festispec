@@ -33,6 +33,7 @@ namespace Festispec.ViewModel
         public ICommand OpenAvailability { get; set; }
         public ICommand OpenEvent { get; set; }
         public ICommand OpenSick { get; set; }
+        public ICommand OpenPlanning { get; set; }
 
         public Page Page
         {
@@ -58,8 +59,9 @@ namespace Festispec.ViewModel
             OpenEmployee = new RelayCommand(OpenEmployeeTab);
             OpenCustomer = new RelayCommand(OpenCustomerTab);
             OpenEvent = new RelayCommand(OpenEventTab);
-            OpenAvailability = new RelayCommand(OpenPlanningTab);
-            OpenSick = new RelayCommand(OpenSpecificPlanningTab);
+            OpenAvailability = new RelayCommand(OpenAvailabilityTab);
+            OpenSick = new RelayCommand(OpenSickTab);
+            OpenPlanning = new RelayCommand(OpenPlanningTab);
 
             Page = ServiceLocator.Current.GetInstance<LoginPage>();
 
