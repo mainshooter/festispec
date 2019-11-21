@@ -115,6 +115,12 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
+        public string HouseNumberAddition
+        {
+            get => _event.HouseNumber_Addition;
+            set => _event.HouseNumber_Addition = value;
+        }
+
         public string PostalCode
         {
             get
@@ -138,12 +144,17 @@ namespace Festispec.ViewModel.customer.customerEvent
                 _event.City = value;
             }
         }
-
+        
         public EventVM(Event eventCon)
         {
             _event = eventCon;
             _customer = new CustomerVM(_event.Customer);
             _contactPerson = new ContactPersonVM(_event.ContactPerson);
+        }
+
+        public Event ToModel()
+        {
+            return _event;
         }
 
         public EventVM()

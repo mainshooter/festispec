@@ -29,6 +29,26 @@ namespace Festispec.ViewModel.customer.contactPerson
             }
         }
 
+        public string Prefix
+        {
+            get
+            {
+                return _contactPerson.Prefix;
+            }
+            set
+            {
+                _contactPerson.Prefix = value;
+            }
+        }
+
+        public string Fullname
+        {
+            get
+            {
+                return Firstname + " " + Prefix + " " + Lastname;
+            }
+        }
+
         public string Lastname {
             get {
                 return _contactPerson.Lastname;

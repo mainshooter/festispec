@@ -1,17 +1,15 @@
 ﻿using Festispec.Message;
 using Festispec.Repository;
-using System;
+using Festispec.View.Pages.Customer.Event;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
-    public class EventListVM
+    public class EventListVM : ViewModelBase
     {
         private string _filter;
         private List<string> _filters;
@@ -80,10 +78,15 @@ namespace Festispec.ViewModel.customer.customerEvent
             //Filter = "";
             EventRepository eventRepository = new EventRepository();
             EventList = new ObservableCollection<EventVM>(eventRepository.GetEvents());
-            //OpenAddEvent = new RelayCommand(OpenAddEventPage);
+            OpenAddEvent = new RelayCommand(OpenAddEventPage);
             //OpenEditEvent = new RelayCommand(OpenEditEventPage);
             //DeleteEventCommand = new RelayCommand(DeleteEvent);
             //OpenSingleEvent = new RelayCommand(OpenSingleEventPage);
+        }
+
+        private void OpenAddEventPage()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddEventPage) });
         }
     }
 }
