@@ -55,6 +55,15 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
+        public string JsonData {
+            get {
+                return _reportElement.Data;
+            }
+            set {
+                _reportElement.Data = value;
+            }
+        }
+
         public virtual Object Data { get; set; }
         public ICommand EditElementCommand { get; set; }
 

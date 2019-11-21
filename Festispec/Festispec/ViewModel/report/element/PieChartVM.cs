@@ -1,4 +1,5 @@
-﻿using LiveCharts;
+﻿using GalaSoft.MvvmLight.CommandWpf;
+using LiveCharts;
 using System;
 
 namespace Festispec.ViewModel.report.element

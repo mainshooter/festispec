@@ -8,13 +8,8 @@
              d:DesignHeight="450" d:DesignWidth="800"
              DataContext="{Binding AddDataVM, Source={StaticResource Locator}}">
     <StackPanel>
+        <Label>Type query</Label>
+        <ComboBox ItemsSource="{Binding Types}"></ComboBox>
         <Label>Maak een query</Label>
-        <ComboBox ItemsSource="{Binding Questions}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Question}"></TextBlock>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
     </StackPanel>
 </UserControl>

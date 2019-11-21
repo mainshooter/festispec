@@ -78,11 +78,8 @@ namespace Festispec.ViewModel.report
 
         private void GoToAddElementPage()
         {
-            Page addElementPage = new AddElementPage();
-            AddElementVM addElementVM = new AddElementVM();
-            addElementVM.Report = this;
-            addElementPage.DataContext = addElementVM;
-            MainViewModel.Page = addElementPage;
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddElementPage) });
+            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { SelectedReport = this});
         }
 
         public Report ToModel()

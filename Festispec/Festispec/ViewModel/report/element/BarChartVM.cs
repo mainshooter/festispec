@@ -1,4 +1,5 @@
-﻿using LiveCharts;
+﻿using GalaSoft.MvvmLight.CommandWpf;
+using LiveCharts;
 using System;
 using System.Collections.Generic;
 
