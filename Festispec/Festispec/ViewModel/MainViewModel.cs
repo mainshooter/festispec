@@ -58,8 +58,8 @@ namespace Festispec.ViewModel
             OpenEmployee = new RelayCommand(OpenEmployeeTab);
             OpenCustomer = new RelayCommand(OpenCustomerTab);
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
-            OpenEvent = new RelayCommand(OpenEventTab);
-            OpenSick = new RelayCommand(OpenSickTab);
+            OpenEvent = new RelayCommand(OpenPlanningTab);
+            OpenSick = new RelayCommand(OpenSpecificPlanningTab);
 
             Page = ServiceLocator.Current.GetInstance<LoginPage>();
 

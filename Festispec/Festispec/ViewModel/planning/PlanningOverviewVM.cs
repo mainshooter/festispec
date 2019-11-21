@@ -135,7 +135,7 @@ namespace Festispec.ViewModel.planning
                 if (_selectedEventVM != null) 
                 {
                     OrderVM orderVM = _selectedEventVM.OrderVM;
-                    var result = _filteredPlannedEmployeeList.Where(e => e.OrderId.Equals(orderVM.Id));
+                    var result = _filteredPlannedEmployeeList.Where(e => e.Day.Order.Id.Equals(orderVM.Id));
                     _filteredPlannedEmployeeList = new ObservableCollection<PlannedEmployeeVM>(result);
                     _toastVM.ShowSuccess(_filteredPlannedEmployeeList.Count + " resultaten gefilterd!");
                 }
