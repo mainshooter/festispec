@@ -105,6 +105,7 @@ namespace Festispec.ViewModel.planning
 
         public PlanningOverviewVM()
         {
+            _toastVM = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
             MessengerInstance.Register<ChangeSelectedEventVM>(this, message => {
                 _selectedEventVM = message.NextEvent;
                 GetInitialPlannedEmployeeList();
@@ -123,7 +124,6 @@ namespace Festispec.ViewModel.planning
             FilterItems = new List<string>();
             SelectedFilter = FilterItems.First();
             Filter = "";
-            _toastVM = new ToastVM();
         }
 
         private void GetInitialPlannedEmployeeList() 

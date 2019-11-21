@@ -58,6 +58,7 @@ namespace Festispec.ViewModel
         public ReportVM ReportVM => ServiceLocator.Current.GetInstance<ReportVM>();
 
         public PlanningOverviewVM PlanningOverviewVM => ServiceLocator.Current.GetInstance<PlanningOverviewVM>();
+
         public UserLoginVM UserLoginVM => ServiceLocator.Current.GetInstance<UserLoginVM>();
 
         public AddEmployeeVM AddEmployeeVM => ServiceLocator.Current.GetInstance<AddEmployeeVM>();
