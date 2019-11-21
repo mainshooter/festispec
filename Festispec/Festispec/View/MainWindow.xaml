@@ -88,7 +88,7 @@
                             <Button Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Normal" Height="50" VerticalAlignment="Center" Command="{Binding OpenPlanning}">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Event" Width="25" Height="25" VerticalAlignment="Center"/>
-                                    <TextBlock Text="plannn" VerticalAlignment="Center" Margin="20 10"/>
+                                    <TextBlock Text="Planning" VerticalAlignment="Center" Margin="20 10"/>
                                 </StackPanel>
                             </Button>
                         </ListViewItem>
