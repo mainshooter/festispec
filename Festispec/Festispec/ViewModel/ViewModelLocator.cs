@@ -7,6 +7,7 @@ using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Report.element;
 using Festispec.ViewModel.auth;
+using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.employee;
 using Festispec.ViewModel.report;
 using GalaSoft.MvvmLight.Ioc;
@@ -42,6 +43,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EmployeeInfoVM>();
             SimpleIoc.Default.Register<EditEmployeeVM>();
             SimpleIoc.Default.Register<UserLoginVM>();
+            SimpleIoc.Default.Register<EventListVM>();
            
         }
 
@@ -58,6 +60,8 @@ namespace Festispec.ViewModel
         public EmployeeInfoVM EmployeeInfoVM => ServiceLocator.Current.GetInstance<EmployeeInfoVM>();
 
         public EditEmployeeVM EditEmployeeVM => ServiceLocator.Current.GetInstance<EditEmployeeVM>();
+
+        public EventListVM EventListVM => ServiceLocator.Current.GetInstance<EventListVM>();
 
         public static void Cleanup()
         {

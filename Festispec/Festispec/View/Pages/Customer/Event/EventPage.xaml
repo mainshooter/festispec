@@ -6,9 +6,14 @@
       xmlns:local="clr-namespace:Festispec.View.Pages.Customer.Event"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="EventPage">
+      Title="EventPage"
+      Background="White"
+      DataContext="{Binding EventListVM, Source={StaticResource Locator}}">
 
-    <Grid>
+    <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding EventListVM}">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Naam" Binding ="{Binding Name}"></DataGridTextColumn>
+        </DataGrid.Columns>
         <Label Content="Event" HorizontalAlignment="Left" Margin="42,36,0,0" VerticalAlignment="Top"/>
-    </Grid>
+    </DataGrid>
 </Page>
