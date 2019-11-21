@@ -120,7 +120,6 @@ namespace Festispec.ViewModel.planning
                 }
             });
 
-            GetInitialPlannedEmployeeList();
             FilterItems = new List<string>();
             SelectedFilter = FilterItems.First();
             Filter = "";
@@ -136,8 +135,8 @@ namespace Festispec.ViewModel.planning
                     OrderVM orderVM = _selectedEventVM.OrderVM;
                     var result = _filteredPlannedEmployeeList.Where(e => e.OrderId.Equals(orderVM.Id));
                     _filteredPlannedEmployeeList = new ObservableCollection<PlannedEmployeeVM>(result);
-                    _toastVM.ShowSuccess(_filteredPlannedEmployeeList.Count + " resultaten gefilterd!");
                 }
+                _toastVM.ShowSuccess(_filteredPlannedEmployeeList.Count + " resultaten gefilterd!");
                 FilteredPlannedEmployeeList = _filteredPlannedEmployeeList;
             }
         }
