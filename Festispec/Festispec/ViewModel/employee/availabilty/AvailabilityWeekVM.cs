@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using Festispec.ViewModel.auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace Festispec.ViewModel.employee.availabilty
             using (var context = new Entities())
             {
                 var cal = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
-                var availabilities = context.AvailabilityInspectors.Select(availabilty => availabilty).Where(availabilty => availabilty.Employee.Id == 2);
+                var availabilities = context.AvailabilityInspectors.Select(availabilty => availabilty).Where(availabilty => availabilty.Employee.Id == UserSessionVm.Current.Employee.Id);
                 foreach (var availability in availabilities)
                 {
                     if (DatesAreInTheSameWeek(week, availability.AvailableFrom))

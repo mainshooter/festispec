@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
@@ -17,6 +18,7 @@ namespace Festispec.ViewModel.employee.availabilty
     public class AvailabilityManagerVM : ViewModelBase
     {
         private AvailabilityWeekVM _selectedWeek;
+        private ToastVM _toast;
 
         public ObservableCollection<AvailabilityWeekVM> Weeks { get; set; }
         public AvailabilityWeekVM SelectedWeek
@@ -72,6 +74,7 @@ namespace Festispec.ViewModel.employee.availabilty
 
         public AvailabilityManagerVM()
         {
+            _toast = new ToastVM();
             SelectedWeek = new AvailabilityWeekVM(CurrentWeek());
             Weeks = new ObservableCollection<AvailabilityWeekVM>();
             Weeks.Add(SelectedWeek);
@@ -122,6 +125,7 @@ namespace Festispec.ViewModel.employee.availabilty
                 }
                 context.SaveChanges();
             }
+            _toast.ShowSuccess("Uw beschikbaarheid is opgeslagen.");
         }
 
         public bool CanSaveChanges()
