@@ -137,6 +137,16 @@
     </Compile>
     <Compile Include="Models\Auth\UserSession.cs" />
     <Compile Include="Models\LoginFormModel.cs" />
+    <Compile Include="Models\Questions\Types\BaseQuestionType.cs" />
+    <Compile Include="Models\Questions\IQuestion.cs" />
+    <Compile Include="Models\Questions\QuestionTypeRepository.cs" />
+    <Compile Include="Models\Questions\Types\ClosedQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\DrawingQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\GalleryQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\MultipleChoiseQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\OpenQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\SliderQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\TableQuestionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

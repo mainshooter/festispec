@@ -1,6 +1,17 @@
-﻿@{
+﻿@using Festispec.Lib.Survey.Question
+@using Newtonsoft.Json
+@model Festispec.Domain.Survey
+
+@{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Survey</h2>
 
+@foreach (var question in Model.Questions)
+{
+    using (var details = JsonConvert.DeserializeObject<QuestionDetails>(question.Question1)) 
+    {
+        <h3>@Html.DisplayFor(modelItem => details.Question)</h3>
+    }
+}
