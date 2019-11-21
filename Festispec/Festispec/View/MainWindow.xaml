@@ -93,7 +93,7 @@
                 <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.5"/>
             </Grid.Effect>
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right" Height="70">
-                <TextBlock Text="John Doe" VerticalAlignment="Center" FontSize="18"/>
+                <TextBlock Text="{Binding LoggedInEmployee.Fullname}" VerticalAlignment="Center" FontSize="18"/>
                 <materialDesign:PopupBox Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                     <StackPanel Width="150">
                         <Button Content="Account"/>
