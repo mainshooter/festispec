@@ -120,7 +120,7 @@ namespace Festispec.ViewModel.planning
                 }
             });
 
-            //GetInitialPlannedEmployeeList();
+            GetInitialPlannedEmployeeList();
 
             FilterItems = new List<string>();
             SelectedFilter = FilterItems.First();
