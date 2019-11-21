@@ -1,4 +1,5 @@
 ﻿using Festispec.Message;
+using Festispec.Repository;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.report;
 using Festispec.ViewModel.report.element;
@@ -18,6 +19,7 @@ namespace Festispec.View.Usercontrols.Report.Data
     public class AddDataVM: ViewModelBase
     {
         private ObservableCollection<SurveyQuestionVM> _questions;
+        public List<string> Types;
         public ReportElementVM ReportElement { get; set; }
         public ReportVM ReportVM { get; set; }
 
@@ -38,6 +40,8 @@ namespace Festispec.View.Usercontrols.Report.Data
         [PreferredConstructor]
         public AddDataVM()
         {
+            DataTypesRepository dataTypesRepository = new DataTypesRepository();
+            Types = dataTypesRepository.DataTypes;
             MessengerInstance.Register<ChangeSelectedOrderMessage>(this, message => {
                 OrderVM = message.SelectedOrder;
                 Survey = OrderVM.Survey;
