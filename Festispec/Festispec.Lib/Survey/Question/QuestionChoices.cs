@@ -6,6 +6,7 @@ namespace Festispec.Lib.Survey.Question
     {
         public List<string> Cols { get; set; }
         public List<string> Options { get; set; }
+        public string SelectedCol { get; set; }
 
         public QuestionChoices()
         {

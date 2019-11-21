@@ -7,18 +7,20 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
 
-namespace Festispec.ViewModel.survey.question.QuestionTypes.MultipleChoiceQuestion
+namespace Festispec.ViewModel.survey.question.QuestionTypes.TableQuestion
 {
-    public class EditMultipleChoiceQuestionVM : ViewModelBase
+    public class EditTableQuestionVM : ViewModelBase
     {
         private SurveyVM _surveyVm;
-        private MultipleChoiceQuestionVM _questionVm;
+        private TableQuestionVM _questionVm;
         private ICommand _saveCommand;
         private ICommand _goBackCommand;
         private ICommand _addOptionCommand;
+        private ICommand _addColumnCommand;
         private ICommand _deleteOptionCommand;
+        private ICommand _deleteColumnCommand;
 
-        public MultipleChoiceQuestionVM QuestionVm
+        public TableQuestionVM QuestionVm
         {
             get => _questionVm;
             set
@@ -58,6 +60,16 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.MultipleChoiceQuesti
             }
         }
 
+        public ICommand AddColumnCommand
+        {
+            get => _addColumnCommand;
+            set
+            {
+                _addColumnCommand = value;
+                RaisePropertyChanged(() => AddColumnCommand);
+            }
+        }
+
         public ICommand DeleteOptionCommand
         {
             get => _deleteOptionCommand;
@@ -68,20 +80,33 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.MultipleChoiceQuesti
             }
         }
 
-        public EditMultipleChoiceQuestionVM()
+        public ICommand DeleteColumnCommand
         {
-            QuestionVm = new MultipleChoiceQuestionVM();
+            get => _deleteColumnCommand;
+            set
+            {
+                _deleteColumnCommand = value;
+                RaisePropertyChanged(() => DeleteColumnCommand);
+            }
+        }
+
+        public EditTableQuestionVM()
+        {
+            QuestionVm = new TableQuestionVM();
             MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => { _surveyVm = message.NextSurvey; });
             MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message =>
             {
-                if (message.NextQuestion.GetType() == typeof(MultipleChoiceQuestionVM))
+                if (message.NextQuestion.GetType() == typeof(TableQuestionVM))
                 {
                     _surveyVm = message.SurveyVM;
-                    QuestionVm = (MultipleChoiceQuestionVM)message.NextQuestion;
+                    QuestionVm = (TableQuestionVM)message.NextQuestion;
                     SaveCommand = new RelayCommand(Save);
                     GoBackCommand = new RelayCommand(QuestionVm.GoBack);
                     AddOptionCommand = new RelayCommand(QuestionVm.AddOption);
+                    AddColumnCommand = new RelayCommand(QuestionVm.AddColumn);
                     DeleteOptionCommand = new RelayCommand(QuestionVm.DeleteOption);
+                    DeleteColumnCommand = new RelayCommand(QuestionVm.DeleteColumn);
+                    QuestionVm.SetComboBox();
                 }
             });
             MessengerInstance.Register<ChangePageMessage>(this, message =>

@@ -1,14 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Interface;
-using Festispec.Lib.Slugify;
 using Festispec.Lib.Survey.Question;
 using Festispec.Message;
 using Festispec.View.Pages.Survey;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Ioc;
 using Newtonsoft.Json;
 
@@ -16,17 +13,10 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 {
     public class TableQuestionVM : ViewModelBase, IQuestion
     {
-        private Question _surveyQuestion;
-        private SurveyVM _surveyVm;
-        private string _question;
-        private string _description;
+        private readonly Question _surveyQuestion;
+        private QuestionDetails _questionDetails;
         private string _optionName;
         private string _columnName;
-        private string _selectedColumn;
-        private string _questionType;
-        private QuestionDetails _questionDetails;
-        private ObservableCollection<string> _options;
-        private ObservableCollection<string> _columns;
         private ObservableCollection<string> _comboBoxItems;
 
         public QuestionDetails QuestionDetails
@@ -35,17 +25,36 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             set
             {
                 _questionDetails = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged(() => QuestionDetails);
             }
         }
 
         public string QuestionType => _surveyQuestion.Type;
-        public ICommand SaveCommand { get; set; }
-        public ICommand GoBackCommand { get; set; }
-        public ICommand AddColumnCommand { get; set; }
-        public ICommand AddOptionCommand { get; set; }
-        public ICommand DeleteColumnCommand { get; set; }
-        public ICommand DeleteOptionCommand { get; set; }
+
+        public int SurveyId
+        {
+            get => _surveyQuestion.SurveyId;
+            set => _surveyQuestion.SurveyId = value;
+        }
+
+        public string Question
+        {
+            get => _surveyQuestion.Question1;
+            set => _surveyQuestion.Question1 = value;
+        }
+
+        public string Variables
+        {
+            get => _surveyQuestion.Variables;
+            set => _surveyQuestion.Variables = value;
+        }
+
+        public string Type
+        {
+            get => _surveyQuestion.Type;
+            set => _surveyQuestion.Type = value;
+        }
+
         public string SelectedOptionName { get; set; }
         public string SelectedColumnName { get; set; }
 
@@ -55,7 +64,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             set
             {
                 _optionName = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged(() => OptionName);
             }
         }
 
@@ -65,33 +74,17 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             set
             {
                 _columnName = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged(() => ColumnName);
             }
         }
 
         public string SelectedColumn
         {
-            get => _selectedColumn;
+            get => QuestionDetails.Choices.SelectedCol;
             set
             {
-                _selectedColumn = value;
-                if (_selectedColumn == "Geen") Options.Clear();
-            }
-        }
-
-        public ObservableCollection<string> Options {
-            get => _options;
-            set {
-                _options = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public ObservableCollection<string> Columns {
-            get => _columns;
-            set {
-                _columns = value;
-                RaisePropertyChanged();
+                QuestionDetails.Choices.SelectedCol = value;
+                if (QuestionDetails.Choices.SelectedCol == "Geen") QuestionDetails.Choices.Options.Clear();
             }
         }
 
@@ -99,146 +92,27 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             get => _comboBoxItems;
             set {
                 _comboBoxItems = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged(() => ComboBoxItems);
             }
         }
 
         [PreferredConstructor]
         public TableQuestionVM()
         {
-            Options = new ObservableCollection<string>();
-            Columns = new ObservableCollection<string>();
+            _surveyQuestion = new Question();
+            QuestionDetails = new QuestionDetails();
             ComboBoxItems = new ObservableCollection<string>();
-            _questionType = "Tabel vraag";
-
-            MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
-                _surveyVm = message.SurveyVM;
-                //_surveyQuestion = message.NextQuestion;
-                QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
-                _question = QuestionDetails.Question;
-                _description = QuestionDetails.Description;
-                SetDataGrids();
-                SetComboBox();
-            });
-
-            MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
-                _surveyVm = message.NextSurvey;
-                _surveyQuestion = new Question();
-                QuestionDetails = new QuestionDetails();
-                _question = QuestionDetails.Question;
-                _description = QuestionDetails.Description;
-                SetDataGrids();
-                SetComboBox();
-            });
-
-            SaveCommand = new RelayCommand(Save);
-            GoBackCommand = new RelayCommand(GoBack);
-            AddOptionCommand = new RelayCommand(AddOption, CanAddOption);
-            AddColumnCommand = new RelayCommand(AddColumn);
-            DeleteOptionCommand = new RelayCommand(DeleteOption);
-            DeleteColumnCommand = new RelayCommand(DeleteColumn);
         }
 
-        public TableQuestionVM(SurveyVM surveyVm, Question surveyQuestion)
+        public TableQuestionVM(Question surveyQuestion)
         {
-            _surveyVm = surveyVm;
             _surveyQuestion = surveyQuestion;
-            Options = new ObservableCollection<string>();
-            Columns = new ObservableCollection<string>();
+            QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
             ComboBoxItems = new ObservableCollection<string>();
-
-            if (_surveyQuestion.Question1 != null)
-            {
-                QuestionDetails = JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1);
-                SetDataGrids();
-            }
-            else
-            {
-                QuestionDetails = new QuestionDetails();
-            }
-
-            SaveCommand = new RelayCommand(Save);
-            GoBackCommand = new RelayCommand(GoBack);
-            AddOptionCommand = new RelayCommand(AddOption, CanAddOption);
-            AddColumnCommand = new RelayCommand(AddColumn);
-            DeleteOptionCommand = new RelayCommand(DeleteOption);
-            DeleteColumnCommand = new RelayCommand(DeleteColumn);
-
-            // temp variables for when you want to go back and discard changes
-            _question = QuestionDetails.Question;
-            _description = QuestionDetails.Description;
-
-            SetComboBox();
-            SelectedColumn = ComboBoxItems[0];
-        }
-
-        public void Save()
-        {
-            using (var context = new Entities())
-            {
-                if (!ValidateQuestionDetails()) return;
-
-                QuestionDetails.Choices.Cols.Clear();
-                QuestionDetails.Choices.Options.Clear();
-
-                foreach (var option in Options)
-                {
-                    QuestionDetails.Choices.Cols.Add(option);
-                }
-
-                foreach (var column in Columns)
-                {
-                    QuestionDetails.Choices.Options.Add(column);
-                }
-
-                _surveyQuestion.Question1 = JsonConvert.SerializeObject(QuestionDetails);
-
-                if (_surveyQuestion.Id == 0)
-                {
-                    _question = QuestionDetails.Question;
-                    _description = QuestionDetails.Description;
-                    _surveyQuestion.Variables = StringToSlug.Slugify(QuestionDetails.Question);
-                    _surveyQuestion.Type = _questionType;
-                    _surveyQuestion.SurveyId = _surveyVm.ToModel().Id;
-                    context.Questions.Add(_surveyQuestion);
-                    _surveyVm.Questions.Add(this);
-                    context.SaveChanges();
-                }
-                else
-                {
-                    context.Questions.Attach(_surveyQuestion);
-                    context.Entry(_surveyQuestion).State = System.Data.Entity.EntityState.Modified;
-                    context.SaveChanges();
-                }
-            }
-
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
-        }
-
-        private void SetDataGrids()
-        {
-            Options.Clear();
-            Columns.Clear();
-
-            foreach (var options in QuestionDetails.Choices.Cols)
-            {
-                Options.Add(options);
-            }
-
-            foreach (var column in QuestionDetails.Choices.Options)
-            {
-                Columns.Add(column);
-            }
         }
 
         public void GoBack()
         {
-            QuestionDetails.Question = _question;
-            QuestionDetails.Description = _description;
-            Options.Clear();
-            Columns.Clear();
-            SetDataGrids();
-            RaisePropertyChanged("QuestionDetails");
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
         }
 
@@ -256,13 +130,13 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 return false;
             }
 
-            if (Columns.Count < 2)
+            if (QuestionDetails.Choices.Cols.Count < 2)
             {
                 MessageBox.Show("Deze vraag moet minimaal 2 kolommen hebben.");
                 return false;
             }
 
-            if (SelectedColumn != "Geen" && Options.Count < 2)
+            if (SelectedColumn != "Geen" && QuestionDetails.Choices.Options.Count < 2)
             {
                 MessageBox.Show("Deze vraag moet minimaal 2 opties hebben.");
                 return false;
@@ -276,7 +150,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             return _surveyQuestion;
         }
 
-        private void AddColumn()
+        public void AddColumn()
         {
             if (ColumnName == "" || ColumnName.Length > 50)
             {
@@ -284,24 +158,24 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 return;
             }
 
-            if (Columns.Contains(ColumnName))
+            if (QuestionDetails.Choices.Cols.Contains(ColumnName))
             {
                 MessageBox.Show("Deze kolom bestaat al.");
                 return;
             }
 
-            if (Columns.Count >= 5)
+            if (QuestionDetails.Choices.Cols.Count >= 5)
             {
                 MessageBox.Show("Het maximum aantal kolommen is 5.");
                 return;
             }
 
-            Columns.Add(ColumnName);
+            QuestionDetails.Choices.Cols.Add(ColumnName);
             ColumnName = "";
             SetComboBox();
         }
 
-        private void AddOption()
+        public void AddOption()
         {
             if (OptionName == "" || OptionName.Length > 50)
             {
@@ -309,50 +183,50 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 return;
             }
 
-            if (Options.Contains(OptionName))
+            if (QuestionDetails.Choices.Options.Contains(OptionName))
             {
                 MessageBox.Show("Deze optie bestaat al.");
                 return;
             }
 
-            if (Options.Count >= 10)
+            if (QuestionDetails.Choices.Options.Count >= 10)
             {
                 MessageBox.Show("Het maximum aantal opties is 10.");
                 return;
             }
 
-            Options.Add(OptionName);
+            QuestionDetails.Choices.Options.Add(OptionName);
             OptionName = "";
         }
 
-        private bool CanAddOption()
+        public bool CanAddOption()
         {
             return SelectedColumn != "Geen";
         }
 
-        private void DeleteOption()
+        public void DeleteOption()
         {
-            Options.Remove(SelectedOptionName);
+            QuestionDetails.Choices.Options.Remove(SelectedOptionName);
         }
 
-        private void DeleteColumn()
+        public void DeleteColumn()
         {
-            Columns.Remove(SelectedColumnName);
+            QuestionDetails.Choices.Cols.Remove(SelectedColumnName);
         }
 
-        private void SetComboBox()
+        public void SetComboBox()
         {
             var selected = SelectedColumn;
             ComboBoxItems.Clear();
             ComboBoxItems.Add("Geen");
 
-            foreach (var column in Columns)
+            foreach (var column in QuestionDetails.Choices.Cols)
             {
                 ComboBoxItems.Add(column);
             }
 
             SelectedColumn = selected ?? ComboBoxItems[0];
-            RaisePropertyChanged("SelectedColumn");
+            RaisePropertyChanged(() => SelectedColumn);
         }
     }
 }

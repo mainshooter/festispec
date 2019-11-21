@@ -75,7 +75,7 @@ namespace Festispec.ViewModel.survey
                 case "Meerkeuze vraag":
                     return new MultipleChoiceQuestionVM(question);
                 case "Tabel vraag":
-                    return new TableQuestionVM(this, question);
+                    return new TableQuestionVM(question);
                 default:
                     throw new NotSupportedException("Question type not supported.");
             }

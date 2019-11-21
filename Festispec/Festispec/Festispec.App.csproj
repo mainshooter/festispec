@@ -184,6 +184,8 @@
     <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestion\AddSliderQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestion\EditSliderQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\TableQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\TableQuestion\AddTableQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\TableQuestion\EditTableQuestionVM.cs" />
     <Compile Include="ViewModel\survey\SurveyInfoVM.cs" />
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
