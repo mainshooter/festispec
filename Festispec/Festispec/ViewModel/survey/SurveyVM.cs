@@ -1,22 +1,20 @@
-﻿using Festispec.Domain;
+﻿using System;
+using Festispec.Domain;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Festispec.Interface;
 using Festispec.ViewModel.survey.question.QuestionTypes;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using Festispec.ViewModel.survey.question;
 
 namespace Festispec.ViewModel.survey
 {
     public class SurveyVM : ViewModelBase
     {
-        private Survey _survey;
+        private readonly Survey _survey;
         private ObservableCollection<IQuestion> _questions;
 
         public int Id => _survey.Id;
-        public ObservableCollection<CaseVM> Cases { get; set; }
-        public ObservableCollection<string> QuestionTypes { get; set; }
 
         public string Description
         {
@@ -33,25 +31,24 @@ namespace Festispec.ViewModel.survey
         public ObservableCollection<IQuestion> Questions
         {
             get => _questions;
-            set {
+            set
+            {
                 _questions = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged(() => Questions);
             }
         }
 
         [PreferredConstructor]
         public SurveyVM()
         {
-            _survey = new Domain.Survey();
-            Cases = new ObservableCollection<CaseVM>();
+            _survey = new Survey();
             Questions = new ObservableCollection<IQuestion>();
         }
 
         public SurveyVM(Survey survey)
         {
             _survey = survey;
-            Cases = new ObservableCollection<CaseVM>(survey.Cases.ToList().Select(c => new CaseVM(c)));
-            Questions = new ObservableCollection<IQuestion>(_survey.Questions.ToList().Select(q => CreateQuestionType(new QuestionVM(q))));
+            Questions = new ObservableCollection<IQuestion>(survey.Questions.ToList().Select(CreateQuestionType));
         }
 
         public Survey ToModel()
@@ -59,29 +56,37 @@ namespace Festispec.ViewModel.survey
             return _survey;
         }
 
-        private IQuestion CreateQuestionType(QuestionVM question)
+        private IQuestion CreateQuestionType(Question question)
         {
             switch (question.Type)
             {
                 case "Open vraag":
-                    return new OpenQuestionVM(this, question.ToModel());
+                    return new OpenQuestionVM(question);
                 case "Gesloten vraag":
-                    return new ClosedQuestionVM(this, question.ToModel());
+                    return new ClosedQuestionVM(question);
                 case "Schuifbalk vraag":
-                    return new SliderQuestionVM(this, question.ToModel());
+                    return new SliderQuestionVM(this, question);
                 case "Opmerking veld":
-                    return new CommentFieldVM(this, question.ToModel());
+                    return new CommentFieldVM(this, question);
                 case "Afbeelding galerij vraag":
-                    return new ImageGalleryQuestionVM(this, question.ToModel());
+                    return new ImageGalleryQuestionVM(this, question);
                 case "Teken vraag":
-                    return new DrawQuestionVM(this, question.ToModel());
+                    return new DrawQuestionVM(this, question);
                 case "Meerkeuze vraag":
-                    return new MultipleChoiceQuestionVM(this, question.ToModel());
+                    return new MultipleChoiceQuestionVM(this, question);
                 case "Tabel vraag":
-                    return new TableQuestionVM(this, question.ToModel());
+                    return new TableQuestionVM(this, question);
                 default:
-                    return new OpenQuestionVM(this, question.ToModel());
+                    throw new NotSupportedException("Question type not supported.");
             }
+        }
+
+        public void RefreshQuestions()
+        {
+            using (var context = new Entities())
+            {
+                Questions = new ObservableCollection<IQuestion>(context.Questions.Where(s => s.SurveyId == _survey.Id).ToList().Select(CreateQuestionType));
+            };
         }
     }
 }

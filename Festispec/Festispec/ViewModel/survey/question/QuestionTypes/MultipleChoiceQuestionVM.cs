@@ -7,6 +7,7 @@ using Festispec.Lib.Slugify;
 using Festispec.Lib.Survey.Question;
 using Festispec.Message;
 using Festispec.View.Pages.Survey;
+using Festispec.View.Pages.Survey.QuestionTypes.MultipleChoiceQuestion;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Ioc;
@@ -23,6 +24,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private string _optionName;
         private string _questionType;
         private QuestionDetails _questionDetails;
+
         public QuestionDetails QuestionDetails
         {
             get => _questionDetails;
@@ -56,9 +58,9 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         {
             _questionType = "Meerkeuze vraag";
             Options = new ObservableCollection<string>();
+
             MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
-                _surveyVm = message.SurveyVM;
-                _surveyQuestion = message.NextQuestion;
+                //_surveyQuestion = message.NextQuestion;
                 QuestionDetails = JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1);
                 _question = QuestionDetails.Question;
                 _description = QuestionDetails.Description;
@@ -67,14 +69,28 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 {
                     Options.Add(choice);
                 }
-                _question = QuestionDetails.Question;
-                _description = QuestionDetails.Description;
             });
+
             MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
                 _surveyVm = message.NextSurvey;
-                _surveyQuestion = new Question();
-                QuestionDetails = new QuestionDetails();
             });
+
+            MessengerInstance.Register<ChangePageMessage>(this, message =>
+            {
+                if (message.NextPageType == typeof(AddMultipleChoiceQuestionPage))
+                {
+                    _surveyQuestion = new Question();
+                    QuestionDetails = new QuestionDetails();
+                    _question = QuestionDetails.Question;
+                    _description = QuestionDetails.Description;
+                    Options.Clear();
+                    foreach (var choice in QuestionDetails.Choices.Cols)
+                    {
+                        Options.Add(choice);
+                    }
+                }
+            });
+
             SaveCommand = new RelayCommand(Save);
             GoBackCommand = new RelayCommand(GoBack);
             AddOptionCommand = new RelayCommand(AddOption);

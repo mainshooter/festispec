@@ -40,7 +40,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             _questionType = "Opmerking vraag";
             MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
                 _surveyVm = message.SurveyVM;
-                _surveyQuestion = message.NextQuestion;
+                //_surveyQuestion = message.NextQuestion;
                 QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
                 _question = QuestionDetails.Question;
             });

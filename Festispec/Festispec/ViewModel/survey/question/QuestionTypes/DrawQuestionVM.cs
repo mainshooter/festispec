@@ -46,7 +46,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             _questionType = "Teken vraag";
             MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
                 _surveyVm = message.SurveyVM;
-                _surveyQuestion = message.NextQuestion;
+                //_surveyQuestion = message.NextQuestion;
                 QuestionDetails = JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1);
                 _question = QuestionDetails.Question;
                 _description = QuestionDetails.Description;

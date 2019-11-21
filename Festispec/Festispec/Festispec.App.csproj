@@ -163,14 +163,17 @@
     <Compile Include="ViewModel\survey\CaseVM.cs" />
     <Compile Include="Interface\IQuestion.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\ClosedQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\ClosedQuestion\AddClosedQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\ClosedQuestion\EditClosedQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\CommentFieldVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\DrawQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\ImageGalleryQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\MultipleChoiceQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestion\AddOpenQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestion\EditOpenQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\TableQuestionVM.cs" />
-    <Compile Include="ViewModel\survey\question\QuestionVM.cs" />
     <Compile Include="ViewModel\survey\SurveyInfoVM.cs" />
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -483,6 +486,7 @@
       <Name>Festispec.Lib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

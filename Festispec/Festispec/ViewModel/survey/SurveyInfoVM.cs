@@ -22,8 +22,8 @@ namespace Festispec.ViewModel.survey
     public class SurveyInfoVM: ViewModelBase
     {
         private SurveyVM _surveyVM;
-        private Dictionary<string, Type> _editQuestionPageTypes;
-        private Dictionary<string, Type> _addQuestionPageTypes;
+        private readonly Dictionary<string, Type> _editQuestionPageTypes;
+        private readonly Dictionary<string, Type> _addQuestionPageTypes;
 
         public SurveyVM SurveyVM
         { 
@@ -98,14 +98,14 @@ namespace Festispec.ViewModel.survey
         {
             var surveyPageType = _addQuestionPageTypes[SelectedQuestionType];
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = surveyPageType});
-            MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = SurveyVM});
+            MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = SurveyVM });
         }
 
         private void OpenEditQuestion()
         {
             var surveyPageType = _editQuestionPageTypes[SelectedQuestion.QuestionType];
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = surveyPageType });
-            MessengerInstance.Send<ChangeSelectedSurveyQuestionMessage>(new ChangeSelectedSurveyQuestionMessage() { NextQuestion = SelectedQuestion.ToModel(), SurveyVM = _surveyVM });
+            MessengerInstance.Send<ChangeSelectedSurveyQuestionMessage>(new ChangeSelectedSurveyQuestionMessage() { NextQuestion = SelectedQuestion, SurveyVM = SurveyVM });
         }
 
         private void DeleteQuestion()

@@ -46,7 +46,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             _questionType = "Schuifbalk vraag";
             MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message => {
                 _surveyVm = message.SurveyVM;
-                _surveyQuestion = message.NextQuestion;
+                //_surveyQuestion = message.NextQuestion;
                 QuestionDetails = _surveyQuestion.Question1 != null ? JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1) : new QuestionDetails();
                 QuestionDetails = JsonConvert.DeserializeObject<QuestionDetails>(_surveyQuestion.Question1);
                 try

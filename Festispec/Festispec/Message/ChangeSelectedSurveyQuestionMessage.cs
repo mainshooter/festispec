@@ -12,7 +12,7 @@ namespace Festispec.Message
 {
     public class ChangeSelectedSurveyQuestionMessage
     {
-        public Question NextQuestion { get; set; }
+        public IQuestion NextQuestion { get; set; }
         public SurveyVM SurveyVM { get; set; }
     }
 }
