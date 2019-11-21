@@ -173,6 +173,8 @@
     <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestion\AddOpenQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestion\EditOpenQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestion\AddSliderQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestion\EditSliderQuestionVM.cs" />
     <Compile Include="ViewModel\survey\question\QuestionTypes\TableQuestionVM.cs" />
     <Compile Include="ViewModel\survey\SurveyInfoVM.cs" />
     <Compile Include="ViewModel\survey\SurveyVM.cs" />

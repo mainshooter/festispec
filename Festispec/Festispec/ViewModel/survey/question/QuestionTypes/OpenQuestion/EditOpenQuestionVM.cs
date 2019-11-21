@@ -12,17 +12,17 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.OpenQuestion
     public class EditOpenQuestionVM : ViewModelBase
     {
         private SurveyVM _surveyVm;
-        private OpenQuestionVM _openQuestionVm;
+        private OpenQuestionVM _questionVm;
         private ICommand _saveCommand;
         private ICommand _goBackCommand;
 
-        public OpenQuestionVM OpenQuestionVm
+        public OpenQuestionVM QuestionVm
         {
-            get => _openQuestionVm;
+            get => _questionVm;
             set
             {
-                _openQuestionVm = value;
-                RaisePropertyChanged(() => OpenQuestionVm);
+                _questionVm = value;
+                RaisePropertyChanged(() => QuestionVm);
             }
         }
 
@@ -48,16 +48,16 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.OpenQuestion
 
         public EditOpenQuestionVM()
         {
-            OpenQuestionVm = new OpenQuestionVM();
+            QuestionVm = new OpenQuestionVM();
             MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => { _surveyVm = message.NextSurvey; });
             MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message =>
             {
                 if (message.NextQuestion.GetType() == typeof(OpenQuestionVM))
                 {
                     _surveyVm = message.SurveyVM;
-                    OpenQuestionVm = (OpenQuestionVM) message.NextQuestion;
+                    QuestionVm = (OpenQuestionVM) message.NextQuestion;
                     SaveCommand = new RelayCommand(Save);
-                    GoBackCommand = new RelayCommand(OpenQuestionVm.GoBack);
+                    GoBackCommand = new RelayCommand(QuestionVm.GoBack);
                 }
             });
             MessengerInstance.Register<ChangePageMessage>(this, message =>
@@ -73,12 +73,12 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.OpenQuestion
         {
             using (var context = new Entities())
             {
-                if (!OpenQuestionVm.ValidateQuestionDetails()) return;
+                if (!QuestionVm.ValidateQuestionDetails()) return;
 
-                OpenQuestionVm.Question = JsonConvert.SerializeObject(OpenQuestionVm.QuestionDetails);
-                OpenQuestionVm.Variables = StringToSlug.Slugify(OpenQuestionVm.QuestionDetails.Question);
-                context.Questions.Attach(OpenQuestionVm.ToModel());
-                context.Entry(OpenQuestionVm.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                QuestionVm.Question = JsonConvert.SerializeObject(QuestionVm.QuestionDetails);
+                QuestionVm.Variables = StringToSlug.Slugify(QuestionVm.QuestionDetails.Question);
+                context.Questions.Attach(QuestionVm.ToModel());
+                context.Entry(QuestionVm.ToModel()).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
             }
 

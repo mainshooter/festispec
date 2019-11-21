@@ -7,16 +7,16 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
 
-namespace Festispec.ViewModel.survey.question.QuestionTypes.ClosedQuestion
+namespace Festispec.ViewModel.survey.question.QuestionTypes.SliderQuestion
 {
-    public class EditClosedQuestionVM : ViewModelBase
+    public class EditSliderQuestionVM : ViewModelBase
     {
         private SurveyVM _surveyVm;
-        private ClosedQuestionVM _questionVm;
+        private SliderQuestionVM _questionVm;
         private ICommand _saveCommand;
         private ICommand _goBackCommand;
 
-        public ClosedQuestionVM QuestionVm
+        public SliderQuestionVM QuestionVm
         {
             get => _questionVm;
             set
@@ -45,17 +45,17 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.ClosedQuestion
                 RaisePropertyChanged(() => GoBackCommand);
             }
         }
-        
-        public EditClosedQuestionVM()
+
+        public EditSliderQuestionVM()
         {
-            QuestionVm = new ClosedQuestionVM();
+            QuestionVm = new SliderQuestionVM();
             MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => { _surveyVm = message.NextSurvey; });
             MessengerInstance.Register<ChangeSelectedSurveyQuestionMessage>(this, message =>
             {
-                if (message.NextQuestion.GetType() == typeof(ClosedQuestionVM))
+                if (message.NextQuestion.GetType() == typeof(SliderQuestionVM))
                 {
                     _surveyVm = message.SurveyVM;
-                    QuestionVm = (ClosedQuestionVM) message.NextQuestion;
+                    QuestionVm = (SliderQuestionVM)message.NextQuestion;
                     SaveCommand = new RelayCommand(Save);
                     GoBackCommand = new RelayCommand(QuestionVm.GoBack);
                 }

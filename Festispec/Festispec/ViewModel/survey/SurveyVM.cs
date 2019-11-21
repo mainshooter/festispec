@@ -65,7 +65,7 @@ namespace Festispec.ViewModel.survey
                 case "Gesloten vraag":
                     return new ClosedQuestionVM(question);
                 case "Schuifbalk vraag":
-                    return new SliderQuestionVM(this, question);
+                    return new SliderQuestionVM(question);
                 case "Opmerking veld":
                     return new CommentFieldVM(this, question);
                 case "Afbeelding galerij vraag":

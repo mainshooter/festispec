@@ -5,17 +5,17 @@ using Festispec.Message;
 using Festispec.View.Pages.Survey;
 using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
 
-namespace Festispec.ViewModel.survey.question.QuestionTypes.OpenQuestion
+namespace Festispec.ViewModel.survey.question.QuestionTypes.SliderQuestion
 {
-    public class AddOpenQuestionVM : ViewModelBase
+    public class AddSliderQuestionVM : ViewModelBase
     {
         private SurveyVM _surveyVm;
-        private OpenQuestionVM _questionVm;
+        private SliderQuestionVM _questionVm;
 
-        public OpenQuestionVM QuestionVm
+        public SliderQuestionVM QuestionVm
         {
             get => _questionVm;
             set
@@ -28,16 +28,16 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.OpenQuestion
         public ICommand SaveCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
 
-        public AddOpenQuestionVM()
+        public AddSliderQuestionVM()
         {
-            QuestionVm = new OpenQuestionVM();
+            QuestionVm = new SliderQuestionVM();
             MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => { _surveyVm = message.NextSurvey; });
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
                 if (message.NextPageType == typeof(AddOpenQuestionPage))
                 {
-                    QuestionVm = new OpenQuestionVM();
+                    QuestionVm = new SliderQuestionVM();
                 }
             });
 
@@ -53,7 +53,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.OpenQuestion
 
                 QuestionVm.Question = JsonConvert.SerializeObject(QuestionVm.QuestionDetails);
                 QuestionVm.Variables = StringToSlug.Slugify(QuestionVm.QuestionDetails.Question);
-                QuestionVm.Type = "Open vraag";
+                QuestionVm.Type = "Schuifbalk vraag";
                 QuestionVm.SurveyId = _surveyVm.Id;
                 context.Questions.Add(QuestionVm.ToModel());
                 _surveyVm.Questions.Add(QuestionVm);

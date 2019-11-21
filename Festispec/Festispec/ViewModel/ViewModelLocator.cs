@@ -22,6 +22,7 @@ using Festispec.ViewModel.survey;
 using Festispec.ViewModel.survey.question.QuestionTypes;
 using Festispec.ViewModel.survey.question.QuestionTypes.ClosedQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.OpenQuestion;
+using Festispec.ViewModel.survey.question.QuestionTypes.SliderQuestion;
 using GalaSoft.MvvmLight.Ioc;
 
 namespace Festispec.ViewModel
@@ -78,6 +79,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditOpenQuestionVM>();
             SimpleIoc.Default.Register<AddClosedQuestionVM>();
             SimpleIoc.Default.Register<EditClosedQuestionVM>();
+            SimpleIoc.Default.Register<AddSliderQuestionVM>();
+            SimpleIoc.Default.Register<EditSliderQuestionVM>();
 
             SimpleIoc.Default.Register<UserLoginVM>();
         }
@@ -95,8 +98,8 @@ namespace Festispec.ViewModel
         public EditOpenQuestionVM EditOpenQuestionVM => ServiceLocator.Current.GetInstance<EditOpenQuestionVM>();
         public AddClosedQuestionVM AddClosedQuestionVM => ServiceLocator.Current.GetInstance<AddClosedQuestionVM>();
         public EditClosedQuestionVM EditClosedQuestionVM => ServiceLocator.Current.GetInstance<EditClosedQuestionVM>();
-
-        public ClosedQuestionVM ClosedQuestionVM => ServiceLocator.Current.GetInstance<ClosedQuestionVM>();
+        public AddSliderQuestionVM AddSliderQuestionVM => ServiceLocator.Current.GetInstance<AddSliderQuestionVM>();
+        public EditSliderQuestionVM EditSliderQuestionVM => ServiceLocator.Current.GetInstance<EditSliderQuestionVM>();
 
         public static void Cleanup()
         {

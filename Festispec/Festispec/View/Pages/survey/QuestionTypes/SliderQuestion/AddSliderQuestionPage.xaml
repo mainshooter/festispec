@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddSliderQuestionPage"
-      DataContext="{Binding SliderQuestionVM, Source={StaticResource Locator}}">
+      DataContext="{Binding AddSliderQuestionVM, Source={StaticResource Locator}}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -25,13 +25,13 @@
 
         <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Schuifbalk vraag toevoegen</Label>
         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">Vraag:</Label>
-        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionDetails.Question}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionVm.QuestionDetails.Question}"></TextBox>
         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">Laagste waarde in cijfers:</Label>
-        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" Text="{Binding LowestNumber}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" Text="{Binding QuestionVm.QuestionDetails.Choices.Cols[0]}"></TextBox>
         <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right">Hoogste waarde in cijfers:</Label>
-        <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" Text="{Binding HighestNumber}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" Text="{Binding QuestionVm.QuestionDetails.Choices.Cols[1]}"></TextBox>
         <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right">Omschrijving:</Label>
-        <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionDetails.Description}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" MinLines="2" Text="{Binding QuestionVm.QuestionDetails.Description}"></TextBox>
         <Button Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding GoBackCommand}">Terug</Button>
         <Button Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Margin="10,0,0,0" Command="{Binding SaveCommand}">Toevoegen</Button>
     </Grid>

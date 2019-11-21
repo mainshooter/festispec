@@ -13,15 +13,15 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.ClosedQuestion
     public class AddClosedQuestionVM : ViewModelBase
     {
         private SurveyVM _surveyVm;
-        private ClosedQuestionVM _closedQuestionVm;
+        private ClosedQuestionVM _questionVm;
 
-        public ClosedQuestionVM ClosedQuestionVm
+        public ClosedQuestionVM QuestionVm
         {
-            get => _closedQuestionVm;
+            get => _questionVm;
             set
             {
-                _closedQuestionVm = value;
-                RaisePropertyChanged(() => ClosedQuestionVm);
+                _questionVm = value;
+                RaisePropertyChanged(() => QuestionVm);
             }
         }
 
@@ -30,34 +30,35 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.ClosedQuestion
 
         public AddClosedQuestionVM()
         {
-            ClosedQuestionVm = new ClosedQuestionVM();
+            QuestionVm = new ClosedQuestionVM();
             MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => { _surveyVm = message.NextSurvey; });
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
                 if (message.NextPageType == typeof(AddOpenQuestionPage))
                 {
-                    ClosedQuestionVm = new ClosedQuestionVM();
+                    QuestionVm = new ClosedQuestionVM();
                 }
             });
 
             SaveCommand = new RelayCommand(Save);
-            GoBackCommand = new RelayCommand(ClosedQuestionVm.GoBack);
+            GoBackCommand = new RelayCommand(QuestionVm.GoBack);
         }
+
         public void Save()
         {
             using (var context = new Entities())
             {
-                if (!ClosedQuestionVm.ValidateQuestionDetails()) return;
+                if (!QuestionVm.ValidateQuestionDetails()) return;
 
-                ClosedQuestionVm.QuestionDetails.Choices.Cols.Add("Ja");
-                ClosedQuestionVm.QuestionDetails.Choices.Cols.Add("Nee");
-                ClosedQuestionVm.Question = JsonConvert.SerializeObject(ClosedQuestionVm.QuestionDetails);
-                ClosedQuestionVm.Variables = StringToSlug.Slugify(ClosedQuestionVm.QuestionDetails.Question);
-                ClosedQuestionVm.Type = "Gesloten vraag";
-                ClosedQuestionVm.SurveyId = _surveyVm.Id;
-                context.Questions.Add(ClosedQuestionVm.ToModel());
-                _surveyVm.Questions.Add(ClosedQuestionVm);
+                QuestionVm.QuestionDetails.Choices.Cols.Add("Ja");
+                QuestionVm.QuestionDetails.Choices.Cols.Add("Nee");
+                QuestionVm.Question = JsonConvert.SerializeObject(QuestionVm.QuestionDetails);
+                QuestionVm.Variables = StringToSlug.Slugify(QuestionVm.QuestionDetails.Question);
+                QuestionVm.Type = "Gesloten vraag";
+                QuestionVm.SurveyId = _surveyVm.Id;
+                context.Questions.Add(QuestionVm.ToModel());
+                _surveyVm.Questions.Add(QuestionVm);
                 context.SaveChanges();
             }
 
