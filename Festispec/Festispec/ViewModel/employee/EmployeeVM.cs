@@ -147,6 +147,7 @@ namespace Festispec.ViewModel.employee
         public EmployeeVM()
         {
             _employee = new Employee();
+            Birthday = DateTime.Parse("01/01/2000");
         }
 
         public EmployeeVM(Employee employee)

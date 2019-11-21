@@ -65,6 +65,8 @@ namespace Festispec.ViewModel.employee
         private void CloseAddEmployee()
         {
             Employee = new EmployeeVM();
+            Employee.Department = Departments.First();
+            Employee.Status = Statuses.First();
             RaisePropertyChanged("Employee");
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePage) });
         }
