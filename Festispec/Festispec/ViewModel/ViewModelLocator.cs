@@ -4,11 +4,14 @@ using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Employee;
 using Festispec.View.Pages.Employee.Availability;
+using Festispec.View.Pages.Planning;
 using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Report.element;
+using Festispec.ViewModel.planning;
 using Festispec.ViewModel.auth;
 using Festispec.ViewModel.employee;
 using Festispec.ViewModel.report;
+using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight.Ioc;
 
 namespace Festispec.ViewModel
@@ -27,6 +30,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EmployeePage>();
             SimpleIoc.Default.Register<SickPage>();
             SimpleIoc.Default.Register<AddElementPage>();
+            SimpleIoc.Default.Register<PlanningOverviewPage>();
+
             SimpleIoc.Default.Register<EmployeePage>();
             SimpleIoc.Default.Register<AddEmployeePage>();
             SimpleIoc.Default.Register<SingleEmployeePage>();
@@ -39,15 +44,20 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EmployeeListVM>();
             SimpleIoc.Default.Register<AddEmployeeVM>();
             SimpleIoc.Default.Register<AddElementVM>();
+
+            SimpleIoc.Default.Register<ToastVM>();
+            SimpleIoc.Default.Register<PlanningOverviewVM>();
+
             SimpleIoc.Default.Register<EmployeeInfoVM>();
             SimpleIoc.Default.Register<EditEmployeeVM>();
             SimpleIoc.Default.Register<UserLoginVM>();
-           
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
 
         public ReportVM ReportVM => ServiceLocator.Current.GetInstance<ReportVM>();
+
+        public PlanningOverviewVM PlanningOverviewVM => ServiceLocator.Current.GetInstance<PlanningOverviewVM>();
 
         public UserLoginVM UserLoginVM => ServiceLocator.Current.GetInstance<UserLoginVM>();
 

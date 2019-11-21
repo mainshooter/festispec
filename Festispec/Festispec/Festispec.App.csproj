@@ -86,6 +86,12 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="ToastNotifications, Version=2.5.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToastNotifications.2.5.1\lib\net40\ToastNotifications.dll</HintPath>
+    </Reference>
+    <Reference Include="ToastNotifications.Messages, Version=2.5.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToastNotifications.Messages.2.5.1\lib\net40\ToastNotifications.Messages.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -103,6 +109,7 @@
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSessionVm.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
+    <Compile Include="Message\ChangeSelectedEventVM.cs" />
     <Compile Include="Message\ChangeSelectedEmployeeMessage.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\ReportRepository.cs" />
@@ -125,6 +132,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\planning\DayVM.cs" />
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />
+    <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
     <Compile Include="ViewModel\report\AddElementVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
     <Compile Include="ViewModel\report\element\BarChartVM.cs" />
@@ -141,6 +149,7 @@
     <Compile Include="Interface\IQuestion.cs" />
     <Compile Include="ViewModel\survey\question\SurveyQuestionVM.cs" />
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
+    <Compile Include="ViewModel\toast\ToastVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\Pages\Employee\AddEmployeePage.xaml.cs">
       <DependentUpon>AddEmployeePage.xaml</DependentUpon>
@@ -202,6 +211,9 @@
     </Compile>
     <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
       <DependentUpon>SickPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Planning\PlanningOverviewPage.xaml.cs">
+      <DependentUpon>PlanningOverviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usercontrols\Report\ReportControlUserControl.xaml.cs">
       <DependentUpon>ReportControlUserControl.xaml</DependentUpon>
@@ -313,6 +325,10 @@
     <Page Include="View\Pages\Employee\SickPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\Planning\PlanningOverviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Usercontrols\Report\ReportControlUserControl.xaml">
       <SubType>Designer</SubType>

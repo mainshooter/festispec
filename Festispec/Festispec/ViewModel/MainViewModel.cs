@@ -10,6 +10,12 @@ using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.Message;
+using Festispec.View.Pages.Planning;
+using Festispec.ViewModel.Customer.order;
+using Festispec.ViewModel.customer.customerEvent;
+using Festispec.Domain;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Festispec.ViewModel
 {
@@ -27,6 +33,7 @@ namespace Festispec.ViewModel
         public ICommand OpenAvailability { get; set; }
         public ICommand OpenEvent { get; set; }
         public ICommand OpenSick { get; set; }
+        public ICommand OpenPlanning { get; set; }
 
         public Page Page
         {
@@ -51,9 +58,10 @@ namespace Festispec.ViewModel
             OpenDashboard = new RelayCommand(OpenDashboardTab);
             OpenEmployee = new RelayCommand(OpenEmployeeTab);
             OpenCustomer = new RelayCommand(OpenCustomerTab);
-            OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenEvent = new RelayCommand(OpenEventTab);
+            OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenSick = new RelayCommand(OpenSickTab);
+            OpenPlanning = new RelayCommand(OpenPlanningTab);
 
             Page = ServiceLocator.Current.GetInstance<LoginPage>();
 
@@ -61,6 +69,7 @@ namespace Festispec.ViewModel
             {
                 this.Page = ServiceLocator.Current.GetInstance(message.NextPageType) as Page;
             });
+
             this.MessengerInstance.Register<ChangeLoggedinUserMessage>(this, message =>
             {
                 LoggedInEmployee = message.LoggedinEmployee;
@@ -102,6 +111,25 @@ namespace Festispec.ViewModel
         private void OpenSickTab()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage) });
+        }
+
+        private void OpenPlanningTab()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
+        }
+
+        //Voorbeeld van specifieke event
+        private void OpenSpecificPlanningTab()
+        {
+            using (var context = new Entities())
+            {
+                List<Order> order = context.Orders.ToList();
+                OrderVM orderVM = new OrderVM(order.FirstOrDefault());
+                EventVM eventVM = orderVM.Event;
+                eventVM.OrderVM = orderVM;
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
+                MessengerInstance.Send<ChangeSelectedEventVM>(new ChangeSelectedEventVM() { NextEvent = eventVM });
+            }
         }
     }
 }
