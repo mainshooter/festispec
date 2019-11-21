@@ -149,32 +149,6 @@ namespace Festispec.ViewModel.employee
             _employee = new Employee();
         }
 
-        public DateTime Birthday
-        {
-            get
-            {
-                return _employee.Birthday.Date;
-            }
-            set
-            {
-                _employee.Birthday = value.Date;
-            }
-        }
-
-        public string BirthdayDate
-        {
-            get
-            {
-                return Birthday.ToString("d");
-            }
-        }
-
-        [PreferredConstructor]
-        public EmployeeVM()
-        {
-            _employee = new Employee();
-        }
-
         public EmployeeVM(Employee employee)
         {
             _employee = employee;
