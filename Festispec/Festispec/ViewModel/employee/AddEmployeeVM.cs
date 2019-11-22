@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Festispec.Lib.Auth;
+using System.ComponentModel;
 
 namespace Festispec.ViewModel.employee
 {
