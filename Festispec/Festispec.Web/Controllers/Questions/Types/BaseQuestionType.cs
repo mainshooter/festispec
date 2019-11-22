@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Web.Mvc;
 using Festispec.Domain;
 
-namespace Festispec.Web.Models.Questions.Types
+namespace Festispec.Web.Controllers.Questions.Types
 {
-    public abstract class BaseQuestionType : IQuestion
+    public abstract class BaseQuestionType : Controller, IQuestion
     {
         public Question QuestionData { get; }
         protected BaseQuestionType(Question questionData)
@@ -14,7 +12,7 @@ namespace Festispec.Web.Models.Questions.Types
             QuestionData = questionData;
         }
 
-        public virtual string RenderHtml()
+        public virtual PartialViewResult RenderQuestionInput()
         {
             throw new NotImplementedException();
         }

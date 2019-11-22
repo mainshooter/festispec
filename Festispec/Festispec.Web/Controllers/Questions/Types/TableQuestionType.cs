@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Festispec.Domain;
 
-namespace Festispec.Web.Models.Questions.Types
+namespace Festispec.Web.Controllers.Questions.Types
 {
     public class TableQuestionType : BaseQuestionType
     {
@@ -12,9 +13,9 @@ namespace Festispec.Web.Models.Questions.Types
         {
         }
 
-        public override string RenderHtml()
+        public override PartialViewResult RenderQuestionInput()
         {
-            return base.RenderHtml();
+            return PartialView("Survey/TableQuestion", QuestionData);
         }
     }
 }

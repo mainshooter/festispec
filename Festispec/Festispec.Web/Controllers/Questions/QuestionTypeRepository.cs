@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Festispec.Domain;
-using Festispec.Web.Models.Questions.Types;
+using Festispec.Web.Controllers.Questions.Types;
 
-namespace Festispec.Web.Models.Questions
+namespace Festispec.Web.Controllers.Questions
 {
     public class QuestionTypeRepository
     {
