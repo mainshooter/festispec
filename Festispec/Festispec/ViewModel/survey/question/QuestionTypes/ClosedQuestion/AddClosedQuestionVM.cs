@@ -3,6 +3,7 @@ using Festispec.Domain;
 using Festispec.Lib.Slugify;
 using Festispec.Message;
 using Festispec.View.Pages.Survey;
+using Festispec.View.Pages.Survey.QuestionTypes.ClosedQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -35,7 +36,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.ClosedQuestion
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
-                if (message.NextPageType == typeof(AddOpenQuestionPage))
+                if (message.NextPageType == typeof(AddClosedQuestionPage))
                 {
                     QuestionVm = new ClosedQuestionVM();
                 }

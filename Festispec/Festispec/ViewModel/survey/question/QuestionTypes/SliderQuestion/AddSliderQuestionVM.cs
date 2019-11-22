@@ -4,6 +4,7 @@ using Festispec.Lib.Slugify;
 using Festispec.Message;
 using Festispec.View.Pages.Survey;
 using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
+using Festispec.View.Pages.Survey.QuestionTypes.SliderQuestion;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
@@ -35,7 +36,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.SliderQuestion
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
-                if (message.NextPageType == typeof(AddOpenQuestionPage))
+                if (message.NextPageType == typeof(AddSliderQuestionPage))
                 {
                     QuestionVm = new SliderQuestionVM();
                 }
