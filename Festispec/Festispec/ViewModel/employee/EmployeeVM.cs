@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using System;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace Festispec.ViewModel.employee
 {
@@ -211,9 +212,199 @@ namespace Festispec.ViewModel.employee
         {
             get
             {
-                if (Firstname.Length > 45)
+                if (Prefix != null)
                 {
-                    return "Voornaam mag niet langer zijn dan 45 karakters";
+                    if (Prefix.Length > 45)
+                    {
+                        return "Tussenvoegsel mag niet langer zijn dan 45 karakters";
+                    }
+                }
+                return null;
+            }
+        }
+        private string ValidateCity
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(City))
+                {
+                    return "Woonplaats moet ingevuld zijn";
+                }
+                else if (Lastname.Length > 45)
+                {
+                    return "Woonplaats mag niet langer zijn dan 45 karakters";
+                }
+                return null;
+            }
+        }
+        private string ValidateStreet
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(Street))
+                {
+                    return "Straat moet ingevuld zijn";
+                }
+                else if (Lastname.Length > 100)
+                {
+                    return "Straat mag niet langer zijn dan 100 karakters";
+                }
+                return null;
+            }
+        }
+
+        private string ValidateHouseNumber
+        {
+            get
+            {
+                if (HouseNumber == 0)
+                {
+                    return "Huisnummer mag niet nul zijn";
+                }
+                else if (HouseNumber > 9999)
+                {
+                    return "Huisnummer mag niet groter zijn dan 9999";
+                }
+                return null;
+            }
+        }
+        private string ValidateHouseNumberAddition
+        {
+            get
+            {
+                if (HouseNumberAddition != null)
+                {
+                    if (HouseNumberAddition.Length > 5)
+                    {
+                        return "Huisnummer toevoeging mag niet langer zijn dan 5 karakters";
+                    }
+                }
+                return null;
+            }
+        }
+        private string ValidatePostalCode
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(PostalCode))
+                {
+                    return "Postcode mag niet nul zijn";
+                }
+                else if (PostalCode.Length > 6)
+                {
+                    return "Postcode mag niet langer zijn dan 6 karakter";
+                }
+                return null;
+            }
+        }
+        private string ValidateBirthday
+        {
+            get
+            {
+                if (Birthday == null)
+                {
+                    return "Geboortedatum mag niet nul zijn";
+                }
+                else if (Birthday.Year < 1800)
+                {
+                    return "Geboortedatum moet minimaal in het jaar 1800 zijn";
+                }
+                return null;
+            }
+        }
+        private string ValidateEmail
+        {
+            get
+            {
+                string regexEmail = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+                if (String.IsNullOrWhiteSpace(Email))
+                {
+                    return "Email mag niet nul zijn";
+                }
+                else if (Email.Length > 100)
+                {
+                    return "Email mag niet meer dan 100 karakters hebben";
+                }
+                else if (!Regex.IsMatch(Email, regexEmail))
+                {
+                    return "Email voldoet niet aan een email formaat";
+                }
+                return null;
+            }
+        }
+        private string ValidatePhone
+        {
+            get
+            {
+                string regexPhone = "^\\s*(?:\\+?(\\d{1,3}))?([-. (]*(\\d{3})[-. )]*)?((\\d{3})[-. ]*(\\d{2,4})(?:[-.x ]*(\\d+))?)\\s*$";
+                if (String.IsNullOrWhiteSpace(Phone))
+                {
+                    return "Telefoonnummer moet ingevuld zijn";
+                }
+                else if (Phone.Length > 100)
+                {
+                    return "Telefoonnummer mag niet langer zijn dan 15 karakters";
+                }
+                else if (!Regex.IsMatch(Phone, regexPhone))
+                {
+                    return "Telefoonnummer voldoet niet aan een telefoonnummer formaat";
+                }
+                return null;
+            }
+        }
+        private string ValidatePassword
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(Password))
+                {
+                    return "Wachtwoord moet ingevuld zijn";
+                }
+                else if (Password.Length > 255)
+                {
+                    return "Wachtwoord mag niet langer zijn dan 255 karakters";
+                }
+                return null;
+            }
+        }
+        private string ValidateIban
+        {
+            get
+            {
+                string regexIban = "^(?i)([A-Z]{2}[ -]?[0-9]{2})(?=(?:[ -]?[A-Z0-9]){9,30}$)((?:[ -]?[A-Z0-9]{3,5}){2,7})([ -]?[A-Z0-9]{1,3})?$";
+                if (String.IsNullOrWhiteSpace(Iban))
+                {
+                    return "Iban moet ingevuld zijn";
+                }
+                else if (Iban.Length > 27)
+                {
+                    return "Iban mag niet langer zijn dan 27 karakters";
+                }
+                else if (!Regex.IsMatch(Iban, regexIban))
+                {
+                    return "Iban voldoet niet aan een iban formaat";
+                }
+                return null;
+            }
+        }
+        private string ValidateStatus
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(Status))
+                {
+                    return "Status moet ingevuld zijn";
+                }
+                return null;
+            }
+        }
+        private string ValidateDepartment
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(Department.Name))
+                {
+                    return "Afdeling moet ingevuld zijn";
                 }
                 return null;
             }
@@ -241,46 +432,46 @@ namespace Festispec.ViewModel.employee
                     error = ValidateFirstname;
                     break;
                 case "Lastname":
-                    error = ValidateFirstname;
+                    error = ValidateLastname;
                     break;
                 case "Prefix":
-                    error = ValidateFirstname;
+                    error = ValidatePrefix;
                     break;
                 case "Street":
-                    error = ValidateFirstname;
+                    error = ValidateStreet;
                     break;
                 case "City":
-                    error = ValidateFirstname;
+                    error = ValidateCity;
                     break;
                 case "HouseNumber":
-                    error = ValidateFirstname;
+                    error = ValidateHouseNumber;
                     break;
                 case "HouseNumberAddition":
-                    error = ValidateFirstname;
+                    error = ValidateHouseNumberAddition;
                     break;
                 case "Email":
-                    error = ValidateFirstname;
+                    error = ValidateEmail;
                     break;
                 case "PostalCode":
-                    error = ValidateFirstname;
+                    error = ValidatePostalCode;
                     break;
                 case "Phone":
-                    error = ValidateFirstname;
+                    error = ValidatePhone;
                     break;
                 case "Iban":
-                    error = ValidateFirstname;
+                    error = ValidateIban;
                     break;
                 case "Password":
-                    error = ValidateFirstname;
+                    error = ValidatePassword;
                     break;
                 case "Status":
-                    error = ValidateFirstname;
+                    error = ValidateStatus;
                     break;
                 case "Department":
-                    error = ValidateFirstname;
+                    error = ValidateDepartment;
                     break;
                 case "Birthday":
-                    error = ValidateFirstname;
+                    error = ValidateBirthday;
                     break;
 
             }
