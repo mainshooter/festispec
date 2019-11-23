@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using Festispec.Interface;
 using GalaSoft.MvvmLight;
 using System;
 using System.Windows.Input;
@@ -54,6 +55,8 @@ namespace Festispec.ViewModel.report.element
                 _reportElement.Order = value;
             }
         }
+
+        public IDataParser DataParser { get; set; }
 
         public string JsonData {
             get {

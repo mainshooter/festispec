@@ -11,7 +11,7 @@
 
     <StackPanel>
         <Label>Toevoegen van element</Label>
-        <ComboBox ItemsSource="{Binding ElementTypes}" Text="Select option" BorderThickness="2" SelectedIndex="{Binding SelectedElementIndex}" IsSynchronizedWithCurrentItem="True" >
+        <ComboBox ItemsSource="{Binding ElementTypes}" Text="Select option" BorderThickness="2" SelectedItem="{Binding ReportElement.Type}" IsSynchronizedWithCurrentItem="True" >
 
         </ComboBox>
         <Label>Type query</Label>

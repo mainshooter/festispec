@@ -7,13 +7,12 @@ namespace Festispec.ViewModel.report.data
 {
     public class DataVM
     {
-        public string Type { get; set; }
+        public virtual string Type { get; set; }
 
         public string Where { get; set; }
 
         public string GroupBy { get; set; }
-
-        public IQuestion Question { get; set; }
+        public List<IQuestion> Questions { get; set; }
 
         [PreferredConstructor]
         public DataVM()

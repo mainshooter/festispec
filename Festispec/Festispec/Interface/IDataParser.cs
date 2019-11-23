@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Festispec.Interface
 {
-    public interface IData
+    public interface IDataParser
     {
+        string ParserType { get; }
         List<List<string>> ParseData();
     }
 }

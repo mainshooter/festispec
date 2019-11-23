@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.report.data
 {
-    public class MinDataVM : DataVM, IData
+    public class MinDataParserVM : DataVM, IDataParser
     {
+        public string ParserType => "MIN";
+        public override string Type => ParserType;
+
         public List<List<string>> ParseData()
         {
            

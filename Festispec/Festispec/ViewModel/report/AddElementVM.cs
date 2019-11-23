@@ -23,13 +23,21 @@ namespace Festispec.ViewModel.report
         private DataVM _dataVM;
         private OrderVM _orderVM;
         private SurveyVM _survey;
+        private ReportElementVM _reportElementVM;
 
         public List<string> ElementTypes { get; set; }
 
+        public ReportElementVM ReportElement {
+            get {
+                return _reportElementVM;
+            }
+            set {
+                _reportElementVM = value;
+                RaisePropertyChanged("ReportElement");
+            }
+        }
+
         public ReportVM Report { get; set; }
-
-        public int SelectedElementIndex { get; set; }
-
         public ICommand GoBackCommand { get; set; }
 
         public ICommand AddElementCommand { get; set; }
@@ -49,6 +57,7 @@ namespace Festispec.ViewModel.report
 
         public AddElementVM()
         {
+            ReportElement = new ReportElementVM();
             MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
                 Report = message.SelectedReport;
                 _orderVM = Report.Order;
@@ -57,6 +66,7 @@ namespace Festispec.ViewModel.report
                 {
                     SurveyQuestions.Add(item.Question);
                 }
+                ReportElement = new ReportElementVM();
             });
             _dataTypesRepository = CommonServiceLocator.ServiceLocator.Current.GetInstance<DataTypesRepository>();
             _reportElementFactory = new ReportElementFactory();
@@ -70,22 +80,19 @@ namespace Festispec.ViewModel.report
 
         private void AddElementToReport()
         {
-            string elementType = ElementTypes[SelectedElementIndex];
-            var element = new ReportElementVM();
-            element.Title = "Leuke titel";
-            element.Content = "Test description";
-            element.Type = elementType;
+            ReportElement.Title = "Leuke titel";
+            ReportElement.Content = "Test description";
             
-            if (elementType.Equals("table"))
+            if (ReportElement.Equals("table"))
             {
-                element.Data = new Dictionary<string, List<string>>()
+                ReportElement.Data = new Dictionary<string, List<string>>()
                 {
                     ["id"] = new List<string>() { "1", "2" }
                 };
             }
-            else if (elementType.Equals("linechart"))
+            else if (ReportElement.Type.Equals("linechart"))
             {
-                element.Data = new Dictionary<string, Object>()
+                ReportElement.Data = new Dictionary<string, Object>()
                 {
                     ["xaxisName"] = "Test xas",
                     ["yaxisName"] = "Test yas",
@@ -95,9 +102,9 @@ namespace Festispec.ViewModel.report
                     }
                 };
             }
-            else if (elementType.Equals("piechart"))
+            else if (ReportElement.Type.Equals("piechart"))
             {
-                element.Data = new SeriesCollection
+                ReportElement.Data = new SeriesCollection
                 {
                     new PieSeries
                     {
@@ -125,9 +132,9 @@ namespace Festispec.ViewModel.report
                     }
                 };
             }
-            else if (elementType.Equals("barchart"))
+            else if (ReportElement.Type.Equals("barchart"))
             {
-                element.Data = new Dictionary<string, Object>()
+                ReportElement.Data = new Dictionary<string, Object>()
                 {
                     ["xaxisName"] = "Place",
                     ["yaxisName"] = "Amount",
@@ -140,22 +147,22 @@ namespace Festispec.ViewModel.report
                     }
                 };
             }        
-            else if (elementType.Equals("text"))
+            else if (ReportElement.Type.Equals("text"))
             {
-                element.Data = new Dictionary<string, Object>()
+                ReportElement.Data = new Dictionary<string, Object>()
                 {
                     ["text"] = "test text smiley"
                 };
 
             }
-            else if (elementType.Equals("image"))
+            else if (ReportElement.Type.Equals("image"))
             {
-                element.Data = new Dictionary<string, Object>()
+                ReportElement.Data = new Dictionary<string, Object>()
                 {
                     ["image"] = new byte[0]
                 };
             }
-            var userControl = _reportElementFactory.CreateElement(element);
+            var userControl = _reportElementFactory.CreateElement(ReportElement);
             Report.ReportElementUserControlls.Add(userControl);
             GoBackToReport();
         }
