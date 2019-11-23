@@ -34,6 +34,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditEmployeePage>();
             SimpleIoc.Default.Register<LoginPage>();
             SimpleIoc.Default.Register<AddEventPage>();
+            SimpleIoc.Default.Register<EditEventPage>();
 
             SimpleIoc.Default.Register<ReportVM>();
             SimpleIoc.Default.Register<MainViewModel>();
@@ -46,6 +47,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<UserLoginVM>();
             SimpleIoc.Default.Register<EventListVM>();
             SimpleIoc.Default.Register<AddEventVM>();
+            SimpleIoc.Default.Register<EditEventVM>();
            
         }
 
@@ -66,6 +68,8 @@ namespace Festispec.ViewModel
         public EventListVM EventListVM => ServiceLocator.Current.GetInstance<EventListVM>();
 
         public AddEventVM AddEventVM => ServiceLocator.Current.GetInstance<AddEventVM>();
+
+        public EditEventVM EditEventVM => ServiceLocator.Current.GetInstance<EditEventVM>();
 
         public static void Cleanup()
         {

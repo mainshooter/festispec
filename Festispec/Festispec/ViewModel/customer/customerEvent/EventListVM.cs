@@ -79,7 +79,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             EventRepository eventRepository = new EventRepository();
             EventList = new ObservableCollection<EventVM>(eventRepository.GetEvents());
             OpenAddEvent = new RelayCommand(OpenAddEventPage);
-            //OpenEditEvent = new RelayCommand(OpenEditEventPage);
+            OpenEditEvent = new RelayCommand(OpenEditEventPage);
             //DeleteEventCommand = new RelayCommand(DeleteEvent);
             //OpenSingleEvent = new RelayCommand(OpenSingleEventPage);
         }
@@ -87,6 +87,23 @@ namespace Festispec.ViewModel.customer.customerEvent
         private void OpenAddEventPage()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddEventPage) });
+        }
+
+        private void OpenEditEventPage()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditEventPage) });
+            MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage()
+            {
+                Event = SelectedEvent,
+                EventList = this
+            });
+        }
+
+        public void RefreshEvents()
+        {
+            EventRepository eventRepository = new EventRepository();
+            EventList = new ObservableCollection<EventVM>(eventRepository.GetEvents());
+            RaisePropertyChanged("EventListFiltered");
         }
     }
 }

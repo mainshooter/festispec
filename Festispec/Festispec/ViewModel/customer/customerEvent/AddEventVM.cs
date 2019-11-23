@@ -36,8 +36,11 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public void AddEvent()
         {
+
             using (var context = new Entities())
             {
+                Event.ContactPerson = null;
+                Event.Customer = null;
                 context.Events.Add(Event.ToModel());
                 context.SaveChanges();
             }

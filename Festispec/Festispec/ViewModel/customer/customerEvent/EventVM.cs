@@ -19,21 +19,27 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
         
-        public CustomerVM Customer { 
-            get {
-                return _customer;
-            }
-            set {
+
+
+        public CustomerVM Customer {
+            get => _customer;
+            set
+            {
+                if (value == null) return;
                 _customer = value;
+                _event.CustomerId = value.Id;
+                _event.Customer = value.ToModel();
             }
         }
         
-        public ContactPersonVM ContactPerson { 
-            get {
-                return _contactPerson;
-            }
-            set {
+        public ContactPersonVM ContactPerson {
+            get => _contactPerson;
+            set
+            {
+                if (value == null) return;
                 _contactPerson = value;
+                _event.ContactPersonId = value.Id;
+                _event.ContactPerson = value.ToModel();
             }
         }
 
@@ -48,19 +54,19 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public DateTime BeginDate { 
             get {
-                return _event.BeginDate;
+                return _event.BeginDate.Date;
             }
             set {
-                _event.BeginDate = value;
+                _event.BeginDate = value.Date;
             }
         }
 
         public DateTime EndDate { 
             get {
-                return _event.EndDate;
+                return _event.EndDate.Date;
             }
             set {
-                _event.EndDate = value;
+                _event.EndDate = value.Date;
             }
         }
 
@@ -160,6 +166,8 @@ namespace Festispec.ViewModel.customer.customerEvent
         public EventVM()
         {
             _event = new Domain.Event();
+            BeginDate = DateTime.Today.Date;
+            EndDate = DateTime.Today.Date;
         }
     }
 }

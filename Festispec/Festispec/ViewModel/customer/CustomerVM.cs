@@ -128,5 +128,10 @@ namespace Festispec.ViewModel.customer
         {
             _customer = new Domain.Customer();
         }
+
+        public Domain.Customer ToModel()
+        {
+            return _customer;
+        }
     }
 }

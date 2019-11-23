@@ -94,5 +94,10 @@ namespace Festispec.ViewModel.customer.contactPerson
         {
             _contactPerson = new ContactPerson();
         }
+
+        public ContactPerson ToModel()
+        {
+            return _contactPerson;
+        }
     }
 }
