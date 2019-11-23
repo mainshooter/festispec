@@ -9,6 +9,7 @@ namespace Festispec.Interface
     public interface IDataParser
     {
         string ParserType { get; }
+        IQuestion Question { get; set; }
         List<List<string>> ParseData();
     }
 }

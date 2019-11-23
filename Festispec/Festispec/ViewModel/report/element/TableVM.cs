@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace Festispec.ViewModel.report.element
 {
@@ -18,8 +19,6 @@ namespace Festispec.ViewModel.report.element
             }
             set {
                 _data = value;
-                Dictionary = (Dictionary<string, List<string>>) _data;
-                ApplyChanges();
             }
         }
         
@@ -44,8 +43,38 @@ namespace Festispec.ViewModel.report.element
             EditElementCommand = new RelayCommand(GoToEdit);
         }
 
+        private void DataToDictonary()
+        {
+            try
+            {
+                List<List<string>> dataList = (List<List<string>>)Data;
+                var headers = dataList[0];
+                foreach (var item in headers)
+                {
+                    Dictionary.Add(item, new List<string>());
+                }
+                dataList.RemoveAt(0);
+                while (dataList.Count > 0)
+                {
+                    List<string> dataListItem = dataList[0];
+                    int index = 0;
+                    foreach (var dicItem in Dictionary)
+                    {
+                        dicItem.Value.Add(dataListItem[index]);
+                        index++;
+                    }
+                    dataList.RemoveAt(0);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+        }
+
         public void ApplyChanges()
         {
+            DataToDictonary();
             foreach (var item in Dictionary)
             {
                 DataTable.Columns.Add(item.Key);

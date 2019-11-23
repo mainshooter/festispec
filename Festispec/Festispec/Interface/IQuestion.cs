@@ -5,6 +5,8 @@ namespace Festispec.Interface
 {
     public interface IQuestion
     {
+        int Id { get; }
+        string Question { get; set; }
         QuestionDetails QuestionDetails { get; set; }
         string QuestionType { get; }
         bool ValidateQuestionDetails();

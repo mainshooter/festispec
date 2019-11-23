@@ -16,6 +16,12 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private QuestionDetails _questionDetails;
         private string _optionName;
 
+        public int Id {
+            get {
+                return _surveyQuestion.Id;
+            }
+        }
+
         public QuestionDetails QuestionDetails
         {
             get => _questionDetails;

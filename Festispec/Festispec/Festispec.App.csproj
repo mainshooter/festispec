@@ -126,13 +126,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Interface\IDataDataParser.cs" />
+    <Compile Include="Factory\DataParserFactory.cs" />
+    <Compile Include="Interface\IDataParser.cs" />
     <Compile Include="Interface\ISurveyAnswer.cs" />
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
     <Compile Include="Message\ChangeSelectedOrderMessage.cs" />
     <Compile Include="Message\ChangeSelectedReportElementMessage.cs" />
     <Compile Include="Message\ChangeSelectedReportMessage.cs" />
-    <Compile Include="Repository\DataTypesRepository.cs" />
     <Compile Include="Repository\SurveyRepository.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSessionVm.cs" />
@@ -320,9 +320,6 @@
     <Compile Include="View\Pages\Planning\PlanningOverviewPage.xaml.cs">
       <DependentUpon>PlanningOverviewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrols\Report\ReportControlUserControl.xaml.cs">
-      <DependentUpon>ReportControlUserControl.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -496,10 +493,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Planning\PlanningOverviewPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Usercontrols\Report\ReportControlUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

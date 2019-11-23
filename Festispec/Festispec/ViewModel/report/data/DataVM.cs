@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Ioc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Festispec.ViewModel.report.data
 {
@@ -12,12 +13,11 @@ namespace Festispec.ViewModel.report.data
         public string Where { get; set; }
 
         public string GroupBy { get; set; }
-        public List<IQuestion> Questions { get; set; }
+        public IQuestion Question { get; set; }
 
         [PreferredConstructor]
         public DataVM()
         {
-
         }
 
         public DataVM(string json)
@@ -34,6 +34,7 @@ namespace Festispec.ViewModel.report.data
             dic.Add("Type", Type);
             dic.Add("Where", Where);
             dic.Add("GroupBy", GroupBy);
+            dic.Add("QuestionId", Question.Id.ToString());
             return JsonConvert.SerializeObject(dic);
         }
     }

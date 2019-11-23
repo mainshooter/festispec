@@ -32,6 +32,7 @@ using Festispec.ViewModel.survey.question.QuestionTypes.OpenQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.SliderQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.TableQuestion;
 using GalaSoft.MvvmLight.Ioc;
+using Festispec.Factory;
 
 namespace Festispec.ViewModel
 {
@@ -105,7 +106,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddTableQuestionVM>();
             SimpleIoc.Default.Register<EditTableQuestionVM>();
             SimpleIoc.Default.Register<UserLoginVM>();
-            SimpleIoc.Default.Register<DataTypesRepository>();
+            SimpleIoc.Default.Register<DataParserFactory>();
         }
 
         public AddElementVM AddElementVM => ServiceLocator.Current.GetInstance<AddElementVM>();

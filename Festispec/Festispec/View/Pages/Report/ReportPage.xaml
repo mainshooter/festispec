@@ -15,8 +15,12 @@
                 <ColumnDefinition Width="700"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Margin="5">
-                <local:ReportControlUserControl></local:ReportControlUserControl>
-                <Button Command="{Binding AddElementCommand}">Voeg een element toe</Button>
+            <StackPanel>
+                <Label>Naam rapport</Label>
+                <TextBox BorderThickness="1" Text="{Binding Title}"></TextBox>
+                <Button Command="{Binding SaveReportCommand}">Opslaan</Button>
+            </StackPanel>
+            <Button Command="{Binding AddElementCommand}">Voeg een element toe</Button>
         </StackPanel>
             <ScrollViewer Grid.Column="1" Margin="5">
                 <StackPanel >

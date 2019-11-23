@@ -14,6 +14,7 @@ namespace Festispec.Factory
             {
                 TableUserControl table = new TableUserControl();
                 TableVM tableVm = new TableVM(element);
+                tableVm.ApplyChanges();
                 table.DataContext = tableVm;
                 returningUserControl = table;
             }
