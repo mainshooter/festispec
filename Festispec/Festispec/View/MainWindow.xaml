@@ -1,0 +1,133 @@
+﻿<Window x:Class="Festispec.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Festispec"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None"
+        DataContext="{Binding MainViewModel, Source={StaticResource Locator}}">
+    <Grid Background="#F2F3F8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <Grid Width="200" HorizontalAlignment="Left" Background="#475266" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+            <StackPanel>
+                <StackPanel Height="70" VerticalAlignment="Top">
+                    <StackPanel Height="70" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="FESTI" VerticalAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="#F4FAFF"/>
+                        <TextBlock Text="SPEC" VerticalAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="#BE9E20"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Width="200">
+                    <ListView Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListViewItem Height="50">
+                            <Button Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Normal" Height="50" Width="150" VerticalAlignment="Center" Command="{Binding OpenDashboard}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Home" Width="25" Height="25" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Dashboard" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
+
+                        <ListViewItem Height="50">
+                            <Button Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Normal" Height="50" VerticalAlignment="Center" Command="{Binding OpenEmployee}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Person" Width="25" Height="25" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Medewerkers" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
+
+                        <ListViewItem Height="50">
+                            <Button Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Normal" Height="50" Width="150" VerticalAlignment="Center" Command="{Binding OpenCustomer}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="PersonSearch" Width="25" Height="25" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Klanten" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
+
+                        <ListViewItem Height="50">
+                            <Button Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Normal" Height="50" VerticalAlignment="Center" Command="{Binding OpenEvent}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Event" Width="25" Height="25" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Evenementen" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
+
+                        <ListViewItem Height="50">
+                            <Button Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Normal" Height="50" VerticalAlignment="Center" Command="{Binding OpenAvailability}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Event" Width="25" Height="25" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Beschikbaarheid" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
+
+                        <ListViewItem Height="50">
+                            <Button Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Normal" Height="50" VerticalAlignment="Center" Command="{Binding OpenSick}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Event" Width="25" Height="25" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Ziekmelden" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
+
+                        <ListViewItem Height="50">
+                            <Button Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Normal" Height="50" VerticalAlignment="Center" Command="{Binding OpenPlanning}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Event" Width="25" Height="25" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Planning" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
+
+                        <ListViewItem Height="50">
+                            <Button Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Normal" Height="50" VerticalAlignment="Center" Command="{Binding OpenSurvey}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Event" Width="25" Height="25" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Vragenlijst" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
+                    </ListView>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Height="70" VerticalAlignment="Top" Background="White" Grid.Column="1">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.5"/>
+            </Grid.Effect>
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right" Height="70">
+                <TextBlock Text="{Binding LoggedInEmployee.Fullname}" VerticalAlignment="Center" FontSize="18"/>
+                <materialDesign:PopupBox Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                    <StackPanel Width="150">
+                        <Button Content="Account"/>
+                        <Separator/>
+                        <Button Content="Log uit" Command="{Binding CloseApplication}"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Frame x:Name="frame" Margin="30" Background="White" Content="{Binding Page}" NavigationUIVisibility="Hidden" Width="1020">
+                <Frame.BitmapEffect>
+                    <DropShadowBitmapEffect Color="Black" Direction="50" ShadowDepth="3" Softness="100" Opacity="0.5" />
+                </Frame.BitmapEffect>
+            </Frame>
+        </Grid>
+    </Grid>
+</Window>
