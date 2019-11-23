@@ -3,14 +3,10 @@ using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.employee.availabilty
@@ -74,7 +70,7 @@ namespace Festispec.ViewModel.employee.availabilty
 
         public AvailabilityManagerVM()
         {
-            _toast = new ToastVM();
+            _toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
             SelectedWeek = new AvailabilityWeekVM(CurrentWeek());
             Weeks = new ObservableCollection<AvailabilityWeekVM>();
             Weeks.Add(SelectedWeek);
@@ -228,42 +224,6 @@ namespace Festispec.ViewModel.employee.availabilty
 
             // Return the week of our adjusted day
             return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-        }
-
-        public bool IsInputCorrect()
-        {
-            foreach (var week in Weeks)
-            {
-                if (!(week.Monday.AvailabiltyStart == null && week.Monday.AvailabiltyEnd == null) || !(week.Monday.AvailabiltyStart != null && week.Monday.AvailabiltyEnd != null))
-                {
-                    return false;
-                }
-                if (!(week.Tuesday.AvailabiltyStart == null && week.Tuesday.AvailabiltyEnd == null) || !(week.Tuesday.AvailabiltyStart != null && week.Tuesday.AvailabiltyEnd != null))
-                {
-                    return false;
-                }
-                if (!(week.Wednesday.AvailabiltyStart == null && week.Wednesday.AvailabiltyEnd == null) || !(week.Wednesday.AvailabiltyStart != null && week.Wednesday.AvailabiltyEnd != null))
-                {
-                    return false;
-                }
-                if (!(week.Thursday.AvailabiltyStart == null && week.Thursday.AvailabiltyEnd == null) || !(week.Thursday.AvailabiltyStart != null && week.Thursday.AvailabiltyEnd != null))
-                {
-                    return false;
-                }
-                if (!(week.Friday.AvailabiltyStart == null && week.Friday.AvailabiltyEnd == null) || !(week.Friday.AvailabiltyStart != null && week.Friday.AvailabiltyEnd != null))
-                {
-                    return false;
-                }
-                if (!(week.Saturday.AvailabiltyStart == null && week.Saturday.AvailabiltyEnd == null) || !(week.Saturday.AvailabiltyStart != null && week.Saturday.AvailabiltyEnd != null))
-                {
-                    return false;
-                }
-                if (!(week.Sunday.AvailabiltyStart == null && week.Sunday.AvailabiltyEnd == null) || !(week.Sunday.AvailabiltyStart != null && week.Sunday.AvailabiltyEnd != null))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
     }
 }

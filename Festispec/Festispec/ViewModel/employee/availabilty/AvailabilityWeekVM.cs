@@ -1,10 +1,7 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.auth;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.employee.availabilty
 {
@@ -118,13 +115,13 @@ namespace Festispec.ViewModel.employee.availabilty
             }
         }
 
-        private bool DatesAreInTheSameWeek(DateTime date1, DateTime date2)
+        private bool DatesAreInTheSameWeek(DateTime SelectedWeek, DateTime AllWeeks)
         {
             var cal = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
-            var d1 = date1.Date.AddDays(-1 * (int)cal.GetDayOfWeek(date1));
-            var d2 = date2.Date.AddDays(-1 * (int)cal.GetDayOfWeek(date2));
+            var selWeek = SelectedWeek.Date.AddDays(-1 * (int)cal.GetDayOfWeek(SelectedWeek));
+            var Allweek = AllWeeks.Date.AddDays(-1 * (int)cal.GetDayOfWeek(AllWeeks));
 
-            return d1 == d2;
+            return selWeek == Allweek;
         }
     }
 }

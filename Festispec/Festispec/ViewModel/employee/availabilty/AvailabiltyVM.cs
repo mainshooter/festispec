@@ -2,17 +2,13 @@
 using Festispec.ViewModel.auth;
 using GalaSoft.MvvmLight;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.employee.availabilty
 {
     public class AvailabiltyVM : ViewModelBase
     {
         private AvailabilityInspector _availabilityInspector;
-        private EmployeeVM _employee;
         private DateTime? _availabilityStart;
         private DateTime? _availabilityEnd;
 
@@ -25,20 +21,6 @@ namespace Festispec.ViewModel.employee.availabilty
             private set
             {
                 _availabilityInspector.Id = value;
-            }
-        }
-
-        public EmployeeVM Employee
-        {
-            get
-            {
-                return _employee;
-            }
-            set
-            {
-                _employee = value;
-                // _availabilityInspector.Employee = value.ToModel();
-                _availabilityInspector.EmployeeId = value.Id;
             }
         }
 
@@ -97,16 +79,12 @@ namespace Festispec.ViewModel.employee.availabilty
         public AvailabiltyVM(AvailabilityInspector av)
         {
             _availabilityInspector = av;
-            Employee = new EmployeeVM(av.Employee);
         }
 
         public AvailabiltyVM()
         {
             _availabilityInspector = new AvailabilityInspector();
-            using (var context = new Entities())
-            {
-                Employee = new EmployeeVM(context.Employees.Where(employee => employee.Id == UserSessionVm.Current.Employee.Id).FirstOrDefault());
-            }
+            _availabilityInspector.EmployeeId = UserSessionVm.Current.Employee.Id;
         }
 
         public AvailabilityInspector ToModel()
