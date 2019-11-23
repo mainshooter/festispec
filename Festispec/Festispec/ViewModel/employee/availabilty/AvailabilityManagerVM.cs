@@ -1,8 +1,10 @@
 ﻿using Festispec.Domain;
+using Festispec.ViewModel.auth;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity.Migrations;
 using System.Globalization;
@@ -33,11 +35,19 @@ namespace Festispec.ViewModel.employee.availabilty
             }
         }
 
-        public DateTime WeekEnd
+        public String WeekEnd
         {
             get
             {
-                return SelectedWeek.Week.AddDays(6);
+                return SelectedWeek.Week.AddDays(6).ToString("d");
+            }
+        }
+
+        public String WeekStart
+        {
+            get
+            {
+                return SelectedWeek.Week.ToString("d");
             }
         }
 
@@ -109,15 +119,16 @@ namespace Festispec.ViewModel.employee.availabilty
         {
             using (var context = new Entities())
             {
+                List<AvailabiltyVM> AvailabilityInspectors = new List<AvailabiltyVM>(context.AvailabilityInspectors.ToList().Select(availabilty => new AvailabiltyVM(availabilty)));
                 foreach (var week in Weeks)
                 {
-                    ModifyAvailability(context, week.Monday, 1);
-                    ModifyAvailability(context, week.Tuesday, 2);
-                    ModifyAvailability(context, week.Wednesday, 3);
-                    ModifyAvailability(context, week.Thursday, 4);
-                    ModifyAvailability(context, week.Friday, 5);
-                    ModifyAvailability(context, week.Saturday, 6);
-                    ModifyAvailability(context, week.Sunday, 0);
+                    ModifyAvailability(AvailabilityInspectors, context, week.Monday, 1);
+                    ModifyAvailability(AvailabilityInspectors, context, week.Tuesday, 2);
+                    ModifyAvailability(AvailabilityInspectors, context, week.Wednesday, 3);
+                    ModifyAvailability(AvailabilityInspectors, context, week.Thursday, 4);
+                    ModifyAvailability(AvailabilityInspectors, context, week.Friday, 5);
+                    ModifyAvailability(AvailabilityInspectors, context, week.Saturday, 6);
+                    ModifyAvailability(AvailabilityInspectors, context, week.Sunday, 0);
                 }
                 context.SaveChanges();
             }
@@ -166,23 +177,25 @@ namespace Festispec.ViewModel.employee.availabilty
             return DateTime.Today.AddDays(-1 * diff).Date;
         }
 
-        private void ModifyAvailability(Entities context, AvailabiltyVM availabiltyVM, int dayOfWeek)
+        private void ModifyAvailability(List<AvailabiltyVM> AvailabilityInspectors, Entities context, AvailabiltyVM availabiltyVM, int dayOfWeek)
         {
             if (availabiltyVM.AvailabiltyStart != null && availabiltyVM.AvailabiltyEnd != null)
             {
-                if (context.AvailabilityInspectors.Select(availability => availability).Where(availability => availability.Id == availabiltyVM.Id).FirstOrDefault() == null)
+                if (AvailabilityInspectors.Select(availability => availability).Where(availability => availability.Id == availabiltyVM.Id).FirstOrDefault() == null)
                 {
                     SetDate(availabiltyVM, dayOfWeek);
                     context.Set<AvailabilityInspector>().AddOrUpdate(availabiltyVM.ToModel());
+                    return;
                 }
                 else
                 {
                     context.Set<AvailabilityInspector>().AddOrUpdate(availabiltyVM.ToModel());
+                    return;
                 }
             }
-            else if (context.AvailabilityInspectors.Select(availability => availability).Where(availability => availability.Id == availabiltyVM.Id).FirstOrDefault() != null)
+            else if (AvailabilityInspectors.Select(availability => availability).Where(availability => availability.Id == availabiltyVM.Id).FirstOrDefault() != null)
             {
-                context.AvailabilityInspectors.Remove(context.AvailabilityInspectors.Where(a => a.Id == availabiltyVM.Id).FirstOrDefault());
+                context.AvailabilityInspectors.Remove(AvailabilityInspectors.Where(a => a.Id == availabiltyVM.Id).FirstOrDefault().ToModel());
             }
         }
 
@@ -205,8 +218,8 @@ namespace Festispec.ViewModel.employee.availabilty
             availabilty.AvailabiltyEnd = SelectedDay;
             availabilty.AvailabiltyStart = availabilty.AvailabiltyStart.Value.AddHours(startTimeHour);
             availabilty.AvailabiltyStart = availabilty.AvailabiltyStart.Value.AddMinutes(startTimeMinute);
-            availabilty.AvailabiltyEnd = availabilty.AvailabiltyEnd.Value.AddHours(endTimeHour);
-            availabilty.AvailabiltyEnd = availabilty.AvailabiltyEnd.Value.AddMinutes(endTimeMinute);
+            availabilty.AvailabiltyEnd = availabilty.AvailabiltyEnd.Value.AddHours(endTimeHour - startTimeHour);
+            availabilty.AvailabiltyEnd = availabilty.AvailabiltyEnd.Value.AddMinutes(endTimeMinute - startTimeMinute);
         }
 
         // This presumes that weeks start with Monday.

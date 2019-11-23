@@ -20,7 +20,7 @@
                 <Label Content="{Binding Year}"></Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,25,0">
-                <Label Content="{Binding SelectedWeek.Week}"></Label>
+                <Label Content="{Binding WeekStart}"></Label>
                 <Label Content="/"></Label>
                 <Label Content="{Binding WeekEnd}"></Label>
             </StackPanel>
