@@ -75,15 +75,23 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 return false;
             }
 
-            if (Convert.ToInt32(QuestionDetails.Choices.Cols[0]) > 20)
+            try
             {
-                MessageBox.Show("Het maximum aantal afbeeldingen is 20.");
-                return false;
-            }
+                if (Convert.ToInt32(QuestionDetails.Choices.Cols[0]) > 20)
+                {
+                    MessageBox.Show("Het maximum aantal afbeeldingen is 20.");
+                    return false;
+                }
 
-            if (Convert.ToInt32(QuestionDetails.Choices.Cols[0]) <= 0)
+                if (Convert.ToInt32(QuestionDetails.Choices.Cols[0]) <= 0)
+                {
+                    MessageBox.Show("Het minimum aantal afbeeldingen is 1.");
+                    return false;
+                }
+            }
+            catch (Exception)
             {
-                MessageBox.Show("Het minimum aantal afbeeldingen is 1.");
+                MessageBox.Show("Voer een getal in bij limiet aantal afbeeldingen.");
                 return false;
             }
 

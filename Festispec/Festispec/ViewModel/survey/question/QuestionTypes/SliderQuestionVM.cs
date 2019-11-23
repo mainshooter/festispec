@@ -76,21 +76,29 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 return false;
             }
 
-            if (Convert.ToInt32(QuestionDetails.Choices.Cols[0]) <= 0)
+            try
             {
-                MessageBox.Show("De cijfers moeten positief zijn.");
-                return false;
-            }
+                if (Convert.ToInt32(QuestionDetails.Choices.Cols[0]) <= 0)
+                {
+                    MessageBox.Show("De cijfers moeten positief zijn.");
+                    return false;
+                }
 
-            if (Convert.ToInt32(QuestionDetails.Choices.Cols[1]) > 1000)
-            {
-                MessageBox.Show("De cijfers mogen niet hoger dan 1000 zijn.");
-                return false;
-            }
+                if (Convert.ToInt32(QuestionDetails.Choices.Cols[1]) > 1000)
+                {
+                    MessageBox.Show("De cijfers mogen niet hoger dan 1000 zijn.");
+                    return false;
+                }
 
-            if (Convert.ToInt32(QuestionDetails.Choices.Cols[0]) >= Convert.ToInt32(QuestionDetails.Choices.Cols[1]))
+                if (Convert.ToInt32(QuestionDetails.Choices.Cols[0]) >= Convert.ToInt32(QuestionDetails.Choices.Cols[1]))
+                {
+                    MessageBox.Show("Het laagste cijfer mag niet gelijk of groter zijn dan het hoogste nummer en het moeten cijfers zijn.");
+                    return false;
+                }
+            }
+            catch (Exception)
             {
-                MessageBox.Show("Het laagste cijfer mag niet gelijk of groter zijn dan het hoogste nummer en het moeten cijfers zijn.");
+                MessageBox.Show("Voer een getal in bij laagste en hoogste waarde.");
                 return false;
             }
 
