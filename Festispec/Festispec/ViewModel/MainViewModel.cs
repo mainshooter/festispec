@@ -1,3 +1,4 @@
+using System.Linq;
 using Festispec.View.Pages.Employee;
 using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
@@ -14,8 +15,9 @@ using Festispec.View.Pages.Planning;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.Domain;
-using System.Linq;
 using System.Collections.Generic;
+using Festispec.View.Pages.Survey;
+using Festispec.ViewModel.survey;
 
 namespace Festispec.ViewModel
 {
@@ -34,10 +36,11 @@ namespace Festispec.ViewModel
         public ICommand OpenEvent { get; set; }
         public ICommand OpenSick { get; set; }
         public ICommand OpenPlanning { get; set; }
+        public ICommand OpenSurvey { get; set; }
 
         public Page Page
         {
-            get { return _page; }
+            get => _page;
             set { _page = value; RaisePropertyChanged("Page"); }
         }
 
@@ -62,6 +65,7 @@ namespace Festispec.ViewModel
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenSick = new RelayCommand(OpenSickTab);
             OpenPlanning = new RelayCommand(OpenPlanningTab);
+            OpenSurvey = new RelayCommand(OpenSurveyTab);
 
             Page = ServiceLocator.Current.GetInstance<LoginPage>();
 
@@ -110,7 +114,7 @@ namespace Festispec.ViewModel
 
         private void OpenSickTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage) });
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage)});
         }
 
         private void OpenPlanningTab()
@@ -129,6 +133,18 @@ namespace Festispec.ViewModel
                 eventVM.OrderVM = orderVM;
                 MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
                 MessengerInstance.Send<ChangeSelectedEventVM>(new ChangeSelectedEventVM() { NextEvent = eventVM });
+            }
+        }
+
+        private void OpenSurveyTab()
+        {
+            using (var context = new Entities())
+            {
+                var surveyDomain = context.Surveys.First();
+                var survey = new SurveyVM(surveyDomain);
+                
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage)});
+                MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = survey });
             }
         }
     }
