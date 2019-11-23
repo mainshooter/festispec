@@ -1,5 +1,6 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.customer.contactPerson;
+using Festispec.ViewModel.Customer.order;
 using System;
 
 namespace Festispec.ViewModel.customer.customerEvent
@@ -91,6 +92,8 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
+        public OrderVM OrderVM { get; set; }
+
         public string Street
         {
             get
@@ -142,8 +145,8 @@ namespace Festispec.ViewModel.customer.customerEvent
         public EventVM(Event eventCon)
         {
             _event = eventCon;
-            _customer = new CustomerVM(_event.Customer);
-            _contactPerson = new ContactPersonVM(_event.ContactPerson);
+            //_customer = new CustomerVM(_event.Customer);
+            //_contactPerson = new ContactPersonVM(_event.ContactPerson);
         }
 
         public EventVM()

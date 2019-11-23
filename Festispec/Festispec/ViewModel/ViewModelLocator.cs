@@ -4,6 +4,7 @@ using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Employee;
 using Festispec.View.Pages.Employee.Availability;
+using Festispec.View.Pages.Planning;
 using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Report.element;
 using Festispec.View.Pages.Survey;
@@ -15,9 +16,11 @@ using Festispec.View.Pages.Survey.QuestionTypes.MultipleChoiceQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.SliderQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.TableQuestion;
+using Festispec.ViewModel.planning;
 using Festispec.ViewModel.auth;
 using Festispec.ViewModel.employee;
 using Festispec.ViewModel.report;
+using Festispec.ViewModel.toast;
 using Festispec.ViewModel.survey;
 using Festispec.ViewModel.survey.question.QuestionTypes.ClosedQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.CommentField;
@@ -45,6 +48,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EmployeePage>();
             SimpleIoc.Default.Register<SickPage>();
             SimpleIoc.Default.Register<AddElementPage>();
+            SimpleIoc.Default.Register<PlanningOverviewPage>();
+
             SimpleIoc.Default.Register<EmployeePage>();
             SimpleIoc.Default.Register<AddEmployeePage>();
             SimpleIoc.Default.Register<SingleEmployeePage>();
@@ -74,6 +79,10 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EmployeeListVM>();
             SimpleIoc.Default.Register<AddEmployeeVM>();
             SimpleIoc.Default.Register<AddElementVM>();
+
+            SimpleIoc.Default.Register<ToastVM>();
+            SimpleIoc.Default.Register<PlanningOverviewVM>();
+
             SimpleIoc.Default.Register<EmployeeInfoVM>();
             SimpleIoc.Default.Register<EditEmployeeVM>();
             SimpleIoc.Default.Register<SurveyVM>();
@@ -99,6 +108,7 @@ namespace Festispec.ViewModel
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
         public ReportVM ReportVM => ServiceLocator.Current.GetInstance<ReportVM>();
+        public PlanningOverviewVM PlanningOverviewVM => ServiceLocator.Current.GetInstance<PlanningOverviewVM>();
         public UserLoginVM UserLoginVM => ServiceLocator.Current.GetInstance<UserLoginVM>();
         public AddEmployeeVM AddEmployeeVM => ServiceLocator.Current.GetInstance<AddEmployeeVM>();
         public EmployeeListVM EmployeeListVM => ServiceLocator.Current.GetInstance<EmployeeListVM>();
