@@ -287,9 +287,14 @@ namespace Festispec.ViewModel.employee
         {
             get
             {
+                string regexPostalCode = "\\b[0-9]{4} ?[a-zA-Z]{2}\\b";
                 if (String.IsNullOrWhiteSpace(PostalCode))
                 {
                     return "Postcode mag niet nul zijn";
+                }
+                else if (!Regex.IsMatch(PostalCode, regexPostalCode))
+                {
+                    return "Postcode voldoet niet aan een postcode formaat";
                 }
                 else if (PostalCode.Length > 6)
                 {
