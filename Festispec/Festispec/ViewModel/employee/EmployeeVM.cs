@@ -167,6 +167,7 @@ namespace Festispec.ViewModel.employee
             throw new NotImplementedException();
         }
 
+        #region Validation
         string IDataErrorInfo.Error => null;
 
         string IDataErrorInfo.this[string propertyName]
@@ -481,6 +482,6 @@ namespace Festispec.ViewModel.employee
         {
             "Firstname", "Lastname", "Prefix", "Street", "City", "HouseNumber", "HouseNumberAddition", "Email", "PostalCode", "Phone", "Iban", "Password", "Status", "Department", "Birthday"
         };
-
+        #endregion
     }
 }
