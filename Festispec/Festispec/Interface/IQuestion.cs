@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Festispec.Domain;
+using Festispec.Lib.Survey.Question;
 
-namespace Festispec.ViewModel.survey.question.questionTypes
+namespace Festispec.Interface
 {
     public interface IQuestion
     {
-
+        QuestionDetails QuestionDetails { get; set; }
+        string QuestionType { get; }
+        bool ValidateQuestionDetails();
+        Question ToModel();
     }
 }

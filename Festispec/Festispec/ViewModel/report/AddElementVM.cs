@@ -64,7 +64,7 @@ namespace Festispec.ViewModel.report
                 _survey = _orderVM.Survey;
                 foreach (var item in _survey.Questions)
                 {
-                    SurveyQuestions.Add(item.Question);
+                    //SurveyQuestions.Add(item.Question);
                 }
                 ReportElement = new ReportElementVM();
             });

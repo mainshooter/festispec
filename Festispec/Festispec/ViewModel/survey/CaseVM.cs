@@ -23,8 +23,6 @@ namespace Festispec.ViewModel.survey
             }
         }
 
-        public SurveyVM Survey { get; set; }
-
         public EmployeeVM Employee { get; set; }
 
         public string Status {
@@ -42,7 +40,6 @@ namespace Festispec.ViewModel.survey
         {
             _surveyCase = surveyCase;
             Employee = new EmployeeVM(_surveyCase.Employee);
-            Survey = new SurveyVM(_surveyCase.Survey);
             Answers = new ObservableCollection<SurveyAnswerVM>(_surveyCase.Answers.ToList().Select(a => new SurveyAnswerVM(a)));
         }
 

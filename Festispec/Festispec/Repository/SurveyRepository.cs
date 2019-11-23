@@ -1,19 +1,14 @@
-﻿using Festispec.ViewModel.survey;
-using Festispec.ViewModel.survey.question;
-using Festispec.ViewModel.survey.question.questionTypes;
-using System;
+﻿using Festispec.Interface;
+using Festispec.ViewModel.survey;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.Repository
 {
     public class SurveyRepository
     {
-        public List<SurveyQuestionVM> GetQuestions(SurveyVM survey)
+        public List<IQuestion> GetQuestions(SurveyVM survey)
         {
-            var result = new List<SurveyQuestionVM>(survey.Questions);
+            var result = new List<IQuestion>(survey.Questions);
             return result;
         }
     }

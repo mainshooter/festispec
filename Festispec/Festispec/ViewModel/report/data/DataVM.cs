@@ -1,4 +1,4 @@
-﻿using Festispec.ViewModel.survey.question.questionTypes;
+﻿using Festispec.Interface;
 using GalaSoft.MvvmLight.Ioc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
