@@ -41,6 +41,7 @@ namespace Festispec.ViewModel.survey
         public ICommand AddQuestionCommand { get; set; }
         public ICommand EditQuestionCommand { get; set; }
         public ICommand DeleteQuestionCommand { get; set; }
+        public ICommand SaveCommand { get; set; }
 
         public SurveyInfoVM()
         {
@@ -74,6 +75,7 @@ namespace Festispec.ViewModel.survey
             AddQuestionCommand = new RelayCommand(OpenAddQuestion);
             EditQuestionCommand = new RelayCommand(OpenEditQuestion);
             DeleteQuestionCommand = new RelayCommand(DeleteQuestion);
+            SaveCommand = new RelayCommand(Save);
 
             GetQuestionTypes();
         }
@@ -116,6 +118,18 @@ namespace Festispec.ViewModel.survey
                 context.Questions.Remove(SelectedQuestion.ToModel());
                 context.SaveChanges();
                 SurveyVM.Questions.Remove(SelectedQuestion);
+            }
+        }
+
+        private void Save()
+        {
+            using (var context = new Entities())
+            {
+                if (!SurveyVM.ValidateInputs()) return;
+
+                context.Surveys.Attach(SurveyVM.ToModel());
+                context.Entry(SurveyVM.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
             }
         }
     }

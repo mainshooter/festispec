@@ -2,7 +2,9 @@
 using Festispec.Domain;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using Festispec.Interface;
+using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.survey.question.QuestionTypes;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
@@ -13,8 +15,20 @@ namespace Festispec.ViewModel.survey
     {
         private readonly Survey _survey;
         private ObservableCollection<IQuestion> _questions;
+        private ObservableCollection<string> _statuses;
 
         public int Id => _survey.Id;
+        public string EventName => OrderVM.Event.Name;
+
+        public ObservableCollection<string> Statuses
+        {
+            get => _statuses;
+            set
+            {
+                _statuses = value;
+                RaisePropertyChanged(() => Statuses);
+            }
+        }
 
         public string Description
         {
@@ -38,17 +52,23 @@ namespace Festispec.ViewModel.survey
             }
         }
 
+        public OrderVM OrderVM { get; set; }
+
         [PreferredConstructor]
-        public SurveyVM()
+        public SurveyVM(OrderVM order)
         {
             _survey = new Survey();
             Questions = new ObservableCollection<IQuestion>();
+            OrderVM = order;
+            SetStatuses();
         }
 
-        public SurveyVM(Survey survey)
+        public SurveyVM(OrderVM order, Survey survey)
         {
             _survey = survey;
             Questions = new ObservableCollection<IQuestion>(survey.Questions.ToList().Select(CreateQuestionType));
+            OrderVM = order;
+            SetStatuses();
         }
 
         public Survey ToModel()
@@ -86,7 +106,37 @@ namespace Festispec.ViewModel.survey
             using (var context = new Entities())
             {
                 Questions = new ObservableCollection<IQuestion>(context.Questions.Where(s => s.SurveyId == _survey.Id).ToList().Select(CreateQuestionType));
-            };
+            }
+        }
+
+        private void SetStatuses()
+        {
+            Statuses = new ObservableCollection<string>();
+
+            using (var context = new Entities())
+            {
+                var statuses = context.SurveyStatus.ToList();
+
+                foreach (var status in statuses)
+                {
+                    Statuses.Add(status.Status);
+                }
+            }
+        }
+
+        public bool ValidateInputs()
+        {
+            if (Description == null || Description.Equals(""))
+            {
+                MessageBox.Show("Instructies mag niet leeg zijn.");
+            }
+
+            if (Description.Length > 10000)
+            {
+                MessageBox.Show("Instructies mag niet langer zijn dan 10.000 karakters.");
+            }
+
+            return true;
         }
     }
 }

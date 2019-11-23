@@ -18,9 +18,8 @@ INSERT INTO CaseStatus VALUES ('Klaar')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO SurveyStatus VALUES ('Gestart')
-INSERT INTO SurveyStatus VALUES ('Bezig')
-INSERT INTO SurveyStatus VALUES ('Afgerond')
+INSERT INTO SurveyStatus VALUES ('Concept')
+INSERT INTO SurveyStatus VALUES ('Definitief')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
@@ -35,7 +34,6 @@ INSERT INTO OrderStatus VALUES ('Afgerond')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO InspectorPlanningStatus VALUES ('Aanvraag')
 INSERT INTO InspectorPlanningStatus VALUES ('Ingepland')
 INSERT INTO InspectorPlanningStatus VALUES ('Afgerond')
 COMMIT TRANSACTION
@@ -115,10 +113,10 @@ COMMIT TRANSACTION
 
 -------- BEGIN SURVEY DATA ------------
 BEGIN TRANSACTION
-INSERT INTO Survey VALUES (1, 'Afgerond', 'Survey voor Defqon 1')
-INSERT INTO Survey VALUES (2, 'Bezig', 'Survey voor Xqlusive Holland')
-INSERT INTO Survey VALUES (3, 'Gestart', 'Survey voor Ed Sheeran in Concert')
-INSERT INTO Survey VALUES (4, 'Gestart', 'Survey voor Snollebollekes')
+INSERT INTO Survey VALUES (1, 'Definitief', 'Survey voor Defqon 1')
+INSERT INTO Survey VALUES (2, 'Concept', 'Survey voor Xqlusive Holland')
+INSERT INTO Survey VALUES (3, 'Definitief', 'Survey voor Ed Sheeran in Concert')
+INSERT INTO Survey VALUES (4, 'Concept', 'Survey voor Snollebollekes')
 COMMIT TRANSACTION
 -------- END SURVEY DATA ------------
 
@@ -190,14 +188,14 @@ COMMIT TRANSACTION
 
 BEGIN TRANSACTION
 INSERT INTO InspectorPlanning VALUES (2,1,1, '20190628 10:00:00', '20190628 17:00:00', 'Afgerond', NULL, NULL)
-INSERT INTO InspectorPlanning VALUES (3,1,1, '20190628 10:00:00', '20190628 17:00:00', 'Aanvraag', NULL, NULL)
+INSERT INTO InspectorPlanning VALUES (3,1,1, '20190628 10:00:00', '20190628 17:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (3,2,1, '20190628 17:00:00', '20190629 01:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (2,3,1, '20190629 10:00:00', '20190628 17:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (3,4,1, '20190628 17:00:00', '20190629 01:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (2,5,1, '20190628 10:00:00', '20190628 16:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (3,6,1, '20190628 16:00:00', '20190629 23:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (2,7,2, '20200919 23:00:00', '20200920 07:00:00', 'Ingepland', NULL, NULL)
-INSERT INTO InspectorPlanning VALUES (3,7,2, '20200919 23:00:00', '20200920 07:00:00', 'Aanvraag', NULL, NULL)
+INSERT INTO InspectorPlanning VALUES (3,7,2, '20200919 23:00:00', '20200920 07:00:00', 'Ingepland', NULL, NULL)
 COMMIT TRANSACTION
 
 --BEGIN TRANSACTION

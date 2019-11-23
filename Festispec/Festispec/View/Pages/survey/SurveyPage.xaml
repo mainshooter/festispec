@@ -6,22 +6,37 @@
       xmlns:local="clr-namespace:Festispec.View.Pages.Survey"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Vragenlijst"
+      Title="Vragenlijst bewerken"
       DataContext="{Binding SurveyInfoVM, Source={StaticResource Locator}}">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="Vragenlijst"></Label>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+        <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="{Binding SurveyVM.EventName }" ContentStringFormat="Vragenlijst {0} bewerken"></Label>
+        <Separator Grid.Row="1"></Separator>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Label VerticalAlignment="Top">Instructie:</Label>
+            <TextBox VerticalAlignment="Top" Width="400" Text="{Binding SurveyVM.Description}" TextWrapping="Wrap" AcceptsReturn="True" MinLines="6" VerticalContentAlignment="Top"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Label VerticalAlignment="Center">Status:</Label>
+            <ComboBox Height="30" Width="120" ItemsSource="{Binding SurveyVM.Statuses}" SelectedItem="{Binding SurveyVM.Status}" Margin="18,0,0,0"></ComboBox>
+        </StackPanel>
+        <Button Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding SaveCommand}">Bewerken</Button>
+        <Separator Grid.Row="4"></Separator>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
             <ComboBox Width="150" Margin="0,0,10,0" ItemsSource="{Binding QuestionTypes}" SelectedValue="{Binding SelectedQuestionType}"></ComboBox>
             <Button HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding AddQuestionCommand}">toevoegen</Button>
         </StackPanel>
-        <DataGrid Grid.Row="2" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedQuestion}" ItemsSource="{Binding SurveyVM.Questions}" Background="White" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="DarkGray" HeadersVisibility="Column" BorderThickness="0">
+        <DataGrid Grid.Row="6" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedQuestion}" ItemsSource="{Binding SurveyVM.Questions}" CanUserSortColumns="False" Background="White" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="DarkGray" HeadersVisibility="Column" BorderThickness="0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Vraag" Binding="{Binding QuestionDetails.Question}" Width="*" FontWeight="DemiBold" />
                 <DataGridTextColumn Header="Type" Binding="{Binding QuestionType}" Width="*" FontWeight="DemiBold" />
