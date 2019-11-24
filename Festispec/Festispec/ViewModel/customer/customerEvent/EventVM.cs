@@ -18,13 +18,25 @@ namespace Festispec.ViewModel.customer.customerEvent
                 _event.Id = value;
             }
         }
-        
+
+        public Domain.Customer CustomerModel
+        {
+            get => _event.Customer;
+            set => _event.Customer = value;
+        }
+
+        public ContactPerson ContactPersonModel
+        {
+            get => _event.ContactPerson;
+            set => _event.ContactPerson = value;
+        }
 
 
         public CustomerVM Customer {
             get => _customer;
             set
             {
+               
                 if (value == null) return;
                 _customer = value;
                 _event.CustomerId = value.Id;
@@ -36,6 +48,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             get => _contactPerson;
             set
             {
+                
                 if (value == null) return;
                 _contactPerson = value;
                 _event.ContactPersonId = value.Id;

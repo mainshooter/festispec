@@ -20,8 +20,35 @@ namespace Festispec.ViewModel.customer.customerEvent
         private int _contactIndex;
         public ICommand EditEventCommand { get; set; }
         public ICommand CloseEditEventCommand { get; set; }
-        public ObservableCollection<CustomerVM> Customers {get; set;}
+        private CustomerVM _selectedCustomer;
+        public ObservableCollection<CustomerVM> Customers { get; set; }
         public ObservableCollection<ContactPersonVM> ContactPersons { get; set; }
+
+        public ObservableCollection<ContactPersonVM> FilteredContactPersons
+        {
+            get
+            {
+                if (SelectedCustomer != null)
+                {
+                    return new ObservableCollection<ContactPersonVM>(ContactPersons.Select(contactperson => contactperson).Where(contactperson => contactperson.CustomerID == _selectedCustomer.Id));
+                }
+                return null;
+            }
+        }
+
+        public CustomerVM SelectedCustomer
+        {
+            get
+            {
+                return _selectedCustomer;
+            }
+            set
+            {
+                Event.Customer = value;
+                _selectedCustomer = value;
+                RaisePropertyChanged("FilteredContactPersons");
+            }
+        }
 
         public EventVM Event
         {
