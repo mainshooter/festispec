@@ -35,7 +35,53 @@ namespace Festispec.ViewModel.report.data
             {
                 return ParseDataTableQuestion();
             }
+            if (questionType.Equals("Schuifbalk vraag"))
+            {
+                return ParseSliderQuestion();
+            }
             return new List<List<string>>();
+        }
+
+        private List<List<string>> ParseSliderQuestion()
+        {
+            var result = new List<List<string>>();
+            var answers = new List<SurveyAnswerVM>();
+            using (var context = new Entities())
+            {
+                var dbResult = context.Answers.Where(answer => answer.QuestionId.Equals(Question.Id)).ToList();
+                answers = new List<SurveyAnswerVM>(dbResult.Select(answer => new SurveyAnswerVM(answer)).ToList());
+            }
+            List<string> headerRow = new List<string>();
+            int startIndex = int.Parse(Question.QuestionDetails.Choices.Cols[0]);
+            int endIndex = int.Parse(Question.QuestionDetails.Choices.Cols[1]);
+            while (startIndex < endIndex)
+            {
+                headerRow.Add(startIndex.ToString());
+                startIndex++;
+            }
+            result.Add(headerRow);
+
+            foreach (var answer in answers)
+            {
+                startIndex = int.Parse(Question.QuestionDetails.Choices.Cols[0]);
+                endIndex = int.Parse(Question.QuestionDetails.Choices.Cols[1]);
+                var resultRow = new List<string>();
+                while (startIndex < endIndex)
+                {
+                    if (startIndex == int.Parse(answer.Answer))
+                    {
+                        resultRow.Add("1");
+                    }
+                    else
+                    {
+                        resultRow.Add("");
+                    }
+                    startIndex++;
+                }
+                result.Add(resultRow);
+            }
+
+            return result;
         }
 
         private List<List<string>> ParseDataTableQuestion()
