@@ -75,11 +75,11 @@ namespace Festispec.ViewModel.survey
                 SurveyVM = message.NextSurvey;
             });
 
-            AddQuestionCommand = new RelayCommand(OpenAddQuestion);
-            EditQuestionCommand = new RelayCommand(OpenEditQuestion);
-            DeleteQuestionCommand = new RelayCommand(DeleteQuestion);
+            AddQuestionCommand = new RelayCommand(OpenAddQuestion, IsConcept);
+            EditQuestionCommand = new RelayCommand(OpenEditQuestion, IsConcept);
+            DeleteQuestionCommand = new RelayCommand(DeleteQuestion, IsConcept);
             SaveCommand = new RelayCommand(Save);
-            ResetCommand = new RelayCommand(Reset);
+            ResetCommand = new RelayCommand(Reset, IsConcept);
             CasesCommand = new RelayCommand(ShowCases);
 
             GetQuestionTypes();
@@ -156,6 +156,13 @@ namespace Festispec.ViewModel.survey
         private void ShowCases()
         {
             throw new NotImplementedException();
+        }
+
+        private bool IsConcept()
+        {
+            if (SurveyVM == null) return true;
+
+            return SurveyVM.Status == "Concept";
         }
     }
 }
