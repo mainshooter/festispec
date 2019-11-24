@@ -28,6 +28,19 @@
                     </StackPanel>
                 </StackPanel>
 
+                <Grid>
+                    <ListView ItemsSource="{Binding MenuList}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Button Content="{Binding MenuList}">
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+
                 <StackPanel Width="200">
                     <ListView Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListViewItem Height="50">

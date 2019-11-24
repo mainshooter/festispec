@@ -10,6 +10,7 @@ using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.Message;
+using System.Collections.ObjectModel;
 
 namespace Festispec.ViewModel
 {
@@ -28,6 +29,8 @@ namespace Festispec.ViewModel
         public ICommand OpenEvent { get; set; }
         public ICommand OpenSick { get; set; }
 
+        public ObservableCollection<string> MenuList { get; set; }
+
         public Page Page
         {
             get { return _page; }
@@ -40,6 +43,7 @@ namespace Festispec.ViewModel
             }
             set {
                 _loggedInEmployee = value;
+                CreateMenu();
                 RaisePropertyChanged("LoggedInEmployee");
             }
         }
@@ -47,6 +51,9 @@ namespace Festispec.ViewModel
         //constructor
         public MainViewModel()
         {
+            MenuList = new ObservableCollection<string>();
+            CreateMenu();
+
             CloseApplication = new RelayCommand(CloseApp);
             OpenDashboard = new RelayCommand(OpenDashboardTab);
             OpenEmployee = new RelayCommand(OpenEmployeeTab);
@@ -67,6 +74,28 @@ namespace Festispec.ViewModel
             });
         }
 
+        private void CreateMenu()
+        {
+            if(_loggedInEmployee == null)
+            {
+                return;
+            }
+            else
+            {
+                switch(_loggedInEmployee.Department.Name)
+                {
+                    case "Inspectie":
+                    MenuList.Add("Inspectie");
+                    MenuList.Add("Test");
+                    break;
+                    default:
+                    MenuList.Add("Sales");
+                    break;
+                }
+            }
+            RaisePropertyChanged("MenuList");
+
+        }
 
         //methodes
         private void CloseApp()
