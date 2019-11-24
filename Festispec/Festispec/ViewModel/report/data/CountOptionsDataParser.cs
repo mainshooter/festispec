@@ -24,7 +24,60 @@ namespace Festispec.ViewModel.report.data
             {
                 return ParseDataMultipleChoise();
             }
+            if (questionType.Equals("Schuifbalk vraag"))
+            {
+                return ParseSliderQuestion();
+            }
             return new List<List<string>>();
+        }
+
+        private List<List<string>> ParseSliderQuestion()
+        {
+            var result = new List<List<string>>();
+            var answers = GetQuestionAnswers();
+
+            List<string> headerRow = new List<string>();
+            int startIndex = int.Parse(Question.QuestionDetails.Choices.Cols[0]);
+            int endIndex = int.Parse(Question.QuestionDetails.Choices.Cols[1]);
+            while (startIndex < endIndex)
+            {
+                headerRow.Add(startIndex.ToString());
+                startIndex++;
+            }
+            result.Add(headerRow);
+            List<int> totalChoises = new List<int>();
+            for (int i = 0; i < headerRow.Count; i++)
+            {
+                totalChoises.Add(0);
+            }
+            foreach (var answer in answers)
+            {
+                startIndex = int.Parse(Question.QuestionDetails.Choices.Cols[0]);
+                endIndex = int.Parse(Question.QuestionDetails.Choices.Cols[1]);
+                var resultRow = new List<string>();
+                while (startIndex < endIndex)
+                {
+                    int totalChoisesIndex = 0;
+                    int answerSelectedRange = int.Parse(answer.Answer);
+                    for (int i = 0; i < headerRow.Count; i++)
+                    {
+                        if (startIndex == answerSelectedRange)
+                        {
+                            totalChoises[totalChoisesIndex]++;
+                            break;
+                        }
+                        totalChoisesIndex++;
+                    }
+                    startIndex++;
+                }
+            }
+            List<string> totalChoisesAsString = new List<string>();
+            foreach (var item in totalChoises)
+            {
+                totalChoisesAsString.Add(item.ToString());
+            }
+            result.Add(totalChoisesAsString);
+            return result;
         }
 
         private List<List<string>> ParseDataMultipleChoise()

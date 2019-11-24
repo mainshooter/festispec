@@ -22,6 +22,7 @@ namespace Festispec.Factory
             {
                 LineChartUserControl lineChart = new LineChartUserControl();
                 LineChartVM lineChartVm = new LineChartVM(element);
+                lineChartVm.ApplyChanges();
                 lineChart.DataContext = lineChartVm;
                 returningUserControl = lineChart;
             }

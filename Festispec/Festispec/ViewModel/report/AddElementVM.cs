@@ -87,22 +87,7 @@ namespace Festispec.ViewModel.report
             ReportElement.Content = "Test description";
             IDataParser dataVM = _dataParserFactory.GetDataParser(SelectedQueryType);
             dataVM.Question = SelectedQuestion;
-            if (ReportElement.Type.Equals("table"))
-            {
-                ReportElement.Data = dataVM.ParseData();
-            }
-            //else if (ReportElement.Type.Equals("linechart"))
-            //{
-            //    ReportElement.Data = new Dictionary<string, Object>()
-            //    {
-            //        ["xaxisName"] = "Test xas",
-            //        ["yaxisName"] = "Test yas",
-            //        ["seriescollection"] = new SeriesCollection
-            //        {
-            //            new LineSeries { Title = "Bezoekers", Values = new ChartValues<int> {40, 60, 50, 20, 40, 60}}
-            //        }
-            //    };
-            //}
+            ReportElement.Data = dataVM.ParseData();
             //else if (ReportElement.Type.Equals("piechart"))
             //{
             //    ReportElement.Data = new SeriesCollection
@@ -133,10 +118,6 @@ namespace Festispec.ViewModel.report
             //        }
             //    };
             //}
-            else if (ReportElement.Type.Equals("barchart"))
-            {
-                ReportElement.Data = dataVM.ParseData();
-            }
             //else if (ReportElement.Type.Equals("text"))
             //{
             //    ReportElement.Data = new Dictionary<string, Object>()
