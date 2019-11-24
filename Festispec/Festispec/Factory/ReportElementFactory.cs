@@ -30,6 +30,7 @@ namespace Festispec.Factory
             {
                 PieChartUserControl pieChart = new PieChartUserControl();
                 PieChartVM pieChartVm = new PieChartVM(element);
+                pieChartVm.ApplyChanges();
                 pieChart.DataContext = pieChartVm;
                 returningUserControl = pieChart;
             }
