@@ -36,6 +36,7 @@ namespace Festispec.Factory
             {
                 BarChartUserControl barChart = new BarChartUserControl();
                 BarChartVM barChartVm = new BarChartVM(element);
+                barChartVm.ApplyChanges();
                 barChart.DataContext = barChartVm;
                 returningUserControl = barChart;
 

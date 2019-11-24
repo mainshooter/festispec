@@ -133,21 +133,10 @@ namespace Festispec.ViewModel.report
             //        }
             //    };
             //}
-            //else if (ReportElement.Type.Equals("barchart"))
-            //{
-            //    ReportElement.Data = new Dictionary<string, Object>()
-            //    {
-            //        ["xaxisName"] = "Place",
-            //        ["yaxisName"] = "Amount",
-            //        ["labels"] = new List<string> { "test1", "test2", "test3", "test4", "test5" },
-            //        ["seriescollection"] = new SeriesCollection
-            //        {
-            //            new ColumnSeries {Title = "testdata" , Values = new ChartValues<int>{10,20,30,40,50} },
-
-            //            new ColumnSeries {Title = "testdata2" , Values = new ChartValues<int>{15,25,35,45,55} }
-            //        }
-            //    };
-            //}        
+            else if (ReportElement.Type.Equals("barchart"))
+            {
+                ReportElement.Data = dataVM.ParseData();
+            }
             //else if (ReportElement.Type.Equals("text"))
             //{
             //    ReportElement.Data = new Dictionary<string, Object>()

@@ -45,12 +45,8 @@ namespace Festispec.ViewModel.report.data
         private List<List<string>> ParseSliderQuestion()
         {
             var result = new List<List<string>>();
-            var answers = new List<SurveyAnswerVM>();
-            using (var context = new Entities())
-            {
-                var dbResult = context.Answers.Where(answer => answer.QuestionId.Equals(Question.Id)).ToList();
-                answers = new List<SurveyAnswerVM>(dbResult.Select(answer => new SurveyAnswerVM(answer)).ToList());
-            }
+            var answers = GetQuestionAnswers();
+
             List<string> headerRow = new List<string>();
             int startIndex = int.Parse(Question.QuestionDetails.Choices.Cols[0]);
             int endIndex = int.Parse(Question.QuestionDetails.Choices.Cols[1]);
@@ -87,12 +83,7 @@ namespace Festispec.ViewModel.report.data
         private List<List<string>> ParseDataTableQuestion()
         {
             var result = new List<List<string>>();
-            var answers = new List<SurveyAnswerVM>();
-            using (var context = new Entities())
-            {
-                var dbResult = context.Answers.Where(answer => answer.QuestionId.Equals(Question.Id)).ToList();
-                answers = new List<SurveyAnswerVM>(dbResult.Select(answer => new SurveyAnswerVM(answer)).ToList());
-            }
+            var answers = GetQuestionAnswers();
             List<string> headerRow = new List<string>(Question.QuestionDetails.Choices.Cols);
             result.Add(headerRow);
 
@@ -130,12 +121,7 @@ namespace Festispec.ViewModel.report.data
         {
             var result = new List<List<string>>();
 
-            var answers = new List<SurveyAnswerVM>();
-            using (var context = new Entities())
-            {
-                var dbResult = context.Answers.Where(answer => answer.QuestionId.Equals(Question.Id)).ToList();
-                answers = new List<SurveyAnswerVM>(dbResult.Select(answer => new SurveyAnswerVM(answer)).ToList());
-            }
+            var answers = GetQuestionAnswers();
             List<string> headerRow = new List<string>(Question.QuestionDetails.Choices.Cols);
             result.Add(headerRow);
             foreach (var item in answers)
@@ -162,12 +148,7 @@ namespace Festispec.ViewModel.report.data
         private List<List<string>> ParseDataOpenQuestion()
         {
             var result = new List<List<string>>();
-            var answers = new List<SurveyAnswerVM>();
-            using (var context = new Entities())
-            {
-                var dbResult = context.Answers.Where(answer => answer.QuestionId.Equals(Question.Id)).ToList();
-                answers = new List<SurveyAnswerVM>(dbResult.Select(answer => new SurveyAnswerVM(answer)).ToList());
-            }
+            var answers = GetQuestionAnswers();
             result.Add(new List<string>() { Question.QuestionDetails.Question});
 
             foreach (var item in answers)

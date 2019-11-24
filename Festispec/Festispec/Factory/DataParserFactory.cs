@@ -21,6 +21,7 @@ namespace Festispec.Factory
                 "HIGH",
                 "AVG",
                 "COUNT",
+                "SUM",
                 "COUNT_OPTIONS"
             };
         }
@@ -38,6 +39,10 @@ namespace Festispec.Factory
             if (type.Equals("COUNT"))
             {
                 return new CountDataParser();
+            }
+            if (type.Equals("COUNT_OPTIONS"))
+            {
+                return new CountOptionsDataParser();
             }
             return null;
         }

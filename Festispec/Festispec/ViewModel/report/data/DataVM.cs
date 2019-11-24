@@ -1,4 +1,6 @@
-﻿using Festispec.Interface;
+﻿using Festispec.Domain;
+using Festispec.Interface;
+using Festispec.ViewModel.survey.answer;
 using GalaSoft.MvvmLight.Ioc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -36,6 +38,17 @@ namespace Festispec.ViewModel.report.data
             dic.Add("GroupBy", GroupBy);
             dic.Add("QuestionId", Question.Id.ToString());
             return JsonConvert.SerializeObject(dic);
+        }
+
+        protected List<SurveyAnswerVM> GetQuestionAnswers()
+        {
+            var answers = new List<SurveyAnswerVM>();
+            using (var context = new Entities())
+            {
+                var dbResult = context.Answers.Where(answer => answer.QuestionId.Equals(Question.Id)).ToList();
+                answers = new List<SurveyAnswerVM>(dbResult.Select(answer => new SurveyAnswerVM(answer)).ToList());
+            }
+            return answers;
         }
     }
 }

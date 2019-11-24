@@ -16,12 +16,7 @@ namespace Festispec.ViewModel.report.data
         public List<List<string>> ParseData()
         {
             var result = new List<List<string>>();
-            var answers = new List<SurveyAnswerVM>();
-            using (var context = new Entities())
-            {
-                var dbResult = context.Answers.Where(answer => answer.QuestionId.Equals(Question.Id)).ToList();
-                answers = new List<SurveyAnswerVM>(dbResult.Select(answer => new SurveyAnswerVM(answer)).ToList());
-            }
+            var answers = GetQuestionAnswers();
             List<string> headerRow = new List<string>();
             headerRow.Add("Aantal ingevulde cases");
             result.Add(headerRow);
