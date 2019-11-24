@@ -30,6 +30,7 @@ namespace Festispec.ViewModel.survey
         {
             MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
                 SurveyVM = message.NextSurvey;
+                SurveyVM.Status = SurveyVM.Statuses[0];
             });
 
             SaveEditCommand = new RelayCommand(SaveEdit);

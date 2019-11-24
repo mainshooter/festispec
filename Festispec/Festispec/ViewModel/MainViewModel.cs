@@ -17,6 +17,7 @@ using Festispec.ViewModel.customer.customerEvent;
 using Festispec.Domain;
 using System.Collections.Generic;
 using Festispec.View.Pages.Survey;
+using Festispec.ViewModel.survey;
 
 namespace Festispec.ViewModel
 {
@@ -139,22 +140,20 @@ namespace Festispec.ViewModel
         {
             using (var context = new Entities())
             {
+//                var evenement = context.Events.ToList().Select(e => new EventVM(e)).Last();
+//                var order = context.Orders.ToList().Select(o => new OrderVM(o)).Last();
+//                order.Event = evenement;
+//                evenement.OrderVM = order;
+//                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
+//                MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = order.Survey });
 
                 var evenement = context.Events.ToList().Select(e => new EventVM(e)).Last();
                 var order = context.Orders.ToList().Select(o => new OrderVM(o)).Last();
                 order.Event = evenement;
                 evenement.OrderVM = order;
-                //var surveyDomain = context.Surveys.First();
-                //var survey = new SurveyVM(order, surveyDomain);
-                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
-                MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = order.Survey });
-
-//                var evenement = context.Events.ToList().Select(e => new EventVM(e)).Last();
-//                var order = context.Orders.ToList().Select(o => new OrderVM(o)).Last();
-//                order.Event = evenement;
-//                evenement.OrderVM = order;
-//                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddSurveyPage)});
-//                MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = evenement.OrderVM.Survey });
+                var survey = new SurveyVM(order);
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddSurveyPage)});
+                MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = survey });
             }
         }
     }

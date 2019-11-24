@@ -39,7 +39,11 @@ namespace Festispec.ViewModel.survey
         public string Status
         {
             get => _survey.Status;
-            set => _survey.Status = value;
+            set
+            {
+                _survey.Status = value;
+                RaisePropertyChanged(() => Status);
+            }
         }
 
         public ObservableCollection<IQuestion> Questions
@@ -109,7 +113,7 @@ namespace Festispec.ViewModel.survey
             }
         }
 
-        private void SetStatuses()
+        public void SetStatuses()
         {
             Statuses = new ObservableCollection<string>();
 
