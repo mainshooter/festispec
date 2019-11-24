@@ -55,19 +55,16 @@ namespace Festispec.ViewModel.report.data
                 startIndex = int.Parse(Question.QuestionDetails.Choices.Cols[0]);
                 endIndex = int.Parse(Question.QuestionDetails.Choices.Cols[1]);
                 var resultRow = new List<string>();
+                int internIndex = 0;
+                int answerSelectedRange = int.Parse(answer.Answer);
                 while (startIndex < endIndex)
                 {
-                    int totalChoisesIndex = 0;
-                    int answerSelectedRange = int.Parse(answer.Answer);
-                    for (int i = 0; i < headerRow.Count; i++)
+                    if (startIndex == answerSelectedRange)
                     {
-                        if (startIndex == answerSelectedRange)
-                        {
-                            totalChoises[totalChoisesIndex]++;
-                            break;
-                        }
-                        totalChoisesIndex++;
+                        totalChoises[internIndex]++;
+                        break;
                     }
+                    internIndex++;
                     startIndex++;
                 }
             }
