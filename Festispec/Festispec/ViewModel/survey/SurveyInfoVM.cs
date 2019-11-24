@@ -44,6 +44,7 @@ namespace Festispec.ViewModel.survey
         public ICommand DeleteQuestionCommand { get; set; }
         public ICommand SaveCommand { get; set; }
         public ICommand ResetCommand { get; set; }
+        public ICommand CasesCommand { get; set; }
 
         public SurveyInfoVM()
         {
@@ -79,6 +80,7 @@ namespace Festispec.ViewModel.survey
             DeleteQuestionCommand = new RelayCommand(DeleteQuestion);
             SaveCommand = new RelayCommand(Save);
             ResetCommand = new RelayCommand(Reset);
+            CasesCommand = new RelayCommand(ShowCases);
 
             GetQuestionTypes();
         }
@@ -149,6 +151,11 @@ namespace Festispec.ViewModel.survey
                 SurveyVM.OrderVM.ToModel().Surveys.Clear();
                 SurveyVM.Questions.Clear();
             }
+        }
+
+        private void ShowCases()
+        {
+            throw new NotImplementedException();
         }
     }
 }
