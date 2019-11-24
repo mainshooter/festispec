@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Festispec.ViewModel.toast;
 
 namespace Festispec.ViewModel.survey
 {
@@ -136,6 +137,8 @@ namespace Festispec.ViewModel.survey
                 context.Entry(SurveyVM.ToModel()).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
             }
+
+            CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Vragenlijst bijgewerkt.");
         }
 
         private void Reset()
@@ -151,6 +154,8 @@ namespace Festispec.ViewModel.survey
                 SurveyVM.OrderVM.ToModel().Surveys.Clear();
                 SurveyVM.Questions.Clear();
             }
+
+            CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Vragen verwijderd.");
         }
 
         private void ShowCases()
