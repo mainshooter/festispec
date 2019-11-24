@@ -50,41 +50,44 @@ namespace Festispec.ViewModel.report.element
 
                 var dataCollectionList = new List<List<string>>();
                 int columnIndex = 0;
-                foreach (var item in dataList)
-                {
-                    var dataCollection = new List<string>();
-                    for (int i = 0; i < dataList.Count; i++)
-                    {
-                        var row = dataList[i];
-                        var column = row[columnIndex];
 
-                        dataCollection.Add(column);
-                    }
-                    columnIndex++;
-                    dataCollectionList.Add(dataCollection);
+                var headers = dataList[0];
+                foreach (var item in headers)
+                {
+                    dataCollectionList.Add(new List<string> { item });
                 }
+                dataList.RemoveAt(0);
 
-                var titles = new List<string>();
-                foreach (var item in dataCollectionList)
+                while (dataList.Count > 0)
                 {
-                    titles.Add(item[0]);
+                    List<string> dataListItem = dataList[0];
+                    int index = 0;
+                    foreach (var listItem in dataCollectionList)
+                    {
+                        listItem.Add(dataListItem[index]);
+                        index++;
+                    }
+                    dataList.RemoveAt(0);
                 }
 
                 var seriesCollection = new SeriesCollection();
-                foreach (var title in titles)
+                foreach (var title in headers)
                 {
                     seriesCollection.Add(new ColumnSeries() { Title = title});
-                }
-                foreach (var item in dataCollectionList)
-                {
-                    item.RemoveAt(0);
                 }
 
                 List<List<int>> IntCollection = new List<List<int>>();
                 for (int i = 0; i < dataCollectionList.Count; i++)
                 {
                     var item = dataCollectionList[i];
-                    var intList = item.Select(int.Parse).ToList();
+                    List<int> intList = new List<int>();
+                    for (int j = 0; j < item.Count; j++)
+                    {
+                        if (j > 0)
+                        {
+                            intList.Add(int.Parse(item[j]));
+                        }
+                    }
                     IntCollection.Add(intList);
                 }
                 for (int i = 0; i < seriesCollection.Count; i++)
