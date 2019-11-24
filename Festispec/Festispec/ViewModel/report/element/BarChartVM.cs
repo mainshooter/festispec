@@ -49,7 +49,6 @@ namespace Festispec.ViewModel.report.element
                 List<List<string>> dataList = (List<List<string>>)Data;
 
                 var dataCollectionList = new List<List<string>>();
-                int columnIndex = 0;
 
                 var headers = dataList[0];
                 foreach (var item in headers)
