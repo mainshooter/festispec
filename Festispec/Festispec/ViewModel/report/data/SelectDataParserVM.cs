@@ -1,6 +1,7 @@
 ﻿using Festispec.Domain;
 using Festispec.Interface;
 using Festispec.ViewModel.survey.answer;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,22 +11,6 @@ namespace Festispec.ViewModel.report.data
     {
         public string ParserType => "SELECT";
         public override string Type => ParserType;
-
-        public List<string> SupportedQuestionTypes { get; private set; }
-        public List<string> SupportedElementTypes { get; private set; }
-
-        public SelectDataParserVM()
-        {
-            SupportedQuestionTypes = new List<string>()
-            {
-                "Open vraag",
-                "Meerkeuze vraag",
-            };
-            SupportedElementTypes = new List<string>()
-            {
-                "table",
-            };
-        }
 
         //INSERT INTO QuestionType VALUES('Afbeelding galerij vraag')
         //INSERT INTO QuestionType VALUES('Gesloten vraag')
@@ -37,15 +22,62 @@ namespace Festispec.ViewModel.report.data
         //INSERT INTO QuestionType VALUES('Teken vraag')
         public List<List<string>> ParseData()
         {
-            if (Question.QuestionType.Equals("Open vraag"))
+            string questionType = Question.QuestionType;
+            if (questionType.Equals("Open vraag"))
             {
                 return ParseDataOpenQuestion();
             }
-            if (Question.QuestionType.Equals("Meerkeuze vraag"))
+            if (questionType.Equals("Meerkeuze vraag"))
             {
                 return ParseDataMultipleChoise();
             }
+            if (questionType.Equals("Tabel vraag"))
+            {
+                return ParseDataTableQuestion();
+            }
             return new List<List<string>>();
+        }
+
+        private List<List<string>> ParseDataTableQuestion()
+        {
+            var result = new List<List<string>>();
+            var answers = new List<SurveyAnswerVM>();
+            using (var context = new Entities())
+            {
+                var dbResult = context.Answers.Where(answer => answer.QuestionId.Equals(Question.Id)).ToList();
+                answers = new List<SurveyAnswerVM>(dbResult.Select(answer => new SurveyAnswerVM(answer)).ToList());
+            }
+            List<string> headerRow = new List<string>(Question.QuestionDetails.Choices.Cols);
+            result.Add(headerRow);
+
+            int selectedColIndex = 0;
+            string selectedColumnName = Question.QuestionDetails.Choices.SelectedCol;
+            foreach (var item in Question.QuestionDetails.Choices.Cols)
+            {
+                if (selectedColumnName.Equals(item))
+                {
+                    break;
+                }
+                selectedColIndex++;
+            }
+
+            foreach (var answer in answers)
+            {
+                var parsedAnswer = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(answer.Answer);
+                var answerList = parsedAnswer["Answers"];
+                for (int i = 0; i < answerList.Count; i++)
+                {
+                    if (i == selectedColIndex)
+                    {
+                        var selectedOptionAnswer = int.Parse(answerList[i]);
+                        answerList[i] = Question.QuestionDetails.Choices.Options[selectedOptionAnswer];
+                    }
+                }
+                result.Add(answerList);
+            }
+
+
+            return result;
         }
 
         private List<List<string>> ParseDataMultipleChoise()
