@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.survey
@@ -42,6 +43,7 @@ namespace Festispec.ViewModel.survey
         public ICommand EditQuestionCommand { get; set; }
         public ICommand DeleteQuestionCommand { get; set; }
         public ICommand SaveCommand { get; set; }
+        public ICommand ResetCommand { get; set; }
 
         public SurveyInfoVM()
         {
@@ -76,6 +78,7 @@ namespace Festispec.ViewModel.survey
             EditQuestionCommand = new RelayCommand(OpenEditQuestion);
             DeleteQuestionCommand = new RelayCommand(DeleteQuestion);
             SaveCommand = new RelayCommand(Save);
+            ResetCommand = new RelayCommand(Reset);
 
             GetQuestionTypes();
         }
@@ -130,6 +133,21 @@ namespace Festispec.ViewModel.survey
                 context.Surveys.Attach(SurveyVM.ToModel());
                 context.Entry(SurveyVM.ToModel()).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
+            }
+        }
+
+        private void Reset()
+        {
+            if (MessageBox.Show("Weet je zeker dat je alle vragen en bijbehoordende antwoorden wil verwijderen?", "Weet je het zeker?", MessageBoxButton.YesNo) == MessageBoxResult.No) return;
+
+            using (var context = new Entities())
+            {
+                var surveyId = SurveyVM.ToModel().Id;
+                var list = context.Questions.Where(q => q.SurveyId == surveyId);
+                context.Questions.RemoveRange(list);
+                context.SaveChanges();
+                SurveyVM.OrderVM.ToModel().Surveys.Clear();
+                SurveyVM.Questions.Clear();
             }
         }
     }
