@@ -165,6 +165,7 @@
     <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
     <Compile Include="ViewModel\report\AddElementVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
+    <Compile Include="ViewModel\report\data\CountDataParser.cs" />
     <Compile Include="ViewModel\report\data\DataVM.cs" />
     <Compile Include="ViewModel\report\data\MinDataParserVM.cs" />
     <Compile Include="ViewModel\report\data\SelectDataParserVM.cs" />

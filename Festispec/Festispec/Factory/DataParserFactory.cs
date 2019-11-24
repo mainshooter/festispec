@@ -35,6 +35,10 @@ namespace Festispec.Factory
             {
                 return new SelectDataParserVM();
             }
+            if (type.Equals("COUNT"))
+            {
+                return new CountDataParser();
+            }
             return null;
         }
     }
