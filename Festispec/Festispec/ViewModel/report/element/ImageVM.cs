@@ -25,7 +25,7 @@ namespace Festispec.ViewModel.report.element
 
         public ImageVM(ReportElementVM element)
         {
-            Data = element.Data;
+            //Data = element.Data;
             Title = element.Title;
             Content = element.Content;
         }

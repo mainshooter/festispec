@@ -1,20 +1,29 @@
-﻿using Festispec.ViewModel.report.element;
+﻿using Festispec.Domain;
+using Festispec.ViewModel.report.element;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Festispec.Repository
 {
     public class ReportRepository
     {
-        public List<ReportElementVM> GetReportElements()
+        public List<ReportElementVM> GetReportElements(int reportId)
         {
+            List<ReportElementVM> result = new List<ReportElementVM>();
+            using (var context = new Entities())
+            {
+                result = new List<ReportElementVM>(context.ReportElements.ToList().Where(r => r.ReportId == reportId).Select(reportElement => new ReportElementVM(reportElement)));
+            }
+            return result;
+
             var reportElements = new List<ReportElementVM>();
             reportElements.Add(
                 new ReportElementVM()
                 {
-                    Title = "Leuke titel",
+                    Title = "hfiuawfhawiuhfawhufiawuifhawuifhiuwahf",
                     Content = "Hier maak ik titels van",
                     Type = "table",
                     Data = new Dictionary<string, List<string>>()
@@ -120,6 +129,9 @@ namespace Festispec.Repository
                     }
                 }
             );
+
+            
+
             return reportElements;
         }
     }

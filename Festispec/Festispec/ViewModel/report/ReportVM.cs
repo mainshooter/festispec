@@ -64,8 +64,9 @@ namespace Festispec.ViewModel.report
         public ReportVM()
         {
             _report = new Report();
+            _report.Id = 2;
             var reportRepository = new ReportRepository();
-            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements());
+            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(_report.Id));
             ReportElementUserControlls = new ObservableCollection<UserControl>();
             _reportElementFactory = new ReportElementFactory();
             ReportElements.CollectionChanged += RenderReportElements;
@@ -77,11 +78,11 @@ namespace Festispec.ViewModel.report
 
         private void GoToAddElementPage()
         {
-            Page addElementPage = new AddElementPage();
-            AddElementVM addElementVM = new AddElementVM();
-            addElementVM.Report = this;
-            addElementPage.DataContext = addElementVM;
-            MainViewModel.Page = addElementPage;
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddElementPage)});
+            MessengerInstance.Send<ChangeSelectedReport>(new ChangeSelectedReport()
+            { NextReportVM = this,
+              OrderNumber = this.Id}
+            );
         }
 
         public Report ToModel()
@@ -123,6 +124,12 @@ namespace Festispec.ViewModel.report
             {
                 ReportElementUserControlls.Add(_reportElementFactory.CreateElement(element));
             }
+        }
+        public void RefreshElements()
+        {
+            ReportRepository reportRepository = new ReportRepository();
+            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(_report.Id));
+            RaisePropertyChanged("ReportElements");
         }
     }
 }

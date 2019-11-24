@@ -16,6 +16,17 @@ namespace Festispec.ViewModel.report.element
                 _reportElement.Id = value;
             }
         }
+        public int ReportId
+        {
+            get
+            {
+                return _reportElement.ReportId;
+            }
+            set
+            {
+                _reportElement.ReportId = value;
+            }
+        }
 
         public string Type {
             get {
@@ -42,6 +53,7 @@ namespace Festispec.ViewModel.report.element
             }
             set {
                 _reportElement.Content = value;
+                RaisePropertyChanged("Content");
             }
         }
 
@@ -64,6 +76,10 @@ namespace Festispec.ViewModel.report.element
         public ReportElementVM()
         {
             _reportElement = new ReportElement();
+        }
+        public ReportElement ToModel()
+        {
+            return _reportElement;
         }
     }
 }

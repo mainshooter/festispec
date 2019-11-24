@@ -42,6 +42,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EmployeeInfoVM>();
             SimpleIoc.Default.Register<EditEmployeeVM>();
             SimpleIoc.Default.Register<UserLoginVM>();
+
            
         }
 
@@ -58,6 +59,8 @@ namespace Festispec.ViewModel
         public EmployeeInfoVM EmployeeInfoVM => ServiceLocator.Current.GetInstance<EmployeeInfoVM>();
 
         public EditEmployeeVM EditEmployeeVM => ServiceLocator.Current.GetInstance<EditEmployeeVM>();
+
+        public AddElementVM AddElementVM => ServiceLocator.Current.GetInstance<AddElementVM>();
 
         public static void Cleanup()
         {

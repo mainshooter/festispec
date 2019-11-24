@@ -39,7 +39,7 @@ namespace Festispec.ViewModel.report.element
             Title = element.Title;
             Content = element.Content;
             Order = element.Order;
-            Data = element.Data;
+            //Data = element.Data;
         }
 
         public void ApplyChanges()

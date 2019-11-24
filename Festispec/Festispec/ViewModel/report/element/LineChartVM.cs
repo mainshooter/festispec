@@ -34,7 +34,7 @@ namespace Festispec.ViewModel.report.element
         public LineChartVM(ReportElementVM element)
         {
             Labels = new List<string>();
-            Data = element.Data;
+            //Data = element.Data;
             Title = element.Title;
             Content = element.Content;
             Order = element.Order;

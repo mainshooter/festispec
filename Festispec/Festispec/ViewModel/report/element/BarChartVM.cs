@@ -33,7 +33,7 @@ namespace Festispec.ViewModel.report.element
 
         public BarChartVM(ReportElementVM element)
         {
-            Data = element.Data;
+            //Data = element.Data;
             Title = element.Title;
             Content = element.Content;
             Order = element.Order;
