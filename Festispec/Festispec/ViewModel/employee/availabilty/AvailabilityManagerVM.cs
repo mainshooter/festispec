@@ -82,7 +82,6 @@ namespace Festispec.ViewModel.employee.availabilty
         {
             _toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
             SelectedWeek = new AvailabilityWeekVM(CurrentWeek());
-            SelectedWeek.SetCurrentWeekDates();
             Weeks = new ObservableCollection<AvailabilityWeekVM>();
             Weeks.Add(SelectedWeek);
             NextWeekCommand = new RelayCommand(NextWeek);
@@ -100,7 +99,6 @@ namespace Festispec.ViewModel.employee.availabilty
             }
             SelectedWeek = SelectedWeek.NextWeek;
             SelectedWeek.PreviousWeek = temp;
-            SelectedWeek.SetCurrentWeekDates();
         }
 
         public void PreviousWeek()

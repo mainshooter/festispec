@@ -10,7 +10,6 @@ namespace Festispec.ViewModel.employee.availabilty
         private AvailabilityInspector _availabilityInspector;
         private DateTime? _availabilityStart;
         private DateTime? _availabilityEnd;
-        private AvailabilityManagerVM _availabilityManagerVM;
 
         public int Id
         {
@@ -63,8 +62,13 @@ namespace Festispec.ViewModel.employee.availabilty
             }
             set
             {
+                RaisePropertyChanged("MaxEndTime");
                 if (value != null)
                 {
+                    if (value >= MaxEndTime)
+                    {
+                        value = MaxEndTime;
+                    }
                     _availabilityInspector.AvailableTill = (DateTime)value;
                 }
                 _availabilityEnd = value;
@@ -74,7 +78,6 @@ namespace Festispec.ViewModel.employee.availabilty
                 }
                 RaisePropertyChanged("AvailabiltyEnd");
                 RaisePropertyChanged("AvailabiltyStart");
-                RaisePropertyChanged("MaxEndTime");
             }
         }
 
@@ -101,16 +104,13 @@ namespace Festispec.ViewModel.employee.availabilty
 
         public AvailabiltyVM(AvailabilityInspector av)
         {
-            _availabilityManagerVM = CommonServiceLocator.ServiceLocator.Current.GetInstance<AvailabilityManagerVM>();
             _availabilityInspector = av;
         }
 
         public AvailabiltyVM()
         {
-            _availabilityManagerVM = CommonServiceLocator.ServiceLocator.Current.GetInstance<AvailabilityManagerVM>();
             _availabilityInspector = new AvailabilityInspector();
             _availabilityInspector.EmployeeId = UserSessionVm.Current.Employee.Id;
-            _availabilityManagerVM.SelectedWeek.SetCurrentWeekDates();
         }
 
         public AvailabilityInspector ToModel()

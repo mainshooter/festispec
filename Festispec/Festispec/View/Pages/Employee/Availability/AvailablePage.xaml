@@ -56,9 +56,9 @@
                     <GroupBox Margin="7,10" Header="Dinsdag" Grid.Column="1" FontWeight="SemiBold" Height="140" Grid.RowSpan="2" >
                         <StackPanel>
                             <Label FontSize="9" Content="Starttijd"></Label>
-                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Tuesday.AvailabiltyStart}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Tuesday.AvailabiltyStart, NotifyOnSourceUpdated=True}"></xctk:TimePicker>
                             <Label FontSize="9" Content="Eindtijd"></Label>
-                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Maximum="{Binding SelectedWeek.Tuesday.MaxEndTime}" Minimum="{Binding SelectedWeek.Tuesday.AvailabiltyStart}" Value="{Binding SelectedWeek.Tuesday.AvailabiltyEnd}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Maximum="{Binding SelectedWeek.Tuesday.MaxEndTime}" Minimum="{Binding SelectedWeek.Tuesday.AvailabiltyStart}" Value="{Binding SelectedWeek.Tuesday.AvailabiltyEnd, NotifyOnSourceUpdated=True}"></xctk:TimePicker>
                         </StackPanel>
                     </GroupBox>
 
