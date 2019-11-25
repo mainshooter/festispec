@@ -184,7 +184,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
         public void AddOption()
         {
-            if (OptionName == "" || OptionName.Length > 50)
+            if (string.IsNullOrEmpty(OptionName) || OptionName.Length > 50)
             {
                 MessageBox.Show("De optie mag niet leeg zijn of langer zijn dan 50 karakters.");
                 return;
