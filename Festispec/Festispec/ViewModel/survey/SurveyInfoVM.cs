@@ -46,6 +46,8 @@ namespace Festispec.ViewModel.survey
         public ICommand SaveCommand { get; set; }
         public ICommand ResetCommand { get; set; }
         public ICommand CasesCommand { get; set; }
+        public ICommand QuestionUpCommand { get; set; }
+        public ICommand QuestionDownCommand { get; set; }
 
         public SurveyInfoVM()
         {
@@ -82,6 +84,8 @@ namespace Festispec.ViewModel.survey
             SaveCommand = new RelayCommand(Save);
             ResetCommand = new RelayCommand(Reset, IsConcept);
             CasesCommand = new RelayCommand(ShowCases);
+            QuestionUpCommand = new RelayCommand(MoveQuestionUp);
+            QuestionDownCommand = new RelayCommand(MoveQuestionDown);
 
             GetQuestionTypes();
         }
@@ -168,6 +172,54 @@ namespace Festispec.ViewModel.survey
             if (SurveyVM == null) return true;
 
             return SurveyVM.Status == "Concept";
+        }
+
+        private void MoveQuestionUp()
+        {
+            try
+            {
+                var aboveQuestion = SurveyVM.Questions[SelectedQuestion.Order - 1];
+                var aboveQuestionOrder = aboveQuestion.Order;
+                aboveQuestion.Order = SelectedQuestion.Order;
+                SelectedQuestion.Order = aboveQuestionOrder;
+                SurveyVM.Questions = new ObservableCollection<IQuestion>(SurveyVM.Questions.OrderBy(q => q.Order));
+                SaveQuestionOrder(aboveQuestion, SelectedQuestion);
+            }
+            catch (Exception)
+            {
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowError("Deze vraag staat al bovenaan.");
+            }
+        }
+
+        private void MoveQuestionDown()
+        {
+            try
+            {
+                var belowQuestion = SurveyVM.Questions[SelectedQuestion.Order + 1];
+                var aboveQuestionOrder = belowQuestion.Order;
+                belowQuestion.Order = SelectedQuestion.Order;
+                SelectedQuestion.Order = aboveQuestionOrder;
+                SurveyVM.Questions = new ObservableCollection<IQuestion>(SurveyVM.Questions.OrderBy(q => q.Order));
+                SaveQuestionOrder(belowQuestion, SelectedQuestion);
+            }
+            catch (Exception)
+            {
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowError("Deze vraag staat al onderaan.");
+            }
+        }
+
+        private void SaveQuestionOrder(IQuestion question1, IQuestion question2)
+        {
+            using (var context = new Entities())
+            {
+                context.Questions.Attach(question1.ToModel());
+                context.Entry(question1.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+
+                context.Questions.Attach(question2.ToModel());
+                context.Entry(question2.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
         }
     }
 }
