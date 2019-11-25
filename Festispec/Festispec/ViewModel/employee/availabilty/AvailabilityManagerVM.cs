@@ -1,5 +1,4 @@
 ﻿using Festispec.Domain;
-using Festispec.ViewModel.auth;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -32,6 +31,7 @@ namespace Festispec.ViewModel.employee.availabilty
                 RaisePropertyChanged("WeekNumber");
                 RaisePropertyChanged("Year");
                 RaisePropertyChanged("WeekEnd");
+                RaisePropertyChanged("WeekStart");
             }
         }
 
@@ -207,15 +207,15 @@ namespace Festispec.ViewModel.employee.availabilty
             }
 
             var daysUntilDay = (int)(dayOfWeek - SelectedWeek.Week.DayOfWeek);
-            var SelectedDay = SelectedWeek.Week;
+            var selectedDay = SelectedWeek.Week;
             var startTimeHour = availabilty.AvailabiltyStart.Value.Hour;
             var startTimeMinute = availabilty.AvailabiltyStart.Value.Minute;
             var endTimeHour = availabilty.AvailabiltyEnd.Value.Hour;
             var endTimeMinute = availabilty.AvailabiltyEnd.Value.Minute;
-            SelectedDay = SelectedDay.AddDays(daysUntilDay);
+            selectedDay = selectedDay.AddDays(daysUntilDay);
 
-            availabilty.AvailabiltyStart = SelectedDay;
-            availabilty.AvailabiltyEnd = SelectedDay;
+            availabilty.AvailabiltyStart = selectedDay;
+            availabilty.AvailabiltyEnd = selectedDay;
             availabilty.AvailabiltyStart = availabilty.AvailabiltyStart.Value.AddHours(startTimeHour);
             availabilty.AvailabiltyStart = availabilty.AvailabiltyStart.Value.AddMinutes(startTimeMinute);
             availabilty.AvailabiltyEnd = availabilty.AvailabiltyEnd.Value.AddHours(endTimeHour - startTimeHour);

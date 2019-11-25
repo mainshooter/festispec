@@ -2,6 +2,7 @@
 using Festispec.ViewModel.auth;
 using System;
 using System.Linq;
+using System.Windows;
 
 namespace Festispec.ViewModel.employee.availabilty
 {
@@ -21,16 +22,15 @@ namespace Festispec.ViewModel.employee.availabilty
         public AvailabilityWeekVM(DateTime week)
         {
             Week = week;
-            bool HasMonday = false;
-            bool HasTuesday = false;
-            bool HasWednesday = false;
-            bool HasThursday = false;
-            bool HasFriday = false;
-            bool HasSaturday = false;
-            bool HasSunday = false;
+            bool hasMonday = false;
+            bool hasTuesday = false;
+            bool hasWednesday = false;
+            bool hasThursday = false;
+            bool hasFriday = false;
+            bool hasSaturday = false;
+            bool hasSunday = false;
             using (var context = new Entities())
             {
-                var cal = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
                 var availabilities = context.AvailabilityInspectors.Select(availabilty => availabilty).Where(availabilty => availabilty.Employee.Id == UserSessionVm.Current.Employee.Id);
                 foreach (var availability in availabilities)
                 {
@@ -42,86 +42,94 @@ namespace Festispec.ViewModel.employee.availabilty
                                 Monday = new AvailabiltyVM(availability);
                                 Monday.AvailabiltyStart = availability.AvailableFrom;
                                 Monday.AvailabiltyEnd = availability.AvailableTill;
-                                HasMonday = true;
+                                hasMonday = true;
                                 break;
                             case DayOfWeek.Tuesday:
                                 Tuesday = new AvailabiltyVM(availability);
                                 Tuesday.AvailabiltyStart = availability.AvailableFrom;
                                 Tuesday.AvailabiltyEnd = availability.AvailableTill;
-                                HasTuesday = true;
+                                hasTuesday = true;
                                 break;
                             case DayOfWeek.Wednesday:
                                 Wednesday = new AvailabiltyVM(availability);
                                 Wednesday.AvailabiltyStart = availability.AvailableFrom;
                                 Wednesday.AvailabiltyEnd = availability.AvailableTill;
-                                HasWednesday = true;
+                                hasWednesday = true;
                                 break;
                             case DayOfWeek.Thursday:
                                 Thursday = new AvailabiltyVM(availability);
                                 Thursday.AvailabiltyStart = availability.AvailableFrom;
                                 Thursday.AvailabiltyEnd = availability.AvailableTill;
-                                HasThursday = true;
+                                hasThursday = true;
                                 break;
                             case DayOfWeek.Friday:
                                 Friday = new AvailabiltyVM(availability);
                                 Friday.AvailabiltyStart = availability.AvailableFrom;
                                 Friday.AvailabiltyEnd = availability.AvailableTill;
-                                HasFriday = true;
+                                hasFriday = true;
                                 break;
                             case DayOfWeek.Saturday:
                                 Saturday = new AvailabiltyVM(availability);
                                 Saturday.AvailabiltyStart = availability.AvailableFrom;
                                 Saturday.AvailabiltyEnd = availability.AvailableTill;
-                                HasSaturday = true;
+                                hasSaturday = true;
                                 break;
                             case DayOfWeek.Sunday:
                                 Sunday = new AvailabiltyVM(availability);
                                 Sunday.AvailabiltyStart = availability.AvailableFrom;
                                 Sunday.AvailabiltyEnd = availability.AvailableTill;
-                                HasSunday = true;
+                                hasSunday = true;
                                 break;
                         }
                     }
                 }
             }
 
-            if (!HasMonday)
+            if (!hasMonday)
             {
                 Monday = new AvailabiltyVM();
             }
-            if (!HasTuesday)
+            if (!hasTuesday)
             {
                 Tuesday = new AvailabiltyVM();
             }
-            if (!HasWednesday)
+            if (!hasWednesday)
             {
                 Wednesday = new AvailabiltyVM();
             }
-            if (!HasThursday)
+            if (!hasThursday)
             {
                 Thursday = new AvailabiltyVM();
             }
-            if (!HasFriday)
+            if (!hasFriday)
             {
                 Friday = new AvailabiltyVM();
             }
-            if (!HasSaturday)
+            if (!hasSaturday)
             {
                 Saturday = new AvailabiltyVM();
             }
-            if (!HasSunday)
+            if (!hasSunday)
             {
                 Sunday = new AvailabiltyVM();
             }
         }
 
-        private bool DatesAreInTheSameWeek(DateTime SelectedWeek, DateTime AllWeeks)
+        private bool DatesAreInTheSameWeek(DateTime selectedWeek, DateTime allWeeks)
         {
             var cal = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
-            var selWeek = SelectedWeek.Date.AddDays(-1 * (int)cal.GetDayOfWeek(SelectedWeek));
-            var Allweek = AllWeeks.Date.AddDays(-1 * (int)cal.GetDayOfWeek(AllWeeks));
+            if (cal != null)
+            {
+                var selWeek = selectedWeek.Date.AddDays(-1 * (int)cal.GetDayOfWeek(selectedWeek));
+                var Allweek = allWeeks.Date.AddDays(-1 * (int)cal.GetDayOfWeek(allWeeks));
+                return selWeek == Allweek;
+            }
+            else
+            {
+                MessageBox.Show("Er ging iets fout.");
+            }
 
-            return selWeek == Allweek;
+            return false;
         }
     }
 }

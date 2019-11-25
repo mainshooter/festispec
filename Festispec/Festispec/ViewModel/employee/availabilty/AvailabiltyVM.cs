@@ -2,7 +2,6 @@
 using Festispec.ViewModel.auth;
 using GalaSoft.MvvmLight;
 using System;
-using System.Linq;
 
 namespace Festispec.ViewModel.employee.availabilty
 {
