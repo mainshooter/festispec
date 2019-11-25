@@ -10,6 +10,7 @@ namespace Festispec.ViewModel.employee.availabilty
         private AvailabilityInspector _availabilityInspector;
         private DateTime? _availabilityStart;
         private DateTime? _availabilityEnd;
+        private AvailabilityManagerVM _availabilityManagerVM;
 
         public int Id
         {
@@ -46,6 +47,7 @@ namespace Festispec.ViewModel.employee.availabilty
                 }
                 RaisePropertyChanged("AvailabiltyStart");
                 RaisePropertyChanged("AvailabiltyEnd");
+                RaisePropertyChanged("MaxEndTime");
             }
         }
 
@@ -72,18 +74,43 @@ namespace Festispec.ViewModel.employee.availabilty
                 }
                 RaisePropertyChanged("AvailabiltyEnd");
                 RaisePropertyChanged("AvailabiltyStart");
+                RaisePropertyChanged("MaxEndTime");
+            }
+        }
+
+        public DateTime? MaxEndTime
+        {
+            get
+            {
+                if (AvailabiltyStart != null)
+                {
+                    if (AvailabiltyStart.Value.Year > 1)
+                    {
+                        var time = new DateTime();
+                        time = time.AddYears(AvailabiltyStart.Value.Year - 1); ;
+                        time = time.AddMonths(AvailabiltyStart.Value.Month - 1);
+                        time = time.AddDays(AvailabiltyStart.Value.Day - 1);
+                        time = time.AddHours(23);
+                        time = time.AddMinutes(59);
+                        return time;
+                    }
+                }
+                return null;
             }
         }
 
         public AvailabiltyVM(AvailabilityInspector av)
         {
+            _availabilityManagerVM = CommonServiceLocator.ServiceLocator.Current.GetInstance<AvailabilityManagerVM>();
             _availabilityInspector = av;
         }
 
         public AvailabiltyVM()
         {
+            _availabilityManagerVM = CommonServiceLocator.ServiceLocator.Current.GetInstance<AvailabilityManagerVM>();
             _availabilityInspector = new AvailabilityInspector();
             _availabilityInspector.EmployeeId = UserSessionVm.Current.Employee.Id;
+            _availabilityManagerVM.SelectedWeek.SetCurrentWeekDates();
         }
 
         public AvailabilityInspector ToModel()

@@ -30,7 +30,7 @@
             <Button Width="45" HorizontalAlignment="Right" Command="{Binding NextWeekCommand}" Margin="0,63,25,355">
                 <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowForward" Width="28" RenderTransformOrigin="0,0.625"/>
             </Button>
-            <Viewbox Margin="25">
+            <Viewbox Margin="20">
                 <Grid Height="160">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="87*"/>
@@ -48,58 +48,58 @@
                     <GroupBox Margin="0,10,7,10" Header="Maandag" Grid.Column="0" FontWeight="SemiBold" Height="140" HorizontalAlignment="Right" Width="86" Grid.RowSpan="2">
                         <StackPanel>
                             <Label FontSize="9" Content="Starttijd"></Label>
-                            <xctk:TimePicker Value="{Binding SelectedWeek.Monday.AvailabiltyStart}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Monday.AvailabiltyStart}"></xctk:TimePicker>
                             <Label FontSize="9" Content="Eindtijd"></Label>
-                            <xctk:TimePicker Minimum="{Binding SelectedWeek.Monday.AvailabiltyStart}" Value="{Binding SelectedWeek.Monday.AvailabiltyEnd}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Maximum="{Binding SelectedWeek.Monday.MaxEndTime}" Minimum="{Binding SelectedWeek.Monday.AvailabiltyStart}" Value="{Binding SelectedWeek.Monday.AvailabiltyEnd}"></xctk:TimePicker>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Margin="7,10" Header="Dinsdag" Grid.Column="1" FontWeight="SemiBold" Height="140" Grid.RowSpan="2" >
                         <StackPanel>
                             <Label FontSize="9" Content="Starttijd"></Label>
-                            <xctk:TimePicker Value="{Binding SelectedWeek.Tuesday.AvailabiltyStart}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Tuesday.AvailabiltyStart}"></xctk:TimePicker>
                             <Label FontSize="9" Content="Eindtijd"></Label>
-                            <xctk:TimePicker Minimum="{Binding SelectedWeek.Tuesday.AvailabiltyStart}" Value="{Binding SelectedWeek.Tuesday.AvailabiltyEnd}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Maximum="{Binding SelectedWeek.Tuesday.MaxEndTime}" Minimum="{Binding SelectedWeek.Tuesday.AvailabiltyStart}" Value="{Binding SelectedWeek.Tuesday.AvailabiltyEnd}"></xctk:TimePicker>
                         </StackPanel>
                     </GroupBox>
 
                     <GroupBox Margin="7,10" Header="Woensdag" Grid.Column="2" FontWeight="SemiBold" Height="140" Grid.RowSpan="2">
                         <StackPanel>
                             <Label FontSize="9" Content="Starttijd"></Label>
-                            <xctk:TimePicker Value="{Binding SelectedWeek.Wednesday.AvailabiltyStart}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Wednesday.AvailabiltyStart}"></xctk:TimePicker>
                             <Label FontSize="9" Content="Eindtijd"></Label>
-                            <xctk:TimePicker Minimum="{Binding SelectedWeek.Wednesday.AvailabiltyStart}" Value="{Binding SelectedWeek.Wednesday.AvailabiltyEnd}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Maximum="{Binding SelectedWeek.Wednesday.MaxEndTime}" Minimum="{Binding SelectedWeek.Wednesday.AvailabiltyStart}" Value="{Binding SelectedWeek.Wednesday.AvailabiltyEnd}"></xctk:TimePicker>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Margin="7,10" Header="Donderdag" Grid.Column="3" FontWeight="SemiBold" Height="140" Grid.RowSpan="2">
                         <StackPanel>
                             <Label FontSize="9" Content="Starttijd"></Label>
-                            <xctk:TimePicker Value="{Binding SelectedWeek.Thursday.AvailabiltyStart}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Thursday.AvailabiltyStart}"></xctk:TimePicker>
                             <Label FontSize="9" Content="Eindtijd"></Label>
-                            <xctk:TimePicker Minimum="{Binding SelectedWeek.Thursday.AvailabiltyStart}" Value="{Binding SelectedWeek.Thursday.AvailabiltyEnd}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Maximum="{Binding SelectedWeek.Thursday.MaxEndTime}" Minimum="{Binding SelectedWeek.Thursday.AvailabiltyStart}" Value="{Binding SelectedWeek.Thursday.AvailabiltyEnd}"></xctk:TimePicker>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Margin="7,10" Header="Vrijdag" Grid.Column="4" FontWeight="SemiBold" Height="140" Grid.RowSpan="2">
                         <StackPanel>
                             <Label FontSize="9" Content="Starttijd"></Label>
-                            <xctk:TimePicker Value="{Binding SelectedWeek.Friday.AvailabiltyStart}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Friday.AvailabiltyStart}"></xctk:TimePicker>
                             <Label FontSize="9" Content="Eindtijd"></Label>
-                            <xctk:TimePicker Minimum="{Binding SelectedWeek.Friday.AvailabiltyStart}" Value="{Binding SelectedWeek.Friday.AvailabiltyEnd}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Maximum="{Binding SelectedWeek.Friday.MaxEndTime}" Minimum="{Binding SelectedWeek.Friday.AvailabiltyStart}" Value="{Binding SelectedWeek.Friday.AvailabiltyEnd}"></xctk:TimePicker>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Margin="7,10" Header="Zaterdag" Grid.Column="5" FontWeight="SemiBold" Height="140" Grid.RowSpan="2">
                         <StackPanel>
                             <Label FontSize="9" Content="Starttijd"></Label>
-                            <xctk:TimePicker Value="{Binding SelectedWeek.Saturday.AvailabiltyStart}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Saturday.AvailabiltyStart}"></xctk:TimePicker>
                             <Label FontSize="9" Content="Eindtijd"></Label>
-                            <xctk:TimePicker Minimum="{Binding SelectedWeek.Saturday.AvailabiltyStart}" Value="{Binding SelectedWeek.Saturday.AvailabiltyEnd}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Maximum="{Binding SelectedWeek.Saturday.MaxEndTime}" Minimum="{Binding SelectedWeek.Saturday.AvailabiltyStart}" Value="{Binding SelectedWeek.Saturday.AvailabiltyEnd}"></xctk:TimePicker>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Margin="7,10" Header="Zondag" Grid.Column="6" FontWeight="SemiBold" Height="140" Grid.RowSpan="2">
                         <StackPanel>
                             <Label FontSize="9" Content="Starttijd"></Label>
-                            <xctk:TimePicker Value="{Binding SelectedWeek.Sunday.AvailabiltyStart}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Sunday.AvailabiltyStart}"></xctk:TimePicker>
                             <Label FontSize="9" Content="Eindtijd"></Label>
-                            <xctk:TimePicker Minimum="{Binding SelectedWeek.Sunday.AvailabiltyStart}" Value="{Binding SelectedWeek.Sunday.AvailabiltyEnd}"></xctk:TimePicker>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Maximum="{Binding SelectedWeek.Sunday.MaxEndTime}" Minimum="{Binding SelectedWeek.Sunday.AvailabiltyStart}" Value="{Binding SelectedWeek.Sunday.AvailabiltyEnd}"></xctk:TimePicker>
                         </StackPanel>
                     </GroupBox>
                 </Grid>
