@@ -112,6 +112,7 @@
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EditEventVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\AddEventVM.cs" />
+    <Compile Include="ViewModel\customer\customerEvent\EventInfoVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EventListVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EventVM.cs" />
     <Compile Include="ViewModel\customer\CustomerVM.cs" />
@@ -152,6 +153,9 @@
     </Compile>
     <Compile Include="View\Pages\Customer\Event\AddEventPage.xaml.cs">
       <DependentUpon>AddEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Event\SingleEventPage.xaml.cs">
+      <DependentUpon>SingleEventPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\AddEmployeePage.xaml.cs">
       <DependentUpon>AddEmployeePage.xaml</DependentUpon>
@@ -252,6 +256,10 @@
     <Page Include="View\Pages\Customer\Event\AddEventPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\Event\SingleEventPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\Employee\AddEmployeePage.xaml">
       <SubType>Designer</SubType>

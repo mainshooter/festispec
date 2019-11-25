@@ -96,7 +96,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             OpenAddEvent = new RelayCommand(OpenAddEventPage);
             OpenEditEvent = new RelayCommand(OpenEditEventPage);
             DeleteEventCommand = new RelayCommand(DeleteEvent);
-            //OpenSingleEvent = new RelayCommand(OpenSingleEventPage);
+            OpenSingleEvent = new RelayCommand(OpenSingleEventPage);
         }
 
         private void OpenAddEventPage()
@@ -128,6 +128,12 @@ namespace Festispec.ViewModel.customer.customerEvent
                 EventList.Remove(SelectedEvent);
                 RaisePropertyChanged("EventListFiltered");
             }
+        }
+
+        public void OpenSingleEventPage()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SingleEventPage) });
+            MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage() { Event = SelectedEvent });
         }
 
         public void RefreshEvents()

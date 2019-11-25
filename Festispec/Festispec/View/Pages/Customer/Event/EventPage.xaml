@@ -12,7 +12,7 @@
       DataContext="{Binding EventListVM, Source={StaticResource Locator}}">
 
     <StackPanel>
-        <Label FontSize="23" Content="Medewerkers" HorizontalAlignment="Center"/>
+        <Label FontSize="23" Content="Evenementen" HorizontalAlignment="Center"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="56"></ColumnDefinition>

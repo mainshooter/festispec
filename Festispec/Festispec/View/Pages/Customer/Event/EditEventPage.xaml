@@ -41,7 +41,7 @@
         <Label Content="Klant" HorizontalAlignment="Left" Margin="526,10,0,0" VerticalAlignment="Top" Width="50"/>
         <ComboBox HorizontalAlignment="Left" Margin="526,95,0,0" VerticalAlignment="Top" Width="174" Text="{Binding Path=Event.ContactPerson}" SelectedIndex="{Binding Path=CustomerIndex}" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=FilteredContactPersons}" DisplayMemberPath="Fullname" SelectedValue="{Binding Event.ContactPerson}" />
         <Label Content="Contactpersoon" HorizontalAlignment="Left" Margin="526,69,0,0" VerticalAlignment="Top" Width="50"/>
-        <Label Content="Beschrijving" HorizontalAlignment="Left" Margin="320,305,0,0" VerticalAlignment="Top" Width="84"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="320,336,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.Description, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
+        <Label Content="Beschrijving" HorizontalAlignment="Left" Margin="526,128,0,0" VerticalAlignment="Top" Width="84"/>
+        <TextBox HorizontalAlignment="Left" Height="205" Margin="526,159,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.Description, Mode=TwoWay}" VerticalAlignment="Top" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" Width="176"/>
     </Grid>
 </Page>
