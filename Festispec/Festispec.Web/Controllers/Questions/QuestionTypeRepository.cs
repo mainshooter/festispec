@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using Festispec.Domain;
+using Festispec.Lib.Survey.Question;
 using Festispec.Web.Controllers.Questions.Types;
 
 namespace Festispec.Web.Controllers.Questions
 {
     public class QuestionTypeRepository
     {
-        private readonly Dictionary<string, IQuestion> _questionTypes;
+        private readonly Dictionary<string, BaseQuestionType> _questionTypes;
 
-        public QuestionTypeRepository(Question question)
+        public QuestionTypeRepository(QuestionDetails question)
         {
-            _questionTypes = new Dictionary<string, IQuestion>
+            _questionTypes = new Dictionary<string, BaseQuestionType>
             {
                 ["Afbeelding galerij vraag"] = new GalleryQuestionType(question),
                 ["Gesloten vraag"] = new ClosedQuestionType(question),
@@ -22,7 +23,7 @@ namespace Festispec.Web.Controllers.Questions
             };
         }
 
-        public IQuestion GetQuestionType(string questionType)
+        public BaseQuestionType GetQuestionType(string questionType)
         {
             return _questionTypes[questionType];
         }

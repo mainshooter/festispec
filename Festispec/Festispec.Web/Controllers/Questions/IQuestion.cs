@@ -10,6 +10,6 @@ namespace Festispec.Web.Controllers.Questions
 {
     public interface IQuestion
     {
-        PartialViewResult RenderQuestionInput();
+        PartialViewResult GetPartial();
     }
 }

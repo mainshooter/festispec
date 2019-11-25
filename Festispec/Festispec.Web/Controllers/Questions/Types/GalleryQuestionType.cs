@@ -4,18 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Festispec.Domain;
+using Festispec.Lib.Survey.Question;
 
 namespace Festispec.Web.Controllers.Questions.Types
 {
     public class GalleryQuestionType : BaseQuestionType
     {
-        public GalleryQuestionType(Question questionData) : base(questionData)
+        public override string PathToPartial { get; } = "Survey/GalleryQuestion";
+
+        public GalleryQuestionType(QuestionDetails questionData) : base(questionData)
         {
         }
 
-        public override PartialViewResult RenderQuestionInput()
+        public override PartialViewResult GetPartial()
         {
-            return PartialView("Survey/GalleryQuestion", QuestionData);
+            return PartialView(PathToPartial, QuestionData);
         }
     }
 }

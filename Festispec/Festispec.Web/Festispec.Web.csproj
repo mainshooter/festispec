@@ -188,7 +188,6 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Survey\Index.cshtml" />
     <Content Include="Views\Survey\Details.cshtml" />
-    <None Include="Views\Components\OpenQuestion.cshtml" />
     <Content Include="Views\Shared\Survey\OpenQuestion.cshtml" />
     <Content Include="Views\Shared\Survey\ClosedQuestion.cshtml" />
     <Content Include="Views\Shared\Survey\DrawingQuestion.cshtml" />

@@ -1,17 +1,20 @@
 ﻿using System.Web.Mvc;
 using Festispec.Domain;
+using Festispec.Lib.Survey.Question;
 
 namespace Festispec.Web.Controllers.Questions.Types
 {
     public class OpenQuestionType : BaseQuestionType
     {
-        public OpenQuestionType(Question questionData) : base(questionData)
+        public override string PathToPartial { get; } = "Survey/OpenQuestion";
+
+        public OpenQuestionType(QuestionDetails questionData) : base(questionData)
         {
         }
 
-        public override PartialViewResult RenderQuestionInput()
+        public override PartialViewResult GetPartial()
         {
-            return PartialView("Survey/OpenQuestion", QuestionData);
+            return PartialView(PathToPartial, QuestionData);
         }
     }
 }
