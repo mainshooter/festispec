@@ -17,6 +17,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +51,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Festispec-icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BingMapsRESTToolkit, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -71,6 +89,9 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.6.0.325, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.6.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -85,6 +106,12 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ToastNotifications, Version=2.5.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToastNotifications.2.5.1\lib\net40\ToastNotifications.dll</HintPath>
+    </Reference>
+    <Reference Include="ToastNotifications.Messages, Version=2.5.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToastNotifications.Messages.2.5.1\lib\net40\ToastNotifications.Messages.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -103,6 +130,9 @@
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSessionVm.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
+    <Compile Include="Message\ChangeSelectedSurveyMessage.cs" />
+    <Compile Include="Message\ChangeSelectedSurveyQuestionMessage.cs" />
+    <Compile Include="Message\ChangeSelectedEventVM.cs" />
     <Compile Include="Message\ChangeSelectedEmployeeMessage.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\ReportRepository.cs" />
@@ -125,6 +155,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\planning\DayVM.cs" />
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />
+    <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
     <Compile Include="ViewModel\report\AddElementVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
     <Compile Include="ViewModel\report\element\BarChartVM.cs" />
@@ -139,8 +170,33 @@
     <Compile Include="ViewModel\survey\answer\SurveyAnswerVM.cs" />
     <Compile Include="ViewModel\survey\CaseVM.cs" />
     <Compile Include="Interface\IQuestion.cs" />
-    <Compile Include="ViewModel\survey\question\SurveyQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\ClosedQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\ClosedQuestion\AddClosedQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\ClosedQuestion\EditClosedQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\CommentFieldVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\CommentField\AddCommentFieldVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\CommentField\EditCommentFieldVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\DrawQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\DrawQuestion\AddDrawQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\DrawQuestion\EditDrawQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\ImageGalleryQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\ImageGalleryQuestion\AddImageGalleryQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\ImageGalleryQuestion\EditImageGalleryQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\MultipleChoiceQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\MultipleChoiceQuestion\AddMultipleChoiceQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\MultipleChoiceQuestion\EditMultipleChoiceQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestion\AddOpenQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\OpenQuestion\EditOpenQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestion\AddSliderQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\SliderQuestion\EditSliderQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\TableQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\TableQuestion\AddTableQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\question\QuestionTypes\TableQuestion\EditTableQuestionVM.cs" />
+    <Compile Include="ViewModel\survey\SurveyInfoVM.cs" />
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
+    <Compile Include="ViewModel\toast\ToastVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\Pages\Employee\AddEmployeePage.xaml.cs">
       <DependentUpon>AddEmployeePage.xaml</DependentUpon>
@@ -151,6 +207,54 @@
     </Compile>
     <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
       <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\CommentField\AddCommentFieldPage.xaml.cs">
+      <DependentUpon>AddCommentFieldPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\CommentField\EditCommentFieldPage.xaml.cs">
+      <DependentUpon>EditCommentFieldPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\DrawQuestion\AddDrawQuestionPage.xaml.cs">
+      <DependentUpon>AddDrawQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\DrawQuestion\EditDrawQuestionPage.xaml.cs">
+      <DependentUpon>EditDrawQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\ImageGalleryQuestion\AddImageGalleryQuestionPage.xaml.cs">
+      <DependentUpon>AddImageGalleryQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\ImageGalleryQuestion\EditImageGalleryQuestionPage.xaml.cs">
+      <DependentUpon>EditImageGalleryQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\MultipleChoiceQuestion\AddMultipleChoiceQuestionPage.xaml.cs">
+      <DependentUpon>AddMultipleChoiceQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\MultipleChoiceQuestion\EditMultipleChoiceQuestionPage.xaml.cs">
+      <DependentUpon>EditMultipleChoiceQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\SliderQuestion\AddSliderQuestionPage.xaml.cs">
+      <DependentUpon>AddSliderQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\SliderQuestion\EditSliderQuestionPage.xaml.cs">
+      <DependentUpon>EditSliderQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\TableQuestion\AddTableQuestionPage.xaml.cs">
+      <DependentUpon>AddTableQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\TableQuestion\EditTableQuestionPage.xaml.cs">
+      <DependentUpon>EditTableQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\SurveyPage.xaml.cs">
+      <DependentUpon>SurveyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\ClosedQuestion\AddClosedQuestionPage.xaml.cs">
+      <DependentUpon>AddClosedQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\ClosedQuestion\EditClosedQuestionPage.xaml.cs">
+      <DependentUpon>EditClosedQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\OpenQuestion\AddOpenQuestionPage.xaml.cs">
+      <DependentUpon>AddOpenQuestionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Report\element\AddElementPage.xaml.cs">
       <DependentUpon>AddElementPage.xaml</DependentUpon>
@@ -203,6 +307,12 @@
     <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
       <DependentUpon>SickPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Survey\QuestionTypes\OpenQuestion\EditOpenQuestionPage.xaml.cs">
+      <DependentUpon>EditOpenQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Planning\PlanningOverviewPage.xaml.cs">
+      <DependentUpon>PlanningOverviewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Usercontrols\Report\ReportControlUserControl.xaml.cs">
       <DependentUpon>ReportControlUserControl.xaml</DependentUpon>
     </Compile>
@@ -241,6 +351,70 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\CommentField\AddCommentFieldPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\CommentField\EditCommentFieldPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\DrawQuestion\AddDrawQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\DrawQuestion\EditDrawQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\ImageGalleryQuestion\AddImageGalleryQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\ImageGalleryQuestion\EditImageGalleryQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\MultipleChoiceQuestion\AddMultipleChoiceQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\MultipleChoiceQuestion\EditMultipleChoiceQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\SliderQuestion\AddSliderQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\SliderQuestion\EditSliderQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\TableQuestion\AddTableQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\TableQuestion\EditTableQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\SurveyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\ClosedQuestion\AddClosedQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\ClosedQuestion\EditClosedQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\OpenQuestion\AddOpenQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Customer\CustomerPage.xaml">
       <SubType>Designer</SubType>
@@ -314,13 +488,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Pages\Survey\QuestionTypes\OpenQuestion\EditOpenQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Planning\PlanningOverviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Usercontrols\Report\ReportControlUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\survey\question\questionTypes\" />
+    <Resource Include="Festispec-icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Festispec.Domain\Festispec.Domain.csproj">
@@ -332,6 +514,7 @@
       <Name>Festispec.Lib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

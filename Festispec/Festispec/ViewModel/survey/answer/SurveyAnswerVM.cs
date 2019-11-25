@@ -28,12 +28,10 @@ namespace Festispec.ViewModel.survey.answer
                 _answer.Answer1 = value;
             }
         }
-        public SurveyQuestionVM Question { get; set; }
 
         public SurveyAnswerVM(Answer answer)
         {
             _answer = answer;
-            Question = new SurveyQuestionVM(answer.Question);
         }
 
         public SurveyAnswerVM()

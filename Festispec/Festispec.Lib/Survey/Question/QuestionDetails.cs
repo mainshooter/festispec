@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Festispec.Lib.Survey.Question
 {
-    public class QuestionDetails: IDisposable
+    public class QuestionDetails
     {
         public string Question { get; set; }
         public QuestionChoices Choices { get; set; }
@@ -16,10 +15,6 @@ namespace Festispec.Lib.Survey.Question
             Choices = new QuestionChoices();
             Description = "";
             Images = new List<byte[]>();
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace Festispec.Lib.Survey.Question
 {
     public class QuestionChoices
     {
-        public List<string> Cols { get; set; }
-        public List<string> Options { get; set; }
+        public ObservableCollection<string> Cols { get; set; }
+        public ObservableCollection<string> Options { get; set; }
+        public string SelectedCol { get; set; }
 
         public QuestionChoices()
         {
-            Cols = new List<string>();
-            Options = new List<string>();
+            Cols = new ObservableCollection<string>();
+            Options = new ObservableCollection<string>();
         }
     }
 }
