@@ -12,7 +12,7 @@ namespace Festispec.ViewModel.customer
         private ObservableCollection<QuotationVM> _quotations;
         private Domain.Customer _customer;
 
-        public int Id { 
+        public int Id {
             get {
                 return _customer.Id;
             }
@@ -21,7 +21,7 @@ namespace Festispec.ViewModel.customer
             }
         }
 
-        public string Name { 
+        public string Name {
             get {
                 return _customer.Name;
             }
@@ -39,13 +39,13 @@ namespace Festispec.ViewModel.customer
             }
         }
 
-        public int EstablishmentNumber { 
+        public int EstablishmentNumber {
             get {
                 return _customer.BranchNumber;
             }
         }
 
-        public string Street { 
+        public string Street {
             get {
                 return _customer.Street;
             }
@@ -54,7 +54,7 @@ namespace Festispec.ViewModel.customer
             }
         }
 
-        public int HouseNumber { 
+        public int HouseNumber {
             get {
                 return _customer.HouseNumber;
             }
@@ -63,7 +63,7 @@ namespace Festispec.ViewModel.customer
             }
         }
 
-        public string PostalCode { 
+        public string PostalCode {
             get {
                 return _customer.PostalCode;
             }
@@ -72,7 +72,7 @@ namespace Festispec.ViewModel.customer
             }
         }
 
-        public string Phone { 
+        public string Phone {
             get {
                 return _customer.Phone;
             }
@@ -81,7 +81,7 @@ namespace Festispec.ViewModel.customer
             }
         }
 
-        public string Email { 
+        public string Email {
             get {
                 return _customer.Email;
             }
@@ -90,7 +90,7 @@ namespace Festispec.ViewModel.customer
             }
         }
 
-        public string Website { 
+        public string Website {
             get {
                 return _customer.Website;
             }
@@ -98,7 +98,7 @@ namespace Festispec.ViewModel.customer
                 _customer.Website = value;
             }
         }
-        
+
         public ObservableCollection<EventVM> Events {
             get {
                 return _events;
@@ -107,7 +107,7 @@ namespace Festispec.ViewModel.customer
                 _events = value;
             }
         }
-        
+
         public ObservableCollection<QuotationVM> Quotations {
             get {
                 return _quotations;

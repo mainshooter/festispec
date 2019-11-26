@@ -1,6 +1,7 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.customer.contactPerson;
 using GalaSoft.MvvmLight;
+using Festispec.ViewModel.Customer.order;
 using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
@@ -13,7 +14,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         private CustomerVM _customer;
         private ContactPersonVM _contactPerson;
 
-        public int Id { 
+        public int Id {
             get {
                 return _event.Id;
             }
@@ -39,19 +40,19 @@ namespace Festispec.ViewModel.customer.customerEvent
             get => _customer;
             set
             {
-               
+
                 if (value == null) return;
                 _customer = value;
                 _event.CustomerId = value.Id;
                 _event.Customer = value.ToModel();
             }
         }
-        
+
         public ContactPersonVM ContactPerson {
             get => _contactPerson;
             set
             {
-                
+
                 if (value == null) return;
                 _contactPerson = value;
                 _event.ContactPersonId = value.Id;
@@ -59,7 +60,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
-        public string Name { 
+        public string Name {
             get {
                 return _event.Name;
             }
@@ -68,7 +69,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
-        public DateTime BeginDate { 
+        public DateTime BeginDate {
             get {
                 return _event.BeginDate.Date;
             }
@@ -77,7 +78,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
-        public DateTime EndDate { 
+        public DateTime EndDate {
             get {
                 return _event.EndDate.Date;
             }
@@ -86,7 +87,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
-        public int AmountVisitors { 
+        public int AmountVisitors {
             get {
                 return _event.AmountVisitors;
             }
@@ -95,7 +96,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
-        public int SurfaceM2 { 
+        public int SurfaceM2 {
             get {
                 return _event.SurfaceM2;
             }
@@ -104,7 +105,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
-        public string Description { 
+        public string Description {
             get {
                 return _event.Description;
             }
@@ -112,6 +113,8 @@ namespace Festispec.ViewModel.customer.customerEvent
                 _event.Description = value;
             }
         }
+
+        public OrderVM OrderVM { get; set; }
 
         public string Street
         {
@@ -166,12 +169,12 @@ namespace Festispec.ViewModel.customer.customerEvent
                 _event.City = value;
             }
         }
-        
+
         public EventVM(Event eventCon)
         {
             _event = eventCon;
-            _customer = new CustomerVM(_event.Customer);
-            _contactPerson = new ContactPersonVM(_event.ContactPerson);
+            //_customer = new CustomerVM(_event.Customer);
+            //_contactPerson = new ContactPersonVM(_event.ContactPerson);
         }
 
         public Event ToModel()
