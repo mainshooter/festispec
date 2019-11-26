@@ -25,6 +25,8 @@
             <Label Content="Filter:" Grid.Column="2"></Label>
             <ComboBox Grid.Column="1" SelectedIndex="0" SelectedValuePath="SelectedFilter" ItemsSource="{Binding Filters}" SelectedItem="{Binding SelectedFilter,Mode=TwoWay}"/>
             <TextBox Grid.Column="3" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Label VerticalAlignment="Center" Grid.Column="4" Margin="5,0,250,6">In de toekomst:</Label>
+            <ToggleButton VerticalAlignment="Top" IsChecked="{Binding ShowOnlyFuture, Mode=TwoWay}" Grid.Column="4" Margin="99,8,194,0"></ToggleButton>
             <Button Grid.Column="4" Margin="0,0,10,0" Content="Evenement toevoegen" Command="{Binding OpenAddEvent}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
         </Grid>
 

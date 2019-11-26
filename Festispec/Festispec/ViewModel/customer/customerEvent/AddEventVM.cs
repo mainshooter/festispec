@@ -59,6 +59,9 @@ namespace Festispec.ViewModel.customer.customerEvent
                 Customers = new ObservableCollection<CustomerVM>(context.Customers.ToList().Select(customer => new CustomerVM(customer)));
                 ContactPersons = new ObservableCollection<ContactPersonVM>(context.ContactPersons.ToList().Select(contactPerson => new ContactPersonVM(contactPerson)));
             }
+
+            Event.Customer = Customers.First();
+            Event.ContactPerson = ContactPersons.Select(contactPerson => contactPerson).Where(contactPerson => contactPerson.CustomerID == Event.Customer.Id).First();
         }
 
         public void AddEvent()
@@ -81,32 +84,15 @@ namespace Festispec.ViewModel.customer.customerEvent
         private void CloseAddEvent()
         {
             Event = new EventVM();
+            Event.Customer = Customers.First();
+            Event.ContactPerson = ContactPersons.Select(contactPerson => contactPerson).Where(contactPerson => contactPerson.CustomerID == Event.Customer.Id).First();
             RaisePropertyChanged("Event");
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
         }
 
         public bool CanAddEvent()
         {
-            if (Event.Customer == null || Event.ContactPerson == null || Event.Name == null || Event.Street == null || Event.HouseNumber == 0 || Event.PostalCode == null || Event.City == null || Event.BeginDate == null || Event.EndDate == null || Event.SurfaceM2 == 0)
-            {
-                return false;
-            }
-
-            if (Event.HouseNumberAddition != null)
-            {
-                if (Event.HouseNumberAddition.Length > 5)
-                {
-                    return false;
-                }
-            }
-
-            if (Event.BeginDate < DateTime.Today || Event.EndDate < Event.BeginDate || Event.Name.Length > 100 || Event.Street.Length > 100 || Event.PostalCode.Length > 6 || Event.City.Length > 45)
-            {
-                return false;
-            }
-
-            return true;
-
+            return Event.IsValid;
         }
     }
 }

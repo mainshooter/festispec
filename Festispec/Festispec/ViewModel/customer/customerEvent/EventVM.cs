@@ -1,10 +1,13 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.customer.contactPerson;
+using GalaSoft.MvvmLight;
 using System;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
-    public class EventVM
+    public class EventVM : ViewModelBase , IDataErrorInfo
     {
         private Event _event;
         private CustomerVM _customer;
@@ -182,5 +185,256 @@ namespace Festispec.ViewModel.customer.customerEvent
             BeginDate = DateTime.Today.Date;
             EndDate = DateTime.Today.Date;
         }
+
+        #region Validation
+
+        string IDataErrorInfo.Error => null;
+
+        string IDataErrorInfo.this[string propertyName]
+        {
+            get
+            {
+                return GetValidationError(propertyName);
+            }
+        }
+
+        private string ValidateName
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(Name))
+                {
+                    return "Naam moet ingevuld zijn";
+                }
+                else if (Name.Length > 45)
+                {
+                    return "Naam mag niet langer zijn dan 45 karakters";
+                }
+                return null;
+            }
+        }
+
+        private string ValidateCity
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(City))
+                {
+                    return "Woonplaats moet ingevuld zijn";
+                }
+                else if (City.Length > 45)
+                {
+                    return "Woonplaats mag niet langer zijn dan 45 karakters";
+                }
+                return null;
+            }
+        }
+        private string ValidateStreet
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(Street))
+                {
+                    return "Straat moet ingevuld zijn";
+                }
+                else if (Street.Length > 100)
+                {
+                    return "Straat mag niet langer zijn dan 100 karakters";
+                }
+                return null;
+            }
+        }
+
+        private string ValidateHouseNumber
+        {
+            get
+            {
+                if (HouseNumber == 0)
+                {
+                    return "Huisnummer mag niet nul zijn";
+                }
+                else if (HouseNumber > 9999)
+                {
+                    return "Huisnummer mag niet groter zijn dan 9999";
+                }
+                return null;
+            }
+        }
+        private string ValidateHouseNumberAddition
+        {
+            get
+            {
+                if (HouseNumberAddition != null)
+                {
+                    if (HouseNumberAddition.Length > 5)
+                    {
+                        return "Huisnummer toevoeging mag niet langer zijn dan 5 karakters";
+                    }
+                }
+                return null;
+            }
+        }
+        private string ValidatePostalCode
+        {
+            get
+            {
+                string regexPostalCode = "\\b[0-9]{4} ?[a-zA-Z]{2}\\b";
+                if (String.IsNullOrWhiteSpace(PostalCode))
+                {
+                    return "Postcode mag niet nul zijn";
+                }
+                else if (!Regex.IsMatch(PostalCode, regexPostalCode))
+                {
+                    return "Postcode voldoet niet aan een postcode formaat";
+                }
+                else if (PostalCode.Length > 6)
+                {
+                    return "Postcode mag niet langer zijn dan 6 karakter";
+                }
+                return null;
+            }
+        }
+        private string ValidateBeginDate
+        {
+            get
+            {
+                if (BeginDate == null)
+                {
+                    return "Begindatum mag niet nul zijn";
+                }
+                else if (BeginDate < DateTime.Today)
+                {
+                    return "Begindatum moet vandaag of later zijn";
+                }
+                return null;
+            }
+        }
+
+        private string ValidateEndDate
+        {
+            get
+            {
+                if (EndDate == null)
+                {
+                    return "Einddatum mag niet nul zijn";
+                }
+                else if (EndDate < BeginDate)
+                {
+                    return "Einddatum moet op of na de begindatum zijn";
+                }
+                return null;
+            }
+        }
+        private string ValidateAmountVisitors
+        {
+            get
+            {
+                if (AmountVisitors == 0)
+                {
+                    return "Bezoekersaantal mag niet nul zijn";
+                }
+                return null;
+            }
+        }
+        private string ValidateSurfaceM2
+        {
+            get
+            {
+                if (SurfaceM2 == 0)
+                {
+                    return "Oppervlakte mag niet nul zijn";
+                }
+                return null;
+            }
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var property in ValidatedProperties)
+                {
+                    if (GetValidationError(property) != null)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        private string ValidateCustomer
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(Customer.Name))
+                {
+                    return "Klant moet ingevuld zijn";
+                }
+                return null;
+            }
+        }
+        private string ValidateContactPerson
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(ContactPerson.Fullname))
+                {
+                    return "Contactpersoon moet ingevuld zijn";
+                }
+                return null;
+            }
+        }
+
+        string GetValidationError(string propertyName)
+        {
+            string error = null;
+            switch (propertyName)
+            {
+                case "Name":
+                    error = ValidateName;
+                    break;
+                case "Street":
+                    error = ValidateStreet;
+                    break;
+                case "City":
+                    error = ValidateCity;
+                    break;
+                case "HouseNumber":
+                    error = ValidateHouseNumber;
+                    break;
+                case "HouseNumberAddition":
+                    error = ValidateHouseNumberAddition;
+                    break;
+                case "PostalCode":
+                    error = ValidatePostalCode;
+                    break;
+                case "BeginDate":
+                    error = ValidateBeginDate;
+                    break;
+                case "EndDate":
+                    error = ValidateEndDate;
+                    break;
+                case "AmountVisitors":
+                    error = ValidateAmountVisitors;
+                    break;
+                case "SurfaceM2":
+                    error = ValidateSurfaceM2;
+                    break;
+                case "Customer":
+                    error = ValidateCustomer;
+                    break;
+                case "ContactPerson":
+                    error = ValidateContactPerson;
+                    break;
+
+            }
+            return error;
+        }
+        public static readonly string[] ValidatedProperties =
+        {
+            "Name", "Street", "City", "HouseNumber", "HouseNumberAddition", "PostalCode", "BeginDate", "EndDate", "AmountVisitors", "SurfaceM2", "Customer", "ContactPerson"
+        };
+
+        #endregion
     }
 }

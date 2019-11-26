@@ -4,6 +4,7 @@ using Festispec.Repository;
 using Festispec.View.Pages.Customer.Event;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         private string _filter;
         private List<string> _filters;
         private EventVM _selectedEvent;
+        private bool _showOnlyFuture;
 
         public ICommand OpenAddEvent { get; set; }
         public ICommand OpenEditEvent { get; set; }
@@ -31,6 +33,19 @@ namespace Festispec.ViewModel.customer.customerEvent
             set
             {
                 _filter = value;
+                RaisePropertyChanged("EventListFiltered");
+            }
+        }
+
+        public bool ShowOnlyFuture
+        {
+            get
+            {
+                return _showOnlyFuture;
+            }
+            set
+            {
+                _showOnlyFuture = value;
                 RaisePropertyChanged("EventListFiltered");
             }
         }
@@ -53,24 +68,36 @@ namespace Festispec.ViewModel.customer.customerEvent
         {
             get
             {
+                var temp = new ObservableCollection<EventVM>();
+
                 if (Filter != null || !Filter.Equals(""))
                 {
                     switch (SelectedFilter)
                     {
                         case "Naam":
-                            return new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.Name.ToLower().Contains(Filter.ToLower())).ToList());
+                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.Name.ToLower().Contains(Filter.ToLower())).ToList());
+                            break;
                         case "Begindatum":
-                            return new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.BeginDate.ToString().Contains(Filter.ToLower())).ToList());
+                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.BeginDate.ToString().Contains(Filter.ToLower())).ToList());
+                            break;
                         case "Bezoekersaantal":
-                            return new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.AmountVisitors.ToString().Contains(Filter.ToLower())).ToList());
+                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.AmountVisitors.ToString().Contains(Filter.ToLower())).ToList());
+                            break;
                         case "Oppervlakte":
-                            return new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.SurfaceM2.ToString().Contains(Filter.ToLower())).ToList());
+                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.SurfaceM2.ToString().Contains(Filter.ToLower())).ToList());
+                            break;
                         case "Klant":
-                            return new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.Customer.Name.ToLower().Contains(Filter.ToLower())).ToList());
+                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.Customer.Name.ToLower().Contains(Filter.ToLower())).ToList());
+                            break;
+                    }
+
+                    if (_showOnlyFuture)
+                    {
+                        temp = new ObservableCollection<EventVM>(temp.ToList().Where(i => i.BeginDate >= DateTime.Today).ToList());
                     }
                 }
 
-                return EventList;
+                return temp;
             }
         }
 
@@ -91,6 +118,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             Filters = new List<string>();
             SelectedFilter = Filters.First();
             Filter = "";
+            ShowOnlyFuture = true;
             EventRepository eventRepository = new EventRepository();
             EventList = new ObservableCollection<EventVM>(eventRepository.GetEvents());
             OpenAddEvent = new RelayCommand(OpenAddEventPage);

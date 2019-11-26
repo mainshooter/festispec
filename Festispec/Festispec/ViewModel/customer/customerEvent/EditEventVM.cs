@@ -44,9 +44,12 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
             set
             {
-                Event.Customer = value;
-                _selectedCustomer = value;
-                RaisePropertyChanged("FilteredContactPersons");
+                if (Event != null)
+                {
+                    Event.Customer = value;
+                    _selectedCustomer = value;
+                    RaisePropertyChanged("FilteredContactPersons");
+                }      
             }
         }
 
@@ -134,31 +137,11 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public bool CanEditEvent()
         {
-            if (Event == null)
+            if(Event == null)
             {
                 return false;
             }
-
-            if (Event.Customer == null || Event.ContactPerson == null || Event.Name == null || Event.Street == null || Event.HouseNumber == 0 || Event.PostalCode == null || Event.City == null || Event.BeginDate == null || Event.EndDate == null || Event.SurfaceM2 == 0)
-            {
-                return false;
-            }
-
-            if (Event.HouseNumberAddition != null)
-            {
-                if (Event.HouseNumberAddition.Length > 5)
-                {
-                    return false;
-                }
-            }
-
-            if (/* Event.BeginDate < DateTime.Today || Event.EndDate < Event.BeginDate ||*/ Event.Name.Length > 100 || Event.Street.Length > 100 || Event.PostalCode.Length > 6 || Event.City.Length > 45)
-            {
-                return false;
-            }
-
-            return true;
-
+            return Event.IsValid;
         }
     }
 }
