@@ -73,12 +73,15 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditTableQuestionPage>();
             SimpleIoc.Default.Register<LoginPage>();
 
+
             SimpleIoc.Default.Register<ReportVM>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<EmployeeVM>();
             SimpleIoc.Default.Register<EmployeeListVM>();
             SimpleIoc.Default.Register<AddEmployeeVM>();
+
             SimpleIoc.Default.Register<AddElementVM>();
+            SimpleIoc.Default.Register<EditTextPage>();
 
             SimpleIoc.Default.Register<ToastVM>();
             SimpleIoc.Default.Register<PlanningOverviewVM>();
@@ -103,7 +106,9 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditMultipleChoiceQuestionVM>();
             SimpleIoc.Default.Register<AddTableQuestionVM>();
             SimpleIoc.Default.Register<EditTableQuestionVM>();
-            SimpleIoc.Default.Register<UserLoginVM>();           
+            SimpleIoc.Default.Register<UserLoginVM>();
+
+            SimpleIoc.Default.Register<EditElementVM>();
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
@@ -133,6 +138,7 @@ namespace Festispec.ViewModel
         public EditTableQuestionVM EditTableQuestionVM => ServiceLocator.Current.GetInstance<EditTableQuestionVM>();
 
         public AddElementVM AddElementVM => ServiceLocator.Current.GetInstance<AddElementVM>();
+        public EditElementVM EditElementVM => ServiceLocator.Current.GetInstance<EditElementVM>();
 
         public static void Cleanup()
         {

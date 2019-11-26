@@ -21,6 +21,7 @@ namespace Festispec.ViewModel.report
         private Report _report;
         private ReportElementFactory _reportElementFactory;
 
+
         public int Id {
             get {
                 return _report.Id;
@@ -65,24 +66,29 @@ namespace Festispec.ViewModel.report
         {
             _report = new Report();
             _report.Id = 2;
+            _report.Title = "Test titel";
             var reportRepository = new ReportRepository();
-            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(_report.Id));
+            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
             ReportElementUserControlls = new ObservableCollection<UserControl>();
             _reportElementFactory = new ReportElementFactory();
             ReportElements.CollectionChanged += RenderReportElements;
             SaveReportCommand = new RelayCommand(Save);
             AddElementCommand = new RelayCommand(GoToAddElementPage);
-            _report.Title = "Test titel";
+
             this.RenderReportElements(null, null);
+
+            //ReportElementVM reportElementVM = (ReportElementVM) ReportElementUserControlls.First().DataContext;
+            //ReportElementUserControlls.RemoveAt(0);
+            //reportElementVM.Id;
         }
 
         private void GoToAddElementPage()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddElementPage)});
-            MessengerInstance.Send<ChangeSelectedReport>(new ChangeSelectedReport()
-            { NextReportVM = this,
-              OrderNumber = this.Id}
-            );
+            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
+            {
+              NextReportVM = this
+            });
         }
 
         public Report ToModel()
@@ -128,7 +134,9 @@ namespace Festispec.ViewModel.report
         public void RefreshElements()
         {
             ReportRepository reportRepository = new ReportRepository();
-            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(_report.Id));
+            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
+            this.RenderReportElements(null, null);
+            //ReportElements.First().ReportVM = this;
             RaisePropertyChanged("ReportElements");
         }
     }

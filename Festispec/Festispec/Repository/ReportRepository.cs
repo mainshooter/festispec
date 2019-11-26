@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using Festispec.ViewModel.report;
 using Festispec.ViewModel.report.element;
 using LiveCharts;
 using LiveCharts.Wpf;
@@ -10,12 +11,12 @@ namespace Festispec.Repository
 {
     public class ReportRepository
     {
-        public List<ReportElementVM> GetReportElements(int reportId)
+        public List<ReportElementVM> GetReportElements(ReportVM report)
         {
             List<ReportElementVM> result = new List<ReportElementVM>();
             using (var context = new Entities())
             {
-                result = new List<ReportElementVM>(context.ReportElements.ToList().Where(r => r.ReportId == reportId).Select(reportElement => new ReportElementVM(reportElement)));
+                result = new List<ReportElementVM>(context.ReportElements.ToList().Where(r => r.ReportId == report.Id).Select(reportElement => new ReportElementVM(reportElement,report)));
             }
             return result;
 

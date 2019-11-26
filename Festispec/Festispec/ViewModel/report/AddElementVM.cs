@@ -18,14 +18,42 @@ namespace Festispec.ViewModel.report
     public class AddElementVM : ViewModelBase
     {
         private ReportElementFactory _reportElementFactory;
+        private string _axes;
+        private int _selectedElementIndex;
 
         public List<string> ElementTypes { get; set; }
 
         public ReportElementVM ReportElement { get; set; }
 
+        public string Axes
+        {
+            get
+            {
+                return _axes;
+            }
+            set
+            {
+                _axes = value;
+                RaisePropertyChanged("Axes");
+            }
+        }
+
+
         public ReportVM Report { get; set; }
 
-        public int SelectedElementIndex { get; set; }
+        public int SelectedElementIndex
+        {
+            get
+            {
+                return _selectedElementIndex;
+            }
+            set
+            {
+                _selectedElementIndex = value;
+                RaisePropertyChanged("SelectedElementIndex");
+                ChangeInput();
+            }
+        }
 
         public ICommand GoBackCommand { get; set; }
 
@@ -33,32 +61,50 @@ namespace Festispec.ViewModel.report
 
         public AddElementVM()
         {
+            Axes = "Hidden";
             ReportElement = new ReportElementVM();
             _reportElementFactory = new ReportElementFactory();
             ReportElementTypesListVM elementTypesList = new ReportElementTypesListVM();
             ElementTypes = elementTypesList.ReportElementTypes;
             GoBackCommand = new RelayCommand(GoBackToReport);
             AddElementCommand = new RelayCommand(AddElementToReport);
-            MessengerInstance.Register<ChangeSelectedReport>(this, message =>
+            MessengerInstance.Register<ChangeSelectedReportMessage>(this, message =>
             {
                 Report = message.NextReportVM;
-                ReportElement.ReportId = message.OrderNumber;
+                ReportElement.ReportId = Report.Id;
+                ReportElement.Order = Report.ReportElements.Count + 1;
             });
+            
         }
-
+        public void ChangeInput()
+        {
+            switch (ElementTypes[SelectedElementIndex])
+            {
+                case "image":
+                    var fd = new OpenFileDialog { Filter = "All Image Files | *.*", Multiselect = false };
+                    if (fd.ShowDialog() != true) return;
+                    using (var fs = new FileStream(fd.FileName, FileMode.Open, FileAccess.Read))
+                    {
+                        var test = new byte[fs.Length];
+                        fs.Read(test, 0, Convert.ToInt32(fs.Length));
+                    }
+                    Axes = "Hidden";
+                    break;
+                case "barchart":
+                    Axes = "Visable";
+                    break;
+                case "linechart":
+                    Axes = "Visable";
+                    break;
+                default:
+                    Axes = "Hidden";
+                    break;
+            }
+        }
         private void AddElementToReport()
         {
             ReportElement.Type = ElementTypes[SelectedElementIndex];
-            if (ReportElement.Type == "image")
-            {
-                var fd = new OpenFileDialog { Filter = "All Image Files | *.*", Multiselect = false };
-                if (fd.ShowDialog() != true) return;
-                using (var fs = new FileStream(fd.FileName, FileMode.Open, FileAccess.Read))
-                {
-                    var test = new byte[fs.Length];
-                    fs.Read(test, 0, Convert.ToInt32(fs.Length));
-                }
-            }
+           
             using (var context = new Entities())
             {
                 _reportElementFactory.CreateElement(ReportElement);
@@ -66,6 +112,7 @@ namespace Festispec.ViewModel.report
                 context.SaveChanges();
             }
             var userControl = _reportElementFactory.CreateElement(ReportElement);
+            Report.ReportElements.Add(ReportElement);
             Report.ReportElementUserControlls.Add(userControl);
             GoBackToReport();
 

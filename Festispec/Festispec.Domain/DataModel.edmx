@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Festispec.Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Festispec.Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="Id" />
@@ -262,6 +262,8 @@
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Content" Type="text" Nullable="false" />
           <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="X-as" Type="nvarchar" MaxLength="100" />
+          <Property Name="Y-as" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="ReportStatus">
           <Key>
@@ -934,8 +936,7 @@
             <End Role="Survey" EntitySet="Survey" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Festispec.Domain" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1260,6 +1261,8 @@
           <Property Name="Order" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ElementType1" Relationship="Self.FK_ReportElement_ElementType" FromRole="ReportElement" ToRole="ElementType" />
           <NavigationProperty Name="Report" Relationship="Self.FK_ReportElement_Report" FromRole="ReportElement" ToRole="Report" />
+          <Property Name="X_as" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Y_as" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ReportStatu">
           <Key>
@@ -2216,6 +2219,8 @@
           <EntitySetMapping Name="ReportElements">
             <EntityTypeMapping TypeName="Festispec.Domain.ReportElement">
               <MappingFragment StoreEntitySet="ReportElement">
+                <ScalarProperty Name="Y_as" ColumnName="Y-as" />
+                <ScalarProperty Name="X_as" ColumnName="X-as" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ReportId" ColumnName="ReportId" />
                 <ScalarProperty Name="ElementType" ColumnName="ElementType" />

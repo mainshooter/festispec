@@ -127,7 +127,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
-    <Compile Include="Message\ChangeSelectedReport.cs" />
+    <Compile Include="Message\ChangeSelectedReportMessage.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSessionVm.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
@@ -159,6 +159,7 @@
     <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
     <Compile Include="ViewModel\report\AddElementVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
+    <Compile Include="ViewModel\report\EditElementVM.cs" />
     <Compile Include="ViewModel\report\element\BarChartVM.cs" />
     <Compile Include="ViewModel\report\element\ImageVM.cs" />
     <Compile Include="ViewModel\report\element\LineChartVM.cs" />
@@ -208,6 +209,24 @@
     </Compile>
     <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
       <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\EditBarChartPage.xaml.cs">
+      <DependentUpon>EditBarChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\EditImagePage.xaml.cs">
+      <DependentUpon>EditImagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\EditLineChartPage.xaml.cs">
+      <DependentUpon>EditLineChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\EditPieChartPage.xaml.cs">
+      <DependentUpon>EditPieChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\EditTablePage.xaml.cs">
+      <DependentUpon>EditTablePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\EditTextPage.xaml.cs">
+      <DependentUpon>EditTextPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Survey\QuestionTypes\CommentField\AddCommentFieldPage.xaml.cs">
       <DependentUpon>AddCommentFieldPage.xaml</DependentUpon>
@@ -352,6 +371,30 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\EditBarChartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\EditImagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\EditLineChartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\EditPieChartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\EditTablePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\EditTextPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Survey\QuestionTypes\CommentField\AddCommentFieldPage.xaml">
       <SubType>Designer</SubType>
