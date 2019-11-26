@@ -39,7 +39,7 @@
         <Label HorizontalAlignment="Left" Margin="530,95,0,0" VerticalAlignment="Top" Width="175" Content="{Binding Path=Event.ContactPerson.Fullname}" Height="30"/>
         <Label FontWeight="Bold" Content="Contactpersoon" HorizontalAlignment="Left" Margin="530,70,0,0" VerticalAlignment="Top" Width="116"/>
         <Label FontWeight="Bold" Content="Beschrijving" HorizontalAlignment="Left" Margin="320,190,0,0" VerticalAlignment="Top" Width="84"/>
-        <Label HorizontalAlignment="Left" Height="150" Margin="320,215,0,0" Content="{Binding Path=Event.Description, Mode=TwoWay}" VerticalAlignment="Top" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" Width="380"/>
+        <TextBox HorizontalAlignment="Left" Padding="2" Height="150" Margin="320,215,0,0" Text="{Binding Path=Event.Description, Mode=TwoWay}" VerticalAlignment="Top" TextWrapping="WrapWithOverflow" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" Width="380"/>
         <Label FontWeight="Bold" Content="Contact telefoonnummer" HorizontalAlignment="Left" Margin="530,130,0,0" VerticalAlignment="Top" Width="174"/>
         <Label HorizontalAlignment="Left" Margin="530,155,0,0" VerticalAlignment="Top" Width="175" Content="{Binding Path=Event.ContactPerson.Phone}" Height="28"/>
     </Grid>
