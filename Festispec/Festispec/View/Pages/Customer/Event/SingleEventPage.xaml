@@ -10,37 +10,37 @@
       Background="White"
       DataContext="{Binding EventInfoVM,Source={StaticResource Locator}}">
 
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Button Command="{Binding CloseSingleEventCommand}" Margin="0,0,758,432"  Height="17" Width="43" VerticalAlignment="Top" HorizontalAlignment="Left" >
             <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
         </Button>
-        <Label HorizontalAlignment="Left" Height="28" Margin="108,41,0,0" Content="{Binding Path=Event.Name, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
-        <Label FontWeight="Bold" Content="Naam" HorizontalAlignment="Left" Margin="108,10,0,0" VerticalAlignment="Top" Width="53"/>
-        <Label HorizontalAlignment="Left" Height="28" Margin="108,100,0,0" Content="{Binding Path=Event.Street, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
-        <Label FontWeight="Bold" Content="Straat" HorizontalAlignment="Left" Margin="108,69,0,0" VerticalAlignment="Top" Width="76"/>
-        <Label HorizontalAlignment="Left" Height="28" Margin="108,159,0,0" Content="{Binding Path=Event.HouseNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="76"/>
-        <Label FontWeight="Bold" Content="Huisnummer" HorizontalAlignment="Left" Margin="108,128,0,0" VerticalAlignment="Top" Width="82"/>
-        <Label HorizontalAlignment="Left" Height="28" Margin="208,159,0,0" Content="{Binding Path=Event.HouseNumberAddition, Mode=TwoWay}" VerticalAlignment="Top" Width="76"/>
-        <Label FontWeight="Bold" Content="Toevoeging" HorizontalAlignment="Left" Margin="202,128,0,0" VerticalAlignment="Top" Width="82"/>
-        <Label HorizontalAlignment="Left" Height="28" Margin="108,218,0,0" Content="{Binding Path=Event.City, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
-        <Label FontWeight="Bold" Content="Plaats" HorizontalAlignment="Left" Margin="108,187,0,0" VerticalAlignment="Top" Width="94"/>
-        <Label HorizontalAlignment="Left" Height="28" Margin="108,277,0,0" Content="{Binding Path=Event.PostalCode, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
-        <Label FontWeight="Bold" Content="Postcode" HorizontalAlignment="Left" Margin="108,246,0,0" VerticalAlignment="Top" Width="94"/>
-        <Label FontWeight="Bold" Content="Bezoekers totaal" HorizontalAlignment="Left" Margin="108,305,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label HorizontalAlignment="Left" Height="28" Margin="108,336,0,0" Content="{Binding Path=Event.AmountVisitors, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
-        <Label FontWeight="Bold" Content="Oppervlakte" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="84"/>
-        <Label HorizontalAlignment="Left" Height="28" Margin="320,41,0,0" Content="{Binding Path=Event.SurfaceM2, Mode=TwoWay}" VerticalAlignment="Top" Width="176"/>
-        <Label Content="{Binding Path=Event.BeginDate, Mode=TwoWay}" HorizontalAlignment="Left" Height="28" Margin="320,100,0,0" VerticalAlignment="Top" Width="176"/>
-        <Label FontWeight="Bold" Content="Begindatum" HorizontalAlignment="Left" Margin="320,69,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label Content="{Binding Path=Event.EndDate, Mode=TwoWay}" HorizontalAlignment="Left" Height="28" Margin="320,159,0,0" VerticalAlignment="Top" Width="176"/>
-        <Label FontWeight="Bold" Content="Einddatum" HorizontalAlignment="Left" Margin="320,128,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label HorizontalAlignment="Left" Margin="526,36,0,0" VerticalAlignment="Top" Width="174" Content="{Binding Path=Event.Customer.Name}" Height="28"/>
-        <Label FontWeight="Bold" Content="Klant" HorizontalAlignment="Left" Margin="526,10,0,0" VerticalAlignment="Top" Width="50"/>
-        <Label HorizontalAlignment="Left" Margin="526,95,0,0" VerticalAlignment="Top" Width="174" Content="{Binding Path=Event.ContactPerson.Fullname}" Height="28"/>
-        <Label FontWeight="Bold" Content="Contactpersoon" HorizontalAlignment="Left" Margin="526,69,0,0" VerticalAlignment="Top" Width="116"/>
-        <Label FontWeight="Bold" Content="Beschrijving" HorizontalAlignment="Left" Margin="320,187,0,0" VerticalAlignment="Top" Width="84"/>
-        <Label HorizontalAlignment="Left" Height="141" Margin="320,218,0,0" Content="{Binding Path=Event.Description, Mode=TwoWay}" VerticalAlignment="Top" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" Width="176"/>
-        <Label FontWeight="Bold" Content="Contact telefoonnummer" HorizontalAlignment="Left" Margin="526,128,0,0" VerticalAlignment="Top" Width="174"/>
-        <Label HorizontalAlignment="Left" Margin="526,159,0,0" VerticalAlignment="Top" Width="174" Content="{Binding Path=Event.ContactPerson.Phone}" Height="28"/>
+        <Label HorizontalAlignment="Left" Height="30" Margin="110,35,0,0" Content="{Binding Path=Event.Name, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label FontWeight="Bold" Content="Naam" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" Width="53"/>
+        <Label HorizontalAlignment="Left" Height="30" Margin="110,95,0,0" Content="{Binding Path=Event.Street, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label FontWeight="Bold" Content="Straat" HorizontalAlignment="Left" Margin="110,70,0,0" VerticalAlignment="Top" Width="76"/>
+        <Label HorizontalAlignment="Left" Height="30" Margin="110,155,0,0" Content="{Binding Path=Event.HouseNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="75"/>
+        <Label FontWeight="Bold" Content="Huisnummer" HorizontalAlignment="Left" Margin="110,130,0,0" VerticalAlignment="Top" Width="82"/>
+        <Label HorizontalAlignment="Left" Height="30" Margin="210,155,0,0" Content="{Binding Path=Event.HouseNumberAddition, Mode=TwoWay}" VerticalAlignment="Top" Width="75"/>
+        <Label FontWeight="Bold" Content="Toevoeging" HorizontalAlignment="Left" Margin="202,130,0,0" VerticalAlignment="Top" Width="82"/>
+        <Label HorizontalAlignment="Left" Height="30" Margin="110,215,0,0" Content="{Binding Path=Event.City, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label FontWeight="Bold" Content="Plaats" HorizontalAlignment="Left" Margin="110,190,0,0" VerticalAlignment="Top" Width="94"/>
+        <Label HorizontalAlignment="Left" Height="30" Margin="110,275,0,0" Content="{Binding Path=Event.PostalCode, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label FontWeight="Bold" Content="Postcode" HorizontalAlignment="Left" Margin="110,250,0,0" VerticalAlignment="Top" Width="94"/>
+        <Label FontWeight="Bold" Content="Bezoekersaantal" HorizontalAlignment="Left" Margin="110,310,0,0" VerticalAlignment="Top" Width="112"/>
+        <Label HorizontalAlignment="Left" Height="30" Margin="110,335,0,0" Content="{Binding Path=Event.AmountVisitors, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label FontWeight="Bold" Content="Oppervlakte  (m²)" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label HorizontalAlignment="Left" Height="30" Margin="320,35,0,0" Content="{Binding Path=Event.SurfaceM2, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label Content="{Binding Path=Event.BeginDate, Mode=TwoWay}" HorizontalAlignment="Left" Height="30" Margin="320,95,0,0" VerticalAlignment="Top" Width="175"/>
+        <Label FontWeight="Bold" Content="Begindatum" HorizontalAlignment="Left" Margin="320,70,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="{Binding Path=Event.EndDate, Mode=TwoWay}" HorizontalAlignment="Left" Height="30" Margin="320,155,0,0" VerticalAlignment="Top" Width="175"/>
+        <Label FontWeight="Bold" Content="Einddatum" HorizontalAlignment="Left" Margin="320,130,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label HorizontalAlignment="Left" Margin="530,35,0,0" VerticalAlignment="Top" Width="175" Content="{Binding Path=Event.Customer.Name}" Height="30"/>
+        <Label FontWeight="Bold" Content="Klant" HorizontalAlignment="Left" Margin="530,10,0,0" VerticalAlignment="Top" Width="50"/>
+        <Label HorizontalAlignment="Left" Margin="530,95,0,0" VerticalAlignment="Top" Width="175" Content="{Binding Path=Event.ContactPerson.Fullname}" Height="30"/>
+        <Label FontWeight="Bold" Content="Contactpersoon" HorizontalAlignment="Left" Margin="530,70,0,0" VerticalAlignment="Top" Width="116"/>
+        <Label FontWeight="Bold" Content="Beschrijving" HorizontalAlignment="Left" Margin="320,190,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label HorizontalAlignment="Left" Height="150" Margin="320,215,0,0" Content="{Binding Path=Event.Description, Mode=TwoWay}" VerticalAlignment="Top" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" Width="380"/>
+        <Label FontWeight="Bold" Content="Contact telefoonnummer" HorizontalAlignment="Left" Margin="530,130,0,0" VerticalAlignment="Top" Width="174"/>
+        <Label HorizontalAlignment="Left" Margin="530,155,0,0" VerticalAlignment="Top" Width="175" Content="{Binding Path=Event.ContactPerson.Phone}" Height="28"/>
     </Grid>
 </Page>

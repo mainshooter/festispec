@@ -17,31 +17,31 @@
             <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
         </Button>
         <Button Content="Edit Event" HorizontalAlignment="Left" Margin="344,412,0,0" VerticalAlignment="Top" Width="138" Command="{Binding EditEventCommand}" Height="28"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,41,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Naam" HorizontalAlignment="Left" Margin="108,10,0,0" VerticalAlignment="Top" Width="53"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,100,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.Street, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Straat" HorizontalAlignment="Left" Margin="108,69,0,0" VerticalAlignment="Top" Width="76"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,159,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.HouseNumber, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="76"/>
-        <Label Content="Huisnummer" HorizontalAlignment="Left" Margin="108,128,0,0" VerticalAlignment="Top" Width="82"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="208,159,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.HouseNumberAddition, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="76"/>
-        <Label Content="Toevoeging" HorizontalAlignment="Left" Margin="202,128,0,0" VerticalAlignment="Top" Width="82"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,218,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.City, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Plaats" HorizontalAlignment="Left" Margin="108,187,0,0" VerticalAlignment="Top" Width="94"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.PostalCode, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Postcode" HorizontalAlignment="Left" Margin="108,246,0,0" VerticalAlignment="Top" Width="94"/>
-        <Label Content="Bezoekers totaal" HorizontalAlignment="Left" Margin="108,305,0,0" VerticalAlignment="Top" Width="100"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,336,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.AmountVisitors, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Oppervlakte" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="84"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="320,41,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.SurfaceM2, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-        <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding Path=Event.BeginDate, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="320,100,0,0" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Begindatum" HorizontalAlignment="Left" Margin="320,69,0,0" VerticalAlignment="Top" Width="100"/>
-        <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding Path=Event.EndDate, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="320,218,0,0" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Einddatum" HorizontalAlignment="Left" Margin="320,187,0,0" VerticalAlignment="Top" Width="100"/>
-        <ComboBox HorizontalAlignment="Left" Margin="526,36,0,0" VerticalAlignment="Top" Width="174" Text="{Binding Path=Event.Customer, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=CustomerIndex}" ItemsSource="{Binding Path=Customers}" DisplayMemberPath="Name" SelectedValue="{Binding SelectedCustomer}" />
-        <Label Content="Klant" HorizontalAlignment="Left" Margin="526,10,0,0" VerticalAlignment="Top" Width="50"/>
-        <ComboBox HorizontalAlignment="Left" Margin="526,95,0,0" VerticalAlignment="Top" Width="174" Text="{Binding Path=Event.ContactPerson, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=CustomerIndex}" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=FilteredContactPersons}" DisplayMemberPath="Fullname" SelectedValue="{Binding Event.ContactPerson}" />
-        <Label Content="Contactpersoon" HorizontalAlignment="Left" Margin="526,69,0,0" VerticalAlignment="Top" Width="50"/>
-        <Label Content="Beschrijving" HorizontalAlignment="Left" Margin="526,128,0,0" VerticalAlignment="Top" Width="84"/>
-        <TextBox HorizontalAlignment="Left" Height="205" Margin="526,159,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.Description, Mode=TwoWay}" VerticalAlignment="Top" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" Width="176"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="110,35,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
+        <Label Content="Naam" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" Width="53"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="110,105,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.Street, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
+        <Label Content="Straat" HorizontalAlignment="Left" Margin="110,80,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="110,175,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.HouseNumber, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Huisnummer" HorizontalAlignment="Left" Margin="110,150,0,0" VerticalAlignment="Top" Width="82"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="210,175,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.HouseNumberAddition, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Toevoeging" HorizontalAlignment="Left" Margin="210,150,0,0" VerticalAlignment="Top" Width="82"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="110,255,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.City, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
+        <Label Content="Plaats" HorizontalAlignment="Left" Margin="110,230,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="110,325,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.PostalCode, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
+        <Label Content="Postcode" HorizontalAlignment="Left" Margin="110,300,0,0" VerticalAlignment="Top" Width="94"/>
+        <Label Content="Bezoekersaantal" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="320,35,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.AmountVisitors, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
+        <Label Content="Oppervlakte (m²)" HorizontalAlignment="Left" Margin="320,80,0,0" VerticalAlignment="Top" Width="113"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="320,105,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.SurfaceM2, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
+        <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding Path=Event.BeginDate, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="30" Margin="320,175,0,0" VerticalAlignment="Top" Width="175"/>
+        <Label Content="Begindatum" HorizontalAlignment="Left" Margin="320,150,0,0" VerticalAlignment="Top" Width="100"/>
+        <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding Path=Event.EndDate, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="30" Margin="320,255,0,0" VerticalAlignment="Top" Width="175"/>
+        <Label Content="Einddatum" HorizontalAlignment="Left" Margin="320,230,0,0" VerticalAlignment="Top" Width="100"/>
+        <ComboBox HorizontalAlignment="Left" Margin="530,35,0,0" VerticalAlignment="Top" Width="175" Text="{Binding Path=Event.Customer, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=CustomerIndex}" ItemsSource="{Binding Path=Customers}" DisplayMemberPath="Name" SelectedValue="{Binding SelectedCustomer}" />
+        <Label Content="Klant" HorizontalAlignment="Left" Margin="530,10,0,0" VerticalAlignment="Top" Width="50"/>
+        <ComboBox HorizontalAlignment="Left" Margin="530,105,0,0" VerticalAlignment="Top" Width="175" Text="{Binding Path=Event.ContactPerson, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=CustomerIndex}" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=FilteredContactPersons}" DisplayMemberPath="Fullname" SelectedValue="{Binding Event.ContactPerson}" />
+        <Label Content="Contactpersoon" HorizontalAlignment="Left" Margin="530,80,0,0" VerticalAlignment="Top" Width="50"/>
+        <Label Content="Beschrijving" HorizontalAlignment="Left" Margin="530,150,0,0" VerticalAlignment="Top" Width="84"/>
+        <TextBox Padding="2" HorizontalAlignment="Left" Height="180" Margin="530,175,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.Description, Mode=TwoWay}" VerticalAlignment="Top" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" Width="175"/>
     </Grid>
 </Page>

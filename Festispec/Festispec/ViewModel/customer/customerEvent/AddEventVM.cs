@@ -16,7 +16,6 @@ namespace Festispec.ViewModel.customer.customerEvent
         public EventVM Event { get; set; }
         public ICommand AddEventCommand { get; set; }
         public ICommand CloseAddEventCommand { get; set; }
-        private CustomerVM _selectedCustomer;
         public ObservableCollection<CustomerVM> Customers {get; set;}
         public ObservableCollection<ContactPersonVM> ContactPersons { get; set; }
         
@@ -26,7 +25,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             {
                 if(SelectedCustomer != null)
                 {
-                    return new ObservableCollection<ContactPersonVM>(ContactPersons.Select(contactperson => contactperson).Where(contactperson => contactperson.CustomerID == _selectedCustomer.Id));
+                    return new ObservableCollection<ContactPersonVM>(ContactPersons.Select(contactperson => contactperson).Where(contactperson => contactperson.CustomerID == Event.Customer.Id));
                 }
                 return null;
             }
@@ -36,12 +35,11 @@ namespace Festispec.ViewModel.customer.customerEvent
         {
             get
             {
-                return _selectedCustomer;
+                return Event.Customer;
             }
             set
             {
                 Event.Customer = value;
-                _selectedCustomer = value;
                 RaisePropertyChanged("FilteredContactPersons");
             }
         }
