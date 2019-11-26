@@ -11,13 +11,19 @@
 
     <StackPanel Margin="15">
         <Label>Toevoegen van element</Label>
-        <ComboBox ItemsSource="{Binding ElementTypes}" Text="Select option" BorderThickness="2" SelectedItem="{Binding ReportElement.Type}" IsSynchronizedWithCurrentItem="True" >
+        <ComboBox ItemsSource="{Binding PosibleElementTypes}" Text="Select option" BorderThickness="2" SelectedItem="{Binding SelectedElementType }" IsSynchronizedWithCurrentItem="True" >
 
         </ComboBox>
         <Label>Type query</Label>
-        <ComboBox ItemsSource="{Binding QueryTypes}" SelectedItem="{Binding SelectedQueryType}"></ComboBox>
+        <ComboBox ItemsSource="{Binding PosibleDataParsers}" SelectedItem="{Binding SelectedDataParser}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding ParserType}"></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <Label>Kies een vraag</Label>
-        <ComboBox ItemsSource="{Binding SurveyQuestions}" SelectedItem="{Binding SelectedQuestion}">
+        <ComboBox ItemsSource="{Binding PosibleSurveyQuestions}" SelectedItem="{Binding SelectedQuestion}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding QuestionDetails.Question}"></TextBlock>

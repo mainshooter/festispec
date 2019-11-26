@@ -1,7 +1,6 @@
 ﻿using Festispec.Factory;
 using Festispec.Interface;
 using Festispec.Message;
-using Festispec.Repository;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.report.data;
@@ -9,10 +8,9 @@ using Festispec.ViewModel.report.element;
 using Festispec.ViewModel.survey;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using LiveCharts;
-using LiveCharts.Wpf;
-using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.report
@@ -26,6 +24,20 @@ namespace Festispec.ViewModel.report
         private SurveyVM _survey;
         private ReportElementVM _reportElementVM;
 
+        private string _selectedElementType;
+        private IQuestion _selectedQuestion;
+        private IDataParser _selectedDataParser;
+
+
+        public string SelectedElementType {
+            get {
+                return _selectedElementType;
+            }
+            set {
+                _selectedElementType = value;
+                FilterPosibleOptions();
+            }
+        }
         public List<string> ElementTypes { get; set; }
 
         public ReportElementVM ReportElement {
@@ -43,11 +55,31 @@ namespace Festispec.ViewModel.report
 
         public ICommand AddElementCommand { get; set; }
 
-        public List<string> QueryTypes { get; set; }
-        public string SelectedQueryType { get; set; }
+        public IDataParser SelectedDataParser {
+            get {
+                return _selectedDataParser;
+            }
+            set {
+                _selectedDataParser = value;
+                FilterPosibleOptions();
+            }
+        }
+        public List<IDataParser> DataParsers { get; private set; }
+        public ObservableCollection<IDataParser> PosibleDataParsers { get; set; }
+
 
         public List<IQuestion> SurveyQuestions { get; set; }
-        public IQuestion SelectedQuestion { get; set; }
+        public IQuestion SelectedQuestion {
+            get {
+                return _selectedQuestion;
+            }
+            set {
+                _selectedQuestion = value;
+                FilterPosibleOptions();
+            }
+        }
+        public ObservableCollection<IQuestion> PosibleSurveyQuestions { get; set; }
+        public ObservableCollection<string> PosibleElementTypes { get; set; }
 
         public DataVM DataVM { 
             get {
@@ -61,78 +93,44 @@ namespace Festispec.ViewModel.report
         public AddElementVM()
         {
             ReportElement = new ReportElementVM();
+            _dataParserFactory = new DataParserFactory();
+            _reportElementFactory = new ReportElementFactory();
+
             MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
                 Report = message.SelectedReport;
                 _orderVM = Report.Order;
                 _survey = _orderVM.Survey;
+                PosibleSurveyQuestions.Clear();
+                SurveyQuestions.Clear();
                 foreach (var item in _survey.Questions)
                 {
                     SurveyQuestions.Add(item);
+                    PosibleSurveyQuestions.Add(item);
                 }
                 ReportElement = new ReportElementVM();
             });
-            _dataParserFactory = CommonServiceLocator.ServiceLocator.Current.GetInstance<DataParserFactory>();
-            _reportElementFactory = new ReportElementFactory();
+
+
             ReportElementTypesListVM elementTypesList = new ReportElementTypesListVM();
             SurveyQuestions = new List<IQuestion>();
-            QueryTypes = _dataParserFactory.DataTypes;
+            DataParsers = _dataParserFactory.DataParsers;
             ElementTypes = elementTypesList.ReportElementTypes;
             GoBackCommand = new RelayCommand(GoBackToReport);
             AddElementCommand = new RelayCommand(AddElementToReport);
+
+            PosibleSurveyQuestions = new ObservableCollection<IQuestion>();
+            PosibleDataParsers = new ObservableCollection<IDataParser>(DataParsers);
+            PosibleElementTypes = new ObservableCollection<string>(ElementTypes);
         }
 
         private void AddElementToReport()
         {
             ReportElement.Title = "Leuke titel";
             ReportElement.Content = "Test description";
-            IDataParser dataVM = _dataParserFactory.GetDataParser(SelectedQueryType);
+            ReportElement.Type = SelectedElementType;
+            IDataParser dataVM = _dataParserFactory.GetDataParser(SelectedDataParser.ParserType);
             dataVM.Question = SelectedQuestion;
             ReportElement.Data = dataVM.ParseData();
-            //else if (ReportElement.Type.Equals("piechart"))
-            //{
-            //    ReportElement.Data = new SeriesCollection
-            //    {
-            //        new PieSeries
-            //        {
-            //            Title = "Bier",
-            //            Values = new ChartValues<double> { 20 },
-            //            DataLabels = true,
-            //        },
-            //        new PieSeries
-            //        {
-            //            Title = "Frisdrank",
-            //            Values = new ChartValues<double> { 12 },
-            //            DataLabels = true,
-            //        },
-            //        new PieSeries
-            //        {
-            //            Title = "Cocktail",
-            //            Values = new ChartValues<double> { 8 },
-            //            DataLabels = true,
-            //        },
-            //        new PieSeries
-            //        {
-            //            Title = "Wijn",
-            //            Values = new ChartValues<double> { 2 },
-            //            DataLabels = true,
-            //        }
-            //    };
-            //}
-            //else if (ReportElement.Type.Equals("text"))
-            //{
-            //    ReportElement.Data = new Dictionary<string, Object>()
-            //    {
-            //        ["text"] = "test text smiley"
-            //    };
-
-            //}
-            //else if (ReportElement.Type.Equals("image"))
-            //{
-            //    ReportElement.Data = new Dictionary<string, Object>()
-            //    {
-            //        ["image"] = new byte[0]
-            //    };
-            //}
             var userControl = _reportElementFactory.CreateElement(ReportElement);
             Report.ReportElementUserControlls.Add(userControl);
             GoBackToReport();
@@ -141,6 +139,11 @@ namespace Festispec.ViewModel.report
         private void GoBackToReport()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
+        }
+
+        private void FilterPosibleOptions()
+        {
+
         }
     }
 }
