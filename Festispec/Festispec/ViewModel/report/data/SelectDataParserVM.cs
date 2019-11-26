@@ -39,7 +39,34 @@ namespace Festispec.ViewModel.report.data
             {
                 return ParseSliderQuestion();
             }
+            if (questionType.Equals("Gesloten vraag"))
+            {
+                return ParseClosedQuestion();
+            }
             return new List<List<string>>();
+        }
+
+        private List<List<string>> ParseClosedQuestion()
+        {
+            var result = new List<List<string>>();
+            var answers = GetQuestionAnswers();
+            var headerRow = new List<string>() { "Ja", "Nee" };
+            result.Add(headerRow);
+            foreach (var answer in answers)
+            {
+                var givenAnswer = answer.Answer;
+                List<string> givenAnswerRow = new List<string>();
+                if (givenAnswer.Equals("Ja"))
+                {
+                    givenAnswerRow = new List<string>() { "Ja", "" };
+                }
+                else if (givenAnswer.Equals("Nee"))
+                {
+                    givenAnswerRow = new List<string>() { "", "Nee" };
+                }
+                result.Add(givenAnswerRow);
+            }
+            return result;
         }
 
         private List<List<string>> ParseSliderQuestion()
