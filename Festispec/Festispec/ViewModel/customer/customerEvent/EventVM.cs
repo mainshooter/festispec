@@ -14,11 +14,14 @@ namespace Festispec.ViewModel.customer.customerEvent
         private CustomerVM _customer;
         private ContactPersonVM _contactPerson;
 
-        public int Id {
-            get {
+        public int Id 
+        {
+            get 
+            {
                 return _event.Id;
             }
-            private set {
+            private set 
+            {
                 _event.Id = value;
             }
         }
@@ -36,7 +39,8 @@ namespace Festispec.ViewModel.customer.customerEvent
         }
 
 
-        public CustomerVM Customer {
+        public CustomerVM Customer 
+        {
             get => _customer;
             set
             {
@@ -48,7 +52,8 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
-        public ContactPersonVM ContactPerson {
+        public ContactPersonVM ContactPerson 
+        {
             get => _contactPerson;
             set
             {
@@ -60,60 +65,78 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
-        public string Name {
-            get {
+        public string Name 
+        {
+            get 
+            {
                 return _event.Name;
             }
-            set {
+            set 
+            {
                 _event.Name = value;
             }
         }
 
-        public DateTime BeginDate {
-            get {
+        public DateTime BeginDate 
+        {
+            get 
+            {
                 return _event.BeginDate.Date;
             }
-            set {
+            set 
+            {
                 _event.BeginDate = value.Date;
             }
         }
 
         public string BeginDateDate => BeginDate.ToString("d");
 
-        public DateTime EndDate {
-            get {
+        public DateTime EndDate 
+        {
+            get 
+            {
                 return _event.EndDate.Date;
             }
-            set {
+            set 
+            {
                 _event.EndDate = value.Date;
             }
         }
 
         public string EndDateDate => EndDate.ToString("d");
 
-        public int AmountVisitors {
-            get {
+        public int AmountVisitors 
+        {
+            get 
+            {
                 return _event.AmountVisitors;
             }
-            set {
+            set 
+            {
                 _event.AmountVisitors = value;
             }
         }
 
-        public int SurfaceM2 {
-            get {
+        public int SurfaceM2 
+        {
+            get 
+            {
                 return _event.SurfaceM2;
             }
-            set {
+            set 
+            {
                 _event.SurfaceM2 = value;
             }
         }
 
-        public string Description {
-            get {
+        public string Description 
+        {
+            get 
+            {
                 return _event.Description;
             }
-            set {
+            set 
+            {
                 _event.Description = value;
             }
         }
