@@ -10,16 +10,9 @@ namespace Festispec.ViewModel.report.data
     public class SelectDataParserVM : DataVM, IDataParser
     {
         public string ParserType => "SELECT";
-        public override string Type => ParserType;
 
-        //INSERT INTO QuestionType VALUES('Afbeelding galerij vraag')
-        //INSERT INTO QuestionType VALUES('Gesloten vraag')
-        //INSERT INTO QuestionType VALUES('Meerkeuze vraag')
-        //INSERT INTO QuestionType VALUES('Open vraag')
-        //INSERT INTO QuestionType VALUES('Opmerking vraag')
-        //INSERT INTO QuestionType VALUES('Schuifbalk vraag')
-        //INSERT INTO QuestionType VALUES('Tabel vraag')
-        //INSERT INTO QuestionType VALUES('Teken vraag')
+        public List<string> SupportedQuestions => new List<string>() { "Open vraag", "Meerkeuze vraag", "Tabel vraag", "Schuifbalk vraag", "Gesloten vraag" };
+        public List<string> SupportedVisuals => new List<string>() { "Table" };
         public List<List<string>> ParseData()
         {
             string questionType = Question.QuestionType;

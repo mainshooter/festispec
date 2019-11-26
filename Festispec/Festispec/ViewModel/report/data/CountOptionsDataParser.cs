@@ -12,6 +12,8 @@ namespace Festispec.ViewModel.report.data
     public class CountOptionsDataParser : DataVM, IDataParser
     {
         public string ParserType => "COUNT_OPTIONS";
+        public List<string> SupportedQuestions => new List<string>() { "Gesloten vraag", "Meerkeuze vraag", "Schuifbalk vraag" };
+        public List<string> SupportedVisuals => new List<string>() { "Table" };
 
         public List<List<string>> ParseData()
         {

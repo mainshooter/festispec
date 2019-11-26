@@ -8,6 +8,8 @@ namespace Festispec.ViewModel.report.data
     public class AvgDataParser : DataVM, IDataParser
     {
         public string ParserType => "AVG";
+        public List<string> SupportedQuestions => new List<string>() { "Schuifbalk vraag" };
+        public List<string> SupportedVisuals => new List<string>() { "Table" };
 
         public List<List<string>> ParseData()
         {
