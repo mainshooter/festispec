@@ -91,33 +91,6 @@ namespace Festispec.ViewModel.report.element
             catch (Exception)
             {
             }
-            //    ReportElement.Data = new SeriesCollection
-            //    {
-            //        new PieSeries
-            //        {
-            //            Title = "Bier",
-            //            Values = new ChartValues<double> { 20 },
-            //            DataLabels = true,
-            //        },
-            //        new PieSeries
-            //        {
-            //            Title = "Frisdrank",
-            //            Values = new ChartValues<double> { 12 },
-            //            DataLabels = true,
-            //        },
-            //        new PieSeries
-            //        {
-            //            Title = "Cocktail",
-            //            Values = new ChartValues<double> { 8 },
-            //            DataLabels = true,
-            //        },
-            //        new PieSeries
-            //        {
-            //            Title = "Wijn",
-            //            Values = new ChartValues<double> { 2 },
-            //            DataLabels = true,
-            //        }
-            //    };
         }
 
         public void ApplyChanges()
