@@ -30,9 +30,7 @@
         <Viewbox VerticalAlignment="Top">
             <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding EmployeeListFiltered}" SelectedItem="{Binding Path=SelectedEmployee,Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Voornaam" Binding="{Binding Firstname}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tussenvoegsel" Binding="{Binding Prefix}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Achternaam" Binding="{Binding Lastname}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Naam" Binding="{Binding Fullname}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Telefoonnummer" Binding="{Binding Phone}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Plaats" Binding="{Binding City}"></DataGridTextColumn>

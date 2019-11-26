@@ -89,6 +89,7 @@ namespace Festispec.ViewModel.employee
                 }
             }
         }
+
         public EmployeeListVM()
         {
             Filters = new List<string>();

@@ -67,6 +67,7 @@ namespace Festispec.ViewModel.employee
             get => _employee.HouseNumber;
             set => _employee.HouseNumber = value;
         }
+
         public string HouseNumberAddition
         {
             get => _employee.HouseNumber_Addition;
@@ -168,6 +169,7 @@ namespace Festispec.ViewModel.employee
         }
 
         #region Validation
+
         string IDataErrorInfo.Error => null;
 
         string IDataErrorInfo.this[string propertyName]
@@ -193,6 +195,7 @@ namespace Festispec.ViewModel.employee
                 return null;
             }
         }
+
         private string ValidateLastname
         {
             get
@@ -223,6 +226,7 @@ namespace Festispec.ViewModel.employee
                 return null;
             }
         }
+
         private string ValidateCity
         {
             get
@@ -231,13 +235,14 @@ namespace Festispec.ViewModel.employee
                 {
                     return "Woonplaats moet ingevuld zijn";
                 }
-                else if (Lastname.Length > 45)
+                else if (City.Length > 45)
                 {
                     return "Woonplaats mag niet langer zijn dan 45 karakters";
                 }
                 return null;
             }
         }
+
         private string ValidateStreet
         {
             get
@@ -246,7 +251,7 @@ namespace Festispec.ViewModel.employee
                 {
                     return "Straat moet ingevuld zijn";
                 }
-                else if (Lastname.Length > 100)
+                else if (Street.Length > 100)
                 {
                     return "Straat mag niet langer zijn dan 100 karakters";
                 }
@@ -269,6 +274,7 @@ namespace Festispec.ViewModel.employee
                 return null;
             }
         }
+
         private string ValidateHouseNumberAddition
         {
             get
@@ -283,6 +289,7 @@ namespace Festispec.ViewModel.employee
                 return null;
             }
         }
+
         private string ValidatePostalCode
         {
             get
@@ -373,11 +380,12 @@ namespace Festispec.ViewModel.employee
                 return null;
             }
         }
+
         private string ValidateIban
         {
             get
             {
-                string regexIban = "^(?i)([A-Z]{2}[ -]?[0-9]{2})(?=(?:[ -]?[A-Z0-9]){9,30}$)((?:[ -]?[A-Z0-9]{3,5}){2,7})([ -]?[A-Z0-9]{1,3})?$";
+                string regexIban = "^NL\\d{2}[A-Z]{4}0\\d{9}$";
                 if (String.IsNullOrWhiteSpace(Iban))
                 {
                     return "Iban moet ingevuld zijn";
@@ -483,10 +491,12 @@ namespace Festispec.ViewModel.employee
             }
             return error;
         }
+
         public static readonly string[] ValidatedProperties =
         {
             "Firstname", "Lastname", "Prefix", "Street", "City", "HouseNumber", "HouseNumberAddition", "Email", "PostalCode", "Phone", "Iban", "Password", "Status", "Department", "Birthday"
         };
+
         #endregion
     }
 }

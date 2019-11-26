@@ -4,11 +4,9 @@ using Festispec.View.Pages.Employee;
 using Festispec.ViewModel.employee.department;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.employee
@@ -17,6 +15,7 @@ namespace Festispec.ViewModel.employee
     {
         private EmployeeVM _employeeVM;
         private int _departmentIndex;
+
         public EmployeeListVM EmployeeList { get; set; }
         public ObservableCollection<DepartmentVM> Departments { get; set; }
         public ObservableCollection<string> Statuses { get; set; }

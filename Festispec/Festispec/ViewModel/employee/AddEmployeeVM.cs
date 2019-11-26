@@ -4,15 +4,11 @@ using Festispec.View.Pages.Employee;
 using Festispec.ViewModel.employee.department;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Festispec.Lib.Auth;
-using System.ComponentModel;
-using System.Security;
 
 namespace Festispec.ViewModel.employee
 {
