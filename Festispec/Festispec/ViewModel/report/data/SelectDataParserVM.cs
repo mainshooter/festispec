@@ -1,9 +1,6 @@
-﻿using Festispec.Domain;
-using Festispec.Interface;
-using Festispec.ViewModel.survey.answer;
+﻿using Festispec.Interface;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Festispec.ViewModel.report.data
 {

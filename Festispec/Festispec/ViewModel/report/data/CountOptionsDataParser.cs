@@ -1,11 +1,5 @@
-﻿using Festispec.Domain;
-using Festispec.Interface;
-using Festispec.ViewModel.survey.answer;
-using System;
+﻿using Festispec.Interface;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.report.data
 {
