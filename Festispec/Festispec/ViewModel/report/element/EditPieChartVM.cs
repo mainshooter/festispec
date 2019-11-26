@@ -13,9 +13,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Festispec.ViewModel.report
+namespace Festispec.ViewModel.report.element
 {
-    public class EditElementVM : ViewModelBase
+    public class EditPieChartVM : ViewModelBase
     {
         private ReportElementVM _reportElementVM;
         public ReportVM ReportVM { get; set; }
@@ -29,13 +29,13 @@ namespace Festispec.ViewModel.report
             set
             {
                 _reportElementVM = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged("ReportElementVM");
             }
         }
 
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
-        public EditElementVM()
+        public EditPieChartVM()
         {
             this.MessengerInstance.Register<ChangeSelectedReportMessage>(this, message =>
             {
@@ -50,13 +50,9 @@ namespace Festispec.ViewModel.report
         {
             using (var context = new Entities())
             {
-                //context.ReportElements.Attach(this.ReportElementVM.ToModel());
+                context.ReportElements.Attach(this.ReportElementVM.ToModel());
                 context.Entry(ReportElementVM.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
-                //var element = context.ReportElements.SingleOrDefault(r => r.Id == _elementId);
-                //element.Title = Title;
-                //element.Content = Content;
-                //context.SaveChanges();
             }
             CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowInformation("Rapportelement bijgewerkt.");
             ReportVM.RefreshElements();
@@ -65,7 +61,6 @@ namespace Festispec.ViewModel.report
         public void CloseEditElement()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
-
         }
         public bool CanEditElement()
         {
@@ -79,6 +74,5 @@ namespace Festispec.ViewModel.report
             }
             return true;
         }
-
     }
 }

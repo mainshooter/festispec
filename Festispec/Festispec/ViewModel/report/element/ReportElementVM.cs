@@ -76,6 +76,7 @@ namespace Festispec.ViewModel.report.element
             }
             set {
                 _reportElement.Order = value;
+                RaisePropertyChanged("Order");
             }
         }
         public string X_as
@@ -106,39 +107,34 @@ namespace Festispec.ViewModel.report.element
 
         public ReportElementVM(ReportElement element, ReportVM report)
         {
+            DeleteElement = new RelayCommand(() => Delete());
             _reportElement = element;
             Report = report;
-            EditElement = new RelayCommand(() => Edit());
-            DeleteElement = new RelayCommand(() => Delete());
+            Order = element.Order;
+
+
+            ReportId = Report.Id;
+
+            Id = element.Id;
+            Type = element.ElementType;
+            Title = element.Title;
+            Content = element.Content;
         }
 
         public ReportElementVM()
         {
-            _reportElement = new ReportElement();  
-            EditElement = new RelayCommand(() => Edit());
             DeleteElement = new RelayCommand(() => Delete());
-
-            
+            _reportElement = new ReportElement(); 
         }
 
-        public void Edit()
-        {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTextPage) });
-            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
-            {
-                NextReportVM = Report,
-                ReportElement = this,
-            });
-          
-        }
-        private void Delete()
+        public void Delete()
         {
             MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze element wilt verwijderen?", "Element Verwijderen", MessageBoxButton.YesNo);
             if (result.Equals(MessageBoxResult.Yes))
             {
                 using (var context = new Entities())
                 {
-                    context.ReportElements.Remove(context.ReportElements.Where(reportElement => reportElement.Id == Report.Id).First());
+                    context.ReportElements.Remove(context.ReportElements.Where(reportElement => reportElement.Id == _reportElement.Id).First());
                     context.SaveChanges();
                 }
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Rapportelement verwijderd.");

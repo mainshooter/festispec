@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
 
       Title="EditElementPage"
-      DataContext="{Binding EditElementVM,Source={StaticResource Locator}}">
+      DataContext="{Binding EditTextVM,Source={StaticResource Locator}}">
 
     <StackPanel>
         <Button Width="50" HorizontalAlignment="Left" Command="{Binding ReturnCommand}" Content="{materialDesign:PackIcon keyboardreturn}"/>
@@ -20,14 +20,7 @@
             <Label Content="Beschrijving: "></Label>
             <TextBox Text="{Binding ReportElementVM.Content}" ></TextBox>
         </StackPanel>
-        <StackPanel>
-            <Label Visibility="{Binding Axes}" Content="Titel: "></Label>
-            <TextBox Visibility="{Binding Axes}" Text="{Binding ReportElementVM.X_as}" ></TextBox>
-        </StackPanel>
-        <StackPanel>
-            <Label Visibility="{Binding Axes}" Content="Beschrijving: "></Label>
-            <TextBox Visibility="{Binding Axes}" Text="{Binding ReportElementVM.Y_as}" ></TextBox>
-        </StackPanel>
+
 
         <TextBox Height="260" Width="670" Text="{Binding ReportElementVM.Data}" TextAlignment="Left" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,0">
         </TextBox>

@@ -74,6 +74,7 @@ namespace Festispec.ViewModel.report
                 ReportElement.ReportId = Report.Id;
                 ReportElement.Order = Report.ReportElements.Count + 1;
             });
+
             
         }
         public void ChangeInput()
@@ -107,12 +108,11 @@ namespace Festispec.ViewModel.report
            
             using (var context = new Entities())
             {
-                _reportElementFactory.CreateElement(ReportElement);
+                _reportElementFactory.CreateElement(ReportElement, Report);
                 context.ReportElements.Add(ReportElement.ToModel());
                 context.SaveChanges();
             }
-            var userControl = _reportElementFactory.CreateElement(ReportElement);
-            Report.ReportElements.Add(ReportElement);
+            var userControl = _reportElementFactory.CreateElement(ReportElement, Report);
             Report.ReportElementUserControlls.Add(userControl);
             GoBackToReport();
 

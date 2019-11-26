@@ -159,7 +159,12 @@
     <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
     <Compile Include="ViewModel\report\AddElementVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
-    <Compile Include="ViewModel\report\EditElementVM.cs" />
+    <Compile Include="ViewModel\report\element\EditBarChartVM.cs" />
+    <Compile Include="ViewModel\report\element\EditImageVM.cs" />
+    <Compile Include="ViewModel\report\element\EditLineChartVM.cs" />
+    <Compile Include="ViewModel\report\element\EditPieChartVM.cs" />
+    <Compile Include="ViewModel\report\element\EditTableVM.cs" />
+    <Compile Include="ViewModel\report\element\EditTextVM.cs" />
     <Compile Include="ViewModel\report\element\BarChartVM.cs" />
     <Compile Include="ViewModel\report\element\ImageVM.cs" />
     <Compile Include="ViewModel\report\element\LineChartVM.cs" />

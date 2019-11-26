@@ -1,4 +1,5 @@
 ﻿using Festispec.View.Report.Element;
+using Festispec.ViewModel.report;
 using Festispec.ViewModel.report.element;
 using System.Windows.Controls;
 
@@ -6,7 +7,7 @@ namespace Festispec.Factory
 {
     public class ReportElementFactory
     {
-        public UserControl CreateElement(ReportElementVM element)
+        public UserControl CreateElement(ReportElementVM element, ReportVM report)
         {
             UserControl returningUserControl = null;
             string type = element.Type;
@@ -27,7 +28,7 @@ namespace Festispec.Factory
             else if (type.Equals("piechart"))
             {
                 PieChartUserControl pieChart = new PieChartUserControl();
-                PieChartVM pieChartVm = new PieChartVM(element);
+                PieChartVM pieChartVm = new PieChartVM(element, report);
                 pieChart.DataContext = pieChartVm;
                 returningUserControl = pieChart;
             }
@@ -49,7 +50,7 @@ namespace Festispec.Factory
             else if (type.Equals("text"))
             {
                 TextUserControl text = new TextUserControl();
-                TextVM textVM = new TextVM(element);
+                TextVM textVM = new TextVM(element,report);
                 text.DataContext = textVM;
                 returningUserControl = text;
             }

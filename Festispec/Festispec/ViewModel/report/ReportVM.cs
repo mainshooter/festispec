@@ -128,7 +128,7 @@ namespace Festispec.ViewModel.report
             var reportElements = ReportElements.OrderBy(el => el.Order);
             foreach (var element in reportElements)
             {
-                ReportElementUserControlls.Add(_reportElementFactory.CreateElement(element));
+                ReportElementUserControlls.Add(_reportElementFactory.CreateElement(element, this));
             }
         }
         public void RefreshElements()

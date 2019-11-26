@@ -8,8 +8,8 @@
         mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
         <StackPanel>
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
-            <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding ReportElement.Title}"></Label>
+            <TextBlock TextWrapping="Wrap" Text="{Binding ReportElement.Content}" HorizontalAlignment="Left"></TextBlock>
             <TextBox IsReadOnly="{Binding ReadOnly}" Height="260" Width="620" Text="{Binding Text}" TextAlignment="Left" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,0">
             </TextBox>
 

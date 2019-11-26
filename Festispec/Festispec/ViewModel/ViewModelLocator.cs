@@ -31,6 +31,7 @@ using Festispec.ViewModel.survey.question.QuestionTypes.OpenQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.SliderQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.TableQuestion;
 using GalaSoft.MvvmLight.Ioc;
+using Festispec.ViewModel.report.element;
 
 namespace Festispec.ViewModel
 {
@@ -81,7 +82,13 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddEmployeeVM>();
 
             SimpleIoc.Default.Register<AddElementVM>();
+
             SimpleIoc.Default.Register<EditTextPage>();
+            SimpleIoc.Default.Register<EditBarChartPage>();
+            SimpleIoc.Default.Register<EditImagePage>();
+            SimpleIoc.Default.Register<EditLineChartPage>();
+            SimpleIoc.Default.Register<EditPieChartPage>();
+            SimpleIoc.Default.Register<EditTablePage>();
 
             SimpleIoc.Default.Register<ToastVM>();
             SimpleIoc.Default.Register<PlanningOverviewVM>();
@@ -108,7 +115,12 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditTableQuestionVM>();
             SimpleIoc.Default.Register<UserLoginVM>();
 
-            SimpleIoc.Default.Register<EditElementVM>();
+            SimpleIoc.Default.Register<EditTextVM>();
+            SimpleIoc.Default.Register<EditImageVM>();
+            SimpleIoc.Default.Register<EditBarChartVM>();
+            SimpleIoc.Default.Register<EditLineChartVM>();
+            SimpleIoc.Default.Register<EditTableVM>();
+            SimpleIoc.Default.Register<EditPieChartVM>();
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
@@ -138,7 +150,12 @@ namespace Festispec.ViewModel
         public EditTableQuestionVM EditTableQuestionVM => ServiceLocator.Current.GetInstance<EditTableQuestionVM>();
 
         public AddElementVM AddElementVM => ServiceLocator.Current.GetInstance<AddElementVM>();
-        public EditElementVM EditElementVM => ServiceLocator.Current.GetInstance<EditElementVM>();
+        public EditTextVM EditTextVM => ServiceLocator.Current.GetInstance<EditTextVM>();
+        public EditImageVM EditImageVM => ServiceLocator.Current.GetInstance<EditImageVM>();
+        public EditBarChartVM EditBarChartVM => ServiceLocator.Current.GetInstance<EditBarChartVM>();
+        public EditPieChartVM EditPieChartVM => ServiceLocator.Current.GetInstance<EditPieChartVM>();
+        public EditLineChartVM EditLineChartVM => ServiceLocator.Current.GetInstance<EditLineChartVM>();
+        public EditTableVM EditTableVM => ServiceLocator.Current.GetInstance<EditTableVM>();
 
         public static void Cleanup()
         {

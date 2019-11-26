@@ -16,7 +16,7 @@ namespace Festispec.Repository
             List<ReportElementVM> result = new List<ReportElementVM>();
             using (var context = new Entities())
             {
-                result = new List<ReportElementVM>(context.ReportElements.ToList().Where(r => r.ReportId == report.Id).Select(reportElement => new ReportElementVM(reportElement,report)));
+                result = new List<ReportElementVM>(context.ReportElements.ToList().Where(r => r.ReportId == report.Id).Select(reportElement => new ReportElementVM(reportElement, report)));
             }
             return result;
 
