@@ -29,7 +29,7 @@ namespace Festispec.ViewModel.employee.availabilty
             {
                 if (_availabilityStart == null)
                 {
-                    return _availabilityStart;
+                    return null;
                 }
                 return _availabilityInspector.AvailableFrom;
             }
@@ -56,22 +56,26 @@ namespace Festispec.ViewModel.employee.availabilty
             {
                 if (_availabilityEnd == null)
                 {
-                    return _availabilityStart;
+                    return null;
                 }
                 return _availabilityInspector.AvailableTill;
             }
             set
             {
                 RaisePropertyChanged("MaxEndTime");
+                if (value > MaxEndTime)
+                {
+                    value = MaxEndTime;
+                }
                 if (value != null)
                 {
-                    if (value >= MaxEndTime)
-                    {
-                        value = MaxEndTime;
-                    }
                     _availabilityInspector.AvailableTill = (DateTime)value;
                 }
                 _availabilityEnd = value;
+                if (AvailabiltyEnd > MaxEndTime)
+                {
+                    AvailabiltyEnd = MaxEndTime;
+                }
                 if (AvailabiltyEnd < AvailabiltyStart)
                 {
                     AvailabiltyEnd = AvailabiltyStart;
@@ -85,14 +89,14 @@ namespace Festispec.ViewModel.employee.availabilty
         {
             get
             {
-                if (AvailabiltyStart != null)
+                if (AvailabiltyEnd != null)
                 {
-                    if (AvailabiltyStart.Value.Year > 1)
+                    if (AvailabiltyEnd.Value.Year > 1)
                     {
                         var time = new DateTime();
-                        time = time.AddYears(AvailabiltyStart.Value.Year - 1); ;
-                        time = time.AddMonths(AvailabiltyStart.Value.Month - 1);
-                        time = time.AddDays(AvailabiltyStart.Value.Day - 1);
+                        time = time.AddYears(AvailabiltyEnd.Value.Year - 1); ;
+                        time = time.AddMonths(AvailabiltyEnd.Value.Month - 1);
+                        time = time.AddDays(AvailabiltyEnd.Value.Day - 1);
                         time = time.AddHours(23);
                         time = time.AddMinutes(59);
                         return time;

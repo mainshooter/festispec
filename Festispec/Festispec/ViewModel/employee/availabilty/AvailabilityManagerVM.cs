@@ -18,6 +18,7 @@ namespace Festispec.ViewModel.employee.availabilty
         private ToastVM _toast;
 
         public ObservableCollection<AvailabilityWeekVM> Weeks { get; set; }
+
         public AvailabilityWeekVM SelectedWeek
         {
             get

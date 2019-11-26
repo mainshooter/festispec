@@ -1,7 +1,6 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.auth;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 
@@ -30,6 +29,7 @@ namespace Festispec.ViewModel.employee.availabilty
             bool hasFriday = false;
             bool hasSaturday = false;
             bool hasSunday = false;
+
             using (var context = new Entities())
             {
                 var availabilities = context.AvailabilityInspectors.Select(availabilty => availabilty).Where(availabilty => availabilty.Employee.Id == UserSessionVm.Current.Employee.Id);
@@ -90,26 +90,32 @@ namespace Festispec.ViewModel.employee.availabilty
             {
                 Monday = new AvailabiltyVM();
             }
+
             if (!hasTuesday)
             {
                 Tuesday = new AvailabiltyVM();
             }
+
             if (!hasWednesday)
             {
                 Wednesday = new AvailabiltyVM();
             }
+
             if (!hasThursday)
             {
                 Thursday = new AvailabiltyVM();
             }
+
             if (!hasFriday)
             {
                 Friday = new AvailabiltyVM();
             }
+
             if (!hasSaturday)
             {
                 Saturday = new AvailabiltyVM();
             }
+
             if (!hasSunday)
             {
                 Sunday = new AvailabiltyVM();
@@ -129,7 +135,6 @@ namespace Festispec.ViewModel.employee.availabilty
             {
                 MessageBox.Show("Er ging iets fout.");
             }
-
             return false;
         }
     }
