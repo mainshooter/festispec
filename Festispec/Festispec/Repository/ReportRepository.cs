@@ -16,7 +16,7 @@ namespace Festispec.Repository
                 {
                     Title = "text",
                     Content = "test text",
-                    Type = "text",
+                    Type = "Text",
                     Data = new Dictionary<string, Object>()
                     {
                         ["text"] = "test text smiley"
@@ -28,7 +28,7 @@ namespace Festispec.Repository
                 {
                     Title = "image",
                     Content = "local image",
-                    Type = "image",
+                    Type = "Image",
                     Data = new Dictionary<string, Object>()
                     {
                         ["image"] = new byte[0]
