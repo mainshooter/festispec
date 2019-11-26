@@ -62,7 +62,6 @@ namespace Festispec.ViewModel.employee.availabilty
             }
             set
             {
-                RaisePropertyChanged("MaxEndTime");
                 if (value > MaxEndTime)
                 {
                     value = MaxEndTime;
@@ -80,6 +79,7 @@ namespace Festispec.ViewModel.employee.availabilty
                 {
                     AvailabiltyEnd = AvailabiltyStart;
                 }
+                RaisePropertyChanged("MaxEndTime");
                 RaisePropertyChanged("AvailabiltyEnd");
                 RaisePropertyChanged("AvailabiltyStart");
             }
@@ -89,14 +89,14 @@ namespace Festispec.ViewModel.employee.availabilty
         {
             get
             {
-                if (AvailabiltyEnd != null)
+                if (AvailabiltyStart != null)
                 {
-                    if (AvailabiltyEnd.Value.Year > 1)
+                    if (AvailabiltyStart.Value.Year > 1)
                     {
                         var time = new DateTime();
-                        time = time.AddYears(AvailabiltyEnd.Value.Year - 1); ;
-                        time = time.AddMonths(AvailabiltyEnd.Value.Month - 1);
-                        time = time.AddDays(AvailabiltyEnd.Value.Day - 1);
+                        time = time.AddYears(AvailabiltyStart.Value.Year - 1); ;
+                        time = time.AddMonths(AvailabiltyStart.Value.Month - 1);
+                        time = time.AddDays(AvailabiltyStart.Value.Day - 1);
                         time = time.AddHours(23);
                         time = time.AddMinutes(59);
                         return time;
