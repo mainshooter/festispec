@@ -21,7 +21,6 @@ namespace Festispec.Factory
                 "HIGH",
                 "AVG",
                 "COUNT",
-                "SUM",
                 "COUNT_OPTIONS"
             };
         }
@@ -47,6 +46,10 @@ namespace Festispec.Factory
             if (type.Equals("MIN"))
             {
                 return new MinDataParserVM();
+            }
+            if (type.Equals("MAX"))
+            {
+                return new MaxDataParserVM();
             }
             return null;
         }

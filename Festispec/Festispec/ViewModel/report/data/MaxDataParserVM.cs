@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.report.data
 {
-    public class MinDataParserVM : DataVM, IDataParser
+    public class MaxDataParserVM : DataVM, IDataParser
     {
-        public string ParserType => "MIN";
+        public string ParserType => "MAX";
 
         public List<List<string>> ParseData()
         {
@@ -24,6 +24,7 @@ namespace Festispec.ViewModel.report.data
             }
             return ParseDataDefault();
         }
+
         private List<List<string>> ParseDataClosedQuestion()
         {
             var result = new List<List<string>>();
@@ -44,11 +45,11 @@ namespace Festispec.ViewModel.report.data
                     totalNo++;
                 }
             }
-            if (totalYes < totalNo)
+            if (totalYes > totalNo)
             {
                 result.Add(new List<string>() { totalYes.ToString() });
             }
-            else if (totalNo < totalYes)
+            else if (totalNo > totalYes)
             {
                 result.Add(new List<string>() { totalNo.ToString() });
             }
@@ -61,7 +62,8 @@ namespace Festispec.ViewModel.report.data
             return result;
         }
 
-        private List<List<string>> ParseDataMultipleChoise() {
+        private List<List<string>> ParseDataMultipleChoise()
+        {
             List<List<string>> result = new List<List<string>>();
             var answers = GetQuestionAnswers();
 
@@ -88,7 +90,7 @@ namespace Festispec.ViewModel.report.data
             for (int i = 0; i < totalChoises.Count; i++)
             {
                 int currentTotal = totalChoises[i];
-                if (currentTotal < totalChoises[lowestAmountOfSelectedAnswer])
+                if (currentTotal > totalChoises[lowestAmountOfSelectedAnswer])
                 {
                     lowestAmountOfSelectedAnswer = i;
                 }
@@ -104,7 +106,7 @@ namespace Festispec.ViewModel.report.data
             List<List<string>> result = new List<List<string>>();
             var answers = GetQuestionAnswers();
 
-            var answer = answers.Min(a => a.Answer);
+            var answer = answers.Max(a => a.Answer);
 
             result.Add(new List<string>() { Question.QuestionDetails.Question });
             result.Add(new List<string>() { answer });
