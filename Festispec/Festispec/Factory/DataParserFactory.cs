@@ -51,6 +51,10 @@ namespace Festispec.Factory
             {
                 return new MaxDataParserVM();
             }
+            if (type.Equals("AVG"))
+            {
+                return new AvgDataParser();
+            }
             return null;
         }
     }
