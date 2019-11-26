@@ -13,7 +13,7 @@ namespace Festispec.ViewModel.report.data
     {
         public string ParserType => "COUNT_OPTIONS";
         public List<string> SupportedQuestions => new List<string>() { "Gesloten vraag", "Meerkeuze vraag", "Schuifbalk vraag" };
-        public List<string> SupportedVisuals => new List<string>() { "Table" };
+        public List<string> SupportedVisuals => new List<string>() { "Table", "Barchart", "Linechart", "Piechart" };
 
         public List<List<string>> ParseData()
         {

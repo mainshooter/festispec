@@ -236,12 +236,12 @@ INSERT INTO Report VALUES (4, 'Concept', 'Snollebollekes Rapport')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO ElementType VALUES ('table')
-INSERT INTO ElementType VALUES ('linechart')
-INSERT INTO ElementType VALUES ('piechart')
-INSERT INTO ElementType VALUES ('barchart')
-INSERT INTO ElementType VALUES ('image')
-INSERT INTO ElementType VALUES ('text')
+INSERT INTO ElementType VALUES ('Table')
+INSERT INTO ElementType VALUES ('Linechart')
+INSERT INTO ElementType VALUES ('Piechart')
+INSERT INTO ElementType VALUES ('Barchart')
+INSERT INTO ElementType VALUES ('Image')
+INSERT INTO ElementType VALUES ('Text')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION

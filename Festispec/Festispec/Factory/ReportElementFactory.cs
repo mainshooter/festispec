@@ -10,7 +10,7 @@ namespace Festispec.Factory
         {
             UserControl returningUserControl = null;
             string type = element.Type;
-            if (type.Equals("table"))
+            if (type.Equals("Table"))
             {
                 TableUserControl table = new TableUserControl();
                 TableVM tableVm = new TableVM(element);
@@ -18,7 +18,7 @@ namespace Festispec.Factory
                 table.DataContext = tableVm;
                 returningUserControl = table;
             }
-            else if (type.Equals("linechart"))
+            else if (type.Equals("Linechart"))
             {
                 LineChartUserControl lineChart = new LineChartUserControl();
                 LineChartVM lineChartVm = new LineChartVM(element);
@@ -26,7 +26,7 @@ namespace Festispec.Factory
                 lineChart.DataContext = lineChartVm;
                 returningUserControl = lineChart;
             }
-            else if (type.Equals("piechart"))
+            else if (type.Equals("Piechart"))
             {
                 PieChartUserControl pieChart = new PieChartUserControl();
                 PieChartVM pieChartVm = new PieChartVM(element);
@@ -34,7 +34,7 @@ namespace Festispec.Factory
                 pieChart.DataContext = pieChartVm;
                 returningUserControl = pieChart;
             }
-            else if (type.Equals("barchart"))
+            else if (type.Equals("Barchart"))
             {
                 BarChartUserControl barChart = new BarChartUserControl();
                 BarChartVM barChartVm = new BarChartVM(element);
@@ -43,14 +43,14 @@ namespace Festispec.Factory
                 returningUserControl = barChart;
 
             }
-            else if (type.Equals("image"))
+            else if (type.Equals("Image"))
             {
                 ImageUserControl image = new ImageUserControl();
                 ImageVM imageVm = new ImageVM(element);
                 image.DataContext = imageVm;
                 returningUserControl = image;
             }
-            else if (type.Equals("text"))
+            else if (type.Equals("Text"))
             {
                 TextUserControl text = new TextUserControl();
                 TextVM textVM = new TextVM(element);
