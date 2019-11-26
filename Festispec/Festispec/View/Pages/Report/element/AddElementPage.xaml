@@ -9,7 +9,7 @@
       Title="AddElement"
       DataContext="{Binding AddElementVM, Source={StaticResource Locator}}">
 
-    <StackPanel>
+    <StackPanel Margin="15">
         <Label>Toevoegen van element</Label>
         <ComboBox ItemsSource="{Binding ElementTypes}" Text="Select option" BorderThickness="2" SelectedItem="{Binding ReportElement.Type}" IsSynchronizedWithCurrentItem="True" >
 

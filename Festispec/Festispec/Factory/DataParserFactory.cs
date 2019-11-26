@@ -44,6 +44,10 @@ namespace Festispec.Factory
             {
                 return new CountOptionsDataParser();
             }
+            if (type.Equals("MIN"))
+            {
+                return new MinDataParserVM();
+            }
             return null;
         }
     }
