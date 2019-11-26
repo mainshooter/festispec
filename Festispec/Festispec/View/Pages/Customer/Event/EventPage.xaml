@@ -34,8 +34,8 @@
             <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding EventListFiltered}" SelectedItem="{Binding Path=SelectedEvent,Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naam" Binding="{Binding Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Begindatum" Binding="{Binding BeginDate}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="EindDatum" Binding="{Binding EndDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Begindatum" Binding="{Binding BeginDateDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="EindDatum" Binding="{Binding EndDateDate}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Bezoekersaantal" Binding="{Binding AmountVisitors}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Oppervlak" Binding="{Binding SurfaceM2}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Klant" Binding="{Binding Customer.Name}"></DataGridTextColumn>

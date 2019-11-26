@@ -7,6 +7,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       Title="SingleEventPage"
+      Background="White"
       DataContext="{Binding EventInfoVM,Source={StaticResource Locator}}">
 
     <Grid>
@@ -36,10 +37,10 @@
         <Label HorizontalAlignment="Left" Margin="526,36,0,0" VerticalAlignment="Top" Width="174" Content="{Binding Path=Event.Customer.Name}" Height="28"/>
         <Label FontWeight="Bold" Content="Klant" HorizontalAlignment="Left" Margin="526,10,0,0" VerticalAlignment="Top" Width="50"/>
         <Label HorizontalAlignment="Left" Margin="526,95,0,0" VerticalAlignment="Top" Width="174" Content="{Binding Path=Event.ContactPerson.Fullname}" Height="28"/>
-        <Label FontWeight="Bold" Content="Contactpersoon" HorizontalAlignment="Left" Margin="526,69,0,0" VerticalAlignment="Top" Width="50"/>
+        <Label FontWeight="Bold" Content="Contactpersoon" HorizontalAlignment="Left" Margin="526,69,0,0" VerticalAlignment="Top" Width="116"/>
         <Label FontWeight="Bold" Content="Beschrijving" HorizontalAlignment="Left" Margin="320,187,0,0" VerticalAlignment="Top" Width="84"/>
         <Label HorizontalAlignment="Left" Height="141" Margin="320,218,0,0" Content="{Binding Path=Event.Description, Mode=TwoWay}" VerticalAlignment="Top" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" Width="176"/>
-        <Label FontWeight="Bold" Content="Contact telefoonnummer" HorizontalAlignment="Left" Margin="526,128,0,0" VerticalAlignment="Top" Width="144"/>
-        <Label HorizontalAlignment="Left" Margin="526,159,0,0" VerticalAlignment="Top" Width="174" Content="{Binding Event.ContactPerson.Phone}" Height="28"/>
+        <Label FontWeight="Bold" Content="Contact telefoonnummer" HorizontalAlignment="Left" Margin="526,128,0,0" VerticalAlignment="Top" Width="174"/>
+        <Label HorizontalAlignment="Left" Margin="526,159,0,0" VerticalAlignment="Top" Width="174" Content="{Binding Path=Event.ContactPerson.Phone}" Height="28"/>
     </Grid>
 </Page>

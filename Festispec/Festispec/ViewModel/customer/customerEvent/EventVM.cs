@@ -78,6 +78,8 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
+        public string BeginDateDate => BeginDate.ToString("d");
+
         public DateTime EndDate {
             get {
                 return _event.EndDate.Date;
@@ -86,6 +88,8 @@ namespace Festispec.ViewModel.customer.customerEvent
                 _event.EndDate = value.Date;
             }
         }
+
+        public string EndDateDate => EndDate.ToString("d");
 
         public int AmountVisitors {
             get {

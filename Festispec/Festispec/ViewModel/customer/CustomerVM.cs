@@ -1,8 +1,6 @@
-﻿using Festispec.Domain;
-using Festispec.ViewModel.customer.customerEvent;
+﻿using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.employee.quotation;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace Festispec.ViewModel.customer
 {

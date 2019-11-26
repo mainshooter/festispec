@@ -4,7 +4,6 @@ using Festispec.View.Pages.Customer.Event;
 using Festispec.ViewModel.customer.contactPerson;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;

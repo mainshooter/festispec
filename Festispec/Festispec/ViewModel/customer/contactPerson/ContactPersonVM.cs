@@ -1,9 +1,4 @@
 ﻿using Festispec.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.customer.contactPerson
 {
@@ -45,7 +40,11 @@ namespace Festispec.ViewModel.customer.contactPerson
         {
             get
             {
-                return Firstname + " " + Prefix + " " + Lastname;
+                if (Prefix != null)
+                {
+                    return Firstname + " " + Prefix + " " + Lastname;
+                }
+                return Firstname + " " + Lastname;
             }
         }
 
