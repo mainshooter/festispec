@@ -45,8 +45,8 @@ namespace Festispec.ViewModel.employee.availabilty
                     AvailabiltyEnd = AvailabiltyStart;
                 }
                 RaisePropertyChanged("AvailabiltyStart");
-                RaisePropertyChanged("AvailabiltyEnd");
                 RaisePropertyChanged("MaxEndTime");
+                RaisePropertyChanged("AvailabiltyEnd");
             }
         }
 
