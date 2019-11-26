@@ -18,6 +18,10 @@ namespace Festispec.ViewModel.report.data
             {
                 return ParseDataMultipleChoise();
             }
+            if (type.Equals("Gesloten vraag"))
+            {
+                return ParseDataClosedQuestion();
+            }
             return ParseDataDefault();
         }
         private List<List<string>> ParseDataClosedQuestion()
