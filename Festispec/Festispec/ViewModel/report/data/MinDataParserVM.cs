@@ -20,6 +20,38 @@ namespace Festispec.ViewModel.report.data
             }
             return ParseDataDefault();
         }
+        private List<List<string>> ParseDataClosedQuestion()
+        {
+            var result = new List<List<string>>();
+            var answers = GetQuestionAnswers();
+            var headerRow = new List<string>() { Question.Question };
+            result.Add(headerRow);
+            int totalYes = 0;
+            int totalNo = 0;
+            foreach (var answer in answers)
+            {
+                var givenAnswer = answer.Answer;
+                if (givenAnswer.Equals("Ja"))
+                {
+                    totalYes++;
+                }
+                else if (givenAnswer.Equals("Nee"))
+                {
+                    totalNo++;
+                }
+            }
+            if (totalYes < totalNo)
+            {
+                result.Add(new List<string>() { totalYes.ToString() });
+            }
+            else if (totalNo < totalYes)
+            {
+                result.Add(new List<string>() { totalNo.ToString() });
+            }
+                
+
+            return result;
+        }
 
         private List<List<string>> ParseDataMultipleChoise() {
             List<List<string>> result = new List<List<string>>();
