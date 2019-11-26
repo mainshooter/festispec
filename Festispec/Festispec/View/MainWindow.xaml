@@ -92,6 +92,15 @@
                                 </StackPanel>
                             </Button>
                         </ListViewItem>
+
+                        <ListViewItem Height="50">
+                            <Button Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Normal" Height="50" VerticalAlignment="Center" Command="{Binding OpenSurvey}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Event" Width="25" Height="25" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Vragenlijst" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
                     </ListView>
                 </StackPanel>
             </StackPanel>
