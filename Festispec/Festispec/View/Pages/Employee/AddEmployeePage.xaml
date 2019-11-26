@@ -16,19 +16,21 @@
             <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
         </Button>
         <Button CommandParameter="{Binding ElementName=pw}" Content="Add Employee" HorizontalAlignment="Left" Margin="344,412,0,0" VerticalAlignment="Top" Width="138" Command="{Binding AddEmployeeCommand}" Height="28"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,41,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Firstname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Naam:" HorizontalAlignment="Left" Margin="108,10,0,0" VerticalAlignment="Top" Width="53"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,100,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Prefix, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Tussenvoegsel" HorizontalAlignment="Left" Margin="108,69,0,0" VerticalAlignment="Top" Width="105"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,159,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Lastname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Achternaam" HorizontalAlignment="Left" Margin="108,128,0,0" VerticalAlignment="Top" Width="89"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,218,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.Street, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Straat" HorizontalAlignment="Left" Margin="108,187,0,0" VerticalAlignment="Top" Width="49"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumber, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="80"/>
-        <Label Content="Huisnummer" HorizontalAlignment="Left" Margin="108,246,0,0" VerticalAlignment="Top" Width="94"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="208,277,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumberAddition, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="76"/>
-        <Label Content="Toevoeging" HorizontalAlignment="Left" Margin="202,246,0,0" VerticalAlignment="Top" Width="94"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,336,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.City, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+        <StackPanel>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="0,0,0,10" TextWrapping="Wrap" Text="{Binding Path=Employee.Firstname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+            <Label Content="Naam:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53"/>
+            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Employee.Prefix, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+            <Label Content="Tussenvoegsel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105"/>
+            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Employee.Lastname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+            <Label Content="Achternaam" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
+            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Employee.Street, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+            <Label Content="Straat" HorizontalAlignment="Left" VerticalAlignment="Top" Width="49"/>
+            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumber, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="80"/>
+            <Label Content="Huisnummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94"/>
+            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumberAddition, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="76"/>
+            <Label Content="Toevoeging" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94"/>
+            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Employee.City, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+        </StackPanel>
         <Label Content="Postcode" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="84"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="320,41,0,0" TextWrapping="Wrap" Text="{Binding Path=Employee.PostalCode, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
         <Label Content="Telefoon nummer" HorizontalAlignment="Left" Margin="320,69,0,0" VerticalAlignment="Top" Width="152"/>
