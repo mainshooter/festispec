@@ -10,8 +10,6 @@ namespace Festispec.ViewModel.report.element
     public class BarChartVM : ReportElementVM
     {
 
-        public Dictionary<string, Object> Dictionary { get; set; }
-
         public string XaxisName { get; set; }
 
         public string YaxisName { get; set; }
@@ -25,14 +23,13 @@ namespace Festispec.ViewModel.report.element
         public BarChartVM(ReportElementVM element)
         {
             Data = element.Data;
-            Dictionary = new Dictionary<string, Object>();
             Title = element.Title;
             Content = element.Content;
             Order = element.Order;
             EditElementCommand = new RelayCommand(GoToEdit);
         }
 
-        public void ApplyChanges()
+        protected override void ApplyChanges()
         {
             try
             {
@@ -93,7 +90,6 @@ namespace Festispec.ViewModel.report.element
                 XaxisName = "Place";
                 YaxisName = "Amount";
                 SeriesCollection = seriesCollection;
-                Labels = (List<string>)Dictionary["labels"];
             }
             catch (Exception)
             {

@@ -30,7 +30,7 @@ namespace Festispec.ViewModel.report.element
         }
 
 
-        public void ApplyChanges()
+        protected override void ApplyChanges()
         {
             try
             {

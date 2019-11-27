@@ -78,6 +78,8 @@ namespace Festispec.ViewModel.report.element
                 if (_dataParser != null)
                 {
                     _data = _dataParser.ParseData();
+                    ApplyChanges();
+                    RaisePropertyChanged("DataParser");
                 }
                 else
                 {
@@ -105,6 +107,11 @@ namespace Festispec.ViewModel.report.element
         public ReportElementVM()
         {
             _reportElement = new ReportElement();
+        }
+
+        protected virtual void ApplyChanges()
+        {
+
         }
 
         protected void GoToEdit()

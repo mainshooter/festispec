@@ -19,7 +19,7 @@ namespace Festispec.ViewModel.report.element
             EditElementCommand = new RelayCommand(GoToEdit);
         }
 
-        public void ApplyChanges()
+        protected override void ApplyChanges()
         {
             try
             {

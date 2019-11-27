@@ -21,7 +21,6 @@ namespace Festispec.ViewModel.report
     {
         private Report _report;
         private ReportElementFactory _reportElementFactory;
-        private Report report;
 
         public int Id {
             get {
@@ -57,8 +56,6 @@ namespace Festispec.ViewModel.report
         
         public ObservableCollection<UserControl> ReportElementUserControlls { get; set; }
 
-        public MainViewModel MainViewModel { get; set; }
-
         public ICommand SaveReportCommand { get; set; }
 
         public ICommand AddElementCommand { get; set; }
@@ -84,7 +81,7 @@ namespace Festispec.ViewModel.report
 
         public ReportVM(Report report)
         {
-            this.report = report;
+            this._report = report;
         }
 
         private void GoToAddElementPage()
@@ -101,27 +98,6 @@ namespace Festispec.ViewModel.report
         public void Save()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage { NextPageType = typeof(ReportPage) });
-            return;
-            if (Id == 0)
-            {
-                Insert();
-                return;
-            }
-            using (var context = new Entities())
-            {
-                context.Reports.Attach(_report);
-                context.Entry(_report).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();
-            }
-        }
-
-        private void Insert()
-        {
-            using (var context = new Entities())
-            {
-                context.Reports.Add(_report);
-                context.SaveChanges();
-            }
         }
 
         public void RenderReportElements(object sender, NotifyCollectionChangedEventArgs e)

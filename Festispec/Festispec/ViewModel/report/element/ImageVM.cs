@@ -20,7 +20,7 @@ namespace Festispec.ViewModel.report.element
             EditElementCommand = new RelayCommand(GoToEdit);
         }
 
-        private void ApplyChanges()
+        protected override void ApplyChanges()
         {
             Photo = (byte[])Dictionary["image"];
         }
