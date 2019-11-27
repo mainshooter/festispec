@@ -7,7 +7,9 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="EditImagePage">
+      Title="EditImagePage"
+      DataContext="{Binding EditImageVM,Source={StaticResource Locator}}">
+
 
     <StackPanel>
         <Button Width="50" HorizontalAlignment="Left" Command="{Binding ReturnCommand}" Content="{materialDesign:PackIcon keyboardreturn}"/>
@@ -19,6 +21,8 @@
             <Label Content="Beschrijving: "></Label>
             <TextBox Text="{Binding ReportElementVM.Content}" ></TextBox>
         </StackPanel>
+        <Button Width="50" HorizontalAlignment="Left" Command="{Binding ChooseImageCommand}" Content="{materialDesign:PackIcon folderopen}"/>
+
         <Image Source="{Binding Photo}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Stretch="Fill" Height="300" Width="670"></Image>
 
         <Button HorizontalAlignment="Right" Width="50" Command="{Binding SaveElementCommand}" Content="{materialDesign:PackIcon ContentSave}"/>

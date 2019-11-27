@@ -25,7 +25,7 @@ namespace Festispec.ViewModel.report.element
             get {
                 return _reportElement.Id;
             }
-            private set {
+            set {
                 _reportElement.Id = value;
             }
         }
@@ -110,11 +110,9 @@ namespace Festispec.ViewModel.report.element
             DeleteElement = new RelayCommand(() => Delete());
             _reportElement = element;
             Report = report;
-            Order = element.Order;
-
-
             ReportId = Report.Id;
 
+            Order = element.Order;
             Id = element.Id;
             Type = element.ElementType;
             Title = element.Title;

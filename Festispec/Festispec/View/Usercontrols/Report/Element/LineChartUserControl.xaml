@@ -24,8 +24,8 @@
                 <ColumnDefinition Width="50"></ColumnDefinition>
                 <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="{materialDesign:PackIcon Pencil}"/>
-            <Button Grid.Column="1" Content="{materialDesign:PackIcon DeleteForever}"/>
+            <Button Grid.Column="0" Command="{Binding EditElement}" Content="{materialDesign:PackIcon Pencil}"/>
+            <Button Grid.Column="1" Command="{Binding DeleteElement}" Content="{materialDesign:PackIcon DeleteForever}"/>
         </Grid>
     </StackPanel>
 </UserControl>

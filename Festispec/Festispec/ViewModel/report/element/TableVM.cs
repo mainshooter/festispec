@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Festispec.Message;
+using Festispec.View.Pages.Report.element;
+using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -32,14 +35,36 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public TableVM(ReportElementVM element)
+        public ReportElementVM ReportElementVM { get; set; }
+
+        public TableVM(ReportElementVM element, ReportVM report)
         {
+            EditElement = new RelayCommand(() => Edit());
+
+
             DataTable = new DataTable();
             Dictionary = new Dictionary<string, List<string>>();
+
+            //Data = element.Data;
+            Report = report;
+            ReportElementVM = element;
+            Id = element.Id;
+            Type = element.Type;
             Title = element.Title;
             Content = element.Content;
+
+
             Order = element.Order;
-            //Data = element.Data;
+
+        }
+        public void Edit()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTablePage) });
+            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
+            {
+                NextReportVM = Report,
+                ReportElement = ReportElementVM
+            });
         }
 
         public void ApplyChanges()

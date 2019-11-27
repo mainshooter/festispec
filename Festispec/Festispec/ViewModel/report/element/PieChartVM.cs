@@ -30,12 +30,14 @@ namespace Festispec.ViewModel.report.element
         public PieChartVM(ReportElementVM element, ReportVM report)
         {
             EditElement = new RelayCommand(() => Edit());
-            DeleteElement = new RelayCommand(() => Delete());
+            //Data = element.Data;
             Report = report;
-
+            ReportElementVM = element;
+            Id = element.Id;
+            Type = element.Type;
             Title = element.Title;
             Content = element.Content;
-            Data = element.Data;
+
         }
         public void Edit()
         {

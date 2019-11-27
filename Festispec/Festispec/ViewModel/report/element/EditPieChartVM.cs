@@ -62,17 +62,5 @@ namespace Festispec.ViewModel.report.element
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
         }
-        public bool CanEditElement()
-        {
-            if (ReportElementVM == null)
-            {
-                return false;
-            }
-            if (ReportElementVM.Title.Length < 100 || ReportElementVM.Content.Length < 100)
-            {
-                return false;
-            }
-            return true;
-        }
     }
 }

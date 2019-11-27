@@ -1,4 +1,7 @@
-﻿using LiveCharts;
+﻿using Festispec.Message;
+using Festispec.View.Pages.Report.element;
+using GalaSoft.MvvmLight.Command;
+using LiveCharts;
 using System;
 using System.Collections.Generic;
 
@@ -20,6 +23,9 @@ namespace Festispec.ViewModel.report.element
 
         public List<string> Labels { get; set; }
 
+        public ReportElementVM ReportElementVM { get; set; }
+
+
         public override Object Data {
             get {
                 return _data;
@@ -31,13 +37,30 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public LineChartVM(ReportElementVM element)
+        public LineChartVM(ReportElementVM element, ReportVM report)
         {
+            EditElement = new RelayCommand(() => Edit());
             Labels = new List<string>();
             //Data = element.Data;
+            Report = report;
+            ReportElementVM = element;
+            Id = element.Id;
+            Type = element.Type;
             Title = element.Title;
             Content = element.Content;
+            X_as = element.X_as;
+            Y_as = element.Y_as;
+
             Order = element.Order;
+        }
+        public void Edit()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditLineChartPage) });
+            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
+            {
+                NextReportVM = Report,
+                ReportElement = ReportElementVM
+            });
         }
 
         private void ApplyChanges()

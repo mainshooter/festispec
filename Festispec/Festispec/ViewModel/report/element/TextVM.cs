@@ -50,15 +50,16 @@ namespace Festispec.ViewModel.report.element
 
         public TextVM(ReportElementVM element, ReportVM report)
         {
-            //Data = element.Data;
             EditElement = new RelayCommand(() => Edit());
-            DeleteElement = new RelayCommand(() => Delete());
-            //Report = report;
+            //Data = element.Data;
+            Report = report;
+            ReportElementVM = element;
+            Id = element.Id;
+            Type = element.Type;
+            Title = element.Title;
+            Content = element.Content;
 
-            //ReportId = Report.Id;
-            //ReportElementVM = element;
-            //Title = element.Title;
-            //Content = element.Content;
+            Order = element.Order;
         }
         public void Edit()
         {
@@ -66,23 +67,10 @@ namespace Festispec.ViewModel.report.element
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
             {
                 NextReportVM = Report,
-                ReportElement = ReportElementVM,
+                ReportElement = ReportElementVM
             });
         }
-        //public void Delete()
-        //{
-        //    MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze element wilt verwijderen?", "Element Verwijderen", MessageBoxButton.YesNo);
-        //    if (result.Equals(MessageBoxResult.Yes))
-        //    {
-        //        using (var context = new Entities())
-        //        {
-        //            context.ReportElements.Remove(context.ReportElements.Where(reportElement => reportElement.Id == ReportElementVM.Id).First());
-        //            context.SaveChanges();
-        //        }
-        //        CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Rapportelement verwijderd.");
-        //    }
-        //    Report.RefreshElements();
-        //}
+    
         private void ApplyChanges()
         {
             Text = (string)Dictionary["text"];
