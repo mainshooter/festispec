@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Questions\Types\UploadQuestionType.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -195,6 +196,7 @@
     <Content Include="Views\Shared\Survey\MultipleChoiseQuestion.cshtml" />
     <Content Include="Views\Shared\Survey\SliderQuestion.cshtml" />
     <Content Include="Views\Shared\Survey\TableQuestion.cshtml" />
+    <Content Include="Views\Shared\Survey\UploadQuestion.cshtml" />
     <None Include="Web.config.example" />
     <None Include="Web.config.Debug.example">
       <DependentUpon>Web.config.example</DependentUpon>

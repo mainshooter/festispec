@@ -19,7 +19,8 @@ namespace Festispec.Web.Controllers.Questions
                 ["Open vraag"] = new OpenQuestionType(question),
                 ["Schuifbalk vraag"] = new SliderQuestionType(question),
                 ["Tabel vraag"] = new TableQuestionType(question),
-                ["Teken vraag"] = new DrawingQuestionType(question)
+                ["Teken vraag"] = new DrawingQuestionType(question),
+                ["Upload vraag"] = new UploadQuestionType(question)
             };
         }
 

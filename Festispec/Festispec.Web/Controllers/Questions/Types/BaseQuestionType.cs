@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using Festispec.Domain;
 using Festispec.Lib.Survey.Question;
 
 namespace Festispec.Web.Controllers.Questions.Types
@@ -9,6 +8,7 @@ namespace Festispec.Web.Controllers.Questions.Types
     {
         public abstract string PathToPartial { get; }
         protected QuestionDetails QuestionData { get; }
+
         protected BaseQuestionType(QuestionDetails questionData)
         {
             QuestionData = questionData;
