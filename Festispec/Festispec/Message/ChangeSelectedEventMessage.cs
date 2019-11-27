@@ -1,4 +1,5 @@
-﻿using Festispec.ViewModel.customer.customerEvent;
+﻿using Festispec.ViewModel.customer;
+using Festispec.ViewModel.customer.customerEvent;
 
 namespace Festispec.Message
 {
@@ -6,5 +7,6 @@ namespace Festispec.Message
     {
         public EventVM Event { get; set; }
         public EventListVM EventList { get; set; }
+        public CustomerVM Customer { get; set; } 
     }
 }

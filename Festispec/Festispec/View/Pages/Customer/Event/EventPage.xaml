@@ -12,7 +12,7 @@
       DataContext="{Binding EventListVM, Source={StaticResource Locator}}">
 
     <StackPanel>
-        <Label FontSize="23" Content="Evenementen" HorizontalAlignment="Center"/>
+        <Label FontSize="23" Content="{Binding Path=Title}" HorizontalAlignment="Center"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="56"></ColumnDefinition>
@@ -40,7 +40,7 @@
                     <DataGridTextColumn Header="EindDatum" Binding="{Binding EndDateDate}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Bezoekersaantal" Binding="{Binding AmountVisitors}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Oppervlak" Binding="{Binding SurfaceM2}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Klant" Binding="{Binding Customer.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Contactpersoon" Binding="{Binding ContactPerson.Fullname}"></DataGridTextColumn>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

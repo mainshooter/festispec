@@ -200,7 +200,6 @@ namespace Festispec.ViewModel.customer.customerEvent
         public EventVM(Event eventCon)
         {
             _event = eventCon;
-            _customer = new CustomerVM(_event.Customer);
             _contactPerson = new ContactPersonVM(_event.ContactPerson);
         }
 
@@ -378,6 +377,18 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
+        private string ValidateContactPerson
+        {
+            get
+            {
+                if (ContactPerson == null || string.IsNullOrWhiteSpace(ContactPerson.Fullname))
+                {
+                    return "Contactpersoon moet ingevuld zijn";
+                }
+                return null;
+            }
+        }
+
         public bool IsValid
         {
             get
@@ -392,28 +403,7 @@ namespace Festispec.ViewModel.customer.customerEvent
                 return true;
             }
         }
-        private string ValidateCustomer
-        {
-            get
-            {
-                if (String.IsNullOrWhiteSpace(Customer.Name))
-                {
-                    return "Klant moet ingevuld zijn";
-                }
-                return null;
-            }
-        }
-        private string ValidateContactPerson
-        {
-            get
-            {
-                if (String.IsNullOrWhiteSpace(ContactPerson.Fullname))
-                {
-                    return "Contactpersoon moet ingevuld zijn";
-                }
-                return null;
-            }
-        }
+        
 
         string GetValidationError(string propertyName)
         {
@@ -450,9 +440,6 @@ namespace Festispec.ViewModel.customer.customerEvent
                 case "SurfaceM2":
                     error = ValidateSurfaceM2;
                     break;
-                case "Customer":
-                    error = ValidateCustomer;
-                    break;
                 case "ContactPerson":
                     error = ValidateContactPerson;
                     break;
@@ -462,7 +449,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         }
         public static readonly string[] ValidatedProperties =
         {
-            "Name", "Street", "City", "HouseNumber", "HouseNumberAddition", "PostalCode", "BeginDate", "EndDate", "AmountVisitors", "SurfaceM2", "Customer", "ContactPerson"
+            "Name", "Street", "City", "HouseNumber", "HouseNumberAddition", "PostalCode", "BeginDate", "EndDate", "AmountVisitors", "SurfaceM2", "ContactPerson"
         };
 
         #endregion

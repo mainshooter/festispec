@@ -14,56 +14,35 @@ namespace Festispec.ViewModel.customer.customerEvent
     {
         public EventListVM EventList { get; set; }
         public EventVM Event { get; set; }
+        public CustomerVM Customer {get; set; }
         public ICommand AddEventCommand { get; set; }
         public ICommand CloseAddEventCommand { get; set; }
-        public ObservableCollection<CustomerVM> Customers {get; set;}
         public ObservableCollection<ContactPersonVM> ContactPersons { get; set; }
-        
-        public ObservableCollection<ContactPersonVM> FilteredContactPersons
-        {
-            get
-            {
-                if(SelectedCustomer != null)
-                {
-                    return new ObservableCollection<ContactPersonVM>(ContactPersons.Select(contactperson => contactperson).Where(contactperson => contactperson.CustomerID == Event.Customer.Id));
-                }
-                return null;
-            }
-        }
-
-        public CustomerVM SelectedCustomer
-        {
-            get
-            {
-                return Event.Customer;
-            }
-            set
-            {
-                Event.Customer = value;
-                RaisePropertyChanged("FilteredContactPersons");
-            }
-        }
 
         public AddEventVM(EventListVM eventList)
         {
+            this.MessengerInstance.Register<ChangeSelectedCustomerMessage>(this, message =>
+            {
+                Customer = message.Customer;
+                ContactPersons = message.Customer.ContactPersons;
+                RaisePropertyChanged("ContactPersons");
+                Event.Customer = Customer;
+                Event.ContactPerson = ContactPersons.First();
+                RaisePropertyChanged("Customer");
+            });
+
             EventList = eventList;
             Event = new EventVM();
             AddEventCommand = new RelayCommand(AddEvent, CanAddEvent);
             CloseAddEventCommand = new RelayCommand(CloseAddEvent);
-
-            using (var context = new Entities())
-            {
-                Customers = new ObservableCollection<CustomerVM>(context.Customers.ToList().Select(customer => new CustomerVM(customer)));
-                ContactPersons = new ObservableCollection<ContactPersonVM>(context.ContactPersons.ToList().Select(contactPerson => new ContactPersonVM(contactPerson)));
-            }
-
-            Event.Customer = Customers.First();
-            Event.ContactPerson = ContactPersons.Select(contactPerson => contactPerson).Where(contactPerson => contactPerson.CustomerID == Event.Customer.Id).First();
+           
         }
 
         public void AddEvent()
         {
-            EventList.EventList.Add(Event);
+            var temp = Customer.Events;
+            temp.Add(Event);
+            Customer.Events = temp;
 
             using (var context = new Entities())
             {
@@ -74,15 +53,15 @@ namespace Festispec.ViewModel.customer.customerEvent
                 context.SaveChanges();
             }
 
-            EventList.RaisePropertyChanged("EventListFiltered");
+            EventList.RefreshEvents();
             CloseAddEvent();
         }
 
         private void CloseAddEvent()
         {
             Event = new EventVM();
-            Event.Customer = Customers.First();
-            Event.ContactPerson = ContactPersons.Select(contactPerson => contactPerson).Where(contactPerson => contactPerson.CustomerID == Event.Customer.Id).First();
+            Event.Customer = Customer;
+            Event.ContactPerson = ContactPersons.First();
             RaisePropertyChanged("Event");
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
         }

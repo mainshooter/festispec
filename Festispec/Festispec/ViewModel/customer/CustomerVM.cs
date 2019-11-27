@@ -1,12 +1,15 @@
-﻿using Festispec.ViewModel.customer.customerEvent;
+﻿using Festispec.ViewModel.customer.contactPerson;
+using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.employee.quotation;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Festispec.ViewModel.customer
 {
     public class CustomerVM
     {
         private ObservableCollection<EventVM> _events;
+        private ObservableCollection<ContactPersonVM> _contactPersons;
         private ObservableCollection<QuotationVM> _quotations;
         private Domain.Customer _customer;
 
@@ -138,6 +141,18 @@ namespace Festispec.ViewModel.customer
             }
         }
 
+        public ObservableCollection<ContactPersonVM> ContactPersons
+        {
+            get
+            {
+                return _contactPersons;
+            }
+            set
+            {
+                _contactPersons = value;
+            }
+        }
+
         public ObservableCollection<QuotationVM> Quotations 
         {
             get 
@@ -153,6 +168,8 @@ namespace Festispec.ViewModel.customer
         public CustomerVM(Domain.Customer customer)
         {
             _customer = customer;
+            _events = new ObservableCollection<EventVM>(customer.Events.Select(eventcon => new EventVM(eventcon)));
+            _contactPersons = new ObservableCollection<ContactPersonVM>(customer.ContactPersons.Select(contactPerson => new ContactPersonVM(contactPerson)));
         }
 
         public CustomerVM()

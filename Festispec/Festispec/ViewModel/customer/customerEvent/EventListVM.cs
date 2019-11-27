@@ -1,6 +1,5 @@
 ﻿using Festispec.Domain;
 using Festispec.Message;
-using Festispec.Repository;
 using Festispec.View.Pages.Customer.Event;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -20,12 +19,25 @@ namespace Festispec.ViewModel.customer.customerEvent
         private EventVM _selectedEvent;
         private bool _showOnlyFuture;
 
+        public CustomerVM Customer { get; set; }
         public ICommand OpenAddEvent { get; set; }
         public ICommand OpenEditEvent { get; set; }
         public ICommand OpenSingleEvent { get; set; }
         public ICommand DeleteEventCommand { get; set; }
         public ObservableCollection<EventVM> EventList { get; set; }
         public string SelectedFilter { get; set; }
+
+        public string Title
+        {
+            get
+            {
+                if (Customer != null)
+                {
+                    return "Evenementen " + Customer.Name;
+                }
+                return null;
+            }
+        }
 
         public string Filter
         {
@@ -69,6 +81,11 @@ namespace Festispec.ViewModel.customer.customerEvent
             get
             {
                 var temp = new ObservableCollection<EventVM>();
+
+                if (EventList == null)
+                {
+                    return temp;
+                }
 
                 if (Filter != null || !Filter.Equals(""))
                 {
@@ -115,12 +132,18 @@ namespace Festispec.ViewModel.customer.customerEvent
         }
         public EventListVM()
         {
+            this.MessengerInstance.Register<ChangeSelectedCustomerMessage>(this, message =>
+            {
+                Customer = message.Customer;
+                EventList = message.Customer.Events;
+                RaisePropertyChanged("EventListFiltered");
+                RaisePropertyChanged("Title");
+            });
+
             Filters = new List<string>();
             SelectedFilter = Filters.First();
             Filter = "";
             ShowOnlyFuture = true;
-            EventRepository eventRepository = new EventRepository();
-            EventList = new ObservableCollection<EventVM>(eventRepository.GetEvents());
             OpenAddEvent = new RelayCommand(OpenAddEventPage);
             OpenEditEvent = new RelayCommand(OpenEditEventPage);
             DeleteEventCommand = new RelayCommand(DeleteEvent);
@@ -130,6 +153,10 @@ namespace Festispec.ViewModel.customer.customerEvent
         private void OpenAddEventPage()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddEventPage) });
+            MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage()
+            {
+                Customer = Customer
+            });
         }
 
         private void OpenEditEventPage()
@@ -138,7 +165,8 @@ namespace Festispec.ViewModel.customer.customerEvent
             MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage()
             {
                 Event = SelectedEvent,
-                EventList = this
+                EventList = this,
+                Customer = Customer
             });
         }
 
@@ -161,13 +189,16 @@ namespace Festispec.ViewModel.customer.customerEvent
         public void OpenSingleEventPage()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SingleEventPage) });
-            MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage() { Event = SelectedEvent });
+            MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage()
+            {
+                Event = SelectedEvent,
+                Customer = Customer
+            }) ;
         }
 
         public void RefreshEvents()
         {
-            EventRepository eventRepository = new EventRepository();
-            EventList = new ObservableCollection<EventVM>(eventRepository.GetEvents());
+            EventList = Customer.Events;
             RaisePropertyChanged("EventListFiltered");
         }
     }
