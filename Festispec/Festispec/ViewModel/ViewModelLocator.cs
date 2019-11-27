@@ -51,6 +51,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<SickPage>();
             SimpleIoc.Default.Register<AddElementPage>();
             SimpleIoc.Default.Register<PlanningOverviewPage>();
+            SimpleIoc.Default.Register<EmployeeInformationPage>();
 
             SimpleIoc.Default.Register<EmployeePage>();
             SimpleIoc.Default.Register<AddEmployeePage>();
@@ -81,6 +82,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EmployeeListVM>();
             SimpleIoc.Default.Register<AddEmployeeVM>();
             SimpleIoc.Default.Register<AddElementVM>();
+            SimpleIoc.Default.Register<EmployeeInformationVM>();
 
             SimpleIoc.Default.Register<ToastVM>();
             SimpleIoc.Default.Register<PlanningOverviewVM>();
@@ -138,6 +140,7 @@ namespace Festispec.ViewModel
         public EditMultipleChoiceQuestionVM EditMultipleChoiceQuestionVM => ServiceLocator.Current.GetInstance<EditMultipleChoiceQuestionVM>();
         public AddTableQuestionVM AddTableQuestionVM => ServiceLocator.Current.GetInstance<AddTableQuestionVM>();
         public EditTableQuestionVM EditTableQuestionVM => ServiceLocator.Current.GetInstance<EditTableQuestionVM>();
+        public EmployeeInformationVM EmployeeInformationVM => ServiceLocator.Current.GetInstance<EmployeeInformationVM>();
 
         public static void Cleanup()
         {

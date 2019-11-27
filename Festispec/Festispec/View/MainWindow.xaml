@@ -114,7 +114,7 @@
                 <TextBlock Text="{Binding LoggedInEmployee.Fullname}" VerticalAlignment="Center" FontSize="18"/>
                 <materialDesign:PopupBox Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                     <StackPanel Width="150">
-                        <Button Content="Account"/>
+                        <Button Content="Account" Command="{Binding ShowAccountInformation}"/>
                         <Separator/>
                         <Button Content="Log uit" Command="{Binding CloseApplication}"/>
                     </StackPanel>
