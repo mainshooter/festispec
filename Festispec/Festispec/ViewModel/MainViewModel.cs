@@ -37,6 +37,7 @@ namespace Festispec.ViewModel
         public ICommand OpenSick { get; set; }
         public ICommand OpenPlanning { get; set; }
         public ICommand OpenSurvey { get; set; }
+        public ICommand ShowAccountInformation { get; set; }
 
         public Page Page
         {
@@ -66,6 +67,7 @@ namespace Festispec.ViewModel
             OpenSick = new RelayCommand(OpenSickTab);
             OpenPlanning = new RelayCommand(OpenPlanningTab);
             OpenSurvey = new RelayCommand(OpenSurveyTab);
+            ShowAccountInformation = new RelayCommand(OpenAccountInformation);
 
             Page = ServiceLocator.Current.GetInstance<LoginPage>();
 
@@ -146,6 +148,11 @@ namespace Festispec.ViewModel
                 MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage)});
                 MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = survey });
             }
+        }
+
+        private void OpenAccountInformation()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeeInformationPage) });
         }
     }
 }
