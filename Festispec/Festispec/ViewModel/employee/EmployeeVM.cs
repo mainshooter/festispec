@@ -385,7 +385,7 @@ namespace Festispec.ViewModel.employee
         {
             get
             {
-                string regexIban = "^NL\\d{2}[A-Z]{4}0\\d{9}$";
+                string regexIban = "^[A-Z]{2}[ -]?[0-9]{2}[ -]?[A-Z]{4}[ -]?[0-9]{4}[ -]?[0-9]{4}[ -]?[0-9]{2}$";
                 if (String.IsNullOrWhiteSpace(Iban))
                 {
                     return "Iban moet ingevuld zijn";
