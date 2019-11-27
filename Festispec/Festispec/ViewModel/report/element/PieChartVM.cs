@@ -29,7 +29,7 @@ namespace Festispec.ViewModel.report.element
             EditElementCommand = new RelayCommand(GoToEdit);
         }
 
-        private void DataToSeriesCollection()
+        public void ApplyChanges()
         {
             try
             {
@@ -87,18 +87,6 @@ namespace Festispec.ViewModel.report.element
                     columnSerie.Values = chartValues;
                 }
                 SeriesCollection = seriesCollection;
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        public void ApplyChanges()
-        {
-            DataToSeriesCollection();
-            try
-            {
-                SeriesCollection = (SeriesCollection)Data;
             }
             catch (Exception)
             {

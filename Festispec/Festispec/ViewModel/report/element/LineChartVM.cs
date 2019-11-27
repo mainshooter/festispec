@@ -42,7 +42,8 @@ namespace Festispec.ViewModel.report.element
             EditElementCommand = new RelayCommand(GoToEdit);
         }
 
-        private void DataToDictonary()
+
+        public void ApplyChanges()
         {
             try
             {
@@ -99,24 +100,9 @@ namespace Festispec.ViewModel.report.element
                     }
                     columnSerie.Values = chartValues;
                 }
-                Dictionary["xaxisName"] = "Place";
-                Dictionary["yaxisName"] = "Amount";
-                Dictionary["seriescollection"] = seriesCollection;
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-
-        public void ApplyChanges()
-        {
-            DataToDictonary();
-            try
-            {
-                XaxisName = (string)Dictionary["xaxisName"];
-                YaxisName = (string)Dictionary["yaxisName"];
-                SeriesCollection = (SeriesCollection)Dictionary["seriescollection"];
+                XaxisName = "Place";
+                YaxisName = "Amount";
+                SeriesCollection = seriesCollection;
             }
             catch (Exception)
             {

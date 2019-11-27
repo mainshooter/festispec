@@ -43,7 +43,7 @@ namespace Festispec.ViewModel.report.element
             EditElementCommand = new RelayCommand(GoToEdit);
         }
 
-        private void DataToDictonary()
+        public void ApplyChanges()
         {
             try
             {
@@ -65,50 +65,44 @@ namespace Festispec.ViewModel.report.element
                     }
                     dataList.RemoveAt(0);
                 }
+                foreach (var item in Dictionary)
+                {
+                    DataTable.Columns.Add(item.Key);
+                }
+
+                int highestCount = 0;
+                foreach (var item in Dictionary)
+                {
+                    var listCount = item.Value.Count;
+                    if (listCount > highestCount)
+                    {
+                        highestCount = listCount;
+                    }
+                }
+
+                for (int i = 0; i < highestCount; i++)
+                {
+                    DataRow dataRow = DataTable.NewRow();
+                    int internIndex = 0;
+                    foreach (var item in Dictionary)
+                    {
+                        var list = item.Value;
+                        if (list.Count > i)
+                        {
+                            dataRow[internIndex] = list[i];
+                        }
+                        else
+                        {
+                            dataRow[internIndex] = "";
+                        }
+
+                        internIndex++;
+                    }
+                    DataTable.Rows.Add(dataRow);
+                }
             }
             catch (Exception)
             {
-            }
-
-        }
-
-        public void ApplyChanges()
-        {
-            DataToDictonary();
-            foreach (var item in Dictionary)
-            {
-                DataTable.Columns.Add(item.Key);
-            }
-
-            int highestCount = 0;
-            foreach (var item in Dictionary)
-            {
-                var listCount = item.Value.Count;
-                if (listCount > highestCount)
-                {
-                    highestCount = listCount;
-                }
-            }
-
-            for (int i = 0; i < highestCount; i++)
-            {
-                DataRow dataRow = DataTable.NewRow();
-                int internIndex = 0;
-                foreach (var item in Dictionary)
-                {
-                    var list = item.Value;
-                    if (list.Count > i)
-                    {
-                        dataRow[internIndex] = list[i];
-                    }
-                    else
-                    {
-                        dataRow[internIndex] = "";
-                    }
-                    
-                    internIndex++;
-                }
-                DataTable.Rows.Add(dataRow);
             }
         }
     }

@@ -42,7 +42,7 @@ namespace Festispec.ViewModel.report.element
             EditElementCommand = new RelayCommand(GoToEdit);
         }
 
-        private void DataToDictonary()
+        public void ApplyChanges()
         {
             try
             {
@@ -72,7 +72,7 @@ namespace Festispec.ViewModel.report.element
                 var seriesCollection = new SeriesCollection();
                 foreach (var title in headers)
                 {
-                    seriesCollection.Add(new ColumnSeries() { Title = title});
+                    seriesCollection.Add(new ColumnSeries() { Title = title });
                 }
 
                 List<List<int>> IntCollection = new List<List<int>>();
@@ -99,25 +99,11 @@ namespace Festispec.ViewModel.report.element
                     }
                     columnSerie.Values = chartValues;
                 }
-                Dictionary["labels"] = new List<string> { "test1", "test2", "test3", "test4", "test5" };
-                Dictionary["xaxisName"] = "Place";
-                Dictionary["yaxisName"] = "Amount";
-                Dictionary["seriescollection"] = seriesCollection;
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        public void ApplyChanges()
-        {
-            DataToDictonary();
-            try
-            {
+                Labels = new List<string> { "test1", "test2", "test3", "test4", "test5" };
+                XaxisName = "Place";
+                YaxisName = "Amount";
+                SeriesCollection = seriesCollection;
                 Labels = (List<string>)Dictionary["labels"];
-                XaxisName = (string)Dictionary["xaxisName"];
-                YaxisName = (string)Dictionary["yaxisName"];
-                SeriesCollection = (SeriesCollection)Dictionary["seriescollection"];
             }
             catch (Exception)
             {
