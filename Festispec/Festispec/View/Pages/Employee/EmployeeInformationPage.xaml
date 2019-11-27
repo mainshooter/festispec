@@ -55,7 +55,7 @@
                 </materialDesign:Card>
                 <materialDesign:Card Padding="32" Margin="16">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Persoonlijke gegevens</TextBlock>
+                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Afdeling gegevens</TextBlock>
                         <Separator/>
                         <Label Content="Afdeling" FontWeight="Bold"/>
                         <Label Content="{Binding Employee.Department.Name}"/>
