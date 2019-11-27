@@ -6,7 +6,7 @@ namespace Festispec.ViewModel.report.data
 {
     public class SelectDataParserVM : DataVM, IDataParser
     {
-        public string ParserType => "SELECT";
+        public override string Type => "SELECT";
 
         public List<string> SupportedQuestions => new List<string>() {
             Lib.Survey.Question.QuestionType.OpenQuestion,

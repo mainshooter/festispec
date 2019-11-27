@@ -6,7 +6,7 @@ namespace Festispec.ViewModel.report.data
 {
     public class MaxDataParserVM : DataVM, IDataParser
     {
-        public string ParserType => "MAX";
+        public override string Type => "MAX";
         public List<string> SupportedQuestions => new List<string>() {
             Lib.Survey.Question.QuestionType.OpenQuestion,
             Lib.Survey.Question.QuestionType.MultipleChoiseQuestion,

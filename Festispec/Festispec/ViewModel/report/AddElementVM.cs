@@ -129,7 +129,7 @@ namespace Festispec.ViewModel.report
                 ReportElement.Title = "Leuke titel";
                 ReportElement.Content = "Test description";
                 ReportElement.Type = SelectedElementType;
-                IDataParser dataVM = _dataParserFactory.GetDataParser(SelectedDataParser.ParserType);
+                IDataParser dataVM = _dataParserFactory.GetDataParser(SelectedDataParser.Type);
                 dataVM.Question = SelectedQuestion;
                 ReportElement.DataParser = dataVM;
                 var userControl = _reportElementFactory.CreateElement(ReportElement);

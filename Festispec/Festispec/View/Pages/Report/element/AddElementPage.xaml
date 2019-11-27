@@ -18,7 +18,7 @@
         <ComboBox ItemsSource="{Binding PosibleDataParsers}" SelectedItem="{Binding SelectedDataParser}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding ParserType}"></TextBlock>
+                    <TextBlock Text="{Binding Type}"></TextBlock>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>

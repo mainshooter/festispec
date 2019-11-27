@@ -6,7 +6,7 @@ namespace Festispec.Interface
     {
         List<string> SupportedQuestions { get; }
         List<string> SupportedVisuals { get; }
-        string ParserType { get; }
+        string Type { get; }
         IQuestion Question { get; set; }
         List<List<string>> ParseData();
     }

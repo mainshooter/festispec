@@ -7,7 +7,7 @@ namespace Festispec.ViewModel.report.data
 {
     public class AvgDataParser : DataVM, IDataParser
     {
-        public string ParserType => "AVG";
+        public override string Type => "AVG";
         public List<string> SupportedQuestions => new List<string>() { 
             Lib.Survey.Question.QuestionType.SliderQuestion
         };

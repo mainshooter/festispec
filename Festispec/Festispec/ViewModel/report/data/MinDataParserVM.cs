@@ -6,7 +6,7 @@ namespace Festispec.ViewModel.report.data
 {
     public class MinDataParserVM : DataVM, IDataParser
     {
-        public string ParserType => "MIN";
+        public override string Type => "MIN";
         public List<string> SupportedQuestions => new List<string>() {
             Lib.Survey.Question.QuestionType.OpenQuestion,
             Lib.Survey.Question.QuestionType.MultipleChoiseQuestion,

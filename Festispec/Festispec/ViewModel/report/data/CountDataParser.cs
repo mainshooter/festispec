@@ -5,7 +5,7 @@ namespace Festispec.ViewModel.report.data
 {
     public class CountDataParser : DataVM, IDataParser
     {
-        public string ParserType => "COUNT";
+        public override string Type => "COUNT";
         public List<string> SupportedQuestions => new List<string>() {
             Lib.Survey.Question.QuestionType.OpenQuestion,
             Lib.Survey.Question.QuestionType.MultipleChoiseQuestion,

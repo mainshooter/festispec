@@ -12,9 +12,6 @@ namespace Festispec.ViewModel.report.data
     {
         public virtual string Type { get; set; }
 
-        public string Where { get; set; }
-
-        public string GroupBy { get; set; }
         public IQuestion Question { get; set; }
 
         [PreferredConstructor]
@@ -26,16 +23,12 @@ namespace Festispec.ViewModel.report.data
         {
             Dictionary<string, string> dic = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
             Type = dic["Type"];
-            Where = dic["Where"];
-            GroupBy = dic["GroupBy"];
         }
 
         public string ToJson()
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("Type", Type);
-            dic.Add("Where", Where);
-            dic.Add("GroupBy", GroupBy);
             dic.Add("QuestionId", Question.Id.ToString());
             return JsonConvert.SerializeObject(dic);
         }
