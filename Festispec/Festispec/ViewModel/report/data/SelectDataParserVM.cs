@@ -19,23 +19,23 @@ namespace Festispec.ViewModel.report.data
         public List<List<string>> ParseData()
         {
             string questionType = Question.QuestionType;
-            if (questionType.Equals("Open vraag"))
+            if (questionType.Equals(Lib.Survey.Question.QuestionType.OpenQuestion))
             {
                 return ParseDataOpenQuestion();
             }
-            if (questionType.Equals("Meerkeuze vraag"))
+            if (questionType.Equals(Lib.Survey.Question.QuestionType.MultipleChoiseQuestion))
             {
                 return ParseDataMultipleChoise();
             }
-            if (questionType.Equals("Tabel vraag"))
+            if (questionType.Equals(Lib.Survey.Question.QuestionType.TableQuestion))
             {
                 return ParseDataTableQuestion();
             }
-            if (questionType.Equals("Schuifbalk vraag"))
+            if (questionType.Equals(Lib.Survey.Question.QuestionType.SliderQuestion))
             {
                 return ParseSliderQuestion();
             }
-            if (questionType.Equals("Gesloten vraag"))
+            if (questionType.Equals(Lib.Survey.Question.QuestionType.ClosedQuestion))
             {
                 return ParseClosedQuestion();
             }

@@ -19,11 +19,11 @@ namespace Festispec.ViewModel.report.data
         public List<List<string>> ParseData()
         {
             string type = Question.QuestionType;
-            if (type.Equals("Meerkeuze vraag"))
+            if (type.Equals(Lib.Survey.Question.QuestionType.MultipleChoiseQuestion))
             {
                 return ParseDataMultipleChoise();
             }
-            if (type.Equals("Gesloten vraag"))
+            if (type.Equals(Lib.Survey.Question.QuestionType.ClosedQuestion))
             {
                 return ParseDataClosedQuestion();
             }
