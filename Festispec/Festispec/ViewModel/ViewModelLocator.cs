@@ -1,5 +1,4 @@
 using CommonServiceLocator;
-using Festispec.Repository;
 using Festispec.View.Pages;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Customer.Event;

@@ -1,5 +1,4 @@
-﻿using Festispec.Interface;
-using GalaSoft.MvvmLight.CommandWpf;
+﻿using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 

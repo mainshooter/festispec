@@ -4,7 +4,6 @@ using Festispec.Lib.Slugify;
 using Festispec.Message;
 using Festispec.View.Pages.Survey;
 using Festispec.View.Pages.Survey.QuestionTypes.ClosedQuestion;
-using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;

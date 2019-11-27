@@ -1,5 +1,4 @@
-﻿using Festispec.Interface;
-using GalaSoft.MvvmLight.CommandWpf;
+﻿using GalaSoft.MvvmLight.CommandWpf;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
