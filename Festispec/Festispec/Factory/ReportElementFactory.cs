@@ -14,6 +14,7 @@ namespace Festispec.Factory
             {
                 TableUserControl table = new TableUserControl();
                 TableVM tableVm = new TableVM(element);
+                tableVm.ApplyChanges();
                 table.DataContext = tableVm;
                 returningUserControl = table;
             }
@@ -21,6 +22,7 @@ namespace Festispec.Factory
             {
                 LineChartUserControl lineChart = new LineChartUserControl();
                 LineChartVM lineChartVm = new LineChartVM(element);
+                lineChartVm.ApplyChanges();
                 lineChart.DataContext = lineChartVm;
                 returningUserControl = lineChart;
             }
@@ -28,6 +30,7 @@ namespace Festispec.Factory
             {
                 PieChartUserControl pieChart = new PieChartUserControl();
                 PieChartVM pieChartVm = new PieChartVM(element);
+                pieChartVm.ApplyChanges();
                 pieChart.DataContext = pieChartVm;
                 returningUserControl = pieChart;
             }
@@ -35,6 +38,7 @@ namespace Festispec.Factory
             {
                 BarChartUserControl barChart = new BarChartUserControl();
                 BarChartVM barChartVm = new BarChartVM(element);
+                barChartVm.ApplyChanges();
                 barChart.DataContext = barChartVm;
                 returningUserControl = barChart;
 

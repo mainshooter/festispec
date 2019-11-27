@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.CommandWpf;
+﻿using Festispec.Interface;
+using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 
@@ -6,7 +7,6 @@ namespace Festispec.ViewModel.report.element
 {
     class ImageVM : ReportElementVM
     {
-        private object _data;
 
         public byte[] Photo { get; set; }
 
@@ -20,7 +20,7 @@ namespace Festispec.ViewModel.report.element
             EditElementCommand = new RelayCommand(GoToEdit);
         }
 
-        protected override void ApplyChanges()
+        public void ApplyChanges()
         {
             Photo = (byte[])Dictionary["image"];
         }

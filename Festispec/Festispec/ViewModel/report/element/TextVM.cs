@@ -40,7 +40,7 @@ namespace Festispec.ViewModel.report.element
             EditElementCommand = new RelayCommand(GoToEdit);
         }
 
-        protected override void ApplyChanges()
+        public void ApplyChanges()
         {
             Text = (string)Dictionary["text"];
         }

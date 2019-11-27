@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.CommandWpf;
+﻿using Festispec.Interface;
+using GalaSoft.MvvmLight.CommandWpf;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
@@ -29,7 +30,7 @@ namespace Festispec.ViewModel.report.element
             EditElementCommand = new RelayCommand(GoToEdit);
         }
 
-        protected override void ApplyChanges()
+        public void ApplyChanges()
         {
             try
             {

@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.CommandWpf;
+﻿using Festispec.Interface;
+using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -33,7 +34,7 @@ namespace Festispec.ViewModel.report.element
             EditElementCommand = new RelayCommand(GoToEdit);
         }
 
-        protected override void ApplyChanges()
+        public void ApplyChanges()
         {
             try
             {
