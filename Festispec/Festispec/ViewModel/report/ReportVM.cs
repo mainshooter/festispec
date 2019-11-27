@@ -72,8 +72,7 @@ namespace Festispec.ViewModel.report
             });
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { SelectedReport = this });
             _report = new Report();
-            var reportRepository = new ReportRepository();
-            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements());
+            this.ReportElements = new ObservableCollection<ReportElementVM>();
             ReportElementUserControlls = new ObservableCollection<UserControl>();
             _reportElementFactory = new ReportElementFactory();
             ReportElements.CollectionChanged += RenderReportElements;

@@ -131,7 +131,7 @@ namespace Festispec.ViewModel.report
                 ReportElement.Type = SelectedElementType;
                 IDataParser dataVM = _dataParserFactory.GetDataParser(SelectedDataParser.ParserType);
                 dataVM.Question = SelectedQuestion;
-                ReportElement.Data = dataVM.ParseData();
+                ReportElement.DataParser = dataVM;
                 var userControl = _reportElementFactory.CreateElement(ReportElement);
                 Report.ReportElementUserControlls.Add(userControl);
                 GoBackToReport();

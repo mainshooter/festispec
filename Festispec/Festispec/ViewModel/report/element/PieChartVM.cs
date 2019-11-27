@@ -8,16 +8,6 @@ namespace Festispec.ViewModel.report.element
 {
     public class PieChartVM: ReportElementVM
     {
-        private Object _data;
-
-        public override Object Data {
-            get {
-                return _data;
-            }
-            set {
-                _data = value;
-            }
-        }
 
         public SeriesCollection SeriesCollection { get; set; }
 
@@ -33,7 +23,7 @@ namespace Festispec.ViewModel.report.element
         {
             try
             {
-                List<List<string>> dataList = (List<List<string>>)Data;
+                List<List<string>> dataList = Data;
 
                 var dataCollectionList = new List<List<string>>();
 

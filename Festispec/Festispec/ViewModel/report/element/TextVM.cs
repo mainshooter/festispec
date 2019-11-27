@@ -7,7 +7,6 @@ namespace Festispec.ViewModel.report.element
 {
     class TextVM : ReportElementVM
     {
-        private object _data;
         private Boolean _readOnly;
 
         public Boolean ReadOnly {
@@ -29,19 +28,6 @@ namespace Festispec.ViewModel.report.element
         public ICommand ChangeToReadOnly { get; set; }
 
         public ICommand ChangeToInput { get; set; }
-
-        public override Object Data {
-            get
-            {
-                return _data;
-            }
-            set
-            {
-                _data = value;
-                Dictionary = (Dictionary<string, Object>)Data;
-                ApplyChanges();
-            }
-        }
 
         public TextVM(ReportElementVM element)
         {

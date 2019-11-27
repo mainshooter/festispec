@@ -2,6 +2,7 @@
 using Festispec.Interface;
 using GalaSoft.MvvmLight;
 using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element
@@ -9,6 +10,8 @@ namespace Festispec.ViewModel.report.element
     public class ReportElementVM: ViewModelBase
     {
         private ReportElement _reportElement;
+        private IDataParser _dataParser;
+        private List<List<string>> _data;
 
         public int Id {
             get {
@@ -56,7 +59,32 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public IDataParser DataParser { get; set; }
+        public List<List<string>> Data {
+            get {
+                return _data;
+            }
+            set {
+                _data = value;
+                RaisePropertyChanged("Data");
+            }
+        }
+
+        public IDataParser DataParser { 
+            get {
+                return _dataParser;
+            }
+            set {
+                _dataParser = value;
+                if (_dataParser != null)
+                {
+                    _data = _dataParser.ParseData();
+                }
+                else
+                {
+                    _data = new List<List<string>>();
+                }
+            }
+        }
 
         public string JsonData {
             get {
@@ -67,7 +95,6 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public virtual Object Data { get; set; }
         public ICommand EditElementCommand { get; set; }
 
         public ReportElementVM(ReportElement element)

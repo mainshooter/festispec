@@ -9,7 +9,6 @@ namespace Festispec.ViewModel.report.element
 {
     public class BarChartVM : ReportElementVM
     {
-        private Object _data;
 
         public Dictionary<string, Object> Dictionary { get; set; }
 
@@ -22,15 +21,6 @@ namespace Festispec.ViewModel.report.element
         public List<string> Labels { set; get; }
 
         public Func<double,string> Formatter { set; get;}
-
-        public override Object Data {
-            get {
-                return _data;
-            }
-            set {
-                _data = value;
-            }
-        }
 
         public BarChartVM(ReportElementVM element)
         {
@@ -46,7 +36,7 @@ namespace Festispec.ViewModel.report.element
         {
             try
             {
-                List<List<string>> dataList = (List<List<string>>)Data;
+                List<List<string>> dataList = Data;
 
                 var dataCollectionList = new List<List<string>>();
 
@@ -108,7 +98,6 @@ namespace Festispec.ViewModel.report.element
             catch (Exception)
             {
             }
-
         }
     }
 }

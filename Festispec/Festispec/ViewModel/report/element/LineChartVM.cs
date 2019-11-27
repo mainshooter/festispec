@@ -8,9 +8,6 @@ namespace Festispec.ViewModel.report.element
 {
     public class LineChartVM : ReportElementVM
     {
-        private Object _data;
-
-        public Dictionary<string, Object> Dictionary { get; set; }
 
         public string XaxisName { get; set; }
 
@@ -22,18 +19,8 @@ namespace Festispec.ViewModel.report.element
 
         public List<string> Labels { get; set; }
 
-        public override Object Data {
-            get {
-                return _data;
-            }
-            set {
-                _data = value;
-            }
-        }
-
         public LineChartVM(ReportElementVM element)
         {
-            Dictionary = new Dictionary<string, Object>();
             Labels = new List<string>();
             Data = element.Data;
             Title = element.Title;

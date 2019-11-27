@@ -10,18 +10,6 @@ namespace Festispec.ViewModel.report.element
 
         public byte[] Photo { get; set; }
 
-        public override Object Data
-        {
-            get {
-                return _data;
-            }
-            set {
-                _data = value;
-                Dictionary = (Dictionary<string, Object>)Data;
-                ApplyChanges();
-            }
-        }
-
         public Dictionary<string, Object> Dictionary { get; set; }
 
         public ImageVM(ReportElementVM element)

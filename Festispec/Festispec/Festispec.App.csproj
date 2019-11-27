@@ -143,6 +143,7 @@
     </Compile>
     <Compile Include="Factory\DataParserFactory.cs" />
     <Compile Include="Interface\IDataParser.cs" />
+    <Compile Include="Interface\IReportElement.cs" />
     <Compile Include="Interface\ISurveyAnswer.cs" />
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
     <Compile Include="Message\ChangeSelectedOrderMessage.cs" />
@@ -157,7 +158,6 @@
     <Compile Include="Message\ChangeSelectedEventVM.cs" />
     <Compile Include="Message\ChangeSelectedEmployeeMessage.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
-    <Compile Include="Repository\ReportRepository.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EventVM.cs" />

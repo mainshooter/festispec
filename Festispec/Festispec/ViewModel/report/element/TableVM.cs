@@ -9,18 +9,8 @@ namespace Festispec.ViewModel.report.element
     public class TableVM: ReportElementVM
     {
         private DataTable _dataTable;
-        private Object _data;
 
         public Dictionary<string, List<string>> Dictionary { get; set; }
-        
-        public override Object Data {
-            get {
-                return _data;
-            }
-            set {
-                _data = value;
-            }
-        }
         
         public DataTable DataTable { 
             get {
@@ -47,7 +37,7 @@ namespace Festispec.ViewModel.report.element
         {
             try
             {
-                List<List<string>> dataList = (List<List<string>>)Data;
+                List<List<string>> dataList = Data;
                 var headers = dataList[0];
                 foreach (var item in headers)
                 {
