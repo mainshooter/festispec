@@ -52,6 +52,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         {
             _surveyQuestion = new Question();
             QuestionDetails = new QuestionDetails();
+            Type = Lib.Survey.Question.QuestionType.NoteQuestion;
         }
 
         public CommentFieldVM(Question surveyQuestion)

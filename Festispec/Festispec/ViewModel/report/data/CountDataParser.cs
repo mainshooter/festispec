@@ -6,7 +6,13 @@ namespace Festispec.ViewModel.report.data
     public class CountDataParser : DataVM, IDataParser
     {
         public string ParserType => "COUNT";
-        public List<string> SupportedQuestions => new List<string>() { "Open vraag", "Meerkeuze vraag", "Tabel vraag", "Schuifbalk vraag", "Gesloten vraag" };
+        public List<string> SupportedQuestions => new List<string>() {
+            Lib.Survey.Question.QuestionType.OpenQuestion,
+            Lib.Survey.Question.QuestionType.MultipleChoiseQuestion,
+            Lib.Survey.Question.QuestionType.TableQuestion,
+            Lib.Survey.Question.QuestionType.SliderQuestion,
+            Lib.Survey.Question.QuestionType.ClosedQuestion,
+        };
         public List<string> SupportedVisuals => new List<string>() { "Table", "Barchart" };
 
         public List<List<string>> ParseData()

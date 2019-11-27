@@ -51,12 +51,10 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.ClosedQuestion
             using (var context = new Entities())
             {
                 if (!QuestionVm.ValidateQuestionDetails()) return;
-
                 QuestionVm.QuestionDetails.Choices.Cols.Add("Ja");
                 QuestionVm.QuestionDetails.Choices.Cols.Add("Nee");
                 QuestionVm.Question = JsonConvert.SerializeObject(QuestionVm.QuestionDetails);
                 QuestionVm.Variables = StringToSlug.Slugify(QuestionVm.QuestionDetails.Question);
-                QuestionVm.Type = "Gesloten vraag";
                 QuestionVm.SurveyId = _surveyVm.Id;
                 context.Questions.Add(QuestionVm.ToModel());
                 _surveyVm.Questions.Add(QuestionVm);

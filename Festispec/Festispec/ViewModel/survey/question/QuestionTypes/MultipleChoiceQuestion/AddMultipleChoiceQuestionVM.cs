@@ -57,7 +57,6 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.MultipleChoiceQuesti
 
                 QuestionVm.Question = JsonConvert.SerializeObject(QuestionVm.QuestionDetails);
                 QuestionVm.Variables = StringToSlug.Slugify(QuestionVm.QuestionDetails.Question);
-                QuestionVm.Type = "Meerkeuze vraag";
                 QuestionVm.SurveyId = _surveyVm.Id;
                 context.Questions.Add(QuestionVm.ToModel());
                 _surveyVm.Questions.Add(QuestionVm);

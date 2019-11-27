@@ -51,6 +51,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public OpenQuestionVM()
         {
             _surveyQuestion = new Question();
+            Type = Lib.Survey.Question.QuestionType.OpenQuestion;
             QuestionDetails = new QuestionDetails();
         }
 

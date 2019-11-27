@@ -51,6 +51,7 @@
     <Compile Include="Slugify\StringToSlug.cs" />
     <Compile Include="Survey\Question\QuestionChoices.cs" />
     <Compile Include="Survey\Question\QuestionDetails.cs" />
+    <Compile Include="Survey\Question\QuestionType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
