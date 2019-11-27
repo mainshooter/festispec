@@ -18,7 +18,7 @@ namespace Festispec.ViewModel.survey
         private ObservableCollection<string> _statuses;
 
         public int Id => _survey.Id;
-        public string EventName => OrderVM.Event.Name;
+        public OrderVM OrderVM { get; set; }
 
         public ObservableCollection<string> Statuses
         {
@@ -55,8 +55,6 @@ namespace Festispec.ViewModel.survey
                 RaisePropertyChanged(() => Questions);
             }
         }
-
-        public OrderVM OrderVM { get; set; }
 
         [PreferredConstructor]
         public SurveyVM(OrderVM order)
@@ -113,7 +111,7 @@ namespace Festispec.ViewModel.survey
             }
         }
 
-        public void SetStatuses()
+        private void SetStatuses()
         {
             Statuses = new ObservableCollection<string>();
 

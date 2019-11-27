@@ -17,7 +17,7 @@
             <RowDefinition Height="70"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="{Binding SurveyVM.EventName }" ContentStringFormat="Vragenlijst {0} aanmaken"></Label>
+        <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="{Binding SurveyVM.OrderVM.Event.Name }" ContentStringFormat="Vragenlijst {0} aanmaken"></Label>
         <Separator Grid.Row="1"></Separator>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Label VerticalAlignment="Top">Instructie:</Label>
