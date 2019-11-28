@@ -21,38 +21,47 @@ namespace Festispec.ViewModel.report
         private Report _report;
         private ReportElementFactory _reportElementFactory;
 
-        public int Id {
-            get {
+        public int Id
+        {
+            get
+            {
                 return _report.Id;
             }
-            private set {
+            private set
+            {
                 _report.Id = value;
             }
         }
 
         public OrderVM Order { get; set; }
 
-        public string Title {
-            get {
+        public string Title
+        {
+            get
+            {
                 return _report.Title;
             }
-            set {
+            set
+            {
                 _report.Title = value;
                 RaisePropertyChanged("Title");
             }
         }
 
-        public string Status {
-            get {
+        public string Status
+        {
+            get
+            {
                 return _report.Status;
             }
-            set {
+            set
+            {
                 _report.Status = value;
             }
         }
 
         public ObservableCollection<ReportElementVM> ReportElements { get; set; }
-        
+
         public ObservableCollection<UserControl> ReportElementUserControlls { get; set; }
 
         public MainViewModel MainViewModel { get; set; }
@@ -60,6 +69,8 @@ namespace Festispec.ViewModel.report
         public ICommand SaveReportCommand { get; set; }
 
         public ICommand AddElementCommand { get; set; }
+
+        public ICommand ExportToPDFCommand { get; set; }
 
         public ReportVM()
         {
@@ -71,6 +82,7 @@ namespace Festispec.ViewModel.report
             ReportElements.CollectionChanged += RenderReportElements;
             SaveReportCommand = new RelayCommand(Save);
             AddElementCommand = new RelayCommand(GoToAddElementPage);
+            ExportToPDFCommand = new RelayCommand(ExportToPDF);
             _report.Title = "Test titel";
             this.RenderReportElements(null, null);
         }
@@ -123,6 +135,11 @@ namespace Festispec.ViewModel.report
             {
                 ReportElementUserControlls.Add(_reportElementFactory.CreateElement(element));
             }
+        }
+
+        public void ExportToPDF()
+        {
+
         }
     }
 }

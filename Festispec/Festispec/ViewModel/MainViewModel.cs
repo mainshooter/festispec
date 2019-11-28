@@ -18,6 +18,7 @@ using Festispec.Domain;
 using System.Collections.Generic;
 using Festispec.View.Pages.Survey;
 using Festispec.ViewModel.survey;
+using Festispec.View.Pages.Report;
 
 namespace Festispec.ViewModel
 {
@@ -45,11 +46,14 @@ namespace Festispec.ViewModel
             set { _page = value; RaisePropertyChanged("Page"); }
         }
 
-        public EmployeeVM LoggedInEmployee {
-            get {
+        public EmployeeVM LoggedInEmployee
+        {
+            get
+            {
                 return _loggedInEmployee;
             }
-            set {
+            set
+            {
                 _loggedInEmployee = value;
                 RaisePropertyChanged("LoggedInEmployee");
             }
@@ -69,7 +73,7 @@ namespace Festispec.ViewModel
             OpenSurvey = new RelayCommand(OpenSurveyTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
 
-            Page = ServiceLocator.Current.GetInstance<LoginPage>();
+            Page = ServiceLocator.Current.GetInstance<ReportPage>();
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -116,7 +120,7 @@ namespace Festispec.ViewModel
 
         private void OpenSickTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage)});
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage) });
         }
 
         private void OpenPlanningTab()
@@ -144,8 +148,8 @@ namespace Festispec.ViewModel
             {
                 var surveyDomain = context.Surveys.First();
                 var survey = new SurveyVM(surveyDomain);
-                
-                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage)});
+
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
                 MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = survey });
             }
         }
