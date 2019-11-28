@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using Festispec.Domain;
 using Festispec.Lib.Survey.Question;
 
 namespace Festispec.Web.Controllers.Questions.Types
