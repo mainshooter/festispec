@@ -28,7 +28,7 @@
         <Label FontWeight="Bold" Content="Postcode" HorizontalAlignment="Left" Margin="110,250,0,0" VerticalAlignment="Top" Width="94"/>
         <Label FontWeight="Bold" Content="Bezoekersaantal" HorizontalAlignment="Left" Margin="110,310,0,0" VerticalAlignment="Top" Width="112"/>
         <Label HorizontalAlignment="Left" Height="30" Margin="110,335,0,0" Content="{Binding Path=Event.AmountVisitors, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
-        <Label FontWeight="Bold" Content="Oppervlakte  (m²)" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label FontWeight="Bold" Content="Oppervlakte  (m²)" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="128"/>
         <Label HorizontalAlignment="Left" Height="30" Margin="320,35,0,0" Content="{Binding Path=Event.SurfaceM2, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
         <Label Content="{Binding Path=Event.BeginDate, Mode=TwoWay}" HorizontalAlignment="Left" Height="30" Margin="320,95,0,0" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Begindatum" HorizontalAlignment="Left" Margin="320,70,0,0" VerticalAlignment="Top" Width="100"/>

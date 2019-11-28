@@ -40,7 +40,7 @@
         <Label HorizontalAlignment="Left" Margin="530,35,0,0" VerticalAlignment="Top" Width="175" Height="30" Content="{Binding Path=Customer.Name, UpdateSourceTrigger=PropertyChanged}"/>
         <Label FontWeight="Bold" Content="Klant" HorizontalAlignment="Left" Margin="530,10,0,0" VerticalAlignment="Top" Width="50"/>
         <ComboBox HorizontalAlignment="Left" Margin="530,105,0,0" VerticalAlignment="Top" Width="175" Text="{Binding Path=Event.ContactPerson, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=ContactIndex}" ItemsSource="{Binding Path=ContactPersons}" DisplayMemberPath="Fullname" SelectedValue="{Binding Event.ContactPerson}" />
-        <Label FontWeight="Bold" Content="Contactpersoon" HorizontalAlignment="Left" Margin="530,80,0,0" VerticalAlignment="Top" Width="50"/>
+        <Label FontWeight="Bold" Content="Contactpersoon" HorizontalAlignment="Left" Margin="530,80,0,0" VerticalAlignment="Top" Width="100"/>
         <Label FontWeight="Bold" Content="Beschrijving" HorizontalAlignment="Left" Margin="320,230,0,0" VerticalAlignment="Top" Width="84"/>
         <TextBox Padding="2" HorizontalAlignment="Left" Height="130" Margin="320,255,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.Description, Mode=TwoWay}" VerticalAlignment="Top" AcceptsReturn="True" VerticalContentAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto" BorderBrush="Black" BorderThickness="1" Width="385"/>
     </Grid>
