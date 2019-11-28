@@ -9,6 +9,8 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Festispec.Lib.Auth;
+using System.Collections.Generic;
+using Festispec.ViewModel.toast;
 
 namespace Festispec.ViewModel.employee
 {
@@ -45,6 +47,16 @@ namespace Festispec.ViewModel.employee
 
         public void AddEmployee(PasswordBox password)
         {
+            using (var context = new Entities())
+            {
+                var employees = new List<Employee>(context.Employees);
+                if (employees.Select(employee => employee.Email).Where(email => email == Employee.Email).Count() > 0)
+                {
+                    var toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
+                    toast.ShowError("Een gebeuiker met dit email adres bestaat al");
+                    return;
+                }
+            }
             Employee.Password = password.Password;
             Encrypt();
 

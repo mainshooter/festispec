@@ -2,8 +2,10 @@
 using Festispec.Message;
 using Festispec.View.Pages.Employee;
 using Festispec.ViewModel.employee.department;
+using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
@@ -74,6 +76,16 @@ namespace Festispec.ViewModel.employee
 
         public void EditEmployee()
         {
+            using (var context = new Entities())
+            {
+                var employees = new List<Employee>(context.Employees);
+                if (employees.Select(employee => employee).Where(employee => employee.Email == Employee.Email && employee.Id != Employee.Id).Count() > 0)
+                {
+                    var toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
+                    toast.ShowError("Een gebeuiker met dit email adres bestaat al");
+                    return;
+                }
+            }
             using (var context = new Entities())
             {
                 context.Entry(Employee.ToModel()).State = EntityState.Modified;

@@ -3,10 +3,8 @@ using Festispec.ViewModel.employee.department;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
-using System.Linq;
 
 namespace Festispec.ViewModel.employee
 {
@@ -343,14 +341,6 @@ namespace Festispec.ViewModel.employee
                 else if (!Regex.IsMatch(Email, regexEmail))
                 {
                     return "Email voldoet niet aan een email formaat";
-                }
-                using (var context = new Entities())
-                {
-                    var employees = new List<Employee>(context.Employees);
-                    if (employees.Where(employee => employee.Email == Email).Count() > 0)
-                    {
-                        return "Een gebeuiker met dit email adres bestaat al";
-                    }
                 }
                 return null;
             }
