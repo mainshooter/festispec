@@ -8,11 +8,12 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
+    <StackPanel Orientation="Horizontal">
+        <StackPanel>
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
         <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
 
-        <lvc:PieChart Name="Chart" LegendLocation="Bottom" Height="300" Series="{Binding SeriesCollection}" 
+        <lvc:PieChart Name="Chart" LegendLocation="Bottom" Height="300" Width="620" Series="{Binding SeriesCollection}" 
                     InnerRadius="100" Margin="0 15">
             <lvc:PieChart.ChartLegend>
                 <lvc:DefaultLegend BulletSize="20" FontSize="16"></lvc:DefaultLegend>
@@ -25,6 +26,22 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Command="{Binding EditElement}" Content="{materialDesign:PackIcon Pencil}"/>
             <Button Grid.Column="1" Command="{Binding DeleteElement}" Content="{materialDesign:PackIcon DeleteForever}"/>
-        </Grid>
+            </Grid>
+        </StackPanel>
+        <StackPanel>
+            <StackPanel Height="220">
+
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Command="{Binding ElementUpCommand}" Content="{materialDesign:PackIcon ArrowUp}"/>
+                    <Button Grid.Row="1" Command="{Binding ElementDownCommand}" Content="{materialDesign:PackIcon ArrowDown}"/>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 </UserControl>
