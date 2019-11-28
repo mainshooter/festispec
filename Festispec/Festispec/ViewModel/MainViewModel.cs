@@ -27,6 +27,7 @@ namespace Festispec.ViewModel
         //privates
         private Page _page;
         private EmployeeVM _loggedInEmployee;
+        private Dictionary<string,Dictionary<string,ICommand>> _menu;
 
         //publics
         public ICommand CloseApplication { get; set; }
@@ -39,14 +40,12 @@ namespace Festispec.ViewModel
         public ICommand OpenPlanning { get; set; }
         public ICommand OpenSurvey { get; set; }
         public ICommand ShowAccountInformation { get; set; }
-
         public ObservableCollection<Button> MenuList { get; set; }
-        private Dictionary<string, Dictionary<string, ICommand>> Menu;
+
 
         public Page Page
         {
-            get => _page;
-            set { _page = value; RaisePropertyChanged("Page"); }
+            get => _page; set { _page = value; RaisePropertyChanged("Page"); }
         }
 
         public EmployeeVM LoggedInEmployee {
@@ -63,10 +62,8 @@ namespace Festispec.ViewModel
         //constructor
         public MainViewModel()
         {
-            Menu = new Dictionary<string, Dictionary<string, ICommand>>();
+            _menu = new Dictionary<string, Dictionary<string, ICommand>>();
             MenuList = new ObservableCollection<Button>();
-
-
             CloseApplication = new RelayCommand(CloseApp);
             OpenDashboard = new RelayCommand(OpenDashboardTab);
             OpenEmployee = new RelayCommand(OpenEmployeeTab);
@@ -77,7 +74,7 @@ namespace Festispec.ViewModel
             OpenPlanning = new RelayCommand(OpenPlanningTab);
             OpenSurvey = new RelayCommand(OpenSurveyTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
-
+  
             Page = ServiceLocator.Current.GetInstance<LoginPage>();
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
@@ -103,7 +100,7 @@ namespace Festispec.ViewModel
             }
             else
             {
-                foreach(KeyValuePair<string, ICommand> entry in Menu[_loggedInEmployee.Department.Name])
+                foreach(KeyValuePair<string, ICommand> entry in _menu[_loggedInEmployee.Department.Name])
                 {
                     Button menuItem = new Button();
                     menuItem.Content = entry.Key;
@@ -121,37 +118,36 @@ namespace Festispec.ViewModel
         private void FillMenuList()
         {
             // Inspectie Dictionary
-            Menu.Add("Inspectie", new Dictionary<string, ICommand>());
-            Menu["Inspectie"].Add("Dashboard", OpenDashboard);
-            Menu["Inspectie"].Add("Beschikbaarheid", OpenAvailability);
-            Menu["Inspectie"].Add("Ziek melden", OpenSick);
+            _menu.Add("Inspectie", new Dictionary<string, ICommand>());
+            _menu["Inspectie"].Add("Dashboard", OpenDashboard);
+            _menu["Inspectie"].Add("Beschikbaarheid", OpenAvailability);
+            _menu["Inspectie"].Add("Ziek melden", OpenSick);
 
             // Sales Dictionary
-            Menu.Add("Sales", new Dictionary<string, ICommand>());
-            Menu["Sales"].Add("Dashboard", OpenDashboard);
-            Menu["Sales"].Add("Klanten", OpenCustomer);
+            _menu.Add("Sales", new Dictionary<string, ICommand>());
+            _menu["Sales"].Add("Dashboard", OpenDashboard);
+            _menu["Sales"].Add("Klanten", OpenCustomer);
 
             // Planning Dictionary
-            Menu.Add("Planning", new Dictionary<string, ICommand>());
-            Menu["Planning"].Add("Dashboard", OpenDashboard);
-            Menu["Planning"].Add("Planning", OpenPlanning);
+            _menu.Add("Planning", new Dictionary<string, ICommand>());
+            _menu["Planning"].Add("Dashboard", OpenDashboard);
+            _menu["Planning"].Add("Planning", OpenPlanning);
 
             // Directie Dictionary
-            Menu.Add("Directie", new Dictionary<string, ICommand>());
-            Menu["Directie"].Add("Dashboard", OpenDashboard);
-            Menu["Directie"].Add("Werknemers", OpenEmployee);
-            Menu["Directie"].Add("Beschikbaarheid", OpenAvailability);
-            Menu["Directie"].Add("Ziek melden", OpenSick);
-            Menu["Directie"].Add("Evenementen", OpenEvent);
-            Menu["Directie"].Add("Klanten", OpenCustomer);
-            Menu["Directie"].Add("Vragenlijsten", OpenSurvey);
-            Menu["Directie"].Add("Planning", OpenPlanning);
-
+            _menu.Add("Directie", new Dictionary<string, ICommand>());
+            _menu["Directie"].Add("Dashboard", OpenDashboard);
+            _menu["Directie"].Add("Werknemers", OpenEmployee);
+            _menu["Directie"].Add("Ziek melden", OpenSick);
+            _menu["Directie"].Add("Evenementen", OpenEvent);
+            _menu["Directie"].Add("Beschikbaarheid", OpenAvailability);
+            _menu["Directie"].Add("Klanten", OpenCustomer);
+            _menu["Directie"].Add("Vragenlijsten", OpenSurvey);
+            _menu["Directie"].Add("Planning", OpenPlanning);
 
             // Marketing Dictionary
-            Menu.Add("Marketing", new Dictionary<string, ICommand>());
-            Menu["Marketing"].Add("Dashboard", OpenDashboard);
-            Menu["Marketing"].Add("Werknemers", OpenEmployee);
+            _menu.Add("Marketing", new Dictionary<string, ICommand>());
+            _menu["Marketing"].Add("Dashboard", OpenDashboard);
+            _menu["Marketing"].Add("Werknemers", OpenEmployee);
         }
 
         //methodes
