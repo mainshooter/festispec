@@ -82,7 +82,7 @@ namespace Festispec.ViewModel.report
             ReportElements.CollectionChanged += RenderReportElements;
             SaveReportCommand = new RelayCommand(Save);
             AddElementCommand = new RelayCommand(GoToAddElementPage);
-            ExportToPDFCommand = new RelayCommand(ExportToPDF);
+            ExportToPDFCommand = new RelayCommand<Grid>(ExportToPDF);
             _report.Title = "Test titel";
             this.RenderReportElements(null, null);
         }
@@ -137,9 +137,23 @@ namespace Festispec.ViewModel.report
             }
         }
 
-        public void ExportToPDF()
+        public void ExportToPDF(Grid stackPanel)
         {
+            try
+            {
+                stackPanel.IsEnabled = false;
+                PrintDialog printDialog = new PrintDialog();
+                printDialog.UserPageRangeEnabled = true;
+                if (printDialog.ShowDialog() == true)
+                {
 
+                    printDialog.PrintVisual(stackPanel, "Rapport");
+                }
+            }
+            finally
+            {
+                stackPanel.IsEnabled = true;
+            }
         }
     }
 }
