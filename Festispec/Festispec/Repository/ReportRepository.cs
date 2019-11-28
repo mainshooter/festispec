@@ -5,20 +5,19 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Festispec.Repository
 {
     public class ReportRepository
     {
-        public List<ReportElementVM> GetReportElements(ReportVM report)
+        public ObservableCollection<ReportElementVM> GetReportElements(ReportVM report)
         {
-            List<ReportElementVM> result = new List<ReportElementVM>();
             using (var context = new Entities())
             {
-                result = new List<ReportElementVM>(context.ReportElements.ToList().Where(r => r.ReportId == report.Id).Select(reportElement => new ReportElementVM(reportElement, report)));
+                return new ObservableCollection<ReportElementVM>(context.ReportElements.ToList().Where(r => r.ReportId == report.Id).OrderBy(reportElement => reportElement.Order).Select(reportElement => new ReportElementVM(reportElement, report)));
             }
-            return result;
 
             var reportElements = new List<ReportElementVM>();
             reportElements.Add(
@@ -132,8 +131,6 @@ namespace Festispec.Repository
             );
 
             
-
-            return reportElements;
         }
     }
 }

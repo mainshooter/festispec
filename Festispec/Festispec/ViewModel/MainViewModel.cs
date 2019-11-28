@@ -155,8 +155,8 @@ namespace Festispec.ViewModel
         {
             using (var context = new Entities())
             {
+
                 var reportDomain = context.Reports.First();
-                System.Console.WriteLine(reportDomain.Id +" " + reportDomain.Title);
                 var report = new ReportVM(reportDomain);
 
                 MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });

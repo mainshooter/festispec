@@ -46,13 +46,13 @@ namespace Festispec.ViewModel.report.element
             Dictionary = new Dictionary<string, List<string>>();
 
             //Data = element.Data;
-            Report = report;
+            ReportVM = report;
             ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;
             Title = element.Title;
             Content = element.Content;
-
+            ReportId = element.ReportId;
 
             Order = element.Order;
 
@@ -62,7 +62,7 @@ namespace Festispec.ViewModel.report.element
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTablePage) });
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
             {
-                NextReportVM = Report,
+                NextReportVM = ReportVM,
                 ReportElement = ReportElementVM
             });
         }

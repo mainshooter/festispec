@@ -16,6 +16,7 @@ using Festispec.ViewModel.Customer.order;
 using GalaSoft.MvvmLight.Ioc;
 using Festispec.ViewModel.toast;
 using System.Data.Entity;
+using System;
 
 namespace Festispec.ViewModel.report
 {
@@ -85,14 +86,11 @@ namespace Festispec.ViewModel.report
             SaveReportCommand = new RelayCommand(Save);
             AddElementCommand = new RelayCommand(GoToAddElementPage);
             this.RenderReportElements(null, null);
-
         }
 
         public ReportVM(Report report)
         {
             _report = report;
-            //_report.Id = 2;
-            //_report.Title = "Test titel";
             var reportRepository = new ReportRepository();
             this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
             ReportElementUserControlls = new ObservableCollection<UserControl>();
@@ -151,6 +149,38 @@ namespace Festispec.ViewModel.report
             foreach (var element in reportElements)
             {
                 ReportElementUserControlls.Add(_reportElementFactory.CreateElement(element, this));
+            }
+        }
+        public void MoveElement(ReportElementVM element, int direction)
+        {
+            try
+            {
+                Console.WriteLine(ReportElements.Count);
+                Console.WriteLine(ReportElements.IndexOf(ReportElements.Where(e => e.Id == element.Id).FirstOrDefault()));
+                var NextElement = ReportElements[ReportElements.IndexOf(ReportElements.Where(e => e.Id == element.Id).FirstOrDefault()) + direction];
+                var NextElementOrder = NextElement.Order;
+                NextElement.Order = element.Order;
+                element.Order = NextElementOrder;
+                SaveElementOrder(NextElement, element);
+                RefreshElements();
+            }
+            catch (Exception)
+            {
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowError("Dit element kan niet verder.");
+            }
+        }
+
+        public void SaveElementOrder(ReportElementVM element1, ReportElementVM element2)
+        {
+            using (var context = new Entities())
+            {
+                context.ReportElements.Attach(element1.ToModel());
+                context.Entry(element1.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+
+                context.ReportElements.Attach(element2.ToModel());
+                context.Entry(element2.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
             }
         }
         public void RefreshElements()

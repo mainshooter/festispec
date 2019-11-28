@@ -43,7 +43,7 @@ namespace Festispec.ViewModel.report.element
         {
             EditElement = new RelayCommand(() => Edit());
             //Data = element.Data;
-            Report = report;
+            ReportVM = report;
             ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;
@@ -51,7 +51,7 @@ namespace Festispec.ViewModel.report.element
             Content = element.Content;
             X_as = element.X_as;
             Y_as = element.Y_as;
-
+            ReportId = element.ReportId;
             Order = element.Order;
         }
         public void Edit()
@@ -59,7 +59,7 @@ namespace Festispec.ViewModel.report.element
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditBarChartPage) });
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
             {
-                NextReportVM = Report,
+                NextReportVM = ReportVM,
                 ReportElement = ReportElementVM
             });
         }

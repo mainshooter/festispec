@@ -31,13 +31,13 @@ namespace Festispec.ViewModel.report.element
         {
             EditElement = new RelayCommand(() => Edit());
             //Data = element.Data;
-            Report = report;
+            ReportVM = report;
             ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;
             Title = element.Title;
             Content = element.Content;
-
+            ReportId = element.ReportId;
             Order = element.Order;
         }
         public void Edit()
@@ -45,7 +45,7 @@ namespace Festispec.ViewModel.report.element
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditImagePage) });
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
             {
-                NextReportVM = Report,
+                NextReportVM = ReportVM,
                 ReportElement = ReportElementVM
             });
         }

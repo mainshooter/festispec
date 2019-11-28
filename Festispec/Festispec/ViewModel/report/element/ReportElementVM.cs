@@ -16,7 +16,7 @@ namespace Festispec.ViewModel.report.element
     public class ReportElementVM: ViewModelBase
     {
         private ReportElement _reportElement;
-        public ReportVM Report { get; set; }
+        public ReportVM ReportVM { get; set; }
 
         public ICommand EditElement { get; set; }
 
@@ -111,25 +111,19 @@ namespace Festispec.ViewModel.report.element
 
         public ReportElementVM(ReportElement element, ReportVM report)
         {
-            DeleteElement = new RelayCommand(() => Delete());
-            ElementUpCommand = new RelayCommand(() => MoveElementUp());
-            ElementDownCommand = new RelayCommand(() => MoveElementDown());
             _reportElement = element;
-            Report = report;
-            ReportId = Report.Id;
+            ReportVM = report;
+            DeleteElement = new RelayCommand(() => Delete());
+            ElementUpCommand = new RelayCommand(() => ReportVM.MoveElement(this,-1));
+            ElementDownCommand = new RelayCommand(() => ReportVM.MoveElement(this, 1));
 
-            Order = element.Order;
-            Id = element.Id;
-            Type = element.ElementType;
-            Title = element.Title;
-            Content = element.Content;
         }
 
         public ReportElementVM()
         {
             DeleteElement = new RelayCommand(() => Delete());
-            ElementUpCommand = new RelayCommand(() => MoveElementUp());
-            ElementDownCommand = new RelayCommand(() => MoveElementDown());
+            ElementUpCommand = new RelayCommand(() => ReportVM.MoveElement(this, -1));
+            ElementDownCommand = new RelayCommand(() => ReportVM.MoveElement(this, 1));
             _reportElement = new ReportElement(); 
         }
 
@@ -145,65 +139,13 @@ namespace Festispec.ViewModel.report.element
                 }
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Rapportelement verwijderd.");
             }
-            Report.RefreshElements();
+            ReportVM.RefreshElements();
         }
 
         public ReportElement ToModel()
         {
             return _reportElement;
         }
-        private void MoveElementUp()
-        {
-            try
-            {
-                var aboveElement = Report.ReportElements[Order - 2];
-                var aboveElementOrder = aboveElement.Order;
-                aboveElement.Order = Order;
-                this.Order = aboveElementOrder;
-                Console.WriteLine("new: " + aboveElement.Order + " " + "Old: " + this.Order);
-                SaveElementOrder(aboveElement, this);
-                Report.ReportElements = new ObservableCollection<ReportElementVM>(Report.ReportElements.OrderBy(e => e.Order));
-                Report.RefreshElements();
-            }
-            catch (Exception)
-            {
-                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowError("Deze element staat al bovenaan.");
-            }
-        }
 
-        private void MoveElementDown()
-        {
-            try
-            {
-
-                var belowElement = Report.ReportElements[Order];
-                var aboveElementOrder = belowElement.Order;
-                belowElement.Order = Order;
-                this.Order = aboveElementOrder;
-                Console.WriteLine("new: " + belowElement.Order + " " + "Old: " + this.Order);
-                SaveElementOrder(belowElement, this);
-                Report.ReportElements = new ObservableCollection<ReportElementVM>(Report.ReportElements.OrderBy(e => e.Order));
-                Report.RefreshElements();
-            }
-            catch (Exception)
-            {
-                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowError("Deze element staat al onderaan.");
-            }
-        }
-
-        private void SaveElementOrder(ReportElementVM element1, ReportElementVM element2)
-        {
-            Console.WriteLine("new: " +element1.Order+" "+"Old: "+element2.Order);
-            using (var context = new Entities())
-            {
-                context.ReportElements.Attach(element1.ToModel());
-                context.Entry(element1.ToModel()).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();
-
-                context.ReportElements.Attach(element2.ToModel());
-                context.Entry(element2.ToModel()).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();
-            }
-        }
     }
 }

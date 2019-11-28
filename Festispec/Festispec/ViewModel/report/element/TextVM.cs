@@ -52,21 +52,21 @@ namespace Festispec.ViewModel.report.element
         {
             EditElement = new RelayCommand(() => Edit());
             //Data = element.Data;
-            Report = report;
+            ReportVM = report;
             ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;
             Title = element.Title;
             Content = element.Content;
-
             Order = element.Order;
+            ReportId = element.ReportId;
         }
         public void Edit()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTextPage) });
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
             {
-                NextReportVM = Report,
+                NextReportVM = ReportVM,
                 ReportElement = ReportElementVM
             });
         }
