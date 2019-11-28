@@ -5,6 +5,7 @@ using Festispec.ViewModel.Customer.order;
 using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
@@ -200,6 +201,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         public EventVM(Event eventCon)
         {
             _event = eventCon;
+            OrderVM = eventCon.Orders.Count > 0 ? new OrderVM(eventCon.Orders.FirstOrDefault()) : new OrderVM();
             _contactPerson = new ContactPersonVM(_event.ContactPerson);
         }
 

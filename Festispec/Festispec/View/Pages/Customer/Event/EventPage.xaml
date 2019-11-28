@@ -44,7 +44,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.OpenSingleEvent, RelativeSource={RelativeSource AncestorType=DataGrid}}">
+                                <Button Command="{Binding DataContext.OpenSingleEvent, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                     <materialDesign:PackIcon Kind="ArrowForward"/>
                                 </Button>
                             </DataTemplate>
@@ -53,7 +53,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.OpenEditEvent, RelativeSource={RelativeSource AncestorType=DataGrid}}">
+                                <Button Command="{Binding DataContext.OpenEditEvent, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                     <materialDesign:PackIcon Kind="Edit"/>
                                 </Button>
                             </DataTemplate>
@@ -62,7 +62,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.DeleteEventCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}">
+                                <Button Command="{Binding DataContext.DeleteEventCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                     <materialDesign:PackIcon Kind="Delete"/>
                                 </Button>
                             </DataTemplate>

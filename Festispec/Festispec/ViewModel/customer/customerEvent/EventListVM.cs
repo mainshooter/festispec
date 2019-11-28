@@ -16,7 +16,6 @@ namespace Festispec.ViewModel.customer.customerEvent
     {
         private string _filter;
         private List<string> _filters;
-        private EventVM _selectedEvent;
         private bool _showOnlyFuture;
 
         public CustomerVM Customer { get; set; }
@@ -118,18 +117,6 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
-        public EventVM SelectedEvent
-        {
-            get => _selectedEvent;
-            set
-            {
-                if (value != null)
-                {
-                    _selectedEvent = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
         public EventListVM()
         {
             this.MessengerInstance.Register<ChangeSelectedCustomerMessage>(this, message =>
@@ -145,9 +132,9 @@ namespace Festispec.ViewModel.customer.customerEvent
             Filter = "";
             ShowOnlyFuture = true;
             OpenAddEvent = new RelayCommand(OpenAddEventPage);
-            OpenEditEvent = new RelayCommand(OpenEditEventPage);
-            DeleteEventCommand = new RelayCommand(DeleteEvent);
-            OpenSingleEvent = new RelayCommand(OpenSingleEventPage);
+            OpenEditEvent = new RelayCommand<EventVM>(OpenEditEventPage, CanOpenEdit);
+            DeleteEventCommand = new RelayCommand<EventVM>(DeleteEvent, CanOpenDelete);
+            OpenSingleEvent = new RelayCommand<EventVM>(OpenSingleEventPage);
         }
 
         private void OpenAddEventPage()
@@ -159,39 +146,54 @@ namespace Festispec.ViewModel.customer.customerEvent
             });
         }
 
-        private void OpenEditEventPage()
+        private void OpenEditEventPage(EventVM source)
         {
+
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditEventPage) });
             MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage()
             {
-                Event = SelectedEvent,
+                Event = source,
                 EventList = this,
                 Customer = Customer
             });
         }
 
-        public void DeleteEvent()
+        private bool CanOpenEdit(EventVM source)
+        {
+           
+            return source != null && source.EndDate >= DateTime.Today;
+        }
+
+        public void DeleteEvent(EventVM source)
         {
             MessageBoxResult result = MessageBox.Show("Weet u zeker dat u dit evenement wilt verwijderen?", "Evenement Verwijderen", MessageBoxButton.YesNo);
             if (result.Equals(MessageBoxResult.Yes))
             {
                 using (var context = new Entities())
                 {
-                    var temp = SelectedEvent.ToModel();
+                    var temp = source.ToModel();
                     context.Events.Remove(context.Events.Select(eventcon => eventcon).Where(eventcon => eventcon.Id == temp.Id).First());
                     context.SaveChanges();
                 }
-                EventList.Remove(SelectedEvent);
+                EventList.Remove(source);
                 RaisePropertyChanged("EventListFiltered");
             }
         }
 
-        public void OpenSingleEventPage()
+        private bool CanOpenDelete(EventVM source)
+        {
+            if (source == null) return false;
+            if (source.ToModel().Orders.Count() > 0) return false;
+            if (source.EndDate < DateTime.Today) return false;
+            return true;
+        }
+
+        public void OpenSingleEventPage(EventVM source)
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SingleEventPage) });
             MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage()
             {
-                Event = SelectedEvent,
+                Event = source,
                 Customer = Customer
             }) ;
         }
