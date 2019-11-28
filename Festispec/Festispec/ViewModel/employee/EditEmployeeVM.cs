@@ -39,12 +39,11 @@ namespace Festispec.ViewModel.employee
         {
             get
             {
-                return _departmentIndex;
-            }
-            set
-            {
-                _departmentIndex = value;
-                RaisePropertyChanged();
+                if (Employee != null)
+                {
+                    return Departments.IndexOf(Departments.Select(department => department).Where(department => department.Name == Employee.Department.Name).FirstOrDefault());
+                }
+                return 0;
             }
         }
 
@@ -54,9 +53,8 @@ namespace Festispec.ViewModel.employee
             {
                 EmployeeList = message.EmployeeList;
                 Employee = message.Employee;
-                DepartmentIndex = Departments.IndexOf(Departments.Select(department => department).Where(department => department.Name == Employee.Department.Name).FirstOrDefault());
+                RaisePropertyChanged("DepartmentIndex");
             });
-
             EditEmployeeCommand = new RelayCommand(EditEmployee, CanEditEmployee);
             CloseEditEmployeeCommand = new RelayCommand(CloseEditEmployee);
 
@@ -65,7 +63,6 @@ namespace Festispec.ViewModel.employee
                 Departments = new ObservableCollection<DepartmentVM>(context.Departments.ToList().Select(department => new DepartmentVM(department)));
                 Statuses = new ObservableCollection<string>(context.EmployeeStatus.ToList().Select(status => status.Status));
             }
-
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
                 if (message.NextPageType == typeof(EmployeePage) && EmployeeList != null)
