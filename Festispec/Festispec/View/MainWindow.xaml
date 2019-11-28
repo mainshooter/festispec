@@ -96,6 +96,24 @@
                                 </StackPanel>
                             </Button>
                         </ListViewItem>
+
+                        <ListViewItem Height="50">
+                            <Button Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Normal" Height="50" VerticalAlignment="Center" Command="{Binding OpenPlanning}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Event" Width="25" Height="25" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Planning" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
+
+                        <ListViewItem Height="50">
+                            <Button Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Normal" Height="50" VerticalAlignment="Center" Command="{Binding OpenSurvey}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Event" Width="25" Height="25" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Vragenlijst" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
                     </ListView>
                 </StackPanel>
             </StackPanel>
@@ -109,7 +127,7 @@
                 <TextBlock Text="{Binding LoggedInEmployee.Fullname}" VerticalAlignment="Center" FontSize="18"/>
                 <materialDesign:PopupBox Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                     <StackPanel Width="150">
-                        <Button Content="Account"/>
+                        <Button Content="Account" Command="{Binding ShowAccountInformation}"/>
                         <Separator/>
                         <Button Content="Log uit" Command="{Binding CloseApplication}"/>
                     </StackPanel>
@@ -118,7 +136,7 @@
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1">
-            <Frame x:Name="frame" Margin="30" Background="White" Content="{Binding Page}" NavigationUIVisibility="Hidden">
+            <Frame x:Name="frame" Margin="30" Background="White" Content="{Binding Page}" NavigationUIVisibility="Hidden" Width="1020">
                 <Frame.BitmapEffect>
                     <DropShadowBitmapEffect Color="Black" Direction="50" ShadowDepth="3" Softness="100" Opacity="0.5" />
                 </Frame.BitmapEffect>
