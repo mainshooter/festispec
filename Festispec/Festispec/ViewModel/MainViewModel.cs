@@ -42,17 +42,21 @@ namespace Festispec.ViewModel
         public ICommand ShowAccountInformation { get; set; }
         public ObservableCollection<Button> MenuList { get; set; }
 
-
         public Page Page
         {
-            get => _page; set { _page = value; RaisePropertyChanged("Page"); }
+            get => _page;
+            set
+            {
+                _page = value;
+                RaisePropertyChanged("Page");
+            }
         }
 
-        public EmployeeVM LoggedInEmployee {
-            get {
-                return _loggedInEmployee;
-            }
-            set {
+        public EmployeeVM LoggedInEmployee
+        {
+            get => _loggedInEmployee;
+            set
+            {
                 _loggedInEmployee = value;
                 CreateMenu();
                 RaisePropertyChanged("LoggedInEmployee");
@@ -74,7 +78,6 @@ namespace Festispec.ViewModel
             OpenPlanning = new RelayCommand(OpenPlanningTab);
             OpenSurvey = new RelayCommand(OpenSurveyTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
-  
             Page = ServiceLocator.Current.GetInstance<LoginPage>();
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
