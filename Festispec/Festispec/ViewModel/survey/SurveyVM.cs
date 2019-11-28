@@ -60,7 +60,7 @@ namespace Festispec.ViewModel.survey
         public SurveyVM(OrderVM order)
         {
             _survey = new Survey();
-            Questions = new ObservableCollection<IQuestion>(Questions.OrderBy(q => q.Order));
+            Questions = new ObservableCollection<IQuestion>();
             OrderVM = order;
             SetStatuses();
         }

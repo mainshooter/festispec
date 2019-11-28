@@ -16,6 +16,7 @@ using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.Domain;
 using Festispec.View.Pages.Survey;
+using Festispec.ViewModel.survey;
 
 namespace Festispec.ViewModel
 {
