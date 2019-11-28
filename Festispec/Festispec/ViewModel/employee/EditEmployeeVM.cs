@@ -16,7 +16,6 @@ namespace Festispec.ViewModel.employee
     public class EditEmployeeVM : ViewModelBase
     {
         private EmployeeVM _employeeVM;
-        private int _departmentIndex;
 
         public EmployeeListVM EmployeeList { get; set; }
         public ObservableCollection<DepartmentVM> Departments { get; set; }
