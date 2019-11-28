@@ -13,10 +13,10 @@ namespace Festispec.ViewModel.employee
 
         public int Id => _employee.Id;
 
-        public DepartmentVM Department 
+        public DepartmentVM Department
         {
             get => _department;
-            set 
+            set
             {
                 if (value == null) return;
                 _department = value;
@@ -25,7 +25,7 @@ namespace Festispec.ViewModel.employee
             }
         }
 
-        public Department DepartmentModel 
+        public Department DepartmentModel
         {
             get => _employee.Department1;
             set => _employee.Department1 = value;
@@ -141,7 +141,7 @@ namespace Festispec.ViewModel.employee
             set => _employee.Birthday = value.Date;
         }
 
-        public string BirthdayDate => Birthday.ToString("d");
+        public string BirthdayDate => Birthday.ToString("dd-MM-yy");
 
         [PreferredConstructor]
         public EmployeeVM()
