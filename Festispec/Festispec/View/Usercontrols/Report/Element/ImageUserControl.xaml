@@ -6,11 +6,10 @@
         xmlns:local="clr-namespace:Festispec.View.Report.Element"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d">
-    <StackPanel Orientation="Horizontal">
-        <StackPanel>
+    <StackPanel>
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
         <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
-        <Image Source="{Binding Photo}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Stretch="Fill" Height="300" Width="620"></Image>
+        <Image Source="{Binding Photo}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Stretch="Fill" Height="300" Width="670"></Image>
         <Grid HorizontalAlignment="Right">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"></ColumnDefinition>
@@ -19,21 +18,5 @@
             <Button Grid.Column="0" Command="{Binding EditElement}" Content="{materialDesign:PackIcon Pencil}"/>
             <Button Grid.Column="1" Command="{Binding DeleteElement}" Content="{materialDesign:PackIcon DeleteForever}"/>
         </Grid>
-    </StackPanel>
-        <StackPanel>
-            <StackPanel Height="220">
-
-            </StackPanel>
-            <StackPanel VerticalAlignment="Center">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Button Grid.Row="0" Command="{Binding ElementUpCommand}" Content="{materialDesign:PackIcon ArrowUp}"/>
-                    <Button Grid.Row="1" Command="{Binding ElementDownCommand}" Content="{materialDesign:PackIcon ArrowDown}"/>
-                </Grid>
-            </StackPanel>
-        </StackPanel>
     </StackPanel>
 </UserControl>
