@@ -84,8 +84,8 @@ namespace Festispec.ViewModel.survey
             SaveCommand = new RelayCommand(Save);
             ResetCommand = new RelayCommand(Reset, IsConcept);
             CasesCommand = new RelayCommand(ShowCases);
-            QuestionUpCommand = new RelayCommand(MoveQuestionUp);
-            QuestionDownCommand = new RelayCommand(MoveQuestionDown);
+            QuestionUpCommand = new RelayCommand(MoveQuestionUp, IsConcept);
+            QuestionDownCommand = new RelayCommand(MoveQuestionDown, IsConcept);
 
             GetQuestionTypes();
         }

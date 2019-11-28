@@ -30,7 +30,6 @@ namespace Festispec.ViewModel.survey
         {
             MessengerInstance.Register<ChangeSelectedSurveyMessage>(this, message => {
                 SurveyVM = message.NextSurvey;
-                SurveyVM.Status = SurveyVM.Statuses[0];
             });
 
             SaveEditCommand = new RelayCommand(SaveEdit);
@@ -38,15 +37,17 @@ namespace Festispec.ViewModel.survey
             BackCommand = new RelayCommand(Back);
         }
 
-        private void Save()
+        private bool Save()
         {
             using (var context = new Entities())
             {
-                if (!SurveyVM.ValidateInputs()) return;
+                if (!SurveyVM.ValidateInputs()) return false;
 
+                SurveyVM.Status = "Concept";
                 SurveyVM.ToModel().OrderId = SurveyVM.OrderVM.Id;
                 context.Surveys.Add(SurveyVM.ToModel());
                 context.SaveChanges();
+                return true;
             }
         }
 
@@ -57,14 +58,14 @@ namespace Festispec.ViewModel.survey
 
         private void SaveEdit()
         {
-            Save();
+            if (!Save()) return;
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
             MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = _surveyVM });
         }
 
         private void SaveBack()
         {
-            Save();
+            if (!Save()) return;
             Back();
         }
     }

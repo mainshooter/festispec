@@ -131,11 +131,13 @@ namespace Festispec.ViewModel.survey
             if (Description == null || Description.Equals(""))
             {
                 MessageBox.Show("Instructies mag niet leeg zijn.");
+                return false;
             }
 
             if (Description.Length > 10000)
             {
                 MessageBox.Show("Instructies mag niet langer zijn dan 10.000 karakters.");
+                return false;
             }
 
             return true;
