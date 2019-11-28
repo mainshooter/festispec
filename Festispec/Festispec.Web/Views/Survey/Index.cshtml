@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Festispec.Domain.Survey>
+
+@{
+    ViewBag.Title = "Survey overview";
+}
+
+<h2>Survey overview</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SurveyStatu.Status)
+        </th>
+        <th>
+            Acties
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SurveyStatu.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Survey", "Details", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

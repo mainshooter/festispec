@@ -1,0 +1,6 @@
+﻿@model Festispec.Lib.Survey.Question.QuestionDetails
+
+<input type="range" 
+       name="@Html.DisplayFor(m => m.Question)"
+       min="@Html.DisplayFor(m => m.Choices.Cols[0])"
+       max="@Html.DisplayFor(m => m.Choices.Cols[1])" />

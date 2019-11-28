@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services.Description;
 
-namespace Festispec.Web.Models
+namespace Festispec.Web.ViewModels
 {
     public class LoginFormModel
     {
