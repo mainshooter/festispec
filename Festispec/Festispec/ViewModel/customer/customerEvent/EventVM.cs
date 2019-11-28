@@ -45,7 +45,6 @@ namespace Festispec.ViewModel.customer.customerEvent
             get => _customer;
             set
             {
-
                 if (value == null) return;
                 _customer = value;
                 _event.CustomerId = value.Id;

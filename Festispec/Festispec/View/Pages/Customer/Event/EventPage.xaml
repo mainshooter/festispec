@@ -39,7 +39,6 @@
                     <DataGridTextColumn Header="Begindatum" Binding="{Binding BeginDateDate}"></DataGridTextColumn>
                     <DataGridTextColumn Header="EindDatum" Binding="{Binding EndDateDate}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Bezoekersaantal" Binding="{Binding AmountVisitors}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Oppervlak" Binding="{Binding SurfaceM2}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Contactpersoon" Binding="{Binding ContactPerson.Fullname}"></DataGridTextColumn>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
