@@ -143,7 +143,7 @@ namespace Festispec.ViewModel.employee
             set => _employee.Birthday = value.Date;
         }
 
-        public string BirthdayDate => Birthday.ToString("d");
+        public string BirthdayDate => Birthday.ToString("dd-MM-yy");
 
         [PreferredConstructor]
         public EmployeeVM()
