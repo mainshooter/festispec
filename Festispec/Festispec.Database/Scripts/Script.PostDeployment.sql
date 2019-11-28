@@ -246,16 +246,16 @@ COMMIT TRANSACTION
 
 BEGIN TRANSACTION
 INSERT INTO ReportElement VALUES (1,'text', 'Begin tekst', 'Inleiding', 1)
-INSERT INTO ReportElement VALUES (1,'image', 'Loop Route', 'Inleiding', 1)
-INSERT INTO ReportElement VALUES (1,'linechart', 'Tevredenheid', 'Inleiding', 1)
+INSERT INTO ReportElement VALUES (1,'image', 'Loop Route', 'Inleiding', 2)
+INSERT INTO ReportElement VALUES (1,'linechart', 'Tevredenheid', 'Inleiding', 3)
 INSERT INTO ReportElement VALUES (2,'text', 'Begin tekst', 'Inleiding', 1)
-INSERT INTO ReportElement VALUES (2,'image', 'Loop Route', 'Inleiding', 1)
-INSERT INTO ReportElement VALUES (2,'table', 'Artiest Lineup Rating', 'Inleiding', 1)
+INSERT INTO ReportElement VALUES (2,'image', 'Loop Route', 'Inleiding', 2)
+INSERT INTO ReportElement VALUES (2,'table', 'Artiest Lineup Rating', 'Inleiding', 3)
 INSERT INTO ReportElement VALUES (3,'text', 'Begin tekst', 'Inleiding', 1)
-INSERT INTO ReportElement VALUES (3,'image', 'Loop Route', 'Inleiding', 1)
-INSERT INTO ReportElement VALUES (3,'piechart', 'Genuttigde dranken', 'Inleiding', 1)
+INSERT INTO ReportElement VALUES (3,'image', 'Loop Route', 'Inleiding', 2)
+INSERT INTO ReportElement VALUES (3,'piechart', 'Genuttigde dranken', 'Inleiding', 3)
 INSERT INTO ReportElement VALUES (4,'text', 'Begin tekst', 'Inleiding', 1)
-INSERT INTO ReportElement VALUES (4,'image', 'Loop Route', 'Inleiding', 1)
-INSERT INTO ReportElement VALUES (4,'barchart', 'Beste act', 'Inleiding', 1)
+INSERT INTO ReportElement VALUES (4,'image', 'Loop Route', 'Inleiding', 2)
+INSERT INTO ReportElement VALUES (4,'barchart', 'Beste act', 'Inleiding', 3)
 COMMIT TRANSACTION
 -------- END REPORT DATA ------------
