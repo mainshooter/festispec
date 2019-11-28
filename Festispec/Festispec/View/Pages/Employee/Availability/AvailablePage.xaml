@@ -4,11 +4,107 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Festispec.View.Pages.Employee.Availability"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AvailablePage">
+      Title="AvailablePage"
+      Background="White"
+      DataContext="{Binding AvailabilityManagerVM,Source={StaticResource Locator}}">
+    <StackPanel>
+        <Label FontSize="23" Content="Beschikbaarheid Doorgeven" HorizontalAlignment="Center"/>
+        <Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label >Week:</Label>
+                <Label Content="{Binding WeekNumber}"></Label>
+                <Label Content="{Binding Year}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,25,0">
+                <Label Content="{Binding WeekStart}"></Label>
+                <Label Content="/"></Label>
+                <Label Content="{Binding WeekEnd}"></Label>
+            </StackPanel>
+            <Button Width="45" HorizontalAlignment="Left"  Command="{Binding PreviousWeekCommand}" Margin="25,63,0,355">
+                <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
+            </Button>
+            <Button Width="45" HorizontalAlignment="Right" Command="{Binding NextWeekCommand}" Margin="0,63,25,355">
+                <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowForward" Width="28" RenderTransformOrigin="0,0.625"/>
+            </Button>
+            <Viewbox Margin="20">
+                <Grid Height="160">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="87*"/>
+                        <RowDefinition Height="73*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Margin="0,10,7,10" Header="Maandag" Grid.Column="0" FontWeight="SemiBold" Height="140" HorizontalAlignment="Right" Width="86" Grid.RowSpan="2">
+                        <StackPanel>
+                            <Label FontSize="9" Content="Starttijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Monday.AvailabiltyStart}"></xctk:TimePicker>
+                            <Label FontSize="9" Content="Eindtijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Monday.AvailabiltyEnd}"></xctk:TimePicker>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Margin="7,10" Header="Dinsdag" Grid.Column="1" FontWeight="SemiBold" Height="140" Grid.RowSpan="2" >
+                        <StackPanel>
+                            <Label FontSize="9" Content="Starttijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Tuesday.AvailabiltyStart}"></xctk:TimePicker>
+                            <Label FontSize="9" Content="Eindtijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Tuesday.AvailabiltyEnd}"></xctk:TimePicker>
+                        </StackPanel>
+                    </GroupBox>
 
-    <Grid>
-        <Label Content="Available" HorizontalAlignment="Left" Margin="42,36,0,0" VerticalAlignment="Top"/>
-    </Grid>
+                    <GroupBox Margin="7,10" Header="Woensdag" Grid.Column="2" FontWeight="SemiBold" Height="140" Grid.RowSpan="2">
+                        <StackPanel>
+                            <Label FontSize="9" Content="Starttijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Wednesday.AvailabiltyStart}"></xctk:TimePicker>
+                            <Label FontSize="9" Content="Eindtijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Wednesday.AvailabiltyEnd}"></xctk:TimePicker>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Margin="7,10" Header="Donderdag" Grid.Column="3" FontWeight="SemiBold" Height="140" Grid.RowSpan="2">
+                        <StackPanel>
+                            <Label FontSize="9" Content="Starttijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Thursday.AvailabiltyStart}"></xctk:TimePicker>
+                            <Label FontSize="9" Content="Eindtijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Thursday.AvailabiltyEnd, NotifyOnSourceUpdated=true}"></xctk:TimePicker>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Margin="7,10" Header="Vrijdag" Grid.Column="4" FontWeight="SemiBold" Height="140" Grid.RowSpan="2">
+                        <StackPanel>
+                            <Label FontSize="9" Content="Starttijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Friday.AvailabiltyStart}"></xctk:TimePicker>
+                            <Label FontSize="9" Content="Eindtijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Friday.AvailabiltyEnd}"></xctk:TimePicker>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Margin="7,10" Header="Zaterdag" Grid.Column="5" FontWeight="SemiBold" Height="140" Grid.RowSpan="2">
+                        <StackPanel>
+                            <Label FontSize="9" Content="Starttijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Saturday.AvailabiltyStart}"></xctk:TimePicker>
+                            <Label FontSize="9" Content="Eindtijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Saturday.AvailabiltyEnd}"></xctk:TimePicker>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Margin="7,10" Header="Zondag" Grid.Column="6" FontWeight="SemiBold" Height="140" Grid.RowSpan="2">
+                        <StackPanel>
+                            <Label FontSize="9" Content="Starttijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Sunday.AvailabiltyStart}"></xctk:TimePicker>
+                            <Label FontSize="9" Content="Eindtijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedWeek.Sunday.AvailabiltyEnd}"></xctk:TimePicker>
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
+            </Viewbox>
+            <Button Command="{Binding SaveChangesCommand}" Content="Beschikbaarheid Opslaan" Width="250" VerticalAlignment="Bottom" Margin="50"/>
+        </Grid>
+    </StackPanel>
 </Page>
