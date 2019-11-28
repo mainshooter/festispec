@@ -18,6 +18,7 @@ using Festispec.ViewModel.customer.customerEvent;
 using Festispec.Domain;
 using System.Collections.Generic;
 using Festispec.ViewModel.survey;
+using System.Collections.ObjectModel;
 
 namespace Festispec.ViewModel
 {
@@ -39,7 +40,8 @@ namespace Festispec.ViewModel
         public ICommand OpenSurvey { get; set; }
         public ICommand ShowAccountInformation { get; set; }
 
-        public ObservableCollection<string> MenuList { get; set; }
+        public ObservableCollection<Button> MenuList { get; set; }
+        private Dictionary<string, Dictionary<string, ICommand>> Menu;
 
         public Page Page
         {
@@ -61,8 +63,9 @@ namespace Festispec.ViewModel
         //constructor
         public MainViewModel()
         {
-            MenuList = new ObservableCollection<string>();
-            CreateMenu();
+            Menu = new Dictionary<string, Dictionary<string, ICommand>>();
+            MenuList = new ObservableCollection<Button>();
+
 
             CloseApplication = new RelayCommand(CloseApp);
             OpenDashboard = new RelayCommand(OpenDashboardTab);
@@ -86,6 +89,10 @@ namespace Festispec.ViewModel
             {
                 LoggedInEmployee = message.LoggedinEmployee;
             });
+
+            // Menu vullen
+            FillMenuList();
+            CreateMenu();
         }
 
         private void CreateMenu()
@@ -96,19 +103,55 @@ namespace Festispec.ViewModel
             }
             else
             {
-                switch(_loggedInEmployee.Department.Name)
+                foreach(KeyValuePair<string, ICommand> entry in Menu[_loggedInEmployee.Department.Name])
                 {
-                    case "Inspectie":
-                    MenuList.Add("Inspectie");
-                    MenuList.Add("Test");
-                    break;
-                    default:
-                    MenuList.Add("Sales");
-                    break;
+                    Button menuItem = new Button();
+                    menuItem.Content = entry.Key;
+                    menuItem.Command = entry.Value;
+                    menuItem.Width = 150;
+                    menuItem.Background = null;
+                    menuItem.BorderBrush = null;
+                    menuItem.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Left;
+                    MenuList.Add(menuItem);
                 }
             }
             RaisePropertyChanged("MenuList");
+        }
 
+        private void FillMenuList()
+        {
+            // Inspectie Dictionary
+            Menu.Add("Inspectie", new Dictionary<string, ICommand>());
+            Menu["Inspectie"].Add("Dashboard", OpenDashboard);
+            Menu["Inspectie"].Add("Beschikbaarheid", OpenAvailability);
+            Menu["Inspectie"].Add("Ziek melden", OpenSick);
+
+            // Sales Dictionary
+            Menu.Add("Sales", new Dictionary<string, ICommand>());
+            Menu["Sales"].Add("Dashboard", OpenDashboard);
+            Menu["Sales"].Add("Klanten", OpenCustomer);
+
+            // Planning Dictionary
+            Menu.Add("Planning", new Dictionary<string, ICommand>());
+            Menu["Planning"].Add("Dashboard", OpenDashboard);
+            Menu["Planning"].Add("Planning", OpenPlanning);
+
+            // Directie Dictionary
+            Menu.Add("Directie", new Dictionary<string, ICommand>());
+            Menu["Directie"].Add("Dashboard", OpenDashboard);
+            Menu["Directie"].Add("Werknemers", OpenEmployee);
+            Menu["Directie"].Add("Beschikbaarheid", OpenAvailability);
+            Menu["Directie"].Add("Ziek melden", OpenSick);
+            Menu["Directie"].Add("Evenementen", OpenEvent);
+            Menu["Directie"].Add("Klanten", OpenCustomer);
+            Menu["Directie"].Add("Vragenlijsten", OpenSurvey);
+            Menu["Directie"].Add("Planning", OpenPlanning);
+
+
+            // Marketing Dictionary
+            Menu.Add("Marketing", new Dictionary<string, ICommand>());
+            Menu["Marketing"].Add("Dashboard", OpenDashboard);
+            Menu["Marketing"].Add("Werknemers", OpenEmployee);
         }
 
         //methodes
