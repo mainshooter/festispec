@@ -47,11 +47,9 @@ INSERT INTO Department VALUES ('Sales', 'Verkoop afdeling')
 INSERT INTO Department VALUES ('Marketing', 'Zorgt voor reclame en sponsoren')
 INSERT INTO Department VALUES ('Inspectie', 'Mensen die de daadwerkelijke inspectie doen')
 INSERT INTO Department VALUES ('Planning', 'Zorgt voor het inplannen van inspecties en inspecteurs')
-INSERT INTO Department VALUES ('Directie', 'Directie die overal bij kan')
 COMMIT TRANSACTION
 --- Password of users ---
--- Inspectie: t.deenik@gmail.com, GamerBoy95
--- Directie:  m.peeters@gmail.com, GamerBoy95
+-- t.deenik@gmail.com, GamerBoy95
 -------------------------
 BEGIN TRANSACTION
 INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password]) 
@@ -64,8 +62,6 @@ INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street,
 VALUES ('Marketing', 'Actief', 'Martina', 'van', 'Dinteren', 'De Tolboom', 15, NULL,CAST('02-21-2012' AS DATETIME),'6654BT','Affereden', '0685463584', 'MvDinteren@dinter.nl', 'bunny952')
 INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])  
 VALUES ('Planning', 'Actief', 'Martijn', NULL, 'Huisman', 'Grasakker', 76, 'a', CAST('02-21-2012' AS DATETIME),'6652BC', 'Druten','0695438736', 'M.Huisman@hotmail.com', 'DafTrucks2006')
-INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])  
-VALUES ('Directie', 'Actief', 'Mark', NULL, 'Peeters', 'Grasakker', 5, 'b', CAST('02-21-1960' AS DATETIME),'6652BC', 'Eindhoven','0695438736', 'm.peeters@gmail.com', 'a???k*ix??t????;iL%???g?????$?')
 COMMIT TRANSACTION
 -------- END EMPLOYEE DATA ------------
 
