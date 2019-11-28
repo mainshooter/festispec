@@ -5,6 +5,7 @@ using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows;
@@ -20,6 +21,9 @@ namespace Festispec.ViewModel.report.element
         public ICommand EditElement { get; set; }
 
         public ICommand DeleteElement { get; set; }
+
+        public ICommand ElementUpCommand { get; set; }
+        public ICommand ElementDownCommand { get; set; }
 
         public int Id {
             get {
@@ -108,6 +112,8 @@ namespace Festispec.ViewModel.report.element
         public ReportElementVM(ReportElement element, ReportVM report)
         {
             DeleteElement = new RelayCommand(() => Delete());
+            ElementUpCommand = new RelayCommand(() => MoveElementUp());
+            ElementDownCommand = new RelayCommand(() => MoveElementDown());
             _reportElement = element;
             Report = report;
             ReportId = Report.Id;
@@ -122,6 +128,8 @@ namespace Festispec.ViewModel.report.element
         public ReportElementVM()
         {
             DeleteElement = new RelayCommand(() => Delete());
+            ElementUpCommand = new RelayCommand(() => MoveElementUp());
+            ElementDownCommand = new RelayCommand(() => MoveElementDown());
             _reportElement = new ReportElement(); 
         }
 
@@ -143,6 +151,59 @@ namespace Festispec.ViewModel.report.element
         public ReportElement ToModel()
         {
             return _reportElement;
+        }
+        private void MoveElementUp()
+        {
+            try
+            {
+                var aboveElement = Report.ReportElements[Order - 2];
+                var aboveElementOrder = aboveElement.Order;
+                aboveElement.Order = Order;
+                this.Order = aboveElementOrder;
+                Console.WriteLine("new: " + aboveElement.Order + " " + "Old: " + this.Order);
+                SaveElementOrder(aboveElement, this);
+                Report.ReportElements = new ObservableCollection<ReportElementVM>(Report.ReportElements.OrderBy(e => e.Order));
+                Report.RefreshElements();
+            }
+            catch (Exception)
+            {
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowError("Deze element staat al bovenaan.");
+            }
+        }
+
+        private void MoveElementDown()
+        {
+            try
+            {
+
+                var belowElement = Report.ReportElements[Order];
+                var aboveElementOrder = belowElement.Order;
+                belowElement.Order = Order;
+                this.Order = aboveElementOrder;
+                Console.WriteLine("new: " + belowElement.Order + " " + "Old: " + this.Order);
+                SaveElementOrder(belowElement, this);
+                Report.ReportElements = new ObservableCollection<ReportElementVM>(Report.ReportElements.OrderBy(e => e.Order));
+                Report.RefreshElements();
+            }
+            catch (Exception)
+            {
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowError("Deze element staat al onderaan.");
+            }
+        }
+
+        private void SaveElementOrder(ReportElementVM element1, ReportElementVM element2)
+        {
+            Console.WriteLine("new: " +element1.Order+" "+"Old: "+element2.Order);
+            using (var context = new Entities())
+            {
+                context.ReportElements.Attach(element1.ToModel());
+                context.Entry(element1.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+
+                context.ReportElements.Attach(element2.ToModel());
+                context.Entry(element2.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
         }
     }
 }

@@ -19,6 +19,7 @@ using Festispec.Domain;
 using System.Collections.Generic;
 using Festispec.View.Pages.Survey;
 using Festispec.ViewModel.survey;
+using Festispec.ViewModel.report;
 
 namespace Festispec.ViewModel
 {
@@ -38,6 +39,7 @@ namespace Festispec.ViewModel
         public ICommand OpenSick { get; set; }
         public ICommand OpenPlanning { get; set; }
         public ICommand OpenSurvey { get; set; }
+        public ICommand OpenReport { get; set; }
 
         public Page Page
         {
@@ -67,8 +69,9 @@ namespace Festispec.ViewModel
             OpenSick = new RelayCommand(OpenSickTab);
             OpenPlanning = new RelayCommand(OpenPlanningTab);
             OpenSurvey = new RelayCommand(OpenSurveyTab);
+            OpenReport = new RelayCommand(OpenReportTab);
 
-            Page = ServiceLocator.Current.GetInstance<ReportPage>();
+            Page = ServiceLocator.Current.GetInstance<LoginPage>();
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -146,6 +149,18 @@ namespace Festispec.ViewModel
                 
                 MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage)});
                 MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = survey });
+            }
+        }
+        private void OpenReportTab()
+        {
+            using (var context = new Entities())
+            {
+                var reportDomain = context.Reports.First();
+                System.Console.WriteLine(reportDomain.Id +" " + reportDomain.Title);
+                var report = new ReportVM(reportDomain);
+
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
+                MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { NextReportVM = report });
             }
         }
     }

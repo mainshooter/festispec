@@ -13,6 +13,9 @@ using Festispec.Repository;
 using Festispec.Message;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.Customer.order;
+using GalaSoft.MvvmLight.Ioc;
+using Festispec.ViewModel.toast;
+using System.Data.Entity;
 
 namespace Festispec.ViewModel.report
 {
@@ -62,11 +65,34 @@ namespace Festispec.ViewModel.report
 
         public ICommand AddElementCommand { get; set; }
 
+
+        [PreferredConstructor]
         public ReportVM()
         {
             _report = new Report();
-            _report.Id = 2;
-            _report.Title = "Test titel";
+            MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
+                _report = message.NextReportVM._report;
+                Title = message.NextReportVM.Title;
+                Id = message.NextReportVM.Id;
+                RefreshElements();
+            });
+
+            var reportRepository = new ReportRepository();
+            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
+            ReportElementUserControlls = new ObservableCollection<UserControl>();
+            _reportElementFactory = new ReportElementFactory();
+            ReportElements.CollectionChanged += RenderReportElements;
+            SaveReportCommand = new RelayCommand(Save);
+            AddElementCommand = new RelayCommand(GoToAddElementPage);
+            this.RenderReportElements(null, null);
+
+        }
+
+        public ReportVM(Report report)
+        {
+            _report = report;
+            //_report.Id = 2;
+            //_report.Title = "Test titel";
             var reportRepository = new ReportRepository();
             this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
             ReportElementUserControlls = new ObservableCollection<UserControl>();
@@ -99,18 +125,14 @@ namespace Festispec.ViewModel.report
         public void Save()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage { NextPageType = typeof(ReportPage) });
-            return;
-            if (Id == 0)
-            {
-                Insert();
-                return;
-            }
+
             using (var context = new Entities())
             {
                 context.Reports.Attach(_report);
                 context.Entry(_report).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
             }
+            CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowInformation("Rapport bijgewerkt.");
         }
 
         private void Insert()

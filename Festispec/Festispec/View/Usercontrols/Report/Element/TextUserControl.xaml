@@ -25,18 +25,18 @@
         </StackPanel>
         <StackPanel>
             <StackPanel Height="220">
-                
+
             </StackPanel>
-        <StackPanel VerticalAlignment="Center">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Button Grid.Row="0" Content="{materialDesign:PackIcon ArrowUp}"/>
-                <Button Grid.Row="1" Content="{materialDesign:PackIcon ArrowDown}"/>
-            </Grid>
-        </StackPanel>
+            <StackPanel VerticalAlignment="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Command="{Binding ElementUpCommand}" Content="{materialDesign:PackIcon ArrowUp}"/>
+                    <Button Grid.Row="1" Command="{Binding ElementDownCommand}" Content="{materialDesign:PackIcon ArrowDown}"/>
+                </Grid>
+            </StackPanel>
         </StackPanel>
     </StackPanel>
 </UserControl>
