@@ -18,6 +18,7 @@ using Festispec.ViewModel.toast;
 using System.Data.Entity;
 using System;
 using System.Windows;
+using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.report
 {
@@ -44,6 +45,7 @@ namespace Festispec.ViewModel.report
             }
             set {
                 _report.Title = value;
+                SaveReportChangesAsync();
                 RaisePropertyChanged("Title");
             }
         }
@@ -54,6 +56,7 @@ namespace Festispec.ViewModel.report
             }
             set {
                 _report.Status = value;
+                SaveReportChangesAsync();
                 RaisePropertyChanged("Status");
             }
         }
@@ -87,7 +90,6 @@ namespace Festispec.ViewModel.report
             ReportElementUserControlls = new ObservableCollection<UserControl>();
             _reportElementFactory = new ReportElementFactory();
             ReportElements.CollectionChanged += RenderReportElements;
-            SaveReportCommand = new RelayCommand(Save);
             AddElementCommand = new RelayCommand(GoToAddElementPage);
             GetStatuses();
             this.RenderReportElements(null, null);
@@ -109,14 +111,8 @@ namespace Festispec.ViewModel.report
             ReportElementUserControlls = new ObservableCollection<UserControl>();
             _reportElementFactory = new ReportElementFactory();
             ReportElements.CollectionChanged += RenderReportElements;
-            SaveReportCommand = new RelayCommand(Save);
             AddElementCommand = new RelayCommand(GoToAddElementPage);
-
             this.RenderReportElements(null, null);
-
-            //ReportElementVM reportElementVM = (ReportElementVM) ReportElementUserControlls.First().DataContext;
-            //ReportElementUserControlls.RemoveAt(0);
-            //reportElementVM.Id;
         }
 
         private void GoToAddElementPage()
@@ -132,18 +128,15 @@ namespace Festispec.ViewModel.report
         {
             return _report;
         }
-
-        public void Save()
+     
+        public async Task SaveReportChangesAsync()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage { NextPageType = typeof(ReportPage) });
-
             using (var context = new Entities())
             {
                 context.Reports.Attach(_report);
                 context.Entry(_report).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
-            CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowInformation("Rapport bijgewerkt.");
         }
 
         private void Insert()
@@ -196,6 +189,7 @@ namespace Festispec.ViewModel.report
                 context.SaveChanges();
             }
         }
+
         public void RefreshElements()
         {
             ReportRepository reportRepository = new ReportRepository();
@@ -204,6 +198,7 @@ namespace Festispec.ViewModel.report
             //ReportElements.First().ReportVM = this;
             RaisePropertyChanged("ReportElements");
         }
+
         public bool ValidateInputs()
         {
             if (Title == null || Title.Equals(""))

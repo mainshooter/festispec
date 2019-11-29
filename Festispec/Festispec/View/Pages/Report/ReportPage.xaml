@@ -16,13 +16,14 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Margin="5">
-            <local:ReportControlUserControl></local:ReportControlUserControl>
+            <TextBox BorderThickness="1" Text="{Binding Title}"></TextBox>
+            <StackPanel Orientation="Horizontal" Height="30" Margin="5">
+                <Label Content="Status: " Height="30"></Label>
+                <ComboBox Margin="0,0,15,0"  Width="174" Text="{Binding Path=Status, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" ItemsSource="{Binding Path=Statuses}" SelectedValue="{Binding Status}" />
+            </StackPanel>
             <local:AddReportElementUserControl Margin="0,50,0,0"></local:AddReportElementUserControl>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Height="30">
-            <Label Content="Status: " Height="30"></Label>
-            <ComboBox Margin="0,0,15,0"  Width="174" Text="{Binding Path=Status, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" ItemsSource="{Binding Path=Statuses}" SelectedValue="{Binding Status}" />
-        </StackPanel>
+        
 
         <ScrollViewer Grid.Column="1" Margin="5">
             <StackPanel >
