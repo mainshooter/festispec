@@ -25,7 +25,7 @@ namespace Festispec.Domain
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public int EventId { get; set; }
-        public Nullable<int> EmployeeId { get; set; }
+        public int EmployeeId { get; set; }
         public int QuotationId { get; set; }
         public string Status { get; set; }
         public string Description { get; set; }

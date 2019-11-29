@@ -89,7 +89,6 @@ namespace Festispec.ViewModel.employee
                 }
             }
         }
-
         public EmployeeListVM()
         {
             Filters = new List<string>();
@@ -133,22 +132,6 @@ namespace Festispec.ViewModel.employee
                 using (var context = new Entities())
                 {
                     var temp = SelectedEmployee.ToModel();
-                    foreach (var quotation in context.Quotations.Where(quotation => quotation.EmployeeId == temp.Id))
-                    {
-                        quotation.EmployeeId = null;
-                    }
-                    foreach (var dbCase in context.Cases.Where(dbCase => dbCase.EmployeeId == temp.Id))
-                    {
-                        dbCase.EmployeeId = null;
-                    }
-                    foreach (var planning in context.InspectorPlannings.Where(planning => planning.EmployeeId == temp.Id))
-                    {
-                        context.InspectorPlannings.Remove(planning);
-                    }
-                    foreach (var order in context.Orders.Where(order => order.EmployeeId == temp.Id))
-                    {
-                        order.EmployeeId = null;
-                    }
                     context.Employees.Remove(context.Employees.Select(employee => employee).Where(employee => employee.Id == temp.Id).First());
                     context.SaveChanges();
                 }

@@ -1,11 +1,11 @@
 ﻿<Page x:Class="Festispec.View.Pages.Employee.EmployeePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Festispec.View.Pages.Employee"
-      mc:Ignorable="d"
+      mc:Ignorable="d" 
       Title="EmployeePage"
       Background="White"
       DataContext="{Binding EmployeeListVM,Source={StaticResource Locator}}">
@@ -30,10 +30,14 @@
         <Viewbox VerticalAlignment="Top">
             <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding EmployeeListFiltered}" SelectedItem="{Binding Path=SelectedEmployee,Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naam" Binding="{Binding Fullname}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Voornaam" Binding="{Binding Firstname}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tussenvoegsel" Binding="{Binding Prefix}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Achternaam" Binding="{Binding Lastname}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Telefoonnummer" Binding="{Binding Phone}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Plaats" Binding="{Binding City}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Straat" Binding="{Binding Street}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Huisnummer" Binding="{Binding FullHouseNumber}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Geboortedatum" Binding="{Binding BirthdayDate}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Afdeling" Binding="{Binding Department.Name}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}"></DataGridTextColumn>

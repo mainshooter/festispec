@@ -13,31 +13,31 @@
         <Button Command="{Binding CloseSingleEmployeeCommand}" Margin="0,0,757,432" Height="17" Width="43" VerticalAlignment="Top" HorizontalAlignment="Left" >
             <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
         </Button>
-        <Label HorizontalAlignment="Left" Height="25" Margin="108,42,0,0" Content="{Binding Path=Employee.Firstname, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label HorizontalAlignment="Left" Height="23" Margin="108,42,0,0" Content="{Binding Path=Employee.Firstname, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Voornaam" HorizontalAlignment="Left" Margin="108,11,0,0" VerticalAlignment="Top" Width="93"/>
-        <Label HorizontalAlignment="Left" Height="25" Margin="108,101,0,0" Content="{Binding Path=Employee.Prefix, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label HorizontalAlignment="Left" Height="23" Margin="108,101,0,0" Content="{Binding Path=Employee.Prefix, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Tussenvoegsel" HorizontalAlignment="Left" Margin="108,70,0,0" VerticalAlignment="Top" Width="127"/>
-        <Label HorizontalAlignment="Left" Height="25" Margin="108,160,0,0" Content="{Binding Path=Employee.Lastname, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label HorizontalAlignment="Left" Height="23" Margin="108,160,0,0" Content="{Binding Path=Employee.Lastname, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Achternaam" HorizontalAlignment="Left" Margin="108,129,0,0" VerticalAlignment="Top" Width="108"/>
-        <Label HorizontalAlignment="Left" Height="25" Margin="108,219,0,0" Content="{Binding Path=Employee.Street, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label HorizontalAlignment="Left" Height="23" Margin="108,219,0,0" Content="{Binding Path=Employee.Street, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Straat" HorizontalAlignment="Left" Margin="108,188,0,0" VerticalAlignment="Top" Width="60"/>
-        <Label HorizontalAlignment="Left" Height="25" Margin="108,278,0,0"  Content="{Binding Path=Employee.FullHouseNumber, Mode=OneWay}" VerticalAlignment="Top" Width="175"/>
+        <Label HorizontalAlignment="Left" Height="23" Margin="108,278,0,0"  Content="{Binding Path=Employee.FullHouseNumber, Mode=OneWay}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Huisnummer" HorizontalAlignment="Left" Margin="108,247,0,0" VerticalAlignment="Top" Width="114"/>
-        <Label HorizontalAlignment="Left" Height="25" Margin="108,337,0,0" Content="{Binding Path=Employee.City, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label HorizontalAlignment="Left" Height="23" Margin="108,337,0,0" Content="{Binding Path=Employee.City, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Postcode" HorizontalAlignment="Left" Margin="305,10,0,0" VerticalAlignment="Top" Width="74"/>
-        <Label HorizontalAlignment="Left" Height="25" Margin="305,41,0,0" Content="{Binding Path=Employee.PostalCode, Mode=TwoWay}" VerticalAlignment="Top" Width="152"/>
+        <Label HorizontalAlignment="Left" Height="23" Margin="305,41,0,0" Content="{Binding Path=Employee.PostalCode, Mode=TwoWay}" VerticalAlignment="Top" Width="152"/>
         <Label FontWeight="Bold" Content="Telefoon nummer" HorizontalAlignment="Left" Margin="305,69,0,0" VerticalAlignment="Top" Width="131"/>
-        <Label HorizontalAlignment="Left" Height="25" Margin="305,100,0,0"  Content="{Binding Path=Employee.Phone, Mode=TwoWay}" VerticalAlignment="Top" Width="152"/>
+        <Label HorizontalAlignment="Left" Height="23" Margin="305,100,0,0"  Content="{Binding Path=Employee.Phone, Mode=TwoWay}" VerticalAlignment="Top" Width="152"/>
         <Label FontWeight="Bold" Content="Plaats" HorizontalAlignment="Left" Margin="108,306,0,0" VerticalAlignment="Top" Width="60"/>
-        <Label HorizontalAlignment="Left" Height="25" Margin="305,159,0,0"  Content="{Binding Path=Employee.Email, Mode=TwoWay}" VerticalAlignment="Top" Width="152"/>
+        <Label HorizontalAlignment="Left" Height="23" Margin="305,159,0,0"  Content="{Binding Path=Employee.Email, Mode=TwoWay}" VerticalAlignment="Top" Width="152"/>
         <Label FontWeight="Bold" Content="Email" HorizontalAlignment="Left" Margin="305,128,0,0" VerticalAlignment="Top" Width="48"/>
-        <Label HorizontalAlignment="Left" Height="25" Margin="305,218,0,0" Content="{Binding Path=Employee.Iban, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
+        <Label HorizontalAlignment="Left" Height="23" Margin="305,218,0,0" Content="{Binding Path=Employee.Iban, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Iban" HorizontalAlignment="Left" Margin="305,187,0,0" VerticalAlignment="Top" Width="42"/>
-        <Label HorizontalAlignment="Left" Height="25" Margin="305,277,0,0" Content="{Binding Path=Employee.BirthdayDate, Mode=OneWay}" VerticalAlignment="Top" Width="152"/>
+        <Label HorizontalAlignment="Left" Height="23" Margin="305,277,0,0" Content="{Binding Path=Employee.Birthday, Mode=TwoWay}" VerticalAlignment="Top" Width="152"/>
         <Label FontWeight="Bold" Content="Birthday" HorizontalAlignment="Left" Margin="310,246,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,-1.631" Width="69"/>
-        <Label HorizontalAlignment="Left" Margin="504,41,0,0" VerticalAlignment="Top" Width="175" Content="{Binding Path=Employee.Status, Mode=TwoWay}" Height="25"/>
+        <Label HorizontalAlignment="Left" Margin="504,41,0,0" VerticalAlignment="Top" Width="175" Content="{Binding Path=Employee.Status, Mode=TwoWay}" Height="23"/>
         <Label FontWeight="Bold" Content="Status" HorizontalAlignment="Left" Margin="504,10,0,0" VerticalAlignment="Top" Width="61"/>
-        <Label HorizontalAlignment="Left" Margin="504,100,0,0" VerticalAlignment="Top" Width="175" Content="{Binding Path=Employee.Department.Name, Mode=TwoWay}" Height="25"/>
+        <Label HorizontalAlignment="Left" Margin="504,100,0,0" VerticalAlignment="Top" Width="175" Content="{Binding Path=Employee.Department.Name, Mode=TwoWay}" Height="23"/>
         <Label FontWeight="Bold" Content="Afdeling" HorizontalAlignment="Left" Margin="504,69,0,0" VerticalAlignment="Top" Width="80"/>
     </Grid>
 </Page>

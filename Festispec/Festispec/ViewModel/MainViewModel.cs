@@ -222,7 +222,7 @@ namespace Festispec.ViewModel
             {
                 var surveyDomain = context.Surveys.First();
                 var survey = new SurveyVM(surveyDomain);
-
+                
                 MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage)});
                 MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = survey });
             }
