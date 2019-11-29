@@ -70,7 +70,6 @@ namespace Festispec.ViewModel.customer.customerEvent
                 _filters.Add("Naam");
                 _filters.Add("Begindatum");
                 _filters.Add("Bezoekersaantal");
-                _filters.Add("Oppervlakte");
                 _filters.Add("Contactpersoon");
             }
         }
@@ -99,9 +98,6 @@ namespace Festispec.ViewModel.customer.customerEvent
                         case "Bezoekersaantal":
                             temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.AmountVisitors.ToString().Contains(Filter.ToLower())).ToList());
                             break;
-                        case "Oppervlakte":
-                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.SurfaceM2.ToString().Contains(Filter.ToLower())).ToList());
-                            break;
                         case "Contactpersoon":
                             temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.ContactPerson.Fullname.ToLower().Contains(Filter.ToLower())).ToList());
                             break;
@@ -109,7 +105,7 @@ namespace Festispec.ViewModel.customer.customerEvent
 
                     if (_showOnlyFuture)
                     {
-                        temp = new ObservableCollection<EventVM>(temp.ToList().Where(i => i.BeginDate >= DateTime.Today).ToList());
+                        temp = new ObservableCollection<EventVM>(temp.ToList().Where(i => i.EndDate >= DateTime.Today).ToList());
                     }
                 }
 
