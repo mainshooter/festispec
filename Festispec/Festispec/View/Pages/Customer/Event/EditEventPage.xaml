@@ -16,7 +16,7 @@
         <Button Command="{Binding CloseEditEventCommand}" Margin="0,0,758,432"  Height="17" Width="43" VerticalAlignment="Top" HorizontalAlignment="Left" >
             <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
         </Button>
-        <Button Content="Edit Event" HorizontalAlignment="Left" Margin="344,412,0,0" VerticalAlignment="Top" Width="138" Command="{Binding EditEventCommand}" Height="28"/>
+        <Button Content="Evenement bijwerken" HorizontalAlignment="Left" Margin="311,412,0,0" VerticalAlignment="Top" Width="174" Command="{Binding EditEventCommand}" Height="28"/>
         <TextBox HorizontalAlignment="Left" Height="30" Margin="110,35,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Naam" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" Width="53"/>
         <TextBox HorizontalAlignment="Left" Height="30" Margin="110,105,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.Street, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
@@ -37,7 +37,7 @@
         <Label FontWeight="Bold" Content="Begindatum" HorizontalAlignment="Left" Margin="320,150,0,0" VerticalAlignment="Top" Width="100"/>
         <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding Path=Event.EndDate, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="30" Margin="530,175,0,0" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Einddatum" HorizontalAlignment="Left" Margin="530,150,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label HorizontalAlignment="Left" Margin="530,35,0,0" VerticalAlignment="Top" Width="175" Height="30" Content="{Binding Path=Customer.Name, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label HorizontalAlignment="Left" Margin="530,35,0,0" VerticalAlignment="Top" Width="175" Height="30" Content="{Binding Path=Event.Customer.Name, UpdateSourceTrigger=PropertyChanged}"/>
         <Label FontWeight="Bold" Content="Klant" HorizontalAlignment="Left" Margin="530,10,0,0" VerticalAlignment="Top" Width="50"/>
         <ComboBox HorizontalAlignment="Left" Margin="530,105,0,0" VerticalAlignment="Top" Width="175" Text="{Binding Path=Event.ContactPerson, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=ContactIndex}" ItemsSource="{Binding Path=ContactPersons}" DisplayMemberPath="Fullname" SelectedValue="{Binding Event.ContactPerson}" />
         <Label FontWeight="Bold" Content="Contactpersoon" HorizontalAlignment="Left" Margin="530,80,0,0" VerticalAlignment="Top" Width="100"/>

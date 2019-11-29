@@ -131,6 +131,14 @@ namespace Festispec.ViewModel.customer.customerEvent
             OpenEditEvent = new RelayCommand<EventVM>(OpenEditEventPage, CanOpenEdit);
             DeleteEventCommand = new RelayCommand<EventVM>(DeleteEvent, CanOpenDelete);
             OpenSingleEvent = new RelayCommand<EventVM>(OpenSingleEventPage);
+
+            MessengerInstance.Register<ChangePageMessage>(this, message =>
+            {
+                if (message.NextPageType == typeof(EventPage) && EventList != null)
+                {
+                    this.RefreshEvents();
+                }
+            });
         }
 
         private void OpenAddEventPage()
@@ -150,7 +158,6 @@ namespace Festispec.ViewModel.customer.customerEvent
             {
                 Event = source,
                 EventList = this,
-                Customer = Customer
             });
         }
 
@@ -190,7 +197,6 @@ namespace Festispec.ViewModel.customer.customerEvent
             MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage()
             {
                 Event = source,
-                Customer = Customer
             }) ;
         }
 

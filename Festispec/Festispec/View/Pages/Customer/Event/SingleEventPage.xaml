@@ -34,7 +34,7 @@
         <Label FontWeight="Bold" Content="Begindatum" HorizontalAlignment="Left" Margin="320,70,0,0" VerticalAlignment="Top" Width="100"/>
         <Label Content="{Binding Path=Event.EndDateDate}" HorizontalAlignment="Left" Height="30" Margin="320,155,0,0" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Einddatum" HorizontalAlignment="Left" Margin="320,130,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label HorizontalAlignment="Left" Margin="530,35,0,0" VerticalAlignment="Top" Width="175" Content="{Binding Path=Customer.Name}" Height="30"/>
+        <Label HorizontalAlignment="Left" Margin="530,35,0,0" VerticalAlignment="Top" Width="175" Content="{Binding Path=Event.Customer.Name}" Height="30"/>
         <Label FontWeight="Bold" Content="Klant" HorizontalAlignment="Left" Margin="530,10,0,0" VerticalAlignment="Top" Width="50"/>
         <Label HorizontalAlignment="Left" Margin="530,95,0,0" VerticalAlignment="Top" Width="175" Content="{Binding Path=Event.ContactPerson.Fullname}" Height="30"/>
         <Label FontWeight="Bold" Content="Contactpersoon" HorizontalAlignment="Left" Margin="530,70,0,0" VerticalAlignment="Top" Width="116"/>

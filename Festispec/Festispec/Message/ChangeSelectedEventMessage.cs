@@ -7,6 +7,5 @@ namespace Festispec.Message
     {
         public EventVM Event { get; set; }
         public EventListVM EventList { get; set; }
-        public CustomerVM Customer { get; set; } 
     }
 }

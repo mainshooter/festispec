@@ -168,7 +168,7 @@ namespace Festispec.ViewModel.customer
         public CustomerVM(Domain.Customer customer)
         {
             _customer = customer;
-            _events = new ObservableCollection<EventVM>(customer.Events.Select(eventcon => new EventVM(eventcon)));
+            _events = new ObservableCollection<EventVM>(customer.Events.Select(eventcon => new EventVM(eventcon, this)));
             _contactPersons = new ObservableCollection<ContactPersonVM>(customer.ContactPersons.Select(contactPerson => new ContactPersonVM(contactPerson)));
         }
 

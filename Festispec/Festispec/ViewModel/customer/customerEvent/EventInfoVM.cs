@@ -9,7 +9,6 @@ namespace Festispec.ViewModel.customer.customerEvent
     public class EventInfoVM : ViewModelBase
     {
         private EventVM _event;
-        private CustomerVM _customer;
 
         public ICommand CloseSingleEventCommand { get; set; }
 
@@ -19,20 +18,9 @@ namespace Festispec.ViewModel.customer.customerEvent
             set
             {
                 _event = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged("Event");
             }
         }
-
-        public CustomerVM Customer 
-        {
-            get => _customer;
-            set
-            {
-                _customer = value;
-                RaisePropertyChanged();
-            }
-        }
-
 
         public EventInfoVM()
         {
@@ -40,7 +28,6 @@ namespace Festispec.ViewModel.customer.customerEvent
             this.MessengerInstance.Register<ChangeSelectedEventMessage>(this, message =>
             {
                 Event = message.Event;
-                Customer = message.Customer;
             });
         }
 

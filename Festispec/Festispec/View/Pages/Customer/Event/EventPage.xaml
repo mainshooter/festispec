@@ -37,7 +37,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naam" Binding="{Binding Name}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Begindatum" Binding="{Binding BeginDateDate}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="EindDatum" Binding="{Binding EndDateDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Einddatum" Binding="{Binding EndDateDate}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Bezoekersaantal" Binding="{Binding AmountVisitors}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Contactpersoon" Binding="{Binding ContactPerson.Fullname}"></DataGridTextColumn>
                     <DataGridTemplateColumn>

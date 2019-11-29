@@ -16,24 +16,11 @@ namespace Festispec.ViewModel.customer.customerEvent
     {
         public EventListVM EventList { get; set; }
         private EventVM _event;
-        private CustomerVM _customer;
         private int _contactIndex;
+
         public ICommand EditEventCommand { get; set; }
         public ICommand CloseEditEventCommand { get; set; }
         public ObservableCollection<ContactPersonVM> ContactPersons { get; set; }
-
-        public CustomerVM Customer
-        {
-            get
-            {
-                return _customer;
-            }
-            set
-            {
-                _customer = value;
-                RaisePropertyChanged();
-            }
-        }
 
         public EventVM Event
         {
@@ -44,7 +31,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             set
             {
                 _event = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged("Event");
             }
         }
 
@@ -57,7 +44,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             set
             {
                 _contactIndex = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged("ContactIndex");
             }
         }
 
@@ -66,41 +53,31 @@ namespace Festispec.ViewModel.customer.customerEvent
             this.MessengerInstance.Register<ChangeSelectedEventMessage>(this, message =>
             {
                 EventList = message.EventList;
-                Customer = message.Customer;
                 Event = message.Event;
-                ContactPersons = message.Customer.ContactPersons;
+                ContactPersons = Event.Customer.ContactPersons;
                 ContactIndex = ContactPersons.IndexOf(ContactPersons.Select(contactPerson => contactPerson).Where(contactPerson => contactPerson.Id == Event.ContactPerson.Id).FirstOrDefault());
                 RaisePropertyChanged("ContactPersons");
-
             });
             
             EditEventCommand = new RelayCommand(EditEvent, CanEditEvent);
             CloseEditEventCommand = new RelayCommand(CloseEditEvent);            
-
-            MessengerInstance.Register<ChangePageMessage>(this, message =>
-            {
-                if (message.NextPageType == typeof(EventPage) && EventList != null)
-                {
-                    EventList.RefreshEvents();
-                }
-            });
         }
 
         public void EditEvent()
         {
-            Event _event = Event.ToModel();
-            ICollection<Order> order = _event.Orders;
-            _event.Orders = null;
+            Event eventCon = Event.ToModel();
+            ICollection<Order> order = eventCon.Orders;
+            eventCon.Orders = null;
 
             using (var context = new Entities())
             {
                 Event.CustomerModel = null;
                 Event.ContactPersonModel = null;
 
-                context.Entry(_event).State = EntityState.Modified;
+                context.Entry(eventCon).State = EntityState.Modified;
                 context.SaveChanges();
             }
-            _event.Orders = order;
+            eventCon.Orders = order;
             CloseEditEvent();
         }
 

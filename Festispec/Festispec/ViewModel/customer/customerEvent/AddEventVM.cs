@@ -14,7 +14,6 @@ namespace Festispec.ViewModel.customer.customerEvent
     {
         public EventListVM EventList { get; set; }
         public EventVM Event { get; set; }
-        public CustomerVM Customer {get; set; }
         public ICommand AddEventCommand { get; set; }
         public ICommand CloseAddEventCommand { get; set; }
         public ObservableCollection<ContactPersonVM> ContactPersons { get; set; }
@@ -23,12 +22,11 @@ namespace Festispec.ViewModel.customer.customerEvent
         {
             this.MessengerInstance.Register<ChangeSelectedCustomerMessage>(this, message =>
             {
-                Customer = message.Customer;
                 ContactPersons = message.Customer.ContactPersons;
                 RaisePropertyChanged("ContactPersons");
-                Event.Customer = Customer;
+                Event.Customer = message.Customer;
                 Event.ContactPerson = ContactPersons.First();
-                RaisePropertyChanged("Customer");
+                RaisePropertyChanged("Event");
             });
 
             EventList = eventList;
@@ -40,9 +38,7 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public void AddEvent()
         {
-            var temp = Customer.Events;
-            temp.Add(Event);
-            Customer.Events = temp;
+            var customer = Event.Customer;
 
             using (var context = new Entities())
             {
@@ -53,14 +49,20 @@ namespace Festispec.ViewModel.customer.customerEvent
                 context.SaveChanges();
             }
 
+            Event.Customer = customer;
+            var temp = Event.Customer.Events;
+            temp.Add(Event);
+            Event.Customer.Events = temp;
+
             EventList.RefreshEvents();
             CloseAddEvent();
         }
 
         private void CloseAddEvent()
         {
+            var temp = Event.Customer;
             Event = new EventVM();
-            Event.Customer = Customer;
+            Event.Customer = temp;
             Event.ContactPerson = ContactPersons.First();
             RaisePropertyChanged("Event");
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });

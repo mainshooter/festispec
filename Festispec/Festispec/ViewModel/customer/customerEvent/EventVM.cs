@@ -204,6 +204,14 @@ namespace Festispec.ViewModel.customer.customerEvent
             _contactPerson = new ContactPersonVM(_event.ContactPerson);
         }
 
+        public EventVM(Event eventCon, CustomerVM customer)
+        {
+            _event = eventCon;
+            Customer = customer;
+            OrderVM = eventCon.Orders.Count > 0 ? new OrderVM(eventCon.Orders.FirstOrDefault()) : new OrderVM();
+            _contactPerson = new ContactPersonVM(_event.ContactPerson);
+        }
+
         public Event ToModel()
         {
             return _event;
