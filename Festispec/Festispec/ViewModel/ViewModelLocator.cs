@@ -19,6 +19,7 @@ using Festispec.View.Pages.Survey.QuestionTypes.TableQuestion;
 using Festispec.ViewModel.planning;
 using Festispec.ViewModel.auth;
 using Festispec.ViewModel.employee;
+using Festispec.ViewModel.employee.availabilty;
 using Festispec.ViewModel.report;
 using Festispec.ViewModel.toast;
 using Festispec.ViewModel.survey;
@@ -50,6 +51,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<SickPage>();
             SimpleIoc.Default.Register<AddElementPage>();
             SimpleIoc.Default.Register<PlanningOverviewPage>();
+            SimpleIoc.Default.Register<EmployeeInformationPage>();
+
             SimpleIoc.Default.Register<EmployeePage>();
             SimpleIoc.Default.Register<AddEmployeePage>();
             SimpleIoc.Default.Register<SingleEmployeePage>();
@@ -85,10 +88,13 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditLineChartPage>();
             SimpleIoc.Default.Register<EditPieChartPage>();
             SimpleIoc.Default.Register<EditTablePage>();
+            SimpleIoc.Default.Register<EmployeeInformationVM>();
+
             SimpleIoc.Default.Register<ToastVM>();
             SimpleIoc.Default.Register<PlanningOverviewVM>();
             SimpleIoc.Default.Register<EmployeeInfoVM>();
             SimpleIoc.Default.Register<EditEmployeeVM>();
+            SimpleIoc.Default.Register<AvailabilityManagerVM>();
             SimpleIoc.Default.Register<SurveyVM>();
             SimpleIoc.Default.Register<SurveyInfoVM>();
             SimpleIoc.Default.Register<AddOpenQuestionVM>();
@@ -125,6 +131,7 @@ namespace Festispec.ViewModel
         public EmployeeListVM EmployeeListVM => ServiceLocator.Current.GetInstance<EmployeeListVM>();
         public EmployeeInfoVM EmployeeInfoVM => ServiceLocator.Current.GetInstance<EmployeeInfoVM>();
         public EditEmployeeVM EditEmployeeVM => ServiceLocator.Current.GetInstance<EditEmployeeVM>();
+        public AvailabilityManagerVM AvailabilityManagerVM => ServiceLocator.Current.GetInstance<AvailabilityManagerVM>();
         public SurveyInfoVM SurveyInfoVM => ServiceLocator.Current.GetInstance<SurveyInfoVM>();
         public AddOpenQuestionVM AddOpenQuestionVM => ServiceLocator.Current.GetInstance<AddOpenQuestionVM>();
         public EditOpenQuestionVM EditOpenQuestionVM => ServiceLocator.Current.GetInstance<EditOpenQuestionVM>();
@@ -150,6 +157,7 @@ namespace Festispec.ViewModel
         public EditPieChartVM EditPieChartVM => ServiceLocator.Current.GetInstance<EditPieChartVM>();
         public EditLineChartVM EditLineChartVM => ServiceLocator.Current.GetInstance<EditLineChartVM>();
         public EditTableVM EditTableVM => ServiceLocator.Current.GetInstance<EditTableVM>();
+        public EmployeeInformationVM EmployeeInformationVM => ServiceLocator.Current.GetInstance<EmployeeInformationVM>();
 
         public static void Cleanup()
         {
