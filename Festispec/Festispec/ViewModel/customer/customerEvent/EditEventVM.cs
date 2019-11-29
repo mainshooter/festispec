@@ -4,7 +4,7 @@ using Festispec.View.Pages.Customer.Event;
 using Festispec.ViewModel.customer.contactPerson;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
@@ -88,14 +88,19 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public void EditEvent()
         {
+            Event _event = Event.ToModel();
+            ICollection<Order> order = _event.Orders;
+            _event.Orders = null;
+
             using (var context = new Entities())
             {
                 Event.CustomerModel = null;
                 Event.ContactPersonModel = null;
 
-                context.Entry(Event.ToModel()).State = EntityState.Modified;
+                context.Entry(_event).State = EntityState.Modified;
                 context.SaveChanges();
             }
+            _event.Orders = order;
             CloseEditEvent();
         }
 
