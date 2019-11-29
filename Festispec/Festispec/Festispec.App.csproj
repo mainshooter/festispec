@@ -159,6 +159,7 @@
     <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
     <Compile Include="ViewModel\report\AddElementVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
+    <Compile Include="ViewModel\report\AddReportVM.cs" />
     <Compile Include="ViewModel\report\element\EditBarChartVM.cs" />
     <Compile Include="ViewModel\report\element\EditImageVM.cs" />
     <Compile Include="ViewModel\report\element\EditLineChartVM.cs" />
@@ -214,6 +215,9 @@
     </Compile>
     <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
       <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\AddReportPage.xaml.cs">
+      <DependentUpon>AddReportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Report\element\EditBarChartPage.xaml.cs">
       <DependentUpon>EditBarChartPage.xaml</DependentUpon>
@@ -376,6 +380,10 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\AddReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Report\element\EditBarChartPage.xaml">
       <SubType>Designer</SubType>

@@ -17,6 +17,7 @@ using GalaSoft.MvvmLight.Ioc;
 using Festispec.ViewModel.toast;
 using System.Data.Entity;
 using System;
+using System.Windows;
 
 namespace Festispec.ViewModel.report
 {
@@ -53,6 +54,7 @@ namespace Festispec.ViewModel.report
             }
             set {
                 _report.Status = value;
+                RaisePropertyChanged("Status");
             }
         }
 
@@ -66,6 +68,7 @@ namespace Festispec.ViewModel.report
 
         public ICommand AddElementCommand { get; set; }
 
+        public ObservableCollection<string> Statuses { get; set; }
 
         [PreferredConstructor]
         public ReportVM()
@@ -74,6 +77,7 @@ namespace Festispec.ViewModel.report
             MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
                 _report = message.NextReportVM._report;
                 Title = message.NextReportVM.Title;
+                Status = message.NextReportVM.Status;
                 Id = message.NextReportVM.Id;
                 RefreshElements();
             });
@@ -85,7 +89,16 @@ namespace Festispec.ViewModel.report
             ReportElements.CollectionChanged += RenderReportElements;
             SaveReportCommand = new RelayCommand(Save);
             AddElementCommand = new RelayCommand(GoToAddElementPage);
+            GetStatuses();
             this.RenderReportElements(null, null);
+        }
+
+        private void GetStatuses()
+        {
+            using (var context = new Entities())
+            {
+                Statuses = new ObservableCollection<string>(context.ReportStatus.ToList().Select(status => status.Status));
+            }
         }
 
         public ReportVM(Report report)
@@ -190,6 +203,22 @@ namespace Festispec.ViewModel.report
             this.RenderReportElements(null, null);
             //ReportElements.First().ReportVM = this;
             RaisePropertyChanged("ReportElements");
+        }
+        public bool ValidateInputs()
+        {
+            if (Title == null || Title.Equals(""))
+            {
+                MessageBox.Show("Titel mag niet leeg zijn.");
+                return false;
+            }
+
+            if (Title.Length > 100)
+            {
+                MessageBox.Show("Titel mag niet langer zijn dan 100 karakters.");
+                return false;
+            }
+
+            return true;
         }
     }
 }

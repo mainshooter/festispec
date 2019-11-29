@@ -73,7 +73,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddTableQuestionPage>();
             SimpleIoc.Default.Register<EditTableQuestionPage>();
             SimpleIoc.Default.Register<LoginPage>();
-
+            SimpleIoc.Default.Register<AddReportPage>();
 
             SimpleIoc.Default.Register<ReportVM>();
             SimpleIoc.Default.Register<MainViewModel>();
@@ -114,7 +114,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddTableQuestionVM>();
             SimpleIoc.Default.Register<EditTableQuestionVM>();
             SimpleIoc.Default.Register<UserLoginVM>();
-
+            SimpleIoc.Default.Register<AddReportVM>();
             SimpleIoc.Default.Register<EditTextVM>();
             SimpleIoc.Default.Register<EditImageVM>();
             SimpleIoc.Default.Register<EditBarChartVM>();
@@ -148,7 +148,7 @@ namespace Festispec.ViewModel
         public EditMultipleChoiceQuestionVM EditMultipleChoiceQuestionVM => ServiceLocator.Current.GetInstance<EditMultipleChoiceQuestionVM>();
         public AddTableQuestionVM AddTableQuestionVM => ServiceLocator.Current.GetInstance<AddTableQuestionVM>();
         public EditTableQuestionVM EditTableQuestionVM => ServiceLocator.Current.GetInstance<EditTableQuestionVM>();
-
+        public AddReportVM AddReportVM => ServiceLocator.Current.GetInstance<AddReportVM>();
         public AddElementVM AddElementVM => ServiceLocator.Current.GetInstance<AddElementVM>();
         public EditTextVM EditTextVM => ServiceLocator.Current.GetInstance<EditTextVM>();
         public EditImageVM EditImageVM => ServiceLocator.Current.GetInstance<EditImageVM>();
