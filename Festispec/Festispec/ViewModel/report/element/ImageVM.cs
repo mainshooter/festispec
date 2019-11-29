@@ -37,8 +37,8 @@ namespace Festispec.ViewModel.report.element
             Type = element.Type;
             Title = element.Title;
             Content = element.Content;
-            ReportId = element.ReportId;
             Order = element.Order;
+            ReportId = element.ReportId;
         }
         public void Edit()
         {

@@ -7,44 +7,47 @@ using System.Data;
 
 namespace Festispec.ViewModel.report.element
 {
-    public class TableVM: ReportElementVM
+    public class TableVM : ReportElementVM
     {
         private DataTable _dataTable;
         private Object _data;
 
         public Dictionary<string, List<string>> Dictionary { get; set; }
-        
-        public override Object Data {
-            get {
+
+        public ReportElementVM ReportElementVM { get; set; }
+
+        public override Object Data
+        {
+            get
+            {
                 return _data;
             }
-            set {
+            set
+            {
                 _data = value;
-                Dictionary = (Dictionary<string, List<string>>) _data;
+                Dictionary = (Dictionary<string, List<string>>)_data;
                 ApplyChanges();
             }
         }
-        
-        public DataTable DataTable { 
-            get {
+
+        public DataTable DataTable
+        {
+            get
+            {
                 return _dataTable;
             }
-            set {
+            set
+            {
                 _dataTable = value;
                 RaisePropertyChanged("DataTable");
             }
         }
 
-        public ReportElementVM ReportElementVM { get; set; }
-
         public TableVM(ReportElementVM element, ReportVM report)
         {
             EditElement = new RelayCommand(() => Edit());
-
-
             DataTable = new DataTable();
             Dictionary = new Dictionary<string, List<string>>();
-
             //Data = element.Data;
             ReportVM = report;
             ReportElementVM = element;
@@ -52,11 +55,10 @@ namespace Festispec.ViewModel.report.element
             Type = element.Type;
             Title = element.Title;
             Content = element.Content;
-            ReportId = element.ReportId;
-
             Order = element.Order;
-
+            ReportId = element.ReportId;
         }
+
         public void Edit()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTablePage) });
@@ -99,7 +101,7 @@ namespace Festispec.ViewModel.report.element
                     {
                         dataRow[internIndex] = "";
                     }
-                    
+
                     internIndex++;
                 }
                 DataTable.Rows.Add(dataRow);

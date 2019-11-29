@@ -1,38 +1,14 @@
-﻿using Festispec.Domain;
-using Festispec.Message;
+﻿using Festispec.Message;
 using Festispec.View.Pages.Report.element;
-using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
 
 namespace Festispec.ViewModel.report.element
 {
     class TextVM : ReportElementVM
     {
-        
         private object _data;
-        private Boolean _readOnly;
-
-        public Boolean ReadOnly
-        {
-            get
-            {
-                return _readOnly;
-            }
-            set
-            {
-                _readOnly = value;
-                RaisePropertyChanged("ReadOnly");
-            }
-        }
-
-        public ReportElementVM ReportElementVM { get; set; }
-        public string Text { get; set; }
-
-        public Dictionary<string, Object> Dictionary { get; set; }
 
         public override Object Data
         {
@@ -48,6 +24,12 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
+        public ReportElementVM ReportElementVM { get; set; }
+
+        public string Text { get; set; }
+
+        public Dictionary<string, Object> Dictionary { get; set; }
+
         public TextVM(ReportElementVM element, ReportVM report)
         {
             EditElement = new RelayCommand(() => Edit());
@@ -61,6 +43,7 @@ namespace Festispec.ViewModel.report.element
             Order = element.Order;
             ReportId = element.ReportId;
         }
+
         public void Edit()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTextPage) });
@@ -70,7 +53,7 @@ namespace Festispec.ViewModel.report.element
                 ReportElement = ReportElementVM
             });
         }
-    
+
         private void ApplyChanges()
         {
             Text = (string)Dictionary["text"];

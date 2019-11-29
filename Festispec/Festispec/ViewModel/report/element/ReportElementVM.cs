@@ -1,21 +1,18 @@
 ﻿using Festispec.Domain;
-using Festispec.Message;
-using Festispec.View.Pages.Report.element;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
-using System.Collections.ObjectModel;
-using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element
 {
-    public class ReportElementVM: ViewModelBase
+    public class ReportElementVM : ViewModelBase
     {
         private ReportElement _reportElement;
+
         public ReportVM ReportVM { get; set; }
 
         public ICommand EditElement { get; set; }
@@ -23,16 +20,21 @@ namespace Festispec.ViewModel.report.element
         public ICommand DeleteElement { get; set; }
 
         public ICommand ElementUpCommand { get; set; }
+
         public ICommand ElementDownCommand { get; set; }
 
-        public int Id {
-            get {
+        public int Id
+        {
+            get
+            {
                 return _reportElement.Id;
             }
-            set {
+            set
+            {
                 _reportElement.Id = value;
             }
         }
+
         public int ReportId
         {
             get
@@ -45,44 +47,57 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public string Type {
-            get {
+        public string Type
+        {
+            get
+            {
                 return _reportElement.ElementType;
             }
-            set {
+            set
+            {
                 _reportElement.ElementType = value;
             }
         }
 
-        public string Title {
-            get {
+        public string Title
+        {
+            get
+            {
                 return _reportElement.Title;
             }
-            set {
+            set
+            {
                 _reportElement.Title = value;
                 RaisePropertyChanged("Title");
             }
         }
 
-        public string Content {
-            get {
+        public string Content
+        {
+            get
+            {
                 return _reportElement.Content;
             }
-            set {
+            set
+            {
                 _reportElement.Content = value;
                 RaisePropertyChanged("Content");
             }
         }
 
-        public int Order {
-            get {
+        public int Order
+        {
+            get
+            {
                 return _reportElement.Order;
             }
-            set {
+            set
+            {
                 _reportElement.Order = value;
                 RaisePropertyChanged("Order");
             }
         }
+
         public string X_as
         {
             get
@@ -94,6 +109,7 @@ namespace Festispec.ViewModel.report.element
                 _reportElement.X_as = value;
             }
         }
+
         public string Y_as
         {
             get
@@ -106,7 +122,6 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-
         public virtual Object Data { get; set; }
 
         public ReportElementVM(ReportElement element, ReportVM report)
@@ -114,9 +129,8 @@ namespace Festispec.ViewModel.report.element
             _reportElement = element;
             ReportVM = report;
             DeleteElement = new RelayCommand(() => Delete());
-            ElementUpCommand = new RelayCommand(() => ReportVM.MoveElement(this,-1));
+            ElementUpCommand = new RelayCommand(() => ReportVM.MoveElement(this, -1));
             ElementDownCommand = new RelayCommand(() => ReportVM.MoveElement(this, 1));
-
         }
 
         public ReportElementVM()
@@ -124,7 +138,7 @@ namespace Festispec.ViewModel.report.element
             DeleteElement = new RelayCommand(() => Delete());
             ElementUpCommand = new RelayCommand(() => ReportVM.MoveElement(this, -1));
             ElementDownCommand = new RelayCommand(() => ReportVM.MoveElement(this, 1));
-            _reportElement = new ReportElement(); 
+            _reportElement = new ReportElement();
         }
 
         public void Delete()

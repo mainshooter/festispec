@@ -11,11 +11,9 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using Festispec.Repository;
 using Festispec.Message;
-using Festispec.View.Pages.Report;
 using Festispec.ViewModel.Customer.order;
 using GalaSoft.MvvmLight.Ioc;
 using Festispec.ViewModel.toast;
-using System.Data.Entity;
 using System;
 using System.Windows;
 using System.Threading.Tasks;
@@ -95,14 +93,6 @@ namespace Festispec.ViewModel.report
             this.RenderReportElements(null, null);
         }
 
-        private void GetStatuses()
-        {
-            using (var context = new Entities())
-            {
-                Statuses = new ObservableCollection<string>(context.ReportStatus.ToList().Select(status => status.Status));
-            }
-        }
-
         public ReportVM(Report report)
         {
             _report = report;
@@ -113,6 +103,14 @@ namespace Festispec.ViewModel.report
             ReportElements.CollectionChanged += RenderReportElements;
             AddElementCommand = new RelayCommand(GoToAddElementPage);
             this.RenderReportElements(null, null);
+        }
+
+        private void GetStatuses()
+        {
+            using (var context = new Entities())
+            {
+                Statuses = new ObservableCollection<string>(context.ReportStatus.ToList().Select(status => status.Status));
+            }
         }
 
         private void GoToAddElementPage()
@@ -139,15 +137,6 @@ namespace Festispec.ViewModel.report
             }
         }
 
-        private void Insert()
-        {
-            using (var context = new Entities())
-            {
-                context.Reports.Add(_report);
-                context.SaveChanges();
-            }
-        }
-
         public void RenderReportElements(object sender, NotifyCollectionChangedEventArgs e)
         {
             ReportElementUserControlls.Clear();
@@ -161,8 +150,6 @@ namespace Festispec.ViewModel.report
         {
             try
             {
-                Console.WriteLine(ReportElements.Count);
-                Console.WriteLine(ReportElements.IndexOf(ReportElements.Where(e => e.Id == element.Id).FirstOrDefault()));
                 var NextElement = ReportElements[ReportElements.IndexOf(ReportElements.Where(e => e.Id == element.Id).FirstOrDefault()) + direction];
                 var NextElementOrder = NextElement.Order;
                 NextElement.Order = element.Order;
@@ -195,7 +182,6 @@ namespace Festispec.ViewModel.report
             ReportRepository reportRepository = new ReportRepository();
             this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
             this.RenderReportElements(null, null);
-            //ReportElements.First().ReportVM = this;
             RaisePropertyChanged("ReportElements");
         }
 

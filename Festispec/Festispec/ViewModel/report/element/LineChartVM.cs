@@ -45,16 +45,15 @@ namespace Festispec.ViewModel.report.element
             ReportVM = report;
             ReportElementVM = element;
             Id = element.Id;
-            ReportId = element.ReportId;
             Type = element.Type;
             Title = element.Title;
-            Order = element.Order;
             Content = element.Content;
+            Order = element.Order;
+            ReportId = element.ReportId;
             X_as = element.X_as;
             Y_as = element.Y_as;
-
-            Order = element.Order;
         }
+
         public void Edit()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditLineChartPage) });

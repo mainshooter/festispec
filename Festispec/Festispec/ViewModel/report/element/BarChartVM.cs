@@ -49,11 +49,12 @@ namespace Festispec.ViewModel.report.element
             Type = element.Type;
             Title = element.Title;
             Content = element.Content;
+            Order = element.Order;
+            ReportId = element.ReportId;
             X_as = element.X_as;
             Y_as = element.Y_as;
-            ReportId = element.ReportId;
-            Order = element.Order;
         }
+
         public void Edit()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditBarChartPage) });
@@ -63,6 +64,7 @@ namespace Festispec.ViewModel.report.element
                 ReportElement = ReportElementVM
             });
         }
+
         private void ApplyChanges()
         {
             Labels = (List<string>)Dictionary["labels"];

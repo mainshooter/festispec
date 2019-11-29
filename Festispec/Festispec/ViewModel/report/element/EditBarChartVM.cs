@@ -4,12 +4,7 @@ using Festispec.View.Pages.Report;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element
@@ -17,6 +12,7 @@ namespace Festispec.ViewModel.report.element
     public class EditBarChartVM : ViewModelBase
     {
         private ReportElementVM _reportElementVM;
+
         public ReportVM ReportVM { get; set; }
 
         public ReportElementVM ReportElementVM
@@ -60,7 +56,6 @@ namespace Festispec.ViewModel.report.element
         public void CloseEditElement()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
-
         }
     }
 }

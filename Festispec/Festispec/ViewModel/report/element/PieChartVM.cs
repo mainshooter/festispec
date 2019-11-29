@@ -1,25 +1,25 @@
-﻿using Festispec.Domain;
-using Festispec.Message;
+﻿using Festispec.Message;
 using Festispec.View.Pages.Report.element;
-using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight.Command;
 using LiveCharts;
 using System;
-using System.Linq;
-using System.Windows;
 
 namespace Festispec.ViewModel.report.element
 {
-    public class PieChartVM: ReportElementVM
+    public class PieChartVM : ReportElementVM
     {
         private Object _data;
 
         public ReportElementVM ReportElementVM { get; set; }
-        public override Object Data {
-            get {
+
+        public override Object Data
+        {
+            get
+            {
                 return _data;
             }
-            set {
+            set
+            {
                 _data = value;
                 ApplyChanges();
             }
@@ -39,8 +39,8 @@ namespace Festispec.ViewModel.report.element
             Content = element.Content;
             ReportId = element.ReportId;
             Order = element.Order;
-
         }
+
         public void Edit()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTextPage) });
@@ -50,20 +50,6 @@ namespace Festispec.ViewModel.report.element
                 ReportElement = ReportElementVM,
             });
         }
-        //public void Delete()
-        //{
-        //    MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze element wilt verwijderen?", "Element Verwijderen", MessageBoxButton.YesNo);
-        //    if (result.Equals(MessageBoxResult.Yes))
-        //    {
-        //        using (var context = new Entities())
-        //        {
-        //            context.ReportElements.Remove(context.ReportElements.Where(reportElement => reportElement.Id == ReportElementVM.Id).First());
-        //            context.SaveChanges();
-        //        }
-        //        CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Rapportelement verwijderd.");
-        //    }
-        //    Report.RefreshElements();
-        //}
 
         private void ApplyChanges()
         {

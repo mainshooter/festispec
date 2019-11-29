@@ -6,12 +6,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element
@@ -19,6 +15,7 @@ namespace Festispec.ViewModel.report.element
     public class EditImageVM : ViewModelBase
     {
         private ReportElementVM _reportElementVM;
+
         public ReportVM ReportVM { get; set; }
 
         public ReportElementVM ReportElementVM
@@ -35,9 +32,11 @@ namespace Festispec.ViewModel.report.element
         }
 
         public ICommand SaveElementCommand { get; set; }
+
         public ICommand ReturnCommand { get; set; }
 
         public ICommand ChooseImageCommand { get; set; }
+        
         public EditImageVM()
         {
             this.MessengerInstance.Register<ChangeSelectedReportMessage>(this, message =>
@@ -75,7 +74,6 @@ namespace Festispec.ViewModel.report.element
         public void CloseEditElement()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
-
         }
     }
 }
