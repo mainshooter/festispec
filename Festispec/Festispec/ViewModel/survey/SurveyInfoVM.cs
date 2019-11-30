@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Festispec.View.Pages.Customer.Event;
 using Festispec.ViewModel.toast;
 
 namespace Festispec.ViewModel.survey
@@ -48,6 +49,7 @@ namespace Festispec.ViewModel.survey
         public ICommand CasesCommand { get; set; }
         public ICommand QuestionUpCommand { get; set; }
         public ICommand QuestionDownCommand { get; set; }
+        public ICommand BackCommand { get; set; }
 
         public SurveyInfoVM()
         {
@@ -86,6 +88,7 @@ namespace Festispec.ViewModel.survey
             CasesCommand = new RelayCommand(ShowCases);
             QuestionUpCommand = new RelayCommand(MoveQuestionUp, IsConcept);
             QuestionDownCommand = new RelayCommand(MoveQuestionDown, IsConcept);
+            BackCommand = new RelayCommand(Back);
 
             GetQuestionTypes();
         }
@@ -178,7 +181,7 @@ namespace Festispec.ViewModel.survey
         {
             try
             {
-                var aboveQuestion = SurveyVM.Questions[SelectedQuestion.Order - 1];
+                var aboveQuestion = SurveyVM.Questions[SelectedQuestion.Order - 2];
                 var aboveQuestionOrder = aboveQuestion.Order;
                 aboveQuestion.Order = SelectedQuestion.Order;
                 SelectedQuestion.Order = aboveQuestionOrder;
@@ -195,7 +198,7 @@ namespace Festispec.ViewModel.survey
         {
             try
             {
-                var belowQuestion = SurveyVM.Questions[SelectedQuestion.Order + 1];
+                var belowQuestion = SurveyVM.Questions[SelectedQuestion.Order];
                 var aboveQuestionOrder = belowQuestion.Order;
                 belowQuestion.Order = SelectedQuestion.Order;
                 SelectedQuestion.Order = aboveQuestionOrder;
@@ -220,6 +223,11 @@ namespace Festispec.ViewModel.survey
                 context.Entry(question2.ToModel()).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
             }
+        }
+
+        private void Back()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
         }
     }
 }

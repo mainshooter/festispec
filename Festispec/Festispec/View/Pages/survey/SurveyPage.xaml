@@ -21,6 +21,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
+        <Button Grid.Row="0" HorizontalAlignment="Left" Command="{Binding BackCommand}" Margin="10,0,0,0">Terug</Button>
         <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="{Binding SurveyVM.OrderVM.Event.Name }" ContentStringFormat="Vragenlijst {0} bewerken"></Label>
         <Separator Grid.Row="1"></Separator>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
