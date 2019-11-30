@@ -53,6 +53,7 @@ namespace Festispec.ViewModel.survey
 
         private void Back()
         {
+            SurveyVM.Description = "";
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
         }
 
@@ -66,7 +67,7 @@ namespace Festispec.ViewModel.survey
         private void SaveBack()
         {
             if (!Save()) return;
-            Back();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
         }
     }
 }

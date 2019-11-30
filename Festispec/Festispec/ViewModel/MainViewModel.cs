@@ -11,14 +11,11 @@ using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.Message;
-using Festispec.View.Pages.Survey;
 using Festispec.View.Pages.Planning;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.Domain;
-using Festispec.View.Pages.Survey;
 using System.Collections.Generic;
-using Festispec.ViewModel.survey;
 using System.Collections.ObjectModel;
 using Festispec.ViewModel.customer;
 
@@ -40,7 +37,6 @@ namespace Festispec.ViewModel
         public ICommand OpenEvent { get; set; }
         public ICommand OpenSick { get; set; }
         public ICommand OpenPlanning { get; set; }
-        public ICommand OpenSurvey { get; set; }
         public ICommand ShowAccountInformation { get; set; }
         public ObservableCollection<Button> MenuList { get; set; }
 
@@ -78,7 +74,6 @@ namespace Festispec.ViewModel
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenSick = new RelayCommand(OpenSickTab);
             OpenPlanning = new RelayCommand(OpenSpecificPlanningTab);
-            OpenSurvey = new RelayCommand(OpenSurveyTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
             Page = ServiceLocator.Current.GetInstance<LoginPage>();
 
@@ -146,7 +141,6 @@ namespace Festispec.ViewModel
             _menu["Directie"].Add("Evenementen", OpenEvent);
             _menu["Directie"].Add("Beschikbaarheid", OpenAvailability);
             _menu["Directie"].Add("Klanten", OpenCustomer);
-            _menu["Directie"].Add("Vragenlijsten", OpenSurvey);
             _menu["Directie"].Add("Planning", OpenPlanning);
 
             // Marketing Dictionary
@@ -209,32 +203,11 @@ namespace Festispec.ViewModel
             using (var context = new Entities())
             {
                 var evenement = context.Events.ToList().Select(e => new EventVM(e)).First();
-                var order = context.Orders.ToList().Select(o => new OrderVM(o)).First();
+                var order = context.Orders.ToList().Select(o => new OrderVM(o, evenement)).First();
                 order.Event = evenement;
                 evenement.OrderVM = order;
                 MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
                 MessengerInstance.Send<ChangeSelectedEventVM>(new ChangeSelectedEventVM() { NextEvent = evenement });
-            }
-        }
-
-        private void OpenSurveyTab()
-        {
-            using (var context = new Entities())
-            {
-                var evenement = context.Events.ToList().Select(e => new EventVM(e)).Last();
-                var order = context.Orders.ToList().Select(o => new OrderVM(o)).Last();
-                order.Event = evenement;
-                evenement.OrderVM = order;
-                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
-                MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = order.Survey });
-
-//                var evenement = context.Events.ToList().Select(e => new EventVM(e)).Last();
-//                var order = context.Orders.ToList().Select(o => new OrderVM(o)).Last();
-//                order.Event = evenement;
-//                evenement.OrderVM = order;
-//                var survey = new SurveyVM(order);
-//                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddSurveyPage)});
-//                MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = survey });
             }
         }
 

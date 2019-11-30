@@ -130,7 +130,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         public EventVM(Event eventCon)
         {
             _event = eventCon;
-            OrderVM = eventCon.Orders.Count > 0 ? new OrderVM(eventCon.Orders.FirstOrDefault()) : new OrderVM();
+            OrderVM = eventCon.Orders.Count > 0 ? new OrderVM(eventCon.Orders.FirstOrDefault(), this) : new OrderVM();
             _contactPerson = new ContactPersonVM(_event.ContactPerson);
         }
 
@@ -138,7 +138,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         {
             _event = eventCon;
             Customer = customer;
-            OrderVM = eventCon.Orders.Count > 0 ? new OrderVM(eventCon.Orders.FirstOrDefault()) : new OrderVM();
+            OrderVM = eventCon.Orders.Count > 0 ? new OrderVM(eventCon.Orders.FirstOrDefault(), this) : new OrderVM();
             _contactPerson = new ContactPersonVM(_event.ContactPerson);
         }
 

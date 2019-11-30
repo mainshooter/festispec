@@ -79,7 +79,7 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         {
             _plannedEmployee = pe;
             Employee = new EmployeeVM(pe.Employee);
-            Day = new DayVM(pe.Day);
+            //Day = new DayVM(pe.Day);
         }
 
         public PlannedEmployeeVM()

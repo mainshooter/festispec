@@ -32,12 +32,13 @@ namespace Festispec.ViewModel.Customer.order
             set => _order.Description = value;
         }
 
-        public OrderVM(Order orderCon)
+        public OrderVM(Order orderCon, EventVM eventVM)
         {
             _order = orderCon;
+            Event = eventVM;
             Employee = new EmployeeVM(orderCon.Employee);
             Survey = orderCon.Surveys.Count > 0 ? new SurveyVM(this, orderCon.Surveys.First()) : new SurveyVM(this);
-            //Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d)));
+            Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d, this)));
         }
 
         public OrderVM()
