@@ -14,13 +14,13 @@ namespace Festispec.ViewModel.customer.customerEvent
 {
     public class EditEventVM : ViewModelBase
     {
-        public EventListVM EventList { get; set; }
         private EventVM _event;
         private int _contactIndex;
 
         public ICommand EditEventCommand { get; set; }
         public ICommand CloseEditEventCommand { get; set; }
         public ObservableCollection<ContactPersonVM> ContactPersons { get; set; }
+        public EventListVM EventList { get; set; }
 
         public EventVM Event
         {
