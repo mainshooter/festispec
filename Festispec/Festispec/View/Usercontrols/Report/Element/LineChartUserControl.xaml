@@ -5,27 +5,44 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Festispec.View.Report.Element"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="500"
+             d:DesignHeight="450" d:DesignWidth="800"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-    <StackPanel>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
-        <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
-        <lvc:CartesianChart Series="{Binding SeriesCollection}" Height="300">
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="{Binding YaxisName}" LabelFormatter="{Binding YaxisLabelFormat}" FontSize="20" Foreground="Black"></lvc:Axis>
-            </lvc:CartesianChart.AxisY>
-            <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="{Binding XaxisName}" Labels="{Binding Labels}" FontSize="20" Foreground="Black"></lvc:Axis>
-            </lvc:CartesianChart.AxisX>
-        </lvc:CartesianChart>
-        <Grid HorizontalAlignment="Right">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"></ColumnDefinition>
-                <ColumnDefinition Width="50"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Command="{Binding EditElementCommand}" Content="{materialDesign:PackIcon Pencil}"/>
-            <Button Grid.Column="1" Content="{materialDesign:PackIcon DeleteForever}"/>
-        </Grid>
+    <StackPanel Orientation="Horizontal">
+        <StackPanel>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
+            <lvc:CartesianChart Series="{Binding SeriesCollection}" Height="300" Width="620">
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="{Binding YaxisName}" LabelFormatter="{Binding YaxisLabelFormat}" FontSize="20" Foreground="Black"></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="{Binding XaxisName}" Labels="{Binding Labels}" FontSize="20" Foreground="Black"></lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
+            <Grid HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Command="{Binding EditElement}" Content="{materialDesign:PackIcon Pencil}"/>
+                <Button Grid.Column="1" Command="{Binding DeleteElement}" Content="{materialDesign:PackIcon DeleteForever}"/>
+            </Grid>
+        </StackPanel>
+        <StackPanel>
+            <StackPanel Height="220">
+
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Command="{Binding ElementUpCommand}" Content="{materialDesign:PackIcon ArrowUp}"/>
+                    <Button Grid.Row="1" Command="{Binding ElementDownCommand}" Content="{materialDesign:PackIcon ArrowDown}"/>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 </UserControl>

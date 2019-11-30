@@ -1,6 +1,7 @@
-﻿using GalaSoft.MvvmLight.CommandWpf;
 using LiveCharts;
 using LiveCharts.Wpf;
+﻿using Festispec.Message;
+using Festispec.View.Pages.Report.element;
 using System;
 using System.Collections.Generic;
 
@@ -18,15 +19,33 @@ namespace Festispec.ViewModel.report.element
         public Func<string, string> YaxisLabelFormat { get; set; }
 
         public List<string> Labels { get; set; }
+        public ReportElementVM ReportElementVM { get; set; }
 
-        public LineChartVM(ReportElementVM element)
+        public LineChartVM(ReportElementVM element, ReportVM report)
         {
+            EditElement = new GalaSoft.MvvmLight.CommandWpf.RelayCommand(() => Edit());
             Labels = new List<string>();
-            Data = element.Data;
+            //Data = element.Data;
+            ReportVM = report;
+            ReportElementVM = element;
+            Id = element.Id;
+            Type = element.Type;
             Title = element.Title;
             Content = element.Content;
             Order = element.Order;
-            EditElementCommand = new RelayCommand(GoToEdit);
+            ReportId = element.ReportId;
+            X_as = element.X_as;
+            Y_as = element.Y_as;
+        }
+
+        public void Edit()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditLineChartPage) });
+            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
+            {
+                NextReportVM = ReportVM,
+                ReportElement = ReportElementVM
+            });
         }
 
 

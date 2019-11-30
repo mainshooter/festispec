@@ -20,12 +20,13 @@ namespace Festispec.ViewModel.auth
         public UserLoginVM()
         {
             DoLogin = new RelayCommand<PasswordBox>(Login);
+            Email = "m.peeters@gmail.com";
         }
 
         public void Login(PasswordBox passwordBox) 
         {
-            var password = passwordBox.Password;
-
+            //var password = passwordBox.Password;
+            var password = "GamerBoy95";
             using (var context = new Entities())
             {
                 var employee = context.Employees.FirstOrDefault(e => e.Email == Email);

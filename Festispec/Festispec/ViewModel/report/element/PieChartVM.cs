@@ -1,22 +1,41 @@
-﻿using GalaSoft.MvvmLight.CommandWpf;
 using LiveCharts;
 using LiveCharts.Wpf;
+﻿using Festispec.Message;
+using Festispec.View.Pages.Report.element;
 using System;
 using System.Collections.Generic;
 
 namespace Festispec.ViewModel.report.element
 {
-    public class PieChartVM: ReportElementVM
+    public class PieChartVM : ReportElementVM
     {
+
+        public ReportElementVM ReportElementVM { get; set; }
 
         public SeriesCollection SeriesCollection { get; set; }
 
-        public PieChartVM(ReportElementVM element)
+        public PieChartVM(ReportElementVM element, ReportVM report)
         {
+            EditElement = new GalaSoft.MvvmLight.CommandWpf.RelayCommand(() => Edit());
+            Data = element.Data;
+            ReportVM = report;
+            ReportElementVM = element;
+            Id = element.Id;
+            Type = element.Type;
             Title = element.Title;
             Content = element.Content;
-            Data = element.Data;
-            EditElementCommand = new RelayCommand(GoToEdit);
+            ReportId = element.ReportId;
+            Order = element.Order;
+        }
+
+        public void Edit()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTextPage) });
+            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
+            {
+                NextReportVM = ReportVM,
+                ReportElement = ReportElementVM,
+            });
         }
 
         public void ApplyChanges()

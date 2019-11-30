@@ -1,4 +1,6 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using Festispec.Message;
+using Festispec.View.Pages.Report.element;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
@@ -20,6 +22,7 @@ namespace Festispec.ViewModel.report.element
                 RaisePropertyChanged("ReadOnly");
             }
         }
+        public ReportElementVM ReportElementVM { get; set; }
 
         public string Text { get; set; }
 
@@ -28,16 +31,31 @@ namespace Festispec.ViewModel.report.element
         public ICommand ChangeToReadOnly { get; set; }
 
         public ICommand ChangeToInput { get; set; }
-
-        public TextVM(ReportElementVM element)
+        public TextVM(ReportElementVM element, ReportVM report)
         {
+            EditElement = new RelayCommand(() => Edit());
             Data = element.Data;
+            ReportVM = report;
+            ReportElementVM = element;
+            Id = element.Id;
+            Type = element.Type;
             Title = element.Title;
             Content = element.Content;
             ReadOnly = true;
             ChangeToReadOnly = new RelayCommand(()=> ReadOnly = true);
             ChangeToInput = new RelayCommand(() => ReadOnly = false);
-            EditElementCommand = new RelayCommand(GoToEdit);
+            Order = element.Order;
+            ReportId = element.ReportId;
+        }
+
+        public void Edit()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTextPage) });
+            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
+            {
+                NextReportVM = ReportVM,
+                ReportElement = ReportElementVM
+            });
         }
 
         public void ApplyChanges()

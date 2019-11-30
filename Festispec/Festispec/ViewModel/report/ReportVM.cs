@@ -11,9 +11,12 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using Festispec.Repository;
 using Festispec.Message;
-using Festispec.View.Pages.Report;
 using Festispec.ViewModel.Customer.order;
 using GalaSoft.MvvmLight.Ioc;
+using Festispec.ViewModel.toast;
+using System;
+using System.Windows;
+using System.Threading.Tasks;
 
 namespace Festispec.ViewModel.report
 {
@@ -21,6 +24,7 @@ namespace Festispec.ViewModel.report
     {
         private Report _report;
         private ReportElementFactory _reportElementFactory;
+
 
         public int Id {
             get {
@@ -39,6 +43,7 @@ namespace Festispec.ViewModel.report
             }
             set {
                 _report.Title = value;
+                SaveReportChangesAsync();
                 RaisePropertyChanged("Title");
             }
         }
@@ -49,6 +54,8 @@ namespace Festispec.ViewModel.report
             }
             set {
                 _report.Status = value;
+                SaveReportChangesAsync();
+                RaisePropertyChanged("Status");
             }
         }
 
@@ -59,7 +66,7 @@ namespace Festispec.ViewModel.report
         public ICommand SaveReportCommand { get; set; }
 
         public ICommand AddElementCommand { get; set; }
-
+        public ObservableCollection<string> Statuses { get; set; }
 
         [PreferredConstructor]
         public ReportVM()
@@ -67,37 +74,64 @@ namespace Festispec.ViewModel.report
             MessengerInstance.Register<ChangeSelectedOrderMessage>(this, message => {
                 Order = message.SelectedOrder;
             });
-            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { SelectedReport = this });
-            _report = new Report();
+            MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
+                _report = message.NextReportVM._report;
+                Title = message.NextReportVM.Title;
+                Status = message.NextReportVM.Status;
+                Id = message.NextReportVM.Id;
+                RefreshElements();
+            });
             this.ReportElements = new ObservableCollection<ReportElementVM>();
             ReportElementUserControlls = new ObservableCollection<UserControl>();
             _reportElementFactory = new ReportElementFactory();
             ReportElements.CollectionChanged += RenderReportElements;
-            SaveReportCommand = new RelayCommand(Save);
             AddElementCommand = new RelayCommand(GoToAddElementPage);
-            _report.Title = "Test titel";
+            GetStatuses();
             this.RenderReportElements(null, null);
         }
 
         public ReportVM(Report report)
         {
-            this._report = report;
+            _report = report;
+            var reportRepository = new ReportRepository();
+            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
+            ReportElementUserControlls = new ObservableCollection<UserControl>();
+            _reportElementFactory = new ReportElementFactory();
+            ReportElements.CollectionChanged += RenderReportElements;
+            AddElementCommand = new RelayCommand(GoToAddElementPage);
+            this.RenderReportElements(null, null);
+        }
+
+        private void GetStatuses()
+        {
+            using (var context = new Entities())
+            {
+                Statuses = new ObservableCollection<string>(context.ReportStatus.ToList().Select(status => status.Status));
+            }
         }
 
         private void GoToAddElementPage()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddElementPage) });
-            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { SelectedReport = this});
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddElementPage)});
+            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
+            {
+              NextReportVM = this
+            });
         }
 
         public Report ToModel()
         {
             return _report;
         }
-
-        public void Save()
+     
+        public async Task SaveReportChangesAsync()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage { NextPageType = typeof(ReportPage) });
+            using (var context = new Entities())
+            {
+                context.Reports.Attach(_report);
+                context.Entry(_report).State = System.Data.Entity.EntityState.Modified;
+                await context.SaveChangesAsync();
+            }
         }
 
         public void RenderReportElements(object sender, NotifyCollectionChangedEventArgs e)
@@ -106,8 +140,63 @@ namespace Festispec.ViewModel.report
             var reportElements = ReportElements.OrderBy(el => el.Order);
             foreach (var element in reportElements)
             {
-                ReportElementUserControlls.Add(_reportElementFactory.CreateElement(element));
+                ReportElementUserControlls.Add(_reportElementFactory.CreateElement(element, this));
             }
+        }
+        public void MoveElement(ReportElementVM element, int direction)
+        {
+            try
+            {
+                var NextElement = ReportElements[ReportElements.IndexOf(ReportElements.Where(e => e.Id == element.Id).FirstOrDefault()) + direction];
+                var NextElementOrder = NextElement.Order;
+                NextElement.Order = element.Order;
+                element.Order = NextElementOrder;
+                SaveElementOrder(NextElement, element);
+                RefreshElements();
+            }
+            catch (Exception)
+            {
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowError("Dit element kan niet verder.");
+            }
+        }
+
+        public void SaveElementOrder(ReportElementVM element1, ReportElementVM element2)
+        {
+            using (var context = new Entities())
+            {
+                context.ReportElements.Attach(element1.ToModel());
+                context.Entry(element1.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+
+                context.ReportElements.Attach(element2.ToModel());
+                context.Entry(element2.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        public void RefreshElements()
+        {
+            ReportRepository reportRepository = new ReportRepository();
+            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
+            this.RenderReportElements(null, null);
+            RaisePropertyChanged("ReportElements");
+        }
+
+        public bool ValidateInputs()
+        {
+            if (Title == null || Title.Equals(""))
+            {
+                MessageBox.Show("Titel mag niet leeg zijn.");
+                return false;
+            }
+
+            if (Title.Length > 100)
+            {
+                MessageBox.Show("Titel mag niet langer zijn dan 100 karakters.");
+                return false;
+            }
+
+            return true;
         }
     }
 }

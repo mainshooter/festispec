@@ -55,7 +55,7 @@ GO
 CREATE TABLE [dbo].[Case](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[SurveyId] [int] NOT NULL,
-	[EmployeeId] [int] NOT NULL,
+	[EmployeeId] [int] NULL,
 	[Status] [nvarchar](45) NOT NULL,
  CONSTRAINT [PK_Case] PRIMARY KEY CLUSTERED
 (
@@ -310,7 +310,7 @@ CREATE TABLE [dbo].[Order](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[CustomerId] [int] NOT NULL,
 	[EventId] [int] NOT NULL,
-	[EmployeeId] [int] NOT NULL,
+	[EmployeeId] [int] NULL,
 	[QuotationId] [int] NOT NULL,
 	[Status] [nvarchar](45) NOT NULL,
 	[Description] [text] NULL,
@@ -387,7 +387,7 @@ GO
 CREATE TABLE [dbo].[Quotation](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[CustomerId] [int] NOT NULL,
-	[EmployeeId] [int] NOT NULL,
+	[EmployeeId] [int] NULL,
 	[EventId] [int] NOT NULL,
 	[Price] [decimal](8, 2) NOT NULL,
 	[BtwPercentage] [int] NOT NULL,
@@ -428,6 +428,8 @@ CREATE TABLE [dbo].[ReportElement](
 	[Content] [text] NOT NULL,
 	[Data] [text] NULL,
 	[Order] [int] NOT NULL,
+	[X-as] [nvarchar](100) NULL,
+	[Y-as] [nvarchar](100) NULL,
  CONSTRAINT [PK_ReportElement] PRIMARY KEY CLUSTERED
 (
 	[Id] ASC
@@ -633,7 +635,7 @@ REFERENCES [dbo].[Customer] ([Id])
 GO
 ALTER TABLE [dbo].[Quotation] CHECK CONSTRAINT [FK_Quotation_Customer]
 GO
-ALTER TABLE [dbo].[Quotation]  WITH CHECK ADD  CONSTRAINT [FK_Quotation_Employee] FOREIGN KEY([EmployeeId])
+ALTER TABLE [dbo].[Quotation]  WITH CHECK ADD CONSTRAINT [FK_Quotation_Employee] FOREIGN KEY([EmployeeId])
 REFERENCES [dbo].[Employee] ([Id])
 GO
 ALTER TABLE [dbo].[Quotation] CHECK CONSTRAINT [FK_Quotation_Employee]

@@ -1,5 +1,6 @@
 ﻿using Festispec.Factory;
 using Festispec.Interface;
+﻿using Festispec.Domain;
 using Festispec.Message;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.Customer.order;
@@ -11,6 +12,9 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Microsoft.Win32;
+using System;
+using System.IO;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.report
@@ -18,18 +22,53 @@ namespace Festispec.ViewModel.report
     public class AddElementVM : ViewModelBase
     {
         private ReportElementFactory _reportElementFactory;
+
         private DataParserFactory _dataParserFactory;
         private DataVM _dataVM;
         private OrderVM _orderVM;
         private SurveyVM _survey;
         private ReportElementVM _reportElementVM;
 
+        private string _axes;
+        private int _selectedElementIndex;
+
+
         private ToastVM _toastVM;
+
 
         private string _selectedElementType;
         private IQuestion _selectedQuestion;
         private IDataParser _selectedDataParser;
 
+
+        public string Axes
+        {
+            get
+            {
+                return _axes;
+            }
+            set
+            {
+                _axes = value;
+                RaisePropertyChanged("Axes");
+            }
+        }
+
+        public ReportVM Report { get; set; }
+
+        public int SelectedElementIndex
+        {
+            get
+            {
+                return _selectedElementIndex;
+            }
+            set
+            {
+                _selectedElementIndex = value;
+                RaisePropertyChanged("SelectedElementIndex");
+                ChangeInput();
+            }
+        }
 
         public string SelectedElementType {
             get {
@@ -50,8 +89,6 @@ namespace Festispec.ViewModel.report
                 RaisePropertyChanged("ReportElement");
             }
         }
-
-        public ReportVM Report { get; set; }
         public ICommand GoBackCommand { get; set; }
 
         public ICommand AddElementCommand { get; set; }
@@ -93,21 +130,9 @@ namespace Festispec.ViewModel.report
         {
             ReportElement = new ReportElementVM();
             _dataParserFactory = new DataParserFactory();
+            Axes = "Hidden";
             _reportElementFactory = new ReportElementFactory();
             _toastVM = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
-            MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
-                Report = message.SelectedReport;
-                _orderVM = Report.Order;
-                _survey = _orderVM.Survey;
-                PosibleSurveyQuestions.Clear();
-                SurveyQuestions.Clear();
-                foreach (var item in _survey.Questions)
-                {
-                    SurveyQuestions.Add(item);
-                    PosibleSurveyQuestions.Add(item);
-                }
-                ReportElement = new ReportElementVM();
-            });
 
 
             ReportElementTypesListVM elementTypesList = new ReportElementTypesListVM();
@@ -120,19 +145,63 @@ namespace Festispec.ViewModel.report
             PosibleSurveyQuestions = new ObservableCollection<IQuestion>();
             PosibleDataParsers = new ObservableCollection<IDataParser>(DataParsers);
             PosibleElementTypes = new ObservableCollection<string>(ElementTypes);
-        }
 
+            MessengerInstance.Register<ChangeSelectedReportMessage>(this, message =>
+            {
+                Report = message.NextReportVM;
+                ReportElement = new ReportElementVM();
+                ReportElement.ReportId = Report.Id;
+                ReportElement.Order = Report.ReportElements.Count + 1;
+                _orderVM = Report.Order;
+                _survey = _orderVM.Survey;
+                PosibleSurveyQuestions.Clear();
+                SurveyQuestions.Clear();
+                foreach (var item in _survey.Questions)
+                {
+                    SurveyQuestions.Add(item);
+                    PosibleSurveyQuestions.Add(item);
+                }
+            });
+        }
+        public void ChangeInput()
+        {
+            switch (ElementTypes[SelectedElementIndex])
+            {
+                case "image":
+                    var fd = new OpenFileDialog { Filter = "All Image Files | *.*", Multiselect = false };
+                    if (fd.ShowDialog() != true) return;
+                    using (var fs = new FileStream(fd.FileName, FileMode.Open, FileAccess.Read))
+                    {
+                        var test = new byte[fs.Length];
+                        fs.Read(test, 0, Convert.ToInt32(fs.Length));
+                    }
+                    Axes = "Hidden";
+                    break;
+                case "barchart":
+                    Axes = "Visable";
+                    break;
+                case "linechart":
+                    Axes = "Visable";
+                    break;
+                default:
+                    Axes = "Hidden";
+                    break;
+            }
+        }
         private void AddElementToReport()
         {
             if (CheckIfElementCanBeAdded())
             {
-                ReportElement.Title = "Leuke titel";
-                ReportElement.Content = "Test description";
-                ReportElement.Type = SelectedElementType;
                 IDataParser dataVM = _dataParserFactory.GetDataParser(SelectedDataParser.Type);
                 dataVM.Question = SelectedQuestion;
                 ReportElement.DataParser = dataVM;
-                var userControl = _reportElementFactory.CreateElement(ReportElement);
+                using (var context = new Entities())
+                {
+                    _reportElementFactory.CreateElement(ReportElement, Report);
+                    context.ReportElements.Add(ReportElement.ToModel());
+                    context.SaveChanges();
+                }
+                var userControl = _reportElementFactory.CreateElement(ReportElement, Report);
                 Report.ReportElementUserControlls.Add(userControl);
                 GoBackToReport();
             }
@@ -140,7 +209,6 @@ namespace Festispec.ViewModel.report
             {
                 _toastVM.ShowError("Deze combinatie is niet mogelijk");
             }
-
         }
 
         private void GoBackToReport()
@@ -154,7 +222,7 @@ namespace Festispec.ViewModel.report
             {
                 return false;
             }
-            if (!_selectedDataParser.SupportedVisuals.Contains(SelectedElementType))
+            if (!_selectedDataParser.SupportedVisuals.Contains(ReportElement.Type))
             {
                 return false;
             }

@@ -1,35 +1,59 @@
 ﻿using GalaSoft.MvvmLight.CommandWpf;
+﻿using Festispec.Message;
+using Festispec.View.Pages.Report.element;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Data;
 
 namespace Festispec.ViewModel.report.element
 {
-    public class TableVM: ReportElementVM
+    public class TableVM : ReportElementVM
     {
         private DataTable _dataTable;
 
         public Dictionary<string, List<string>> Dictionary { get; set; }
-        
-        public DataTable DataTable { 
-            get {
+
+        public ReportElementVM ReportElementVM { get; set; }
+
+
+        public DataTable DataTable
+        {
+            get
+            {
                 return _dataTable;
             }
-            set {
+            set
+            {
                 _dataTable = value;
                 RaisePropertyChanged("DataTable");
             }
         }
 
-        public TableVM(ReportElementVM element)
+        public TableVM(ReportElementVM element, ReportVM report)
         {
+            EditElement = new GalaSoft.MvvmLight.CommandWpf.RelayCommand(() => Edit());
             DataTable = new DataTable();
             Dictionary = new Dictionary<string, List<string>>();
+            Data = element.Data;
+            ReportVM = report;
+            ReportElementVM = element;
+            Id = element.Id;
+            Type = element.Type;
             Title = element.Title;
             Content = element.Content;
             Order = element.Order;
-            Data = element.Data;
-            EditElementCommand = new RelayCommand(GoToEdit);
+            ReportId = element.ReportId;
+        }
+
+        public void Edit()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTablePage) });
+            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
+            {
+                NextReportVM = ReportVM,
+                ReportElement = ReportElementVM
+            });
         }
 
         public void ApplyChanges()
