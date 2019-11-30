@@ -15,17 +15,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         private CustomerVM _customer;
         private ContactPersonVM _contactPerson;
 
-        public int Id 
-        {
-            get 
-            {
-                return _event.Id;
-            }
-            private set 
-            {
-                _event.Id = value;
-            }
-        }
+        public int Id => _event.Id;
 
         public Domain.Customer CustomerModel
         {
@@ -67,104 +57,56 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public string Name 
         {
-            get 
-            {
-                return _event.Name;
-            }
-            set 
-            {
-                _event.Name = value;
-            }
+            get => _event.Name;
+            set => _event.Name = value;
         }
 
         public DateTime BeginDate 
         {
-            get 
-            {
-                return _event.BeginDate.Date;
-            }
-            set 
-            {
-                _event.BeginDate = value.Date;
-            }
+            get => _event.BeginDate.Date;
+            set => _event.BeginDate = value.Date;
         }
 
         public string BeginDateDate => BeginDate.ToString("d");
 
         public DateTime EndDate 
         {
-            get 
-            {
-                return _event.EndDate.Date;
-            }
-            set 
-            {
-                _event.EndDate = value.Date;
-            }
+            get => _event.EndDate.Date;
+            set => _event.EndDate = value.Date;
         }
 
         public string EndDateDate => EndDate.ToString("d");
 
         public int AmountVisitors 
         {
-            get 
-            {
-                return _event.AmountVisitors;
-            }
-            set 
-            {
-                _event.AmountVisitors = value;
-            }
+            get => _event.AmountVisitors;
+            set => _event.AmountVisitors = value;
         }
 
         public int SurfaceM2 
         {
-            get 
-            {
-                return _event.SurfaceM2;
-            }
-            set 
-            {
-                _event.SurfaceM2 = value;
-            }
+            get => _event.SurfaceM2;
+            set => _event.SurfaceM2 = value;
         }
 
         public string Description 
         {
-            get 
-            {
-                return _event.Description;
-            }
-            set 
-            {
-                _event.Description = value;
-            }
+            get => _event.Description;
+            set => _event.Description = value;
         }
 
         public OrderVM OrderVM { get; set; }
 
         public string Street
         {
-            get
-            {
-                return _event.Street;
-            }
-            set
-            {
-                _event.Street = value;
-            }
+            get => _event.Street;
+            set => _event.Street = value;
         }
 
         public int HouseNumber
         {
-            get
-            {
-                return _event.HouseNumber;
-            }
-            set
-            {
-                _event.HouseNumber = value;
-            }
+            get => _event.HouseNumber;
+            set => _event.HouseNumber = value;
         }
 
         public string HouseNumberAddition
@@ -175,26 +117,14 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public string PostalCode
         {
-            get
-            {
-                return _event.PostalCode;
-            }
-            set
-            {
-                _event.PostalCode = value;
-            }
+            get => _event.PostalCode;
+            set => _event.PostalCode = value;
         }
 
         public string City
         {
-            get
-            {
-                return _event.City;
-            }
-            set
-            {
-                _event.City = value;
-            }
+            get => _event.City;
+            set => _event.City = value;
         }
 
         public EventVM(Event eventCon)

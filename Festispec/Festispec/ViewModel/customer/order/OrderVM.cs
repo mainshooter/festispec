@@ -1,5 +1,4 @@
 ﻿using Festispec.Domain;
-using Festispec.ViewModel.customer;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.employee;
 using Festispec.ViewModel.planning;
@@ -36,7 +35,6 @@ namespace Festispec.ViewModel.Customer.order
         public OrderVM(Order orderCon)
         {
             _order = orderCon;
-            //Customer = new CustomerVM(orderCon.Customer);
             Employee = new EmployeeVM(orderCon.Employee);
             Survey = orderCon.Surveys.Count > 0 ? new SurveyVM(this, orderCon.Surveys.First()) : new SurveyVM(this);
             //Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d)));
