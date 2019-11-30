@@ -1,4 +1,4 @@
-﻿using Festispec.Domain;
+﻿using Festispec.ViewModel.customer.contactPerson;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.employee.quotation;
 using System.Collections.ObjectModel;
@@ -9,110 +9,158 @@ namespace Festispec.ViewModel.customer
     public class CustomerVM
     {
         private ObservableCollection<EventVM> _events;
+        private ObservableCollection<ContactPersonVM> _contactPersons;
         private ObservableCollection<QuotationVM> _quotations;
         private Domain.Customer _customer;
 
-        public int Id { 
-            get {
+        public int Id 
+        {
+            get 
+            {
                 return _customer.Id;
             }
-            private set {
+            private set 
+            {
                 _customer.Id = value;
             }
         }
 
-        public string Name { 
-            get {
+        public string Name 
+        {
+            get 
+            {
                 return _customer.Name;
             }
-            set {
+            set 
+            {
                 _customer.Name = value;
             }
         }
 
-        public int COC {
-            get {
+        public int COC 
+        {
+            get 
+            {
                 return _customer.COC;
             }
-            set {
+            set 
+            {
                 _customer.COC = value;
             }
         }
 
-        public int EstablishmentNumber { 
-            get {
+        public int EstablishmentNumber 
+        {
+            get 
+            {
                 return _customer.BranchNumber;
             }
         }
 
-        public string Street { 
-            get {
+        public string Street 
+        {
+            get 
+            {
                 return _customer.Street;
             }
-            set {
+            set
+            {
                 _customer.Street = value;
             }
         }
 
-        public int HouseNumber { 
-            get {
+        public int HouseNumber 
+        {
+            get 
+            {
                 return _customer.HouseNumber;
             }
-            set {
+            set 
+            {
                 _customer.HouseNumber = value;
             }
         }
 
-        public string PostalCode { 
-            get {
+        public string PostalCode 
+        {
+            get 
+            {
                 return _customer.PostalCode;
             }
-            set {
+            set 
+            {
                 _customer.PostalCode = value;
             }
         }
 
-        public string Phone { 
-            get {
+        public string Phone 
+        {
+            get 
+            {
                 return _customer.Phone;
             }
-            set {
+            set 
+            {
                 _customer.Phone = value;
             }
         }
 
-        public string Email { 
-            get {
+        public string Email 
+        {
+            get 
+            {
                 return _customer.Email;
             }
-            set {
+            set 
+            {
                 _customer.Email = value;
             }
         }
 
-        public string Website { 
-            get {
+        public string Website 
+        {
+            get
+            {
                 return _customer.Website;
             }
-            set {
+            set 
+            {
                 _customer.Website = value;
             }
         }
-        
-        public ObservableCollection<EventVM> Events {
-            get {
+
+        public ObservableCollection<EventVM> Events 
+        {
+            get 
+            {
                 return _events;
             }
-            set {
+            set 
+            {
                 _events = value;
             }
         }
-        
-        public ObservableCollection<QuotationVM> Quotations {
-            get {
+
+        public ObservableCollection<ContactPersonVM> ContactPersons
+        {
+            get
+            {
+                return _contactPersons;
+            }
+            set
+            {
+                _contactPersons = value;
+            }
+        }
+
+        public ObservableCollection<QuotationVM> Quotations 
+        {
+            get 
+            {
                 return _quotations;
             }
-            set {
+            set 
+            {
                 _quotations = value;
             }
         }
@@ -120,11 +168,18 @@ namespace Festispec.ViewModel.customer
         public CustomerVM(Domain.Customer customer)
         {
             _customer = customer;
+            _events = new ObservableCollection<EventVM>(customer.Events.Select(eventcon => new EventVM(eventcon, this)));
+            _contactPersons = new ObservableCollection<ContactPersonVM>(customer.ContactPersons.Select(contactPerson => new ContactPersonVM(contactPerson)));
         }
 
         public CustomerVM()
         {
             _customer = new Domain.Customer();
+        }
+
+        public Domain.Customer ToModel()
+        {
+            return _customer;
         }
     }
 }
