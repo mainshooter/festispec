@@ -2,6 +2,7 @@
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.planning.plannedEmployee;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Festispec.ViewModel.planning
 {
@@ -17,11 +18,7 @@ namespace Festispec.ViewModel.planning
         {
             _day = day;
             Order = orderVM;
-        }
-
-        public DayVM()
-        {
-            _day = new Day();
+            InspectorPlannings = new ObservableCollection<PlannedEmployeeVM>(day.InspectorPlannings.ToList().Select(ip => new PlannedEmployeeVM(ip)));
         }
     }
 }

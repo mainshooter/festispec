@@ -126,13 +126,6 @@ namespace Festispec.ViewModel.customer.customerEvent
             set => _event.City = value;
         }
 
-        public EventVM(Event eventCon)
-        {
-            _event = eventCon;
-            OrderVM = eventCon.Orders.Count > 0 ? new OrderVM(eventCon.Orders.FirstOrDefault(), this) : new OrderVM();
-            _contactPerson = new ContactPersonVM(_event.ContactPerson);
-        }
-
         public EventVM(Event eventCon, CustomerVM customer)
         {
             _event = eventCon;
@@ -141,16 +134,16 @@ namespace Festispec.ViewModel.customer.customerEvent
             _contactPerson = new ContactPersonVM(_event.ContactPerson);
         }
 
+        public EventVM()
+        {
+            _event = new Event();
+            BeginDate = DateTime.Today.Date;
+            EndDate = DateTime.Today.Date;
+        }
+
         public Event ToModel()
         {
             return _event;
-        }
-
-        public EventVM()
-        {
-            _event = new Domain.Event();
-            BeginDate = DateTime.Today.Date;
-            EndDate = DateTime.Today.Date;
         }
 
         #region Validation

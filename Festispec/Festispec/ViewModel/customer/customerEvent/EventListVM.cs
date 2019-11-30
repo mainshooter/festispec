@@ -9,8 +9,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Festispec.View.Pages.Customer;
+using Festispec.View.Pages.Planning;
 using Festispec.View.Pages.Survey;
-using Festispec.ViewModel.survey;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
@@ -21,12 +22,14 @@ namespace Festispec.ViewModel.customer.customerEvent
         private bool _showOnlyFuture;
 
         public CustomerVM Customer { get; set; }
+        public ICommand OpenPlanningCommand { get; set; }
         public ICommand OpenSurveyCommand { get; set; }
         public ICommand OpenReportCommand { get; set; }
         public ICommand OpenAddEventCommand { get; set; }
         public ICommand OpenEditEventCommand { get; set; }
         public ICommand OpenSingleEventCommand { get; set; }
         public ICommand DeleteEventCommand { get; set; }
+        public ICommand BackCommand { get; set; }
         public ObservableCollection<EventVM> EventList { get; set; }
         public string SelectedFilter { get; set; }
 
@@ -135,8 +138,10 @@ namespace Festispec.ViewModel.customer.customerEvent
             OpenEditEventCommand = new RelayCommand<EventVM>(OpenEditEventPage, CanOpenEdit);
             DeleteEventCommand = new RelayCommand<EventVM>(DeleteEvent, CanOpenDelete);
             OpenSingleEventCommand = new RelayCommand<EventVM>(OpenSingleEventPage);
-            OpenSurveyCommand = new RelayCommand<EventVM>(OpenSurveyPage, CanOpenSurvey);
-            OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage, CanOpenReport);
+            OpenSurveyCommand = new RelayCommand<EventVM>(OpenSurveyPage, HasOrder);
+            OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage, HasOrder);
+            OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage, HasOrder);
+            BackCommand = new RelayCommand(Back);
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -163,7 +168,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage()
             {
                 Event = source,
-                EventList = this,
+                EventList = this
             });
         }
 
@@ -202,7 +207,18 @@ namespace Festispec.ViewModel.customer.customerEvent
             MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage()
             {
                 Event = source,
-            }) ;
+                EventList = this,
+            });
+        }
+
+        public void OpenPlanningPage(EventVM source)
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
+            MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage()
+            {
+                Event = source,
+                EventList = this,
+            });
         }
 
         public void OpenSurveyPage(EventVM source)
@@ -219,17 +235,12 @@ namespace Festispec.ViewModel.customer.customerEvent
             MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = source.OrderVM.Survey });
         }
 
-        private bool CanOpenSurvey(EventVM source)
-        {
-            return source?.OrderVM.Id != 0;
-        }
-
         public void OpenReportPage(EventVM source)
         {
             throw new NotImplementedException();
         }
 
-        private bool CanOpenReport(EventVM source)
+        private bool HasOrder(EventVM source)
         {
             return source?.OrderVM.Id != 0;
         }
@@ -238,6 +249,11 @@ namespace Festispec.ViewModel.customer.customerEvent
         {
             EventList = Customer.Events;
             RaisePropertyChanged("EventListFiltered");
+        }
+
+        private void Back()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
         }
     }
 }

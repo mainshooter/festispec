@@ -11,9 +11,6 @@ using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.Message;
-using Festispec.View.Pages.Planning;
-using Festispec.ViewModel.Customer.order;
-using Festispec.ViewModel.customer.customerEvent;
 using Festispec.Domain;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,7 +33,6 @@ namespace Festispec.ViewModel
         public ICommand OpenAvailability { get; set; }
         public ICommand OpenEvent { get; set; }
         public ICommand OpenSick { get; set; }
-        public ICommand OpenPlanning { get; set; }
         public ICommand ShowAccountInformation { get; set; }
         public ObservableCollection<Button> MenuList { get; set; }
 
@@ -73,7 +69,6 @@ namespace Festispec.ViewModel
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenSick = new RelayCommand(OpenSickTab);
-            OpenPlanning = new RelayCommand(OpenSpecificPlanningTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
             Page = ServiceLocator.Current.GetInstance<LoginPage>();
 
@@ -131,7 +126,6 @@ namespace Festispec.ViewModel
             // Planning Dictionary
             _menu.Add("Planning", new Dictionary<string, ICommand>());
             _menu["Planning"].Add("Dashboard", OpenDashboard);
-            _menu["Planning"].Add("Planning", OpenPlanning);
 
             // Directie Dictionary
             _menu.Add("Directie", new Dictionary<string, ICommand>());
@@ -141,7 +135,6 @@ namespace Festispec.ViewModel
             _menu["Directie"].Add("Evenementen", OpenEvent);
             _menu["Directie"].Add("Beschikbaarheid", OpenAvailability);
             _menu["Directie"].Add("Klanten", OpenCustomer);
-            _menu["Directie"].Add("Planning", OpenPlanning);
 
             // Marketing Dictionary
             _menu.Add("Marketing", new Dictionary<string, ICommand>());
@@ -190,25 +183,6 @@ namespace Festispec.ViewModel
         private void OpenSickTab()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage)});
-        }
-
-        private void OpenPlanningTab()
-        {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
-        }
-
-        //Voorbeeld van specifieke event
-        private void OpenSpecificPlanningTab()
-        {
-            using (var context = new Entities())
-            {
-                var evenement = context.Events.ToList().Select(e => new EventVM(e)).First();
-                var order = context.Orders.ToList().Select(o => new OrderVM(o, evenement)).First();
-                order.Event = evenement;
-                evenement.OrderVM = order;
-                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
-                MessengerInstance.Send<ChangeSelectedEventVM>(new ChangeSelectedEventVM() { NextEvent = evenement });
-            }
         }
 
         private void OpenAccountInformation()
