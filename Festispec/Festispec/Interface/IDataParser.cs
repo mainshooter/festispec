@@ -9,5 +9,7 @@ namespace Festispec.Interface
         string Type { get; }
         IQuestion Question { get; set; }
         List<List<string>> ParseData();
+
+        string ToJson();
     }
 }

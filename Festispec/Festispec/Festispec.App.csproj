@@ -143,6 +143,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Factory\DataParserFactory.cs" />
+    <Compile Include="Factory\QuestionFactory.cs" />
     <Compile Include="Interface\IDataParser.cs" />
     <Compile Include="Interface\IReportElement.cs" />
     <Compile Include="Interface\ISurveyAnswer.cs" />

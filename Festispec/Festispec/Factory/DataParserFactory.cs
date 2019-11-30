@@ -1,7 +1,10 @@
-﻿using Festispec.Interface;
+﻿using Festispec.Domain;
+using Festispec.Interface;
 using Festispec.ViewModel.report.data;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Festispec.Factory
 {
@@ -28,6 +31,26 @@ namespace Festispec.Factory
             DataParsers.Add(new MinDataParserVM());
             DataParsers.Add(new MaxDataParserVM());
             DataParsers.Add(new AvgDataParser());
+        }
+
+        public static IDataParser GetDataParserByJson(string json)
+        {
+            if (json == null)
+            {
+                return null;
+            }
+
+            var factory = new DataParserFactory();
+            var result = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+            IDataParser parser = factory.GetDataParser(result["Type"]);
+            using(var context = new Domain.Entities())
+            {
+                int questionId = int.Parse(result["QuestionId"]);
+                Question question = context.Questions.Where(q => q.Id == questionId).First();
+                parser.Question = QuestionFactory.CreateQuestion(question);
+            }
+                
+            return parser;
         }
 
         public IDataParser GetDataParser(string type)

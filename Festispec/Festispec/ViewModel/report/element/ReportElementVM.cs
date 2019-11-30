@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using Festispec.Factory;
 using Festispec.Interface;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
@@ -145,11 +146,13 @@ namespace Festispec.ViewModel.report.element
                 if (_dataParser != null)
                 {
                     _data = _dataParser.ParseData();
+                    _reportElement.Data = DataParser.ToJson();
                     RaisePropertyChanged("DataParser");
                 }
                 else
                 {
                     _data = new List<List<string>>();
+                    _reportElement.Data = null;
                 }
             }
         }
@@ -169,6 +172,7 @@ namespace Festispec.ViewModel.report.element
         {
             _reportElement = element;
             ReportVM = report;
+            DataParser = DataParserFactory.GetDataParserByJson(element.Data);
             DeleteElement = new RelayCommand(() => Delete());
             ElementUpCommand = new RelayCommand(() => ReportVM.MoveElement(this, -1));
             ElementDownCommand = new RelayCommand(() => ReportVM.MoveElement(this, 1));
