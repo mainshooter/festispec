@@ -172,9 +172,7 @@ namespace Festispec.ViewModel.survey
 
         private bool IsConcept()
         {
-            if (SurveyVM == null) return true;
-
-            return SurveyVM.Status == "Concept";
+            return SurveyVM == null || SurveyVM.IsConcept();
         }
 
         private void MoveQuestionUp()
@@ -186,7 +184,7 @@ namespace Festispec.ViewModel.survey
                 aboveQuestion.Order = SelectedQuestion.Order;
                 SelectedQuestion.Order = aboveQuestionOrder;
                 SurveyVM.Questions = new ObservableCollection<IQuestion>(SurveyVM.Questions.OrderBy(q => q.Order));
-                SaveQuestionOrder(aboveQuestion, SelectedQuestion);
+                SaveQuestionOrder(aboveQuestion);
             }
             catch (Exception)
             {
@@ -203,7 +201,7 @@ namespace Festispec.ViewModel.survey
                 belowQuestion.Order = SelectedQuestion.Order;
                 SelectedQuestion.Order = aboveQuestionOrder;
                 SurveyVM.Questions = new ObservableCollection<IQuestion>(SurveyVM.Questions.OrderBy(q => q.Order));
-                SaveQuestionOrder(belowQuestion, SelectedQuestion);
+                SaveQuestionOrder(belowQuestion);
             }
             catch (Exception)
             {
@@ -211,16 +209,16 @@ namespace Festispec.ViewModel.survey
             }
         }
 
-        private void SaveQuestionOrder(IQuestion question1, IQuestion question2)
+        private void SaveQuestionOrder(IQuestion questionToSwitchWithSelected)
         {
             using (var context = new Entities())
             {
-                context.Questions.Attach(question1.ToModel());
-                context.Entry(question1.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.Questions.Attach(questionToSwitchWithSelected.ToModel());
+                context.Entry(questionToSwitchWithSelected.ToModel()).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
 
-                context.Questions.Attach(question2.ToModel());
-                context.Entry(question2.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.Questions.Attach(SelectedQuestion.ToModel());
+                context.Entry(SelectedQuestion.ToModel()).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
             }
         }

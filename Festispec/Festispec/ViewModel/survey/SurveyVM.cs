@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using Festispec.Interface;
+using Festispec.Lib.Enums;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.survey.question.QuestionTypes;
 using GalaSoft.MvvmLight;
@@ -57,19 +58,19 @@ namespace Festispec.ViewModel.survey
         }
 
         [PreferredConstructor]
-        public SurveyVM(OrderVM order)
+        public SurveyVM(OrderVM orderVM)
         {
             _survey = new Survey();
             Questions = new ObservableCollection<IQuestion>();
-            OrderVM = order;
+            OrderVM = orderVM;
             SetStatuses();
         }
 
-        public SurveyVM(OrderVM order, Survey survey)
+        public SurveyVM(OrderVM orderVM, Survey survey)
         {
             _survey = survey;
             Questions = new ObservableCollection<IQuestion>(survey.Questions.ToList().Select(CreateQuestionType).OrderBy(q => q.Order));
-            OrderVM = order;
+            OrderVM = orderVM;
             SetStatuses();
         }
 
@@ -141,6 +142,11 @@ namespace Festispec.ViewModel.survey
             }
 
             return true;
+        }
+
+        public bool IsConcept()
+        {
+            return Status == SurveyStatus.Concept.ToString();
         }
     }
 }

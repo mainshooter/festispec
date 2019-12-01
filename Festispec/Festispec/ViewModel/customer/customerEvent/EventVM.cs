@@ -146,6 +146,16 @@ namespace Festispec.ViewModel.customer.customerEvent
             return _event;
         }
 
+        public bool HasOrder()
+        {
+            return OrderVM.Id != 0;
+        }
+
+        public bool ContainsModelOrder()
+        {
+            return _event.Orders.Any();
+        }
+
         #region Validation
 
         string IDataErrorInfo.Error => null;

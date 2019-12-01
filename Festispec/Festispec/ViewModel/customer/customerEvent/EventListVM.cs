@@ -196,7 +196,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         private bool CanOpenDelete(EventVM source)
         {
             if (source == null) return false;
-            if (source.ToModel().Orders.Any()) return false;
+            if (source.ContainsModelOrder()) return false;
             if (source.EndDate < DateTime.Today) return false;
             return true;
         }
@@ -242,7 +242,7 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         private bool HasOrder(EventVM source)
         {
-            return source?.OrderVM.Id != 0;
+            return source != null && source.HasOrder();
         }
 
         public void RefreshEvents()

@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using Festispec.Domain;
+using Festispec.Lib.Enums;
 using Festispec.Message;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Survey;
@@ -18,7 +19,7 @@ namespace Festispec.ViewModel.survey
             set
             {
                 _surveyVM = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged(() => SurveyVM);
             }
         }
 
@@ -43,7 +44,7 @@ namespace Festispec.ViewModel.survey
             {
                 if (!SurveyVM.ValidateInputs()) return false;
 
-                SurveyVM.Status = "Concept";
+                SurveyVM.Status = SurveyStatus.Concept.ToString();
                 SurveyVM.ToModel().OrderId = SurveyVM.OrderVM.Id;
                 context.Surveys.Add(SurveyVM.ToModel());
                 context.SaveChanges();
