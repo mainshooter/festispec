@@ -1,5 +1,4 @@
-﻿using Festispec.Domain;
-using Festispec.Message;
+﻿using Festispec.Message;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.planning.plannedEmployee;
 using GalaSoft.MvvmLight;
@@ -7,9 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Festispec.ViewModel.Customer.order;
+using System.Windows.Input;
+using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Planning;
 using Festispec.ViewModel.toast;
+using GalaSoft.MvvmLight.CommandWpf;
 
 namespace Festispec.ViewModel.planning
 {
@@ -18,8 +19,22 @@ namespace Festispec.ViewModel.planning
         private string _filter;
         private List<string> _filteritems;
         private ObservableCollection<PlannedEmployeeVM> _filteredPlannedEmployeeList;
-        private EventVM _selectedEventVM;
-        private ToastVM _toastVM;
+        private bool _showOnlyFuture;
+        private EventVM _eventVM;
+
+        public string SelectedFilter { get; set; }
+        public ICommand BackCommand { get; set; }
+        public string EventName => EventVM?.Name;
+
+        public EventVM EventVM
+        {
+            get => _eventVM;
+            set
+            {
+                _eventVM = value;
+                RaisePropertyChanged(() => EventName);
+            }
+        }
 
         public ObservableCollection<PlannedEmployeeVM> FilteredPlannedEmployeeList
         {
@@ -44,11 +59,13 @@ namespace Festispec.ViewModel.planning
                             temp = new ObservableCollection<PlannedEmployeeVM>(_filteredPlannedEmployeeList.Select(i => i).Where(i => i.Status.ToLower().Contains(Filter.ToLower())));
                             break;
                     }
+
                     if (_showOnlyFuture)
                     {
                         temp = new ObservableCollection<PlannedEmployeeVM>(temp.ToList().Where(i => i.PlannedEndTime >= DateTime.Today).ToList());
                     }
                 }
+
                 return temp;
             }
             set
@@ -60,10 +77,7 @@ namespace Festispec.ViewModel.planning
 
         public string Filter
         {
-            get
-            {
-                return _filter;
-            }
+            get => _filter;
             set
             {
                 _filter = value;
@@ -71,14 +85,9 @@ namespace Festispec.ViewModel.planning
             }
         }
 
-        public string SelectedFilter { get; set; }
-
         public List<string> FilterItems
         {
-            get
-            {
-                return _filteritems;
-            }
+            get => _filteritems;
             set
             {
                 _filteritems = new List<string>();
@@ -89,13 +98,9 @@ namespace Festispec.ViewModel.planning
             }
         }
 
-        private bool _showOnlyFuture;
         public bool ShowOnlyFuture
         {
-            get
-            {
-                return _showOnlyFuture;
-            }
+            get => _showOnlyFuture;
             set
             {
                 _showOnlyFuture = value;
@@ -105,42 +110,48 @@ namespace Festispec.ViewModel.planning
 
         public PlanningOverviewVM()
         {
-            _toastVM = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
-            MessengerInstance.Register<ChangeSelectedEventVM>(this, message => {
-                _selectedEventVM = message.NextEvent;
+            MessengerInstance.Register<ChangeSelectedEventMessage>(this, message => {
+                EventVM = message.Event;
                 GetInitialPlannedEmployeeList();
             });
 
             MessengerInstance.Register<ChangePageMessage>(this, message => {
-                Type pageType = message.NextPageType;
-                if (pageType == typeof(PlanningOverviewPage))
+                if (message.NextPageType == typeof(PlanningOverviewPage))
                 {
-                    _selectedEventVM = null;
+                    EventVM = null;
                     GetInitialPlannedEmployeeList();
                 }
             });
 
-            GetInitialPlannedEmployeeList();
-
+            BackCommand = new RelayCommand(Back);
             FilterItems = new List<string>();
             SelectedFilter = FilterItems.First();
             Filter = "";
         }
 
+        private void Back()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
+        }
+
         private void GetInitialPlannedEmployeeList() 
         {
-            using (var context = new Entities())
+            if (EventVM != null)
             {
-                _filteredPlannedEmployeeList = new ObservableCollection<PlannedEmployeeVM>(context.InspectorPlannings.ToList().Select(i => new PlannedEmployeeVM(i)));
-                if (_selectedEventVM != null) 
+                _filteredPlannedEmployeeList = new ObservableCollection<PlannedEmployeeVM>();
+
+                foreach (var day in EventVM.OrderVM.Days)
                 {
-                    OrderVM orderVM = _selectedEventVM.OrderVM;
-                    var result = _filteredPlannedEmployeeList.Where(e => e.Day.Order.Id.Equals(orderVM.Id));
-                    _filteredPlannedEmployeeList = new ObservableCollection<PlannedEmployeeVM>(result);
-                    _toastVM.ShowSuccess(_filteredPlannedEmployeeList.Count + " resultaten gefilterd!");
+                    foreach (var inspectorPlanning in day.InspectorPlannings)
+                    {
+                        _filteredPlannedEmployeeList.Add(inspectorPlanning);
+                    }
                 }
-                FilteredPlannedEmployeeList = _filteredPlannedEmployeeList;
+
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess(_filteredPlannedEmployeeList.Count + " resultaten gefilterd!");
             }
+
+            FilteredPlannedEmployeeList = _filteredPlannedEmployeeList;
         }
     }
 }
