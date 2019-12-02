@@ -19,6 +19,7 @@ using Festispec.Domain;
 using System.Collections.Generic;
 using Festispec.ViewModel.survey;
 using System.Collections.ObjectModel;
+using Festispec.ViewModel.customer;
 
 namespace Festispec.ViewModel
 {
@@ -181,7 +182,14 @@ namespace Festispec.ViewModel
 
         private void OpenEventTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
+            using (var context = new Entities())
+            {
+                var customerDomain = context.Customers.First();
+                var customer = new CustomerVM(customerDomain);
+
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
+                MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage() { Customer = customer });
+            }
         }
 
         private void OpenSickTab()

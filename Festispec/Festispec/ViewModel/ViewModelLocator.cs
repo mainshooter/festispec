@@ -18,6 +18,7 @@ using Festispec.View.Pages.Survey.QuestionTypes.SliderQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.TableQuestion;
 using Festispec.ViewModel.planning;
 using Festispec.ViewModel.auth;
+using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.employee;
 using Festispec.ViewModel.employee.availabilty;
 using Festispec.ViewModel.report;
@@ -103,6 +104,11 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddTableQuestionVM>();
             SimpleIoc.Default.Register<EditTableQuestionVM>();
             SimpleIoc.Default.Register<UserLoginVM>();
+            SimpleIoc.Default.Register<EventListVM>();
+            SimpleIoc.Default.Register<AddEventVM>();
+            SimpleIoc.Default.Register<EditEventVM>();
+            SimpleIoc.Default.Register<EventInfoVM>();
+
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
@@ -132,6 +138,14 @@ namespace Festispec.ViewModel
         public AddTableQuestionVM AddTableQuestionVM => ServiceLocator.Current.GetInstance<AddTableQuestionVM>();
         public EditTableQuestionVM EditTableQuestionVM => ServiceLocator.Current.GetInstance<EditTableQuestionVM>();
         public EmployeeInformationVM EmployeeInformationVM => ServiceLocator.Current.GetInstance<EmployeeInformationVM>();
+
+        public EventListVM EventListVM => ServiceLocator.Current.GetInstance<EventListVM>();
+
+        public AddEventVM AddEventVM => ServiceLocator.Current.GetInstance<AddEventVM>();
+
+        public EditEventVM EditEventVM => ServiceLocator.Current.GetInstance<EditEventVM>();
+
+        public EventInfoVM EventInfoVM => ServiceLocator.Current.GetInstance<EventInfoVM>();
 
         public static void Cleanup()
         {
