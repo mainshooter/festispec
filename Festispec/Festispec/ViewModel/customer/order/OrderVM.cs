@@ -26,15 +26,6 @@ namespace Festispec.ViewModel.Customer.order
             }
         }
         
-        public CustomerVM Customer { 
-            get {
-                return _customer;
-            }
-            set {
-                _customer = value;
-            }
-        }
-        
         public EventVM Event { 
             get {
                 return _event;
@@ -52,6 +43,7 @@ namespace Festispec.ViewModel.Customer.order
                 _employee = value;
             }
         }
+
         public ObservableCollection<DayVM> Days { get; set; }
 
         public string Status { 
@@ -84,8 +76,7 @@ namespace Festispec.ViewModel.Customer.order
         public OrderVM(Order orderCon)
         {
             _order = orderCon;
-            Customer = new CustomerVM(orderCon.Customer);
-            Event = new EventVM(orderCon.Event);
+            //Customer = new CustomerVM(orderCon.Customer);
             Employee = new EmployeeVM(orderCon.Employee);
             //Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d)));
             //Reports = new ObservableCollection<ReportVM>(_order.Reports.ToList().Select(r => new ReportVM(r)));
