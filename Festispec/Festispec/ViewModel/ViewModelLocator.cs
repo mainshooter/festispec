@@ -40,7 +40,6 @@ namespace Festispec.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
             SimpleIoc.Default.Register<DashboardPage>();
             SimpleIoc.Default.Register<ReportPage>();
             SimpleIoc.Default.Register<CustomerPage>();
@@ -51,7 +50,6 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddElementPage>();
             SimpleIoc.Default.Register<PlanningOverviewPage>();
             SimpleIoc.Default.Register<EmployeeInformationPage>();
-
             SimpleIoc.Default.Register<EmployeePage>();
             SimpleIoc.Default.Register<AddEmployeePage>();
             SimpleIoc.Default.Register<SingleEmployeePage>();
@@ -74,7 +72,6 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddTableQuestionPage>();
             SimpleIoc.Default.Register<EditTableQuestionPage>();
             SimpleIoc.Default.Register<LoginPage>();
-
             SimpleIoc.Default.Register<ReportVM>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<EmployeeVM>();
@@ -82,10 +79,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddEmployeeVM>();
             SimpleIoc.Default.Register<AddElementVM>();
             SimpleIoc.Default.Register<EmployeeInformationVM>();
-
             SimpleIoc.Default.Register<ToastVM>();
             SimpleIoc.Default.Register<PlanningOverviewVM>();
-
             SimpleIoc.Default.Register<EmployeeInfoVM>();
             SimpleIoc.Default.Register<EditEmployeeVM>();
             SimpleIoc.Default.Register<AvailabilityManagerVM>();
