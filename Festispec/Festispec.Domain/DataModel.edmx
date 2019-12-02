@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Festispec.Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Festispec.Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="Id" />
@@ -241,7 +241,14 @@
           <Property Name="Price" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="BtwPercentage" Type="int" Nullable="false" />
           <Property Name="TimeSend" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="Content" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuotationStatus">
+          <Key>
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="Report">
           <Key>
@@ -653,6 +660,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Quotation_QuotationStatus">
+          <End Role="QuotationStatus" Type="Self.QuotationStatus" Multiplicity="1" />
+          <End Role="Quotation" Type="Self.Quotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuotationStatus">
+              <PropertyRef Name="Status" />
+            </Principal>
+            <Dependent Role="Quotation">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Report_Order">
           <End Role="Order" Type="Self.Order" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -783,6 +802,7 @@
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionType" EntityType="Self.QuestionType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Quotation" EntityType="Self.Quotation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuotationStatus" EntityType="Self.QuotationStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportElement" EntityType="Self.ReportElement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportStatus" EntityType="Self.ReportStatus" Schema="dbo" store:Type="Tables" />
@@ -901,6 +921,10 @@
             <End Role="Event" EntitySet="Event" />
             <End Role="Quotation" EntitySet="Quotation" />
           </AssociationSet>
+          <AssociationSet Name="FK_Quotation_QuotationStatus" Association="Self.FK_Quotation_QuotationStatus">
+            <End Role="QuotationStatus" EntitySet="QuotationStatus" />
+            <End Role="Quotation" EntitySet="Quotation" />
+          </AssociationSet>
           <AssociationSet Name="FK_Report_Order" Association="Self.FK_Report_Order">
             <End Role="Order" EntitySet="Order" />
             <End Role="Report" EntitySet="Report" />
@@ -934,7 +958,8 @@
             <End Role="Survey" EntitySet="Survey" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Festispec.Domain" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1229,11 +1254,20 @@
           <Property Name="Price" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="BtwPercentage" Type="Int32" Nullable="false" />
           <Property Name="TimeSend" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Quotation_Customer" FromRole="Quotation" ToRole="Customer" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Quotation_Employee" FromRole="Quotation" ToRole="Employee" />
           <NavigationProperty Name="Event" Relationship="Self.FK_Quotation_Event" FromRole="Quotation" ToRole="Event" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Quotation" FromRole="Quotation" ToRole="Order" />
+          <NavigationProperty Name="QuotationStatu" Relationship="Self.FK_Quotation_QuotationStatus" FromRole="Quotation" ToRole="QuotationStatus" />
+        </EntityType>
+        <EntityType Name="QuotationStatu">
+          <Key>
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Quotations" Relationship="Self.FK_Quotation_QuotationStatus" FromRole="QuotationStatus" ToRole="Quotation" />
         </EntityType>
         <EntityType Name="Report">
           <Key>
@@ -1726,6 +1760,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Quotation_QuotationStatus">
+          <End Role="QuotationStatus" Type="Self.QuotationStatu" Multiplicity="1" />
+          <End Role="Quotation" Type="Self.Quotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuotationStatus">
+              <PropertyRef Name="Status" />
+            </Principal>
+            <Dependent Role="Quotation">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Report_ReportStatus">
           <End Role="ReportStatus" Type="Self.ReportStatu" Multiplicity="1" />
           <End Role="Report" Type="Self.Report" Multiplicity="*" />
@@ -1788,6 +1834,7 @@
           <EntitySet Name="Questions" EntityType="Self.Question" />
           <EntitySet Name="QuestionTypes" EntityType="Self.QuestionType" />
           <EntitySet Name="Quotations" EntityType="Self.Quotation" />
+          <EntitySet Name="QuotationStatus" EntityType="Self.QuotationStatu" />
           <EntitySet Name="Reports" EntityType="Self.Report" />
           <EntitySet Name="ReportElements" EntityType="Self.ReportElement" />
           <EntitySet Name="ReportStatus" EntityType="Self.ReportStatu" />
@@ -1925,6 +1972,10 @@
           <AssociationSet Name="FK_Question_Survey" Association="Self.FK_Question_Survey">
             <End Role="Survey" EntitySet="Surveys" />
             <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quotation_QuotationStatus" Association="Self.FK_Quotation_QuotationStatus">
+            <End Role="QuotationStatus" EntitySet="QuotationStatus" />
+            <End Role="Quotation" EntitySet="Quotations" />
           </AssociationSet>
           <AssociationSet Name="FK_Report_ReportStatus" Association="Self.FK_Report_ReportStatus">
             <End Role="ReportStatus" EntitySet="ReportStatus" />
@@ -2198,7 +2249,15 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="BtwPercentage" ColumnName="BtwPercentage" />
                 <ScalarProperty Name="TimeSend" ColumnName="TimeSend" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuotationStatus">
+            <EntityTypeMapping TypeName="Festispec.Domain.QuotationStatu">
+              <MappingFragment StoreEntitySet="QuotationStatus">
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

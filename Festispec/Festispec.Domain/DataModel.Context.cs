@@ -48,6 +48,7 @@ namespace Festispec.Domain
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<QuestionType> QuestionTypes { get; set; }
         public virtual DbSet<Quotation> Quotations { get; set; }
+        public virtual DbSet<QuotationStatu> QuotationStatus { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<ReportElement> ReportElements { get; set; }
         public virtual DbSet<ReportStatu> ReportStatus { get; set; }
