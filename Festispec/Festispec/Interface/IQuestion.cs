@@ -9,5 +9,6 @@ namespace Festispec.Interface
         string QuestionType { get; }
         bool ValidateQuestionDetails();
         Question ToModel();
+        int Order { get; set; }
     }
 }

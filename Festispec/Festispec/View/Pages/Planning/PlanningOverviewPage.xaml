@@ -11,6 +11,10 @@
       DataContext="{Binding PlanningOverviewVM, Source={StaticResource Locator}}">
 
     <StackPanel Background="White">
+        <Grid>
+            <Button Margin="10" HorizontalAlignment="Left" Command="{Binding BackCommand}">Terug</Button>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="{Binding EventName }" ContentStringFormat="Ingeplande inspecteurs voor {0}"></Label>
+        </Grid>
         <WrapPanel>
             <Label Margin="3, 3, 10, 3">Filter:</Label>
             <ComboBox Margin="3, 3, 10, 3" SelectedIndex="0" SelectedValuePath="SelectedFilter" ItemsSource="{Binding FilterItems}" SelectedItem="{Binding SelectedFilter,Mode=TwoWay}" Width="128"></ComboBox>
@@ -24,7 +28,6 @@
             <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding FilteredPlannedEmployeeList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="900">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Volledige naam" Binding="{Binding Employee.Fullname}"/>
-                    <DataGridTextColumn Header="Evenement" Binding="{Binding Day.Order.Event.Name}"/>
                     <DataGridTextColumn Header="Starttijd" Binding="{Binding ActualStartDateTime}"/>
                     <DataGridTextColumn Header="Eindtijd" Binding="{Binding ActualEndDateTime}"/>
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>

@@ -44,6 +44,12 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             set => _surveyQuestion.Type = value;
         }
 
+        public int Order
+        {
+            get => _surveyQuestion.Order;
+            set => _surveyQuestion.Order = value;
+        }
+
         [PreferredConstructor]
         public DrawQuestionVM()
         {
