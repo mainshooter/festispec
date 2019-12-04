@@ -9,6 +9,6 @@
 @foreach (var question in Model.Questions)
 {
     <h3>@question.Details.Question</h3>
-    <span>@question.Details.Description</span>
+    <p>@question.Details.Description</p><br/>
     @Html.EditorFor(m => question);<br />
 }
