@@ -9,13 +9,14 @@
 }
 
 <h2>Survey</h2>
+<div class="survey-container">
 
-
-@foreach (var question in Model.Questions)
-{
-	<h3>@question.Details.Question</h3>
-	@Html.EditorFor(m => question);
-	<br />
-	<span><strong>Beschrijving: </strong> @question.Details.Description</span>
-}
-<button type="button" id="saveSurvey">Opslaan</button>
+	@foreach (var question in Model.Questions)
+	{
+		<h3>@question.Details.Question</h3>
+		@Html.EditorFor(m => question);
+		<br />
+		<span><strong>Beschrijving: </strong> @question.Details.Description</span>
+	}
+	<button type="button" id="saveSurvey">Opslaan</button>
+</div>
