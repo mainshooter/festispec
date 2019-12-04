@@ -1,7 +1,0 @@
-﻿@model Festispec.Lib.Survey.Question.QuestionDetails
-@foreach (var opt in Model.Choices.Cols)
-{
-    <input type="radio" name="@Html.DisplayFor(m => m.Question)" value="@opt">
-    @opt
-    <br />
-}

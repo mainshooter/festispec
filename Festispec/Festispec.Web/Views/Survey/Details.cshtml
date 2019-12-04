@@ -1,7 +1,4 @@
-﻿@using Festispec.Lib.Survey.Question
-@using Festispec.Web.Controllers.Questions
-@using Newtonsoft.Json
-@model Festispec.Domain.Survey
+﻿@model Festispec.Web.Models.SurveyModel
 
 @{
     ViewBag.Title = "Details";
@@ -9,15 +6,10 @@
 
 <h2>Survey</h2>
 
-@{
-    foreach (var question in Model.Questions)
-    {
-        var details = JsonConvert.DeserializeObject<QuestionDetails>(question.Question1);
-        var repo = new QuestionTypeRepository(details);
-        var input = repo.GetQuestionType(question.QuestionType.Type);
 
-        <h3>@details.Question</h3>
-        <p>@Html.Partial(input.PathToPartial, details)</p>
-        <span><strong>Beschrijving: </strong> @details.Description</span>
-    }
+@foreach (var question in Model.Questions)
+{
+    <h3>@question.Details.Question</h3>
+    @Html.EditorFor(m => question);<br />
+    <span><strong>Beschrijving: </strong> @question.Details.Description</span>
 }

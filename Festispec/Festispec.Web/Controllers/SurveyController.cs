@@ -2,6 +2,11 @@
 using System.Net;
 using System.Web.Mvc;
 using Festispec.Domain;
+using Festispec.Lib.Survey.Question;
+using Festispec.Web.Models;
+using Festispec.Web.Models.Questions;
+using Festispec.Web.Models.Questions.Types;
+using Newtonsoft.Json;
 
 namespace Festispec.Web.Controllers
 {
@@ -20,12 +25,21 @@ namespace Festispec.Web.Controllers
             if(id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var survey = _db.Surveys.Find(id);
+            var model = new SurveyModel {Survey = _db.Surveys.Find(id)};
+            var repo = new QuestionTypeRepository();
 
-            if (survey == null)
+            if (model.Survey == null)
                 return HttpNotFound();
 
-            return View(survey);
+            foreach (var q in model.Survey.Questions)
+            {
+                var qType = repo.GetQuestionType(q.Type);
+                qType.Details = JsonConvert.DeserializeObject<QuestionDetails>(q.Question1);
+                qType.Id = q.Id;
+                model.Questions.Add(qType);
+            }
+           
+            return View(model);
         }
     }
 }
