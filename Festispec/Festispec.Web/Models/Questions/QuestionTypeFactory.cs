@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Festispec.Web.Models.Questions.Types;
+﻿using Festispec.Web.Models.Questions.Types;
 
 namespace Festispec.Web.Models.Questions
 {
@@ -16,7 +15,6 @@ namespace Festispec.Web.Models.Questions
                 case "Schuifbalk vraag": return new SliderQuestionType();
                 case "Tabel vraag": return new TableQuestionType();
                 case "Teken vraag": return new DrawingQuestionType();
-                case "Upload vraag": return new UploadQuestionType();
                 default: return new OpenQuestionType();
             }
         }

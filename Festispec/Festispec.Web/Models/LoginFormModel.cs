@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Services.Description;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Festispec.Web.ViewModels
+namespace Festispec.Web.Models
 {
     public class LoginFormModel
     {
