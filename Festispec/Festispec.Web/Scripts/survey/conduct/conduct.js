@@ -1,4 +1,4 @@
-﻿class Survey {
+﻿class SurveyConductor {
 
 	// SCOPE - container
     constructor(identifer) {
@@ -8,11 +8,17 @@
     getQuestion() {
         let questions = [];
 
-    }
+	}
+
+	getAnswers() {
+
+	}
 }
 
 
-(function() {
+(function () {
 
-console.log("doei doei");
 })();
+
+
+let surveyCon = new SurveyConductor();
