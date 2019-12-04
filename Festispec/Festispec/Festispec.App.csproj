@@ -150,7 +150,6 @@
     <Compile Include="Factory\ReportElementFactory.cs" />
     <Compile Include="Message\ChangeSelectedSurveyMessage.cs" />
     <Compile Include="Message\ChangeSelectedSurveyQuestionMessage.cs" />
-    <Compile Include="Message\ChangeSelectedEventVM.cs" />
     <Compile Include="Message\ChangeSelectedEmployeeMessage.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\ReportRepository.cs" />
@@ -193,6 +192,7 @@
     <Compile Include="ViewModel\report\element\TableVM.cs" />
     <Compile Include="ViewModel\report\element\TextVM.cs" />
     <Compile Include="ViewModel\report\ReportVM.cs" />
+    <Compile Include="ViewModel\survey\AddSurveyVM.cs" />
     <Compile Include="ViewModel\survey\answer\SurveyAnswerVM.cs" />
     <Compile Include="ViewModel\survey\CaseVM.cs" />
     <Compile Include="Interface\IQuestion.cs" />
@@ -245,6 +245,9 @@
     </Compile>
     <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
       <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Survey\AddSurveyPage.xaml.cs">
+      <DependentUpon>AddSurveyPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Survey\QuestionTypes\CommentField\AddCommentFieldPage.xaml.cs">
       <DependentUpon>AddCommentFieldPage.xaml</DependentUpon>
@@ -401,6 +404,10 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Pages\Survey\AddSurveyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Employee\EmployeeInformationPage.xaml">
       <SubType>Designer</SubType>
