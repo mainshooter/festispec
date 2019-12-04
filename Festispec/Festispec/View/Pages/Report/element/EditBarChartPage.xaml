@@ -13,7 +13,7 @@
 
 
     <StackPanel>
-        <Button Width="50" HorizontalAlignment="Left" Command="{Binding ReturnCommand}" Content="{materialDesign:PackIcon keyboardreturn}"/>
+        <Button Width="50" HorizontalAlignment="Left" ToolTip="Terug" ToolTipService.ShowOnDisabled="True" Command="{Binding ReturnCommand}" Content="{materialDesign:PackIcon keyboardreturn}"/>
         <StackPanel>
             <Label Content="Titel: "></Label>
             <TextBox Text="{Binding ReportElementVM.Title,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
@@ -42,6 +42,6 @@
                 <lvc:Axis Title="{Binding YaxisName}" LabelFormatter="{Binding Formatter}"></lvc:Axis>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
-        <Button HorizontalAlignment="Right" Width="50" Command="{Binding SaveElementCommand}" Content="{materialDesign:PackIcon ContentSave}"/>
+        <Button HorizontalAlignment="Right" Width="50" Command="{Binding SaveElementCommand}" ToolTip="Element opslaan" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ContentSave}"/>
     </StackPanel>
 </Page>
