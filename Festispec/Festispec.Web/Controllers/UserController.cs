@@ -44,7 +44,7 @@ namespace Festispec.Web.Controllers
                {
                     
                    var employee = context.Employees.FirstOrDefault(e => e.Email == email);
-                   IPasswordValidator passwordService = new PasswordService();
+                   IPasswordValidator passwordService = new PasswordHashService();
 
                    if (employee == null)
                    {

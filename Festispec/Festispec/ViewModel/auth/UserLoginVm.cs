@@ -16,20 +16,22 @@ namespace Festispec.ViewModel.auth
     {
         public string Email { get; set; }
         public ICommand DoLogin { get; set; }
+        public ICommand DoResetPassword { get; set; }
 
         public UserLoginVM()
         {
             DoLogin = new RelayCommand<PasswordBox>(Login);
+            DoResetPassword = new RelayCommand(ResetPassword);
         }
 
-        public void Login(PasswordBox passwordBox) 
+        private void Login(PasswordBox passwordBox) 
         {
             var password = passwordBox.Password;
 
             using (var context = new Entities())
             {
                 var employee = context.Employees.FirstOrDefault(e => e.Email == Email);
-                var passwordService = new PasswordService();
+                var passwordService = new PasswordHashService();
 
                 if (employee == null)
                 {
@@ -47,6 +49,11 @@ namespace Festispec.ViewModel.auth
                     MessengerInstance.Send<ChangeLoggedinUserMessage>(new ChangeLoggedinUserMessage() { LoggedinEmployee = userSession.Employee});
                 }
             }
+        }
+
+        private void ResetPassword()
+        {
+
         }
     }
 }

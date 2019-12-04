@@ -246,6 +246,12 @@
     <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
       <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\PasswordReset\RequestPasswordResetPage.xaml.cs">
+      <DependentUpon>RequestPasswordResetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\PasswordReset\ResetPasswordPage.xaml.cs">
+      <DependentUpon>ResetPasswordPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Survey\AddSurveyPage.xaml.cs">
       <DependentUpon>AddSurveyPage.xaml</DependentUpon>
     </Compile>
@@ -404,6 +410,14 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Pages\PasswordReset\RequestPasswordResetPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\PasswordReset\ResetPasswordPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\Survey\AddSurveyPage.xaml">
       <SubType>Designer</SubType>

@@ -41,7 +41,7 @@ namespace Festispec.ViewModel.employee
 
         private void Encrypt()
         {
-            var passwordService = new PasswordService();
+            var passwordService = new PasswordHashService();
             Employee.Password = passwordService.StringToPassword(Employee.Password);
         }
 
