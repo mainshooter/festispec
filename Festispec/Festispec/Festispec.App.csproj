@@ -92,6 +92,7 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationBuildTasks" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -116,6 +117,21 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -127,6 +143,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
+    <Compile Include="Message\ChangeSelectedCustomerMessage.cs" />
+    <Compile Include="Message\ChangeSelectedEventMessage.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSessionVm.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
@@ -138,21 +156,29 @@
     <Compile Include="Repository\ReportRepository.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
+    <Compile Include="ViewModel\customer\customerEvent\EditEventVM.cs" />
+    <Compile Include="ViewModel\customer\customerEvent\AddEventVM.cs" />
+    <Compile Include="ViewModel\customer\customerEvent\EventInfoVM.cs" />
+    <Compile Include="ViewModel\customer\customerEvent\EventListVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EventVM.cs" />
     <Compile Include="ViewModel\customer\CustomerVM.cs" />
     <Compile Include="ViewModel\customer\order\OrderVM.cs" />
     <Compile Include="ViewModel\customer\quotation\QuotationVM.cs" />
     <Compile Include="ViewModel\employee\AddEmployeeVM.cs" />
+    <Compile Include="ViewModel\employee\availabilty\AvailabilityManagerVM.cs" />
+    <Compile Include="ViewModel\employee\availabilty\AvailabilityWeekVM.cs" />
     <Compile Include="ViewModel\employee\availabilty\AvailabiltyVM.cs" />
     <Compile Include="ViewModel\employee\BetterReportVM.cs" />
     <Compile Include="ViewModel\employee\certificate\CertificateVM.cs" />
     <Compile Include="ViewModel\employee\department\DepartmentVM.cs" />
     <Compile Include="ViewModel\employee\EditEmployeeVM.cs" />
+    <Compile Include="ViewModel\employee\EmployeeInformationVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeInfoVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeListVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeVM.cs" />
     <Compile Include="ViewModel\employee\SickVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\PasswordBoxAssistant\PasswordBoxAssistant.cs" />
     <Compile Include="ViewModel\planning\DayVM.cs" />
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
@@ -198,12 +224,24 @@
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
     <Compile Include="ViewModel\toast\ToastVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\Pages\Customer\Event\EditEventPage.xaml.cs">
+      <DependentUpon>EditEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Event\AddEventPage.xaml.cs">
+      <DependentUpon>AddEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Event\SingleEventPage.xaml.cs">
+      <DependentUpon>SingleEventPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Employee\AddEmployeePage.xaml.cs">
       <DependentUpon>AddEmployeePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\Pages\Employee\EmployeeInformationPage.xaml.cs">
+      <DependentUpon>EmployeeInformationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
       <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
@@ -344,6 +382,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\Pages\Customer\Event\EditEventPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\Customer\Event\AddEventPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\Event\SingleEventPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Pages\Employee\AddEmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -351,6 +401,10 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Pages\Employee\EmployeeInformationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Survey\QuestionTypes\CommentField\AddCommentFieldPage.xaml">
       <SubType>Designer</SubType>
