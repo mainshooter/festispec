@@ -15,13 +15,13 @@
 
         </ComboBox>
         <Label Content="Titel"></Label>
-        <TextBox HorizontalAlignment="Left" Height="30" Width="800" TextWrapping="Wrap" Text="{Binding ReportElement.Title}"></TextBox>
+        <TextBox HorizontalAlignment="Left" Height="30" Width="800" TextWrapping="Wrap" Text="{Binding ReportElement.Title, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15"></TextBox>
         <Label Content="Beschrijving"></Label>
-        <TextBox HorizontalAlignment="Left" Height="30" Width="800" TextWrapping="Wrap" Text="{Binding ReportElement.Content}"></TextBox>
+        <TextBox HorizontalAlignment="Left" Height="30" Width="800" TextWrapping="Wrap" Text="{Binding ReportElement.Content, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15"></TextBox>
         <Label Visibility="{Binding Axes}" Content="X-as"></Label>
-        <TextBox Visibility="{Binding Axes}" HorizontalAlignment="Left" Height="30" Width="800" Text="{Binding ReportElement.X_as}" TextWrapping="Wrap" ></TextBox>
+        <TextBox Visibility="{Binding Axes}" HorizontalAlignment="Left" Height="30" Width="800" Text="{Binding ReportElement.X_as, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Margin="0,0,0,15"></TextBox>
         <Label Visibility="{Binding Axes}" Content="Y-as"></Label>
-        <TextBox Visibility="{Binding Axes}" HorizontalAlignment="Left" Height="30" Width="800" Text="{Binding ReportElement.Y_as}" TextWrapping="Wrap" ></TextBox>
+        <TextBox Visibility="{Binding Axes}" HorizontalAlignment="Left" Height="30" Width="800" Text="{Binding ReportElement.Y_as, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Margin="0,0,0,15"></TextBox>
         <Button Command="{Binding AddElementCommand}" Margin="0,10,0,0">Voeg een element toe</Button>
         <Button Command="{Binding GoBackCommand}" Margin="0,20,0,0">Terug</Button>
         

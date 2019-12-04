@@ -3,7 +3,7 @@ using Festispec.Message;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Win32;
 using System;
 using System.Data.Entity;
@@ -39,13 +39,15 @@ namespace Festispec.ViewModel.report.element
         
         public EditImageVM()
         {
+            ReportElementVM = new ReportElementVM();
+            ReportElementVM.Type = "image";
             this.MessengerInstance.Register<ChangeSelectedReportMessage>(this, message =>
             {
                 ReportElementVM = message.ReportElement;
                 this.ReportVM = message.NextReportVM;
             });
 
-            SaveElementCommand = new RelayCommand(EditElement);
+            SaveElementCommand = new RelayCommand(EditElement, CanAddElement);
             ReturnCommand = new RelayCommand(CloseEditElement);
             ChooseImageCommand = new RelayCommand(ChooseImage);
         }
@@ -74,6 +76,10 @@ namespace Festispec.ViewModel.report.element
         public void CloseEditElement()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
+        }
+        public bool CanAddElement()
+        {
+            return ReportElementVM.IsValid;
         }
     }
 }

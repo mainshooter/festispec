@@ -151,6 +151,7 @@ namespace Festispec.ViewModel
             _menu["Directie"].Add("Klanten", OpenCustomer);
             _menu["Directie"].Add("Vragenlijsten", OpenSurvey);
             _menu["Directie"].Add("Planning", OpenPlanning);
+            _menu["Directie"].Add("Raporten", OpenReport);
 
             // Marketing Dictionary
             _menu.Add("Marketing", new Dictionary<string, ICommand>());

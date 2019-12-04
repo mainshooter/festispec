@@ -15,11 +15,11 @@
         <Button Width="50" HorizontalAlignment="Left" Command="{Binding ReturnCommand}" Content="{materialDesign:PackIcon keyboardreturn}"/>
         <StackPanel>
             <Label Content="Titel: "></Label>
-            <TextBox Text="{Binding ReportElementVM.Title}" ></TextBox>
+            <TextBox Text="{Binding ReportElementVM.Title, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
         <StackPanel>
             <Label Content="Beschrijving: "></Label>
-            <TextBox Text="{Binding ReportElementVM.Content}" ></TextBox>
+            <TextBox Text="{Binding ReportElementVM.Content, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
         <lvc:PieChart Name="Chart" LegendLocation="Bottom" Height="300" Series="{Binding SeriesCollection}" 
                     InnerRadius="100" Margin="0 15">

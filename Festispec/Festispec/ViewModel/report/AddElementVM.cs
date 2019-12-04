@@ -64,7 +64,7 @@ namespace Festispec.ViewModel.report
             ReportElementTypesListVM elementTypesList = new ReportElementTypesListVM();
             ElementTypes = elementTypesList.ReportElementTypes;
             GoBackCommand = new RelayCommand(GoBackToReport);
-            AddElementCommand = new RelayCommand(AddElementToReport);
+            AddElementCommand = new RelayCommand(AddElementToReport, CanAddElement);
             MessengerInstance.Register<ChangeSelectedReportMessage>(this, message =>
             {
                 Report = message.NextReportVM;
@@ -99,7 +99,6 @@ namespace Festispec.ViewModel.report
         }
         private void AddElementToReport()
         {
-            ReportElement.Type = ElementTypes[SelectedElementIndex];
 
             using (var context = new Entities())
             {
@@ -115,6 +114,12 @@ namespace Festispec.ViewModel.report
         private void GoBackToReport()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
+        }
+
+        public bool CanAddElement()
+        {
+            ReportElement.Type = ElementTypes[SelectedElementIndex];
+            return ReportElement.IsValid;
         }
     }
 }

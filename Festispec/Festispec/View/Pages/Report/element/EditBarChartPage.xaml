@@ -16,19 +16,19 @@
         <Button Width="50" HorizontalAlignment="Left" Command="{Binding ReturnCommand}" Content="{materialDesign:PackIcon keyboardreturn}"/>
         <StackPanel>
             <Label Content="Titel: "></Label>
-            <TextBox Text="{Binding ReportElementVM.Title}" ></TextBox>
+            <TextBox Text="{Binding ReportElementVM.Title,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
         <StackPanel>
             <Label Content="Beschrijving: "></Label>
-            <TextBox Text="{Binding ReportElementVM.Content}" ></TextBox>
+            <TextBox Text="{Binding ReportElementVM.Content,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
         <StackPanel>
             <Label Content="Titel: "></Label>
-            <TextBox Text="{Binding ReportElementVM.X_as}" ></TextBox>
+            <TextBox Text="{Binding ReportElementVM.X_as,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
         <StackPanel>
             <Label Content="Beschrijving: "></Label>
-            <TextBox Text="{Binding ReportElementVM.Y_as}" ></TextBox>
+            <TextBox Text="{Binding ReportElementVM.Y_as,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
         <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Left" Height="300">
             <lvc:CartesianChart.AxisX>

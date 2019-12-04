@@ -4,7 +4,7 @@ using Festispec.View.Pages.Report;
 using Festispec.ViewModel.report.element;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.CommandWpf;
 using System.Data.Entity;
 using System.Windows.Input;
 
@@ -35,13 +35,15 @@ namespace Festispec.ViewModel.report
 
         public EditTextVM()
         {
+            ReportElementVM = new ReportElementVM();
+            ReportElementVM.Type = "text";
             this.MessengerInstance.Register<ChangeSelectedReportMessage>(this, message =>
             {
                 ReportElementVM = message.ReportElement;
                 this.ReportVM = message.NextReportVM;
-            });
 
-            SaveElementCommand = new RelayCommand(EditElement);
+            });
+            SaveElementCommand = new RelayCommand(EditElement, CanAddElement);
             ReturnCommand = new RelayCommand(CloseEditElement);
         }
 
@@ -61,6 +63,10 @@ namespace Festispec.ViewModel.report
         public void CloseEditElement()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
+        }
+        public bool CanAddElement()
+        {
+            return ReportElementVM.IsValid;
         }
     }
 }
