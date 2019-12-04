@@ -172,6 +172,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\survey\conduct\conduct.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -197,6 +198,7 @@
     <Content Include="Views\Shared\EditorTemplates\SliderQuestionType.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TableQuestionType.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\UploadQuestionType.cshtml" />
+    <Content Include="Views\Survey\Conduct.cshtml" />
     <None Include="Web.config.example" />
     <None Include="Web.config.Debug.example">
       <DependentUpon>Web.config.example</DependentUpon>
