@@ -30,11 +30,12 @@
 
 		if (surveyCases.hasOwnProperty(surveyId)) {
 			let cases = surveyCases[surveyId];
-			console.log(cases);
+			cases.push(result);
 		}
 		else {
 			surveyCases[surveyId] = [];
 			let cases = surveyCases[surveyId];
+			cases.push(result);
 		}
 		localStorage.setItem("survey", JSON.stringify(surveyCases));
 	}

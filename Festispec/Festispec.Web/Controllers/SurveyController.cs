@@ -73,10 +73,12 @@ namespace Festispec.Web.Controllers
         [HttpPost]
         public ActionResult Conduct(int id)
         {
+            Dictionary<string, string> request = new Dictionary<string, string>();
             string[] keys = Request.Form.AllKeys;
             for (int i = 0; i < keys.Length; i++)
             {
-                //Response.Write(keys[i] + ": " + Request.Form[keys[i]] + "<br>");
+                var key = keys[i];
+                request[key] = Request.Form[keys[i]];
             }
             return Json(new { }, JsonRequestBehavior.DenyGet);
         }
