@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Festispec.Domain;
@@ -48,19 +49,23 @@ namespace Festispec.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             var model = new SurveyModel { Survey = _db.Surveys.Find(id) };
+            var questionVars = new List<string>();
             var repo = new QuestionTypeRepository();
 
             if (model.Survey == null)
                 return HttpNotFound();
-
-            foreach (var q in model.Survey.Questions)
+            var question = model.Survey.Questions;
+            foreach (var q in question)
             {
                 var qType = repo.GetQuestionType(q.Type);
                 qType.Details = JsonConvert.DeserializeObject<QuestionDetails>(q.Question1);
                 qType.Id = q.Id;
+                qType.Variable = q.Variables;
+                questionVars.Add(q.Variables);
                 model.Questions.Add(qType);
             }
-
+            questionVars = questionVars.Distinct().ToList();
+            model.QuestionVars = JsonConvert.SerializeObject(questionVars);
             return View(model);
         }
     }
