@@ -12,6 +12,8 @@ using System.Windows.Input;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Planning;
 using Festispec.View.Pages.Survey;
+using Festispec.ViewModel.toast;
+using Hanssens.Net;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
@@ -30,6 +32,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         public ICommand OpenSingleEventCommand { get; set; }
         public ICommand DeleteEventCommand { get; set; }
         public ICommand BackCommand { get; set; }
+        public ICommand SynchEventCommand { get; set; }
         public ObservableCollection<EventVM> EventList { get; set; }
         public string SelectedFilter { get; set; }
 
@@ -142,6 +145,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage, HasOrder);
             OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage, HasOrder);
             BackCommand = new RelayCommand(Back);
+            SynchEventCommand = new RelayCommand<EventVM>(SynchEvent);
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -254,6 +258,25 @@ namespace Festispec.ViewModel.customer.customerEvent
         private void Back()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
+        }
+
+        private void SynchEvent(EventVM source)
+        {
+            if (source == null) return;
+
+            using (var storage = new LocalStorage())
+            {
+                if (!storage.Keys().Contains("event" + source.Id))
+                {
+                    storage.Store("event" + source.Id, source);
+                    storage.Persist();
+                    CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Evenement gesynchroniseerd.");
+                }
+                else
+                {
+                    CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowInformation("Evenement is al gesynchroniseerd.");
+                }
+            }
         }
     }
 }

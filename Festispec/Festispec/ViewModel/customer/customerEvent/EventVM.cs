@@ -6,7 +6,6 @@ using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Linq;
-using Hanssens.Net;
 using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.customer.customerEvent
@@ -33,6 +32,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             set => _event.ContactPerson = value;
         }
 
+        [JsonIgnore]
         public CustomerVM Customer 
         {
             get => _customer;
@@ -137,11 +137,6 @@ namespace Festispec.ViewModel.customer.customerEvent
             Customer = customer;
             OrderVM = eventCon.Orders.Count > 0 ? new OrderVM(eventCon.Orders.FirstOrDefault(), this) : new OrderVM();
             _contactPerson = new ContactPersonVM(_event.ContactPerson);
-
-            using (var storage = new LocalStorage())
-            {
-                storage.Store("event", this);
-            }
         }
 
         public EventVM()
@@ -158,6 +153,8 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public bool HasOrder()
         {
+            if (OrderVM == null) return false;
+
             return OrderVM.Id != 0;
         }
 

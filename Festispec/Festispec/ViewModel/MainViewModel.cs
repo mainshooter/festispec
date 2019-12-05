@@ -196,8 +196,14 @@ namespace Festispec.ViewModel
         private void TestLocalStorage()
         {
             using (var storage = new LocalStorage())
-            { 
-                var target = storage.Get<EventVM>("event");
+            {
+                List<EventVM> events = new List<EventVM>();
+
+                foreach (var key in storage.Keys())
+                {
+                    var storageObject = storage.Get<EventVM>(key);
+                    events.Add(storageObject);
+                }
             }
         }
     }
