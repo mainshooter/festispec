@@ -9,6 +9,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Festispec.View.Pages.Customer;
+using Festispec.View.Pages.Planning;
+using Festispec.View.Pages.Survey;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
@@ -19,10 +22,14 @@ namespace Festispec.ViewModel.customer.customerEvent
         private bool _showOnlyFuture;
 
         public CustomerVM Customer { get; set; }
-        public ICommand OpenAddEvent { get; set; }
-        public ICommand OpenEditEvent { get; set; }
-        public ICommand OpenSingleEvent { get; set; }
+        public ICommand OpenPlanningCommand { get; set; }
+        public ICommand OpenSurveyCommand { get; set; }
+        public ICommand OpenReportCommand { get; set; }
+        public ICommand OpenAddEventCommand { get; set; }
+        public ICommand OpenEditEventCommand { get; set; }
+        public ICommand OpenSingleEventCommand { get; set; }
         public ICommand DeleteEventCommand { get; set; }
+        public ICommand BackCommand { get; set; }
         public ObservableCollection<EventVM> EventList { get; set; }
         public string SelectedFilter { get; set; }
 
@@ -127,10 +134,14 @@ namespace Festispec.ViewModel.customer.customerEvent
             SelectedFilter = Filters.First();
             Filter = "";
             ShowOnlyFuture = true;
-            OpenAddEvent = new RelayCommand(OpenAddEventPage);
-            OpenEditEvent = new RelayCommand<EventVM>(OpenEditEventPage, CanOpenEdit);
+            OpenAddEventCommand = new RelayCommand(OpenAddEventPage);
+            OpenEditEventCommand = new RelayCommand<EventVM>(OpenEditEventPage, CanOpenEdit);
             DeleteEventCommand = new RelayCommand<EventVM>(DeleteEvent, CanOpenDelete);
-            OpenSingleEvent = new RelayCommand<EventVM>(OpenSingleEventPage);
+            OpenSingleEventCommand = new RelayCommand<EventVM>(OpenSingleEventPage);
+            OpenSurveyCommand = new RelayCommand<EventVM>(OpenSurveyPage, HasOrder);
+            OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage, HasOrder);
+            OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage, HasOrder);
+            BackCommand = new RelayCommand(Back);
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -157,13 +168,12 @@ namespace Festispec.ViewModel.customer.customerEvent
             MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage()
             {
                 Event = source,
-                EventList = this,
+                EventList = this
             });
         }
 
         private bool CanOpenEdit(EventVM source)
         {
-           
             return source != null && source.EndDate >= DateTime.Today;
         }
 
@@ -186,7 +196,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         private bool CanOpenDelete(EventVM source)
         {
             if (source == null) return false;
-            if (source.ToModel().Orders.Count() > 0) return false;
+            if (source.ContainsModelOrder()) return false;
             if (source.EndDate < DateTime.Today) return false;
             return true;
         }
@@ -197,13 +207,53 @@ namespace Festispec.ViewModel.customer.customerEvent
             MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage()
             {
                 Event = source,
-            }) ;
+                EventList = this,
+            });
+        }
+
+        public void OpenPlanningPage(EventVM source)
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
+            MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage()
+            {
+                Event = source,
+                EventList = this,
+            });
+        }
+
+        public void OpenSurveyPage(EventVM source)
+        {
+            if (source.OrderVM.Survey.Id == 0)
+            {
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddSurveyPage) });
+            }
+            else
+            {
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SurveyPage) });
+            }
+
+            MessengerInstance.Send<ChangeSelectedSurveyMessage>(new ChangeSelectedSurveyMessage() { NextSurvey = source.OrderVM.Survey });
+        }
+
+        public void OpenReportPage(EventVM source)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool HasOrder(EventVM source)
+        {
+            return source != null && source.HasOrder();
         }
 
         public void RefreshEvents()
         {
             EventList = Customer.Events;
             RaisePropertyChanged("EventListFiltered");
+        }
+
+        private void Back()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
         }
     }
 }

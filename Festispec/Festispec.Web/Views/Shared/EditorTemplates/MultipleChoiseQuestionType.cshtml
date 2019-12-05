@@ -2,5 +2,9 @@
 
 @foreach (var q in Model.Details.Choices.Cols)
 {
+<<<<<<< HEAD
     @Html.RadioButton(Model.Id.ToString(), q, new { @class = "survey-question" });@q <br />
+=======
+    @Html.RadioButton(Model.Id.ToString(), q);@q <br />
+>>>>>>> develop
 }

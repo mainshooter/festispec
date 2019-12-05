@@ -65,4 +65,10 @@
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
+<<<<<<< HEAD
+=======
+  <ItemGroup>
+     <None Include="Festispec.Database.publish.xml" />		
+   </ItemGroup>
+>>>>>>> develop
 </Project>
