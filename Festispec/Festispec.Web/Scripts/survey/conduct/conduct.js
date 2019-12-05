@@ -35,6 +35,41 @@
 
 
 (function () {
+	let storage = window.localStorage;
+	$("form").submit((event) => {
+		event.preventDefault();
+		if ($("form").valid()) {
+			let formResult = $("form").serializeArray();
+			
+			saveToLocalStorage(formResult);
+		}
+		else {
+			alert("survey not filled in correctly");
+		}
+	});
+
+	function getCasesFromLocalStorage() {
+		return storage.getItem("survey");
+	}
+
+	function saveToLocalStorage(result) {
+		let surveyCases = getCasesFromLocalStorage();
+		if (surveyCases == null) {
+			surveyCases = {};
+		}
+		else {
+			surveyCases = JSON.parse(surveyCases);
+		}
+		if (surveyCases.hasOwnProperty(surveyId)) {
+			let cases = surveyCases[surveyId];
+			console.log(cases);
+		}
+		else {
+			surveyCases[surveyId] = [];
+			let cases = surveyCases[surveyId];
+		}
+		localStorage.setItem("survey", JSON.stringify(surveyCases));
+	}
 
 })();
 

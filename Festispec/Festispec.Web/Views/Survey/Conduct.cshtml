@@ -6,11 +6,16 @@
 
 @section Scripts
 {
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+	<script>
+		let surveyId = @Html.Raw(Model.Survey.Id);
+	</script>
 	<script src="@Url.Content("~/Scripts/survey/conduct/conduct.js")"></script>
 }
 
 <h2>Survey</h2>
-<div class="survey-container">
+<form class="survey-container" method="post">
 
 	@foreach (var question in Model.Questions)
 	{
@@ -19,5 +24,5 @@
 		<br />
 		<span><strong>Beschrijving: </strong> @question.Details.Description</span>
 	}
-	<button type="button" id="saveSurvey">Opslaan</button>
-</div>
+	<input type="submit" id="saveSurvey"></input>
+</form>
