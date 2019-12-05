@@ -1,40 +1,4 @@
-﻿class SurveyConductor {
-
-	// SCOPE - container
-    constructor(identifer) {
-		this.scope = document.querySelector(identifer);
-		this.addListeners();
-	}
-
-	addListeners() {
-		this.scope.querySelector("#saveSurvey").addEventListener('click', (e) => this.saveSurveyAnswersToLocalStorage());
-	}
-
-    getQuestion() {
-        let questions = [];
-
-	}
-
-	getAnswers() {
-
-	}
-
-	isRequired(inputElement) {
-		let containsAttribute = inputElement.containsAttribute("required");
-		if (containsAttribute === true) {
-			let attributeValue = inputElement.getAttribute("required");
-			return attributeValue;
-		}
-		return false;
-	}
-
-	saveSurveyAnswersToLocalStorage() {
-		
-	}
-}
-
-
-(function () {
+﻿(function () {
 	let storage = window.localStorage;
 	$("form").submit((event) => {
 		event.preventDefault();
@@ -49,17 +13,21 @@
 	});
 
 	function getCasesFromLocalStorage() {
-		return storage.getItem("survey");
+		let storageResult = storage.getItem("survey");
+
+		if (storageResult == null) {
+			storageResult = {};
+		}
+		else {
+			storageResult = JSON.parse(storageResult);
+		}
+
+		return storageResult;
 	}
 
 	function saveToLocalStorage(result) {
 		let surveyCases = getCasesFromLocalStorage();
-		if (surveyCases == null) {
-			surveyCases = {};
-		}
-		else {
-			surveyCases = JSON.parse(surveyCases);
-		}
+
 		if (surveyCases.hasOwnProperty(surveyId)) {
 			let cases = surveyCases[surveyId];
 			console.log(cases);
@@ -71,7 +39,32 @@
 		localStorage.setItem("survey", JSON.stringify(surveyCases));
 	}
 
+	setInterval(() => {
+		let allCases = getCasesFromLocalStorage();
+		for (surveyCaseKey in allCases) {
+			let cases = allCases[surveyCaseKey];
+			if (cases == null && cases.length < 0) {
+				continue;
+			}
+			for (var i = 0; i < cases.length; i++) {
+				let surveyCase = cases[i];
+				uploadSurveyCase(allCases, cases, i, surveyCase);
+			}
+		}
+		localStorage.setItem("survey", JSON.stringify(allCases));
+	}, 5000);
+
+	function uploadSurveyCase(allCases, surveyCases, index, currentCase) {
+		$.ajax({
+			type: "POST",
+			data: currentCase,
+			success: function (data) {
+				surveyCases.splice(index, 1);
+				localStorage.setItem("survey", JSON.stringify(allCases));
+			},
+			error: function (errorMsg) {
+				console.log("error");
+			}
+		});
+	}
 })();
-
-
-let surveyCon = new SurveyConductor(".survey-container");

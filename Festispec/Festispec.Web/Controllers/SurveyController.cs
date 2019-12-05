@@ -27,7 +27,7 @@ namespace Festispec.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             var model = new SurveyModel {Survey = _db.Surveys.Find(id)};
-
+            
             if (model.Survey == null)
                 return HttpNotFound();
 
@@ -42,6 +42,7 @@ namespace Festispec.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult Conduct(int? id)
         {
             if (id == null)
@@ -66,6 +67,18 @@ namespace Festispec.Web.Controllers
             questionVars = questionVars.Distinct().ToList();
             model.QuestionVars = JsonConvert.SerializeObject(questionVars);
             return View(model);
+        }
+
+
+        [HttpPost]
+        public ActionResult Conduct(int id)
+        {
+            string[] keys = Request.Form.AllKeys;
+            for (int i = 0; i < keys.Length; i++)
+            {
+                //Response.Write(keys[i] + ": " + Request.Form[keys[i]] + "<br>");
+            }
+            return Json(new { }, JsonRequestBehavior.DenyGet);
         }
     }
 }
