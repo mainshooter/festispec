@@ -130,12 +130,23 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Auth\UserSession.cs" />
+    <Compile Include="Models\SurveyModel.cs" />
     <Compile Include="Models\LoginFormModel.cs" />
+    <Compile Include="Models\Questions\IQuestion.cs" />
+    <Compile Include="Models\Questions\QuestionTypeFactory.cs" />
+    <Compile Include="Models\Questions\Types\ClosedQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\DrawingQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\GalleryQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\MultipleChoiseQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\OpenQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\SliderQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\TableQuestionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +186,15 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Survey\Index.cshtml" />
+    <Content Include="Views\Survey\Details.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\OpenQuestionType.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ClosedQuestionType.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DrawingQuestionType.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GalleryQuestionType.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultipleChoiseQuestionType.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SliderQuestionType.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TableQuestionType.cshtml" />
     <None Include="Web.config.example" />
     <None Include="Web.config.Debug.example">
       <DependentUpon>Web.config.example</DependentUpon>
