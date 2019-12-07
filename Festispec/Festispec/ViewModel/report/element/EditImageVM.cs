@@ -32,9 +32,7 @@ namespace Festispec.ViewModel.report.element
         }
 
         public ICommand SaveElementCommand { get; set; }
-
         public ICommand ReturnCommand { get; set; }
-
         public ICommand ChooseImageCommand { get; set; }
         
         public EditImageVM()
@@ -51,6 +49,7 @@ namespace Festispec.ViewModel.report.element
             ReturnCommand = new RelayCommand(CloseEditElement);
             ChooseImageCommand = new RelayCommand(ChooseImage);
         }
+
         public void EditElement()
         {
             using (var context = new Entities())
@@ -63,6 +62,7 @@ namespace Festispec.ViewModel.report.element
             ReportVM.RefreshElements();
             CloseEditElement();
         }
+
         private void ChooseImage()
         {
             var fd = new OpenFileDialog { Filter = "All Image Files | *.*", Multiselect = false };
@@ -73,10 +73,12 @@ namespace Festispec.ViewModel.report.element
                 fs.Read(test, 0, Convert.ToInt32(fs.Length));
             }
         }
+
         public void CloseEditElement()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
         }
+
         public bool CanAddElement()
         {
             return ReportElementVM.IsValid;

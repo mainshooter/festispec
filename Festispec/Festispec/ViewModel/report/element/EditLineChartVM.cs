@@ -32,7 +32,6 @@ namespace Festispec.ViewModel.report.element
         public Func<string, string> YaxisLabelFormat { get; set; }
 
         public ICommand SaveElementCommand { get; set; }
-
         public ICommand ReturnCommand { get; set; }
 
         public EditLineChartVM()

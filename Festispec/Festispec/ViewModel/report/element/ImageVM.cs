@@ -25,6 +25,7 @@ namespace Festispec.ViewModel.report.element
         }
 
         public Dictionary<string, Object> Dictionary { get; set; }
+
         public ReportElementVM ReportElementVM { get; set; }
 
         public ImageVM(ReportElementVM element, ReportVM report)

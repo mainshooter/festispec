@@ -30,7 +30,6 @@ namespace Festispec.ViewModel.report
         }
 
         public ICommand SaveElementCommand { get; set; }
-
         public ICommand ReturnCommand { get; set; }
 
         public EditTextVM()
@@ -64,6 +63,7 @@ namespace Festispec.ViewModel.report
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
         }
+
         public bool CanAddElement()
         {
             return ReportElementVM.IsValid;

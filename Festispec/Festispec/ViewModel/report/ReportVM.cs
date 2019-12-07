@@ -25,7 +25,6 @@ namespace Festispec.ViewModel.report
         private Report _report;
         private ReportElementFactory _reportElementFactory;
 
-
         public int Id {
             get {
                 return _report.Id;
@@ -148,6 +147,7 @@ namespace Festispec.ViewModel.report
                 ReportElementUserControlls.Add(_reportElementFactory.CreateElement(element, this));
             }
         }
+
         public void MoveElement(ReportElementVM element, int direction)
         {
             try

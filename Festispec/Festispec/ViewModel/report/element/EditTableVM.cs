@@ -29,7 +29,6 @@ namespace Festispec.ViewModel.report.element
         }
 
         public ICommand SaveElementCommand { get; set; }
-
         public ICommand ReturnCommand { get; set; }
 
         public EditTableVM()

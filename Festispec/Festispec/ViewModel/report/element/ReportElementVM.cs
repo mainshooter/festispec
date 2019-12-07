@@ -18,11 +18,8 @@ namespace Festispec.ViewModel.report.element
         public ReportVM ReportVM { get; set; }
 
         public ICommand EditElement { get; set; }
-
         public ICommand DeleteElement { get; set; }
-
         public ICommand ElementUpCommand { get; set; }
-
         public ICommand ElementDownCommand { get; set; }
 
         public int Id
@@ -125,8 +122,7 @@ namespace Festispec.ViewModel.report.element
         }
 
         public virtual Object Data { get; set; }
-
-
+        
         public ReportElementVM(ReportElement element, ReportVM report)
         {
             _reportElement = element;
@@ -173,6 +169,7 @@ namespace Festispec.ViewModel.report.element
                 return GetValidationError(propertyName);
             }
         }
+
         private string ValidateTitle
         {
             get
@@ -204,6 +201,7 @@ namespace Festispec.ViewModel.report.element
                 return null;
             }
         }
+
         private string ValidateY_as
         {
             get
@@ -219,6 +217,7 @@ namespace Festispec.ViewModel.report.element
                 return null;
             }
         }
+
         private string ValidateX_as
         {
             get
@@ -234,6 +233,7 @@ namespace Festispec.ViewModel.report.element
                 return null;
             }
         }
+
         string GetValidationError(string propertyName)
         {
             string error = null;
@@ -254,10 +254,12 @@ namespace Festispec.ViewModel.report.element
             }
             return error;
         }
+
         public static readonly string[] ValidatedProperties =
         {
             "Title", "Content", "Y_as", "X_as"
         };
+
         public static readonly string[] ValidatedPropertiesShort =
 {
             "Title", "Content"

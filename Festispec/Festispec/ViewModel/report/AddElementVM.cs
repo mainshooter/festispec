@@ -102,6 +102,7 @@ namespace Festispec.ViewModel.report
                 ReportElement.Order = Report.ReportElements.Count + 1;
             });
         }
+
         public void ChangeInput()
         {
             switch (ElementTypes[SelectedElementIndex])
@@ -137,6 +138,7 @@ namespace Festispec.ViewModel.report
                 fs.Read(test, 0, Convert.ToInt32(fs.Length));
             }
         }
+
         private void AddElementToReport()
         {
 

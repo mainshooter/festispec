@@ -30,6 +30,7 @@ namespace Festispec.ViewModel.report.element
 
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
+
         public EditBarChartVM()
         {
             ReportElementVM = new ReportElementVM();
@@ -43,6 +44,7 @@ namespace Festispec.ViewModel.report.element
             SaveElementCommand = new RelayCommand(EditElement, CanAddElement);
             ReturnCommand = new RelayCommand(CloseEditElement);
         }
+
         public void EditElement()
         {
             using (var context = new Entities())
@@ -55,10 +57,12 @@ namespace Festispec.ViewModel.report.element
             ReportVM.RefreshElements();
             CloseEditElement();
         }
+
         public void CloseEditElement()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
         }
+
         public bool CanAddElement()
         {
             return ReportElementVM.IsValid;

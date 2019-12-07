@@ -25,7 +25,6 @@ namespace Festispec.ViewModel.report.element
 
         public ReportElementVM ReportElementVM { get; set; }
 
-
         public override Object Data {
             get {
                 return _data;

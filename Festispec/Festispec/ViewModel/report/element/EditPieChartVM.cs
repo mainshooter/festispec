@@ -29,7 +29,6 @@ namespace Festispec.ViewModel.report.element
         }
 
         public ICommand SaveElementCommand { get; set; }
-
         public ICommand ReturnCommand { get; set; }
 
         public EditPieChartVM()
@@ -58,10 +57,12 @@ namespace Festispec.ViewModel.report.element
             ReportVM.RefreshElements();
             CloseEditElement();
         }
+
         public void CloseEditElement()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
         }
+
         public bool CanAddElement()
         {
             return ReportElementVM.IsValid;
