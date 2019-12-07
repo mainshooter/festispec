@@ -30,7 +30,7 @@
                     <ColumnDefinition Width="50"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Command="{Binding EditElement}" ToolTip="Wijzig element" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon Pencil}"/>
-                <Button Grid.Column="1" Command="{Binding DeleteElement}" ToolTip="Verwijder element" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon DeleteForever}"/>KD
+                <Button Grid.Column="1" Command="{Binding DeleteElement}" ToolTip="Verwijder element" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon DeleteForever}"/> 
             </Grid>
         </StackPanel>
         <StackPanel>

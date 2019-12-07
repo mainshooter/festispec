@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Festispec.View.Pages.Report.element"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddElement"
@@ -18,6 +19,8 @@
         <TextBox HorizontalAlignment="Left" Height="30" Width="800" TextWrapping="Wrap" Text="{Binding ReportElement.Title, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15"></TextBox>
         <Label Content="Beschrijving"></Label>
         <TextBox HorizontalAlignment="Left" Height="30" Width="800" TextWrapping="Wrap" Text="{Binding ReportElement.Content, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15"></TextBox>
+        <Button Visibility="{Binding ImageButton}" Width="50" HorizontalAlignment="Left" Command="{Binding ChooseImageCommand}" Content="{materialDesign:PackIcon folderopen}"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Width="800" TextWrapping="Wrap" Text="{Binding ImageText, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label Visibility="{Binding Axes}" Content="X-as"></Label>
         <TextBox Visibility="{Binding Axes}" HorizontalAlignment="Left" Height="30" Width="800" Text="{Binding ReportElement.X_as, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Margin="0,0,0,15"></TextBox>
         <Label Visibility="{Binding Axes}" Content="Y-as"></Label>

@@ -34,6 +34,7 @@ using Festispec.ViewModel.survey.question.QuestionTypes.SliderQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.TableQuestion;
 using GalaSoft.MvvmLight.Ioc;
 using Festispec.ViewModel.report.element;
+using Festispec.ViewModel.Customer.order;
 
 namespace Festispec.ViewModel
 {
@@ -53,7 +54,6 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddElementPage>();
             SimpleIoc.Default.Register<PlanningOverviewPage>();
             SimpleIoc.Default.Register<EmployeeInformationPage>();
-
             SimpleIoc.Default.Register<EmployeePage>();
             SimpleIoc.Default.Register<AddEmployeePage>();
             SimpleIoc.Default.Register<SingleEmployeePage>();
@@ -81,7 +81,6 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddEventPage>();
             SimpleIoc.Default.Register<EditEventPage>();
             SimpleIoc.Default.Register<SingleEventPage>();
-
             SimpleIoc.Default.Register<ReportVM>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<EmployeeVM>();
@@ -95,7 +94,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditPieChartPage>();
             SimpleIoc.Default.Register<EditTablePage>();
             SimpleIoc.Default.Register<EmployeeInformationVM>();
-
+            SimpleIoc.Default.Register<OrderVM>();
             SimpleIoc.Default.Register<ToastVM>();
             SimpleIoc.Default.Register<PlanningOverviewVM>();
             SimpleIoc.Default.Register<EmployeeInfoVM>();

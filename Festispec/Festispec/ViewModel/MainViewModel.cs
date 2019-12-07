@@ -184,18 +184,7 @@ namespace Festispec.ViewModel
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage)});
         }
-        private void OpenReportTab()
-        {
-            using (var context = new Entities())
-            {
 
-                var reportDomain = context.Reports.First();
-                var report = new ReportVM(reportDomain);
-
-                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
-                MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { NextReportVM = report });
-            }
-        }
         private void OpenAccountInformation()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeeInformationPage) });

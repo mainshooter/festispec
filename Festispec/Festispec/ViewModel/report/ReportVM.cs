@@ -72,8 +72,9 @@ namespace Festispec.ViewModel.report
         public ObservableCollection<string> Statuses { get; set; }
 
         [PreferredConstructor]
-        public ReportVM()
+        public ReportVM(OrderVM orderVM)
         {
+            Order = orderVM;
             _report = new Report();
             MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
                 _report = message.NextReportVM._report;
@@ -82,7 +83,7 @@ namespace Festispec.ViewModel.report
                 Id = message.NextReportVM.Id;
                 RefreshElements();
             });
-
+            
             var reportRepository = new ReportRepository();
             this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
             ReportElementUserControlls = new ObservableCollection<UserControl>();
@@ -93,8 +94,9 @@ namespace Festispec.ViewModel.report
             this.RenderReportElements(null, null);
         }
 
-        public ReportVM(Report report)
+        public ReportVM(OrderVM orderVM, Report report)
         {
+            Order = orderVM;
             _report = report;
             var reportRepository = new ReportRepository();
             this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));

@@ -18,6 +18,8 @@ namespace Festispec.ViewModel.report
         private ReportElementFactory _reportElementFactory;
         private string _axes;
         private int _selectedElementIndex;
+        private string _imageButton;
+        private string _imageText;
 
         public List<string> ElementTypes { get; set; }
 
@@ -33,6 +35,30 @@ namespace Festispec.ViewModel.report
             {
                 _axes = value;
                 RaisePropertyChanged("Axes");
+            }
+        }
+        public string ImageButton
+        {
+            get
+            {
+                return _imageButton;
+            }
+            set
+            {
+                _imageButton = value;
+                RaisePropertyChanged("ImageButton");
+            }
+        }
+        public string ImageText
+        {
+            get
+            {
+                return _imageText;
+            }
+            set
+            {
+                _imageText = value;
+                RaisePropertyChanged("ImageText");
             }
         }
 
@@ -51,6 +77,7 @@ namespace Festispec.ViewModel.report
                 ChangeInput();
             }
         }
+        public ICommand ChooseImageCommand { get; set; }
 
         public ICommand GoBackCommand { get; set; }
 
@@ -59,12 +86,15 @@ namespace Festispec.ViewModel.report
         public AddElementVM()
         {
             Axes = "Hidden";
+            ImageButton = "Hidden";
             ReportElement = new ReportElementVM();
             _reportElementFactory = new ReportElementFactory();
             ReportElementTypesListVM elementTypesList = new ReportElementTypesListVM();
             ElementTypes = elementTypesList.ReportElementTypes;
             GoBackCommand = new RelayCommand(GoBackToReport);
             AddElementCommand = new RelayCommand(AddElementToReport, CanAddElement);
+            ChooseImageCommand = new RelayCommand(ChooseImage);
+
             MessengerInstance.Register<ChangeSelectedReportMessage>(this, message =>
             {
                 Report = message.NextReportVM;
@@ -77,24 +107,34 @@ namespace Festispec.ViewModel.report
             switch (ElementTypes[SelectedElementIndex])
             {
                 case "image":
-                    var fd = new OpenFileDialog { Filter = "All Image Files | *.*", Multiselect = false };
-                    if (fd.ShowDialog() != true) return;
-                    using (var fs = new FileStream(fd.FileName, FileMode.Open, FileAccess.Read))
-                    {
-                        var test = new byte[fs.Length];
-                        fs.Read(test, 0, Convert.ToInt32(fs.Length));
-                    }
+                    ImageButton = "Visable";
                     Axes = "Hidden";
                     break;
                 case "barchart":
+                    ImageButton = "Hidden";
                     Axes = "Visable";
                     break;
                 case "linechart":
+                    ImageButton = "Hidden";
                     Axes = "Visable";
                     break;
                 default:
+                    ImageButton = "Hidden";
                     Axes = "Hidden";
                     break;
+            }
+        }
+
+        public void ChooseImage()
+        {
+            var fd = new OpenFileDialog { Filter = "All Image Files | *.*", Multiselect = false };
+
+            if (fd.ShowDialog() != true) return;
+            using (var fs = new FileStream(fd.FileName, FileMode.Open, FileAccess.Read))
+            {
+                ImageText = fd.FileName;
+                var test = new byte[fs.Length];
+                fs.Read(test, 0, Convert.ToInt32(fs.Length));
             }
         }
         private void AddElementToReport()
@@ -107,7 +147,7 @@ namespace Festispec.ViewModel.report
                 context.SaveChanges();
             }
             var userControl = _reportElementFactory.CreateElement(ReportElement, Report);
-            Report.ReportElementUserControlls.Add(userControl);
+            Report.RefreshElements();
             GoBackToReport();
         }
 

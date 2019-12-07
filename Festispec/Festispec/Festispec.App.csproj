@@ -274,6 +274,7 @@
     </Compile>
     <Compile Include="View\Pages\Report\element\EditTextPage.xaml.cs">
       <DependentUpon>EditTextPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Survey\AddSurveyPage.xaml.cs">
       <DependentUpon>AddSurveyPage.xaml</DependentUpon>
     </Compile>
