@@ -6,6 +6,8 @@ using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Linq;
+using Festispec.ViewModel.employee.quotation;
+using System.Collections.ObjectModel;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
@@ -14,6 +16,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         private Event _event;
         private CustomerVM _customer;
         private ContactPersonVM _contactPerson;
+        private ObservableCollection<QuotationVM> _quotations;
 
         public int Id => _event.Id;
 
@@ -38,6 +41,18 @@ namespace Festispec.ViewModel.customer.customerEvent
                 _customer = value;
                 _event.CustomerId = value.Id;
                 _event.Customer = value.ToModel();
+            }
+        }
+
+        public ObservableCollection<QuotationVM> Quotations
+        {
+            get
+            {
+                return _quotations;
+            }
+            set
+            {
+                _quotations = value;
             }
         }
 
@@ -132,6 +147,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             Customer = customer;
             OrderVM = eventCon.Orders.Count > 0 ? new OrderVM(eventCon.Orders.FirstOrDefault(), this) : new OrderVM();
             _contactPerson = new ContactPersonVM(_event.ContactPerson);
+            _quotations = new ObservableCollection<QuotationVM>(eventCon.Quotations.Select(quotation => new QuotationVM(quotation, customer)));
         }
 
         public EventVM()

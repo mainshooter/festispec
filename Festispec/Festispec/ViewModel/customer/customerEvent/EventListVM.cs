@@ -12,6 +12,7 @@ using System.Windows.Input;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Planning;
 using Festispec.View.Pages.Survey;
+using Festispec.View.Pages.Customer.Quotation;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
@@ -29,6 +30,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         public ICommand OpenEditEventCommand { get; set; }
         public ICommand OpenSingleEventCommand { get; set; }
         public ICommand DeleteEventCommand { get; set; }
+        public ICommand OpenQuotationsCommand { get; set; }
         public ICommand BackCommand { get; set; }
         public ObservableCollection<EventVM> EventList { get; set; }
         public string SelectedFilter { get; set; }
@@ -141,6 +143,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             OpenSurveyCommand = new RelayCommand<EventVM>(OpenSurveyPage, HasOrder);
             OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage, HasOrder);
             OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage, HasOrder);
+            OpenQuotationsCommand = new RelayCommand<EventVM>(OpenQuotationPage);
             BackCommand = new RelayCommand(Back);
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
@@ -243,6 +246,15 @@ namespace Festispec.ViewModel.customer.customerEvent
         private bool HasOrder(EventVM source)
         {
             return source != null && source.HasOrder();
+        }
+
+        public void OpenQuotationPage(EventVM source)
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(QuotationPage) });
+            MessengerInstance.Send<ChangeSelectedEventMessage>(new ChangeSelectedEventMessage() 
+            { 
+                Event = source
+            });
         }
 
         public void RefreshEvents()

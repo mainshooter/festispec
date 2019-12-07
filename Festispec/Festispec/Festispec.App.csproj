@@ -162,6 +162,8 @@
     <Compile Include="ViewModel\customer\customerEvent\EventVM.cs" />
     <Compile Include="ViewModel\customer\CustomerVM.cs" />
     <Compile Include="ViewModel\customer\order\OrderVM.cs" />
+    <Compile Include="ViewModel\customer\quotation\AddQuotationVM.cs" />
+    <Compile Include="ViewModel\customer\quotation\QuotationListVM.cs" />
     <Compile Include="ViewModel\customer\quotation\QuotationVM.cs" />
     <Compile Include="ViewModel\employee\AddEmployeeVM.cs" />
     <Compile Include="ViewModel\employee\availabilty\AvailabilityManagerVM.cs" />
@@ -232,6 +234,12 @@
     </Compile>
     <Compile Include="View\Pages\Customer\Event\SingleEventPage.xaml.cs">
       <DependentUpon>SingleEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Quotation\AddQuotationPage.xaml.cs">
+      <DependentUpon>AddQuotationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Quotation\QuotationPage.xaml.cs">
+      <DependentUpon>QuotationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\AddEmployeePage.xaml.cs">
       <DependentUpon>AddEmployeePage.xaml</DependentUpon>
@@ -396,6 +404,14 @@
     <Page Include="View\Pages\Customer\Event\SingleEventPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\Customer\Quotation\AddQuotationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\Quotation\QuotationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Employee\AddEmployeePage.xaml">
       <SubType>Designer</SubType>

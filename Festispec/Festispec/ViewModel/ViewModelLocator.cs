@@ -33,6 +33,8 @@ using Festispec.ViewModel.survey.question.QuestionTypes.OpenQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.SliderQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.TableQuestion;
 using GalaSoft.MvvmLight.Ioc;
+using Festispec.View.Pages.Customer.Quotation;
+using Festispec.ViewModel.customer.quotation;
 
 namespace Festispec.ViewModel
 {
@@ -79,6 +81,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddEventPage>();
             SimpleIoc.Default.Register<EditEventPage>();
             SimpleIoc.Default.Register<SingleEventPage>();
+            SimpleIoc.Default.Register<QuotationPage>();
+            SimpleIoc.Default.Register<AddQuotationPage>();
 
             SimpleIoc.Default.Register<ReportVM>();
             SimpleIoc.Default.Register<MainViewModel>();
@@ -118,6 +122,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddEventVM>();
             SimpleIoc.Default.Register<EditEventVM>();
             SimpleIoc.Default.Register<EventInfoVM>();
+            SimpleIoc.Default.Register<QuotationListVM>();
+            SimpleIoc.Default.Register<AddQuotationVM>();
 
         }
 
@@ -149,14 +155,12 @@ namespace Festispec.ViewModel
         public AddTableQuestionVM AddTableQuestionVM => ServiceLocator.Current.GetInstance<AddTableQuestionVM>();
         public EditTableQuestionVM EditTableQuestionVM => ServiceLocator.Current.GetInstance<EditTableQuestionVM>();
         public EmployeeInformationVM EmployeeInformationVM => ServiceLocator.Current.GetInstance<EmployeeInformationVM>();
-
         public EventListVM EventListVM => ServiceLocator.Current.GetInstance<EventListVM>();
-
         public AddEventVM AddEventVM => ServiceLocator.Current.GetInstance<AddEventVM>();
-
         public EditEventVM EditEventVM => ServiceLocator.Current.GetInstance<EditEventVM>();
-
         public EventInfoVM EventInfoVM => ServiceLocator.Current.GetInstance<EventInfoVM>();
+        public QuotationListVM QuotationListVM => ServiceLocator.Current.GetInstance<QuotationListVM>();
+        public AddQuotationVM AddQuotationVM => ServiceLocator.Current.GetInstance<AddQuotationVM>();
 
         public static void Cleanup()
         {

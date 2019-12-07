@@ -138,6 +138,9 @@
     <Compile Include="Quotation.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="QuotationStatu.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Report.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
