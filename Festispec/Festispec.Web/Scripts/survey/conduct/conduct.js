@@ -1,8 +1,61 @@
 ﻿(function () {
+
+})();
+
+function test() {
+	var kvpairs = [];
+	var form = document.querySelector("form");
+for (var i = 0; i < form.elements.length; i++) {
+	var e = form.elements[i];
+	console.log(e.type);
+	if (e.type == "file") {
+		let reader = new FileReader();
+		let files = e.files;
+		for (var j = 0; j < files.length; j++) {
+			let file = files[j];
+			reader.readAsDataURL(file);
+			reader.onloadend = function (evt) {
+				console.log(evt.target.result);
+				console.log(reader.result);
+			}
+			reader.onerror = function (error) { console.log(error); }
+		}
+
+	}
+		kvpairs.push(encodeURIComponent(e.name) + "=" + encodeURIComponent(e.value));
+	}
+	console.log(kvpairs);
+}
+
+
+
+(function ($) {
+	$.fn.serializeFiles = function () {
+		var form = $(this),
+			formData = new FormData()
+		formParams = form.serializeArray();
+
+		$.each(form.find('input[type="file"]'), function (i, tag) {
+			$.each($(tag)[0].files, function (i, file) {
+				formData.append(tag.name, file);
+			});
+		});
+
+		$.each(formParams, function (i, val) {
+			formData.append(val.name, val.value);
+		});
+
+		return formData;
+	};
+})(jQuery);
+
+(function () {
 	let storage = window.localStorage;
 	$("form").submit((event) => {
 		event.preventDefault();
-		if ($("form").valid()) {
+		if ($("form").valid({
+			debug: true,
+		})) {
 			let formResult = $("form").serializeArray();
 			
 			saveToLocalStorage(formResult);

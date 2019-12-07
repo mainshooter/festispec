@@ -2,4 +2,8 @@
 
 <input type="file"
        name="@Model.Details.Question"
-       accept="image/png, image/jpeg" multiple max="@Model.Details.Choices.Cols[0]">
+       accept="image/png, image/jpeg" 
+	   multiple 
+	   class="survey-question"
+	   min="1"
+	   max="@Model.Details.Choices.Cols[0]">

@@ -22,3 +22,6 @@ select,
 textarea {
     max-width: 280px;
 }
+.error {
+	color: #e74c3c;
+}

@@ -15,14 +15,14 @@
 }
 
 <h2>Survey</h2>
-<form class="survey-container" method="post">
+<form class="survey-container" method="post" enctype="multipart/form-data">
 
 	@foreach (var question in Model.Questions)
 	{
 		<h3>@question.Details.Question</h3>
+		<p><strong>Beschrijving: </strong> @question.Details.Description</p>
 		@Html.EditorFor(m => question);
 		<br />
-		<span><strong>Beschrijving: </strong> @question.Details.Description</span>
 	}
 	<input type="submit" id="saveSurvey"></input>
 </form>
