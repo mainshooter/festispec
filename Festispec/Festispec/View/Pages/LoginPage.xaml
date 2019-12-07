@@ -34,7 +34,8 @@
             <Button Grid.Row="2" 
                     Grid.Column="1"
                     Command="{Binding DoLogin}" 
-                    CommandParameter="{Binding ElementName=pw}">
+                    CommandParameter="{Binding ElementName=pw}"
+                    IsDefault="True">
                 Login
             </Button>
         </Grid>
