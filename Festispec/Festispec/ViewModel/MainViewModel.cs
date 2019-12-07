@@ -164,7 +164,8 @@ namespace Festispec.ViewModel
 
         private void OpenDashboardTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage) });
+            //terug zetten
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
         }
 
         public void OpenEmployeeTab()

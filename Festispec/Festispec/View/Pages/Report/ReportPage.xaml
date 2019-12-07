@@ -19,13 +19,12 @@
             <local:AddReportElementUserControl Margin="0,50,0,0"></local:AddReportElementUserControl>
             <Button VerticalAlignment="Bottom" Command="{Binding ExportToPDFCommand}" CommandParameter="{Binding ElementName=ReportContent}" Content="Exporteer naar pdf"></Button>
         </StackPanel>
+
         <ScrollViewer Grid.Column="1" Margin="5">
-            <Grid   Name="ReportContent">
-                <StackPanel>
-                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Content="{Binding Title}"></Label>
-                    <ItemsControl ItemsSource="{Binding ReportElementUserControlls}"></ItemsControl>
-                </StackPanel>
-            </Grid>
+            <StackPanel  Name="ReportContent">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Content="{Binding Title}"></Label>
+                <ItemsControl  ItemsSource="{Binding ReportElementUserControlls}"></ItemsControl>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>

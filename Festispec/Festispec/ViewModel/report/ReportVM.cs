@@ -13,6 +13,17 @@ using Festispec.Repository;
 using Festispec.Message;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.Customer.order;
+using System.Windows;
+using System.Windows.Documents;
+using System.Windows.Markup;
+using System.Collections.Generic;
+using System.Xml;
+using System;
+using System.IO;
+using System.Windows.Threading;
+using System.CodeDom.Compiler;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Festispec.ViewModel.report
 {
@@ -82,7 +93,7 @@ namespace Festispec.ViewModel.report
             ReportElements.CollectionChanged += RenderReportElements;
             SaveReportCommand = new RelayCommand(Save);
             AddElementCommand = new RelayCommand(GoToAddElementPage);
-            ExportToPDFCommand = new RelayCommand<Grid>(ExportToPDF);
+            ExportToPDFCommand = new RelayCommand<StackPanel>(ExportToPDF);
             _report.Title = "Test titel";
             this.RenderReportElements(null, null);
         }
@@ -137,23 +148,22 @@ namespace Festispec.ViewModel.report
             }
         }
 
-        public void ExportToPDF(Grid stackPanel)
+        public void ExportToPDF(StackPanel document)
         {
-            try
-            {
-                stackPanel.IsEnabled = false;
-                PrintDialog printDialog = new PrintDialog();
-                printDialog.UserPageRangeEnabled = true;
-                if (printDialog.ShowDialog() == true)
-                {
+            PrintDialog printDialog = new PrintDialog();
+            FlowDocument fd = new FlowDocument();
 
-                    printDialog.PrintVisual(stackPanel, "Rapport");
-                }
-            }
-            finally
-            {
-                stackPanel.IsEnabled = true;
-            }
+            //foreach (var item in ReportElementUserControlls)
+            //{
+            //    fd.Blocks.Add(new BlockUIContainer(item));
+            //}
+            ConvertToPNG.SnapShotPNG(document, 1);
+            //IDocumentPaginatorSource idocument = fd as IDocumentPaginatorSource;
+            //printDialog.PrintDocument(idocument.DocumentPaginator, "Rapport");
+
+            //printDialog.PrintVisual(document, "Rapport");
         }
+
+
     }
 }
