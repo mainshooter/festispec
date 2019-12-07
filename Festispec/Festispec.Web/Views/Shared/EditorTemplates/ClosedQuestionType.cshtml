@@ -1,7 +1,9 @@
 ﻿@model Festispec.Web.Models.Questions.Types.ClosedQuestionType
 
+@{int index = 0;}
 @foreach (var q in Model.Details.Choices.Cols)
 {
-    @Html.RadioButton(Model.Variable, q, new { @class = "survey-question" });@q
+    @Html.RadioButton(Model.Variable, index, new { @class = "survey-question" });@q
     <br />
+	index++;
 }

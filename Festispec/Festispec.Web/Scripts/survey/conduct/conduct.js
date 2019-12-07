@@ -18,7 +18,13 @@ function saveAllFormInputs() {
 			}
 		}
 		else {
-			promises.push(getInputValue(element));
+			if (element.type == "radio" && element.checked == true) {
+				promises.push(getInputValue(element));
+			}
+			else if (element.type != 'radio') {
+				promises.push(getInputValue(element));
+			}
+			
 		}
 	}
 	Promise.all(promises).then((values) => {
