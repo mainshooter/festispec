@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Festispec.Message;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Employee;
+using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Hanssens.Net;
@@ -136,6 +137,7 @@ namespace Festispec.ViewModel.customer.customerEvent
 
                 EventList = events;
                 RaisePropertyChanged(() => EventListFiltered);
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowInformation( events.Count + " offline evenement gevonden.");
             }
         }
     }
