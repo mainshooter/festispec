@@ -50,7 +50,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.OpenSingleEventCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                <Button Command="{Binding DataContext.OpenSingleEventCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Evenement inzien">
                                     <materialDesign:PackIcon Kind="ArrowForward"/>
                                 </Button>
                             </DataTemplate>
