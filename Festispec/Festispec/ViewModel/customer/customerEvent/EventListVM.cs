@@ -266,9 +266,9 @@ namespace Festispec.ViewModel.customer.customerEvent
 
             using (var storage = new LocalStorage())
             {
-                if (!storage.Keys().Contains("event" + source.Id))
+                if (!storage.Keys().Contains(source.Id.ToString()))
                 {
-                    storage.Store("event" + source.Id, source);
+                    storage.Store(source.Id.ToString(), source);
                     storage.Persist();
                     CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Evenement gesynchroniseerd.");
                 }
