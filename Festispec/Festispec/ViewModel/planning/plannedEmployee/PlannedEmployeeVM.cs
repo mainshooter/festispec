@@ -9,25 +9,16 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         private InspectorPlanning _plannedEmployee;
 
         public EmployeeVM Employee { get; set; }
-
         public DayVM Day { get; set; }
 
         public string Status {
-            get {
-                return _plannedEmployee.Status;
-            }
-            set {
-                _plannedEmployee.Status = value;
-            }
+            get => _plannedEmployee.Status;
+            set => _plannedEmployee.Status = value;
         }
 
         public DateTime PlannedStartTime {
-            get {
-                return _plannedEmployee.PlannedFrom;
-            }
-            set {
-                _plannedEmployee.PlannedFrom = value;
-            }
+            get => _plannedEmployee.PlannedFrom;
+            set => _plannedEmployee.PlannedFrom = value;
         }
 
         public string ActualStartDateTime
@@ -40,12 +31,8 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         }
 
         public DateTime PlannedEndTime {
-            get {
-                return _plannedEmployee.PlannedTill;
-            }
-            set {
-                _plannedEmployee.PlannedTill = value;
-            }
+            get => _plannedEmployee.PlannedTill;
+            set => _plannedEmployee.PlannedTill = value;
         }
 
         public string ActualEndDateTime
@@ -58,28 +45,19 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         }
 
         public DateTime WorkStartTime {
-            get {
-                return (DateTime) _plannedEmployee.WorkedFrom;
-            }
-            set {
-                _plannedEmployee.WorkedFrom = value;
-            }
+            get => (DateTime) _plannedEmployee.WorkedFrom;
+            set => _plannedEmployee.WorkedFrom = value;
         }
 
         public DateTime WorkEndTime {
-            get {
-                return (DateTime)_plannedEmployee.WorkedTill;
-            }
-            set {
-                _plannedEmployee.WorkedTill = value;
-            }
+            get => (DateTime)_plannedEmployee.WorkedTill;
+            set => _plannedEmployee.WorkedTill = value;
         }
 
         public PlannedEmployeeVM(InspectorPlanning pe)
         {
             _plannedEmployee = pe;
             Employee = new EmployeeVM(pe.Employee);
-            Day = new DayVM(pe.Day);
         }
 
         public PlannedEmployeeVM()

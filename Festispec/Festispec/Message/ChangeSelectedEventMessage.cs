@@ -1,5 +1,4 @@
-﻿using Festispec.ViewModel.customer;
-using Festispec.ViewModel.customer.customerEvent;
+﻿using Festispec.ViewModel.customer.customerEvent;
 
 namespace Festispec.Message
 {

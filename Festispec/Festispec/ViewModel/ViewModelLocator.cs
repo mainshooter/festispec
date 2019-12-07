@@ -58,6 +58,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<SingleEmployeePage>();
             SimpleIoc.Default.Register<EditEmployeePage>();
             SimpleIoc.Default.Register<SurveyPage>();
+            SimpleIoc.Default.Register<AddSurveyPage>();
             SimpleIoc.Default.Register<AddClosedQuestionPage>();
             SimpleIoc.Default.Register<EditClosedQuestionPage>();
             SimpleIoc.Default.Register<AddCommentFieldPage>();
@@ -95,6 +96,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AvailabilityManagerVM>();
             SimpleIoc.Default.Register<SurveyVM>();
             SimpleIoc.Default.Register<SurveyInfoVM>();
+            SimpleIoc.Default.Register<AddSurveyVM>();
             SimpleIoc.Default.Register<AddOpenQuestionVM>();
             SimpleIoc.Default.Register<EditOpenQuestionVM>();
             SimpleIoc.Default.Register<AddClosedQuestionVM>();
@@ -129,6 +131,7 @@ namespace Festispec.ViewModel
         public EditEmployeeVM EditEmployeeVM => ServiceLocator.Current.GetInstance<EditEmployeeVM>();
         public AvailabilityManagerVM AvailabilityManagerVM => ServiceLocator.Current.GetInstance<AvailabilityManagerVM>();
         public SurveyInfoVM SurveyInfoVM => ServiceLocator.Current.GetInstance<SurveyInfoVM>();
+        public AddSurveyVM AddSurveyVM => ServiceLocator.Current.GetInstance<AddSurveyVM>();
         public AddOpenQuestionVM AddOpenQuestionVM => ServiceLocator.Current.GetInstance<AddOpenQuestionVM>();
         public EditOpenQuestionVM EditOpenQuestionVM => ServiceLocator.Current.GetInstance<EditOpenQuestionVM>();
         public AddClosedQuestionVM AddClosedQuestionVM => ServiceLocator.Current.GetInstance<AddClosedQuestionVM>();
