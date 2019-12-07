@@ -163,6 +163,8 @@
     <Compile Include="ViewModel\customer\customerEvent\EventInfoVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EventListVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EventVM.cs" />
+    <Compile Include="ViewModel\customer\customerEvent\OfflineEventInfoVM.cs" />
+    <Compile Include="ViewModel\customer\customerEvent\OfflineEventListVM.cs" />
     <Compile Include="ViewModel\customer\CustomerVM.cs" />
     <Compile Include="ViewModel\customer\order\OrderVM.cs" />
     <Compile Include="ViewModel\customer\quotation\QuotationVM.cs" />
@@ -233,8 +235,14 @@
     <Compile Include="View\Pages\Customer\Event\AddEventPage.xaml.cs">
       <DependentUpon>AddEventPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Customer\Event\OfflineEventListPage.xaml.cs">
+      <DependentUpon>OfflineEventListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Customer\Event\SingleEventPage.xaml.cs">
       <DependentUpon>SingleEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Event\SingleOfflineEventPage.xaml.cs">
+      <DependentUpon>SingleOfflineEventPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\AddEmployeePage.xaml.cs">
       <DependentUpon>AddEmployeePage.xaml</DependentUpon>
@@ -396,9 +404,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\Customer\Event\OfflineEventListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Customer\Event\SingleEventPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\Customer\Event\SingleOfflineEventPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Employee\AddEmployeePage.xaml">
       <SubType>Designer</SubType>

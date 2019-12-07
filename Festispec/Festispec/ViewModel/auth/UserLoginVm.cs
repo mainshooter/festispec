@@ -54,7 +54,7 @@ namespace Festispec.ViewModel.auth
 
         private void ShowOffline()
         {
-
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(OfflineEventListPage) });
         }
     }
 }

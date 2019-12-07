@@ -32,7 +32,6 @@ namespace Festispec.ViewModel.customer.customerEvent
             set => _event.ContactPerson = value;
         }
 
-        [JsonIgnore]
         public CustomerVM Customer 
         {
             get => _customer;

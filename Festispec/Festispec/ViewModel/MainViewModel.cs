@@ -15,8 +15,6 @@ using Festispec.Domain;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Festispec.ViewModel.customer;
-using Festispec.ViewModel.customer.customerEvent;
-using Hanssens.Net;
 
 namespace Festispec.ViewModel
 {
@@ -87,7 +85,6 @@ namespace Festispec.ViewModel
             // Menu vullen
             FillMenuList();
             CreateMenu();
-            TestLocalStorage();
         }
 
         private void CreateMenu()
@@ -191,20 +188,6 @@ namespace Festispec.ViewModel
         private void OpenAccountInformation()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeeInformationPage) });
-        }
-
-        private void TestLocalStorage()
-        {
-            using (var storage = new LocalStorage())
-            {
-                List<EventVM> events = new List<EventVM>();
-
-                foreach (var key in storage.Keys())
-                {
-                    var storageObject = storage.Get<EventVM>(key);
-                    events.Add(storageObject);
-                }
-            }
         }
     }
 }
