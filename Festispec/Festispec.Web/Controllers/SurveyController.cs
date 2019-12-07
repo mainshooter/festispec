@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Festispec.Domain;
 using Festispec.Lib.Survey.Question;
 using Festispec.Web.Models;
+using Festispec.Web.Models.Auth;
 using Festispec.Web.Models.Questions;
 using Festispec.Web.Models.Questions.Types;
 using Newtonsoft.Json;
@@ -76,8 +77,31 @@ namespace Festispec.Web.Controllers
             for (int i = 0; i < keys.Length; i++)
             {
                 var key = keys[i];
+                if (key == "")
+                {
+                    continue;
+                }
                 request[key] = Request.Form[keys[i]];
             }
+            Survey survey = _db.Surveys.Find(id);
+            List<Question> questions = survey.Questions.ToList();
+            List<Answer> answers = new List<Answer>();
+            Case surveyCase = new Case() { Survey = survey, EmployeeId = 1, Status = "Klaar" };
+            foreach (var givenAnswer in request)
+            {
+                string questionVar = givenAnswer.Key;
+                questionVar = questionVar.Replace("question.", "");
+                string questionAnswer = givenAnswer.Value;
+
+                Question question = questions.Where(q => q.Variables.Equals(questionVar)).FirstOrDefault();
+                Answer answer = new Answer() { Case = surveyCase, QuestionId = question.Id, Answer1 = questionAnswer };
+                answers.Add(answer);
+            }
+            _db.Cases.Add(surveyCase);
+            _db.Answers.AddRange(answers);
+            _db.SaveChanges();
+
+
             return Json(new { }, JsonRequestBehavior.DenyGet);
         }
     }
