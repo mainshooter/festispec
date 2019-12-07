@@ -33,6 +33,7 @@ namespace Festispec.Web.Controllers
             {
                 var qType = QuestionTypeFactory.CreateQuestionTypeFor(q.Type);
                 qType.Details = JsonConvert.DeserializeObject<QuestionDetails>(q.Question1);
+                qType.DetailsJson = q.Question1;
                 qType.Id = q.Id;
                 model.Questions.Add(qType);
             }
