@@ -64,8 +64,6 @@ namespace Festispec.Web.Controllers
                 questionVars.Add(q.Variables);
                 model.Questions.Add(qType);
             }
-            questionVars = questionVars.Distinct().ToList();
-            model.QuestionVars = JsonConvert.SerializeObject(questionVars);
             return View(model);
         }
 

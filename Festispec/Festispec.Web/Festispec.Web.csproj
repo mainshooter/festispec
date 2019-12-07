@@ -130,7 +130,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Models\Questions\QuestionTypeRepository.cs" />
-    <Compile Include="Models\Questions\Types\UploadQuestionType.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -138,7 +137,7 @@
     </Compile>
     <Compile Include="Models\Auth\UserSession.cs" />
     <Compile Include="Models\SurveyModel.cs" />
-    <Compile Include="Models\Questions\IQuestion.cs" />
+    <Compile Include="Interface\IQuestion.cs" />
     <Compile Include="Models\Questions\QuestionTypeFactory.cs" />
     <Compile Include="Models\Questions\Types\ClosedQuestionType.cs" />
     <Compile Include="Models\Questions\Types\DrawingQuestionType.cs" />
@@ -194,7 +193,6 @@
     <Content Include="Views\Shared\EditorTemplates\MultipleChoiseQuestionType.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SliderQuestionType.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TableQuestionType.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\UploadQuestionType.cshtml" />
     <Content Include="Views\Survey\Conduct.cshtml" />
     <None Include="Views\Web.config.example" />
     <None Include="Web.config.example" />
@@ -207,7 +205,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
