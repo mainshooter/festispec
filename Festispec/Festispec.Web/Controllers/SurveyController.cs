@@ -16,7 +16,7 @@ namespace Festispec.Web.Controllers
         // GET: Survey
         public ActionResult Index()
         {
-            return View(_db.Surveys.ToList());
+            return View(_db.Surveys.ToList().Where(s => s.Status == "Definitief"));
         }
 
         public ActionResult Details(int? id)
