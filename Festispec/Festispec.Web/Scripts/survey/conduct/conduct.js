@@ -30,18 +30,6 @@ function saveAllFormInputs() {
 	Promise.all(promises).then((values) => {
 		console.log(values);
 		saveToLocalStorage(values);
-	let allCases = getCasesFromLocalStorage();
-	for (surveyCaseKey in allCases) {
-		let cases = allCases[surveyCaseKey];
-		if (cases == null && cases.length < 0) {
-			continue;
-		}
-		for (var i = 0; i < cases.length; i++) {
-			let surveyCase = cases[i];
-			uploadSurveyCase(allCases, cases, i, surveyCase);
-		}
-	}
-	localStorage.setItem("survey", JSON.stringify(allCases));
 	});
 }
 
@@ -96,20 +84,20 @@ function saveToLocalStorage(result) {
 	Festispec.storage.setItem("survey", JSON.stringify(surveyCases));
 }
 
-//setInterval(() => {
-//	let allCases = getCasesFromLocalStorage();
-//	for (surveyCaseKey in allCases) {
-//		let cases = allCases[surveyCaseKey];
-//		if (cases == null && cases.length < 0) {
-//			continue;
-//		}
-//		for (var i = 0; i < cases.length; i++) {
-//			let surveyCase = cases[i];
-//			uploadSurveyCase(allCases, cases, i, surveyCase);
-//		}
-//	}
-//	localStorage.setItem("survey", JSON.stringify(allCases));
-//}, 5000);
+setInterval(() => {
+	let allCases = getCasesFromLocalStorage();
+	for (surveyCaseKey in allCases) {
+		let cases = allCases[surveyCaseKey];
+		if (cases == null && cases.length < 0) {
+			continue;
+		}
+		for (var i = 0; i < cases.length; i++) {
+			let surveyCase = cases[i];
+			uploadSurveyCase(allCases, cases, i, surveyCase);
+		}
+	}
+	localStorage.setItem("survey", JSON.stringify(allCases));
+}, 5000);
 
 function uploadSurveyCase(allCases, surveyCases, index, currentCase) {
 	$.ajax({
