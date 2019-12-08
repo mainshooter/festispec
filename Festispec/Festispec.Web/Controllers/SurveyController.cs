@@ -2,6 +2,7 @@
 using System.Net;
 using System.Web.Mvc;
 using Festispec.Domain;
+using Festispec.Lib.Enums;
 using Festispec.Lib.Survey.Question;
 using Festispec.Web.Models;
 using Festispec.Web.Models.Questions;
@@ -16,7 +17,7 @@ namespace Festispec.Web.Controllers
         // GET: Survey
         public ActionResult Index()
         {
-            return View(_db.Surveys.ToList().Where(s => s.Status == "Definitief"));
+            return View(_db.Surveys.ToList().Where(s => s.Status.Equals(SurveyStatus.Definitief)));
         }
 
         public ActionResult Details(int? id)
