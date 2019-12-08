@@ -115,7 +115,7 @@ namespace Festispec.ViewModel.customer.quotation
             Filter = "";
 
             OpenAddQuotationCommand = new RelayCommand(OpenAddQuotationPage);
-            //OpenEditQuotationCommand = new RelayCommand<QuotationVM>(OpenEditQuotationPage, CanOpenQuotation);
+            OpenEditQuotationCommand = new RelayCommand<QuotationVM>(OpenEditQuotationPage, CanOpenEdit);
             //DeleteQuotationCommand = new RelayCommand<Quotation>(DeleteQuotation, CanDeleteQuotation);
             //OpenSingleQuotationCommand = new RelayCommand<QuotationVM>(OpenSingleQuotationPage);
             BackCommand = new RelayCommand(Back);
@@ -136,6 +136,21 @@ namespace Festispec.ViewModel.customer.quotation
             {
                 Event = Event
             }) ;
+        }
+
+        private void OpenEditQuotationPage(QuotationVM source)
+        {
+
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditQuotationPage) });
+            MessengerInstance.Send<ChangeSelectedQuotationMessage>(new ChangeSelectedQuotationMessage()
+            {
+               Quotation = source
+            });
+        }
+
+        private bool CanOpenEdit(QuotationVM source)
+        {
+            return source != null && source.Status.Equals("Open");
         }
 
         public void RefreshQuotations()

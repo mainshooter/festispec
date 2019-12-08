@@ -148,7 +148,11 @@ namespace Festispec.ViewModel.employee.quotation
         {
             get
             {
-
+                if (String.IsNullOrWhiteSpace(Content))
+                {
+                    return "Een beschrijving moet toegevoegd zijn";
+                }
+                return null;
             }
         }
 

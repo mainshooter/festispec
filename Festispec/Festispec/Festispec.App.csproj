@@ -145,6 +145,7 @@
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
     <Compile Include="Message\ChangeSelectedCustomerMessage.cs" />
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
+    <Compile Include="Message\ChangeSelectedQuotationMessage.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSessionVm.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="ViewModel\customer\CustomerVM.cs" />
     <Compile Include="ViewModel\customer\order\OrderVM.cs" />
     <Compile Include="ViewModel\customer\quotation\AddQuotationVM.cs" />
+    <Compile Include="ViewModel\customer\quotation\EditQuotationVM.cs" />
     <Compile Include="ViewModel\customer\quotation\QuotationListVM.cs" />
     <Compile Include="ViewModel\customer\quotation\QuotationVM.cs" />
     <Compile Include="ViewModel\employee\AddEmployeeVM.cs" />
@@ -237,6 +239,9 @@
     </Compile>
     <Compile Include="View\Pages\Customer\Quotation\AddQuotationPage.xaml.cs">
       <DependentUpon>AddQuotationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Quotation\EditQuotationPage.xaml.cs">
+      <DependentUpon>EditQuotationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Customer\Quotation\QuotationPage.xaml.cs">
       <DependentUpon>QuotationPage.xaml</DependentUpon>
@@ -406,6 +411,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\Customer\Quotation\AddQuotationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\Quotation\EditQuotationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

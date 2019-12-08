@@ -1,4 +1,5 @@
-﻿using Festispec.Domain;
+﻿using CommonServiceLocator;
+using Festispec.Domain;
 using Festispec.Message;
 using Festispec.View.Pages.Customer.Quotation;
 using Festispec.ViewModel.customer.customerEvent;
@@ -37,6 +38,8 @@ namespace Festispec.ViewModel.customer.quotation
         public void AddQuotation()
         {
             Quotation.TimeSend = DateTime.Now;
+            MainViewModel main = ServiceLocator.Current.GetInstance<MainViewModel>();
+            Quotation.Employee = main.LoggedInEmployee;
 
             using (var context = new Entities())
             {
