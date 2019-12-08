@@ -22,6 +22,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         public CustomerVM Customer { get; set; }
         public ICommand OpenSingleEventCommand { get; set; }
         public ICommand BackCommand { get; set; }
+        public ICommand DeleteEventCommand { get; set; }
         public ObservableCollection<EventVM> EventList { get; set; }
         public string SelectedFilter { get; set; }
 
@@ -98,6 +99,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             ShowOnlyFuture = true;
             OpenSingleEventCommand = new RelayCommand<EventVM>(OpenSingleEventPage);
             BackCommand = new RelayCommand(Back);
+            DeleteEventCommand = new RelayCommand<EventVM>(DeleteEvent);
             RefreshEvents();
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
@@ -132,12 +134,38 @@ namespace Festispec.ViewModel.customer.customerEvent
                 foreach (var key in storage.Keys())
                 {
                     var storageObject = storage.Get<EventVM>(key);
+                    storageObject.ToModel().Id = Convert.ToInt32(key);
                     events.Add(storageObject);
                 }
 
                 EventList = events;
                 RaisePropertyChanged(() => EventListFiltered);
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowInformation( events.Count + " offline evenement gevonden.");
+            }
+        }
+
+        private void DeleteEvent(EventVM eventVM)
+        {
+            using (var storage = new LocalStorage())
+            {
+                storage.Dispose();
+                storage.Clear();
+
+                foreach (var e in EventList.ToList())
+                {
+                    if (eventVM.Id == e.Id)
+                    {
+                        EventList.Remove(e);
+                    }
+                    else
+                    {
+                        storage.Store(e.Id.ToString(), e);
+                    }
+                }
+
+                storage.Persist();
+                RaisePropertyChanged(() => EventListFiltered);
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowInformation("Evenement " + eventVM.Name + " niet meer offline beschikbaar.");
             }
         }
     }
