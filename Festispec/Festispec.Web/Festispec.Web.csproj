@@ -148,6 +148,17 @@
     <Compile Include="Controllers\Questions\Types\OpenQuestionType.cs" />
     <Compile Include="Controllers\Questions\Types\SliderQuestionType.cs" />
     <Compile Include="Controllers\Questions\Types\TableQuestionType.cs" />
+    <Compile Include="Models\SurveyModel.cs" />
+    <Compile Include="Models\LoginFormModel.cs" />
+    <Compile Include="Models\Questions\IQuestion.cs" />
+    <Compile Include="Models\Questions\QuestionTypeFactory.cs" />
+    <Compile Include="Models\Questions\Types\ClosedQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\DrawingQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\GalleryQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\MultipleChoiseQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\OpenQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\SliderQuestionType.cs" />
+    <Compile Include="Models\Questions\Types\TableQuestionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +208,13 @@
     <Content Include="Views\Shared\Survey\SliderQuestion.cshtml" />
     <Content Include="Views\Shared\Survey\TableQuestion.cshtml" />
     <Content Include="Views\Shared\Survey\UploadQuestion.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\OpenQuestionType.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ClosedQuestionType.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DrawingQuestionType.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GalleryQuestionType.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultipleChoiseQuestionType.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SliderQuestionType.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TableQuestionType.cshtml" />
     <None Include="Web.config.example" />
     <None Include="Web.config.Debug.example">
       <DependentUpon>Web.config.example</DependentUpon>

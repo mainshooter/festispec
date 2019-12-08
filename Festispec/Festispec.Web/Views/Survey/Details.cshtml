@@ -2,6 +2,7 @@
 @using Festispec.Web.Controllers.Questions
 @using Newtonsoft.Json
 @model Festispec.Domain.Survey
+﻿@model Festispec.Web.Models.SurveyModel
 
 @{
     ViewBag.Title = "Details";
@@ -20,4 +21,9 @@
         <p>@Html.Partial(input.PathToPartial, details)</p>
         <span><strong>Beschrijving: </strong> @details.Description</span>
     }
+@foreach (var question in Model.Questions)
+{
+    <h3>@question.Details.Question</h3>
+    <p>@question.Details.Description</p><br/>
+    @Html.EditorFor(m => question);<br />
 }

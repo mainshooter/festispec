@@ -18,9 +18,8 @@ INSERT INTO CaseStatus VALUES ('Klaar')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO SurveyStatus VALUES ('Gestart')
-INSERT INTO SurveyStatus VALUES ('Bezig')
-INSERT INTO SurveyStatus VALUES ('Afgerond')
+INSERT INTO SurveyStatus VALUES ('Concept')
+INSERT INTO SurveyStatus VALUES ('Definitief')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
@@ -35,7 +34,6 @@ INSERT INTO OrderStatus VALUES ('Afgerond')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO InspectorPlanningStatus VALUES ('Aanvraag')
 INSERT INTO InspectorPlanningStatus VALUES ('Ingepland')
 INSERT INTO InspectorPlanningStatus VALUES ('Afgerond')
 COMMIT TRANSACTION
@@ -47,21 +45,25 @@ INSERT INTO Department VALUES ('Sales', 'Verkoop afdeling')
 INSERT INTO Department VALUES ('Marketing', 'Zorgt voor reclame en sponsoren')
 INSERT INTO Department VALUES ('Inspectie', 'Mensen die de daadwerkelijke inspectie doen')
 INSERT INTO Department VALUES ('Planning', 'Zorgt voor het inplannen van inspecties en inspecteurs')
+INSERT INTO Department VALUES ('Directie', 'Directie die overal bij kan')
 COMMIT TRANSACTION
 --- Password of users ---
--- t.deenik@gmail.com, GamerBoy95
+-- Inspectie: t.deenik@gmail.com, GamerBoy95
+-- Directie:  m.peeters@gmail.com, GamerBoy95
 -------------------------
 BEGIN TRANSACTION
-INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password]) 
+INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
 VALUES ('Sales', 'Actief', 'Bart', NULL, 'Fransen', 'Burgemeester de leeuwstraat', 5, NULL, CAST('02-21-2012' AS DATETIME),'6651BW', 'Druten', '0642346706', 'Bartfransen66@gmail.com', 'JanSmitLover69')
-INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])  
+INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
 VALUES ('Inspectie', 'Actief', 'Jesse', NULL, 'Kuijpers', 'Roodhekkenpas', 16, 'a', CAST('02-21-2012' AS DATETIME),'6651CZ','Druten', '0487515968', 'j.Kuijpers@gmail.com', 'AnneJesse15')
-INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])  
+INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
 VALUES ('Inspectie', 'Actief', 'Thijs', NULL, 'Deenik', 'Hegakker', 74, NULL, CAST('02-21-2012' AS DATETIME),'6652BC', 'Druten','0487516859', 't.deenik@gmail.com', 'a???k*ix??t????;iL%???g?????$?')
-INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])  
+INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
 VALUES ('Marketing', 'Actief', 'Martina', 'van', 'Dinteren', 'De Tolboom', 15, NULL,CAST('02-21-2012' AS DATETIME),'6654BT','Affereden', '0685463584', 'MvDinteren@dinter.nl', 'bunny952')
-INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])  
+INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
 VALUES ('Planning', 'Actief', 'Martijn', NULL, 'Huisman', 'Grasakker', 76, 'a', CAST('02-21-2012' AS DATETIME),'6652BC', 'Druten','0695438736', 'M.Huisman@hotmail.com', 'DafTrucks2006')
+INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])  
+VALUES ('Directie', 'Actief', 'Mark', NULL, 'Peeters', 'Grasakker', 5, 'b', CAST('02-21-1960' AS DATETIME),'6652BC', 'Eindhoven','0695438736', 'm.peeters@gmail.com', 'a???k*ix??t????;iL%???g?????$?')
 COMMIT TRANSACTION
 -------- END EMPLOYEE DATA ------------
 
@@ -107,18 +109,18 @@ COMMIT TRANSACTION
 -------- BEGIN ORDER DATA ------------
 BEGIN TRANSACTION
 INSERT INTO [Order] VALUES (1,1,4,1,'Afgerond', 'Order is afgerond')
-INSERT INTO [Order] VALUES (1,2,4,2,'Opgenomen', 'Order is opgenomen en in behandeling') 
-INSERT INTO [Order] VALUES (2,3,4,3,'Aanvraag', 'Order momenteel in aanvraag') 
-INSERT INTO [Order] VALUES (3,4,4,4,'Aanvraag', 'Order momenteel in aanvraag')  
+INSERT INTO [Order] VALUES (1,2,4,2,'Opgenomen', 'Order is opgenomen en in behandeling')
+INSERT INTO [Order] VALUES (2,3,4,3,'Aanvraag', 'Order momenteel in aanvraag')
+INSERT INTO [Order] VALUES (3,4,4,4,'Aanvraag', 'Order momenteel in aanvraag')
 COMMIT TRANSACTION
 -------- END ORDER DATA ------------
 
 -------- BEGIN SURVEY DATA ------------
 BEGIN TRANSACTION
-INSERT INTO Survey VALUES (1, 'Afgerond', 'Survey voor Defqon 1')
-INSERT INTO Survey VALUES (2, 'Bezig', 'Survey voor Xqlusive Holland')
-INSERT INTO Survey VALUES (3, 'Gestart', 'Survey voor Ed Sheeran in Concert')
-INSERT INTO Survey VALUES (4, 'Gestart', 'Survey voor Snollebollekes')
+INSERT INTO Survey VALUES (1, 'Definitief', 'Survey voor Defqon 1')
+INSERT INTO Survey VALUES (2, 'Concept', 'Survey voor Xqlusive Holland')
+INSERT INTO Survey VALUES (3, 'Definitief', 'Survey voor Ed Sheeran in Concert')
+INSERT INTO Survey VALUES (4, 'Concept', 'Survey voor Snollebollekes')
 COMMIT TRANSACTION
 -------- END SURVEY DATA ------------
 
@@ -190,14 +192,14 @@ COMMIT TRANSACTION
 
 BEGIN TRANSACTION
 INSERT INTO InspectorPlanning VALUES (2,1,1, '20190628 10:00:00', '20190628 17:00:00', 'Afgerond', NULL, NULL)
-INSERT INTO InspectorPlanning VALUES (3,1,1, '20190628 10:00:00', '20190628 17:00:00', 'Aanvraag', NULL, NULL)
+INSERT INTO InspectorPlanning VALUES (3,1,1, '20190628 10:00:00', '20190628 17:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (3,2,1, '20190628 17:00:00', '20190629 01:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (2,3,1, '20190629 10:00:00', '20190628 17:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (3,4,1, '20190628 17:00:00', '20190629 01:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (2,5,1, '20190628 10:00:00', '20190628 16:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (3,6,1, '20190628 16:00:00', '20190629 23:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (2,7,2, '20200919 23:00:00', '20200920 07:00:00', 'Ingepland', NULL, NULL)
-INSERT INTO InspectorPlanning VALUES (3,7,2, '20200919 23:00:00', '20200920 07:00:00', 'Aanvraag', NULL, NULL)
+INSERT INTO InspectorPlanning VALUES (3,7,2, '20200919 23:00:00', '20200920 07:00:00', 'Ingepland', NULL, NULL)
 COMMIT TRANSACTION
 
 --BEGIN TRANSACTION
