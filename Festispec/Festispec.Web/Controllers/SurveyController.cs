@@ -7,6 +7,7 @@ using Festispec.Lib.Survey.Question;
 using Festispec.Web.Models;
 using Festispec.Web.Models.Questions;
 using Newtonsoft.Json;
+using Festispec.Web.Models.Auth;
 
 namespace Festispec.Web.Controllers
 {
@@ -17,7 +18,13 @@ namespace Festispec.Web.Controllers
         // GET: Survey
         public ActionResult Index()
         {
-            return View(_db.Surveys.ToList().Where(s => s.Status.Equals(SurveyStatus.Definitief.ToString())));
+            //return View(_db.Surveys.ToList().Where(s => s.Status.Equals(SurveyStatus.Definitief.ToString())));
+
+            var inspectorPlanningList = _db.InspectorPlannings.Where(i => i.EmployeeId == UserSession.Current.Employee.Id).ToList();
+            var eventList = _db.Events.ToList();
+            var surveyList = _db.Surveys.ToList();
+
+            return View();
         }
 
         public ActionResult Details(int? id)
