@@ -1,6 +1,8 @@
 ﻿using Festispec.Domain;
 using Festispec.Factory;
 using Festispec.Message;
+using Festispec.Repository;
+using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Report.element;
 using Festispec.ViewModel.Customer.order;
 using GalaSoft.MvvmLight;
@@ -18,6 +20,7 @@ namespace Festispec.ViewModel.report
         private ReportElementFactory _reportElementFactory;
         private ReportVM _reportVM;
         private OrderVM _orderVM;
+        private ReportRepository _reportRepository;
         public ReportVM ReportVM {
             get {
                 return _reportVM;
@@ -42,19 +45,26 @@ namespace Festispec.ViewModel.report
         public ObservableCollection<UserControl> ReportElementUserControlls { get; set; }
 
 
-
-
         public ReportInfoVM()
         {
             GetStatuses();
             _reportElementFactory = new ReportElementFactory();
+            _reportRepository = new ReportRepository();
             ReportElementUserControlls = new ObservableCollection<UserControl>();
 
             MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
                 ReportVM = message.NextReportVM;
                 ReportVM.ReportElements.CollectionChanged += RenderReportElements;
                 RenderReportElements(null, null);
-            });         
+            });
+            MessengerInstance.Register<ChangePageMessage>(this, message =>
+            {
+                if (message.NextPageType == typeof(ReportPage) && ReportVM != null)
+                {
+                    ReportVM.ReportElements = _reportRepository.GetReportElements(ReportVM);
+                    RenderReportElements(null, null);
+                }
+            });
             AddElementCommand = new RelayCommand(GoToAddElementPage); 
         }
 

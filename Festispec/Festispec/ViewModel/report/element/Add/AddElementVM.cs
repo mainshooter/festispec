@@ -148,7 +148,7 @@ namespace Festispec.ViewModel.report
                 context.ReportElements.Add(ReportElement.ToModel());
                 context.SaveChanges();
             }
-            var userControl = _reportElementFactory.CreateElement(ReportElement, Report);
+            Report.ReportElements.Add(ReportElement);
             GoBackToReport();
         }
 

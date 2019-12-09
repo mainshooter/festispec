@@ -15,6 +15,7 @@ namespace Festispec.ViewModel.report
     public class ReportVM : ViewModelBase
     {
         private Report _report;
+        private ObservableCollection<ReportElementVM> _reportElements;
         
 
         public int Id {
@@ -51,12 +52,19 @@ namespace Festispec.ViewModel.report
         }
 
 
-        public ObservableCollection<ReportElementVM> ReportElements { get; set; }
+        public ObservableCollection<ReportElementVM> ReportElements {
+            get {
+                return _reportElements;
+            }
+            set {
+                _reportElements = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public ReportVM()
         {
-            var reportRepository = new ReportRepository();
-            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
+            ReportElements = new ObservableCollection<ReportElementVM>();
         }
 
         public ReportVM(Report report)
