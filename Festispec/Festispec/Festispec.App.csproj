@@ -146,6 +146,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
+    <Compile Include="Message\ChangeSelectedOrderVM.cs" />
     <Compile Include="Message\ChangeSelectedReportMessage.cs" />
     <Compile Include="Message\ChangeSelectedCustomerMessage.cs" />
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
@@ -204,6 +205,7 @@
     <Compile Include="ViewModel\report\element\ReportElementVM.cs" />
     <Compile Include="ViewModel\report\element\TableVM.cs" />
     <Compile Include="ViewModel\report\element\TextVM.cs" />
+    <Compile Include="ViewModel\report\ReportInfoVM.cs" />
     <Compile Include="ViewModel\report\ReportVM.cs" />
     <Compile Include="ViewModel\survey\AddSurveyVM.cs" />
     <Compile Include="ViewModel\survey\answer\SurveyAnswerVM.cs" />
@@ -477,7 +479,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Report\element\EditTextPage.xaml">   
+    <Page Include="View\Pages\Report\element\EditTextPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

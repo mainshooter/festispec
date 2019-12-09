@@ -126,7 +126,6 @@ namespace Festispec.ViewModel.report
         {
             ReportRepository reportRepository = new ReportRepository();
             this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
-            this.RenderReportElements(null, null);
             RaisePropertyChanged("ReportElements");
         }
     }
