@@ -83,6 +83,9 @@
     <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="LocalStorage, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LocalStorage.2.0.0\lib\netstandard2.0\LocalStorage.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.0.325, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.0\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -160,6 +163,8 @@
     <Compile Include="ViewModel\customer\customerEvent\EventInfoVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EventListVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EventVM.cs" />
+    <Compile Include="ViewModel\customer\customerEvent\OfflineEventInfoVM.cs" />
+    <Compile Include="ViewModel\customer\customerEvent\OfflineEventListVM.cs" />
     <Compile Include="ViewModel\customer\CustomerVM.cs" />
     <Compile Include="ViewModel\customer\order\OrderVM.cs" />
     <Compile Include="ViewModel\customer\quotation\QuotationVM.cs" />
@@ -230,8 +235,14 @@
     <Compile Include="View\Pages\Customer\Event\AddEventPage.xaml.cs">
       <DependentUpon>AddEventPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Customer\Event\OfflineEventListPage.xaml.cs">
+      <DependentUpon>OfflineEventListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Customer\Event\SingleEventPage.xaml.cs">
       <DependentUpon>SingleEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Event\SingleOfflineEventPage.xaml.cs">
+      <DependentUpon>SingleOfflineEventPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\AddEmployeePage.xaml.cs">
       <DependentUpon>AddEmployeePage.xaml</DependentUpon>
@@ -393,9 +404,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\Customer\Event\OfflineEventListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Customer\Event\SingleEventPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\Customer\Event\SingleOfflineEventPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Employee\AddEmployeePage.xaml">
       <SubType>Designer</SubType>
