@@ -97,7 +97,6 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditPieChartPage>();
             SimpleIoc.Default.Register<EditTablePage>();
             SimpleIoc.Default.Register<EmployeeInformationVM>();
-            SimpleIoc.Default.Register<OrderVM>();
             SimpleIoc.Default.Register<ToastVM>();
             SimpleIoc.Default.Register<PlanningOverviewVM>();
             SimpleIoc.Default.Register<EmployeeInfoVM>();

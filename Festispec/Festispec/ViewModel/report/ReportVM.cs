@@ -119,7 +119,7 @@ namespace Festispec.ViewModel.report
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddElementPage)});
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
             {
-              NextReportVM = this
+                NextReportVM = this
             });
         }
 
