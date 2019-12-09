@@ -1,0 +1,12 @@
+﻿@model Festispec.Web.Models.Questions.Types.TableQuestionType
+
+<table id="table-@Model.Details.Question" class="table">
+    <thead>
+        <tr>
+            @foreach (var col in Model.Details.Choices.Cols)
+            {
+                <th scope="col">@col</th>
+            }
+        </tr>
+    </thead>
+</table>

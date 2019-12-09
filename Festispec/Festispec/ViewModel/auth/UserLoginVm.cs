@@ -6,6 +6,7 @@ using Festispec.Domain;
 using Festispec.Lib.Auth;
 using Festispec.Message;
 using Festispec.View.Pages;
+using Festispec.View.Pages.Customer.Event;
 using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -16,11 +17,13 @@ namespace Festispec.ViewModel.auth
     {
         public string Email { get; set; }
         public ICommand DoLogin { get; set; }
+        public ICommand OfflineCommand { get; set; }
 
         public UserLoginVM()
         {
             DoLogin = new RelayCommand<PasswordBox>(Login);
             Email = "m.peeters@gmail.com";
+            OfflineCommand = new RelayCommand(ShowOffline);
         }
 
         public void Login(PasswordBox passwordBox)
@@ -50,6 +53,11 @@ namespace Festispec.ViewModel.auth
                     MessengerInstance.Send<ChangeLoggedinUserMessage>(new ChangeLoggedinUserMessage() { LoggedinEmployee = userSession.Employee });
                 }
             }
+        }
+
+        private void ShowOffline()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(OfflineEventListPage) });
         }
     }
 }

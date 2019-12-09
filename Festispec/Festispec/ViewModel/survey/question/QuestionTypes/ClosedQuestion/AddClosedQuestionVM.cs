@@ -4,7 +4,6 @@ using Festispec.Lib.Slugify;
 using Festispec.Message;
 using Festispec.View.Pages.Survey;
 using Festispec.View.Pages.Survey.QuestionTypes.ClosedQuestion;
-using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
@@ -56,6 +55,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.ClosedQuestion
                 QuestionVm.QuestionDetails.Choices.Cols.Add("Nee");
                 QuestionVm.Question = JsonConvert.SerializeObject(QuestionVm.QuestionDetails);
                 QuestionVm.Variables = StringToSlug.Slugify(QuestionVm.QuestionDetails.Question);
+                QuestionVm.Order = _surveyVm.Questions.Count + 1;
                 QuestionVm.Type = "Gesloten vraag";
                 QuestionVm.SurveyId = _surveyVm.Id;
                 context.Questions.Add(QuestionVm.ToModel());
