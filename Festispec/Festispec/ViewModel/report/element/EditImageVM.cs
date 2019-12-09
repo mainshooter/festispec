@@ -59,7 +59,6 @@ namespace Festispec.ViewModel.report.element
                 context.SaveChanges();
             }
             CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowInformation("Rapportelement bijgewerkt.");
-            ReportVM.RefreshElements();
             CloseEditElement();
         }
 

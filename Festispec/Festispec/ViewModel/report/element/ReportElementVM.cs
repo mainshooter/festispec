@@ -157,7 +157,6 @@ namespace Festispec.ViewModel.report.element
                 }
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Rapportelement verwijderd.");
             }
-            ReportVM.RefreshElements();
         }
 
         public ReportElement ToModel()

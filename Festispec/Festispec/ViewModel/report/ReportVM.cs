@@ -1,18 +1,10 @@
 ﻿using Festispec.Domain;
-using Festispec.Factory;
-using Festispec.View.Pages.Report.element;
 using Festispec.ViewModel.report.element;
-using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using Festispec.Repository;
-using Festispec.Message;
 using Festispec.ViewModel.Customer.order;
-using GalaSoft.MvvmLight.Ioc;
 using Festispec.ViewModel.toast;
 using System;
 using System.Windows;
@@ -73,6 +65,13 @@ namespace Festispec.ViewModel.report
             ReportElements = new ObservableCollection<ReportElementVM>(_report.ReportElements.Select(e => new ReportElementVM(e, this)).ToList());         
         }
 
+        public ReportVM(OrderVM OrderVM)
+        {
+            _report = new Report();
+            _report.Order = OrderVM.ToModel();
+            ReportElements = new ObservableCollection<ReportElementVM>();
+        }
+
 
         public Report ToModel()
         {
@@ -100,7 +99,6 @@ namespace Festispec.ViewModel.report
                 NextElement.Order = element.Order;
                 element.Order = NextElementOrder;
                 SaveElementOrder(NextElement, element);
-                RefreshElements();
             }
             catch (Exception)
             {
@@ -122,11 +120,21 @@ namespace Festispec.ViewModel.report
             }
         }
 
-        public void RefreshElements()
+        public bool ValidateInputs()
         {
-            ReportRepository reportRepository = new ReportRepository();
-            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
-            RaisePropertyChanged("ReportElements");
+            if (Title == null || Title.Equals(""))
+            {
+                MessageBox.Show("Titel mag niet leeg zijn.");
+                return false;
+            }
+
+            if (Title.Length > 100)
+            {
+                MessageBox.Show("Titel mag niet langer zijn dan 100 karakters.");
+                return false;
+            }
+
+            return true;
         }
     }
 }
