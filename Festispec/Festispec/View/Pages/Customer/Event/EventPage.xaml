@@ -51,7 +51,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.SynchEventCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Evenement offline beschikbaar maken">
+                                <Button Command="{Binding DataContext.SynchEventCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Evenement offline beschikbaar maken" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="Sync"/>
                                 </Button>
                             </DataTemplate>
@@ -60,7 +60,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.OpenPlanningCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Planning beheren">
+                                <Button Command="{Binding DataContext.OpenPlanningCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Planning beheren" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="Calendar"/>
                                 </Button>
                             </DataTemplate>
@@ -69,7 +69,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.OpenSurveyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Vragenlijst beheren">
+                                <Button Command="{Binding DataContext.OpenSurveyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Vragenlijst beheren" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="FormatListBulleted"/>
                                 </Button>
                             </DataTemplate>
@@ -78,7 +78,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.OpenReportCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Rapport beheren">
+                                <Button Command="{Binding DataContext.OpenReportCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Rapport beheren" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="ChartBar"/>
                                 </Button>
                             </DataTemplate>
@@ -87,7 +87,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.OpenSingleEventCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Evenement inzien">
+                                <Button Command="{Binding DataContext.OpenSingleEventCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Evenement inzien" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="ArrowForward"/>
                                 </Button>
                             </DataTemplate>
@@ -96,7 +96,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.OpenEditEventCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Evenement bewerken">
+                                <Button Command="{Binding DataContext.OpenEditEventCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Evenement bewerken" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="Edit"/>
                                 </Button>
                             </DataTemplate>
@@ -105,7 +105,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.DeleteEventCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Evenement verwijderen">
+                                <Button Command="{Binding DataContext.DeleteEventCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Evenement verwijderen" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="Delete"/>
                                 </Button>
                             </DataTemplate>
