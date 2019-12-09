@@ -152,7 +152,5 @@ namespace Festispec.ViewModel.report
         {
             ConvertToPNG.SnapShotPng(document, 1);
         }
-
-
     }
 }
