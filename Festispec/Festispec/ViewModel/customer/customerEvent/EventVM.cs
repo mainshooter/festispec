@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
@@ -17,12 +18,14 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public int Id => _event.Id;
 
+        [JsonIgnore]
         public Domain.Customer CustomerModel
         {
             get => _event.Customer;
             set => _event.Customer = value;
         }
 
+        [JsonIgnore]
         public ContactPerson ContactPersonModel
         {
             get => _event.ContactPerson;
@@ -94,6 +97,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             set => _event.Description = value;
         }
 
+        [JsonIgnore]
         public OrderVM OrderVM { get; set; }
 
         public string Street
@@ -148,6 +152,8 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public bool HasOrder()
         {
+            if (OrderVM == null) return false;
+
             return OrderVM.Id != 0;
         }
 
