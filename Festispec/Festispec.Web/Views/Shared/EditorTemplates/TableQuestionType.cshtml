@@ -2,60 +2,34 @@
 
 <table id="table-@Model.Id" class="table">
     <thead>
-    <tr>
-        @foreach (var col in Model.Details.Choices.Cols)
-        {
-            <th scope="col">@col</th>
-        }
+        <tr>
+            @foreach (var col in Model.Details.Choices.Cols)
+            {
+                <th scope="col">@col</th>
+            }
     </tr>
+    @for (var i = 5; i > 0; i--)
+    {
+        <tr>
+            @foreach (var col in Model.Details.Choices.Cols)
+            {
+                <td>
+                @if (Model.Details.Choices.SelectedCol == col)
+                {
+                    <select name="tabel_@Model.Id-vraag_@i">
+                        @foreach (var opt in @Model.Details.Choices.Options)
+                        {
+                            <option value="@opt">@opt</option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <input type="text" class="form-control" name="tabel_@Model.Id-vraag_@i"/>
+                }
+                </td>
+            } s
+        </tr>
+    }
     </thead>
 </table>
-<button class="btn btn-primary" onclick="addRow()">Rij toevoegen</button>
-
-<script>
-    const table = document.getElementById(`table-@Model.Id`);
-    const details = JSON.parse("@Model.DetailsJson".replace(/&quot;/g, '"'));
-    let rowIndex = 0;
-
-    function addRow() {
-        const newRow = table.insertRow();
-        const activeCell = "@Model.Details.Choices.SelectedCol";
-
-        for (let i = 0; i < @Model.Details.Choices.Cols.Count; i++) {
-            const cell = newRow.insertCell(i);
-
-            if (table.rows[0].cells[i].innerHTML === activeCell) {
-                cell.appendChild(generateDropdown(`select_row-${rowIndex}`));
-            } else {
-                cell.appendChild(generateInputField(`${rowIndex}-${i}`));
-            }
-        }
-
-        rowIndex++;
-    }
-
-    function generateDropdown(name) {
-        const select = document.createElement("select");
-        select.name = name;
-
-        for (let i = 0; i < @Model.Details.Choices.Options.Count; i++) {
-            const option = document.createElement("option");
-
-            option.value = details.Choices.Options[i];
-            option.text = details.Choices.Options[i];
-
-            select.appendChild(option);
-        }
-
-        return select;
-    }
-
-    function generateInputField(name) {
-        const input = document.createElement("input");
-        input.name = name;
-        input.className = "form-control"; 
-        return input;
-    }
-
-    addRow();
-</script>
