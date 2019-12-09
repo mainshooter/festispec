@@ -150,18 +150,26 @@ namespace Festispec.ViewModel.report
 
         public void ExportToPDF(StackPanel document)
         {
-            UIElementCollection element = document.Children;
-
             /// casting the UIElementCollection into List
-            List<FrameworkElement> lstElement = element.Cast<FrameworkElement>().ToList();
+            List<UserControl> lstElement = ReportElementUserControlls.ToList();
 
             /// Geting all Control from list
-            var lstControl = lstElement.OfType<Control>();
 
-            foreach (Control contol in lstControl)
+
+            foreach (var control in lstElement)
             {
+
+                //var buttons = .OfType<Button>().FirstOrDefault();
+                //control = System.Windows.Visibility.Hidden;
+
+                ///// Geting all Control from list
+
+                //foreach (var item in buttons)
+                //{
+                //    item.Visibility = System.Windows.Visibility.Hidden;
+                //}
                 ///Hide all Controls
-                contol.Visibility = System.Windows.Visibility.Hidden;
+
             }
 
 
@@ -169,7 +177,7 @@ namespace Festispec.ViewModel.report
             //{
             //    fd.Blocks.Add(new BlockUIContainer(item));
             //}
-            ConvertToPNG.SnapShotPng(document, 4);
+            ConvertToPNG.SnapShotPng(document, 1);
             //IDocumentPaginatorSource idocument = fd as IDocumentPaginatorSource;
             //printDialog.PrintDocument(idocument.DocumentPaginator, "Rapport");
 

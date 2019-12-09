@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -92,8 +93,18 @@ namespace Festispec.ViewModel.report
                 }
 
                 var tmpImg = new Image { Source = bitmap };
-                PrintDialog pd = new PrintDialog();
-                pd.PrintVisual(tmpImg, "Rapport");
+                PrintDialog printDialog = new PrintDialog();
+                var fixedDocument = new FixedDocument();
+                fixedDocument.DocumentPaginator.PageSize = new Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
+
+                FixedPage page = new FixedPage();
+                page.Height = renderHeight;
+                page.Width = renderWidth;
+                page.Children.Add(tmpImg);
+                PageContent pageContent = new PageContent();
+                ((IAddChild)pageContent).AddChild(page);
+                fixedDocument.Pages.Add(pageContent);
+                printDialog.PrintDocument(fixedDocument.DocumentPaginator, "Rapport");
             }
             catch (Exception ex)
             {
