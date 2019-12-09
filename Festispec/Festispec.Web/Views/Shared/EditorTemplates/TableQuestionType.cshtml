@@ -10,10 +10,10 @@
     </tr>
     </thead>
 </table>
-<button onclick="addRow()">Add row</button>
+<button class="btn btn-primary" onclick="addRow()">Rij toevoegen</button>
 
 <script>
-    const table = document.getElementById(`table-${@Model.Id}`);
+    const table = document.getElementById(`table-@Model.Id`);
     const details = JSON.parse("@Model.DetailsJson".replace(/&quot;/g, '"'));
     let rowIndex = 0;
 
@@ -53,6 +53,9 @@
     function generateInputField(name) {
         const input = document.createElement("input");
         input.name = name;
+        input.className = "form-control"; 
         return input;
     }
+
+    addRow();
 </script>
