@@ -150,7 +150,19 @@ namespace Festispec.ViewModel.report
 
         public void ExportToPDF(StackPanel document)
         {
+            foreach (var userControl in ReportElementUserControlls)
+            {
+                ReportElementVM reportElementVM = (ReportElementVM)userControl.DataContext;
+                reportElementVM.VisibilityButtons = Visibility.Collapsed;
+            }
+
             ConvertToPNG.SnapShotPng(document, 1);
+
+            foreach (var userControl in ReportElementUserControlls)
+            {
+                ReportElementVM reportElementVM = (ReportElementVM)userControl.DataContext;
+                reportElementVM.VisibilityButtons = Visibility.Visible;
+            }
         }
     }
 }
