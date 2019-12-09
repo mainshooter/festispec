@@ -140,6 +140,11 @@ namespace Festispec.ViewModel.report.element
             _reportElement = new ReportElement();
         }
 
+        public ReportElementVM(ReportElement e)
+        {
+
+        }
+
         public void Delete()
         {
             MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze element wilt verwijderen?", "Element Verwijderen", MessageBoxButton.YesNo);

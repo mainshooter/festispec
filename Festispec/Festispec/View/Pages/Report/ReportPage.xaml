@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Festispec.View.Report"
       xmlns:control="clr-namespace:Festispec.View.Report.Element" 
-      DataContext="{Binding ReportVM, Source={StaticResource Locator}}"
+      DataContext="{Binding ReportInfoVM, Source={StaticResource Locator}}"
       mc:Ignorable="d" 
       Title="Report">
 
@@ -16,10 +16,10 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Margin="5">
-            <TextBox BorderThickness="1" Text="{Binding Title}"></TextBox>
+            <TextBox BorderThickness="1" Text="{Binding ReportVM.Title}"></TextBox>
             <StackPanel Orientation="Horizontal" Height="30" Margin="5">
                 <Label Content="Status: " Height="30"></Label>
-                <ComboBox Margin="0,0,15,0"  Width="174" Text="{Binding Path=Status, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" ItemsSource="{Binding Path=Statuses}" SelectedValue="{Binding Status}" />
+                <ComboBox Margin="0,0,15,0"  Width="174" Text="{Binding Path=Status, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" ItemsSource="{Binding Path=Statuses}" SelectedValue="{Binding ReportVM.Status}" />
             </StackPanel>
             <local:AddReportElementUserControl Margin="0,50,0,0"></local:AddReportElementUserControl>
         </StackPanel>
@@ -27,8 +27,8 @@
 
         <ScrollViewer Grid.Column="1" Margin="5">
             <StackPanel >
-                <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Content="{Binding Title}"></Label>
-                <ItemsControl ItemsSource="{Binding ReportElementUserControlls}"></ItemsControl>
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Content="{Binding ReportVM.Title}"></Label>
+                <ItemsControl ItemsSource="{Binding ReportVM.ReportElementUserControlls}"></ItemsControl>
             </StackPanel>
         </ScrollViewer>
     </Grid>

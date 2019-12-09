@@ -135,6 +135,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EventInfoVM>();
             SimpleIoc.Default.Register<OfflineEventListVM>();
             SimpleIoc.Default.Register<OfflineEventInfoVM>();
+            SimpleIoc.Default.Register<ReportInfoVM>();
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
@@ -179,6 +180,8 @@ namespace Festispec.ViewModel
         public EventInfoVM EventInfoVM => ServiceLocator.Current.GetInstance<EventInfoVM>();
         public OfflineEventListVM OfflineEventListVM => ServiceLocator.Current.GetInstance<OfflineEventListVM>();
         public OfflineEventInfoVM OfflineEventInfoVM => ServiceLocator.Current.GetInstance<OfflineEventInfoVM>();
+
+        public ReportInfoVM ReportInfoVM => ServiceLocator.Current.GetInstance<ReportInfoVM>();
 
         public static void Cleanup()
         {
