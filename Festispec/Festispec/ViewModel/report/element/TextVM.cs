@@ -47,10 +47,9 @@ namespace Festispec.ViewModel.report.element
         public void Edit()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTextPage) });
-            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
+            MessengerInstance.Send<ChangeSelectedReportElementMessage>(new ChangeSelectedReportElementMessage()
             {
-                NextReportVM = ReportVM,
-                ReportElement = ReportElementVM
+                ReportElementVM = ReportElementVM
             });
         }
 

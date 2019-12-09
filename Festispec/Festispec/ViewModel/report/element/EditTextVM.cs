@@ -36,11 +36,8 @@ namespace Festispec.ViewModel.report
         {
             ReportElementVM = new ReportElementVM();
             ReportElementVM.Type = "text";
-            this.MessengerInstance.Register<ChangeSelectedReportMessage>(this, message =>
-            {
-                ReportElementVM = message.ReportElement;
-                this.ReportVM = message.NextReportVM;
-
+            MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => {
+                ReportElementVM = message.ReportElementVM;
             });
             SaveElementCommand = new RelayCommand(EditElement, CanAddElement);
             ReturnCommand = new RelayCommand(CloseEditElement);
