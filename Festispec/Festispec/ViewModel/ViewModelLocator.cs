@@ -110,6 +110,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddEventVM>();
             SimpleIoc.Default.Register<EditEventVM>();
             SimpleIoc.Default.Register<EventInfoVM>();
+            SimpleIoc.Default.Register<SickPageVM>();
 
         }
 
@@ -141,6 +142,7 @@ namespace Festispec.ViewModel
         public AddTableQuestionVM AddTableQuestionVM => ServiceLocator.Current.GetInstance<AddTableQuestionVM>();
         public EditTableQuestionVM EditTableQuestionVM => ServiceLocator.Current.GetInstance<EditTableQuestionVM>();
         public EmployeeInformationVM EmployeeInformationVM => ServiceLocator.Current.GetInstance<EmployeeInformationVM>();
+        public SickPageVM SickPageVM => ServiceLocator.Current.GetInstance<SickPageVM>();
 
         public EventListVM EventListVM => ServiceLocator.Current.GetInstance<EventListVM>();
 
