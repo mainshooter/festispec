@@ -98,8 +98,9 @@ namespace Festispec.ViewModel.report
                 fixedDocument.DocumentPaginator.PageSize = new Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
 
                 FixedPage page = new FixedPage();
-                page.Height = renderHeight;
-                page.Width = renderWidth;
+                page.Height = renderHeight + 50;
+                page.Width = renderWidth + 50;
+                page.Margin = new Thickness(25);
                 page.Children.Add(tmpImg);
                 PageContent pageContent = new PageContent();
                 ((IAddChild)pageContent).AddChild(page);
