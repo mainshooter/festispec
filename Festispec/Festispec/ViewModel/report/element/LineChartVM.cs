@@ -20,8 +20,6 @@ namespace Festispec.ViewModel.report.element
 
         public SeriesCollection SeriesCollection { get; set; }
 
-        public Func<string, string> YaxisLabelFormat { get; set; }
-
         public List<string> Labels { get; set; }
 
         public override Object Data {
@@ -39,6 +37,7 @@ namespace Festispec.ViewModel.report.element
         {
             Type = ReportElementType.Linechart;
         }
+
         public LineChartVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());

@@ -13,13 +13,14 @@ namespace Festispec.ViewModel.report.element
 
         public override Object Data
         {
-            get {
+            get 
+            {
                 return _data;
             }
-            set {
+            set 
+            {
                 _data = value;
                 Dictionary = (Dictionary<string, Object>)Data;
-                ApplyChanges();
             }
         }
 
@@ -29,6 +30,7 @@ namespace Festispec.ViewModel.report.element
         {
             Type = ReportElementType.Image;
         }
+
         public ImageVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());
@@ -40,6 +42,7 @@ namespace Festispec.ViewModel.report.element
             ReportId = element.ReportId;
             Image = element.Image;
         }
+
         public void Edit()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditImagePage) });
@@ -47,10 +50,6 @@ namespace Festispec.ViewModel.report.element
             {
                 ReportElementVM = this
             });
-        }
-
-        private void ApplyChanges()
-        {
         }
     }
 }

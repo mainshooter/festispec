@@ -206,7 +206,7 @@
     <Compile Include="ViewModel\report\element\ImageVM.cs" />
     <Compile Include="ViewModel\report\element\LineChartVM.cs" />
     <Compile Include="ViewModel\report\element\PieChartVM.cs" />
-    <Compile Include="ViewModel\report\element\ReportElementTypesListVM.cs" />
+    <Compile Include="Repository\ReportElementTypesRepository.cs" />
     <Compile Include="ViewModel\report\element\ReportElementVM.cs" />
     <Compile Include="ViewModel\report\element\TableVM.cs" />
     <Compile Include="ViewModel\report\element\TextVM.cs" />

@@ -141,16 +141,25 @@ namespace Festispec.ViewModel.report.element
         {
             _reportElement = element;
             DeleteElement = new RelayCommand(() => Delete());
-            ElementUpCommand = new RelayCommand(() => ReportVM.MoveElement(this, -1));
-            ElementDownCommand = new RelayCommand(() => ReportVM.MoveElement(this, 1));
+            ElementUpCommand = new RelayCommand(MoveElementUp);
+            ElementDownCommand = new RelayCommand(MoveElementDown);
         }
 
         public ReportElementVM()
         {
             DeleteElement = new RelayCommand(() => Delete());
-            ElementUpCommand = new RelayCommand(() => ReportVM.MoveElement(this, -1));
-            ElementDownCommand = new RelayCommand(() => ReportVM.MoveElement(this, 1));
+            ElementUpCommand = new RelayCommand(MoveElementUp);
+            ElementDownCommand = new RelayCommand(MoveElementDown);
             _reportElement = new ReportElement();
+        }
+
+        private void MoveElementUp() {
+            ReportVM.MoveElement(this, -1);
+        }
+
+        private void MoveElementDown()
+        {
+            ReportVM.MoveElement(this, 1);
         }
 
         public void Delete()
