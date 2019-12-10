@@ -38,6 +38,7 @@ using Festispec.View.Pages.Report.element.Add;
 using Festispec.ViewModel.report.Edit;
 using Festispec.ViewModel.report.element.Edit;
 using Festispec.ViewModel.report.element.Add;
+using Festispec.ViewModel.report.Add;
 
 namespace Festispec.ViewModel
 {
