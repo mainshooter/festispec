@@ -66,8 +66,9 @@ namespace Festispec.ViewModel.report.element
             if (fd.ShowDialog() != true) return;
             using (var fs = new FileStream(fd.FileName, FileMode.Open, FileAccess.Read))
             {
-                var test = new byte[fs.Length];
-                fs.Read(test, 0, Convert.ToInt32(fs.Length));
+                var imageResult = new byte[fs.Length];
+                fs.Read(imageResult, 0, Convert.ToInt32(fs.Length));
+                ReportElementVM.Image = imageResult;
             }
         }
 

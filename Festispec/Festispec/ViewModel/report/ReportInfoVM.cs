@@ -5,10 +5,14 @@ using Festispec.Repository;
 using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Report.element;
 using Festispec.ViewModel.Customer.order;
+using Festispec.ViewModel.report.element;
+using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -100,5 +104,15 @@ namespace Festispec.ViewModel.report
                 ReportElementUserControlls.Add(_reportElementFactory.CreateElement(element, ReportVM));
             }
         }
+        public void RefreshElements()
+        {
+            ReportRepository reportRepository = new ReportRepository();
+            ReportVM.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(ReportVM));
+            ReportVM.ReportElements.CollectionChanged += RenderReportElements;
+            this.RenderReportElements(null, null);
+            RaisePropertyChanged("ReportElements");
+        }
+
+
     }
 }

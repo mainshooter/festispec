@@ -9,6 +9,7 @@ using Festispec.ViewModel.toast;
 using System;
 using System.Windows;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Festispec.ViewModel.report
 {
@@ -97,7 +98,6 @@ namespace Festispec.ViewModel.report
         }
 
 
-
         public void MoveElement(ReportElementVM element, int direction)
         {
             try
@@ -107,6 +107,7 @@ namespace Festispec.ViewModel.report
                 NextElement.Order = element.Order;
                 element.Order = NextElementOrder;
                 SaveElementOrder(NextElement, element);
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().RefreshElements();
             }
             catch (Exception)
             {
@@ -119,14 +120,21 @@ namespace Festispec.ViewModel.report
             using (var context = new Entities())
             {
                 context.ReportElements.Attach(element1.ToModel());
-                context.Entry(element1.ToModel()).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();
 
+                context.Entry(element1.ToModel()).State = EntityState.Modified;
+
+                context.SaveChanges();
+            }
+            using (var context = new Entities())
+            {
                 context.ReportElements.Attach(element2.ToModel());
-                context.Entry(element2.ToModel()).State = System.Data.Entity.EntityState.Modified;
+
+                context.Entry(element2.ToModel()).State = EntityState.Modified;
+
                 context.SaveChanges();
             }
         }
+
 
         public bool ValidateInputs()
         {
