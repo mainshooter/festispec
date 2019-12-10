@@ -35,6 +35,9 @@ using GalaSoft.MvvmLight.Ioc;
 using Festispec.ViewModel.report.element;
 using Festispec.View.Pages.Report.element.Edit;
 using Festispec.View.Pages.Report.element.Add;
+using Festispec.ViewModel.report.Edit;
+using Festispec.ViewModel.report.element.Edit;
+using Festispec.ViewModel.report.element.Add;
 
 namespace Festispec.ViewModel
 {
