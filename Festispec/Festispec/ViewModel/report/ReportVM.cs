@@ -15,9 +15,9 @@ namespace Festispec.ViewModel.report
     {
         private Report _report;
         private ObservableCollection<ReportElementVM> _reportElements;
-        
 
-        public int Id {
+        public int Id 
+        {
             get 
             {
                 return _report.Id;
@@ -56,7 +56,6 @@ namespace Festispec.ViewModel.report
             }
         }
 
-
         public ObservableCollection<ReportElementVM> ReportElements {
             get 
             {
@@ -82,12 +81,10 @@ namespace Festispec.ViewModel.report
             ReportElements = new ObservableCollection<ReportElementVM>();
         }
 
-
         public Report ToModel()
         {
             return _report;
         }
-
 
         public void MoveElement(ReportElementVM element, int direction)
         {
@@ -121,7 +118,6 @@ namespace Festispec.ViewModel.report
                 context.SaveChanges();
             }
         }
-
 
         public bool ValidateInputs()
         {

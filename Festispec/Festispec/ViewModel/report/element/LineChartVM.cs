@@ -1,6 +1,5 @@
 ﻿using Festispec.Lib.Enums;
 using Festispec.Message;
-using Festispec.View.Pages.Report.element;
 using Festispec.View.Pages.Report.element.Edit;
 using GalaSoft.MvvmLight.Command;
 using LiveCharts;
