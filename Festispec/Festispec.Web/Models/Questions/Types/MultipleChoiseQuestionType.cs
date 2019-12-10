@@ -7,7 +7,7 @@ namespace Festispec.Web.Models.Questions.Types
     {
         public int Id { get; set; }
         public QuestionDetails Details { get; set; }
-        public string PathToPartial { get; } = "Survey/MultipleChoiseQuestion";
+        public string DetailsJson { get; set; }
         public int AnswerValue { get; set ; }
         public int AnswerText { get; set; }
     }

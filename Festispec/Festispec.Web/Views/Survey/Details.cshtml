@@ -3,10 +3,16 @@
 @model Festispec.Web.Models.SurveyModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Vragenlijst";
 }
 
-<h2>Survey</h2>
+<h2>Vragenlijst</h2>
+
+@if (!string.IsNullOrEmpty(Model.Survey.Description))
+{
+    <strong>Instructies:</strong>
+    <p>@Model.Survey.Description</p>
+}
 
 @foreach (var question in Model.Questions)
 {
@@ -14,3 +20,4 @@
     <p>@question.Details.Description</p><br/>
     @Html.EditorFor(m => question);<br />
 }
+
