@@ -27,10 +27,9 @@ namespace Festispec.ViewModel.report.element
 
         public Dictionary<string, Object> Dictionary { get; set; }
 
-        public TextVM(ReportElementVM element, ReportVM report)
+        public TextVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());
-            ReportVM = report;
             ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;

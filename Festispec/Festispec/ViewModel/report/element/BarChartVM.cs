@@ -39,11 +39,9 @@ namespace Festispec.ViewModel.report.element
 
         public ReportElementVM ReportElementVM { get; set; }
 
-        public BarChartVM(ReportElementVM element, ReportVM report)
+        public BarChartVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());
-            //Data = element.Data;
-            ReportVM = report;
             ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;

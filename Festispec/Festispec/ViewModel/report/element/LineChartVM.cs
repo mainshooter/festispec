@@ -36,12 +36,10 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public LineChartVM(ReportElementVM element, ReportVM report)
+        public LineChartVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());
             Labels = new List<string>();
-            //Data = element.Data;
-            ReportVM = report;
             ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;

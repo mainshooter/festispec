@@ -43,13 +43,11 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public TableVM(ReportElementVM element, ReportVM report)
+        public TableVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());
             DataTable = new DataTable();
             Dictionary = new Dictionary<string, List<string>>();
-            //Data = element.Data;
-            ReportVM = report;
             ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;

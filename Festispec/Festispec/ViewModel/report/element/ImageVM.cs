@@ -26,11 +26,9 @@ namespace Festispec.ViewModel.report.element
 
         public ReportElementVM ReportElementVM { get; set; }
 
-        public ImageVM(ReportElementVM element, ReportVM report)
+        public ImageVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());
-            //Data = element.Data;
-            ReportVM = report;
             ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;

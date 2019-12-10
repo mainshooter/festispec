@@ -71,7 +71,7 @@ namespace Festispec.ViewModel.report
         public ReportVM(Report report)
         {
             _report = report;
-            ReportElements = new ObservableCollection<ReportElementVM>(_report.ReportElements.Select(e => new ReportElementVM(e, this)).ToList());         
+            ReportElements = new ObservableCollection<ReportElementVM>(_report.ReportElements.Select(e => new ReportElementVM(e)).ToList());         
         }
 
         public ReportVM(OrderVM OrderVM)

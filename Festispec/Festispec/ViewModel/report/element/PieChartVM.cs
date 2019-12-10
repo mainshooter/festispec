@@ -27,11 +27,9 @@ namespace Festispec.ViewModel.report.element
 
         public SeriesCollection SeriesCollection { get; set; }
 
-        public PieChartVM(ReportElementVM element, ReportVM report)
+        public PieChartVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());
-            //Data = element.Data;
-            ReportVM = report;
             ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;

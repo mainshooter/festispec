@@ -14,28 +14,28 @@ namespace Festispec.Factory
             if (type.Equals("table"))
             {
                 TableUserControl table = new TableUserControl();
-                TableVM tableVm = new TableVM(element, report);
+                TableVM tableVm = new TableVM(element);
                 table.DataContext = tableVm;
                 returningUserControl = table;
             }
             else if (type.Equals("linechart"))
             {
                 LineChartUserControl lineChart = new LineChartUserControl();
-                LineChartVM lineChartVm = new LineChartVM(element,report);
+                LineChartVM lineChartVm = new LineChartVM(element);
                 lineChart.DataContext = lineChartVm;
                 returningUserControl = lineChart;
             }
             else if (type.Equals("piechart"))
             {
                 PieChartUserControl pieChart = new PieChartUserControl();
-                PieChartVM pieChartVm = new PieChartVM(element, report);
+                PieChartVM pieChartVm = new PieChartVM(element);
                 pieChart.DataContext = pieChartVm;
                 returningUserControl = pieChart;
             }
             else if (type.Equals("barchart"))
             {
                 BarChartUserControl barChart = new BarChartUserControl();
-                BarChartVM barChartVm = new BarChartVM(element,report);
+                BarChartVM barChartVm = new BarChartVM(element);
                 barChart.DataContext = barChartVm;
                 returningUserControl = barChart;
 
@@ -43,14 +43,14 @@ namespace Festispec.Factory
             else if (type.Equals("image"))
             {
                 ImageUserControl image = new ImageUserControl();
-                ImageVM imageVm = new ImageVM(element, report);
+                ImageVM imageVm = new ImageVM(element);
                 image.DataContext = imageVm;
                 returningUserControl = image;
             }
             else if (type.Equals("text"))
             {
                 TextUserControl text = new TextUserControl();
-                TextVM textVM = new TextVM(element,report);
+                TextVM textVM = new TextVM(element);
                 text.DataContext = textVM;
                 returningUserControl = text;
             }

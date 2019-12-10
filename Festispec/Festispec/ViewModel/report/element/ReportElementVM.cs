@@ -15,7 +15,11 @@ namespace Festispec.ViewModel.report.element
     {
         private ReportElement _reportElement;
 
-        public ReportVM ReportVM { get; set; }
+        private ReportVM ReportVM { 
+            get {
+                return CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().ReportVM;
+            }
+        }
 
         public ICommand EditElement { get; set; }
         public ICommand DeleteElement { get; set; }
@@ -133,10 +137,9 @@ namespace Festispec.ViewModel.report.element
 
         public virtual Object Data { get; set; }
         
-        public ReportElementVM(ReportElement element, ReportVM report)
+        public ReportElementVM(ReportElement element)
         {
             _reportElement = element;
-            ReportVM = report;
             DeleteElement = new RelayCommand(() => Delete());
             ElementUpCommand = new RelayCommand(() => ReportVM.MoveElement(this, -1));
             ElementDownCommand = new RelayCommand(() => ReportVM.MoveElement(this, 1));
