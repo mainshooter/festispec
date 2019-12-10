@@ -8,27 +8,57 @@ using Festispec.Web.Models;
 using Festispec.Web.Models.Questions;
 using Newtonsoft.Json;
 using Festispec.Web.Models.Auth;
+using System;
+using System.Data.Entity;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Festispec.Web.Controllers
 {
     public class SurveyController : Controller
     {
         private readonly Entities _db = new Entities();
-
+        
         // GET: Survey
         public ActionResult Index()
         {
-            //return View(_db.Surveys.ToList().Where(s => s.Status.Equals(SurveyStatus.Definitief.ToString())));
+            if (UserSession.Current.Employee == null)
+            {
+                Response.Redirect("~/User/Login");
+            }
 
-            var inspectorPlanningList = _db.InspectorPlannings.Where(i => i.EmployeeId == UserSession.Current.Employee.Id).ToList();
-            var eventList = _db.Events.ToList();
-            var surveyList = _db.Surveys.ToList();
+            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
+                                    .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
+                                    DateTime.Today <= s.Order.Event.EndDate &&
+                                    s.Status == SurveyStatus.Definitief.ToString())
+                                    .ToList();
 
-            return View();
+            CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
+
+
+            return View(surveysTodayWithOrderAndEvent);
+        }
+
+        private List<Survey> CheckAllowenceCurrentEmployeeWithSurveys(List<Survey> surveysList)
+        {
+            foreach(var s in surveysList.ToList())
+            {
+                if(_db.InspectorPlannings.ToList().Where(i => i.EmployeeId == UserSession.Current.Employee.Id && i.OrderId == s.Order.Id).Any() == false)
+                {
+                    surveysList.Remove(s);
+                }
+            }
+
+            return surveysList;
         }
 
         public ActionResult Details(int? id)
         {
+            if(UserSession.Current.Employee == null)
+            {
+                Response.Redirect("~/User/Login");
+            }
+
             if(id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
@@ -36,6 +66,11 @@ namespace Festispec.Web.Controllers
 
             if (model.Survey == null)
                 return HttpNotFound();
+            
+            if (CheckAllowenceCurrentEmployeeWithSurveys(new List<Survey> { model.Survey }).Count == 0)
+            {
+                Response.Redirect("~/Survey");
+            }
 
             foreach (var q in model.Survey.Questions)
             {
