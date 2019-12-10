@@ -34,7 +34,6 @@ using Festispec.ViewModel.survey.question.QuestionTypes.TableQuestion;
 using GalaSoft.MvvmLight.Ioc;
 using Festispec.View.Pages.Report.element.Edit;
 using Festispec.View.Pages.Report.element.Add;
-using Festispec.ViewModel.report.Edit;
 using Festispec.ViewModel.report.element.Edit;
 using Festispec.ViewModel.report.element.Add;
 using Festispec.ViewModel.report.Add;
