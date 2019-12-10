@@ -8,7 +8,7 @@ using System;
 using System.Data.Entity;
 using System.Windows.Input;
 
-namespace Festispec.ViewModel.report.element
+namespace Festispec.ViewModel.report.element.Edit
 {
     public class EditLineChartVM : ViewModelBase
     {

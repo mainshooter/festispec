@@ -1,4 +1,5 @@
-﻿using Festispec.Message;
+﻿using Festispec.Lib.Enums;
+using Festispec.Message;
 using Festispec.View.Pages.Report.element;
 using Festispec.View.Pages.Report.element.Edit;
 using GalaSoft.MvvmLight.Command;
@@ -27,7 +28,7 @@ namespace Festispec.ViewModel.report.element
 
         public ImageVM()
         {
-            Type = "image";
+            Type = ReportElementType.Image;
         }
         public ImageVM(ReportElementVM element)
         {

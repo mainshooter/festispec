@@ -7,11 +7,10 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Win32;
 using System;
-using System.Data.Entity;
 using System.IO;
 using System.Windows.Input;
 
-namespace Festispec.ViewModel.report.element
+namespace Festispec.ViewModel.report.element.Add
 {
     public class AddImageVM : ViewModelBase
     {

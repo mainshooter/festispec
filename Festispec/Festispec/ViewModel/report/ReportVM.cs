@@ -3,12 +3,10 @@ using Festispec.ViewModel.report.element;
 using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight;
-using Festispec.Repository;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.toast;
 using System;
 using System.Windows;
-using System.Threading.Tasks;
 using System.Data.Entity;
 
 namespace Festispec.ViewModel.report
@@ -20,52 +18,55 @@ namespace Festispec.ViewModel.report
         
 
         public int Id {
-            get {
+            get 
+            {
                 return _report.Id;
             }
-            private set {
+            private set 
+            {
                 _report.Id = value;
             }
         }
 
         public OrderVM Order { get; set; }
 
-        public string Title {
-            get {
+        public string Title 
+        {
+            get 
+            {
                 return _report.Title;
             }
-            set {
+            set 
+            {
                 _report.Title = value;
-                SaveReportChangesAsync();
                 RaisePropertyChanged("Title");
             }
         }
 
-        public string Status {
-            get {
+        public string Status 
+        {
+            get 
+            {
                 return _report.Status;
             }
-            set {
+            set 
+            {
                 _report.Status = value;
-                SaveReportChangesAsync();
                 RaisePropertyChanged("Status");
             }
         }
 
 
         public ObservableCollection<ReportElementVM> ReportElements {
-            get {
+            get 
+            {
                 return _reportElements;
             }
-            set {
+            set
+            {
                 _reportElements = value;
                 RaisePropertyChanged();
             }
-        }
-
-        public ReportVM()
-        {
-            ReportElements = new ObservableCollection<ReportElementVM>();
         }
 
         public ReportVM(Report report)
@@ -86,27 +87,17 @@ namespace Festispec.ViewModel.report
         {
             return _report;
         }
-     
-        public async Task SaveReportChangesAsync()
-        {
-            using (var context = new Entities())
-            {
-                context.Reports.Attach(_report);
-                context.Entry(_report).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChangesAsync();
-            }
-        }
 
 
         public void MoveElement(ReportElementVM element, int direction)
         {
             try
             {
-                var NextElement = ReportElements[ReportElements.IndexOf(ReportElements.Where(e => e.Id == element.Id).FirstOrDefault()) + direction];
-                var NextElementOrder = NextElement.Order;
-                NextElement.Order = element.Order;
-                element.Order = NextElementOrder;
-                SaveElementOrder(NextElement, element);
+                var nextElement = ReportElements[ReportElements.IndexOf(ReportElements.Where(e => e.Id == element.Id).FirstOrDefault()) + direction];
+                var nextElementOrder = nextElement.Order;
+                nextElement.Order = element.Order;
+                element.Order = nextElementOrder;
+                SaveElementOrder(nextElement, element);
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().RefreshElements();
             }
             catch (Exception)
@@ -120,17 +111,13 @@ namespace Festispec.ViewModel.report
             using (var context = new Entities())
             {
                 context.ReportElements.Attach(element1.ToModel());
-
                 context.Entry(element1.ToModel()).State = EntityState.Modified;
-
                 context.SaveChanges();
             }
             using (var context = new Entities())
             {
                 context.ReportElements.Attach(element2.ToModel());
-
                 context.Entry(element2.ToModel()).State = EntityState.Modified;
-
                 context.SaveChanges();
             }
         }

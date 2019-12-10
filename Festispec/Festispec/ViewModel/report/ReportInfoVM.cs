@@ -4,7 +4,6 @@ using Festispec.Message;
 using Festispec.Repository;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Report;
-using Festispec.View.Pages.Report.element;
 using Festispec.View.Pages.Report.element.Add;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.report.element;
@@ -24,6 +23,7 @@ namespace Festispec.ViewModel.report
         private ReportVM _reportVM;
         private OrderVM _orderVM;
         private ReportRepository _reportRepository;
+
         public ReportVM ReportVM {
             get {
                 return _reportVM;
@@ -33,20 +33,15 @@ namespace Festispec.ViewModel.report
                 RaisePropertyChanged();
             }
         }
-        public OrderVM OrderVM {
-            get {
-                return _orderVM;
-            }
-            set {
-                _orderVM = value;
-                RaisePropertyChanged();
-            }
-        }
+
         public ICommand AddElementCommand { get; set; }
 
         public ICommand GoBackCommand { get; set; }
 
+        public ICommand SaveReportCommand { get; set; }
+
         public ObservableCollection<string> Statuses { get; set; }
+
         public ObservableCollection<UserControl> ReportElementUserControlls { get; set; }
 
         public string SelectedElementType { get; set; }
@@ -62,12 +57,12 @@ namespace Festispec.ViewModel.report
             GetStatuses();
             _reportRepository = new ReportRepository();
             ReportElementUserControlls = new ObservableCollection<UserControl>();
-
             MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
                 ReportVM = message.NextReportVM;
                 ReportVM.ReportElements.CollectionChanged += RenderReportElements;
                 RenderReportElements(null, null);
             });
+
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
                 if (message.NextPageType == typeof(ReportPage) && ReportVM != null)
@@ -76,10 +71,24 @@ namespace Festispec.ViewModel.report
                     RenderReportElements(null, null);
                 }
             });
+
             AddElementCommand = new RelayCommand(GoToAddElementPage);
+            SaveReportCommand = new RelayCommand(SaveReport);
+
             GoBackCommand = new RelayCommand(() => {
                 MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage)});
             });
+
+        }
+
+        private void SaveReport()
+        {
+            using (var context = new Entities())
+            {
+                context.Reports.Attach(ReportVM.ToModel());
+                context.Entry(ReportVM.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
         }
 
         private void GetStatuses()
@@ -112,8 +121,6 @@ namespace Festispec.ViewModel.report
                 case "text":
                     MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddTextPage) });
                     break;
-                default:
-                    break;
             }
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
             {
@@ -121,21 +128,22 @@ namespace Festispec.ViewModel.report
             });
         }
 
-
-
         public void RenderReportElements(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (ReportVM == null)
             {
                 return;
             }
+
             ReportElementUserControlls.Clear();
             var reportElements = ReportVM.ReportElements.OrderBy(el => el.Order);
+
             foreach (var element in reportElements)
             {
                 ReportElementUserControlls.Add(ReportElementFactory.CreateElement(element));
             }
         }
+
         public void RefreshElements()
         {
             ReportRepository reportRepository = new ReportRepository();
@@ -144,7 +152,5 @@ namespace Festispec.ViewModel.report
             this.RenderReportElements(null, null);
             RaisePropertyChanged("ReportElements");
         }
-
-
     }
 }

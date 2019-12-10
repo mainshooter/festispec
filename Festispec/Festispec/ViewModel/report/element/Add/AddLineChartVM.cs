@@ -8,7 +8,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Windows.Input;
 
-namespace Festispec.ViewModel.report.element
+namespace Festispec.ViewModel.report.element.Add
 {
     public class AddLineChartVM : ViewModelBase
     {

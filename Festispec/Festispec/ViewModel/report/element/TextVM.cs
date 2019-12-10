@@ -1,4 +1,5 @@
-﻿using Festispec.Message;
+﻿using Festispec.Lib.Enums;
+using Festispec.Message;
 using Festispec.View.Pages.Report.element.Edit;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -27,7 +28,7 @@ namespace Festispec.ViewModel.report.element
 
         public TextVM()
         {
-            Type = "text";
+            Type = ReportElementType.Text;
         }
         public TextVM(ReportElementVM element)
         {

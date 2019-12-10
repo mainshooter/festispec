@@ -1,4 +1,5 @@
-﻿using Festispec.Message;
+﻿using Festispec.Lib.Enums;
+using Festispec.Message;
 using Festispec.View.Pages.Report.element.Edit;
 using GalaSoft.MvvmLight.Command;
 using LiveCharts;
@@ -27,7 +28,7 @@ namespace Festispec.ViewModel.report.element
 
         public PieChartVM()
         {
-            Type = "piechart";
+            Type = ReportElementType.Piechart;
             EditElement = new RelayCommand(() => Edit());
         }
         public PieChartVM(ReportElementVM element)

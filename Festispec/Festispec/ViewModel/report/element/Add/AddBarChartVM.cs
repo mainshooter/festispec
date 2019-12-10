@@ -7,7 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows.Input;
 
-namespace Festispec.ViewModel.report.element
+namespace Festispec.ViewModel.report.element.Add
 {
     public class AddBarChartVM : ViewModelBase
     {

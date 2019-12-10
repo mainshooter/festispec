@@ -1,4 +1,5 @@
-﻿using Festispec.Message;
+﻿using Festispec.Lib.Enums;
+using Festispec.Message;
 using Festispec.View.Pages.Report.element;
 using Festispec.View.Pages.Report.element.Edit;
 using GalaSoft.MvvmLight.Command;
@@ -37,7 +38,7 @@ namespace Festispec.ViewModel.report.element
 
         public LineChartVM()
         {
-            Type = "linechart";
+            Type = ReportElementType.Linechart;
         }
         public LineChartVM(ReportElementVM element)
         {
