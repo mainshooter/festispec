@@ -9,8 +9,6 @@ using Festispec.Web.Models.Questions;
 using Newtonsoft.Json;
 using Festispec.Web.Models.Auth;
 using System;
-using System.Data.Entity;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Festispec.Web.Controllers
@@ -24,7 +22,7 @@ namespace Festispec.Web.Controllers
         {
             if (UserSession.Current.Employee == null)
             {
-                Response.Redirect("~/User/Login");
+                return Redirect("~/User/Login");
             }
 
             var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
@@ -35,7 +33,6 @@ namespace Festispec.Web.Controllers
 
             CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
 
-
             return View(surveysTodayWithOrderAndEvent);
         }
 
@@ -43,7 +40,7 @@ namespace Festispec.Web.Controllers
         {
             foreach(var s in surveysList.ToList())
             {
-                if(_db.InspectorPlannings.ToList().Where(i => i.EmployeeId == UserSession.Current.Employee.Id && i.OrderId == s.Order.Id).Any() == false)
+                if(_db.InspectorPlannings.ToList().Any(i => i.EmployeeId == UserSession.Current.Employee.Id && i.OrderId == s.Order.Id) == false)
                 {
                     surveysList.Remove(s);
                 }
@@ -56,7 +53,7 @@ namespace Festispec.Web.Controllers
         {
             if(UserSession.Current.Employee == null)
             {
-                Response.Redirect("~/User/Login");
+                return Redirect("~/User/Login");
             }
 
             if(id == null)
