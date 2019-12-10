@@ -14,8 +14,9 @@
             <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition Width="700"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
+        
         <StackPanel Grid.Column="0" Margin="5">
+            <Button Grid.Row="0" HorizontalAlignment="Left" Command="{Binding GoBackCommand}" Margin="10,0,0,0">Terug</Button>
             <TextBox BorderThickness="1" Text="{Binding ReportVM.Title}"></TextBox>
             <StackPanel Orientation="Horizontal" Height="30" Margin="5">
                 <Label Content="Status: " Height="30"></Label>

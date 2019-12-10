@@ -2,6 +2,7 @@
 using Festispec.Factory;
 using Festispec.Message;
 using Festispec.Repository;
+using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Report.element;
 using Festispec.ViewModel.Customer.order;
@@ -41,6 +42,8 @@ namespace Festispec.ViewModel.report
         }
         public ICommand AddElementCommand { get; set; }
 
+        public ICommand GoBackCommand { get; set; }
+
         public ObservableCollection<string> Statuses { get; set; }
         public ObservableCollection<UserControl> ReportElementUserControlls { get; set; }
 
@@ -64,7 +67,10 @@ namespace Festispec.ViewModel.report
                     RenderReportElements(null, null);
                 }
             });
-            AddElementCommand = new RelayCommand(GoToAddElementPage); 
+            AddElementCommand = new RelayCommand(GoToAddElementPage);
+            GoBackCommand = new RelayCommand(() => {
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage)});
+            });
         }
 
         private void GetStatuses()
