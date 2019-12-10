@@ -1,15 +1,22 @@
-﻿@model Festispec.Web.Models.SurveyModel
+﻿@using Microsoft.Ajax.Utilities
+@model Festispec.Web.Models.SurveyModel
 
 @{
     ViewBag.Title = "Vragenlijst";
 }
 
 <h2>Vragenlijst</h2>
+@if (!string.IsNullOrEmpty(Model.Survey.Description))
+{
+    <strong>Instructies:</strong>
+    <p>@Model.Survey.Description</p>
+}
 
 @foreach (var question in Model.Questions)
 {
     <h3>@question.Details.Question</h3>
-    <strong>Instructies:</strong>
+    <strong>Details:</strong>
     <p>@question.Details.Description</p>
-    @Html.EditorFor(m => question);<br />
+    @Html.EditorFor(m => question);
+    <br />
 }
