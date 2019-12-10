@@ -170,6 +170,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\fabric.1.7.15.js" />
+    <Content Include="Scripts\js\fabric.1.7.15.min.js" />
+    <Content Include="Scripts\js\fabric.js" />
+    <Content Include="Scripts\js\fabric.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -205,6 +209,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
