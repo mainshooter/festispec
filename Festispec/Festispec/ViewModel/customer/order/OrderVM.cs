@@ -46,6 +46,11 @@ namespace Festispec.ViewModel.Customer.order
             _order = new Order();
         }
 
+        public OrderVM(Order e)
+        {
+            _order = e;
+        }
+
         public Order ToModel()
         {
             return _order;

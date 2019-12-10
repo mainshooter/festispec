@@ -9,7 +9,7 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         private InspectorPlanning _plannedEmployee;
 
         public EmployeeVM Employee { get; set; }
-        public DayVM Day { get; set; }
+        public int OrderId => _plannedEmployee.OrderId;
 
         public string Status {
             get => _plannedEmployee.Status;
