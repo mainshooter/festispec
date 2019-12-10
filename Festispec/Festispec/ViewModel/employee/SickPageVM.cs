@@ -5,6 +5,7 @@ using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.planning.plannedEmployee;
 using GalaSoft.MvvmLight;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Festispec.ViewModel.employee
@@ -26,10 +27,13 @@ namespace Festispec.ViewModel.employee
                     .Select(e => new PlannedEmployeeVM(e))
                     .Where(e => e.Employee.Id == Employee.Id)
                     .FirstOrDefault();
-
-                var tempEvent = context.Orders.ToList().Select(e => new OrderVM(e)).Where(e => e.Id == tempPlanning.OrderId).FirstOrDefault();
+                List<Order> orders = new List<Order>(context.Orders);
+                List<OrderVM> orderList = new List<OrderVM>(context.Orders.ToList().Select(e => new OrderVM(e)));
                 if (tempPlanning != null)
                 {
+                    
+                    var tempEvent = orderList.Where(e => e.Id == tempPlanning.OrderId).FirstOrDefault();
+
                     PlannedEvent = tempPlanning;
                     Console.WriteLine(PlannedEvent.OrderId);
                     Console.WriteLine(tempEvent.Event.Name);
