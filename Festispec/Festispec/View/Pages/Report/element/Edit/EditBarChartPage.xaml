@@ -12,8 +12,9 @@
       DataContext="{Binding EditBarChartVM,Source={StaticResource Locator}}">
 
 
-    <StackPanel>
+    <StackPanel Margin="10">
         <Button Width="50" HorizontalAlignment="Left" ToolTip="Terug" ToolTipService.ShowOnDisabled="True" Command="{Binding ReturnCommand}" Content="{materialDesign:PackIcon keyboardreturn}"/>
+        <Label FontSize="15" HorizontalAlignment="Center" Content="{Binding ReportElementVM.Type}" ContentStringFormat="Bewerken element type {0}"/>
         <StackPanel>
             <Label Content="Titel: "></Label>
             <TextBox Text="{Binding ReportElementVM.Title,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
@@ -23,11 +24,11 @@
             <TextBox Text="{Binding ReportElementVM.Content,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
         <StackPanel>
-            <Label Content="Titel: "></Label>
+            <Label Content="X-as: "></Label>
             <TextBox Text="{Binding ReportElementVM.X_as,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
         <StackPanel>
-            <Label Content="Beschrijving: "></Label>
+            <Label Content="Y-as: "></Label>
             <TextBox Text="{Binding ReportElementVM.Y_as,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
         <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Left" Height="300">

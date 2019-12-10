@@ -6,7 +6,6 @@ using Festispec.View.Pages.Employee;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Planning;
 using Festispec.View.Pages.Report;
-using Festispec.View.Pages.Report.element;
 using Festispec.View.Pages.Survey;
 using Festispec.View.Pages.Survey.QuestionTypes.ClosedQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.CommentField;
@@ -34,7 +33,6 @@ using Festispec.ViewModel.survey.question.QuestionTypes.SliderQuestion;
 using Festispec.ViewModel.survey.question.QuestionTypes.TableQuestion;
 using GalaSoft.MvvmLight.Ioc;
 using Festispec.ViewModel.report.element;
-using Festispec.ViewModel.Customer.order;
 using Festispec.View.Pages.Report.element.Edit;
 using Festispec.View.Pages.Report.element.Add;
 
@@ -189,7 +187,7 @@ namespace Festispec.ViewModel
         public EventInfoVM EventInfoVM => ServiceLocator.Current.GetInstance<EventInfoVM>();
         public OfflineEventListVM OfflineEventListVM => ServiceLocator.Current.GetInstance<OfflineEventListVM>();
         public OfflineEventInfoVM OfflineEventInfoVM => ServiceLocator.Current.GetInstance<OfflineEventInfoVM>();
-
+        public AddPieChartVM AddPieChartVM => ServiceLocator.Current.GetInstance<AddPieChartVM>();
         public ReportInfoVM ReportInfoVM => ServiceLocator.Current.GetInstance<ReportInfoVM>();
         public AddBarChartVM AddBarChartVM => ServiceLocator.Current.GetInstance<AddBarChartVM>();
         public AddImageVM AddImageVM => ServiceLocator.Current.GetInstance<AddImageVM>();

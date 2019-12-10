@@ -10,8 +10,9 @@
       Title="EditTablePage"
       DataContext="{Binding AddTableVM,Source={StaticResource Locator}}">
 
-    <StackPanel>
+    <StackPanel Margin="10">
         <Button Width="50" HorizontalAlignment="Left" ToolTip="Terug" ToolTipService.ShowOnDisabled="True" Command="{Binding ReturnCommand}" Content="{materialDesign:PackIcon keyboardreturn}"/>
+        <Label FontSize="15" HorizontalAlignment="Center" Content="{Binding ReportElementVM.Type}" ContentStringFormat="Aanmaken element type {0}"/>
         <StackPanel>
             <Label Content="Titel: "></Label>
             <TextBox Text="{Binding ReportElementVM.Title, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>

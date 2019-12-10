@@ -1,6 +1,7 @@
 ﻿using Festispec.Domain;
 using Festispec.Message;
 using Festispec.View.Pages.Report;
+using Festispec.View.Pages.Report.element.Add;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -42,6 +43,13 @@ namespace Festispec.ViewModel.report.element
                 ReportElementVM.Order = message.NextReportVM.ReportElements.Count + 1;
             });
 
+            MessengerInstance.Register<ChangePageMessage>(this, message => {
+                if (message.NextPageType == typeof(AddImagePage))
+                {
+                    ReportElementVM = new ImageVM();
+                }
+            });
+
             SaveElementCommand = new RelayCommand(SaveElement, CanAddElement);
             ReturnCommand = new RelayCommand(CloseSaveElement);
             ChooseImageCommand = new RelayCommand(ChooseImage);
@@ -54,7 +62,7 @@ namespace Festispec.ViewModel.report.element
                 context.ReportElements.Add(ReportElementVM.ToModel());
                 context.SaveChanges();
             }
-            CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowInformation("Rapportelement aangemaakt.");
+            CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowInformation("Rapportelement is toegevoegd.");
             CloseSaveElement();
         }
 

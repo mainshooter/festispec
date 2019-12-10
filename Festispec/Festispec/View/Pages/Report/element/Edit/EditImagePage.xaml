@@ -9,10 +9,10 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EditImagePage"
       DataContext="{Binding EditImageVM,Source={StaticResource Locator}}">
-
-
-    <StackPanel>
+    
+    <StackPanel Margin="10">
         <Button Width="50" HorizontalAlignment="Left" ToolTip="Terug" ToolTipService.ShowOnDisabled="True" Command="{Binding ReturnCommand}" Content="{materialDesign:PackIcon keyboardreturn}"/>
+        <Label FontSize="15" HorizontalAlignment="Center" Content="{Binding ReportElementVM.Type}" ContentStringFormat="Bewerken element type {0}"/>
         <StackPanel>
             <Label Content="Titel: "></Label>
             <TextBox Text="{Binding ReportElementVM.Title, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15"></TextBox>
@@ -23,7 +23,7 @@
         </StackPanel>
         <Button Width="50" HorizontalAlignment="Left" Command="{Binding ChooseImageCommand}" Content="{materialDesign:PackIcon folderopen}"/>
 
-        <Image Source="{Binding Photo}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Stretch="Fill" Height="300" Width="670"></Image>
+        <Image Source="{Binding ReportElementVM.Image}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Stretch="Fill" Height="300" Width="620"></Image>
 
         <Button HorizontalAlignment="Right" Width="50" Command="{Binding SaveElementCommand}" ToolTip="Element opslaan" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ContentSave}"/>
     </StackPanel>
