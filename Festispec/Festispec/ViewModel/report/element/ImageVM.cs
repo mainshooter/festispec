@@ -10,8 +10,6 @@ namespace Festispec.ViewModel.report.element
     {
         private object _data;
 
-        public byte[] Photo { get; set; }
-
         public override Object Data
         {
             get {
@@ -40,6 +38,7 @@ namespace Festispec.ViewModel.report.element
             Content = element.Content;
             Order = element.Order;
             ReportId = element.ReportId;
+            Image = element.Image;
         }
         public void Edit()
         {
@@ -52,7 +51,6 @@ namespace Festispec.ViewModel.report.element
 
         private void ApplyChanges()
         {
-            Photo = (byte[])Dictionary["image"];
         }
     }
 }

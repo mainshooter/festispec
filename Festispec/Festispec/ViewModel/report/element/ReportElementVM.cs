@@ -97,6 +97,16 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
+        public byte[] Image { 
+            get {
+                return _reportElement.Image;
+            }
+            set {
+                _reportElement.Image = value;
+                RaisePropertyChanged("Image");
+            }
+        }
+
         public string X_as
         {
             get
