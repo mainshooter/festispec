@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Pages.Report.element
+namespace Festispec.View.Pages.Report.element.Edit
 {
     /// <summary>
-    /// Interaction logic for EditTablePage.xaml
+    /// Interaction logic for EditImagePage.xaml
     /// </summary>
-    public partial class EditTablePage : Page
+    public partial class EditImagePage : Page
     {
-        public EditTablePage()
+        public EditImagePage()
         {
             InitializeComponent();
         }

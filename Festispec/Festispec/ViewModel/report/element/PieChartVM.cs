@@ -1,5 +1,6 @@
 ﻿using Festispec.Message;
 using Festispec.View.Pages.Report.element;
+using Festispec.View.Pages.Report.element.Edit;
 using GalaSoft.MvvmLight.Command;
 using LiveCharts;
 using System;
@@ -25,6 +26,11 @@ namespace Festispec.ViewModel.report.element
 
         public SeriesCollection SeriesCollection { get; set; }
 
+        public PieChartVM()
+        {
+            Type = "piechart";
+            EditElement = new RelayCommand(() => Edit());
+        }
         public PieChartVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());

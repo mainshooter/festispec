@@ -35,6 +35,8 @@ using Festispec.ViewModel.survey.question.QuestionTypes.TableQuestion;
 using GalaSoft.MvvmLight.Ioc;
 using Festispec.ViewModel.report.element;
 using Festispec.ViewModel.Customer.order;
+using Festispec.View.Pages.Report.element.Edit;
+using Festispec.View.Pages.Report.element.Add;
 
 namespace Festispec.ViewModel
 {
@@ -51,7 +53,6 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AvailablePage>();
             SimpleIoc.Default.Register<EmployeePage>();
             SimpleIoc.Default.Register<SickPage>();
-            SimpleIoc.Default.Register<AddElementPage>();
             SimpleIoc.Default.Register<PlanningOverviewPage>();
             SimpleIoc.Default.Register<EmployeeInformationPage>();
             SimpleIoc.Default.Register<EmployeePage>();
@@ -83,6 +84,12 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<SingleEventPage>();
             SimpleIoc.Default.Register<OfflineEventListPage>();
             SimpleIoc.Default.Register<SingleOfflineEventPage>();
+            SimpleIoc.Default.Register<AddBarChartPage>();
+            SimpleIoc.Default.Register<AddImagePage>();
+            SimpleIoc.Default.Register<AddLineChartPage>();
+            SimpleIoc.Default.Register<AddPieChartPage>();
+            SimpleIoc.Default.Register<AddTablePage>();
+            SimpleIoc.Default.Register<AddTextPage>();
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<EmployeeVM>();
@@ -135,6 +142,12 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<OfflineEventListVM>();
             SimpleIoc.Default.Register<OfflineEventInfoVM>();
             SimpleIoc.Default.Register<ReportInfoVM>();
+            SimpleIoc.Default.Register<AddBarChartVM>();
+            SimpleIoc.Default.Register<AddImageVM>();
+            SimpleIoc.Default.Register<AddLineChartVM>();
+            SimpleIoc.Default.Register<AddPieChartVM>();
+            SimpleIoc.Default.Register<AddTableVM>();
+            SimpleIoc.Default.Register<AddTextVM>();
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
@@ -164,7 +177,6 @@ namespace Festispec.ViewModel
         public AddTableQuestionVM AddTableQuestionVM => ServiceLocator.Current.GetInstance<AddTableQuestionVM>();
         public EditTableQuestionVM EditTableQuestionVM => ServiceLocator.Current.GetInstance<EditTableQuestionVM>();
         public AddReportVM AddReportVM => ServiceLocator.Current.GetInstance<AddReportVM>();
-        public AddElementVM AddElementVM => ServiceLocator.Current.GetInstance<AddElementVM>();
         public EditTextVM EditTextVM => ServiceLocator.Current.GetInstance<EditTextVM>();
         public EditImageVM EditImageVM => ServiceLocator.Current.GetInstance<EditImageVM>();
         public EditBarChartVM EditBarChartVM => ServiceLocator.Current.GetInstance<EditBarChartVM>();
@@ -180,6 +192,11 @@ namespace Festispec.ViewModel
         public OfflineEventInfoVM OfflineEventInfoVM => ServiceLocator.Current.GetInstance<OfflineEventInfoVM>();
 
         public ReportInfoVM ReportInfoVM => ServiceLocator.Current.GetInstance<ReportInfoVM>();
+        public AddBarChartVM AddBarChartVM => ServiceLocator.Current.GetInstance<AddBarChartVM>();
+        public AddImageVM AddImageVM => ServiceLocator.Current.GetInstance<AddImageVM>();
+        public AddLineChartVM AddLineChartVM => ServiceLocator.Current.GetInstance<AddLineChartVM>();
+        public AddTableVM AddTableVM => ServiceLocator.Current.GetInstance<AddTableVM>();
+        public AddTextVM AddTextVM => ServiceLocator.Current.GetInstance<AddTextVM>();
 
         public static void Cleanup()
         {

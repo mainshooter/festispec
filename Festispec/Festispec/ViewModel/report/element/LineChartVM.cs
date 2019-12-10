@@ -1,5 +1,6 @@
 ﻿using Festispec.Message;
 using Festispec.View.Pages.Report.element;
+using Festispec.View.Pages.Report.element.Edit;
 using GalaSoft.MvvmLight.Command;
 using LiveCharts;
 using System;
@@ -34,6 +35,10 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
+        public LineChartVM()
+        {
+            Type = "linechart";
+        }
         public LineChartVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());

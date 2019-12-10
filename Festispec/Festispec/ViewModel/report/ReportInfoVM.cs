@@ -5,10 +5,12 @@ using Festispec.Repository;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Report.element;
+using Festispec.View.Pages.Report.element.Add;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.report.element;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
@@ -47,9 +49,16 @@ namespace Festispec.ViewModel.report
         public ObservableCollection<string> Statuses { get; set; }
         public ObservableCollection<UserControl> ReportElementUserControlls { get; set; }
 
+        public string SelectedElementType { get; set; }
+
+        public List<string> ElementTypes { get; set; }
+
 
         public ReportInfoVM()
         {
+            ReportElementTypesListVM elementTypesList = new ReportElementTypesListVM();
+            ElementTypes = elementTypesList.ReportElementTypes;
+
             GetStatuses();
             _reportRepository = new ReportRepository();
             ReportElementUserControlls = new ObservableCollection<UserControl>();
@@ -83,7 +92,29 @@ namespace Festispec.ViewModel.report
 
         private void GoToAddElementPage()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddElementPage) });
+            switch (SelectedElementType)
+            {
+                case "table":
+                    MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddTablePage) });
+                    break;
+                case "linechart":
+                    MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddLineChartPage) });
+                    break;
+                case "piechart":
+                    MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddPieChartPage) });
+                    break;
+                case "barchart":
+                    MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddBarChartPage) });
+                    break;
+                case "image":
+                    MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddImagePage) });
+                    break;
+                case "text":
+                    MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddTextPage) });
+                    break;
+                default:
+                    break;
+            }
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
             {
                 NextReportVM = ReportVM

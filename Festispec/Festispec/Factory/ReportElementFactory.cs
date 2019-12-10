@@ -1,6 +1,8 @@
 ﻿using Festispec.View.Report.Element;
 using Festispec.ViewModel.report;
 using Festispec.ViewModel.report.element;
+using System;
+using System.Collections.Generic;
 using System.Windows.Controls;
 
 namespace Festispec.Factory

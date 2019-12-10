@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Pages.Report.element
+namespace Festispec.View.Pages.Report.element.Add
 {
     /// <summary>
-    /// Interaction logic for AddElement.xaml
+    /// Interaction logic for EditPieChartPage.xaml
     /// </summary>
-    public partial class AddElementPage : Page
+    public partial class AddPieChartPage : Page
     {
-        public AddElementPage()
+        public AddPieChartPage()
         {
             InitializeComponent();
         }

@@ -1,4 +1,4 @@
-﻿<Page x:Class="Festispec.View.Pages.Report.element.EditTextPage"
+﻿<Page x:Class="Festispec.View.Pages.Report.element.Add.AddTextPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       Title="EditElementPage"
-      DataContext="{Binding EditTextVM,Source={StaticResource Locator}}">
+      DataContext="{Binding AddTextVM,Source={StaticResource Locator}}">
 
     <StackPanel>
         <Button Width="50" HorizontalAlignment="Left" ToolTip="Terug" ToolTipService.ShowOnDisabled="True" Command="{Binding ReturnCommand}" Content="{materialDesign:PackIcon keyboardreturn}"/>
