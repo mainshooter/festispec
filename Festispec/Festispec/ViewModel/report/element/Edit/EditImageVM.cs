@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using Festispec.Lib.Enums;
 using Festispec.Message;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.toast;
@@ -36,7 +37,7 @@ namespace Festispec.ViewModel.report.element.Edit
         public EditImageVM()
         {
             ReportElementVM = new ReportElementVM();
-            ReportElementVM.Type = "image";
+            ReportElementVM.Type = ReportElementType.Image;
             MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => {
                 ReportElementVM = message.ReportElementVM;
             });

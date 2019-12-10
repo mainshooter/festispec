@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using Festispec.Lib.Enums;
 using Festispec.Message;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.report.element;
@@ -33,7 +34,7 @@ namespace Festispec.ViewModel.report.Edit
         public EditTextVM()
         {
             ReportElementVM = new ReportElementVM();
-            ReportElementVM.Type = "text";
+            ReportElementVM.Type = ReportElementType.Text;
             MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => {
                 ReportElementVM = message.ReportElementVM;
             });

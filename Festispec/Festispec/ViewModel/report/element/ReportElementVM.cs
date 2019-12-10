@@ -283,7 +283,7 @@ namespace Festispec.ViewModel.report.element
         };
 
         public static readonly string[] ValidatedPropertiesShort =
-{
+        {
             "Title", "Content"
         };
 

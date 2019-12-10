@@ -5,7 +5,6 @@ using Festispec.Repository;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Report.element.Add;
-using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.report.element;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;

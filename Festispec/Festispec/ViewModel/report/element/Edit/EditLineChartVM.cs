@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using Festispec.Lib.Enums;
 using Festispec.Message;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.toast;
@@ -34,7 +35,7 @@ namespace Festispec.ViewModel.report.element.Edit
         public EditLineChartVM()
         {
             ReportElementVM = new ReportElementVM();
-            ReportElementVM.Type = "linechart";
+            ReportElementVM.Type = ReportElementType.Linechart;
             MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => {
                 ReportElementVM = message.ReportElementVM;
             });

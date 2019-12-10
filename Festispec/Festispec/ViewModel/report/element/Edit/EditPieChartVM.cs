@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using Festispec.Lib.Enums;
 using Festispec.Message;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.toast;
@@ -31,7 +32,7 @@ namespace Festispec.ViewModel.report.element.Edit
         public EditPieChartVM()
         {
             ReportElementVM = new ReportElementVM();
-            ReportElementVM.Type = "piechart";
+            ReportElementVM.Type = ReportElementType.Piechart;
             MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => {
                 ReportElementVM = message.ReportElementVM;
             });
