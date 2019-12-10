@@ -48,7 +48,6 @@ namespace Festispec.ViewModel.report.element
             EditElement = new RelayCommand(() => Edit());
             DataTable = new DataTable();
             Dictionary = new Dictionary<string, List<string>>();
-            ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;
             Title = element.Title;
@@ -62,7 +61,7 @@ namespace Festispec.ViewModel.report.element
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTablePage) });
             MessengerInstance.Send<ChangeSelectedReportElementMessage>(new ChangeSelectedReportElementMessage()
             {
-                ReportElementVM = ReportElementVM
+                ReportElementVM = this
             });
         }
 

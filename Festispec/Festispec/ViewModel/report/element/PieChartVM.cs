@@ -10,8 +10,6 @@ namespace Festispec.ViewModel.report.element
     {
         private Object _data;
 
-        public ReportElementVM ReportElementVM { get; set; }
-
         public override Object Data
         {
             get
@@ -30,7 +28,6 @@ namespace Festispec.ViewModel.report.element
         public PieChartVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());
-            ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;
             Title = element.Title;
@@ -44,7 +41,7 @@ namespace Festispec.ViewModel.report.element
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTextPage) });
             MessengerInstance.Send<ChangeSelectedReportElementMessage>(new ChangeSelectedReportElementMessage()
             {
-                ReportElementVM = ReportElementVM
+                ReportElementVM = this,
             });
         }
 

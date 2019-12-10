@@ -23,13 +23,9 @@ namespace Festispec.ViewModel.report.element
         }
 
         public Dictionary<string, Object> Dictionary { get; set; }
-
-        public ReportElementVM ReportElementVM { get; set; }
-
         public ImageVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());
-            ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;
             Title = element.Title;
@@ -43,7 +39,7 @@ namespace Festispec.ViewModel.report.element
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditImagePage) });
             MessengerInstance.Send<ChangeSelectedReportElementMessage>(new ChangeSelectedReportElementMessage()
             {
-                ReportElementVM = ReportElementVM
+                ReportElementVM = this
             });
         }
 

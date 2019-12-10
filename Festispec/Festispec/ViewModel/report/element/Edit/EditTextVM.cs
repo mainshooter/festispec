@@ -14,8 +14,6 @@ namespace Festispec.ViewModel.report
     {
         private ReportElementVM _reportElementVM;
 
-        public ReportVM ReportVM { get; set; }
-
         public ReportElementVM ReportElementVM
         {
             get

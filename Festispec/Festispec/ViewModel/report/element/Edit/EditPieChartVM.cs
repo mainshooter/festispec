@@ -12,9 +12,6 @@ namespace Festispec.ViewModel.report.element
     public class EditPieChartVM : ViewModelBase
     {
         private ReportElementVM _reportElementVM;
-
-        public ReportVM ReportVM { get; set; }
-
         public ReportElementVM ReportElementVM
         {
             get

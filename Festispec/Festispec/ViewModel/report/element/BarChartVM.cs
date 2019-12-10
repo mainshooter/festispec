@@ -37,12 +37,9 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public ReportElementVM ReportElementVM { get; set; }
-
         public BarChartVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());
-            ReportElementVM = element;
             Id = element.Id;
             Type = element.Type;
             Title = element.Title;
@@ -58,7 +55,7 @@ namespace Festispec.ViewModel.report.element
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditBarChartPage) });
             MessengerInstance.Send<ChangeSelectedReportElementMessage>(new ChangeSelectedReportElementMessage()
             {
-                ReportElementVM = ReportElementVM
+                ReportElementVM = this
             });
         }
 
