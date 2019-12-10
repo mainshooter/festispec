@@ -93,7 +93,7 @@ namespace Festispec.ViewModel.report
             {
                 context.Reports.Attach(_report);
                 context.Entry(_report).State = System.Data.Entity.EntityState.Modified;
-                await context.SaveChangesAsync();
+                context.SaveChangesAsync();
             }
         }
 
