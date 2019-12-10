@@ -15,8 +15,6 @@ namespace Festispec.ViewModel.report.element
 
         public Dictionary<string, List<string>> Dictionary { get; set; }
 
-        public ReportElementVM ReportElementVM { get; set; }
-
         public override Object Data
         {
             get

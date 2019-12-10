@@ -23,10 +23,12 @@ namespace Festispec.ViewModel.report
         private ReportRepository _reportRepository;
 
         public ReportVM ReportVM {
-            get {
+            get 
+            {
                 return _reportVM;
             }
-            set {
+            set 
+            {
                 _reportVM = value;
                 RaisePropertyChanged();
             }
