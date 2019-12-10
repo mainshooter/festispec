@@ -19,10 +19,6 @@
             <Label Content="Beschrijving: "></Label>
             <TextBox Text="{Binding ReportElementVM.Content, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
-
-
-        <TextBox Height="260" Width="670" Text="{Binding ReportElementVM.Data}" TextAlignment="Left" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,0">
-        </TextBox>
         <Button HorizontalAlignment="Right" Width="50" Command="{Binding SaveElementCommand}" ToolTip="Element opslaan" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ContentSave}"/>
     </StackPanel>
 </Page>

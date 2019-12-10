@@ -20,20 +20,16 @@ namespace Festispec.ViewModel.report.element
             {
                 _data = value;
                 Dictionary = (Dictionary<string, Object>)Data;
-                ApplyChanges();
             }
         }
 
         public ReportElementVM ReportElementVM { get; set; }
-
-        public string Text { get; set; }
 
         public Dictionary<string, Object> Dictionary { get; set; }
 
         public TextVM(ReportElementVM element, ReportVM report)
         {
             EditElement = new RelayCommand(() => Edit());
-            //Data = element.Data;
             ReportVM = report;
             ReportElementVM = element;
             Id = element.Id;
@@ -51,11 +47,6 @@ namespace Festispec.ViewModel.report.element
             {
                 ReportElementVM = ReportElementVM
             });
-        }
-
-        private void ApplyChanges()
-        {
-            Text = (string)Dictionary["text"];
         }
     }
 }
