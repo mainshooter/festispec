@@ -2,7 +2,6 @@
 using Festispec.Lib.Enums;
 using Festispec.Message;
 using Festispec.View.Pages.Report;
-using Festispec.ViewModel.report.element;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
