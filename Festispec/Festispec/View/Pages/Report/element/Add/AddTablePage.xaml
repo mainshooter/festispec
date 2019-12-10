@@ -21,13 +21,6 @@
             <Label Content="Beschrijving: "></Label>
             <TextBox Text="{Binding ReportElementVM.Content, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
-        <DataGrid AutoGenerateColumns="True" 
-              CanUserAddRows="False" 
-              CanUserReorderColumns="False" 
-              CanUserDeleteRows="False"
-              CanUserSortColumns="False"
-              ItemsSource="{Binding DataTable.DefaultView}">
-        </DataGrid>
         <Button HorizontalAlignment="Right" Width="50" Command="{Binding SaveElementCommand}" ToolTip="Element opslaan" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ContentSave}"/>
     </StackPanel>
 </Page>

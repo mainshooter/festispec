@@ -31,14 +31,6 @@
             <Label Content="Y-as: "></Label>
             <TextBox Text="{Binding ReportElementVM.Y_as, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
-        <lvc:CartesianChart Series="{Binding SeriesCollection}" Height="300">
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="{Binding YaxisName}" LabelFormatter="{Binding YaxisLabelFormat}" FontSize="20" Foreground="Black"></lvc:Axis>
-            </lvc:CartesianChart.AxisY>
-            <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="{Binding XaxisName}" Labels="{Binding Labels}" FontSize="20" Foreground="Black"></lvc:Axis>
-            </lvc:CartesianChart.AxisX>
-        </lvc:CartesianChart>
         <Button HorizontalAlignment="Right" Width="50" Command="{Binding SaveElementCommand}" ToolTip="Element opslaan" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ContentSave}"/>
     </StackPanel>
 </Page>

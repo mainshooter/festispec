@@ -11,5 +11,10 @@ namespace Festispec.View.Pages.Report
         {
             InitializeComponent();
         }
+
+        private void TextBox_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+
+        }
     }
 }
