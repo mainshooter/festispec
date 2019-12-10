@@ -6,13 +6,10 @@ using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Report.element;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.report.element;
-using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Data.Entity;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,7 +18,6 @@ namespace Festispec.ViewModel.report
 {
     public class ReportInfoVM:ViewModelBase
     {
-        private ReportElementFactory _reportElementFactory;
         private ReportVM _reportVM;
         private OrderVM _orderVM;
         private ReportRepository _reportRepository;
@@ -52,7 +48,6 @@ namespace Festispec.ViewModel.report
         public ReportInfoVM()
         {
             GetStatuses();
-            _reportElementFactory = new ReportElementFactory();
             _reportRepository = new ReportRepository();
             ReportElementUserControlls = new ObservableCollection<UserControl>();
 
@@ -101,7 +96,7 @@ namespace Festispec.ViewModel.report
             var reportElements = ReportVM.ReportElements.OrderBy(el => el.Order);
             foreach (var element in reportElements)
             {
-                ReportElementUserControlls.Add(_reportElementFactory.CreateElement(element, ReportVM));
+                ReportElementUserControlls.Add(ReportElementFactory.CreateElement(element));
             }
         }
         public void RefreshElements()

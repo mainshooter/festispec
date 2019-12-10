@@ -15,7 +15,6 @@ namespace Festispec.ViewModel.report
 {
     public class AddElementVM : ViewModelBase
     {
-        private ReportElementFactory _reportElementFactory;
         private string _axes;
         private int _selectedElementIndex;
         private string _imageButton;
@@ -88,7 +87,6 @@ namespace Festispec.ViewModel.report
             Axes = "Hidden";
             ImageButton = "Hidden";
             ReportElement = new ReportElementVM();
-            _reportElementFactory = new ReportElementFactory();
             ReportElementTypesListVM elementTypesList = new ReportElementTypesListVM();
             ElementTypes = elementTypesList.ReportElementTypes;
             GoBackCommand = new RelayCommand(GoBackToReport);
@@ -145,7 +143,7 @@ namespace Festispec.ViewModel.report
 
             using (var context = new Entities())
             {
-                _reportElementFactory.CreateElement(ReportElement, Report);
+                ReportElementFactory.CreateElement(ReportElement);
                 context.ReportElements.Add(ReportElement.ToModel());
                 context.SaveChanges();
             }

@@ -7,7 +7,7 @@ namespace Festispec.Factory
 {
     public class ReportElementFactory
     {
-        public UserControl CreateElement(ReportElementVM element, ReportVM report)
+        public static UserControl CreateElement(ReportElementVM element)
         {
             UserControl returningUserControl = null;
             string type = element.Type;
