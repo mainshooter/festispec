@@ -5,7 +5,6 @@ using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
-using System.Data.Entity;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element

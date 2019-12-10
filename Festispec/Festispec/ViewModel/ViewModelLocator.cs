@@ -95,7 +95,6 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EmployeeVM>();
             SimpleIoc.Default.Register<EmployeeListVM>();
             SimpleIoc.Default.Register<AddEmployeeVM>();
-            SimpleIoc.Default.Register<AddElementVM>();
             SimpleIoc.Default.Register<EditTextPage>();
             SimpleIoc.Default.Register<EditBarChartPage>();
             SimpleIoc.Default.Register<EditImagePage>();
