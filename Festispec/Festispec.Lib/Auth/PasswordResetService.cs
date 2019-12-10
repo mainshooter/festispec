@@ -6,15 +6,20 @@ namespace Festispec.Lib.Auth
 {
     class PasswordResetService
     {
-        public void GenerateResetCodeFor(string email)
+        public bool GenerateResetCodeFor(string email)
         {
              var resetCode = $"{new string('*', 8).GetHashCode():X}";
 
              using (var context = new Entities())
              {
                  var employee = context.Employees.FirstOrDefault(e => e.Email == email);
+
+                 if (employee == null)
+                     return false;
+
                  employee.PasswordResetToken = resetCode;
                  context.SaveChanges();
+                 return true;
              }
         }
 
@@ -28,9 +33,22 @@ namespace Festispec.Lib.Auth
             throw new NotImplementedException();
         }
 
-        public void UpdatePasswordFor(string email)
+        public bool UpdatePasswordFor(string email, string newPassword)
         {
-            throw new NotImplementedException();
+            using(var context = new Entities())
+            {
+                var user = context.Employees.FirstOrDefault(e => e.Email == email);
+
+                if (user == null) 
+                    return false;
+                
+                var passwordService = new PasswordHashService();
+
+                user.Password = passwordService.StringToPassword(newPassword);
+                context.SaveChanges();
+
+                return true;
+            }
         }
     }
 }

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Pages.Employee
+namespace Festispec.View.Pages.PasswordReset
 {
     /// <summary>
     /// Interaction logic for LoginPage.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class RequestPasswordPage : Page
     {
-        public LoginPage()
+        public RequestPasswordPage()
         {
             InitializeComponent();
         }
