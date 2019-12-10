@@ -21,7 +21,6 @@ namespace Festispec.ViewModel.report
     public class ReportInfoVM:ViewModelBase
     {
         private ReportVM _reportVM;
-        private OrderVM _orderVM;
         private ReportRepository _reportRepository;
 
         public ReportVM ReportVM {
