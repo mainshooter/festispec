@@ -2,10 +2,11 @@
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.employee;
 using Festispec.ViewModel.planning;
-using Festispec.ViewModel.report;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Festispec.ViewModel.survey;
+using Festispec.ViewModel.report;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace Festispec.ViewModel.Customer.order
 {
@@ -38,9 +39,11 @@ namespace Festispec.ViewModel.Customer.order
             Event = eventVM;
             Employee = new EmployeeVM(orderCon.Employee);
             Survey = orderCon.Surveys.Count > 0 ? new SurveyVM(this, orderCon.Surveys.First()) : new SurveyVM(this);
+            Report = orderCon.Reports.Count > 0 ? new ReportVM(orderCon.Reports.First()) : new ReportVM(this);
             Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d, this)));
         }
 
+        [PreferredConstructor]
         public OrderVM()
         {
             _order = new Order();
