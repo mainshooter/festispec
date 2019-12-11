@@ -12,8 +12,10 @@ using System.Windows.Input;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Planning;
 using Festispec.View.Pages.Survey;
+using Festispec.View.Pages.Report;
 using Festispec.ViewModel.toast;
 using Hanssens.Net;
+
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
@@ -241,7 +243,17 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public void OpenReportPage(EventVM source)
         {
-            throw new NotImplementedException();
+            if (source.OrderVM.Report.Id == 0)
+            {
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddReportPage) });
+                MessengerInstance.Send<ChangeSelectedOrderMessage>(new ChangeSelectedOrderMessage() { SelectedOrderVM = source.OrderVM });
+            }
+            else
+            {
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
+            }
+
+            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { NextReportVM = source.OrderVM.Report });
         }
 
         private bool HasOrder(EventVM source)

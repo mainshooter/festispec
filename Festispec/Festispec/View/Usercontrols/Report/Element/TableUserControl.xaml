@@ -7,23 +7,40 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
-        <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
-        <DataGrid AutoGenerateColumns="True" 
+    <StackPanel Orientation="Horizontal">
+        <StackPanel>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
+            <DataGrid Height="260" Width="620" AutoGenerateColumns="True" 
               CanUserAddRows="False" 
               CanUserReorderColumns="False" 
               CanUserDeleteRows="False"
               CanUserSortColumns="False"
               ItemsSource="{Binding DataTable.DefaultView}">
-        </DataGrid>
-        <Grid HorizontalAlignment="Right">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"></ColumnDefinition>
-                <ColumnDefinition Width="50"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="{materialDesign:PackIcon Pencil}"/>
-            <Button Grid.Column="1" Content="{materialDesign:PackIcon DeleteForever}"/>
-        </Grid>
+            </DataGrid>
+            <Grid HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Command="{Binding EditElement}" ToolTip="Wijzig element" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon Pencil}"/>
+                <Button Grid.Column="1" Command="{Binding DeleteElement}" ToolTip="Verwijder element" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon DeleteForever}"/>
+            </Grid>
+        </StackPanel>
+        <StackPanel>
+            <StackPanel Height="220">
+
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Command="{Binding ElementUpCommand}" ToolTip="Schuif element naar boven" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ArrowUp}"/>
+                    <Button Grid.Row="1" Command="{Binding ElementDownCommand}" ToolTip="Schuif element naar beneden" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ArrowDown}"/>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 </UserControl>
