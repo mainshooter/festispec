@@ -19,6 +19,11 @@ using System.Windows.Threading;
 using System.CodeDom.Compiler;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Controls;
+using System.Windows.Input;
+using Festispec.Repository;
+using Festispec.Factory;
+using GalaSoft.MvvmLight.CommandWpf;
 
 namespace Festispec.ViewModel.report
 {
