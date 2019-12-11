@@ -182,8 +182,9 @@ namespace Festispec.ViewModel.report.element
 
         public ReportElementVM(ReportElement element)
         {
-            DataParser = DataParserFactory.GetDataParserByJson(element.Data);
             _reportElement = element;
+            DataParser = DataParserFactory.GetDataParserByJson(element.Data);
+            
             DeleteElement = new RelayCommand(() => Delete());
             ElementUpCommand = new RelayCommand(MoveElementUp);
             ElementDownCommand = new RelayCommand(MoveElementDown);
