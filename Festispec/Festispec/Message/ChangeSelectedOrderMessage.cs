@@ -4,6 +4,6 @@ namespace Festispec.Message
 {
     public class ChangeSelectedOrderMessage
     {
-        public OrderVM SelectedOrder { get; set; }
+        public OrderVM SelectedOrderVM { get; set; }
     }
 }

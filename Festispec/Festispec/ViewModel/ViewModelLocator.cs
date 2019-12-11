@@ -6,7 +6,6 @@ using Festispec.View.Pages.Employee;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Planning;
 using Festispec.View.Pages.Report;
-using Festispec.View.Pages.Report.element;
 using Festispec.View.Pages.Survey;
 using Festispec.View.Pages.Survey.QuestionTypes.ClosedQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.CommentField;
@@ -18,6 +17,7 @@ using Festispec.View.Pages.Survey.QuestionTypes.SliderQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.TableQuestion;
 using Festispec.ViewModel.planning;
 using Festispec.ViewModel.auth;
+using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.employee;
 using Festispec.ViewModel.employee.availabilty;
 using Festispec.ViewModel.report;
@@ -34,6 +34,11 @@ using Festispec.ViewModel.survey.question.QuestionTypes.TableQuestion;
 using GalaSoft.MvvmLight.Ioc;
 using Festispec.Factory;
 using Festispec.ViewModel.report.element;
+using Festispec.View.Pages.Report.element.Edit;
+using Festispec.View.Pages.Report.element.Add;
+using Festispec.ViewModel.report.element.Edit;
+using Festispec.ViewModel.report.element.Add;
+using Festispec.ViewModel.report.Add;
 
 namespace Festispec.ViewModel
 {
@@ -50,15 +55,14 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AvailablePage>();
             SimpleIoc.Default.Register<EmployeePage>();
             SimpleIoc.Default.Register<SickPage>();
-            SimpleIoc.Default.Register<AddElementPage>();
             SimpleIoc.Default.Register<PlanningOverviewPage>();
             SimpleIoc.Default.Register<EmployeeInformationPage>();
-
             SimpleIoc.Default.Register<EmployeePage>();
             SimpleIoc.Default.Register<AddEmployeePage>();
             SimpleIoc.Default.Register<SingleEmployeePage>();
             SimpleIoc.Default.Register<EditEmployeePage>();
             SimpleIoc.Default.Register<SurveyPage>();
+            SimpleIoc.Default.Register<AddSurveyPage>();
             SimpleIoc.Default.Register<AddClosedQuestionPage>();
             SimpleIoc.Default.Register<EditClosedQuestionPage>();
             SimpleIoc.Default.Register<AddCommentFieldPage>();
@@ -77,12 +81,22 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditTableQuestionPage>();
             SimpleIoc.Default.Register<LoginPage>();
             SimpleIoc.Default.Register<AddReportPage>();
-            SimpleIoc.Default.Register<ReportVM>();
+            SimpleIoc.Default.Register<AddEventPage>();
+            SimpleIoc.Default.Register<EditEventPage>();
+            SimpleIoc.Default.Register<SingleEventPage>();
+            SimpleIoc.Default.Register<OfflineEventListPage>();
+            SimpleIoc.Default.Register<SingleOfflineEventPage>();
+            SimpleIoc.Default.Register<AddBarChartPage>();
+            SimpleIoc.Default.Register<AddImagePage>();
+            SimpleIoc.Default.Register<AddLineChartPage>();
+            SimpleIoc.Default.Register<AddPieChartPage>();
+            SimpleIoc.Default.Register<AddTablePage>();
+            SimpleIoc.Default.Register<AddTextPage>();
+
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<EmployeeVM>();
             SimpleIoc.Default.Register<EmployeeListVM>();
             SimpleIoc.Default.Register<AddEmployeeVM>();
-            SimpleIoc.Default.Register<AddElementVM>();
             SimpleIoc.Default.Register<EditTextPage>();
             SimpleIoc.Default.Register<EditBarChartPage>();
             SimpleIoc.Default.Register<EditImagePage>();
@@ -90,7 +104,6 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditPieChartPage>();
             SimpleIoc.Default.Register<EditTablePage>();
             SimpleIoc.Default.Register<EmployeeInformationVM>();
-
             SimpleIoc.Default.Register<ToastVM>();
             SimpleIoc.Default.Register<PlanningOverviewVM>();
             SimpleIoc.Default.Register<EmployeeInfoVM>();
@@ -98,6 +111,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AvailabilityManagerVM>();
             SimpleIoc.Default.Register<SurveyVM>();
             SimpleIoc.Default.Register<SurveyInfoVM>();
+            SimpleIoc.Default.Register<AddSurveyVM>();
             SimpleIoc.Default.Register<AddOpenQuestionVM>();
             SimpleIoc.Default.Register<EditOpenQuestionVM>();
             SimpleIoc.Default.Register<AddClosedQuestionVM>();
@@ -123,12 +137,21 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditLineChartVM>();
             SimpleIoc.Default.Register<EditTableVM>();
             SimpleIoc.Default.Register<EditPieChartVM>();
+            SimpleIoc.Default.Register<EventListVM>();
+            SimpleIoc.Default.Register<AddEventVM>();
+            SimpleIoc.Default.Register<EditEventVM>();
+            SimpleIoc.Default.Register<EventInfoVM>();
+            SimpleIoc.Default.Register<OfflineEventListVM>();
+            SimpleIoc.Default.Register<OfflineEventInfoVM>();
+            SimpleIoc.Default.Register<ReportInfoVM>();
+            SimpleIoc.Default.Register<AddBarChartVM>();
+            SimpleIoc.Default.Register<AddImageVM>();
+            SimpleIoc.Default.Register<AddLineChartVM>();
+            SimpleIoc.Default.Register<AddPieChartVM>();
+            SimpleIoc.Default.Register<AddTableVM>();
+            SimpleIoc.Default.Register<AddTextVM>();
         }
-
-        public AddElementVM AddElementVM => ServiceLocator.Current.GetInstance<AddElementVM>();
-
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
-        public ReportVM ReportVM => ServiceLocator.Current.GetInstance<ReportVM>();
         public PlanningOverviewVM PlanningOverviewVM => ServiceLocator.Current.GetInstance<PlanningOverviewVM>();
         public UserLoginVM UserLoginVM => ServiceLocator.Current.GetInstance<UserLoginVM>();
         public AddEmployeeVM AddEmployeeVM => ServiceLocator.Current.GetInstance<AddEmployeeVM>();
@@ -137,6 +160,7 @@ namespace Festispec.ViewModel
         public EditEmployeeVM EditEmployeeVM => ServiceLocator.Current.GetInstance<EditEmployeeVM>();
         public AvailabilityManagerVM AvailabilityManagerVM => ServiceLocator.Current.GetInstance<AvailabilityManagerVM>();
         public SurveyInfoVM SurveyInfoVM => ServiceLocator.Current.GetInstance<SurveyInfoVM>();
+        public AddSurveyVM AddSurveyVM => ServiceLocator.Current.GetInstance<AddSurveyVM>();
         public AddOpenQuestionVM AddOpenQuestionVM => ServiceLocator.Current.GetInstance<AddOpenQuestionVM>();
         public EditOpenQuestionVM EditOpenQuestionVM => ServiceLocator.Current.GetInstance<EditOpenQuestionVM>();
         public AddClosedQuestionVM AddClosedQuestionVM => ServiceLocator.Current.GetInstance<AddClosedQuestionVM>();
@@ -161,6 +185,19 @@ namespace Festispec.ViewModel
         public EditLineChartVM EditLineChartVM => ServiceLocator.Current.GetInstance<EditLineChartVM>();
         public EditTableVM EditTableVM => ServiceLocator.Current.GetInstance<EditTableVM>();
         public EmployeeInformationVM EmployeeInformationVM => ServiceLocator.Current.GetInstance<EmployeeInformationVM>();
+        public EventListVM EventListVM => ServiceLocator.Current.GetInstance<EventListVM>();
+        public AddEventVM AddEventVM => ServiceLocator.Current.GetInstance<AddEventVM>();
+        public EditEventVM EditEventVM => ServiceLocator.Current.GetInstance<EditEventVM>();
+        public EventInfoVM EventInfoVM => ServiceLocator.Current.GetInstance<EventInfoVM>();
+        public OfflineEventListVM OfflineEventListVM => ServiceLocator.Current.GetInstance<OfflineEventListVM>();
+        public OfflineEventInfoVM OfflineEventInfoVM => ServiceLocator.Current.GetInstance<OfflineEventInfoVM>();
+        public AddPieChartVM AddPieChartVM => ServiceLocator.Current.GetInstance<AddPieChartVM>();
+        public ReportInfoVM ReportInfoVM => ServiceLocator.Current.GetInstance<ReportInfoVM>();
+        public AddBarChartVM AddBarChartVM => ServiceLocator.Current.GetInstance<AddBarChartVM>();
+        public AddImageVM AddImageVM => ServiceLocator.Current.GetInstance<AddImageVM>();
+        public AddLineChartVM AddLineChartVM => ServiceLocator.Current.GetInstance<AddLineChartVM>();
+        public AddTableVM AddTableVM => ServiceLocator.Current.GetInstance<AddTableVM>();
+        public AddTextVM AddTextVM => ServiceLocator.Current.GetInstance<AddTextVM>();
 
         public static void Cleanup()
         {

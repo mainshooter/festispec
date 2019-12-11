@@ -428,6 +428,7 @@ CREATE TABLE [dbo].[ReportElement](
 	[Content] [text] NOT NULL,
 	[Data] [text] NULL,
 	[Order] [int] NOT NULL,
+	[Image] VARBINARY(MAX) NULL,
 	[X-as] [nvarchar](100) NULL,
 	[Y-as] [nvarchar](100) NULL,
  CONSTRAINT [PK_ReportElement] PRIMARY KEY CLUSTERED

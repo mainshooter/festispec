@@ -25,8 +25,8 @@
                     <ColumnDefinition Width="50"></ColumnDefinition>
                     <ColumnDefinition Width="50"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Command="{Binding EditElement}" Content="{materialDesign:PackIcon Pencil}"/>
-                <Button Grid.Column="1" Command="{Binding DeleteElement}" Content="{materialDesign:PackIcon DeleteForever}"/>
+                <Button Grid.Column="0" Command="{Binding EditElement}" ToolTip="Wijzig element" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon Pencil}"/>
+                <Button Grid.Column="1" Command="{Binding DeleteElement}" ToolTip="Verwijder element" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon DeleteForever}"/>
             </Grid>
         </StackPanel>
         <StackPanel>
@@ -39,8 +39,8 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" Command="{Binding ElementUpCommand}" Content="{materialDesign:PackIcon ArrowUp}"/>
-                    <Button Grid.Row="1" Command="{Binding ElementDownCommand}" Content="{materialDesign:PackIcon ArrowDown}"/>
+                    <Button Grid.Row="0" Command="{Binding ElementUpCommand}" ToolTip="Schuif element naar boven" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ArrowUp}"/>
+                    <Button Grid.Row="1" Command="{Binding ElementDownCommand}" ToolTip="Schuif element naar beneden" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ArrowDown}"/>
                 </Grid>
             </StackPanel>
         </StackPanel>

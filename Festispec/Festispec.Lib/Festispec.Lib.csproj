@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\PasswordService.cs" />
+    <Compile Include="Enums\ReportElementType.cs" />
+    <Compile Include="Enums\SurveyStatus.cs" />
     <Compile Include="Interfaces\IPasswordValidator.cs" />
     <Compile Include="DistanceCalculator\DistanceCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

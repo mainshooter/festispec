@@ -6,56 +6,98 @@ namespace Festispec.ViewModel.customer.contactPerson
     {
         private ContactPerson _contactPerson;
 
-        public int Id { 
-            get {
+        public int Id 
+        { 
+            get 
+            {
                 return _contactPerson.Id;
             }
-            private set {
+            private set 
+            {
                 _contactPerson.Id = value;
             }
         }
 
-        public string Firstname { 
-            get {
+        public string Firstname 
+        { 
+            get
+            {
                 return _contactPerson.Firstname;
             }
-            set {
+            set 
+            {
                 _contactPerson.Firstname = value;
             }
         }
 
-        public string Lastname {
-            get {
+        public string Prefix
+        {
+            get
+            {
+                return _contactPerson.Prefix;
+            }
+            set
+            {
+                _contactPerson.Prefix = value;
+            }
+        }
+
+        public string Fullname
+        {
+            get
+            {
+                if (Prefix != null)
+                {
+                    return Firstname + " " + Prefix + " " + Lastname;
+                }
+                return Firstname + " " + Lastname;
+            }
+        }
+
+        public string Lastname 
+        {
+            get 
+            {
                 return _contactPerson.Lastname;
             }
-            set {
+            set 
+            {
                 _contactPerson.Lastname = value;
             }
         }
 
-        public string Phone { 
-            get {
+        public string Phone 
+        { 
+            get 
+            {
                 return _contactPerson.Phone;
             }
-            set {
+            set 
+            {
                 _contactPerson.Phone = value;
             }
         }
 
-        public string Email { 
-            get {
+        public string Email 
+        { 
+            get 
+            {
                 return _contactPerson.Email;
             }
-            set {
+            set 
+            {
                 _contactPerson.Email = value;
             }
         }
 
-        public string Function { 
-            get {
+        public string Function 
+        { 
+            get
+            {
                 return _contactPerson.Function;
             }
-            set {
+            set 
+            {
                 _contactPerson.Function = value;
             }
         }
@@ -68,6 +110,11 @@ namespace Festispec.ViewModel.customer.contactPerson
         public ContactPersonVM()
         {
             _contactPerson = new ContactPerson();
+        }
+
+        public ContactPerson ToModel()
+        {
+            return _contactPerson;
         }
     }
 }

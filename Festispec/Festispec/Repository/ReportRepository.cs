@@ -12,7 +12,7 @@ namespace Festispec.Repository
         {
             using (var context = new Entities())
             {
-                return new ObservableCollection<ReportElementVM>(context.ReportElements.ToList().Where(r => r.ReportId == report.Id).OrderBy(reportElement => reportElement.Order).Select(reportElement => new ReportElementVM(reportElement, report)));
+                return new ObservableCollection<ReportElementVM>(context.ReportElements.ToList().Where(r => r.ReportId == report.Id).OrderBy(reportElement => reportElement.Order).Select(reportElement => new ReportElementVM(reportElement)));
             }
         }
     }

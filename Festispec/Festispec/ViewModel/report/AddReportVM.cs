@@ -23,30 +23,33 @@ namespace Festispec.ViewModel.report
         }
 
         public ICommand SaveEditCommand { get; set; }
-        public ICommand SaveBackCommand { get; set; }
+
         public ICommand BackCommand { get; set; }
 
         public AddReportVM()
         {
-            MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
-                ReportVM = message.NextReportVM;
+            MessengerInstance.Register<ChangeSelectedOrderMessage>(this, message => {
+                ReportVM = new ReportVM(message.SelectedOrderVM);
             });
+            
 
             SaveEditCommand = new RelayCommand(SaveEdit);
-            SaveBackCommand = new RelayCommand(SaveBack);
             BackCommand = new RelayCommand(Back);
         }
 
         private bool Save()
         {
+            if (ReportVM == null)
+            {
+                return false;
+            }
             using (var context = new Entities())
             {
                 if (!ReportVM.ValidateInputs()) return false;
-
                 ReportVM.Status = "Concept";
-                ReportVM.ToModel().OrderId = ReportVM.Order.Id;
                 context.Reports.Add(ReportVM.ToModel());
                 context.SaveChanges();
+                ReportVM.Order.Report = ReportVM;
                 return true;
             }
         }
@@ -61,12 +64,6 @@ namespace Festispec.ViewModel.report
             if (!Save()) return;
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { NextReportVM = _reportVM });
-        }
-
-        private void SaveBack()
-        {
-            if (!Save()) return;
-            Back();
         }
     }
 }

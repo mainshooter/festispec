@@ -54,6 +54,8 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.ClosedQuestion
                 QuestionVm.QuestionDetails.Choices.Cols.Add("Nee");
                 QuestionVm.Question = JsonConvert.SerializeObject(QuestionVm.QuestionDetails);
                 QuestionVm.Variables = StringToSlug.Slugify(QuestionVm.QuestionDetails.Question);
+                QuestionVm.Order = _surveyVm.Questions.Count + 1;
+                QuestionVm.Type = "Gesloten vraag";
                 QuestionVm.SurveyId = _surveyVm.Id;
                 context.Questions.Add(QuestionVm.ToModel());
                 _surveyVm.Questions.Add(QuestionVm);

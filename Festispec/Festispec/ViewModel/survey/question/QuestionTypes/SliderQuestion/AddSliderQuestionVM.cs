@@ -3,7 +3,6 @@ using Festispec.Domain;
 using Festispec.Lib.Slugify;
 using Festispec.Message;
 using Festispec.View.Pages.Survey;
-using Festispec.View.Pages.Survey.QuestionTypes.OpenQuestion;
 using Festispec.View.Pages.Survey.QuestionTypes.SliderQuestion;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -54,6 +53,8 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.SliderQuestion
 
                 QuestionVm.Question = JsonConvert.SerializeObject(QuestionVm.QuestionDetails);
                 QuestionVm.Variables = StringToSlug.Slugify(QuestionVm.QuestionDetails.Question);
+                QuestionVm.Order = _surveyVm.Questions.Count + 1;
+                QuestionVm.Type = "Schuifbalk vraag";
                 QuestionVm.SurveyId = _surveyVm.Id;
                 context.Questions.Add(QuestionVm.ToModel());
                 _surveyVm.Questions.Add(QuestionVm);

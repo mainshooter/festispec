@@ -43,8 +43,18 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.DrawQuestion
             });
 
             SaveCommand = new RelayCommand(Save);
-            GoBackCommand = new RelayCommand(QuestionVm.GoBack);
-            AddImageCommand = new RelayCommand(QuestionVm.AddImage);
+            GoBackCommand = new RelayCommand(GoBack);
+            AddImageCommand = new RelayCommand(AddImage);
+        }
+
+        public void AddImage()
+        {
+            QuestionVm.AddImage();
+        }
+
+        public void GoBack()
+        {
+            QuestionVm.GoBack();
         }
 
         public void Save()
@@ -55,6 +65,8 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.DrawQuestion
 
                 QuestionVm.Question = JsonConvert.SerializeObject(QuestionVm.QuestionDetails);
                 QuestionVm.Variables = StringToSlug.Slugify(QuestionVm.QuestionDetails.Question);
+                QuestionVm.Order = _surveyVm.Questions.Count + 1;
+                QuestionVm.Type = "Teken vraag";
                 QuestionVm.SurveyId = _surveyVm.Id;
                 context.Questions.Add(QuestionVm.ToModel());
                 _surveyVm.Questions.Add(QuestionVm);

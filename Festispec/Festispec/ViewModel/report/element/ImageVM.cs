@@ -1,46 +1,37 @@
-﻿using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.CommandWpf;
 ﻿using Festispec.Message;
-using Festispec.View.Pages.Report.element;
-using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
+﻿using Festispec.Lib.Enums;
+using Festispec.View.Pages.Report.element.Edit;
 
 namespace Festispec.ViewModel.report.element
 {
-    class ImageVM : ReportElementVM
+    public class ImageVM : ReportElementVM
     {
-
-        public byte[] Photo { get; set; }
-
-        public Dictionary<string, Object> Dictionary { get; set; }
         public ReportElementVM ReportElementVM { get; set; }
-
-        public ImageVM(ReportElementVM element, ReportVM report)
+        public ImageVM()
         {
-            EditElement = new GalaSoft.MvvmLight.CommandWpf.RelayCommand(() => Edit());
-            //Data = element.Data;
-            ReportVM = report;
-            ReportElementVM = element;
+            Type = ReportElementType.Image;
+        }
+
+        public ImageVM(ReportElementVM element)
+        {
+            EditElement = new RelayCommand(() => Edit());
             Id = element.Id;
             Type = element.Type;
             Title = element.Title;
             Content = element.Content;
             Order = element.Order;
             ReportId = element.ReportId;
+            Image = element.Image;
         }
+
         public void Edit()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditImagePage) });
-            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
+            MessengerInstance.Send<ChangeSelectedReportElementMessage>(new ChangeSelectedReportElementMessage()
             {
-                NextReportVM = ReportVM,
-                ReportElement = ReportElementVM
+                ReportElementVM = this
             });
-        }
-
-        public void ApplyChanges()
-        {
-            Photo = (byte[])Dictionary["image"];
         }
     }
 }

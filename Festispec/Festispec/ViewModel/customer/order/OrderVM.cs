@@ -1,105 +1,56 @@
 ﻿using Festispec.Domain;
-using Festispec.ViewModel.customer;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.employee;
 using Festispec.ViewModel.planning;
-using Festispec.ViewModel.report;
-using Festispec.ViewModel.survey;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Festispec.ViewModel.survey;
+using Festispec.ViewModel.report;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace Festispec.ViewModel.Customer.order
 {
     public class OrderVM
     {
         private Order _order;
-        private EventVM _event;
-        private CustomerVM _customer;
-        private EmployeeVM _employee;
-        private ReportVM _report;
 
-        public int Id { 
-            get {
-                return _order.Id;
-            }
-            private set {
-                _order.Id = value;
-            }
-        }
-        
-        public CustomerVM Customer { 
-            get {
-                return _customer;
-            }
-            set {
-                _customer = value;
-            }
-        }
-        
-        public EventVM Event { 
-            get {
-                return _event;
-            }
-            set {
-                _event = value;
-            }
-        }
-        
-        public EmployeeVM Employee { 
-            get {
-                return _employee;
-            }
-            set {
-                _employee = value;
-            }
-        }
+        public int Id => _order.Id;
+        public EmployeeVM Employee { get; set; }
+        public EventVM Event { get; set; }
         public ObservableCollection<DayVM> Days { get; set; }
-
-        public string Status { 
-            get {
-                return _order.Status;
-            }
-            set {
-                _order.Status = value;
-            }
-        }
-
-        public string Description { 
-            get {
-                return _order.Description;
-            }
-            set {
-                _order.Description = value;
-            }
-        }
-        
-        public ReportVM Report {
-            get {
-                return _report;
-            }
-            set {
-                _report = value;
-            }
-        }
-
+        public ReportVM Report { get; set; }
         public SurveyVM Survey { get; set; }
 
-        public OrderVM(Order orderCon)
-        {
-            _order = orderCon;
-            Customer = new CustomerVM(orderCon.Customer);
-            Event = new EventVM(orderCon.Event);
-            Employee = new EmployeeVM(orderCon.Employee);
-            //Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d)));
-            Report = new ReportVM(_order.Reports.FirstOrDefault());
-            Report.Order = this;
-            Survey = new SurveyVM(orderCon.Surveys.FirstOrDefault());
+        public string Status
+        { 
+            get => _order.Status;
+            set => _order.Status = value;
+        }
+        public string Description
+        { 
+            get => _order.Description;
+            set => _order.Description = value;
         }
 
+        public OrderVM(Order orderCon, EventVM eventVM)
+        {
+            _order = orderCon;
+            Event = eventVM;
+            Employee = new EmployeeVM(orderCon.Employee);
+            Survey = orderCon.Surveys.Count > 0 ? new SurveyVM(this, orderCon.Surveys.First()) : new SurveyVM(this);
+            Report = orderCon.Reports.Count > 0 ? new ReportVM(orderCon.Reports.First()) : new ReportVM(this);
+            Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d, this)));
+        }
+
+        [PreferredConstructor]
         public OrderVM()
         {
             _order = new Order();
-            Survey = new SurveyVM(_order.Surveys.FirstOrDefault());
+        }
+
+        public Order ToModel()
+        {
+            return _order;
         }
     }
 }

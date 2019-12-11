@@ -44,9 +44,24 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.MultipleChoiceQuesti
             });
 
             SaveCommand = new RelayCommand(Save);
-            GoBackCommand = new RelayCommand(QuestionVm.GoBack);
-            AddOptionCommand = new RelayCommand(QuestionVm.AddOption);
-            DeleteOptionCommand = new RelayCommand(QuestionVm.DeleteOption);
+            GoBackCommand = new RelayCommand(GoBack);
+            AddOptionCommand = new RelayCommand(AddOption);
+            DeleteOptionCommand = new RelayCommand(DeleteOption);
+        }
+
+        public void DeleteOption()
+        {
+            QuestionVm.DeleteOption();
+        }
+
+        public void AddOption()
+        {
+            QuestionVm.AddOption();
+        }
+
+        public void GoBack()
+        {
+            QuestionVm.GoBack();
         }
 
         public void Save()
@@ -57,6 +72,8 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.MultipleChoiceQuesti
 
                 QuestionVm.Question = JsonConvert.SerializeObject(QuestionVm.QuestionDetails);
                 QuestionVm.Variables = StringToSlug.Slugify(QuestionVm.QuestionDetails.Question);
+                QuestionVm.Order = _surveyVm.Questions.Count + 1;
+                QuestionVm.Type = "Meerkeuze vraag";
                 QuestionVm.SurveyId = _surveyVm.Id;
                 context.Questions.Add(QuestionVm.ToModel());
                 _surveyVm.Questions.Add(QuestionVm);

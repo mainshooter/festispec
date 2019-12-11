@@ -46,11 +46,41 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.TableQuestion
             });
 
             SaveCommand = new RelayCommand(Save);
-            GoBackCommand = new RelayCommand(QuestionVm.GoBack);
-            AddOptionCommand = new RelayCommand(QuestionVm.AddOption, QuestionVm.CanAddOption);
-            DeleteOptionCommand = new RelayCommand(QuestionVm.DeleteOption);
-            AddColumnCommand = new RelayCommand(QuestionVm.AddColumn);
-            DeleteColumnCommand = new RelayCommand(QuestionVm.DeleteColumn);
+            GoBackCommand = new RelayCommand(GoBack);
+            AddOptionCommand = new RelayCommand(AddOption, CanAddOption);
+            DeleteOptionCommand = new RelayCommand(DeleteOption);
+            AddColumnCommand = new RelayCommand(AddColumn);
+            DeleteColumnCommand = new RelayCommand(DeleteColumn);
+        }
+
+        public void DeleteColumn()
+        {
+            QuestionVm.DeleteColumn();
+        }
+
+        public void AddColumn()
+        {
+            QuestionVm.AddColumn();
+        }
+
+        public void DeleteOption()
+        {
+            QuestionVm.DeleteOption();
+        }
+
+        public bool CanAddOption()
+        {
+            return QuestionVm.CanAddOption();
+        }
+
+        public void AddOption()
+        {
+            QuestionVm.AddOption();
+        }
+
+        public void GoBack()
+        {
+            QuestionVm.GoBack();
         }
 
         public void Save()
@@ -61,6 +91,8 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.TableQuestion
 
                 QuestionVm.Question = JsonConvert.SerializeObject(QuestionVm.QuestionDetails);
                 QuestionVm.Variables = StringToSlug.Slugify(QuestionVm.QuestionDetails.Question);
+                QuestionVm.Order = _surveyVm.Questions.Count + 1;
+                QuestionVm.Type = "Tabel vraag";
                 QuestionVm.SurveyId = _surveyVm.Id;
                 context.Questions.Add(QuestionVm.ToModel());
                 _surveyVm.Questions.Add(QuestionVm);

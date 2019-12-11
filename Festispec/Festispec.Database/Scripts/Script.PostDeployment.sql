@@ -18,9 +18,8 @@ INSERT INTO CaseStatus VALUES ('Klaar')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO SurveyStatus VALUES ('Gestart')
-INSERT INTO SurveyStatus VALUES ('Bezig')
-INSERT INTO SurveyStatus VALUES ('Afgerond')
+INSERT INTO SurveyStatus VALUES ('Concept')
+INSERT INTO SurveyStatus VALUES ('Definitief')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
@@ -35,7 +34,6 @@ INSERT INTO OrderStatus VALUES ('Afgerond')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO InspectorPlanningStatus VALUES ('Aanvraag')
 INSERT INTO InspectorPlanningStatus VALUES ('Ingepland')
 INSERT INTO InspectorPlanningStatus VALUES ('Afgerond')
 COMMIT TRANSACTION
@@ -119,10 +117,10 @@ COMMIT TRANSACTION
 
 -------- BEGIN SURVEY DATA ------------
 BEGIN TRANSACTION
-INSERT INTO Survey VALUES (1, 'Afgerond', 'Survey voor Defqon 1')
-INSERT INTO Survey VALUES (2, 'Bezig', 'Survey voor Xqlusive Holland')
-INSERT INTO Survey VALUES (3, 'Gestart', 'Survey voor Ed Sheeran in Concert')
-INSERT INTO Survey VALUES (4, 'Gestart', 'Survey voor Snollebollekes')
+INSERT INTO Survey VALUES (1, 'Definitief', 'Survey voor Defqon 1')
+INSERT INTO Survey VALUES (2, 'Concept', 'Survey voor Xqlusive Holland')
+INSERT INTO Survey VALUES (3, 'Definitief', 'Survey voor Ed Sheeran in Concert')
+INSERT INTO Survey VALUES (4, 'Concept', 'Survey voor Snollebollekes')
 COMMIT TRANSACTION
 -------- END SURVEY DATA ------------
 
@@ -194,14 +192,14 @@ COMMIT TRANSACTION
 
 BEGIN TRANSACTION
 INSERT INTO InspectorPlanning VALUES (2,1,1, '20190628 10:00:00', '20190628 17:00:00', 'Afgerond', NULL, NULL)
-INSERT INTO InspectorPlanning VALUES (3,1,1, '20190628 10:00:00', '20190628 17:00:00', 'Aanvraag', NULL, NULL)
+INSERT INTO InspectorPlanning VALUES (3,1,1, '20190628 10:00:00', '20190628 17:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (3,2,1, '20190628 17:00:00', '20190629 01:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (2,3,1, '20190629 10:00:00', '20190628 17:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (3,4,1, '20190628 17:00:00', '20190629 01:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (2,5,1, '20190628 10:00:00', '20190628 16:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (3,6,1, '20190628 16:00:00', '20190629 23:00:00', 'Afgerond', NULL, NULL)
 INSERT INTO InspectorPlanning VALUES (2,7,2, '20200919 23:00:00', '20200920 07:00:00', 'Ingepland', NULL, NULL)
-INSERT INTO InspectorPlanning VALUES (3,7,2, '20200919 23:00:00', '20200920 07:00:00', 'Aanvraag', NULL, NULL)
+INSERT INTO InspectorPlanning VALUES (3,7,2, '20200919 23:00:00', '20200920 07:00:00', 'Ingepland', NULL, NULL)
 COMMIT TRANSACTION
 
 --BEGIN TRANSACTION
@@ -248,18 +246,19 @@ INSERT INTO ElementType VALUES ('Image')
 INSERT INTO ElementType VALUES ('Text')
 COMMIT TRANSACTION
 
+
 BEGIN TRANSACTION
-INSERT INTO ReportElement VALUES (1,'Text', 'Begin tekst', 'Inleiding', NULL, 1, NULL, NULL)
-INSERT INTO ReportElement VALUES (1,'Image', 'Loop Route', 'Inleiding', NULL, 1, NULL, NULL)
-INSERT INTO ReportElement VALUES (1,'Linechart', 'Tevredenheid', 'Inleiding', NULL,1, NULL, NULL)
-INSERT INTO ReportElement VALUES (2,'Text', 'Begin tekst', 'Inleiding', NULL, 1, NULL, NULL)
-INSERT INTO ReportElement VALUES (2,'Image', 'Loop Route', 'Inleiding', NULL, 1, NULL, NULL)
-INSERT INTO ReportElement VALUES (2,'Table', 'Artiest Lineup Rating', 'Inleiding', NULL, 1, NULL, NULL)
-INSERT INTO ReportElement VALUES (3,'Text', 'Begin tekst', 'Inleiding', NULL, 1, NULL, NULL)
-INSERT INTO ReportElement VALUES (3,'Image', 'Loop Route', 'Inleiding', NULL, 1, NULL, NULL)
-INSERT INTO ReportElement VALUES (3,'Piechart','Genuttigde dranken', 'Inleiding', NULL, 1, NULL, NULL)
-INSERT INTO ReportElement VALUES (4,'Text', 'Begin tekst', 'Inleiding', NULL, 1, NULL, NULL)
-INSERT INTO ReportElement VALUES (4,'Image', 'Loop Route', 'Inleiding', NULL, 1, NULL, NULL)
-INSERT INTO ReportElement VALUES (4,'Barchart', 'Beste act', 'Inleiding', NULL, 1, NULL, NULL)
+INSERT INTO ReportElement VALUES (1,'text', 'Begin tekst', 'Inleiding', NULL,1, NULL ,NULL , NULL)
+INSERT INTO ReportElement VALUES (1,'image', 'Loop Route', 'Inleiding', NULL,2, NULL ,NULL , NULL)
+INSERT INTO ReportElement VALUES (1,'linechart', 'Tevredenheid', 'Inleiding',NULL, 3, NULL , 'Mensen ','Aantal')
+INSERT INTO ReportElement VALUES (2,'text', 'Begin tekst', 'Inleiding', NULL,1, NULL, NULL , NULL)
+INSERT INTO ReportElement VALUES (2,'image', 'Loop Route', 'Inleiding', NULL,2, NULL, NULL , NULL)
+INSERT INTO ReportElement VALUES (2,'table', 'Artiest Lineup Rating', 'Inleiding', NULL,3, NULL, NULL , NULL)
+INSERT INTO ReportElement VALUES (3,'text', 'Begin tekst', 'Inleiding', NULL,1, NULL, NULL , NULL)
+INSERT INTO ReportElement VALUES (3,'image', 'Loop Route', 'Inleiding', NULL,2, NULL, NULL , NULL)
+INSERT INTO ReportElement VALUES (3,'piechart', 'Genuttigde dranken', 'Inleiding',NULL, 3, NULL , NULL , NULL)
+INSERT INTO ReportElement VALUES (4,'text', 'Begin tekst', 'Inleiding', NULL,1, NULL , NULL , NULL)
+INSERT INTO ReportElement VALUES (4,'image', 'Loop Route', 'Inleiding', NULL,2, NULL , NULL , NULL)
+INSERT INTO ReportElement VALUES (4,'barchart', 'Beste act', 'Inleiding', NULL,3,NULL , 'Act','Aantal')
 COMMIT TRANSACTION
 -------- END REPORT DATA ------------

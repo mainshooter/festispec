@@ -61,6 +61,12 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
             set => _surveyQuestion.Type = value;
         }
 
+        public int Order
+        {
+            get => _surveyQuestion.Order;
+            set => _surveyQuestion.Order = value;
+        }
+
         public string SelectedOptionName { get; set; }
         public string SelectedColumnName { get; set; }
 
@@ -160,7 +166,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
         public void AddColumn()
         {
-            if (ColumnName == "" || ColumnName.Length > 50)
+            if (string.IsNullOrEmpty(ColumnName) || ColumnName.Length > 50)
             {
                 MessageBox.Show("De kolom mag niet leeg zijn of langer zijn dan 50 karakters.");
                 return;
@@ -185,7 +191,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
         public void AddOption()
         {
-            if (OptionName == "" || OptionName.Length > 50)
+            if (string.IsNullOrEmpty(OptionName) || OptionName.Length > 50)
             {
                 MessageBox.Show("De optie mag niet leeg zijn of langer zijn dan 50 karakters.");
                 return;

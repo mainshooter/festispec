@@ -1,158 +1,102 @@
 ﻿using Festispec.Domain;
-using Festispec.Factory;
-using Festispec.View.Pages.Report.element;
 using Festispec.ViewModel.report.element;
-using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Input;
 using GalaSoft.MvvmLight;
-using Festispec.Repository;
-using Festispec.Message;
 using Festispec.ViewModel.Customer.order;
-using GalaSoft.MvvmLight.Ioc;
 using Festispec.ViewModel.toast;
 using System;
 using System.Windows;
-using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Festispec.ViewModel.report
 {
     public class ReportVM : ViewModelBase
     {
         private Report _report;
-        private ReportElementFactory _reportElementFactory;
+        private ObservableCollection<ReportElementVM> _reportElements;
 
-
-        public int Id {
-            get {
+        public int Id 
+        {
+            get 
+            {
                 return _report.Id;
             }
-            private set {
+            private set 
+            {
                 _report.Id = value;
             }
         }
 
         public OrderVM Order { get; set; }
 
-        public string Title {
-            get {
+        public string Title 
+        {
+            get 
+            {
                 return _report.Title;
             }
-            set {
+            set 
+            {
                 _report.Title = value;
-                SaveReportChangesAsync();
                 RaisePropertyChanged("Title");
             }
         }
 
-        public string Status {
-            get {
+        public string Status 
+        {
+            get 
+            {
                 return _report.Status;
             }
-            set {
+            set 
+            {
                 _report.Status = value;
-                SaveReportChangesAsync();
                 RaisePropertyChanged("Status");
             }
         }
 
-        public ObservableCollection<ReportElementVM> ReportElements { get; set; }
-        
-        public ObservableCollection<UserControl> ReportElementUserControlls { get; set; }
-
-        public ICommand SaveReportCommand { get; set; }
-
-        public ICommand AddElementCommand { get; set; }
-        public ObservableCollection<string> Statuses { get; set; }
-
-        [PreferredConstructor]
-        public ReportVM()
-        {
-            MessengerInstance.Register<ChangeSelectedOrderMessage>(this, message => {
-                Order = message.SelectedOrder;
-            });
-            MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
-                _report = message.NextReportVM._report;
-                Title = message.NextReportVM.Title;
-                Status = message.NextReportVM.Status;
-                Id = message.NextReportVM.Id;
-                RefreshElements();
-            });
-            this.ReportElements = new ObservableCollection<ReportElementVM>();
-            ReportElementUserControlls = new ObservableCollection<UserControl>();
-            _reportElementFactory = new ReportElementFactory();
-            ReportElements.CollectionChanged += RenderReportElements;
-            AddElementCommand = new RelayCommand(GoToAddElementPage);
-            GetStatuses();
-            this.RenderReportElements(null, null);
+        public ObservableCollection<ReportElementVM> ReportElements {
+            get 
+            {
+                return _reportElements;
+            }
+            set
+            {
+                _reportElements = value;
+                RaisePropertyChanged();
+            }
         }
 
         public ReportVM(Report report)
         {
             _report = report;
-            var reportRepository = new ReportRepository();
-            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
-            ReportElementUserControlls = new ObservableCollection<UserControl>();
-            _reportElementFactory = new ReportElementFactory();
-            ReportElements.CollectionChanged += RenderReportElements;
-            AddElementCommand = new RelayCommand(GoToAddElementPage);
-            this.RenderReportElements(null, null);
+            ReportElements = new ObservableCollection<ReportElementVM>(_report.ReportElements.Select(e => new ReportElementVM(e)).ToList());         
         }
 
-        private void GetStatuses()
+        public ReportVM(OrderVM OrderVM)
         {
-            using (var context = new Entities())
-            {
-                Statuses = new ObservableCollection<string>(context.ReportStatus.ToList().Select(status => status.Status));
-            }
-        }
-
-        private void GoToAddElementPage()
-        {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddElementPage)});
-            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
-            {
-              NextReportVM = this
-            });
+            _report = new Report();
+            Order = OrderVM;
+            _report.OrderId = OrderVM.ToModel().Id;
+            ReportElements = new ObservableCollection<ReportElementVM>();
         }
 
         public Report ToModel()
         {
             return _report;
         }
-     
-        public async Task SaveReportChangesAsync()
-        {
-            using (var context = new Entities())
-            {
-                context.Reports.Attach(_report);
-                context.Entry(_report).State = System.Data.Entity.EntityState.Modified;
-                await context.SaveChangesAsync();
-            }
-        }
 
-        public void RenderReportElements(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            ReportElementUserControlls.Clear();
-            var reportElements = ReportElements.OrderBy(el => el.Order);
-            foreach (var element in reportElements)
-            {
-                ReportElementUserControlls.Add(_reportElementFactory.CreateElement(element, this));
-            }
-        }
         public void MoveElement(ReportElementVM element, int direction)
         {
             try
             {
-                var NextElement = ReportElements[ReportElements.IndexOf(ReportElements.Where(e => e.Id == element.Id).FirstOrDefault()) + direction];
-                var NextElementOrder = NextElement.Order;
-                NextElement.Order = element.Order;
-                element.Order = NextElementOrder;
-                SaveElementOrder(NextElement, element);
-                RefreshElements();
+                var nextElement = ReportElements[ReportElements.IndexOf(ReportElements.Where(e => e.Id == element.Id).FirstOrDefault()) + direction];
+                var nextElementOrder = nextElement.Order;
+                nextElement.Order = element.Order;
+                element.Order = nextElementOrder;
+                SaveElementOrder(nextElement, element);
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().RefreshElements();
             }
             catch (Exception)
             {
@@ -165,23 +109,16 @@ namespace Festispec.ViewModel.report
             using (var context = new Entities())
             {
                 context.ReportElements.Attach(element1.ToModel());
-                context.Entry(element1.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.Entry(element1.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
-
+            }
+            using (var context = new Entities())
+            {
                 context.ReportElements.Attach(element2.ToModel());
-                context.Entry(element2.ToModel()).State = System.Data.Entity.EntityState.Modified;
+                context.Entry(element2.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
-
-        public void RefreshElements()
-        {
-            ReportRepository reportRepository = new ReportRepository();
-            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements(this));
-            this.RenderReportElements(null, null);
-            RaisePropertyChanged("ReportElements");
-        }
-
         public bool ValidateInputs()
         {
             if (Title == null || Title.Equals(""))
@@ -195,7 +132,6 @@ namespace Festispec.ViewModel.report
                 MessageBox.Show("Titel mag niet langer zijn dan 100 karakters.");
                 return false;
             }
-
             return true;
         }
     }

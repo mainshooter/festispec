@@ -6,26 +6,29 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element
 {
-    public class ReportElementVM : ViewModelBase
+    public class ReportElementVM : ViewModelBase, IDataErrorInfo
+  
     {
         private ReportElement _reportElement;
         private IDataParser _dataParser;
         private List<List<string>> _data;
 
-        public ReportVM ReportVM { get; set; }
+        private ReportVM ReportVM { 
+            get {
+                return CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().ReportVM;
+            }
+        }
 
         public ICommand EditElement { get; set; }
-
         public ICommand DeleteElement { get; set; }
-
         public ICommand ElementUpCommand { get; set; }
-
         public ICommand ElementDownCommand { get; set; }
 
         public int Id
@@ -49,6 +52,15 @@ namespace Festispec.ViewModel.report.element
             set
             {
                 _reportElement.ReportId = value;
+            }
+        }
+
+        public byte[] Image {
+            get {
+                return _reportElement.Image;
+            }
+            set {
+                _reportElement.Image = value;
             }
         }
 
@@ -168,23 +180,32 @@ namespace Festispec.ViewModel.report.element
 
         public ICommand EditElementCommand { get; set; }
 
-        public ReportElementVM(ReportElement element, ReportVM report)
+        public ReportElementVM(ReportElement element)
         {
-            _reportElement = element;
-            ReportVM = report;
             DataParser = DataParserFactory.GetDataParserByJson(element.Data);
+            _reportElement = element;
             DeleteElement = new RelayCommand(() => Delete());
-            ElementUpCommand = new RelayCommand(() => ReportVM.MoveElement(this, -1));
-            ElementDownCommand = new RelayCommand(() => ReportVM.MoveElement(this, 1));
+            ElementUpCommand = new RelayCommand(MoveElementUp);
+            ElementDownCommand = new RelayCommand(MoveElementDown);
         }
 
         public ReportElementVM()
         {
             DeleteElement = new RelayCommand(() => Delete());
-            ElementUpCommand = new RelayCommand(() => ReportVM.MoveElement(this, -1));
-            ElementDownCommand = new RelayCommand(() => ReportVM.MoveElement(this, 1));
+            ElementUpCommand = new RelayCommand(MoveElementUp);
+            ElementDownCommand = new RelayCommand(MoveElementDown);
             _reportElement = new ReportElement();
         }
+
+        private void MoveElementUp() {
+            ReportVM.MoveElement(this, -1);
+        }
+
+        private void MoveElementDown()
+        {
+            ReportVM.MoveElement(this, 1);
+        }
+
         public void Delete()
         {
             MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze element wilt verwijderen?", "Element Verwijderen", MessageBoxButton.YesNo);
@@ -195,14 +216,148 @@ namespace Festispec.ViewModel.report.element
                     context.ReportElements.Remove(context.ReportElements.Where(reportElement => reportElement.Id == _reportElement.Id).First());
                     context.SaveChanges();
                 }
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().RefreshElements();
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Rapportelement verwijderd.");
             }
-            ReportVM.RefreshElements();
         }
 
         public ReportElement ToModel()
         {
             return _reportElement;
+        }
+
+        string IDataErrorInfo.Error => null;
+
+        string IDataErrorInfo.this[string propertyName]
+        {
+            get
+            {
+                return GetValidationError(propertyName);
+            }
+        }
+
+        private string ValidateTitle
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(Title))
+                {
+                    return "Titel moet ingevuld zijn";
+                }
+                else if (Title.Length > 100)
+                {
+                    return "Titel mag niet langer zijn dan 100 karakters";
+                }
+                return null;
+            }
+        }
+
+        private string ValidateContent
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(Content))
+                {
+                    return "Beschrijving moet ingevuld zijn";
+                }
+                else if (Content.Length > 100)
+                {
+                    return "Beschrijving mag niet langer zijn dan 100 karakters";
+                }
+                return null;
+            }
+        }
+
+        private string ValidateY_as
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(Y_as))
+                {
+                    return "Y_as moet ingevuld zijn";
+                }
+                else if (Y_as.Length > 100)
+                {
+                    return "Y_as mag niet langer zijn dan 100 karakters";
+                }
+                return null;
+            }
+        }
+
+        private string ValidateX_as
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(X_as))
+                {
+                    return "X_as moet ingevuld zijn";
+                }
+                else if (X_as.Length > 100)
+                {
+                    return "X_as mag niet langer zijn dan 100 karakters";
+                }
+                return null;
+            }
+        }
+
+        string GetValidationError(string propertyName)
+        {
+            string error = null;
+            switch (propertyName)
+            {
+                case "Title":
+                    error = ValidateTitle;
+                    break;
+                case "Content":
+                    error = ValidateContent;
+                    break;
+                case "Y_as":
+                    error = ValidateY_as;
+                    break;
+                case "X_as":
+                    error = ValidateX_as;
+                    break;
+            }
+            return error;
+        }
+
+        public static readonly string[] ValidatedProperties =
+        {
+            "Title", "Content", "Y_as", "X_as"
+        };
+
+        public static readonly string[] ValidatedPropertiesShort =
+        {
+            "Title", "Content"
+        };
+
+        public bool IsValid
+        {
+            get
+            {
+                if (Type.Equals("barchart")|| Type.Equals("linechart"))
+                {
+                    foreach (var property in ValidatedProperties)
+                    {
+                        if (GetValidationError(property) != null)
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+                else
+                {
+                    foreach (var property in ValidatedPropertiesShort)
+                    {
+                        if (GetValidationError(property) != null)
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            }
         }
     }
 }

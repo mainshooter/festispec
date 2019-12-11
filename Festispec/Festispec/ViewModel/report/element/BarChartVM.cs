@@ -1,7 +1,9 @@
 using LiveCharts;
 using LiveCharts.Wpf;
 ﻿using Festispec.Message;
-using Festispec.View.Pages.Report.element;
+﻿using Festispec.Lib.Enums;
+using Festispec.View.Pages.Report.element.Edit;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 
@@ -20,14 +22,14 @@ namespace Festispec.ViewModel.report.element
 
         public Func<double, string> Formatter { set; get; }
 
-        public ReportElementVM ReportElementVM { get; set; }
-
-        public BarChartVM(ReportElementVM element, ReportVM report)
+        public BarChartVM()
         {
-            EditElement = new GalaSoft.MvvmLight.CommandWpf.RelayCommand(() => Edit());
-            Data = element.Data;
-            ReportVM = report;
-            ReportElementVM = element;
+            Type = ReportElementType.Barchart;
+        }
+
+        public BarChartVM(ReportElementVM element)
+        {
+            EditElement = new RelayCommand(() => Edit());
             Id = element.Id;
             Type = element.Type;
             Title = element.Title;
@@ -41,10 +43,9 @@ namespace Festispec.ViewModel.report.element
         public void Edit()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditBarChartPage) });
-            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
+            MessengerInstance.Send<ChangeSelectedReportElementMessage>(new ChangeSelectedReportElementMessage()
             {
-                NextReportVM = ReportVM,
-                ReportElement = ReportElementVM
+                ReportElementVM = this
             });
         }
 
