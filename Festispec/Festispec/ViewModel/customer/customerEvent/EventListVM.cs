@@ -246,6 +246,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             if (source.OrderVM.Report.Id == 0)
             {
                 MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddReportPage) });
+                MessengerInstance.Send<ChangeSelectedOrderMessage>(new ChangeSelectedOrderMessage() { SelectedOrderVM = source.OrderVM });
             }
             else
             {
