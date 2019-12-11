@@ -156,7 +156,32 @@ namespace Festispec.ViewModel.report
                 reportElementVM.VisibilityButtons = Visibility.Collapsed;
             }
 
-            ConvertToPNG.SnapShotPng(document, 1);
+            PrintDialog printDialog = new PrintDialog();
+            var fixedDocument = new FixedDocument();
+            fixedDocument.DocumentPaginator.PageSize = new Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
+
+            FixedPage frontPage = new FixedPage();
+            Paragraph frontParagraph = new Paragraph();
+            frontParagraph.Inlines.Add("Festispec Rapportage - ");
+            frontParagraph.Inlines.Add("Klant gegevens - " + Order.Event.Customer.Name);
+            frontParagraph.Inlines.Add("Inspectie gegevens - " + Order.Description);
+            frontParagraph.Inlines.Add("Datum - " + DateTime.Today);
+            frontParagraph.Inlines.Add("Festispec contactpersoon - " + Order.Event.ContactPerson.Fullname);
+            PageContent frontPageContent = new PageContent();
+            ((IAddChild)frontPageContent).AddChild(frontPage);
+            fixedDocument.Pages.Add(frontPageContent);
+
+            var image = ConvertToPNGVM.SnapShotPng(document, 1);
+
+            FixedPage page = new FixedPage();
+            page.Height = image.ActualHeight + 50;
+            page.Width = image.ActualWidth + 50;
+            page.Margin = new Thickness(25);
+            page.Children.Add(image);
+            PageContent pageContent = new PageContent();
+            ((IAddChild)pageContent).AddChild(page);
+            fixedDocument.Pages.Add(pageContent);
+            printDialog.PrintDocument(fixedDocument.DocumentPaginator, "Rapport");
 
             foreach (var userControl in ReportElementUserControlls)
             {

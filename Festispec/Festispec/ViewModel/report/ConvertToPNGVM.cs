@@ -9,10 +9,10 @@ using System.Windows.Media.Imaging;
 
 namespace Festispec.ViewModel.report
 {
-    public static class ConvertToPNG
+    public static class ConvertToPNGVM
     {
 
-        public static void SnapShotPng(FrameworkElement source, double zoom)
+        public static Image SnapShotPng(FrameworkElement source, double zoom)
         {
             try
             {
@@ -48,23 +48,12 @@ namespace Festispec.ViewModel.report
                 }
 
                 var tmpImg = new Image { Source = bitmap };
-                PrintDialog printDialog = new PrintDialog();
-                var fixedDocument = new FixedDocument();
-                fixedDocument.DocumentPaginator.PageSize = new Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
-
-                FixedPage page = new FixedPage();
-                page.Height = renderHeight + 50;
-                page.Width = renderWidth + 50;
-                page.Margin = new Thickness(25);
-                page.Children.Add(tmpImg);
-                PageContent pageContent = new PageContent();
-                ((IAddChild)pageContent).AddChild(page);
-                fixedDocument.Pages.Add(pageContent);
-                printDialog.PrintDocument(fixedDocument.DocumentPaginator, "Rapport");
+                return tmpImg;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                return null;
             }
         }
     }
