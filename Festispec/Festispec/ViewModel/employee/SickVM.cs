@@ -49,7 +49,7 @@ namespace Festispec.ViewModel.employee
                 return _sick.Reason;
             }
             set {
-                Reason = value;
+                _sick.Reason = value;
             }
         }
 
@@ -63,6 +63,11 @@ namespace Festispec.ViewModel.employee
         public SickVM()
         {
             _sick = new SickReportInspector();
+        }
+
+        public SickReportInspector ToModel()
+        {
+            return _sick;
         }
     }
 }

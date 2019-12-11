@@ -4,44 +4,79 @@ using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.planning.plannedEmployee;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 
 namespace Festispec.ViewModel.employee
 {
     public class SickPageVM : ViewModelBase
     {
-        private EmployeeVM Employee { get; set; }
-        private PlannedEmployeeVM PlannedEvent { get; set; }
-        private OrderVM PlannedOrder { get; set; }
+        public string ShowEventInfo { get; set; }
+        public string ShowNoEvent { get; set; }
+        public string SickPageButton { get; set; }
+
+        public ICommand SickButtonCommand { get; set; }
+
+        private EmployeeVM _employee { get; set; }
+        private PlannedEmployeeVM _plannedEmployee { get; set; }
+        private SickVM _sick { get; set; }
+
 
         public SickPageVM()
         {
             Console.WriteLine("faka");
-            Employee = UserSessionVm.Current.Employee;
+            _employee = UserSessionVm.Current.Employee;
 
             using (var context = new Entities())
             {
                 var tempPlanning = context.InspectorPlannings.ToList()
                     .Select(e => new PlannedEmployeeVM(e))
-                    .Where(e => e.Employee.Id == Employee.Id)
+                    .Where(e => e.Employee.Id == _employee.Id)
+                    .Where(e => e.PlannedStartTime.Date == DateTime.Today)
                     .FirstOrDefault();
-                List<Order> orders = new List<Order>(context.Orders);
-                List<OrderVM> orderList = new List<OrderVM>(context.Orders.ToList().Select(e => new OrderVM(e)));
+
                 if (tempPlanning != null)
                 {
-                    
-                    var tempEvent = orderList.Where(e => e.Id == tempPlanning.OrderId).FirstOrDefault();
+                    _plannedEmployee = tempPlanning;
+                    var tempEvent = context.Orders.Include("Event").ToList()
+                        .Where(e => e.Id == tempPlanning.OrderId)
+                        .FirstOrDefault();
 
-                    PlannedEvent = tempPlanning;
-                    Console.WriteLine(PlannedEvent.OrderId);
-                    Console.WriteLine(tempEvent.Event.Name);
+                    if(tempEvent != null)
+                    {
+                        Console.WriteLine(_plannedEmployee.OrderId);
+                        Console.WriteLine(tempEvent.Event.Name);
+                        ShowEventInfo = "Visible";
+                        ShowNoEvent = "Hidden";
+                        SickPageButton = "Ziekmelden";
+
+                        SickButtonCommand = new RelayCommand(GetSick);
+                    }
                 }
                 else
                 {
                     Console.WriteLine("Geen ding vandaag");
                 }
+            }
+        }
+
+        private void GetSick()
+        {
+            using(var context = new Entities())
+            {
+                _sick = new SickVM();
+                _sick.Employee = _employee;
+                _sick.PlannedEmployee = _plannedEmployee;
+                _sick.Day = _plannedEmployee;
+                _sick.Reason = "Test";
+
+                Console.WriteLine(_sick);
+
+                context.SickReportInspectors.Add(_sick.ToModel());
+                context.SaveChanges();
             }
         }
     }
