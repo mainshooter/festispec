@@ -47,9 +47,9 @@ namespace Festispec.ViewModel.report
                 if (!ReportVM.ValidateInputs()) return false;
 
                 ReportVM.Status = "Concept";
-                ReportVM.ToModel().OrderId = ReportVM.Order.Id;
                 context.Reports.Add(ReportVM.ToModel());
                 context.SaveChanges();
+                ReportVM.Order.Report = ReportVM;
                 return true;
             }
         }
