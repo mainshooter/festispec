@@ -248,17 +248,17 @@ COMMIT TRANSACTION
 
 
 BEGIN TRANSACTION
-INSERT INTO ReportElement VALUES (1,'text', 'Begin tekst', 'Inleiding', NULL,1, NULL ,NULL , NULL)
-INSERT INTO ReportElement VALUES (1,'image', 'Loop Route', 'Inleiding', NULL,2, NULL ,NULL , NULL)
-INSERT INTO ReportElement VALUES (1,'linechart', 'Tevredenheid', 'Inleiding',NULL, 3, NULL , 'Mensen ','Aantal')
-INSERT INTO ReportElement VALUES (2,'text', 'Begin tekst', 'Inleiding', NULL,1, NULL, NULL , NULL)
-INSERT INTO ReportElement VALUES (2,'image', 'Loop Route', 'Inleiding', NULL,2, NULL, NULL , NULL)
-INSERT INTO ReportElement VALUES (2,'table', 'Artiest Lineup Rating', 'Inleiding', NULL,3, NULL, NULL , NULL)
-INSERT INTO ReportElement VALUES (3,'text', 'Begin tekst', 'Inleiding', NULL,1, NULL, NULL , NULL)
-INSERT INTO ReportElement VALUES (3,'image', 'Loop Route', 'Inleiding', NULL,2, NULL, NULL , NULL)
-INSERT INTO ReportElement VALUES (3,'piechart', 'Genuttigde dranken', 'Inleiding',NULL, 3, NULL , NULL , NULL)
-INSERT INTO ReportElement VALUES (4,'text', 'Begin tekst', 'Inleiding', NULL,1, NULL , NULL , NULL)
-INSERT INTO ReportElement VALUES (4,'image', 'Loop Route', 'Inleiding', NULL,2, NULL , NULL , NULL)
-INSERT INTO ReportElement VALUES (4,'barchart', 'Beste act', 'Inleiding', NULL,3,NULL , 'Act','Aantal')
+INSERT INTO ReportElement VALUES (1,'Text', 'Begin tekst', 'Inleiding', NULL,1, NULL ,NULL , NULL)
+INSERT INTO ReportElement VALUES (1,'Image', 'Loop Route', 'Inleiding', NULL,2, NULL ,NULL , NULL)
+INSERT INTO ReportElement VALUES (1,'Linechart', 'Tevredenheid', 'Inleiding',NULL, 3, NULL , 'Mensen ','Aantal')
+INSERT INTO ReportElement VALUES (2,'Text', 'Begin tekst', 'Inleiding', NULL,1, NULL, NULL , NULL)
+INSERT INTO ReportElement VALUES (2,'Image', 'Loop Route', 'Inleiding', NULL,2, NULL, NULL , NULL)
+INSERT INTO ReportElement VALUES (2,'Table', 'Artiest Lineup Rating', 'Inleiding', NULL,3, NULL, NULL , NULL)
+INSERT INTO ReportElement VALUES (3,'Text', 'Begin tekst', 'Inleiding', NULL,1, NULL, NULL , NULL)
+INSERT INTO ReportElement VALUES (3,'Image', 'Loop Route', 'Inleiding', NULL,2, NULL, NULL , NULL)
+INSERT INTO ReportElement VALUES (3,'Piechart', 'Genuttigde dranken', 'Inleiding',NULL, 3, NULL , NULL , NULL)
+INSERT INTO ReportElement VALUES (4,'Text', 'Begin tekst', 'Inleiding', NULL,1, NULL , NULL , NULL)
+INSERT INTO ReportElement VALUES (4,'Image', 'Loop Route', 'Inleiding', NULL,2, NULL , NULL , NULL)
+INSERT INTO ReportElement VALUES (4,'Barchart', 'Beste act', 'Inleiding', NULL,3,NULL , 'Act','Aantal')
 COMMIT TRANSACTION
 -------- END REPORT DATA ------------

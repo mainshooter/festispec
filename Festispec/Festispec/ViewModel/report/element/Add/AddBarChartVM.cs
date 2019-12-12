@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element.Add
 {
-    public class AddBarChartVM : ViewModelBase
+    public class AddBarChartVM : BaseElementAdd
     {
         private BarChartVM _reportElementVM;
 
@@ -29,7 +29,7 @@ namespace Festispec.ViewModel.report.element.Add
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
 
-        public AddBarChartVM()
+        public AddBarChartVM(): base()
         {
             ReportElementVM = new BarChartVM();
             MessengerInstance.Register<ChangeSelectedReportMessage>(this, message =>

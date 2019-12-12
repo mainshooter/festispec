@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element.Add
 {
-    public class AddPieChartVM : ViewModelBase
+    public class AddPieChartVM : BaseElementAdd
     {
         private PieChartVM _reportElementVM;
         public PieChartVM ReportElementVM

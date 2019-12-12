@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element.Add
 {
-    public class AddTableVM : ViewModelBase
+    public class AddTableVM : BaseElementAdd
     {
         private TableVM _reportElementVM;
 

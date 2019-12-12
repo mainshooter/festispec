@@ -1,4 +1,5 @@
-﻿using Festispec.View.Report.Element;
+﻿using Festispec.Lib.Enums;
+using Festispec.View.Report.Element;
 using Festispec.ViewModel.report;
 using Festispec.ViewModel.report.element;
 using System.Windows.Controls;
@@ -11,7 +12,7 @@ namespace Festispec.Factory
         {
             UserControl returningUserControl = null;
             string type = element.Type;
-            if (type.Equals("Table"))
+            if (type.Equals(ReportElementType.Table))
             {
                 TableUserControl table = new TableUserControl();
                 TableVM tableVm = new TableVM(element);
@@ -19,7 +20,7 @@ namespace Festispec.Factory
                 table.DataContext = tableVm;
                 returningUserControl = table;
             }
-            else if (type.Equals("Linechart"))
+            else if (type.Equals(ReportElementType.Linechart))
             {
                 LineChartUserControl lineChart = new LineChartUserControl();
                 LineChartVM lineChartVm = new LineChartVM(element);
@@ -27,7 +28,7 @@ namespace Festispec.Factory
                 lineChart.DataContext = lineChartVm;
                 returningUserControl = lineChart;
             }
-            else if (type.Equals("Piechart"))
+            else if (type.Equals(ReportElementType.Piechart))
             {
                 PieChartUserControl pieChart = new PieChartUserControl();
                 PieChartVM pieChartVm = new PieChartVM(element);
@@ -35,7 +36,7 @@ namespace Festispec.Factory
                 pieChart.DataContext = pieChartVm;
                 returningUserControl = pieChart;
             }
-            else if (type.Equals("Barchart"))
+            else if (type.Equals(ReportElementType.Barchart))
             {
                 BarChartUserControl barChart = new BarChartUserControl();
                 BarChartVM barChartVm = new BarChartVM(element);
@@ -44,14 +45,14 @@ namespace Festispec.Factory
                 returningUserControl = barChart;
 
             }
-            else if (type.Equals("Image"))
+            else if (type.Equals(ReportElementType.Image))
             {
                 ImageUserControl image = new ImageUserControl();
                 ImageVM imageVm = new ImageVM(element);
                 image.DataContext = imageVm;
                 returningUserControl = image;
             }
-            else if (type.Equals("Text"))
+            else if (type.Equals(ReportElementType.Text))
             {
                 TextUserControl text = new TextUserControl();
                 TextVM textVM = new TextVM(element);

@@ -1,5 +1,6 @@
 ﻿using Festispec.Domain;
 using Festispec.Factory;
+using Festispec.Lib.Enums;
 using Festispec.Message;
 using Festispec.Repository;
 using Festispec.View.Pages.Customer.Event;
@@ -103,22 +104,22 @@ namespace Festispec.ViewModel.report
         {
             switch (SelectedElementType)
             {
-                case "table":
+                case ReportElementType.Table:
                     MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddTablePage) });
                     break;
-                case "linechart":
+                case ReportElementType.Linechart:
                     MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddLineChartPage) });
                     break;
-                case "piechart":
+                case ReportElementType.Piechart:
                     MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddPieChartPage) });
                     break;
-                case "barchart":
+                case ReportElementType.Barchart:
                     MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddBarChartPage) });
                     break;
-                case "image":
+                case ReportElementType.Image:
                     MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddImagePage) });
                     break;
-                case "text":
+                case ReportElementType.Text:
                     MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddTextPage) });
                     break;
             }

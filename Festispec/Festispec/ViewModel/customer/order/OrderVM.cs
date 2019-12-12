@@ -14,11 +14,25 @@ namespace Festispec.ViewModel.Customer.order
     {
         private Order _order;
 
+        private ReportVM _report;
+        private SurveyVM _survey;
+
         public int Id => _order.Id;
         public EmployeeVM Employee { get; set; }
         public EventVM Event { get; set; }
         public ObservableCollection<DayVM> Days { get; set; }
-        public ReportVM Report { get; set; }
+        public ReportVM Report { 
+            get {
+                return _report;
+            }
+            set {
+                _report = value;
+                if (_report != null)
+                {
+                    _report.Order = this;
+                }
+            }
+        }
         public SurveyVM Survey { get; set; }
 
         public string Status

@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element.Add
 {
-    public class AddLineChartVM : ViewModelBase
+    public class AddLineChartVM : BaseElementAdd
     {
         private LineChartVM _reportElementVM;
         public LineChartVM ReportElementVM

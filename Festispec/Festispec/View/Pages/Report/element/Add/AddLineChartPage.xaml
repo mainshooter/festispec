@@ -23,6 +23,22 @@
             <Label Content="Beschrijving: "></Label>
             <TextBox Text="{Binding ReportElementVM.Content, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
+        <Label>Type query</Label>
+        <ComboBox ItemsSource="{Binding DataParsers}" SelectedItem="{Binding SelectedDataParser}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Type}"></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label>Kies een vraag</Label>
+        <ComboBox ItemsSource="{Binding SurveyQuestions}" SelectedItem="{Binding SelectedQuestion}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding QuestionDetails.Question}"></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <StackPanel>
             <Label Content="X-as: "></Label>
             <TextBox Text="{Binding ReportElementVM.X_as, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
