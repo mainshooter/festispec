@@ -83,8 +83,9 @@ namespace Festispec.ViewModel.report
             }
         }
 
-        public ReportVM(Report report)
+        public ReportVM(Report report, OrderVM order)
         {
+            Order = order;
             _report = report;
             ReportElements = new ObservableCollection<ReportElementVM>(_report.ReportElements.Select(e => new ReportElementVM(e)).ToList());
         }
@@ -95,11 +96,6 @@ namespace Festispec.ViewModel.report
 
         public MainViewModel MainViewModel { get; set; }
 
-        public ICommand SaveReportCommand { get; set; }
-
-        public ICommand AddElementCommand { get; set; }
-
-        public ICommand ExportToPDFCommand { get; set; }
 
         public ReportVM(OrderVM OrderVM)
         {
@@ -164,46 +160,5 @@ namespace Festispec.ViewModel.report
             return true;
         }
 
-        public void ExportToPDF(StackPanel document)
-        {
-            foreach (var userControl in ReportElementUserControlls)
-            {
-                ReportElementVM reportElementVM = (ReportElementVM)userControl.DataContext;
-                reportElementVM.VisibilityButtons = Visibility.Collapsed;
-            }
-
-            PrintDialog printDialog = new PrintDialog();
-            var fixedDocument = new FixedDocument();
-            fixedDocument.DocumentPaginator.PageSize = new Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
-
-            FixedPage frontPage = new FixedPage();
-            Paragraph frontParagraph = new Paragraph();
-            frontParagraph.Inlines.Add("Festispec Rapportage - ");
-            frontParagraph.Inlines.Add("Klant gegevens - " + Order.Event.Customer.Name);
-            frontParagraph.Inlines.Add("Inspectie gegevens - " + Order.Description);
-            frontParagraph.Inlines.Add("Datum - " + DateTime.Today);
-            frontParagraph.Inlines.Add("Festispec contactpersoon - " + Order.Event.ContactPerson.Fullname);
-            PageContent frontPageContent = new PageContent();
-            ((IAddChild)frontPageContent).AddChild(frontPage);
-            fixedDocument.Pages.Add(frontPageContent);
-
-            var image = ConvertToPNGVM.SnapShotPng(document, 1);
-
-            FixedPage page = new FixedPage();
-            page.Height = image.ActualHeight + 50;
-            page.Width = image.ActualWidth + 50;
-            page.Margin = new Thickness(25);
-            page.Children.Add(image);
-            PageContent pageContent = new PageContent();
-            ((IAddChild)pageContent).AddChild(page);
-            fixedDocument.Pages.Add(pageContent);
-            printDialog.PrintDocument(fixedDocument.DocumentPaginator, "Rapport");
-
-            foreach (var userControl in ReportElementUserControlls)
-            {
-                ReportElementVM reportElementVM = (ReportElementVM)userControl.DataContext;
-                reportElementVM.VisibilityButtons = Visibility.Visible;
-            }
-        }
     }
 }

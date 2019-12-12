@@ -56,5 +56,25 @@ namespace Festispec.ViewModel.report
                 return null;
             }
         }
+
+        public static System.Windows.Media.ImageSource ConvertImage(System.Drawing.Image image)
+        {
+            try
+            {
+                if (image != null)
+                {
+                    var bitmap = new System.Windows.Media.Imaging.BitmapImage();
+                    bitmap.BeginInit();
+                    System.IO.MemoryStream memoryStream = new System.IO.MemoryStream();
+                    image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                    memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+                    bitmap.StreamSource = memoryStream;
+                    bitmap.EndInit();
+                    return bitmap;
+                }
+            }
+            catch { }
+            return null;
+        }
     }
 }
