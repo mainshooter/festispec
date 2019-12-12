@@ -39,7 +39,7 @@
                 Login
             </Button>
             <TextBlock Grid.Row="3" Grid.Column="1">
-                <Hyperlink Command="{Binding DoResetPassword}">Wachtwoord vergeten</Hyperlink>
+                <Hyperlink Command="{Binding GotoResetPassword}">Wachtwoord vergeten</Hyperlink>
             </TextBlock>
         </Grid>
     </Grid>

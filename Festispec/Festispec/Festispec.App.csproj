@@ -145,6 +145,8 @@
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
     <Compile Include="Message\ChangeSelectedCustomerMessage.cs" />
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
+    <Compile Include="ViewModel\auth\ResetPasswordVm.cs" />
+    <Compile Include="ViewModel\auth\RequestPasswordResetVm.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSessionVm.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
@@ -153,6 +155,7 @@
     <Compile Include="Message\ChangeSelectedEmployeeMessage.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\ReportRepository.cs" />
+    <Compile Include="ViewModel\auth\VerifyCodeVm.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EditEventVM.cs" />
@@ -251,6 +254,9 @@
     </Compile>
     <Compile Include="View\Pages\PasswordReset\ResetPasswordPage.xaml.cs">
       <DependentUpon>ResetPasswordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\PasswordReset\VerifyCodePage.xaml.cs">
+      <DependentUpon>VerifyCodePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Survey\AddSurveyPage.xaml.cs">
       <DependentUpon>AddSurveyPage.xaml</DependentUpon>
@@ -418,6 +424,10 @@
     <Page Include="View\Pages\PasswordReset\ResetPasswordPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\PasswordReset\VerifyCodePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Survey\AddSurveyPage.xaml">
       <SubType>Designer</SubType>
