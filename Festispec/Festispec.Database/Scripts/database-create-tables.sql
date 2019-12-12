@@ -312,26 +312,12 @@ CREATE TABLE [dbo].[Order](
 	[EventId] [int] NOT NULL,
 	[EmployeeId] [int] NULL,
 	[QuotationId] [int] NOT NULL,
-	[Status] [nvarchar](45) NOT NULL,
 	[Description] [text] NULL,
  CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[OrderStatus]    Script Date: 5-11-2019 21:03:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[OrderStatus](
-	[Status] [nvarchar](45) NOT NULL,
- CONSTRAINT [PK_OrderStatus] PRIMARY KEY CLUSTERED
-(
-	[Status] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
 GO
 /****** Object:  Table [dbo].[QueryTemplate]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
@@ -620,11 +606,6 @@ REFERENCES [dbo].[Event] ([Id])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Order] CHECK CONSTRAINT [FK_Order_Event]
-GO
-ALTER TABLE [dbo].[Order]  WITH CHECK ADD  CONSTRAINT [FK_Order_OrderStatus] FOREIGN KEY([Status])
-REFERENCES [dbo].[OrderStatus] ([Status])
-GO
-ALTER TABLE [dbo].[Order] CHECK CONSTRAINT [FK_Order_OrderStatus]
 GO
 ALTER TABLE [dbo].[Order]  WITH CHECK ADD  CONSTRAINT [FK_Order_Quotation] FOREIGN KEY([QuotationId])
 REFERENCES [dbo].[Quotation] ([Id])

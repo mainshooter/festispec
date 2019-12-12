@@ -8,6 +8,13 @@ using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System;
+using System.Windows;
+using Festispec.Domain;
+using System.Linq;
+using System.Data.Entity;
+using Festispec.ViewModel.Customer.order;
+using Festispec.ViewModel.auth;
 
 namespace Festispec.ViewModel.customer.quotation
 {
@@ -22,6 +29,8 @@ namespace Festispec.ViewModel.customer.quotation
         public ICommand OpenEditQuotationCommand { get; set; }
         public ICommand DeleteQuotationCommand { get; set; }
         public ICommand OpenSingleQuotationCommand { get; set; }
+        public ICommand AcceptQuotationCommand { get; set; }
+        public ICommand DeclineQuotationCommand { get; set; }
         public ICommand BackCommand { get; set; }
         public string SelectedFilter { get; set; }
 
@@ -115,9 +124,11 @@ namespace Festispec.ViewModel.customer.quotation
             Filter = "";
 
             OpenAddQuotationCommand = new RelayCommand(OpenAddQuotationPage);
-            OpenEditQuotationCommand = new RelayCommand<QuotationVM>(OpenEditQuotationPage, CanOpenEdit);
-            //DeleteQuotationCommand = new RelayCommand<Quotation>(DeleteQuotation, CanDeleteQuotation);
-            //OpenSingleQuotationCommand = new RelayCommand<QuotationVM>(OpenSingleQuotationPage);
+            OpenEditQuotationCommand = new RelayCommand<QuotationVM>(OpenEditQuotationPage, CanUseCommand);
+            DeleteQuotationCommand = new RelayCommand<QuotationVM>(DeleteQuotation, CanUseCommand);
+            OpenSingleQuotationCommand = new RelayCommand<QuotationVM>(OpenSingleQuotationPage);
+            AcceptQuotationCommand = new RelayCommand<QuotationVM>(AcceptQuotation, CanUseCommand);
+            DeclineQuotationCommand = new RelayCommand<QuotationVM>(DeclineQuotation, CanUseCommand);
             BackCommand = new RelayCommand(Back);
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
@@ -127,7 +138,7 @@ namespace Festispec.ViewModel.customer.quotation
                     this.RefreshQuotations();
                 }
             });
-        }
+        }  
 
         private void OpenAddQuotationPage()
         {
@@ -148,9 +159,70 @@ namespace Festispec.ViewModel.customer.quotation
             });
         }
 
-        private bool CanOpenEdit(QuotationVM source)
+        private void OpenSingleQuotationPage(QuotationVM source)
         {
-            return source != null && source.Status.Equals("Open");
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SingleQuotationPage) });
+            MessengerInstance.Send<ChangeSelectedQuotationMessage>(new ChangeSelectedQuotationMessage()
+            {
+                Quotation = source
+            });
+        }
+
+        private void DeleteQuotation(QuotationVM source)
+        {
+            MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze offerte wilt verwijderen?", "Offerte Verwijderen", MessageBoxButton.YesNo);
+            if (result.Equals(MessageBoxResult.Yes))
+            {
+                using (var context = new Entities())
+                {
+                    var temp = source.ToModel();
+                    context.Quotations.Remove(context.Quotations.Where(quotation => quotation.Id == temp.Id).First());
+                    context.SaveChanges();
+                }
+                Event.Quotations.Remove(source);
+                RefreshQuotations();
+            }
+        }
+
+        private void AcceptQuotation(QuotationVM source)
+        {
+            source.Status = "Geaccepteerd";
+
+            OrderVM order = new OrderVM();
+            var userSession = UserSessionVm.Current;
+
+            order.Event = Event;
+            order.Employee = userSession.Employee;
+            order.Quotation = source;
+            order.Customer = Event.Customer;
+
+            Event.OrderVM = order;
+
+            using (var context = new Entities())
+            {
+                context.Entry(source.ToModel()).State = EntityState.Modified;
+                context.Orders.Add(order.ToModel());
+                context.SaveChanges();
+            }
+        }
+
+        private void DeclineQuotation(QuotationVM source)
+        {
+            source.Status = "Geweigerd";
+
+            using (var context = new Entities())
+            {
+                context.Entry(source.ToModel()).State = EntityState.Modified;
+            }
+        }
+
+        private bool CanUseCommand(QuotationVM source)
+        {
+            if (source == null || source.Status.Equals("Geweigerd") || source.Status.Equals("Geaccepteerd"))
+            {
+                return false;
+            }
+            return true;
         }
 
         public void RefreshQuotations()

@@ -106,7 +106,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Command="{Binding DataContext.OpenQuotationsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
-                                    <materialDesign:PackIcon Kind="KnifeMilitary"/>
+                                    <materialDesign:PackIcon Kind="CardsVariant"/>
                                 </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

@@ -147,7 +147,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             Customer = customer;
             OrderVM = eventCon.Orders.Count > 0 ? new OrderVM(eventCon.Orders.FirstOrDefault(), this) : new OrderVM();
             _contactPerson = new ContactPersonVM(_event.ContactPerson);
-            _quotations = new ObservableCollection<QuotationVM>(eventCon.Quotations.Select(quotation => new QuotationVM(quotation, customer)));
+            _quotations = new ObservableCollection<QuotationVM>(eventCon.Quotations.Select(quotation => new QuotationVM(quotation, customer, this)));
         }
 
         public EventVM()

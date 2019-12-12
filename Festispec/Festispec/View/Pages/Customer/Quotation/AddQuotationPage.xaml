@@ -16,7 +16,7 @@
             <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
         </Button>
         <Button Content="Offerte toevoegen" HorizontalAlignment="Left" Margin="311,411,0,0" VerticalAlignment="Top" Width="178" Command="{Binding AddQuotationCommand}" Height="28"/>
-        <TextBox HorizontalAlignment="Left" Height="30" Margin="110,35,0,0" TextWrapping="Wrap" Text="{Binding Path=Quotation.Price, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="110,35,0,0" TextWrapping="Wrap" Text="{Binding Path=Quotation.Price, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Prijs" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" Width="53"/>
         <TextBox HorizontalAlignment="Left" Height="30" Margin="110,121,0,0" TextWrapping="Wrap" Text="{Binding Path=Quotation.VatPercentage, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="BTW Percentage (%)" HorizontalAlignment="Left" Margin="110,90,0,0" VerticalAlignment="Top" Width="125"/>

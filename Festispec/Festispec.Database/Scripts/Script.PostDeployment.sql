@@ -34,12 +34,6 @@ INSERT INTO ReportStatus VALUES ('Definitief')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO OrderStatus VALUES ('Aanvraag')
-INSERT INTO OrderStatus VALUES ('Opgenomen')
-INSERT INTO OrderStatus VALUES ('Afgerond')
-COMMIT TRANSACTION
-
-BEGIN TRANSACTION
 INSERT INTO InspectorPlanningStatus VALUES ('Ingepland')
 INSERT INTO InspectorPlanningStatus VALUES ('Afgerond')
 COMMIT TRANSACTION
@@ -114,10 +108,10 @@ COMMIT TRANSACTION
 
 -------- BEGIN ORDER DATA ------------
 BEGIN TRANSACTION
-INSERT INTO [Order] VALUES (1,1,4,1,'Afgerond', 'Order is afgerond')
-INSERT INTO [Order] VALUES (1,2,4,2,'Opgenomen', 'Order is opgenomen en in behandeling')
-INSERT INTO [Order] VALUES (2,3,4,3,'Aanvraag', 'Order momenteel in aanvraag')
-INSERT INTO [Order] VALUES (3,4,4,4,'Aanvraag', 'Order momenteel in aanvraag')
+INSERT INTO [Order] VALUES (1,1,4,1, 'Order is afgerond')
+INSERT INTO [Order] VALUES (1,2,4,2, 'Order is opgenomen en in behandeling')
+INSERT INTO [Order] VALUES (2,3,4,3, 'Order momenteel in aanvraag')
+INSERT INTO [Order] VALUES (3,4,4,4, 'Order momenteel in aanvraag')
 COMMIT TRANSACTION
 -------- END ORDER DATA ------------
 

@@ -83,10 +83,11 @@ namespace Festispec.ViewModel.employee.quotation
             set => _quotation.Status = value;
         }
 
-        public QuotationVM(Quotation quotation, CustomerVM customer)
+        public QuotationVM(Quotation quotation, CustomerVM customer, EventVM eventcon)
         {
             _quotation = quotation;
             Customer = customer;
+            Event = eventcon;
             Employee = new EmployeeVM(_quotation.Employee);
         }
 
@@ -100,6 +101,8 @@ namespace Festispec.ViewModel.employee.quotation
             return _quotation;
         }
 
+        #region Validation
+
         string IDataErrorInfo.Error => null;
 
         string IDataErrorInfo.this[string propertyName]
@@ -109,8 +112,6 @@ namespace Festispec.ViewModel.employee.quotation
                 return GetValidationError(propertyName);
             }
         }
-
-        #region Validation
 
         private string ValidatePrice
         {

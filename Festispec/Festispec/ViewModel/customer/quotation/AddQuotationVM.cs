@@ -2,6 +2,7 @@
 using Festispec.Domain;
 using Festispec.Message;
 using Festispec.View.Pages.Customer.Quotation;
+using Festispec.ViewModel.auth;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.employee.quotation;
 using GalaSoft.MvvmLight;
@@ -38,8 +39,8 @@ namespace Festispec.ViewModel.customer.quotation
         public void AddQuotation()
         {
             Quotation.TimeSend = DateTime.Now;
-            MainViewModel main = ServiceLocator.Current.GetInstance<MainViewModel>();
-            Quotation.Employee = main.LoggedInEmployee;
+            var userSession = UserSessionVm.Current;
+            Quotation.Employee = userSession.Employee;
 
             using (var context = new Entities())
             {

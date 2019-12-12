@@ -122,9 +122,6 @@
     <Compile Include="Order.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="OrderStatu.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryTemplate.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
