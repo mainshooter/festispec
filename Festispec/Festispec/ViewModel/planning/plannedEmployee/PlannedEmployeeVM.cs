@@ -16,6 +16,8 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             set => _plannedEmployee.Status = value;
         }
 
+        public DayVM Day { get; set; }
+
         public DateTime PlannedStartTime {
             get => _plannedEmployee.PlannedFrom;
             set => _plannedEmployee.PlannedFrom = value;
@@ -67,6 +69,7 @@ namespace Festispec.ViewModel.planning.plannedEmployee
 
         public InspectorPlanning ToModel()
         {
+            _plannedEmployee.Day = Day.ToModel();
             return _plannedEmployee;
         }
     }

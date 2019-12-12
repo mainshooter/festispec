@@ -12,7 +12,7 @@ namespace Festispec.ViewModel.employee
     public class SickVM
     {
         private EmployeeVM _employee;
-        private PlannedEmployeeVM _day;
+        private DayVM _day;
         private SickReportInspector _sick;
 
         public int Id { 
@@ -33,7 +33,7 @@ namespace Festispec.ViewModel.employee
             }
         }
         
-        public PlannedEmployeeVM Day {
+        public DayVM Day {
             get {
                 return _day;
             }
@@ -67,6 +67,10 @@ namespace Festispec.ViewModel.employee
 
         public SickReportInspector ToModel()
         {
+            _sick.EmployeeId = Employee.Id;
+            _sick.InspectorPlanningEmployeeId = PlannedEmployee.Employee.Id;
+            _sick.InspectorPlanningOrderId = PlannedEmployee.Day.Order.Id;
+            _sick.InspoctorPlanningDayId = PlannedEmployee.Day.Id;
             return _sick;
         }
     }

@@ -1,4 +1,5 @@
 ﻿USE [festispec]
+USE [festispec]
 GO
 /****** Object:  Table [dbo].[Answer]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
@@ -453,11 +454,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[SickReportInspector](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[EmployeeId] [int] NOT NULL,
 	[InspectorPlanningEmployeeId] [int] NOT NULL,
 	[InspoctorPlanningDayId] [int] NOT NULL,
 	[InspectorPlanningOrderId] [int] NOT NULL,
-	[Reason] [text] NOT NULL,
  CONSTRAINT [PK_SickReportInspector] PRIMARY KEY CLUSTERED
 (
 	[Id] ASC

@@ -52,6 +52,7 @@ namespace Festispec.ViewModel.employee
                         ShowEventInfo = "Visible";
                         ShowNoEvent = "Hidden";
                         SickPageButton = "Ziekmelden";
+                        //tempEvent.Days;
 
                         SickButtonCommand = new RelayCommand(GetSick);
                     }
@@ -70,11 +71,11 @@ namespace Festispec.ViewModel.employee
                 _sick = new SickVM();
                 _sick.Employee = _employee;
                 _sick.PlannedEmployee = _plannedEmployee;
-                _sick.Day = _plannedEmployee;
+                //_sick.Day = _plannedEmployee.;
                 _sick.Reason = "Test";
 
                 Console.WriteLine(_sick);
-
+                var sickModel = _sick.ToModel();
                 context.SickReportInspectors.Add(_sick.ToModel());
                 context.SaveChanges();
             }
