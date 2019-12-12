@@ -15,6 +15,7 @@ using System.Linq;
 using System.Data.Entity;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.auth;
+using Festispec.ViewModel.planning;
 
 namespace Festispec.ViewModel.customer.quotation
 {
@@ -73,11 +74,10 @@ namespace Festispec.ViewModel.customer.quotation
         {
             get
             {
-                var temp = new ObservableCollection<QuotationVM>();
 
                 if (QuotationList == null)
                 {
-                    return temp;
+                    return QuotationList;
                 }
 
                 if (Filter != null || !Filter.Equals(""))
@@ -85,21 +85,17 @@ namespace Festispec.ViewModel.customer.quotation
                     switch (SelectedFilter)
                     {
                         case "Prijs":
-                            temp = new ObservableCollection<QuotationVM>(QuotationList.Select(quotation => quotation).Where(quotation => quotation.Price.ToString().Contains(Filter.ToLower())).ToList());
-                            break;
+                            return new ObservableCollection<QuotationVM>(QuotationList.Select(quotation => quotation).Where(quotation => quotation.Price.ToString().Contains(Filter.ToLower())).ToList());
                         case "BTW percentage":
-                            temp = new ObservableCollection<QuotationVM>(QuotationList.Select(quotation => quotation).Where(quotation => quotation.VatPercentage.ToString().Contains(Filter.ToLower())).ToList());
-                            break;
+                            return new ObservableCollection<QuotationVM>(QuotationList.Select(quotation => quotation).Where(quotation => quotation.VatPercentage.ToString().Contains(Filter.ToLower())).ToList());
                         case "Verzend tijd":
-                            temp = new ObservableCollection<QuotationVM>(QuotationList.Select(quotation => quotation).Where(quotation => quotation.TimeSend.ToString().Contains(Filter.ToLower())).ToList());
-                            break;
+                            return new ObservableCollection<QuotationVM>(QuotationList.Select(quotation => quotation).Where(quotation => quotation.TimeSend.ToString().Contains(Filter.ToLower())).ToList());
                         case "Status":
-                            temp = new ObservableCollection<QuotationVM>(QuotationList.Select(quotation => quotation).Where(quotation => quotation.Status.ToLower().Contains(Filter.ToLower())).ToList());
-                            break;
+                            return new ObservableCollection<QuotationVM>(QuotationList.Select(quotation => quotation).Where(quotation => quotation.Status.ToLower().Contains(Filter.ToLower())).ToList());
                     }
                 }
 
-                return temp;
+                return QuotationList;
             }
         }
 
@@ -109,7 +105,7 @@ namespace Festispec.ViewModel.customer.quotation
             {
                 Event = message.Event;
                 QuotationList = message.Event.Quotations;
-                RaisePropertyChanged("QuotationList");
+                RaisePropertyChanged("QuotationListFiltered");
                 RaisePropertyChanged("Title");
             });
 
@@ -192,10 +188,30 @@ namespace Festispec.ViewModel.customer.quotation
 
             Event.OrderVM = order;
 
+            ObservableCollection<DayVM> days = new ObservableCollection<DayVM>();
+            int counter = Event.EndDate.Subtract(Event.BeginDate).Days;
+
+            for (int x = 0; x <= counter; x++)
+            {
+                DayVM temp = new DayVM();
+                temp.BeginTime = Event.BeginDate.AddDays(x);
+                temp.EndTime = Event.BeginDate.AddDays(x).AddHours(23).AddMinutes(59);
+                days.Add(temp);
+            }
+
+            order.Days = days;
+
             using (var context = new Entities())
             {
                 context.Entry(source.ToModel()).State = EntityState.Modified;
                 context.Orders.Add(order.ToModel());
+
+                foreach (DayVM day in days)
+                {
+                    day.Order = order;
+                    context.Days.Add(day.ToModel());
+                }
+
                 context.SaveChanges();
             }
         }
@@ -222,6 +238,7 @@ namespace Festispec.ViewModel.customer.quotation
         public void RefreshQuotations()
         {
             QuotationList = Event.Quotations;
+            RaisePropertyChanged("QuotationListFiltered");
         }
 
         private void Back()

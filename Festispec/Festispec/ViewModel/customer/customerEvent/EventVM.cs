@@ -153,6 +153,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         public EventVM()
         {
             _event = new Event();
+            _quotations = new ObservableCollection<QuotationVM>();
             BeginDate = DateTime.Today.Date;
             EndDate = DateTime.Today.Date;
         }
@@ -164,6 +165,10 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public bool HasOrder()
         {
+            if (OrderVM == null)
+            {
+                return false;
+            }
             return OrderVM.Id != 0;
         }
 
