@@ -52,7 +52,7 @@ namespace Festispec.ViewModel.customer.quotation
             set
             {
                 _filter = value;
-            //    RaisePropertyChanged("QuotationListFiltered");
+                RaisePropertyChanged("QuotationListFiltered");
             }
         }
 
@@ -62,10 +62,10 @@ namespace Festispec.ViewModel.customer.quotation
             set
             {
                 _filters = new List<string>();
-            //    _filters.Add("Naam");
-            //    _filters.Add("Begindatum");
-            //    _filters.Add("Bezoekersaantal");
-            //    _filters.Add("Contactpersoon");
+                _filters.Add("Prijs");
+                _filters.Add("BTW percentage");
+                _filters.Add("Verzend tijd");
+                _filters.Add("Status");
             }
         }
 
@@ -73,39 +73,33 @@ namespace Festispec.ViewModel.customer.quotation
         {
             get
             {
-                //    var temp = new ObservableCollection<EventVM>();
+                var temp = new ObservableCollection<QuotationVM>();
 
-                //    if (EventList == null)
-                //    {
-                //        return temp;
-                //    }
+                if (QuotationList == null)
+                {
+                    return temp;
+                }
 
-                //    if (Filter != null || !Filter.Equals(""))
-                //    {
-                //        switch (SelectedFilter)
-                //        {
-                //            case "Naam":
-                //                temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.Name.ToLower().Contains(Filter.ToLower())).ToList());
-                //                break;
-                //            case "Begindatum":
-                //                temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.BeginDate.ToString().Contains(Filter.ToLower())).ToList());
-                //                break;
-                //            case "Bezoekersaantal":
-                //                temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.AmountVisitors.ToString().Contains(Filter.ToLower())).ToList());
-                //                break;
-                //            case "Contactpersoon":
-                //                temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.ContactPerson.Fullname.ToLower().Contains(Filter.ToLower())).ToList());
-                //                break;
-                //        }
+                if (Filter != null || !Filter.Equals(""))
+                {
+                    switch (SelectedFilter)
+                    {
+                        case "Prijs":
+                            temp = new ObservableCollection<QuotationVM>(QuotationList.Select(quotation => quotation).Where(quotation => quotation.Price.ToString().Contains(Filter.ToLower())).ToList());
+                            break;
+                        case "BTW percentage":
+                            temp = new ObservableCollection<QuotationVM>(QuotationList.Select(quotation => quotation).Where(quotation => quotation.VatPercentage.ToString().Contains(Filter.ToLower())).ToList());
+                            break;
+                        case "Verzend tijd":
+                            temp = new ObservableCollection<QuotationVM>(QuotationList.Select(quotation => quotation).Where(quotation => quotation.TimeSend.ToString().Contains(Filter.ToLower())).ToList());
+                            break;
+                        case "Status":
+                            temp = new ObservableCollection<QuotationVM>(QuotationList.Select(quotation => quotation).Where(quotation => quotation.Status.ToLower().Contains(Filter.ToLower())).ToList());
+                            break;
+                    }
+                }
 
-                //        if (_showOnlyFuture)
-                //        {
-                //            temp = new ObservableCollection<EventVM>(temp.ToList().Where(i => i.EndDate >= DateTime.Today).ToList());
-                //        }
-                //    }
-
-                //    return temp;
-                return QuotationList;
+                return temp;
             }
         }
 

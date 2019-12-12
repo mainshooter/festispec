@@ -39,7 +39,7 @@
         </Grid>
 
         <Viewbox Grid.Row="2" VerticalAlignment="Top">
-            <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding QuotationList}">
+            <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding QuotationListFiltered}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Prijs" Binding="{Binding Price}"></DataGridTextColumn>
                     <DataGridTextColumn Header="BTW percentage" Binding="{Binding VatPercentage}"></DataGridTextColumn>
