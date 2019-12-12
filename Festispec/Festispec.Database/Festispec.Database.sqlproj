@@ -66,6 +66,7 @@
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Festispec.Database.publish.xml" />		
-   </ItemGroup>
+    <None Include="Festispec.Database.publish.xml" />
+    <None Include="freshfestispec.publish.xml" />
+  </ItemGroup>
 </Project>

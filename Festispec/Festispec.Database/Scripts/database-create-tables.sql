@@ -464,7 +464,7 @@ CREATE TABLE [dbo].[SickReportInspector](
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY] 
 GO
 /****** Object:  Table [dbo].[Survey]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
@@ -666,12 +666,6 @@ REFERENCES [dbo].[Report] ([Id])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[ReportElement] CHECK CONSTRAINT [FK_ReportElement_Report]
-GO
-ALTER TABLE [dbo].[SickReportInspector]  WITH CHECK ADD  CONSTRAINT [FK_SickReportInspector_Employee] FOREIGN KEY([EmployeeId])
-REFERENCES [dbo].[Employee] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[SickReportInspector] CHECK CONSTRAINT [FK_SickReportInspector_Employee]
 GO
 ALTER TABLE [dbo].[SickReportInspector]  WITH CHECK ADD  CONSTRAINT [FK_SickReportInspector_InspectorPlanning] FOREIGN KEY([InspectorPlanningEmployeeId], [InspoctorPlanningDayId], [InspectorPlanningOrderId])
 REFERENCES [dbo].[InspectorPlanning] ([EmployeeId], [DayId], [OrderId])
