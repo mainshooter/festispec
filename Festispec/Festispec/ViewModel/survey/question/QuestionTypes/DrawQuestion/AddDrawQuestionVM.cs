@@ -43,8 +43,18 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.DrawQuestion
             });
 
             SaveCommand = new RelayCommand(Save);
-            GoBackCommand = new RelayCommand(QuestionVm.GoBack);
-            AddImageCommand = new RelayCommand(QuestionVm.AddImage);
+            GoBackCommand = new RelayCommand(GoBack);
+            AddImageCommand = new RelayCommand(AddImage);
+        }
+
+        public void AddImage()
+        {
+            QuestionVm.AddImage();
+        }
+
+        public void GoBack()
+        {
+            QuestionVm.GoBack();
         }
 
         public void Save()

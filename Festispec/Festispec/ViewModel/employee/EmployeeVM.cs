@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Ioc;
 using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.employee
 {
@@ -27,6 +28,7 @@ namespace Festispec.ViewModel.employee
             }
         }
 
+        [JsonIgnore]
         public Department DepartmentModel
         {
             get => _employee.Department1;
