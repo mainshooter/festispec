@@ -29,7 +29,7 @@
             <Separator Margin="0,10,0,0"></Separator>
             <ComboBox ItemsSource="{Binding ElementTypes}" SelectedItem="{Binding SelectedElementType}" SelectedIndex="0"></ComboBox>
             <Button Margin="0 10 0 0" Command="{Binding AddElementCommand}">Voeg een element toe</Button>
-
+            <Button Margin="0 10 0 0" Command="{Binding ExportToPDFCommand}">Rapport Exporteren</Button>
         </StackPanel>
 
 

@@ -8,12 +8,10 @@ using Festispec.ViewModel.toast;
 using System;
 using System.Windows;
 using System.Data.Entity;
-using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Markup;
 using System.Collections.Generic;
 using System.Xml;
-using System;
 using System.IO;
 using System.Windows.Threading;
 using System.CodeDom.Compiler;
@@ -72,7 +70,8 @@ namespace Festispec.ViewModel.report
             }
         }
 
-        public ObservableCollection<ReportElementVM> ReportElements {
+        public ObservableCollection<ReportElementVM> ReportElements
+        {
             get
             {
                 return _reportElements;
@@ -88,7 +87,9 @@ namespace Festispec.ViewModel.report
         {
             _report = report;
             ReportElements = new ObservableCollection<ReportElementVM>(_report.ReportElements.Select(e => new ReportElementVM(e)).ToList());
-        public ObservableCollection<ReportElementVM> ReportElements { get; set; }
+        }
+
+        //public ObservableCollection<ReportElementVM> ReportElements { get; set; }
 
         public ObservableCollection<UserControl> ReportElementUserControlls { get; set; }
 
@@ -99,21 +100,6 @@ namespace Festispec.ViewModel.report
         public ICommand AddElementCommand { get; set; }
 
         public ICommand ExportToPDFCommand { get; set; }
-
-        public ReportVM()
-        {
-            _report = new Report();
-            var reportRepository = new ReportRepository();
-            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements());
-            ReportElementUserControlls = new ObservableCollection<UserControl>();
-            _reportElementFactory = new ReportElementFactory();
-            ReportElements.CollectionChanged += RenderReportElements;
-            SaveReportCommand = new RelayCommand(Save);
-            AddElementCommand = new RelayCommand(GoToAddElementPage);
-            ExportToPDFCommand = new RelayCommand<StackPanel>(ExportToPDF);
-            _report.Title = "Test titel";
-            this.RenderReportElements(null, null);
-        }
 
         public ReportVM(OrderVM OrderVM)
         {
