@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Festispec.Domain;
 using Festispec.Lib.Auth;
 using Festispec.Message;
 using Festispec.View.Pages.Employee;
-using Festispec.View.Pages.PasswordReset;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
