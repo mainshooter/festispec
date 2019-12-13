@@ -183,7 +183,7 @@ namespace Festispec.ViewModel.report
             horizontalPanel.Orientation = Orientation.Horizontal;
             StackPanel frontPanel = new StackPanel();
             var frontPageText1 = new TextBlock();
-            frontPageText1.Text = ("Festispec Rapportage - " + ReportVM.Order.Event.BeginDate.ToString("dd-MMM-yyy") + " tot " + ReportVM.Order.Event.EndDate.ToString("dd-MM-yyyy"));
+            frontPageText1.Text = ("Festispec Rapportage - " + ReportVM.Order.Event.BeginDate.ToString("dd-MM-yyyy") + " tot " + ReportVM.Order.Event.EndDate.ToString("dd-MM-yyyy"));
             frontpageTextBlocks.Add(frontPageText1);
             var frontPageText6 = new TextBlock();
             frontPageText6.Text = ("Rapportage - " + ReportVM.Title);
