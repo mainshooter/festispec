@@ -1,4 +1,4 @@
-﻿export class DrawingDict
+﻿class DrawingDict
 {
     constructor()
     {
