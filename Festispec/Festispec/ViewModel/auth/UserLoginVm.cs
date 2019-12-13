@@ -7,6 +7,7 @@ using Festispec.Lib.Auth;
 using Festispec.Message;
 using Festispec.View.Pages;
 using Festispec.View.Pages.PasswordReset;
+using Festispec.View.Pages.Customer.Event;
 using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -18,11 +19,13 @@ namespace Festispec.ViewModel.auth
         public string Email { get; set; }
         public ICommand DoLogin { get; set; }
         public ICommand GotoResetPassword { get; set; }
+        public ICommand OfflineCommand { get; set; }
 
         public UserLoginVM()
         {
             DoLogin = new RelayCommand<PasswordBox>(Login);
             GotoResetPassword = new RelayCommand(ToResetPassword);
+            OfflineCommand = new RelayCommand(ShowOffline);
         }
 
         private void Login(PasswordBox passwordBox) 
@@ -55,6 +58,10 @@ namespace Festispec.ViewModel.auth
         private void ToResetPassword()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(RequestPasswordPage) });
+        }
+        private void ShowOffline()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(OfflineEventListPage) });
         }
     }
 }
