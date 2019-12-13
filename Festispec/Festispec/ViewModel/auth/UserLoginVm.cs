@@ -22,14 +22,12 @@ namespace Festispec.ViewModel.auth
         public UserLoginVM()
         {
             DoLogin = new RelayCommand<PasswordBox>(Login);
-            Email = "m.peeters@gmail.com";
             OfflineCommand = new RelayCommand(ShowOffline);
         }
 
         public void Login(PasswordBox passwordBox)
         {
-            //var password = passwordBox.Password;
-            var password = "GamerBoy95";
+            var password = passwordBox.Password;
 
             using (var context = new Entities())
             {
