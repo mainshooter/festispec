@@ -267,7 +267,7 @@ namespace Festispec.ViewModel.report
                 printDialog.PrintDocument(fixedDocument.DocumentPaginator, "Rapport");
             }
             catch
-            {
+            {                
                 _toast.ShowError("Gebruik een naam die nog niet bestaat bij het exporteren.");
             }
 

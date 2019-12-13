@@ -14,16 +14,12 @@ namespace Festispec.Lib.ConvertToImage
             {
                 double actualHeight = source.RenderSize.Height;
                 double actualWidth = source.RenderSize.Width;
-
                 double renderHeight = actualHeight * zoom;
                 double renderWidth = actualWidth * zoom;
 
                 RenderTargetBitmap renderTarget = new RenderTargetBitmap((int)renderWidth, (int)renderHeight, 96, 96, PixelFormats.Pbgra32);
                 VisualBrush sourceBrush = new VisualBrush(source);
-
-
                 DrawingVisual drawingVisual = new DrawingVisual();
-
                 DrawingContext drawingContext = drawingVisual.RenderOpen();
 
                 using (drawingContext)
@@ -33,7 +29,6 @@ namespace Festispec.Lib.ConvertToImage
                 }
 
                 renderTarget.Render(drawingVisual);
-
                 PngBitmapEncoder encoder = new PngBitmapEncoder();
                 encoder.Frames.Add(BitmapFrame.Create(renderTarget));
                 BitmapSource bitmap;
@@ -46,7 +41,6 @@ namespace Festispec.Lib.ConvertToImage
                 }
 
                 var tmpImg = new Image { Source = bitmap };
-
                 return tmpImg;
             }
             catch
@@ -63,14 +57,11 @@ namespace Festispec.Lib.ConvertToImage
                 {
                     var bitmap = new System.Windows.Media.Imaging.BitmapImage();
                     bitmap.BeginInit();
-
                     System.IO.MemoryStream memoryStream = new System.IO.MemoryStream();
                     image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
                     memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
-
                     bitmap.StreamSource = memoryStream;
                     bitmap.EndInit();
-
                     return bitmap;
                 }
             }
