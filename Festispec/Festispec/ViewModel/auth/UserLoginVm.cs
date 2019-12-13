@@ -36,8 +36,9 @@ namespace Festispec.ViewModel.auth
 
                 if (employee == null)
                 {
-                    MessageBox.Show("Er is geen gebruiker gevonden met de ingevoerde email.", "Waarschuwing", MessageBoxButton.OK, MessageBoxImage.Information);
-                } else if (!passwordService.PasswordsCompare(password, employee.Password))
+                    MessageBox.Show("Er is geen gebruiker gevonden met het ingevoerde emailadres.", "Waarschuwing", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else if (!passwordService.PasswordsCompare(password, employee.Password))
                 {
                     MessageBox.Show("Ongeldig wachtwoord.", "Waarschuwing", MessageBoxButton.OK, MessageBoxImage.Information);
                 }

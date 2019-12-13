@@ -299,11 +299,11 @@ namespace Festispec.ViewModel.employee
                 string regexPostalCode = "\\b[0-9]{4} ?[a-zA-Z]{2}\\b";
                 if (String.IsNullOrWhiteSpace(PostalCode))
                 {
-                    return "Postcode mag niet nul zijn";
+                    return "Postcode mag niet leeg zijn";
                 }
                 else if (!Regex.IsMatch(PostalCode, regexPostalCode))
                 {
-                    return "Postcode voldoet niet aan een postcode formaat";
+                    return "Postcode voldoet niet aan de postcode format";
                 }
                 else if (PostalCode.Length > 6)
                 {
@@ -312,13 +312,14 @@ namespace Festispec.ViewModel.employee
                 return null;
             }
         }
+
         private string ValidateBirthday
         {
             get
             {
                 if (Birthday == null)
                 {
-                    return "Geboortedatum mag niet nul zijn";
+                    return "Geboortedatum mag niet leeg zijn";
                 }
                 else if (Birthday.Year < 1800)
                 {
@@ -327,6 +328,7 @@ namespace Festispec.ViewModel.employee
                 return null;
             }
         }
+
         private string ValidateEmail
         {
             get
@@ -334,7 +336,7 @@ namespace Festispec.ViewModel.employee
                 string regexEmail = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
                 if (String.IsNullOrWhiteSpace(Email))
                 {
-                    return "Email mag niet nul zijn";
+                    return "Email mag niet leeg zijn";
                 }
                 else if (Email.Length > 100)
                 {
@@ -342,11 +344,12 @@ namespace Festispec.ViewModel.employee
                 }
                 else if (!Regex.IsMatch(Email, regexEmail))
                 {
-                    return "Email voldoet niet aan een email formaat";
+                    return "Email voldoet niet aan het email format";
                 }
                 return null;
             }
         }
+
         private string ValidatePhone
         {
             get
@@ -362,11 +365,12 @@ namespace Festispec.ViewModel.employee
                 }
                 else if (!Regex.IsMatch(Phone, regexPhone))
                 {
-                    return "Telefoonnummer voldoet niet aan een telefoonnummer formaat";
+                    return "Telefoonnummer voldoet niet aan een telefoonnummer format";
                 }
                 return null;
             }
         }
+
         private string ValidatePassword
         {
             get
@@ -403,6 +407,7 @@ namespace Festispec.ViewModel.employee
                 return null;
             }
         }
+
         private string ValidateStatus
         {
             get
@@ -414,6 +419,7 @@ namespace Festispec.ViewModel.employee
                 return null;
             }
         }
+
         private string ValidateDepartment
         {
             get
@@ -425,6 +431,7 @@ namespace Festispec.ViewModel.employee
                 return null;
             }
         }
+
         public bool IsValid
         {
             get
@@ -439,6 +446,7 @@ namespace Festispec.ViewModel.employee
                 return true;
             }
         }
+
         string GetValidationError(string propertyName)
         {
             string error = null;
