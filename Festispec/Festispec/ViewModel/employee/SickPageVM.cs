@@ -51,7 +51,6 @@ namespace Festispec.ViewModel.employee
                         ShowEventInfo = "Visible";
                         ShowNoEvent = "Hidden";
                         SickPageButton = "Ziekmelden";
-                        //tempEvent.Days;
 
                         SickButtonCommand = new RelayCommand(GetSick);
                     }
@@ -68,9 +67,11 @@ namespace Festispec.ViewModel.employee
             using(var context = new Entities())
             {
                 var sick = new SickReportInspector();
+                sick.Employee = UserSessionVm.Current.Employee.ToModel();
                 sick.InspectorPlanningEmployeeId = UserSessionVm.Current.Employee.Id;
                 sick.InspectorPlanningOrderId = _plannedEmployee.OrderId;
                 sick.InspoctorPlanningDayId = _plannedEmployee.DayId;
+                sick.Reason = "Ziekmeldknop niffoooo";
 
                 context.SickReportInspectors.Add(sick);
                 context.SaveChanges();

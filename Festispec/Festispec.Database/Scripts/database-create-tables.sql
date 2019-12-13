@@ -456,9 +456,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[SickReportInspector](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[EmployeeId] [int] NOT NULL,
 	[InspectorPlanningEmployeeId] [int] NOT NULL,
 	[InspoctorPlanningDayId] [int] NOT NULL,
 	[InspectorPlanningOrderId] [int] NOT NULL,
+	[Reason] [text] NOT NULL,
  CONSTRAINT [PK_SickReportInspector] PRIMARY KEY CLUSTERED
 (
 	[Id] ASC
