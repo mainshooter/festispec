@@ -184,7 +184,6 @@
     <Compile Include="ViewModel\employee\EmployeeListVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeVM.cs" />
     <Compile Include="ViewModel\employee\SickPageVM.cs" />
-    <Compile Include="ViewModel\employee\SickVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PasswordBoxAssistant\PasswordBoxAssistant.cs" />
     <Compile Include="ViewModel\planning\DayVM.cs" />

@@ -67,7 +67,7 @@ namespace Festispec.ViewModel.employee
             using(var context = new Entities())
             {
                 var sick = new SickReportInspector();
-                sick.Employee = UserSessionVm.Current.Employee.ToModel();
+                sick.EmployeeId = UserSessionVm.Current.Employee.Id;
                 sick.InspectorPlanningEmployeeId = UserSessionVm.Current.Employee.Id;
                 sick.InspectorPlanningOrderId = _plannedEmployee.OrderId;
                 sick.InspoctorPlanningDayId = _plannedEmployee.DayId;
