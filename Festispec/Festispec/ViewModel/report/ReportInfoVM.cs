@@ -19,6 +19,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
 using Festispec.ViewModel.toast;
+using Festispec.Lib.ConvertToImage;
 
 namespace Festispec.ViewModel.report
 {
@@ -229,7 +230,7 @@ namespace Festispec.ViewModel.report
 
             horizontalPanel.Children.Add(frontPanel);
             Image logo = new Image();
-            logo.Source = ConvertToImageVM.ConvertImage(Lib.Images.FestispecLogo);
+            logo.Source = ConvertToImage.ConvertImage(Lib.Images.FestispecLogo);
             logo.Margin = new Thickness(25, 100, 25, 0);
 
             horizontalPanel.Children.Add(logo);
@@ -241,7 +242,7 @@ namespace Festispec.ViewModel.report
             ((IAddChild)frontPageContent).AddChild(frontPage);
             fixedDocument.Pages.Add(frontPageContent);
 
-            var image = ConvertToImageVM.SnapShotPng(document, 1);
+            var image = ConvertToImage.SnapShotPng(document, 1);
 
             FixedPage page = new FixedPage();
             StackPanel stackPanelSecondPage = new StackPanel();

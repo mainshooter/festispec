@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Festispec</RootNamespace>
     <AssemblyName>Festispec</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -212,7 +212,6 @@
     <Compile Include="ViewModel\report\element\Edit\EditPieChartVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditTableVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditTextVM.cs" />
-    <Compile Include="ViewModel\report\ConvertToPNGVM.cs" />
     <Compile Include="ViewModel\report\element\BarChartVM.cs" />
     <Compile Include="ViewModel\report\element\ImageVM.cs" />
     <Compile Include="ViewModel\report\element\LineChartVM.cs" />
