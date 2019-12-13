@@ -24,10 +24,10 @@
                 <Label Content="/"></Label>
                 <Label Content="{Binding WeekEnd}"></Label>
             </StackPanel>
-            <Button Width="45" HorizontalAlignment="Left"  Command="{Binding PreviousWeekCommand}" Margin="25,63,0,355">
+            <Button Width="45" HorizontalAlignment="Left"  Command="{Binding PreviousWeekCommand}" Margin="25,63,0,355" ToolTip="Week terug" ToolTipService.ShowOnDisabled="True">
                 <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
             </Button>
-            <Button Width="45" HorizontalAlignment="Right" Command="{Binding NextWeekCommand}" Margin="0,63,25,355">
+            <Button Width="45" HorizontalAlignment="Right" Command="{Binding NextWeekCommand}" Margin="0,63,25,355" ToolTip="Week verder" ToolTipService.ShowOnDisabled="True">
                 <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowForward" Width="28" RenderTransformOrigin="0,0.625"/>
             </Button>
             <Viewbox Margin="20">

@@ -10,12 +10,12 @@
       Background="White"
       DataContext="{Binding EditEmployeeVM,Source={StaticResource Locator}}">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button Command="{Binding CloseEditEmployeeCommand}" Margin="0,0,758,432"  Height="17" Width="43" VerticalAlignment="Top" HorizontalAlignment="Left" >
+        <Button Command="{Binding CloseEditEmployeeCommand}" Margin="0,0,758,432"  Height="17" Width="43" VerticalAlignment="Top" HorizontalAlignment="Left" ToolTip="Terug" ToolTipService.ShowOnDisabled="True">
             <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
         </Button>
         <Grid HorizontalAlignment="Center" Width="800">
             <StackPanel Margin="25" Width="200" HorizontalAlignment="Left">
-                <Label Content="Voornaam:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
+                <Label Content="Voornaam" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Employee.Firstname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
                 <Label Content="Tussenvoegsel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Employee.Prefix, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
@@ -39,7 +39,7 @@
             <StackPanel Margin="25" Width="200">
                 <Label Content="Postcode" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84"/>
                 <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Employee.PostalCode, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-                <Label Content="Telefoon nummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="152"/>
+                <Label Content="Telefoonnummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="152"/>
                 <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Employee.Phone, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
                 <Label Content="Email" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="55"/>
                 <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Employee.Email, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
@@ -55,6 +55,6 @@
                 <ComboBox HorizontalAlignment="Left" Margin="0,0,15,0" VerticalAlignment="Top" Width="174" SelectedIndex="{Binding DepartmentIndex, Mode=OneWay}" ItemsSource="{Binding Path=Departments}" SelectedItem="{Binding Employee.Department, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name"/>
             </StackPanel>
         </Grid>
-        <Button Content="Medewerker Wijzigen" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="200" Command="{Binding EditEmployeeCommand}" Height="28" Margin="332,0,281,0"/>
+        <Button Content="Medewerker wijzigen" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="200" Command="{Binding EditEmployeeCommand}" Height="28" Margin="332,0,281,0"/>
     </Grid>
 </Page>

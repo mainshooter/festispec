@@ -13,7 +13,7 @@
       DataContext="{Binding AddEventVM, Source={StaticResource Locator}}">
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button Command="{Binding CloseAddEventCommand}" Margin="0,0,758,432"  Height="17" Width="44" VerticalAlignment="Top" HorizontalAlignment="Left" >
+        <Button Command="{Binding CloseAddEventCommand}" Margin="0,0,758,432"  Height="17" Width="44" VerticalAlignment="Top" HorizontalAlignment="Left" ToolTip="Terug" ToolTipService.ShowOnDisabled="True">
             <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
         </Button>
         <Button Content="Evenement toevoegen" HorizontalAlignment="Left" Margin="311,411,0,0" VerticalAlignment="Top" Width="178" Command="{Binding AddEventCommand}" Height="28"/>
@@ -22,14 +22,14 @@
         <TextBox HorizontalAlignment="Left" Height="30" Margin="110,105,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.Street, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Straat" HorizontalAlignment="Left" Margin="110,80,0,0" VerticalAlignment="Top" Width="76"/>
         <TextBox HorizontalAlignment="Left" Height="30" Margin="110,175,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.HouseNumber, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="75"/>
-        <Label FontWeight="Bold" Content="Huisnummer" HorizontalAlignment="Left" Margin="110,150,0,0" VerticalAlignment="Top" Width="82"/>
+        <Label FontWeight="Bold" Content="Huisnummer" HorizontalAlignment="Left" Margin="110,150,0,0" VerticalAlignment="Top" Width="85"/>
         <TextBox HorizontalAlignment="Left" Height="30" Margin="210,175,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.HouseNumberAddition, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="75"/>
         <Label FontWeight="Bold" Content="Toevoeging" HorizontalAlignment="Left" Margin="210,150,0,0" VerticalAlignment="Top" Width="82"/>
         <TextBox HorizontalAlignment="Left" Height="30" Margin="110,255,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.City, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Plaats" HorizontalAlignment="Left" Margin="110,230,0,0" VerticalAlignment="Top" Width="94"/>
         <TextBox HorizontalAlignment="Left" Height="30" Margin="110,325,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.PostalCode, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Postcode" HorizontalAlignment="Left" Margin="110,300,0,0" VerticalAlignment="Top" Width="94"/>
-        <Label FontWeight="Bold" Content="Bezoekersaantal" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label FontWeight="Bold" Content="Bezoekersaantal" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="105"/>
         <TextBox HorizontalAlignment="Left" Height="30" Margin="320,35,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.AmountVisitors, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Oppervlakte (m²)" HorizontalAlignment="Left" Margin="320,80,0,0" VerticalAlignment="Top" Width="113"/>
         <TextBox HorizontalAlignment="Left" Height="30" Margin="320,105,0,0" TextWrapping="Wrap" Text="{Binding Path=Event.SurfaceM2, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
