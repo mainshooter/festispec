@@ -8,20 +8,7 @@ using Festispec.ViewModel.toast;
 using System;
 using System.Windows;
 using System.Data.Entity;
-using System.Windows.Documents;
-using System.Windows.Markup;
-using System.Collections.Generic;
-using System.Xml;
-using System.IO;
-using System.Windows.Threading;
-using System.CodeDom.Compiler;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Controls;
-using System.Windows.Input;
-using Festispec.Repository;
-using Festispec.Factory;
-using GalaSoft.MvvmLight.CommandWpf;
 
 namespace Festispec.ViewModel.report
 {

@@ -12,14 +12,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
-using System.Windows.Media.Imaging;
+using Festispec.ViewModel.toast;
 
 namespace Festispec.ViewModel.report
 {
@@ -27,6 +26,7 @@ namespace Festispec.ViewModel.report
     {
         private ReportVM _reportVM;
         private ReportRepository _reportRepository;
+        private ToastVM _toast;
 
         public ReportVM ReportVM
         {
@@ -60,6 +60,7 @@ namespace Festispec.ViewModel.report
 
         public ReportInfoVM()
         {
+            _toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
             ReportElementTypesListVM elementTypesList = new ReportElementTypesListVM();
             ElementTypes = elementTypesList.ReportElementTypes;
 
@@ -185,7 +186,7 @@ namespace Festispec.ViewModel.report
             frontPageText1.Text = ("Festispec Rapportage - " + ReportVM.Order.Event.BeginDate.ToString("dd-MMM-yyy") + " tot " + ReportVM.Order.Event.EndDate.ToString("dd-MM-yyyy"));
             frontpageTextBlocks.Add(frontPageText1);
             var frontPageText6 = new TextBlock();
-            frontPageText6.Text = ("Rapportage - ");
+            frontPageText6.Text = ("Rapportage - " + ReportVM.Title);
             frontpageTextBlocks.Add(frontPageText6);
             var frontPageText2 = new TextBlock();
             frontPageText2.Text = ("Klant gegevens");
@@ -197,7 +198,7 @@ namespace Festispec.ViewModel.report
             frontPageText3.Text = ("Inspectie gegevens");
             frontpageTextBlocks.Add(frontPageText3);
             var frontPageText9 = new TextBlock();
-            frontPageText9.Text = (ReportVM.Order.Description);
+            frontPageText9.Text = ("Bezoekers aantal: " + ReportVM.Order.Event.AmountVisitors + ", Oppervlakte: " + ReportVM.Order.Event.SurfaceM2 + " m2");
             frontpageTextBlocks.Add(frontPageText9);
             var frontPageText4 = new TextBlock();
             frontPageText4.Text = ("Datum");
@@ -228,7 +229,7 @@ namespace Festispec.ViewModel.report
 
             horizontalPanel.Children.Add(frontPanel);
             Image logo = new Image();
-            logo.Source = ConvertToPNGVM.ConvertImage(Lib.Images.FestispecLogo);
+            logo.Source = ConvertToImageVM.ConvertImage(Lib.Images.FestispecLogo);
             logo.Margin = new Thickness(25, 100, 25, 0);
 
             horizontalPanel.Children.Add(logo);
@@ -240,7 +241,7 @@ namespace Festispec.ViewModel.report
             ((IAddChild)frontPageContent).AddChild(frontPage);
             fixedDocument.Pages.Add(frontPageContent);
 
-            var image = ConvertToPNGVM.SnapShotPng(document, 1);
+            var image = ConvertToImageVM.SnapShotPng(document, 1);
 
             FixedPage page = new FixedPage();
             StackPanel stackPanelSecondPage = new StackPanel();
@@ -259,7 +260,15 @@ namespace Festispec.ViewModel.report
             PageContent pageContent = new PageContent();
             ((IAddChild)pageContent).AddChild(page);
             fixedDocument.Pages.Add(pageContent);
-            printDialog.PrintDocument(fixedDocument.DocumentPaginator, "Rapport");
+
+            try
+            {
+                printDialog.PrintDocument(fixedDocument.DocumentPaginator, "Rapport");
+            }
+            catch
+            {
+                _toast.ShowError("Gebruik een naam die nog niet bestaat bij het exporteren.");
+            }
 
             foreach (var userControl in ReportElementUserControlls)
             {

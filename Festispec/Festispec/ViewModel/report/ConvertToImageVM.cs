@@ -2,14 +2,12 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Festispec.ViewModel.report
 {
-    public static class ConvertToPNGVM
+    public static class ConvertToImageVM
     {
 
         public static Image SnapShotPng(FrameworkElement source, double zoom)
