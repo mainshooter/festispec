@@ -56,6 +56,8 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             set => _plannedEmployee.WorkedTill = value;
         }
 
+        public int DayId => _plannedEmployee.DayId;
+
         public PlannedEmployeeVM(InspectorPlanning pe)
         {
             _plannedEmployee = pe;

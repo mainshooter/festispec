@@ -49,14 +49,6 @@ namespace Festispec.ViewModel.Customer.order
             _order = new Order();
         }
 
-        public OrderVM(Order e)
-        {
-            _order = e;
-            Employee = new EmployeeVM(_order.Employee);
-            Survey = _order.Surveys.Count > 0 ? new SurveyVM(this, _order.Surveys.First()) : new SurveyVM(this);
-            Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d, this)));
-        }
-
         public Order ToModel()
         {
             return _order;

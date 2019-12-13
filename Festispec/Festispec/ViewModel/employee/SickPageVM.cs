@@ -22,7 +22,6 @@ namespace Festispec.ViewModel.employee
 
         private EmployeeVM _employee { get; set; }
         private PlannedEmployeeVM _plannedEmployee { get; set; }
-        private SickVM _sick { get; set; }
 
 
         public SickPageVM()
@@ -68,15 +67,12 @@ namespace Festispec.ViewModel.employee
         {
             using(var context = new Entities())
             {
-                _sick = new SickVM();
-                _sick.Employee = _employee;
-                _sick.PlannedEmployee = _plannedEmployee;
-                //_sick.Day = _plannedEmployee.;
-                _sick.Reason = "Test";
+                var sick = new SickReportInspector();
+                sick.InspectorPlanningEmployeeId = UserSessionVm.Current.Employee.Id;
+                sick.InspectorPlanningOrderId = _plannedEmployee.OrderId;
+                sick.InspoctorPlanningDayId = _plannedEmployee.DayId;
 
-                Console.WriteLine(_sick);
-                var sickModel = _sick.ToModel();
-                context.SickReportInspectors.Add(_sick.ToModel());
+                context.SickReportInspectors.Add(sick);
                 context.SaveChanges();
             }
         }

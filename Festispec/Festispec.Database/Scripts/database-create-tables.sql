@@ -1,5 +1,4 @@
 ﻿USE [festispec]
-USE [festispec]
 GO
 /****** Object:  Table [dbo].[Answer]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
