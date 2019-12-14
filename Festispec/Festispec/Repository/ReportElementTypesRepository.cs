@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Festispec.ViewModel.report.element
+namespace Festispec.Repository
 {
     public class ReportElementTypesListVM
     {

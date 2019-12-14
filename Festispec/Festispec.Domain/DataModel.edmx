@@ -262,6 +262,9 @@
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Content" Type="text" Nullable="false" />
           <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="X-as" Type="nvarchar" MaxLength="100" />
+          <Property Name="Y-as" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="ReportStatus">
           <Key>
@@ -1258,6 +1261,9 @@
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="X_as" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Y_as" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ElementType1" Relationship="Self.FK_ReportElement_ElementType" FromRole="ReportElement" ToRole="ElementType" />
           <NavigationProperty Name="Report" Relationship="Self.FK_ReportElement_Report" FromRole="ReportElement" ToRole="Report" />
         </EntityType>
@@ -2222,6 +2228,9 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="X_as" ColumnName="X-as" />
+                <ScalarProperty Name="Y_as" ColumnName="Y-as" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

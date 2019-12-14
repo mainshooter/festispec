@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Linq;
 using Festispec.ViewModel.employee.quotation;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
@@ -20,19 +21,21 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public int Id => _event.Id;
 
+        [JsonIgnore]
         public Domain.Customer CustomerModel
         {
             get => _event.Customer;
             set => _event.Customer = value;
         }
 
+        [JsonIgnore]
         public ContactPerson ContactPersonModel
         {
             get => _event.ContactPerson;
             set => _event.ContactPerson = value;
         }
 
-        public CustomerVM Customer 
+        public CustomerVM Customer
         {
             get => _customer;
             set
@@ -56,7 +59,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
-        public ContactPersonVM ContactPerson 
+        public ContactPersonVM ContactPerson
         {
             get => _contactPerson;
             set
@@ -69,13 +72,13 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
-        public string Name 
+        public string Name
         {
             get => _event.Name;
             set => _event.Name = value;
         }
 
-        public DateTime BeginDate 
+        public DateTime BeginDate
         {
             get => _event.BeginDate.Date;
             set => _event.BeginDate = value.Date;
@@ -83,7 +86,7 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public string BeginDateDate => BeginDate.ToString("d");
 
-        public DateTime EndDate 
+        public DateTime EndDate
         {
             get => _event.EndDate.Date;
             set => _event.EndDate = value.Date;
@@ -91,24 +94,25 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public string EndDateDate => EndDate.ToString("d");
 
-        public int AmountVisitors 
+        public int AmountVisitors
         {
             get => _event.AmountVisitors;
             set => _event.AmountVisitors = value;
         }
 
-        public int SurfaceM2 
+        public int SurfaceM2
         {
             get => _event.SurfaceM2;
             set => _event.SurfaceM2 = value;
         }
 
-        public string Description 
+        public string Description
         {
             get => _event.Description;
             set => _event.Description = value;
         }
 
+        [JsonIgnore]
         public OrderVM OrderVM { get; set; }
 
         public string Street
@@ -165,10 +169,8 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public bool HasOrder()
         {
-            if (OrderVM == null)
-            {
-                return false;
-            }
+            if (OrderVM == null) return false;
+
             return OrderVM.Id != 0;
         }
 
@@ -365,7 +367,7 @@ namespace Festispec.ViewModel.customer.customerEvent
                 return true;
             }
         }
-        
+
 
         string GetValidationError(string propertyName)
         {
