@@ -1,5 +1,4 @@
-﻿using CommonServiceLocator;
-using Festispec.Domain;
+﻿using Festispec.Domain;
 using Festispec.Message;
 using Festispec.View.Pages.Customer.Quotation;
 using Festispec.ViewModel.auth;

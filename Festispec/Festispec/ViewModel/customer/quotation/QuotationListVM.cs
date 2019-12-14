@@ -8,7 +8,6 @@ using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using System;
 using System.Windows;
 using Festispec.Domain;
 using System.Linq;
