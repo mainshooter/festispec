@@ -102,7 +102,7 @@ namespace Festispec.ViewModel.employee
                 sick.InspectorPlanningEmployeeId = UserSessionVm.Current.Employee.Id;
                 sick.InspectorPlanningOrderId = _plannedEmployee.OrderId;
                 sick.InspoctorPlanningDayId = _plannedEmployee.DayId;
-                sick.Reason = "Ziekmeldknop niffoooo";
+                sick.Reason = "Ziekmelden";
 
                 context.SickReportInspectors.Add(sick);
                 context.SaveChanges();
