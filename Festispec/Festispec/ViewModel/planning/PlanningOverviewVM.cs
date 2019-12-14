@@ -11,6 +11,8 @@ using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Planning;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight.CommandWpf;
+using System.Windows;
+using Festispec.Domain;
 
 namespace Festispec.ViewModel.planning
 {
@@ -24,6 +26,8 @@ namespace Festispec.ViewModel.planning
 
         public string SelectedFilter { get; set; }
         public ICommand BackCommand { get; set; }
+        public ICommand EditInspectorCommand { get; set; }
+        public ICommand DeleteInspectorCommand { get; set; }
         public string EventName => EventVM?.Name;
 
         public EventVM EventVM
@@ -118,15 +122,46 @@ namespace Festispec.ViewModel.planning
             MessengerInstance.Register<ChangePageMessage>(this, message => {
                 if (message.NextPageType == typeof(PlanningOverviewPage))
                 {
-                    EventVM = null;
                     GetInitialPlannedEmployeeList();
                 }
             });
-
+            EditInspectorCommand = new RelayCommand<PlannedEmployeeVM>(EditInspector);
+            DeleteInspectorCommand = new RelayCommand<PlannedEmployeeVM>(DeleteInspector);
             BackCommand = new RelayCommand(Back);
             FilterItems = new List<string>();
             SelectedFilter = FilterItems.First();
             Filter = "";
+        }
+
+        private void EditInspector(PlannedEmployeeVM source)
+        {
+            EventVM.RaisePropertyChangedUniversalDate();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditPlannedEmployeePage) });
+            MessengerInstance.Send<ChangeSelectedPlannedEmployeeMessage>(new ChangeSelectedPlannedEmployeeMessage()
+            {
+                PlannedEmployee = source,
+                PlannedEmployeesList = _filteredPlannedEmployeeList,
+                EventVM = EventVM               
+            }) ;
+        }
+
+        private void DeleteInspector(PlannedEmployeeVM source)
+        {
+            MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze inspecteur wilt verwijderen?", "Inspecteur Verwijderen", MessageBoxButton.YesNo);
+            if (result.Equals(MessageBoxResult.Yes))
+            {
+                using (var context = new Entities())
+                {
+                    var temp = source.ToModel();
+                    context.InspectorPlannings.Remove(context.InspectorPlannings.Select(ins => ins).Where(ins => ins.EmployeeId == temp.EmployeeId)
+                                                                                                   .Where(ins => ins.DayId == temp.DayId)
+                                                                                                   .Where(ins => ins.OrderId == temp.OrderId)
+                                                                                                   .First());
+                    context.SaveChanges();
+                }
+                _filteredPlannedEmployeeList.Remove(source);
+                RaisePropertyChanged("EventListFiltered");
+            }
         }
 
         private void Back()

@@ -81,7 +81,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<SingleEventPage>();
             SimpleIoc.Default.Register<OfflineEventListPage>();
             SimpleIoc.Default.Register<SingleOfflineEventPage>();
-
+            SimpleIoc.Default.Register<EditPlannedEmployeePage>();
             SimpleIoc.Default.Register<ReportVM>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<EmployeeVM>();
@@ -120,6 +120,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EventInfoVM>();
             SimpleIoc.Default.Register<OfflineEventListVM>();
             SimpleIoc.Default.Register<OfflineEventInfoVM>();
+            SimpleIoc.Default.Register<EditPlannedEmployeeVM>();
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
@@ -157,6 +158,7 @@ namespace Festispec.ViewModel
         public OfflineEventListVM OfflineEventListVM => ServiceLocator.Current.GetInstance<OfflineEventListVM>();
         public OfflineEventInfoVM OfflineEventInfoVM => ServiceLocator.Current.GetInstance<OfflineEventInfoVM>();
 
+        public EditPlannedEmployeeVM EditPlannedEmployeeVM => ServiceLocator.Current.GetInstance<EditPlannedEmployeeVM>();
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

@@ -64,5 +64,10 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         {
             _plannedEmployee = new InspectorPlanning();
         }
+        
+        public InspectorPlanning ToModel()
+        {
+            return _plannedEmployee;
+        }
     }
 }
