@@ -21,6 +21,6 @@
         <TextBox HorizontalAlignment="Left" Height="30" Margin="110,121,0,0" TextWrapping="Wrap" Text="{Binding Path=Quotation.VatPercentage, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="BTW Percentage (%)" HorizontalAlignment="Left" Margin="110,90,0,0" VerticalAlignment="Top" Width="125"/>
         <Label FontWeight="Bold" Content="Beschrijving" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="84"/>
-        <TextBox Padding="2" HorizontalAlignment="Left" Height="330" Margin="320,35,0,0" TextWrapping="Wrap" Text="{Binding Path=Quotation.Content, Mode=TwoWay}" VerticalAlignment="Top" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" Width="385"/>
+        <TextBox Padding="2" HorizontalAlignment="Left" Height="330" Margin="320,35,0,0" TextWrapping="Wrap" Text="{Binding Path=Quotation.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top" BorderBrush="Black" BorderThickness="1" Width="385"/>
     </Grid>
 </Page>

@@ -113,7 +113,7 @@ namespace Festispec.ViewModel.customer.quotation
             SelectedFilter = "";
             Filter = "";
 
-            OpenAddQuotationCommand = new RelayCommand(OpenAddQuotationPage);
+            OpenAddQuotationCommand = new RelayCommand(OpenAddQuotationPage, CanAdd);
             OpenEditQuotationCommand = new RelayCommand<QuotationVM>(OpenEditQuotationPage, CanUseCommand);
             DeleteQuotationCommand = new RelayCommand<QuotationVM>(DeleteQuotation, CanUseCommand);
             OpenSingleQuotationCommand = new RelayCommand<QuotationVM>(OpenSingleQuotationPage);
@@ -137,6 +137,22 @@ namespace Festispec.ViewModel.customer.quotation
             {
                 Event = Event
             }) ;
+        }
+
+        private bool CanAdd()
+        {
+            if (QuotationList == null)
+            {
+                return false;
+            }
+            foreach (QuotationVM quot in QuotationList)
+            {
+                if (quot.Status.Equals("Geaccepteerd"))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void OpenEditQuotationPage(QuotationVM source)
