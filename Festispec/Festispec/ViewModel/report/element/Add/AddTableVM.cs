@@ -29,7 +29,7 @@ namespace Festispec.ViewModel.report.element.Add
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
 
-        public AddTableVM()
+        public AddTableVM() : base()
         {
             ReportElementVM = new TableVM();
             MessengerInstance.Register<ChangeSelectedReportMessage>(this, message =>

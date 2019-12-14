@@ -11,28 +11,15 @@ using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element.Edit
 {
-    public class EditLineChartVM : ViewModelBase
+    public class EditLineChartVM : BaseElementEdit
     {
-        private ReportElementVM _reportElementVM;
-        public ReportElementVM ReportElementVM
-        {
-            get
-            {
-                return _reportElementVM;
-            }
-            set
-            {
-                _reportElementVM = value;
-                RaisePropertyChanged("ReportElementVM");
-            }
-        }
 
         public Func<string, string> YaxisLabelFormat { get; set; }
 
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
 
-        public EditLineChartVM()
+        public EditLineChartVM(): base()
         {
             ReportElementVM = new ReportElementVM();
             ReportElementVM.Type = ReportElementType.Linechart;

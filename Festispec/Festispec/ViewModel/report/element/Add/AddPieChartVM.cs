@@ -28,7 +28,7 @@ namespace Festispec.ViewModel.report.element.Add
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
 
-        public AddPieChartVM()
+        public AddPieChartVM() : base()
         {
             ReportElementVM = new PieChartVM();
             MessengerInstance.Register<ChangeSelectedReportMessage>(this, message =>

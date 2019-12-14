@@ -10,27 +10,12 @@ using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element.Edit
 {
-    public class EditTableVM : ViewModelBase
+    public class EditTableVM : BaseElementEdit
     {
-        private ReportElementVM _reportElementVM;
-
-        public ReportElementVM ReportElementVM
-        {
-            get
-            {
-                return _reportElementVM;
-            }
-            set
-            {
-                _reportElementVM = value;
-                RaisePropertyChanged("ReportElementVM");
-            }
-        }
-
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
 
-        public EditTableVM()
+        public EditTableVM() : base()
         {
             ReportElementVM = new ReportElementVM();
             ReportElementVM.Type = ReportElementType.Table;

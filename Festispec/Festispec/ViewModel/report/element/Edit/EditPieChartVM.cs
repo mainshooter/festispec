@@ -10,26 +10,13 @@ using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element.Edit
 {
-    public class EditPieChartVM : ViewModelBase
+    public class EditPieChartVM : BaseElementEdit
     {
-        private ReportElementVM _reportElementVM;
-        public ReportElementVM ReportElementVM
-        {
-            get
-            {
-                return _reportElementVM;
-            }
-            set
-            {
-                _reportElementVM = value;
-                RaisePropertyChanged("ReportElementVM");
-            }
-        }
 
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
 
-        public EditPieChartVM()
+        public EditPieChartVM(): base()
         {
             ReportElementVM = new ReportElementVM();
             ReportElementVM.Type = ReportElementType.Piechart;

@@ -20,7 +20,7 @@ namespace Festispec.ViewModel.report.element
         private IDataParser _dataParser;
         private List<List<string>> _data;
 
-        private ReportVM ReportVM { 
+        public ReportVM ReportVM { 
             get {
                 return CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().ReportVM;
             }

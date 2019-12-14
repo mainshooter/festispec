@@ -31,7 +31,7 @@ namespace Festispec.ViewModel.report.element.Add
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
 
-        public AddLineChartVM()
+        public AddLineChartVM() : base()
         {
             ReportElementVM = new LineChartVM();
             MessengerInstance.Register<ChangeSelectedReportMessage>(this, message =>
