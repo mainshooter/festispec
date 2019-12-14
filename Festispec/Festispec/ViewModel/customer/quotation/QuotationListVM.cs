@@ -229,6 +229,7 @@ namespace Festispec.ViewModel.customer.quotation
 
                 context.SaveChanges();
             }
+            RaisePropertyChanged("QuotationListFiltered");
         }
 
         private void DeclineQuotation(QuotationVM source)
@@ -240,6 +241,7 @@ namespace Festispec.ViewModel.customer.quotation
                 context.Entry(source.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
             }
+            RaisePropertyChanged("QuotationListFiltered");
         }
 
         private bool CanUseCommand(QuotationVM source)
@@ -248,14 +250,12 @@ namespace Festispec.ViewModel.customer.quotation
             {
                 return false;
             }
-            foreach (QuotationVM quot in QuotationList)
+            if (source.Status.Equals("Geweigerd"))
             {
-                if (quot.Status.Equals("Geweigerd") || quot.Status.Equals("Geaccepteerd"))
-                {
-                    return false;
-                }
+                return false;
             }
-            return true;
+
+            return CanAdd();
         }
 
         public void RefreshQuotations()

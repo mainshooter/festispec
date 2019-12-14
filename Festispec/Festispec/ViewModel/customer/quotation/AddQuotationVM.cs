@@ -64,6 +64,7 @@ namespace Festispec.ViewModel.customer.quotation
             Quotation = new QuotationVM();
             Quotation.Event = Event;
             Quotation.Customer = Event.Customer;
+            Quotation.Status = "Open";
             RaisePropertyChanged("Quotation");
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(QuotationPage) });
         }

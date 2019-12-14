@@ -17,6 +17,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         private Event _event;
         private CustomerVM _customer;
         private ContactPersonVM _contactPerson;
+        private OrderVM _order;
         private ObservableCollection<QuotationVM> _quotations;
 
         public int Id => _event.Id;
@@ -72,6 +73,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
+
         public string Name
         {
             get => _event.Name;
@@ -113,7 +115,18 @@ namespace Festispec.ViewModel.customer.customerEvent
         }
 
         [JsonIgnore]
-        public OrderVM OrderVM { get; set; }
+        public OrderVM OrderVM 
+        {
+            get
+            {
+                return _order;
+            }
+            set
+            {
+                _order = value;
+                _event.Orders.Add(value.ToModel());
+            }
+        }
 
         public string Street
         {
