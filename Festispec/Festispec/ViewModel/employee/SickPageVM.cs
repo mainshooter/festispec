@@ -3,6 +3,7 @@ using Festispec.ViewModel.auth;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.planning.plannedEmployee;
+using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -14,21 +15,23 @@ namespace Festispec.ViewModel.employee
 {
     public class SickPageVM : ViewModelBase
     {
+        private EmployeeVM _employee { get; set; }
+        private PlannedEmployeeVM _plannedEmployee { get; set; }
+
         public string ShowEventInfo { get; set; }
         public string ShowNoEvent { get; set; }
         public string SickPageButton { get; set; }
 
+        public string EventName { get; set; }
+        public bool SickButtonDisable { get; set; }
+        public string EventStartDate { get; set; }
+        public string EventEndDate { get; set; }
         public ICommand SickButtonCommand { get; set; }
-
-        private EmployeeVM _employee { get; set; }
-        private PlannedEmployeeVM _plannedEmployee { get; set; }
 
 
         public SickPageVM()
         {
-            Console.WriteLine("faka");
             _employee = UserSessionVm.Current.Employee;
-
             using (var context = new Entities())
             {
                 var tempPlanning = context.InspectorPlannings.ToList()
@@ -46,23 +49,54 @@ namespace Festispec.ViewModel.employee
 
                     if(tempEvent != null)
                     {
-                        Console.WriteLine(_plannedEmployee.OrderId);
-                        Console.WriteLine(tempEvent.Event.Name);
+                        EventName = tempEvent.Event.Name;
+                        EventStartDate = tempEvent.Event.BeginDate.ToString("dd-MM-yyyy HH:mm");
+                        EventEndDate = tempEvent.Event.EndDate.ToString("dd-MM-yyyy HH:mm");
+
                         ShowEventInfo = "Visible";
                         ShowNoEvent = "Hidden";
-                        SickPageButton = "Ziekmelden";
 
-                        SickButtonCommand = new RelayCommand(GetSick);
+                        if (CheckIfAlreadySick())
+                        {
+                            SickButtonDisable = false;
+                            SickPageButton = "Al ziekgemeld vandaag";
+                        }
+                        else
+                        {
+
+                            SickButtonDisable = true;
+                            SickPageButton = "Ziekmelden";
+                            SickButtonCommand = new RelayCommand(AddSickness);
+                        }
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Geen ding vandaag");
+                    ShowEventInfo = "Hidden";
+                    ShowNoEvent = "Visible";
                 }
             }
         }
 
-        private void GetSick()
+        private bool CheckIfAlreadySick()
+        {
+            using (var context = new Entities())
+            {
+                var tempSickCheck = context.SickReportInspectors.ToList()
+                    .Where(e => e.InspectorPlanningEmployeeId == UserSessionVm.Current.Employee.Id)
+                    .Where(e => e.InspectorPlanningOrderId == _plannedEmployee.OrderId)
+                    .Where(e => e.InspoctorPlanningDayId == _plannedEmployee.DayId)
+                    .FirstOrDefault();
+
+                if(tempSickCheck != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        private void AddSickness()
         {
             using(var context = new Entities())
             {
@@ -75,6 +109,12 @@ namespace Festispec.ViewModel.employee
 
                 context.SickReportInspectors.Add(sick);
                 context.SaveChanges();
+
+                SickButtonDisable = false;
+                SickPageButton = "Al ziekgemeld vandaag";
+                RaisePropertyChanged("SickButtonDisable");
+                RaisePropertyChanged("SickPageButton");
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Ziekgemeld!");
             }
         }
     }

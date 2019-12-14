@@ -17,7 +17,7 @@
       FontFamily="{DynamicResource MaterialDesignFont}"
       DataContext="{Binding SickPageVM, Source={StaticResource Locator}}">
 
-    <Grid Margin="10" Background="White">
+    <Grid Margin="10">
         <StackPanel Orientation="Vertical">
             <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Ziekmelden</TextBlock>
             <StackPanel>
@@ -26,7 +26,13 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Visibility="{Binding ShowEventInfo}">
                     <StackPanel Orientation="Vertical">
-                        <Button Content="{Binding SickPageButton}" Command="{Binding SickButtonCommand}"/>
+                        <Label Content="Evenementnaam" FontWeight="Bold"/>
+                        <Label Content="{Binding EventName}"/>
+                        <Label Content="Begin datum" FontWeight="Bold"/>
+                        <Label Content="{Binding EventStartDate}"/>
+                        <Label Content="Eind datum" FontWeight="Bold"/>
+                        <Label Content="{Binding EventEndDate}"/>
+                        <Button Content="{Binding SickPageButton}" Command="{Binding SickButtonCommand}" IsEnabled="{Binding SickButtonDisable}"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
