@@ -66,6 +66,7 @@ namespace Festispec.Lib.ConvertToImage
                 }
             }
             catch { }
+            MessageBox.Show("Er is iets mis gegaan tijdens het exporteren.");
             return null;
         }
     }
