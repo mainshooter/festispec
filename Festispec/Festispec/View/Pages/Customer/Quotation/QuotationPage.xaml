@@ -48,7 +48,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.OpenSingleQuotationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                <Button Command="{Binding DataContext.OpenSingleQuotationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Offerte inzien" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="ArrowForward"/>
                                 </Button>
                             </DataTemplate>
@@ -57,7 +57,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.OpenEditQuotationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                <Button Command="{Binding DataContext.OpenEditQuotationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Offerte bewerken" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="Edit"/>
                                 </Button>
                             </DataTemplate>
@@ -66,7 +66,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.DeleteQuotationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                <Button Command="{Binding DataContext.DeleteQuotationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Offerte verwijderen" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="Delete"/>
                                 </Button>
                             </DataTemplate>
@@ -75,7 +75,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.AcceptQuotationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                <Button Command="{Binding DataContext.AcceptQuotationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Offerte accepteren" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="Tick"/>
                                 </Button>
                             </DataTemplate>
@@ -84,7 +84,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.DeclineQuotationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                <Button Command="{Binding DataContext.DeclineQuotationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Offerte weigeren" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="Clear"/>
                                 </Button>
                             </DataTemplate>

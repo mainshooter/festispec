@@ -56,7 +56,10 @@ namespace Festispec.ViewModel.employee.quotation
         public decimal Price
         {
             get => _quotation.Price;
-            set => _quotation.Price = value;
+            set
+            {
+                _quotation.Price = Math.Round(value, 2);
+            }
         }
 
         public int VatPercentage

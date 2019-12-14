@@ -264,6 +264,7 @@
     </Compile>
     <Compile Include="View\Pages\Customer\Event\SingleOfflineEventPage.xaml.cs">
       <DependentUpon>SingleOfflineEventPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Customer\Quotation\AddQuotationPage.xaml.cs">
       <DependentUpon>AddQuotationPage.xaml</DependentUpon>
     </Compile>
@@ -481,6 +482,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\Customer\Event\SingleOfflineEventPage.xaml">
+    </Page>
     <Page Include="View\Pages\Customer\Quotation\AddQuotationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

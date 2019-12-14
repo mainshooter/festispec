@@ -223,14 +223,22 @@ namespace Festispec.ViewModel.customer.quotation
             using (var context = new Entities())
             {
                 context.Entry(source.ToModel()).State = EntityState.Modified;
+                context.SaveChanges();
             }
         }
 
         private bool CanUseCommand(QuotationVM source)
         {
-            if (source == null || source.Status.Equals("Geweigerd") || source.Status.Equals("Geaccepteerd"))
+            if (source == null)
             {
                 return false;
+            }
+            foreach (QuotationVM quot in QuotationList)
+            {
+                if (quot.Status.Equals("Geweigerd") || quot.Status.Equals("Geaccepteerd"))
+                {
+                    return false;
+                }
             }
             return true;
         }
