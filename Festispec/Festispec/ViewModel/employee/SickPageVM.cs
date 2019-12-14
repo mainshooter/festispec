@@ -1,13 +1,10 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.auth;
-using Festispec.ViewModel.customer.customerEvent;
-using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.planning.plannedEmployee;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 
