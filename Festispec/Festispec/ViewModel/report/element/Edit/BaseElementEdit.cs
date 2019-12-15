@@ -20,20 +20,44 @@ namespace Festispec.ViewModel.report.element
             set {
                 _reportElementVM = value;
                 RaisePropertyChanged("ReportElementVM");
-                if (_reportElementVM != null && _reportElementVM.Order != null)
+                if (_reportElementVM != null && _reportElementVM.ReportVM != null)
                 {
                     var questions = _reportElementVM.ReportVM.Order.Survey.Questions;
                     SurveyQuestions.Clear();
+                    int index = 0;
                     foreach (var item in questions)
                     {
                         SurveyQuestions.Add(item);
-                        if (ReportElementVM.DataParser.Question.Id == item.Id)
+                        if (_reportElementVM.DataParser != null && _reportElementVM.DataParser.Question != null && item.Id == _reportElementVM.DataParser.Question.Id)
                         {
-                            ReportElementVM.DataParser.Question = item;
+                            SelectedSurveyQuestionIndex = index;
+                            break;
+                        }
+                    }
+
+                    if (_reportElementVM != null && _reportElementVM.DataParser != null)
+                    {
+                        index = 0;
+                        foreach (var item in DataParsers)
+                        {
+                            if (item.Type == _reportElementVM.DataParser.Type)
+                            {
+                                SelectedDataParserIndex = index;
+                                break;
+                            }
+                            index++;
                         }
                     }
                 }
             }
+        }
+
+        public int SelectedDataParserIndex {
+            get;set;
+        }
+
+        public int SelectedSurveyQuestionIndex {
+            get;set;
         }
 
         public List<IDataParser> DataParsers { 
@@ -42,10 +66,7 @@ namespace Festispec.ViewModel.report.element
             }
             set {
                 _dataParsers = value;
-                if (_reportElementVM != null && _reportElementVM.DataParser != null)
-                {
-               
-                }
+
                 RaisePropertyChanged("DataParsers");
             }
         }
