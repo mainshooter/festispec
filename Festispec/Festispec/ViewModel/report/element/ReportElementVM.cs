@@ -158,14 +158,14 @@ namespace Festispec.ViewModel.report.element
                 if (_dataParser != null)
                 {
                     _data = _dataParser.ParseData();
-                    _reportElement.Data = DataParser.ToJson();
-                    RaisePropertyChanged("DataParser");
+                    _reportElement.Data = _dataParser.ToJson();
                 }
                 else
                 {
                     _data = new List<List<string>>();
                     _reportElement.Data = null;
                 }
+                RaisePropertyChanged("DataParser");
             }
         }
 
@@ -177,8 +177,6 @@ namespace Festispec.ViewModel.report.element
                 _reportElement.Data = value;
             }
         }
-
-        public ICommand EditElementCommand { get; set; }
 
         public ReportElementVM(ReportElement element)
         {

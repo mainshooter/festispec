@@ -23,7 +23,7 @@
             <TextBox Text="{Binding ReportElementVM.Content,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
         <Label>Type query</Label>
-        <ComboBox ItemsSource="{Binding DataParsers}" SelectedItem="{Binding SelectedDataParser}">
+        <ComboBox ItemsSource="{Binding DataParsers}" SelectedItem="{Binding ReportElementVM.DataParser}" SelectedIndex="0">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Type}"></TextBlock>
@@ -31,7 +31,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Label>Kies een vraag</Label>
-        <ComboBox ItemsSource="{Binding SurveyQuestions}" SelectedItem="{Binding SelectedQuestion}">
+        <ComboBox ItemsSource="{Binding SurveyQuestions}" SelectedItem="{Binding ReportElementVM.DataParser.Question}" SelectedIndex="0">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding QuestionDetails.Question}"></TextBlock>

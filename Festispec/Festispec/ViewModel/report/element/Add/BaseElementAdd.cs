@@ -13,29 +13,11 @@ namespace Festispec.ViewModel.report.element
 {
     public class BaseElementAdd: ViewModelBase
     {
-        private IQuestion _selectedQuestion;
-        private IDataParser _selectedDataParser;
         private DataParserFactory _dataParserFactory;
 
         public List<IDataParser> DataParsers { get; private set; }
 
         public ObservableCollection<IQuestion> SurveyQuestions { get; set; }
-        public IQuestion SelectedQuestion {
-            get {
-                return _selectedQuestion;
-            }
-            set {
-                _selectedQuestion = value;
-            }
-        }
-        public IDataParser SelectedDataParser {
-            get {
-                return _selectedDataParser;
-            }
-            set {
-                _selectedDataParser = value;
-            }
-        }
 
         public BaseElementAdd()
         {

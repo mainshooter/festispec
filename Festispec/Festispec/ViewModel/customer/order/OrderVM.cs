@@ -13,9 +13,7 @@ namespace Festispec.ViewModel.Customer.order
     public class OrderVM
     {
         private Order _order;
-
         private ReportVM _report;
-        private SurveyVM _survey;
 
         public int Id => _order.Id;
         public EmployeeVM Employee { get; set; }

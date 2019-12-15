@@ -45,6 +45,11 @@ namespace Festispec.ViewModel.report.element
             Content = element.Content;
             Order = element.Order;
             ReportId = element.ReportId;
+            if (element.DataParser != null)
+            {
+                DataParser = element.DataParser;
+                Data = DataParser.ParseData();
+            }
         }
 
         public void Edit()

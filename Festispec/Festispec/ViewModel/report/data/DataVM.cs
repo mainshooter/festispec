@@ -1,6 +1,7 @@
 ﻿using Festispec.Domain;
 using Festispec.Interface;
 using Festispec.ViewModel.survey.answer;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -8,11 +9,20 @@ using System.Linq;
 
 namespace Festispec.ViewModel.report.data
 {
-    public class DataVM
+    public class DataVM: ViewModelBase
     {
+        private IQuestion _question;
         public virtual string Type { get; set; }
 
-        public IQuestion Question { get; set; }
+        public IQuestion Question { 
+            get {
+                return _question;
+            }
+            set {
+                _question = value;
+                RaisePropertyChanged("Question");
+            }
+        }
 
         [PreferredConstructor]
         public DataVM()

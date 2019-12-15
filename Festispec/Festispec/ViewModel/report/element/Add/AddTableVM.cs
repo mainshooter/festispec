@@ -52,7 +52,8 @@ namespace Festispec.ViewModel.report.element.Add
         {
             using (var context = new Entities())
             {
-                context.ReportElements.Add(ReportElementVM.ToModel());
+                var model = ReportElementVM.ToModel();
+                context.ReportElements.Add(model);
                 context.SaveChanges();
             }
             CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowInformation("Rapportelement is toegevoegd.");

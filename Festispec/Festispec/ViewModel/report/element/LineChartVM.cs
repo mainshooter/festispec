@@ -38,6 +38,11 @@ namespace Festispec.ViewModel.report.element
             ReportId = element.ReportId;
             X_as = element.X_as;
             Y_as = element.Y_as;
+            if (element.DataParser != null)
+            {
+                DataParser = element.DataParser;
+                Data = DataParser.ParseData();
+            }
         }
 
         public void Edit()
