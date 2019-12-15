@@ -176,7 +176,6 @@ namespace Festispec.ViewModel.report
 
             PrintDialog printDialog = new PrintDialog();
             var fixedDocument = new FixedDocument();
-            fixedDocument.DocumentPaginator.PageSize = new Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
             List<TextBlock> frontpageTextBlocks = new List<TextBlock>();
             FixedPage frontPage = new FixedPage();
             StackPanel horizontalPanel = new StackPanel();
