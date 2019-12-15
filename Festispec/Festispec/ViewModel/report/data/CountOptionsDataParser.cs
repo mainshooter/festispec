@@ -1,17 +1,23 @@
 ﻿using Festispec.Interface;
+using Festispec.Lib.Enums;
 using System.Collections.Generic;
 
 namespace Festispec.ViewModel.report.data
 {
     public class CountOptionsDataParser : DataVM, IDataParser
     {
-        public override string Type => "COUNT_OPTIONS";
+        public override string Type => DataParserType.COUNTOPTIONS;
         public List<string> SupportedQuestions => new List<string>() {
             Lib.Survey.Question.QuestionType.ClosedQuestion,
             Lib.Survey.Question.QuestionType.MultipleChoiseQuestion,
             Lib.Survey.Question.QuestionType.SliderQuestion
         };
-        public List<string> SupportedVisuals => new List<string>() { "Table", "Barchart", "Linechart", "Piechart" };
+        public List<string> SupportedVisuals => new List<string>() { 
+            ReportElementType.Table,
+            ReportElementType.Barchart,
+            ReportElementType.Linechart,
+            ReportElementType.Piechart,
+        };
 
         public List<List<string>> ParseData()
         {

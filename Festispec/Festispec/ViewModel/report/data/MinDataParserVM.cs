@@ -1,4 +1,5 @@
 ﻿using Festispec.Interface;
+using Festispec.Lib.Enums;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,7 +7,7 @@ namespace Festispec.ViewModel.report.data
 {
     public class MinDataParserVM : DataVM, IDataParser
     {
-        public override string Type => "MIN";
+        public override string Type => DataParserType.MIN;
         public List<string> SupportedQuestions => new List<string>() {
             Lib.Survey.Question.QuestionType.OpenQuestion,
             Lib.Survey.Question.QuestionType.MultipleChoiseQuestion,
@@ -14,7 +15,7 @@ namespace Festispec.ViewModel.report.data
             Lib.Survey.Question.QuestionType.SliderQuestion,
             Lib.Survey.Question.QuestionType.ClosedQuestion
         };
-        public List<string> SupportedVisuals => new List<string>() { "Table" };
+        public List<string> SupportedVisuals => new List<string>() { ReportElementType.Table };
 
         public List<List<string>> ParseData()
         {

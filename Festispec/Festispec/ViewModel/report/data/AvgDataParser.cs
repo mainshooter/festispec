@@ -1,4 +1,5 @@
 ﻿using Festispec.Interface;
+using Festispec.Lib.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,13 @@ namespace Festispec.ViewModel.report.data
 {
     public class AvgDataParser : DataVM, IDataParser
     {
-        public override string Type => "AVG";
+        public override string Type => DataParserType.AVG;
         public List<string> SupportedQuestions => new List<string>() { 
             Lib.Survey.Question.QuestionType.SliderQuestion
         };
-        public List<string> SupportedVisuals => new List<string>() { "Table" };
+        public List<string> SupportedVisuals => new List<string>() {
+            ReportElementType.Table
+        };
 
         public List<List<string>> ParseData()
         {

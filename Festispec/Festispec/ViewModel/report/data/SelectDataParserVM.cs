@@ -1,4 +1,5 @@
 ﻿using Festispec.Interface;
+using Festispec.Lib.Enums;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
@@ -6,7 +7,7 @@ namespace Festispec.ViewModel.report.data
 {
     public class SelectDataParserVM : DataVM, IDataParser
     {
-        public override string Type => "SELECT";
+        public override string Type => DataParserType.SELECT;
 
         public List<string> SupportedQuestions => new List<string>() {
             Lib.Survey.Question.QuestionType.OpenQuestion,
@@ -15,7 +16,7 @@ namespace Festispec.ViewModel.report.data
             Lib.Survey.Question.QuestionType.SliderQuestion,
             Lib.Survey.Question.QuestionType.ClosedQuestion
         };
-        public List<string> SupportedVisuals => new List<string>() { "Table" };
+        public List<string> SupportedVisuals => new List<string>() { ReportElementType.Table };
         public List<List<string>> ParseData()
         {
             string questionType = Question.QuestionType;
