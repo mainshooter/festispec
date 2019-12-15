@@ -2,6 +2,7 @@
 using Festispec.Lib.Enums;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Festispec.ViewModel.report.data
 {
@@ -17,6 +18,17 @@ namespace Festispec.ViewModel.report.data
             Lib.Survey.Question.QuestionType.ClosedQuestion
         };
         public List<string> SupportedVisuals => new List<string>() { ReportElementType.Table };
+
+        public override bool QuestionTypeIsSupported {
+            get {
+                var questionCheckResult = SupportedQuestions.Where(s => s == Question.QuestionType);
+                if (questionCheckResult != null && questionCheckResult.Count() > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
         public List<List<string>> ParseData()
         {
             string questionType = Question.QuestionType;

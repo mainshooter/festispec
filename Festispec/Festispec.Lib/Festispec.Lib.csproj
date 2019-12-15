@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\PasswordService.cs" />
+    <Compile Include="Enums\DataParserType.cs" />
     <Compile Include="Enums\ReportElementType.cs" />
     <Compile Include="Enums\SurveyStatus.cs" />
     <Compile Include="Interfaces\IPasswordValidator.cs" />
@@ -53,7 +54,7 @@
     <Compile Include="Slugify\StringToSlug.cs" />
     <Compile Include="Survey\Question\QuestionChoices.cs" />
     <Compile Include="Survey\Question\QuestionDetails.cs" />
-    <Compile Include="Survey\Question\QuestionType.cs" />
+    <Compile Include="Enums\QuestionType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

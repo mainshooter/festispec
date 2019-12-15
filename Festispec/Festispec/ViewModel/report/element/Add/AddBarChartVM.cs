@@ -50,13 +50,22 @@ namespace Festispec.ViewModel.report.element.Add
 
         public void SaveElement()
         {
-            using (var context = new Entities())
+            ToastVM toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
+            ReportElementVM.DataParser.Question = ReportElementVM.SelectedSurveyQuestion;
+            if (CanUseOptions())
             {
-                context.ReportElements.Add(ReportElementVM.ToModel());
-                context.SaveChanges();
+                using (var context = new Entities())
+                {
+                    context.ReportElements.Add(ReportElementVM.ToModel());
+                    context.SaveChanges();
+                }
+                toast.ShowInformation("Rapportelement is toegevoegd.");
+                CloseSaveElement();
             }
-            CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowInformation("Rapportelement is toegevoegd.");
-            CloseSaveElement();
+            else
+            {
+                toast.ShowError("Deze query kan niet met dit element en/of vraag word niet ondersteunt door deze query");
+            }
         }
 
         public void CloseSaveElement()
@@ -67,6 +76,20 @@ namespace Festispec.ViewModel.report.element.Add
         public bool CanAddElement()
         {
             return ReportElementVM.IsValid;
+        }
+
+        private bool CanUseOptions()
+        {
+            if (ReportElementVM.DataParser != null && ReportElementVM.DataParser.QuestionTypeIsSupported)
+            {
+                var dataParser = ReportElementVM.DataParser;
+                bool containsSupportedType = dataParser.SupportedVisuals.Contains(ReportElementVM.Type);
+                if (containsSupportedType)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

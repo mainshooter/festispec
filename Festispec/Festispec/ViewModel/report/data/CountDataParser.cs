@@ -1,6 +1,8 @@
 ﻿using Festispec.Interface;
 using Festispec.Lib.Enums;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace Festispec.ViewModel.report.data
 {
@@ -18,6 +20,17 @@ namespace Festispec.ViewModel.report.data
             ReportElementType.Table,
             ReportElementType.Barchart,
         };
+
+        public override bool QuestionTypeIsSupported {
+            get {
+                var questionCheckResult = SupportedQuestions.Where(s => s == Question.QuestionType);
+                if (questionCheckResult != null && questionCheckResult.Count() > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
 
         public List<List<string>> ParseData()
         {

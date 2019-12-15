@@ -182,6 +182,7 @@ namespace Festispec.ViewModel.report.element
                     DataParser.Question = _selectedSurveyQuestion;
                     _reportElement.Data = DataParser.ToJson();
                 }
+                RaisePropertyChanged("SelectedSurveyQuestion");
             }
         }
 
