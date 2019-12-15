@@ -12,6 +12,10 @@ using System.Windows.Input;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Planning;
 using Festispec.View.Pages.Survey;
+using Festispec.View.Pages.Report;
+using Festispec.ViewModel.toast;
+using Hanssens.Net;
+
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
@@ -30,6 +34,7 @@ namespace Festispec.ViewModel.customer.customerEvent
         public ICommand OpenSingleEventCommand { get; set; }
         public ICommand DeleteEventCommand { get; set; }
         public ICommand BackCommand { get; set; }
+        public ICommand SynchEventCommand { get; set; }
         public ObservableCollection<EventVM> EventList { get; set; }
         public string SelectedFilter { get; set; }
 
@@ -97,22 +102,22 @@ namespace Festispec.ViewModel.customer.customerEvent
                     switch (SelectedFilter)
                     {
                         case "Naam":
-                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.Name.ToLower().Contains(Filter.ToLower())).ToList());
+                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.Name.ToLower().Contains(Filter.ToLower())).OrderBy(e => e.BeginDate).ToList());
                             break;
                         case "Begindatum":
-                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.BeginDate.ToString().Contains(Filter.ToLower())).ToList());
+                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.BeginDate.ToString().Contains(Filter.ToLower())).OrderBy(e => e.BeginDate).ToList());
                             break;
                         case "Bezoekersaantal":
-                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.AmountVisitors.ToString().Contains(Filter.ToLower())).ToList());
+                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.AmountVisitors.ToString().Contains(Filter.ToLower())).OrderBy(e => e.BeginDate).ToList());
                             break;
                         case "Contactpersoon":
-                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.ContactPerson.Fullname.ToLower().Contains(Filter.ToLower())).ToList());
+                            temp = new ObservableCollection<EventVM>(EventList.Select(eventcon => eventcon).Where(eventcon => eventcon.ContactPerson.Fullname.ToLower().Contains(Filter.ToLower())).OrderBy(e => e.BeginDate).ToList());
                             break;
                     }
 
                     if (_showOnlyFuture)
                     {
-                        temp = new ObservableCollection<EventVM>(temp.ToList().Where(i => i.EndDate >= DateTime.Today).ToList());
+                        temp = new ObservableCollection<EventVM>(temp.ToList().Where(i => i.EndDate >= DateTime.Today).OrderBy(e => e.BeginDate).ToList());
                     }
                 }
 
@@ -142,6 +147,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage, HasOrder);
             OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage, HasOrder);
             BackCommand = new RelayCommand(Back);
+            SynchEventCommand = new RelayCommand<EventVM>(SynchEvent);
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -237,7 +243,17 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public void OpenReportPage(EventVM source)
         {
-            throw new NotImplementedException();
+            if (source.OrderVM.Report.Id == 0)
+            {
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddReportPage) });
+                MessengerInstance.Send<ChangeSelectedOrderMessage>(new ChangeSelectedOrderMessage() { SelectedOrderVM = source.OrderVM });
+            }
+            else
+            {
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
+            }
+
+            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { NextReportVM = source.OrderVM.Report });
         }
 
         private bool HasOrder(EventVM source)
@@ -254,6 +270,18 @@ namespace Festispec.ViewModel.customer.customerEvent
         private void Back()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
+        }
+
+        private void SynchEvent(EventVM source)
+        {
+            if (source == null) return;
+
+            using (var storage = new LocalStorage())
+            {
+                storage.Store(source.Id.ToString(), source);
+                storage.Persist();
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Evenement gesynchroniseerd.");
+            }
         }
     }
 }
