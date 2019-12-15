@@ -19,6 +19,7 @@ namespace Festispec.ViewModel.report.element
         private ReportElement _reportElement;
         private IDataParser _dataParser;
         private List<List<string>> _data;
+        private IQuestion _selectedSurveyQuestion;
 
         public ReportVM ReportVM { 
             get {
@@ -159,6 +160,7 @@ namespace Festispec.ViewModel.report.element
                 {
                     _data = _dataParser.ParseData();
                     _reportElement.Data = _dataParser.ToJson();
+                    SelectedSurveyQuestion = _dataParser.Question;
                 }
                 else
                 {
@@ -166,6 +168,20 @@ namespace Festispec.ViewModel.report.element
                     _reportElement.Data = null;
                 }
                 RaisePropertyChanged("DataParser");
+            }
+        }
+
+        public IQuestion SelectedSurveyQuestion { 
+            get {
+                return _selectedSurveyQuestion;
+            }
+            set {
+                _selectedSurveyQuestion = value;
+                if (DataParser != null)
+                {
+                    DataParser.Question = _selectedSurveyQuestion;
+                    _reportElement.Data = DataParser.ToJson();
+                }
             }
         }
 
@@ -222,6 +238,11 @@ namespace Festispec.ViewModel.report.element
 
         public ReportElement ToModel()
         {
+            if (DataParser != null)
+            {
+                DataParser.Question = _selectedSurveyQuestion;
+                _reportElement.Data = DataParser.ToJson();
+            }
             return _reportElement;
         }
 
