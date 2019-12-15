@@ -149,7 +149,6 @@
     <Compile Include="Factory\QuestionFactory.cs" />
     <Compile Include="Interface\IDataParser.cs" />
     <Compile Include="Interface\IReportElement.cs" />
-    <Compile Include="Interface\ISurveyAnswer.cs" />
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
     <Compile Include="Message\ChangeSelectedOrderMessage.cs" />
     <Compile Include="Message\ChangeSelectedReportElementMessage.cs" />
@@ -158,7 +157,7 @@
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
     <Compile Include="Repository\SurveyRepository.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
-    <Compile Include="ViewModel\auth\UserSessionVm.cs" />
+    <Compile Include="ViewModel\auth\UserSessionVM.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
     <Compile Include="Message\ChangeSelectedSurveyMessage.cs" />
     <Compile Include="Message\ChangeSelectedSurveyQuestionMessage.cs" />
