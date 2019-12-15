@@ -129,12 +129,16 @@ namespace Festispec.Web.Controllers
             foreach (var givenAnswer in request)
             {
                 string questionVar = givenAnswer.Key;
+                questionVar = questionVar.Replace("[]", "");
                 questionVar = questionVar.Replace("question.", "");
                 string questionAnswer = givenAnswer.Value;
 
                 Question question = questions.Where(q => q.Variables.Equals(questionVar)).FirstOrDefault();
-                Answer answer = new Answer() { Case = surveyCase, QuestionId = question.Id, Answer1 = questionAnswer };
-                answers.Add(answer);
+                if (question != null)
+                {
+                    Answer answer = new Answer() { Case = surveyCase, QuestionId = question.Id, Answer1 = questionAnswer };
+                    answers.Add(answer);
+                }
             }
             _db.Cases.Add(surveyCase);
             _db.Answers.AddRange(answers);

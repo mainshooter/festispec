@@ -40,6 +40,7 @@ function saveAllFormInputs() {
 				uploadingCase[item.name] = item.value;
 			}
 		});
+		console.log(uploadingCase);
 		saveToLocalStorage(uploadingCase);
 	});
 }
