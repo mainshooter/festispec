@@ -264,9 +264,16 @@ namespace Festispec.ViewModel.report
             {
                 printDialog.PrintDocument(fixedDocument.DocumentPaginator, "Rapport");
             }
-            catch
+            catch (Exception e)
             {
-                _toast.ShowError("Gebruik een bestandsnaam die nog niet bestaat tijdens het 'opslaan als' process.");
+                if (e.Message.Equals("An object that does not derive from System.Exception has been wrapped in a RuntimeWrappedException."))
+                {
+                    _toast.ShowError("Gebruik een bestandsnaam die nog niet bestaat tijdens het 'opslaan als' process.");
+                }
+                else
+                {
+                    _toast.ShowError("Probeer het later opnieuw, of probeer het bestand te exporteren vanaf een andere computer.");
+                }
             }
 
             foreach (var userControl in ReportElementUserControlls)
