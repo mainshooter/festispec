@@ -12,6 +12,8 @@ namespace Festispec.ViewModel.report.element
         private ReportElementVM _reportElementVM;
         private ObservableCollection<IQuestion> _surveyQuestions;
         private List<IDataParser> _dataParsers;
+        private int _selectedSurveyQuestionIndex;
+        private int _selectedDataParserIndex;
 
         public ReportElementVM ReportElementVM {
             get {
@@ -19,7 +21,6 @@ namespace Festispec.ViewModel.report.element
             }
             set {
                 _reportElementVM = value;
-                RaisePropertyChanged("ReportElementVM");
                 if (_reportElementVM != null && _reportElementVM.ReportVM != null)
                 {
                     var questions = _reportElementVM.ReportVM.Order.Survey.Questions;
@@ -31,7 +32,6 @@ namespace Festispec.ViewModel.report.element
                         if (_reportElementVM.DataParser != null && _reportElementVM.DataParser.Question != null && item.Id == _reportElementVM.DataParser.Question.Id)
                         {
                             SelectedSurveyQuestionIndex = index;
-                            break;
                         }
                     }
 
@@ -49,15 +49,28 @@ namespace Festispec.ViewModel.report.element
                         }
                     }
                 }
+                RaisePropertyChanged("ReportElementVM");
             }
         }
 
         public int SelectedDataParserIndex {
-            get;set;
+            get {
+                return _selectedDataParserIndex;
+            }
+            set {
+                _selectedDataParserIndex = value;
+                RaisePropertyChanged("SelectedDataParserIndex");
+            }
         }
 
         public int SelectedSurveyQuestionIndex {
-            get;set;
+            get {
+                return _selectedSurveyQuestionIndex;
+            }
+            set {
+                _selectedSurveyQuestionIndex = value;
+                RaisePropertyChanged("SelectedSurveyQuestionIndex");
+            }
         }
 
         public List<IDataParser> DataParsers { 
