@@ -146,6 +146,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
+    <Compile Include="Message\ChangeSelectedOrderMessage.cs" />
+    <Compile Include="Message\ChangeSelectedReportElementMessage.cs" />
+    <Compile Include="Message\ChangeSelectedReportMessage.cs" />
     <Compile Include="Message\ChangeSelectedCustomerMessage.cs" />
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
@@ -186,16 +189,29 @@
     <Compile Include="ViewModel\planning\DayVM.cs" />
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
-    <Compile Include="ViewModel\report\AddElementVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
+    <Compile Include="ViewModel\report\AddReportVM.cs" />
+    <Compile Include="ViewModel\report\element\Add\AddBarChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Add\AddImageVM.cs" />
+    <Compile Include="ViewModel\report\element\Add\AddLineChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Add\AddPieChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Add\AddTableVM.cs" />
+    <Compile Include="ViewModel\report\element\Add\AddTextVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\EditBarChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\EditImageVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\EditLineChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\EditPieChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\EditTableVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\EditTextVM.cs" />
     <Compile Include="ViewModel\report\element\BarChartVM.cs" />
     <Compile Include="ViewModel\report\element\ImageVM.cs" />
     <Compile Include="ViewModel\report\element\LineChartVM.cs" />
     <Compile Include="ViewModel\report\element\PieChartVM.cs" />
-    <Compile Include="ViewModel\report\element\ReportElementTypesListVM.cs" />
+    <Compile Include="Repository\ReportElementTypesRepository.cs" />
     <Compile Include="ViewModel\report\element\ReportElementVM.cs" />
     <Compile Include="ViewModel\report\element\TableVM.cs" />
     <Compile Include="ViewModel\report\element\TextVM.cs" />
+    <Compile Include="ViewModel\report\ReportInfoVM.cs" />
     <Compile Include="ViewModel\report\ReportVM.cs" />
     <Compile Include="ViewModel\survey\AddSurveyVM.cs" />
     <Compile Include="ViewModel\survey\answer\SurveyAnswerVM.cs" />
@@ -257,6 +273,45 @@
     <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
       <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Report\AddReportPage.xaml.cs">
+      <DependentUpon>AddReportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Add\AddBarChartPage.xaml.cs">
+      <DependentUpon>AddBarChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Add\AddImagePage.xaml.cs">
+      <DependentUpon>AddImagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Add\AddLineChartPage.xaml.cs">
+      <DependentUpon>AddLineChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Add\AddPieChartPage.xaml.cs">
+      <DependentUpon>AddPieChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Add\AddTablePage.xaml.cs">
+      <DependentUpon>AddTablePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Add\AddTextPage.xaml.cs">
+      <DependentUpon>AddTextPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Edit\EditBarChartPage.xaml.cs">
+      <DependentUpon>EditBarChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Edit\EditImagePage.xaml.cs">
+      <DependentUpon>EditImagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Edit\EditLineChartPage.xaml.cs">
+      <DependentUpon>EditLineChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Edit\EditPieChartPage.xaml.cs">
+      <DependentUpon>EditPieChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Edit\EditTablePage.xaml.cs">
+      <DependentUpon>EditTablePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Edit\EditTextPage.xaml.cs">
+      <DependentUpon>EditTextPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Survey\AddSurveyPage.xaml.cs">
       <DependentUpon>AddSurveyPage.xaml</DependentUpon>
     </Compile>
@@ -307,9 +362,6 @@
     </Compile>
     <Compile Include="View\Pages\Survey\QuestionTypes\OpenQuestion\AddOpenQuestionPage.xaml.cs">
       <DependentUpon>AddOpenQuestionPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\Report\element\AddElementPage.xaml.cs">
-      <DependentUpon>AddElementPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usercontrols\Report\AddReportElementUserControl.xaml.cs">
       <DependentUpon>AddReportElementUserControl.xaml</DependentUpon>
@@ -424,6 +476,58 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="View\Pages\Report\AddReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\Add\AddBarChartPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\Report\element\Add\AddImagePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\Report\element\Add\AddLineChartPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\Report\element\Add\AddPieChartPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\Report\element\Add\AddTablePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\Report\element\Add\AddTextPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\Report\element\Edit\EditBarChartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\Edit\EditImagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\Edit\EditLineChartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\Edit\EditPieChartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\Edit\EditTablePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\Edit\EditTextPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Survey\AddSurveyPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -501,10 +605,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Employee\SingleEmployeePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\Report\element\AddElementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -24,15 +24,16 @@
         <Label Grid.Row="1" Grid.Column="0">Wachtwoord:</Label>
         <PasswordBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Name="pw"/>
         <Button Grid.Row="2" 
-                    Grid.Column="1"
-                    Command="{Binding DoLogin}" 
-                    CommandParameter="{Binding ElementName=pw}">
+                Grid.Column="1"
+                Command="{Binding DoLogin}" 
+                CommandParameter="{Binding ElementName=pw}"
+                IsDefault="True">
             Inloggen
         </Button>
         <Button Grid.Row="3" 
-                    Grid.Column="1"
-                    Command="{Binding OfflineCommand}"
-                    Margin="0,10,0,0">
+                Grid.Column="1"
+                Command="{Binding OfflineCommand}"
+                Margin="0,10,0,0">
             Offline evenementen inzien
         </Button>
     </Grid>

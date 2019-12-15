@@ -7,5 +7,8 @@ namespace Festispec.Web.Models.Questions
         int Id { get; set; }
         string Variable { get; set; }
         QuestionDetails Details { get; set; }
+        string DetailsJson { get; set; }
+        int AnswerValue { get; set; }
+        int AnswerText { get; set; }
     }
 }

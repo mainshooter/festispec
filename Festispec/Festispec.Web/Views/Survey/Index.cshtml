@@ -1,24 +1,22 @@
 ﻿@model IEnumerable<Festispec.Domain.Survey>
 
 @{
-    ViewBag.Title = "Survey overview";
+    ViewBag.Title = "In te vullen vragenlijsten";
 }
 
-<h2>Survey overview</h2>
+<h2>In te vullen vragenlijsten</h2>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SurveyStatu.Status)
+            Evenement naam
         </th>
         <th>
             Acties
         </th>
     </tr>
 
+<<<<<<< HEAD
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -34,5 +32,29 @@
         </td>
     </tr>
 }
+=======
+    @if(!Model.Any())
+    {
+        <tr>
+            <td>
+                Geen vragenlijsten gevonden voor vandaag
+            </td>
+            <td>
+            </td>
+        </tr>
+    }
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order.Event.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Afnemen","Details",new { id = item.Id })
+            </td>
+        </tr>
+    }
+>>>>>>> develop
 
 </table>
