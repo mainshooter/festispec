@@ -29,19 +29,6 @@ namespace Festispec.ViewModel.report
         private ReportRepository _reportRepository;
         private ToastVM _toast;
 
-        public ReportVM ReportVM
-        {
-            get
-            {
-                return _reportVM;
-            }
-            set
-            {
-                _reportVM = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public ICommand AddElementCommand { get; set; }
 
         public ICommand GoBackCommand { get; set; }
@@ -57,6 +44,19 @@ namespace Festispec.ViewModel.report
         public string SelectedElementType { get; set; }
 
         public List<string> ElementTypes { get; set; }
+
+        public ReportVM ReportVM
+        {
+            get
+            {
+                return _reportVM;
+            }
+            set
+            {
+                _reportVM = value;
+                RaisePropertyChanged();
+            }
+        }
 
 
         public ReportInfoVM()
@@ -92,7 +92,6 @@ namespace Festispec.ViewModel.report
             {
                 MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
             });
-
         }
 
         private void SaveReport()

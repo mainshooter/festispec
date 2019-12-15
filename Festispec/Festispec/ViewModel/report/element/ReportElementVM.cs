@@ -11,13 +11,14 @@ using System.Windows.Input;
 namespace Festispec.ViewModel.report.element
 {
     public class ReportElementVM : ViewModelBase, IDataErrorInfo
-
     {
         private ReportElement _reportElement;
         private Visibility _visibilityButtons;
 
-        private ReportVM ReportVM {
-            get {
+        public ReportVM ReportVM
+        {
+            get
+            {
                 return CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().ReportVM;
             }
         }
@@ -102,11 +103,14 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public byte[] Image {
-            get {
+        public byte[] Image
+        {
+            get
+            {
                 return _reportElement.Image;
             }
-            set {
+            set
+            {
                 _reportElement.Image = value;
                 RaisePropertyChanged("Image");
             }
@@ -154,7 +158,8 @@ namespace Festispec.ViewModel.report.element
             _reportElement = new ReportElement();
         }
 
-        private void MoveElementUp() {
+        private void MoveElementUp()
+        {
             ReportVM.MoveElement(this, -1);
         }
 
@@ -292,7 +297,7 @@ namespace Festispec.ViewModel.report.element
         {
             get
             {
-                if (Type.Equals("barchart")|| Type.Equals("linechart"))
+                if (Type.Equals("barchart") || Type.Equals("linechart"))
                 {
                     foreach (var property in ValidatedProperties)
                     {
@@ -316,6 +321,7 @@ namespace Festispec.ViewModel.report.element
                 }
             }
         }
+
         public Visibility VisibilityButtons
         {
             get
@@ -328,7 +334,5 @@ namespace Festispec.ViewModel.report.element
                 RaisePropertyChanged();
             }
         }
-
-
     }
 }
