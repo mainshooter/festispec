@@ -25,11 +25,12 @@ namespace Festispec.Web.Controllers
                 return Redirect("~/User/Login");
             }
 
-            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
-                                    .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
-                                    DateTime.Today <= s.Order.Event.EndDate &&
-                                    s.Status == SurveyStatus.Definitief.ToString())
-                                    .ToList();
+            //var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
+            //                        .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
+            //                        DateTime.Today <= s.Order.Event.EndDate &&
+            //                        s.Status == SurveyStatus.Definitief.ToString())
+            //                        .ToList();
+            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event").ToList();
 
             CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
 
@@ -40,7 +41,7 @@ namespace Festispec.Web.Controllers
         {
             foreach(var s in surveysList.ToList())
             {
-                if(_db.InspectorPlannings.ToList().Any(i => i.EmployeeId == UserSession.Current.Employee.Id && i.OrderId == s.Order.Id) == false)
+                if(_db.InspectorPlannings.ToList().Any(i => i.EmployeeId == UserSession.Current.Employee.Id && i.OrderId == s.Order.Id) == false && UserSession.Current.Employee.Department != "Directie")
                 {
                     surveysList.Remove(s);
                 }

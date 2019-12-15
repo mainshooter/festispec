@@ -29,8 +29,18 @@ function saveAllFormInputs() {
 		}
 	}
 	Promise.all(promises).then((values) => {
-		console.log(values);
-		//saveToLocalStorage(values);
+		let uploadingCase = {};
+		values.forEach((item, index, array) => {
+			if (uploadingCase.hasOwnProperty(item.name)) {
+				if (Array.isArray(item.value)) {
+					uploadingCase[item.name].push(item.value[0]);
+				}
+			}
+			else {
+				uploadingCase[item.name] = item.value;
+			}
+		});
+		saveToLocalStorage(uploadingCase);
 	});
 }
 
@@ -50,7 +60,7 @@ async function blobToBase64(inputName, blob) {
 		reader.readAsDataURL(blob);
 		reader.onloadend = function () {
 			resolve({
-				value: reader.result,
+				value: [reader.result],
 				name: inputName,
 			});
 		}
