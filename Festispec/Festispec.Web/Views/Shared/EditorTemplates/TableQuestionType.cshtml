@@ -1,39 +1,45 @@
 ﻿@model Festispec.Web.Models.Questions.Types.TableQuestionType
 
-<<<<<<< HEAD
-<table id="table-@Model.Details.Question" class="table survey-question">
-=======
-<table id="table-@Model.Id" class="table">
->>>>>>> develop
-    <thead>
-        <tr>
-            @foreach (var col in Model.Details.Choices.Cols)
-            {
-                <th scope="col">@col</th>
-            }
-    </tr>
-    @for (var i = 5; i > 0; i--)
-    {
-        <tr>
-            @foreach (var col in Model.Details.Choices.Cols)
-            {
-                <td>
-                @if (Model.Details.Choices.SelectedCol == col)
-                {
-                    <select name="tabel_@Model.Id-vraag_@i">
-                        @foreach (var opt in @Model.Details.Choices.Options)
-                        {
-                            <option value="@opt">@opt</option>
-                        }
-                    </select>
-                }
-                else
-                {
-                    <input type="text" class="form-control" name="tabel_@Model.Id-vraag_@i"/>
-                }
-                </td>
-            }
-        </tr>
-    }
-    </thead>
+<table id="table-@Model.Variable" class="table survey-question">
+	<thead>
+		<tr>
+			@foreach (var col in Model.Details.Choices.Cols)
+			{
+				<th scope="col">@col</th>
+			}
+		</tr>
+	</thead>
+	<tbody>
+		@for (var i = 5; i > 0; i--)
+		{
+			<tr>
+				@foreach (var col in Model.Details.Choices.Cols)
+				{
+					<td>
+						@if (Model.Details.Choices.SelectedCol == col)
+						{
+							int index = 0;
+							<select name="tabel_@Model.Id-vraag_@i">
+								@foreach (var opt in @Model.Details.Choices.Options)
+								{
+									<option value="@index">@opt</option>
+									index++;
+								}
+							</select>
+						}
+						else
+						{
+							<input type="text" class="form-control" name="tabel_@Model.Id-vraag_@i" />
+						}
+					</td>
+				}
+			</tr>
+		}
+	</tbody>
 </table>
+<input type="hidden" name="@Model.Variable">
+@section Scripts {
+	<script>
+		new TableQuestion("table-@Model.Variable", "@Model.Variable");
+	</script>
+}
