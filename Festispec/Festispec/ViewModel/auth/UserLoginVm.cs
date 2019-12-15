@@ -22,14 +22,12 @@ namespace Festispec.ViewModel.auth
         public UserLoginVM()
         {
             DoLogin = new RelayCommand<PasswordBox>(Login);
-            Email = "m.peeters@gmail.com";
             OfflineCommand = new RelayCommand(ShowOffline);
         }
 
         public void Login(PasswordBox passwordBox) 
         {
-            //var password = passwordBox.Password;
-            var password = "GamerBoy95";
+            var password = passwordBox.Password;
             using (var context = new Entities())
             {
                 var employee = context.Employees.FirstOrDefault(e => e.Email == Email);
@@ -44,7 +42,7 @@ namespace Festispec.ViewModel.auth
                 }
                 else
                 {
-                    var userSession = UserSessionVm.Current;
+                    var userSession = UserSessionVM.Current;
                     userSession.Employee = new EmployeeVM(employee);
                     //Vanuit hier kun je doorverwijzen naar een andere pagina oid
                     MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage) });

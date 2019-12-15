@@ -3,9 +3,7 @@ using Festispec.Message;
 using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Report.element.Add;
 using Festispec.ViewModel.toast;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using System;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element.Add

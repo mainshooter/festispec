@@ -3,7 +3,6 @@ using Festispec.Lib.Enums;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace Festispec.ViewModel.report.data
 {
     public class CountDataParser : DataVM, IDataParser

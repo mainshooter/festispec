@@ -13,7 +13,6 @@ namespace Festispec.ViewModel.report.element.Edit
 {
     public class EditLineChartVM : BaseElementEdit
     {
-
         public Func<string, string> YaxisLabelFormat { get; set; }
 
         public ICommand SaveElementCommand { get; set; }
