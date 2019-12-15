@@ -15,18 +15,12 @@ namespace Festispec.ViewModel.report.element
         private ReportElement _reportElement;
         private Visibility _visibilityButtons;
 
-        public ReportVM ReportVM
-        {
-            get
-            {
-                return CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().ReportVM;
-            }
-        }
-
         public ICommand EditElement { get; set; }
         public ICommand DeleteElement { get; set; }
         public ICommand ElementUpCommand { get; set; }
         public ICommand ElementDownCommand { get; set; }
+
+        public virtual Object Data { get; set; }
 
         public int Id
         {
@@ -140,7 +134,13 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public virtual Object Data { get; set; }
+        public ReportVM ReportVM
+        {
+            get
+            {
+                return CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().ReportVM;
+            }
+        }
 
         public ReportElementVM(ReportElement element)
         {
@@ -187,6 +187,21 @@ namespace Festispec.ViewModel.report.element
         {
             return _reportElement;
         }
+
+        public Visibility VisibilityButtons
+        {
+            get
+            {
+                return _visibilityButtons;
+            }
+            set
+            {
+                _visibilityButtons = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        #region Validation
 
         string IDataErrorInfo.Error => null;
 
@@ -321,18 +336,6 @@ namespace Festispec.ViewModel.report.element
                 }
             }
         }
-
-        public Visibility VisibilityButtons
-        {
-            get
-            {
-                return _visibilityButtons;
-            }
-            set
-            {
-                _visibilityButtons = value;
-                RaisePropertyChanged();
-            }
-        }
+        #endregion
     }
 }
