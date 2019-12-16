@@ -26,11 +26,11 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Visibility="{Binding ShowEventInfo}">
                     <StackPanel Orientation="Vertical">
-                        <Label Content="Evenementnaam" FontWeight="Bold"/>
+                        <Label Content="Evenement naam" FontWeight="Bold"/>
                         <Label Content="{Binding EventName}"/>
-                        <Label Content="Begin datum" FontWeight="Bold"/>
+                        <Label Content="Ingepland vanaf" FontWeight="Bold"/>
                         <Label Content="{Binding EventStartDate}"/>
-                        <Label Content="Eind datum" FontWeight="Bold"/>
+                        <Label Content="Ingepland tot" FontWeight="Bold"/>
                         <Label Content="{Binding EventEndDate}"/>
                         <Button Content="{Binding SickPageButton}" Command="{Binding SickButtonCommand}" IsEnabled="{Binding SickButtonDisable}"/>
                     </StackPanel>

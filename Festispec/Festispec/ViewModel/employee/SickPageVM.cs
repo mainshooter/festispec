@@ -1,4 +1,6 @@
 ﻿using Festispec.Domain;
+using Festispec.Message;
+using Festispec.View.Pages.Employee;
 using Festispec.ViewModel.auth;
 using Festispec.ViewModel.planning.plannedEmployee;
 using Festispec.ViewModel.toast;
@@ -14,21 +16,35 @@ namespace Festispec.ViewModel.employee
     {
         private EmployeeVM _employee { get; set; }
         private PlannedEmployeeVM _plannedEmployee { get; set; }
-
         public string ShowEventInfo { get; set; }
         public string ShowNoEvent { get; set; }
         public string SickPageButton { get; set; }
-
         public string EventName { get; set; }
         public bool SickButtonDisable { get; set; }
         public string EventStartDate { get; set; }
         public string EventEndDate { get; set; }
         public ICommand SickButtonCommand { get; set; }
 
-
         public SickPageVM()
         {
             _employee = UserSessionVm.Current.Employee;
+
+            MessengerInstance.Register<ChangePageMessage>(this, message =>
+            {
+                if(message.NextPageType == typeof(SickPage))
+                {
+
+                    ShowEvent();
+                    RaisePropertyChanged("SickButtonDisable");
+                    RaisePropertyChanged("SickPageButton");
+                }
+            });
+
+            ShowEvent();
+        }
+
+        private void ShowEvent()
+        {
             using (var context = new Entities())
             {
                 var tempPlanning = context.InspectorPlannings.ToList()
@@ -44,7 +60,7 @@ namespace Festispec.ViewModel.employee
                         .Where(e => e.Id == tempPlanning.OrderId)
                         .FirstOrDefault();
 
-                    if(tempEvent != null)
+                    if (tempEvent != null)
                     {
                         EventName = tempEvent.Event.Name;
                         EventStartDate = tempEvent.Event.BeginDate.ToString("dd-MM-yyyy HH:mm");
