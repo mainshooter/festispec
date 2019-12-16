@@ -254,8 +254,9 @@ namespace Festispec.ViewModel.report
             image.Margin = new Thickness(25);
             stackPanelSecondPage.Children.Add(header);
             stackPanelSecondPage.Children.Add(image);
+            stackPanelSecondPage.Margin = new Thickness((816 - document.ActualWidth) / 2, 0, 0, 0);
             page.Height = document.ActualHeight + 100;
-            page.Width = document.ActualWidth;
+            page.Width = 816;
             page.Children.Add(stackPanelSecondPage);
             System.Windows.Documents.PageContent pageContent = new System.Windows.Documents.PageContent();
             ((IAddChild)pageContent).AddChild(page);
