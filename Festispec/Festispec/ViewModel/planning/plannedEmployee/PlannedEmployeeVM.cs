@@ -9,7 +9,7 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         private InspectorPlanning _plannedEmployee;
 
         public EmployeeVM Employee { get; set; }
-        public DayVM Day { get; set; }
+        public int OrderId => _plannedEmployee.OrderId;
 
         public string Status {
             get => _plannedEmployee.Status;
@@ -54,6 +54,8 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             set => _plannedEmployee.WorkedTill = value;
         }
 
+        public int DayId => _plannedEmployee.DayId;
+
         public PlannedEmployeeVM(InspectorPlanning pe)
         {
             _plannedEmployee = pe;
@@ -63,6 +65,11 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         public PlannedEmployeeVM()
         {
             _plannedEmployee = new InspectorPlanning();
+        }
+
+        public InspectorPlanning ToModel()
+        {
+            return _plannedEmployee;
         }
     }
 }
