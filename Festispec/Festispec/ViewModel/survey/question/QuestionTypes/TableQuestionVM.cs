@@ -113,7 +113,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public TableQuestionVM()
         {
             _surveyQuestion = new Question();
-            Type = Lib.Survey.Question.QuestionType.TableQuestion;
+            Type = Lib.Enums.QuestionType.TableQuestion;
             QuestionDetails = new QuestionDetails();
             ComboBoxItems = new ObservableCollection<string>();
         }

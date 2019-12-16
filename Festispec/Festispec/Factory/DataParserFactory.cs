@@ -1,5 +1,6 @@
 ﻿using Festispec.Domain;
 using Festispec.Interface;
+using Festispec.Lib.Enums;
 using Festispec.ViewModel.report.data;
 using Newtonsoft.Json;
 using System;
@@ -17,12 +18,12 @@ namespace Festispec.Factory
         {
             DataTypes = new List<string>()
             {
-                "SELECT",
-                "MIN",
-                "HIGH",
-                "AVG",
-                "COUNT",
-                "COUNT_OPTIONS"
+                DataParserType.SELECT,
+                DataParserType.MIN,
+                DataParserType.MAX,
+                DataParserType.AVG,
+                DataParserType.COUNT,
+                DataParserType.COUNTOPTIONS,
             };
             DataParsers = new List<IDataParser>();
             DataParsers.Add(new SelectDataParserVM());
@@ -59,27 +60,27 @@ namespace Festispec.Factory
             {
                 throw new Exception("Type not found");
             }
-            if (type.Equals("SELECT"))
+            if (type.Equals(DataParserType.SELECT))
             {
                 return new SelectDataParserVM();
             }
-            if (type.Equals("COUNT"))
+            if (type.Equals(DataParserType.COUNT))
             {
                 return new CountDataParser();
             }
-            if (type.Equals("COUNT_OPTIONS"))
+            if (type.Equals(DataParserType.COUNTOPTIONS))
             {
                 return new CountOptionsDataParser();
             }
-            if (type.Equals("MIN"))
+            if (type.Equals(DataParserType.MIN))
             {
                 return new MinDataParserVM();
             }
-            if (type.Equals("MAX"))
+            if (type.Equals(DataParserType.MAX))
             {
                 return new MaxDataParserVM();
             }
-            if (type.Equals("AVG"))
+            if (type.Equals(DataParserType.AVG))
             {
                 return new AvgDataParser();
             }

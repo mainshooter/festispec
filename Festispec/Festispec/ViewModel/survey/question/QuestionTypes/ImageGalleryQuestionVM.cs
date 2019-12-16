@@ -59,7 +59,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         {
             _surveyQuestion = new Question();
             QuestionDetails = new QuestionDetails();
-            Type = Lib.Survey.Question.QuestionType.ImageGaleryQuestion;
+            Type = Lib.Enums.QuestionType.ImageGaleryQuestion;
             QuestionDetails.Choices.Cols.Add("");
         }
 

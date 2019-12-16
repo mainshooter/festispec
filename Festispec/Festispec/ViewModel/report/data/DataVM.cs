@@ -59,5 +59,14 @@ namespace Festispec.ViewModel.report.data
             }
             return answers;
         }
+
+        protected bool CanRun()
+        {
+            if (Question == null)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

@@ -58,7 +58,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public SliderQuestionVM()
         {
             _surveyQuestion = new Question();
-            Type = Lib.Survey.Question.QuestionType.SliderQuestion;
+            Type = Lib.Enums.QuestionType.SliderQuestion;
             QuestionDetails = new QuestionDetails();
             QuestionDetails.Choices.Cols.Add("");
             QuestionDetails.Choices.Cols.Add("");

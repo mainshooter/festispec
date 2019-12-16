@@ -9,9 +9,9 @@ namespace Festispec.ViewModel.report.data
     {
         public override string Type => DataParserType.COUNTOPTIONS;
         public List<string> SupportedQuestions => new List<string>() {
-            Lib.Survey.Question.QuestionType.ClosedQuestion,
-            Lib.Survey.Question.QuestionType.MultipleChoiseQuestion,
-            Lib.Survey.Question.QuestionType.SliderQuestion
+            Lib.Enums.QuestionType.ClosedQuestion,
+            Lib.Enums.QuestionType.MultipleChoiseQuestion,
+            Lib.Enums.QuestionType.SliderQuestion
         };
         public List<string> SupportedVisuals => new List<string>() { 
             ReportElementType.Table,
@@ -37,16 +37,20 @@ namespace Festispec.ViewModel.report.data
 
         public List<List<string>> ParseData()
         {
+            if (!CanRun())
+            {
+                return new List<List<string>>();
+            }
             string questionType = Question.QuestionType;
-            if (questionType.Equals(Lib.Survey.Question.QuestionType.ClosedQuestion))
+            if (questionType.Equals(Lib.Enums.QuestionType.ClosedQuestion))
             {
                 return ParseDataClosedQuestion();
             }
-            if (questionType.Equals(Lib.Survey.Question.QuestionType.MultipleChoiseQuestion))
+            if (questionType.Equals(Lib.Enums.QuestionType.MultipleChoiseQuestion))
             {
                 return ParseDataMultipleChoise();
             }
-            if (questionType.Equals(Lib.Survey.Question.QuestionType.SliderQuestion))
+            if (questionType.Equals(Lib.Enums.QuestionType.SliderQuestion))
             {
                 return ParseSliderQuestion();
             }

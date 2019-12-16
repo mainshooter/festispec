@@ -61,7 +61,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         {
             _surveyQuestion = new Question();
             QuestionDetails = new QuestionDetails();
-            Type = Lib.Survey.Question.QuestionType.DrawQuestion;
+            Type = Lib.Enums.QuestionType.DrawQuestion;
             QuestionDetails.Images.Add(new byte[0]);
         }
 

@@ -156,7 +156,7 @@ namespace Festispec.ViewModel.report.element
             }
             set {
                 _dataParser = value;
-                if (_dataParser != null)
+                if (_dataParser != null && _dataParser.Question != null)
                 {
                     _data = _dataParser.ParseData();
                     _reportElement.Data = _dataParser.ToJson();

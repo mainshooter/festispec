@@ -2,10 +2,6 @@
 using Festispec.Interface;
 using Festispec.ViewModel.survey.question.QuestionTypes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Festispec.Factory
 {
@@ -15,21 +11,21 @@ namespace Festispec.Factory
         {
             switch (question.Type)
             {
-                case "Open vraag":
+                case Lib.Enums.QuestionType.OpenQuestion:
                     return new OpenQuestionVM(question);
-                case "Gesloten vraag":
+                case Lib.Enums.QuestionType.ClosedQuestion:
                     return new ClosedQuestionVM(question);
-                case "Schuifbalk vraag":
+                case Lib.Enums.QuestionType.SliderQuestion:
                     return new SliderQuestionVM(question);
-                case "Opmerking vraag":
+                case Lib.Enums.QuestionType.NoteQuestion:
                     return new CommentFieldVM(question);
-                case "Afbeelding galerij vraag":
+                case Lib.Enums.QuestionType.ImageGaleryQuestion:
                     return new ImageGalleryQuestionVM(question);
-                case "Teken vraag":
+                case Lib.Enums.QuestionType.DrawQuestion:
                     return new DrawQuestionVM(question);
-                case "Meerkeuze vraag":
+                case Lib.Enums.QuestionType.MultipleChoiseQuestion:
                     return new MultipleChoiceQuestionVM(question);
-                case "Tabel vraag":
+                case Lib.Enums.QuestionType.TableQuestion:
                     return new TableQuestionVM(question);
                 default:
                     throw new NotSupportedException("Question type not supported.");

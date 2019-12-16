@@ -58,7 +58,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         {
             _surveyQuestion = new Question();
             QuestionDetails = new QuestionDetails();
-            Type = Lib.Survey.Question.QuestionType.ClosedQuestion;
+            Type = Lib.Enums.QuestionType.ClosedQuestion;
         }
 
         public ClosedQuestionVM(Question surveyQuestion)

@@ -9,11 +9,11 @@ namespace Festispec.ViewModel.report.data
     {
         public override string Type => DataParserType.COUNT;
         public List<string> SupportedQuestions => new List<string>() {
-            Lib.Survey.Question.QuestionType.OpenQuestion,
-            Lib.Survey.Question.QuestionType.MultipleChoiseQuestion,
-            Lib.Survey.Question.QuestionType.TableQuestion,
-            Lib.Survey.Question.QuestionType.SliderQuestion,
-            Lib.Survey.Question.QuestionType.ClosedQuestion,
+            Lib.Enums.QuestionType.OpenQuestion,
+            Lib.Enums.QuestionType.MultipleChoiseQuestion,
+            Lib.Enums.QuestionType.TableQuestion,
+            Lib.Enums.QuestionType.SliderQuestion,
+            Lib.Enums.QuestionType.ClosedQuestion,
         };
         public List<string> SupportedVisuals => new List<string>() {
             ReportElementType.Table,
@@ -33,6 +33,10 @@ namespace Festispec.ViewModel.report.data
 
         public List<List<string>> ParseData()
         {
+            if (!CanRun())
+            {
+                return new List<List<string>>();
+            }
             var result = new List<List<string>>();
             var answers = GetQuestionAnswers();
             List<string> headerRow = new List<string>();

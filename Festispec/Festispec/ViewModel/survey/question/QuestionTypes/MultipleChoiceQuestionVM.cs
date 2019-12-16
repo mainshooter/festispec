@@ -80,7 +80,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public MultipleChoiceQuestionVM()
         {
             _surveyQuestion = new Question();
-            Type = Lib.Survey.Question.QuestionType.MultipleChoiseQuestion;
+            Type = Lib.Enums.QuestionType.MultipleChoiseQuestion;
             QuestionDetails = new QuestionDetails();
         }
 

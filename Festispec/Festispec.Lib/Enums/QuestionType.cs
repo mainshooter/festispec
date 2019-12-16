@@ -1,5 +1,5 @@
 ﻿
-namespace Festispec.Lib.Survey.Question
+namespace Festispec.Lib.Enums
 {
     public class QuestionType
     {

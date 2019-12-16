@@ -10,7 +10,7 @@ namespace Festispec.ViewModel.report.data
     {
         public override string Type => DataParserType.AVG;
         public List<string> SupportedQuestions => new List<string>() { 
-            Lib.Survey.Question.QuestionType.SliderQuestion
+            Lib.Enums.QuestionType.SliderQuestion
         };
         public List<string> SupportedVisuals => new List<string>() {
             ReportElementType.Table
@@ -34,6 +34,10 @@ namespace Festispec.ViewModel.report.data
 
         private List<List<string>> ParseDefaultData()
         {
+            if (!CanRun())
+            {
+                return new List<List<string>>();
+            }
             List<List<string>> result = new List<List<string>>();
             List<int> intAnsers = new List<int>();
             var answers = GetQuestionAnswers();
