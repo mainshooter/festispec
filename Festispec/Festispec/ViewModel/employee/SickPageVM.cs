@@ -28,15 +28,15 @@ namespace Festispec.ViewModel.employee
         public SickPageVM()
         {
             _employee = UserSessionVm.Current.Employee;
+            SickButtonCommand = new RelayCommand(AddSickness);
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
                 if(message.NextPageType == typeof(SickPage))
                 {
-
                     ShowEvent();
-                    RaisePropertyChanged("SickButtonDisable");
-                    RaisePropertyChanged("SickPageButton");
+                    RaisePropertyChanged(() => SickButtonDisable);
+                    RaisePropertyChanged(() => SickPageButton);
                 }
             });
 
@@ -79,7 +79,6 @@ namespace Festispec.ViewModel.employee
 
                             SickButtonDisable = true;
                             SickPageButton = "Ziekmelden";
-                            SickButtonCommand = new RelayCommand(AddSickness);
                         }
                     }
                 }
