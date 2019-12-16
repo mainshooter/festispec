@@ -85,6 +85,7 @@
     </Reference>
     <Reference Include="MaterialDesignColors, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.1\lib\net45\MaterialDesignColors.dll</HintPath>
+	</Reference>
     <Reference Include="LocalStorage, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LocalStorage.2.0.0\lib\netstandard2.0\LocalStorage.dll</HintPath>
     </Reference>
@@ -286,6 +287,7 @@
     </Compile>
     <Compile Include="View\Pages\PasswordReset\VerifyCodePage.xaml.cs">
       <DependentUpon>VerifyCodePage.xaml</DependentUpon>
+	</Compile>
     <Compile Include="View\Pages\Report\AddReportPage.xaml.cs">
       <DependentUpon>AddReportPage.xaml</DependentUpon>
     </Compile>
