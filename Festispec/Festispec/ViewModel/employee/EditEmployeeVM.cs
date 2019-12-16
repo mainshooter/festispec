@@ -87,7 +87,13 @@ namespace Festispec.ViewModel.employee
             }
             using (var context = new Entities())
             {
-                context.Entry(Employee.ToModel()).State = EntityState.Modified;
+                if (!Employee.Department.Name.Equals("Inspectie"))
+                {
+                    Employee.Certificate = 0;
+                }
+                Employee temp = Employee.ToModel();
+                temp.Department1 = null;
+                context.Entry(temp).State = EntityState.Modified;
                 context.SaveChanges();
             }
             CloseEditEmployee();
