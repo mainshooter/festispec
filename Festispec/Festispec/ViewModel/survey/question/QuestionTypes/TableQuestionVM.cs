@@ -19,7 +19,8 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private string _columnName;
         private ObservableCollection<string> _comboBoxItems;
 
-        public int Id {
+        public int Id 
+        {
             get {
                 return _surveyQuestion.Id;
             }
