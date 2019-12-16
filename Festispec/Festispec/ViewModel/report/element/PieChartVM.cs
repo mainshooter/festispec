@@ -11,7 +11,18 @@ namespace Festispec.ViewModel.report.element
 {
     public class PieChartVM : ReportElementVM
     {
-        public SeriesCollection SeriesCollection { get; set; }
+        private SeriesCollection _seriesCollection;
+        public SeriesCollection SeriesCollection 
+        {
+            get {
+                return _seriesCollection;
+            }
+            set 
+            {
+                _seriesCollection = value;
+                RaisePropertyChanged("SeriesCollection");
+            }
+        }
 
         public PieChartVM()
         {
@@ -36,7 +47,7 @@ namespace Festispec.ViewModel.report.element
 
         public void Edit()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditTextPage) });
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditPieChartPage) });
             MessengerInstance.Send<ChangeSelectedReportElementMessage>(new ChangeSelectedReportElementMessage()
             {
                 ReportElementVM = this,

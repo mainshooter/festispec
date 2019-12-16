@@ -69,6 +69,8 @@ namespace Festispec.ViewModel.report.element
             }
             set {
                 _selectedDataParserIndex = value;
+                
+                ReportElementVM.DataParser = DataParsers[_selectedDataParserIndex];
                 RaisePropertyChanged("SelectedDataParserIndex");
             }
         }
@@ -79,6 +81,7 @@ namespace Festispec.ViewModel.report.element
             }
             set {
                 _selectedSurveyQuestionIndex = value;
+                ReportElementVM.SelectedSurveyQuestion = SurveyQuestions[_selectedSurveyQuestionIndex];
                 RaisePropertyChanged("SelectedSurveyQuestionIndex");
             }
         }
@@ -116,6 +119,7 @@ namespace Festispec.ViewModel.report.element
 
         public void EditElement()
         {
+            ReportElementVM.DataParser.Question = ReportElementVM.SelectedSurveyQuestion;
             ToastVM toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
             if (CanUseOptions())
             {

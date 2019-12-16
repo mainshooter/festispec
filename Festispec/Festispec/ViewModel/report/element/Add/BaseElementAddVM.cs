@@ -26,6 +26,7 @@ namespace Festispec.ViewModel.report.element
             }
             set {
                 _reportElementVM = value;
+                RaisePropertyChanged("ReportElementVM");
             }
         }
 

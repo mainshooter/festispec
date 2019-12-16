@@ -159,8 +159,8 @@ namespace Festispec.ViewModel.report.element
                 if (_dataParser != null && _dataParser.Question != null)
                 {
                     _data = _dataParser.ParseData();
-                    _reportElement.Data = _dataParser.ToJson();
                     SelectedSurveyQuestion = _dataParser.Question;
+                    _reportElement.Data = _dataParser.ToJson();
                 }
                 else
                 {
@@ -180,7 +180,7 @@ namespace Festispec.ViewModel.report.element
                 if (DataParser != null)
                 {
                     DataParser.Question = _selectedSurveyQuestion;
-                    _reportElement.Data = DataParser.ToJson();
+                    _reportElement.Data = _dataParser.ToJson();
                 }
                 RaisePropertyChanged("SelectedSurveyQuestion");
             }
