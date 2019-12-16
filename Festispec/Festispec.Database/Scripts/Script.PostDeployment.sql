@@ -50,6 +50,7 @@ COMMIT TRANSACTION
 --- Password of users ---
 -- Inspectie: t.deenik@gmail.com, GamerBoy95
 -- Directie:  m.peeters@gmail.com, GamerBoy95
+-- Iedere gebruiker heeft als wachtwoord: GamerBoy95
 -------------------------
 BEGIN TRANSACTION
 INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
