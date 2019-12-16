@@ -75,8 +75,6 @@ namespace Festispec.ViewModel.employee
                         RaisePropertyChanged(() => EventStartDate);
                         RaisePropertyChanged(() => EventEndDate);
 
-                        //RaisePropertyChanged();
-
                         if (CheckIfAlreadySick())
                         {
                             SickButtonDisable = false;
