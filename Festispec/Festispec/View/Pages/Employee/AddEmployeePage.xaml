@@ -19,22 +19,16 @@
             <StackPanel Margin="25" Width="200" HorizontalAlignment="Left">
                 <Label Content="Voornaam" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Employee.Firstname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-                <Label Content="Tussenvoegsel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105"/>
+                <Label Content="Tussenvoegsel (optioneel)" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Employee.Prefix, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
                 <Label Content="Achternaam" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
                 <TextBox HorizontalAlignment="Left" Height="25 " Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Employee.Lastname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
                 <Label Content="Straat" HorizontalAlignment="Left" VerticalAlignment="Top" Width="49"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Employee.Street, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel>
-                        <Label Content="Huisnummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94"/>
-                        <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumber, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="80"/>
-                    </StackPanel>
-                    <StackPanel>
-                        <Label Content="Toevoeging" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94"/>
-                        <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumberAddition, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="76"/>
-                    </StackPanel>
-                </StackPanel>
+                <Label Content="Huisnummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumber, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+                <Label Content="Huisnummer toevoeging (optioneel)" HorizontalAlignment="Left" VerticalAlignment="Top" Width="210"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Employee.HouseNumberAddition, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
                 <Label Content="Plaats" HorizontalAlignment="Left" VerticalAlignment="Top" Width="49"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,10" TextWrapping="Wrap" Text="{Binding Path=Employee.City, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
             </StackPanel>

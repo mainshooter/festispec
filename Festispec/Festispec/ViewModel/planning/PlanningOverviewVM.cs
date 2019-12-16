@@ -143,8 +143,6 @@ namespace Festispec.ViewModel.planning
                         _filteredPlannedEmployeeList.Add(inspectorPlanning);
                     }
                 }
-
-                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess(_filteredPlannedEmployeeList.Count + " resultaten gefilterd!");
             }
 
             FilteredPlannedEmployeeList = _filteredPlannedEmployeeList;
