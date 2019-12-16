@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Festispec.Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Festispec.Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="Id" />
@@ -910,7 +910,8 @@
             <End Role="Survey" EntitySet="Survey" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Festispec.Domain" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1051,6 +1052,7 @@
           <Property Name="PasswordResetToken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ResetTokenEndTime" Type="DateTime" Precision="3" />
           <Property Name="Iban" Type="String" MaxLength="27" FixedLength="false" Unicode="true" />
+          <Property Name="Certificate" Type="Byte" />
           <NavigationProperty Name="AvailabilityInspectors" Relationship="Self.FK_AvailabilityInspector_Employee" FromRole="Employee" ToRole="AvailabilityInspector" />
           <NavigationProperty Name="BetterReportInspectors" Relationship="Self.FK_BetterReportInspector_Employee" FromRole="Employee" ToRole="BetterReportInspector" />
           <NavigationProperty Name="Cases" Relationship="Self.FK_Case_Employee" FromRole="Employee" ToRole="Case" />
@@ -1060,7 +1062,6 @@
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Employee" FromRole="Employee" ToRole="Order" />
           <NavigationProperty Name="Quotations" Relationship="Self.FK_Quotation_Employee" FromRole="Employee" ToRole="Quotation" />
           <NavigationProperty Name="SickReportInspectors" Relationship="Self.FK_SickReportInspector_Employee" FromRole="Employee" ToRole="SickReportInspector" />
-          <Property Name="Certificate" Type="Byte" />
         </EntityType>
         <EntityType Name="EmployeeStatu">
           <Key>
@@ -2001,7 +2002,6 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="Festispec.Domain.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="Certificate" ColumnName="Certificate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -2020,6 +2020,7 @@
                 <ScalarProperty Name="PasswordResetToken" ColumnName="PasswordResetToken" />
                 <ScalarProperty Name="ResetTokenEndTime" ColumnName="ResetTokenEndTime" />
                 <ScalarProperty Name="Iban" ColumnName="Iban" />
+                <ScalarProperty Name="Certificate" ColumnName="Certificate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
