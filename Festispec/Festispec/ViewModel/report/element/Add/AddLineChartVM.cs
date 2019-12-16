@@ -11,20 +11,6 @@ namespace Festispec.ViewModel.report.element.Add
 {
     public class AddLineChartVM : BaseElementAdd
     {
-        private LineChartVM _reportElementVM;
-        public LineChartVM ReportElementVM
-        {
-            get
-            {
-                return _reportElementVM;
-            }
-            set
-            {
-                _reportElementVM = value;
-                RaisePropertyChanged("ReportElementVM");
-            }
-        }
-
         public Func<string, string> YaxisLabelFormat { get; set; }
 
         public ICommand SaveElementCommand { get; set; }

@@ -10,20 +10,6 @@ namespace Festispec.ViewModel.report.element.Add
 {
     public class AddPieChartVM : BaseElementAdd
     {
-        private PieChartVM _reportElementVM;
-        public PieChartVM ReportElementVM
-        {
-            get
-            {
-                return _reportElementVM;
-            }
-            set
-            {
-                _reportElementVM = value;
-                RaisePropertyChanged("ReportElementVM");
-            }
-        }
-
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
 

@@ -12,21 +12,6 @@ namespace Festispec.ViewModel.report.Add
 {
     public class AddTextVM : ViewModelBase
     {
-        private TextVM _reportElementVM;
-
-        public TextVM ReportElementVM
-        {
-            get
-            {
-                return _reportElementVM;
-            }
-            set
-            {
-                _reportElementVM = value;
-                RaisePropertyChanged("ReportElementVM");
-            }
-        }
-
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
 

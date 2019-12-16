@@ -10,21 +10,6 @@ namespace Festispec.ViewModel.report.element.Add
 {
     public class AddTableVM : BaseElementAdd
     {
-        private TableVM _reportElementVM;
-
-        public TableVM ReportElementVM
-        {
-            get
-            {
-                return _reportElementVM;
-            }
-            set
-            {
-                _reportElementVM = value;
-                RaisePropertyChanged("ReportElementVM");
-            }
-        }
-
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
 
