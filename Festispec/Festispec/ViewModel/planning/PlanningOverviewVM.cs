@@ -1,18 +1,18 @@
-﻿using Festispec.Message;
+﻿using Festispec.Domain;
+using Festispec.Message;
+using Festispec.View.Pages.Customer.Event;
+using Festispec.View.Pages.Planning;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.planning.plannedEmployee;
+using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
-using Festispec.View.Pages.Customer.Event;
-using Festispec.View.Pages.Planning;
-using Festispec.ViewModel.toast;
-using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows;
-using Festispec.Domain;
+using System.Windows.Input;
 
 namespace Festispec.ViewModel.planning
 {
@@ -25,9 +25,11 @@ namespace Festispec.ViewModel.planning
         private EventVM _eventVM;
 
         public string SelectedFilter { get; set; }
+
         public ICommand BackCommand { get; set; }
         public ICommand EditInspectorCommand { get; set; }
         public ICommand DeleteInspectorCommand { get; set; }
+        public ICommand AddInspectorCommand { get; set; }
         public string EventName => EventVM?.Name;
 
         public EventVM EventVM
@@ -58,9 +60,6 @@ namespace Festispec.ViewModel.planning
                             break;
                         case "Evenement":
                             temp = new ObservableCollection<PlannedEmployeeVM>(_filteredPlannedEmployeeList.Select(i => i).Where(i => i.Day.Order.Event.Name.ToLower().Contains(Filter.ToLower())));
-                            break;
-                        case "Status":
-                            temp = new ObservableCollection<PlannedEmployeeVM>(_filteredPlannedEmployeeList.Select(i => i).Where(i => i.Status.ToLower().Contains(Filter.ToLower())));
                             break;
                     }
 
@@ -114,35 +113,45 @@ namespace Festispec.ViewModel.planning
 
         public PlanningOverviewVM()
         {
-            MessengerInstance.Register<ChangeSelectedEventMessage>(this, message => {
+            MessengerInstance.Register<ChangeSelectedEventMessage>(this, message =>
+            {
                 EventVM = message.Event;
                 GetInitialPlannedEmployeeList();
             });
 
-            MessengerInstance.Register<ChangePageMessage>(this, message => {
+            MessengerInstance.Register<ChangePageMessage>(this, message =>
+            {
                 if (message.NextPageType == typeof(PlanningOverviewPage))
                 {
                     GetInitialPlannedEmployeeList();
                 }
             });
-            EditInspectorCommand = new RelayCommand<PlannedEmployeeVM>(EditInspector);
-            DeleteInspectorCommand = new RelayCommand<PlannedEmployeeVM>(DeleteInspector);
+            AddInspectorCommand = new RelayCommand(AddInspector, CanAdd);
+            EditInspectorCommand = new RelayCommand<PlannedEmployeeVM>(EditInspector, CanUse);
+            DeleteInspectorCommand = new RelayCommand<PlannedEmployeeVM>(DeleteInspector, CanUse);
             BackCommand = new RelayCommand(Back);
             FilterItems = new List<string>();
             SelectedFilter = FilterItems.First();
             Filter = "";
         }
 
+        private void AddInspector()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddPlannedEmployeePage) });
+            MessengerInstance.Send<ChangeSelectedPlannedEmployeeEventMessage>(new ChangeSelectedPlannedEmployeeEventMessage()
+            {
+                EventVM = EventVM
+            });
+        }
+
         private void EditInspector(PlannedEmployeeVM source)
         {
-            EventVM.RaisePropertyChangedUniversalDate();
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditPlannedEmployeePage) });
             MessengerInstance.Send<ChangeSelectedPlannedEmployeeMessage>(new ChangeSelectedPlannedEmployeeMessage()
             {
                 PlannedEmployee = source,
-                PlannedEmployeesList = _filteredPlannedEmployeeList,
-                EventVM = EventVM               
-            }) ;
+                EventVM = EventVM
+            });
         }
 
         private void DeleteInspector(PlannedEmployeeVM source)
@@ -160,7 +169,7 @@ namespace Festispec.ViewModel.planning
                     context.SaveChanges();
                 }
                 _filteredPlannedEmployeeList.Remove(source);
-                RaisePropertyChanged("EventListFiltered");
+                RaisePropertyChanged("FilteredPlannedEmployeeList");
             }
         }
 
@@ -169,7 +178,7 @@ namespace Festispec.ViewModel.planning
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
         }
 
-        private void GetInitialPlannedEmployeeList() 
+        private void GetInitialPlannedEmployeeList()
         {
             if (EventVM != null)
             {
@@ -182,11 +191,27 @@ namespace Festispec.ViewModel.planning
                         _filteredPlannedEmployeeList.Add(inspectorPlanning);
                     }
                 }
-
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess(_filteredPlannedEmployeeList.Count + " resultaten gefilterd!");
             }
-
             FilteredPlannedEmployeeList = _filteredPlannedEmployeeList;
+        }
+
+        private bool CanUse(PlannedEmployeeVM arg)
+        {
+            if (arg == null || arg.PlannedStartTime < DateTime.Today)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private bool CanAdd()
+        {
+            if (EventVM == null || EventVM.EndDate < DateTime.Today)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

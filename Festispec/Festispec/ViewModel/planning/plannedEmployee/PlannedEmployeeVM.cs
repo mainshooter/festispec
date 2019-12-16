@@ -1,24 +1,67 @@
 ﻿using Festispec.Domain;
+using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.employee;
+using GalaSoft.MvvmLight;
 using System;
 
 namespace Festispec.ViewModel.planning.plannedEmployee
 {
-    public class PlannedEmployeeVM
+    public class PlannedEmployeeVM : ViewModelBase
     {
         private InspectorPlanning _plannedEmployee;
+        private DayVM _day;
+        private EmployeeVM _employee;
+        private OrderVM _order;
 
-        public EmployeeVM Employee { get; set; }
-        public DayVM Day { get; set; }
+        public OrderVM OrderVM
+        {
+            get
+            {
+                return _order;
+            }
+            set
+            {
+                _order = value;
+                _plannedEmployee.OrderId = value.Id;
+            }
+        }
 
-        public string Status {
-            get => _plannedEmployee.Status;
-            set => _plannedEmployee.Status = value;
+        public EmployeeVM Employee
+        {
+            get
+            {
+                return _employee;
+            }
+            set
+            {
+                _employee = value;
+                _plannedEmployee.EmployeeId = value.Id;
+            }
+        }
+
+        public DayVM Day
+        {
+            get
+            {
+                return _day;
+            }
+            set
+            {
+                _day = value;
+                _plannedEmployee.DayId = value.Id;
+            }
         }
 
         public DateTime PlannedStartTime {
             get => _plannedEmployee.PlannedFrom;
-            set => _plannedEmployee.PlannedFrom = value;
+            set
+            {
+                if (PlannedEndTime > value)
+                {
+                    _plannedEmployee.PlannedFrom = value;
+                    RaisePropertyChanged(() => PlannedStartTime);
+                }
+            }
         }
 
         public string ActualStartDateTime
@@ -32,7 +75,14 @@ namespace Festispec.ViewModel.planning.plannedEmployee
 
         public DateTime PlannedEndTime {
             get => _plannedEmployee.PlannedTill;
-            set => _plannedEmployee.PlannedTill = value;
+            set
+            {
+                if (PlannedStartTime < value)
+                {
+                    _plannedEmployee.PlannedTill = value;
+                    RaisePropertyChanged(() => PlannedEndTime);
+                }
+            } 
         }
 
         public string ActualEndDateTime
@@ -58,6 +108,12 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         {
             _plannedEmployee = pe;
             Employee = new EmployeeVM(pe.Employee);
+        }
+
+        public PlannedEmployeeVM(InspectorPlanning pe, EmployeeVM employee)
+        {
+            _plannedEmployee = pe;
+            Employee = employee;
         }
 
         public PlannedEmployeeVM()

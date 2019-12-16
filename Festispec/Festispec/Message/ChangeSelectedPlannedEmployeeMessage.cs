@@ -7,7 +7,6 @@ namespace Festispec.Message
     public class ChangeSelectedPlannedEmployeeMessage
     {
         public PlannedEmployeeVM PlannedEmployee { get; set; }
-        public ObservableCollection<PlannedEmployeeVM> PlannedEmployeesList { get; set; }
         public EventVM EventVM { get; set; }
     }
 }

@@ -109,6 +109,8 @@ namespace Festispec.ViewModel.employee.availabilty
         public AvailabiltyVM(AvailabilityInspector av)
         {
             _availabilityInspector = av;
+            AvailabiltyStart = av.AvailableFrom;
+            AvailabiltyEnd = av.AvailableTill;
         }
 
         public AvailabiltyVM()

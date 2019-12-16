@@ -5,13 +5,7 @@ using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.planning.plannedEmployee;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.planning
@@ -20,13 +14,11 @@ namespace Festispec.ViewModel.planning
     {
         private PlannedEmployeeVM _plannedEmployeeVM;
 
-
-        public ObservableCollection<PlannedEmployeeVM> PlannedEmployeeList;
-
         public ICommand BackCommand { get; set; }
         public ICommand SaveChangesCommand { get; set; }
 
         private EventVM _eventVM { get; set; }
+
         public EventVM EventVM
         {
             get
@@ -55,26 +47,11 @@ namespace Festispec.ViewModel.planning
             }
         }
 
-        //public ObservableCollection<PlannedEmployeeVM> PlannedEmployeeList
-        //{
-        //    get
-        //    {
-        //        return PlannedEmployeeList;
-        //    }
-        //    set
-        //    {
-        //        _plannedEmployeeList = value;
-        //        RaisePropertyChanged(() => PlannedEmployeeList);
-        //    }
-        //}
-
-
         public EditPlannedEmployeeVM()
         {
             this.MessengerInstance.Register<ChangeSelectedPlannedEmployeeMessage>(this, message =>
             {
                 PlannedEmployeeVM = message.PlannedEmployee;
-                PlannedEmployeeList = message.PlannedEmployeesList;
                 EventVM = message.EventVM;
             });
             BackCommand = new RelayCommand(Back);
@@ -83,9 +60,11 @@ namespace Festispec.ViewModel.planning
 
         private void EditPlannedEmployee()
         {
-            using(var context = new Entities())
+            PlannedEmployeeVM.WorkStartTime = PlannedEmployeeVM.PlannedStartTime;
+            PlannedEmployeeVM.WorkEndTime = PlannedEmployeeVM.PlannedEndTime;
+            using (var context = new Entities())
             {
-                context.InspectorPlannings.Attach(this.PlannedEmployeeVM.ToModel());
+                context.InspectorPlannings.Attach(PlannedEmployeeVM.ToModel());
                 context.Entry(PlannedEmployeeVM.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
             }
@@ -95,15 +74,6 @@ namespace Festispec.ViewModel.planning
         private void Back()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
-        }
-
-        public void GetAvailableInspectors()
-        {
-            var planned = new ObservableCollection<PlannedEmployeeVM>();
-            using (var context = new Entities())
-            {
-                planned = new ObservableCollection<PlannedEmployeeVM>(context.InspectorPlannings.ToList().Select(inspector => new PlannedEmployeeVM(inspector)));
-            }
         }
     }
 }

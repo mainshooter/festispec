@@ -68,7 +68,9 @@ namespace Festispec.ViewModel.customer.customerEvent
             get => _event.BeginDate.Date;
             set => _event.BeginDate = value.Date;
         }
+
         public string BeginDateDateUniversal => BeginDate.ToString("yyyy-MM-dd");
+
         public string BeginDateDate => BeginDate.ToString("d");
 
         public DateTime EndDate 
@@ -76,7 +78,9 @@ namespace Festispec.ViewModel.customer.customerEvent
             get => _event.EndDate.Date;
             set => _event.EndDate = value.Date;
         }
+
         public string EndDateDateUniversal => EndDate.ToString("yyyy-MM-dd");
+
         public string EndDateDate => EndDate.ToString("d");
 
         public int AmountVisitors 
@@ -160,12 +164,6 @@ namespace Festispec.ViewModel.customer.customerEvent
         public bool ContainsModelOrder()
         {
             return _event.Orders.Any();
-        }
-
-        public void RaisePropertyChangedUniversalDate()
-        {
-            RaisePropertyChanged(() => BeginDateDateUniversal);
-            RaisePropertyChanged(() => EndDateDateUniversal);
         }
 
         #region Validation

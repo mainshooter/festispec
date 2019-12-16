@@ -5,13 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Festispec.View.Pages.Planning"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddPlannedEmployeePage">
+      Title="AddPlannedEmployeePage"
+      DataContext="{Binding AddPlannedEmployeeVM, Source={StaticResource Locator}}">
+
 
     <Grid>
         <Button Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding BackCommand}">Terug</Button>
-        <Label FontSize="23" Content="Wijzig inspecteur" HorizontalAlignment="Center"/>
+        <Label FontSize="23" Content="Inplannen inspecteur" HorizontalAlignment="Center"/>
         <Viewbox Margin="20">
             <Grid Height="300">
                 <Grid.RowDefinitions>
@@ -19,12 +22,13 @@
                     <RowDefinition Height="73*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="400"></ColumnDefinition>
+                    <ColumnDefinition Width="350"></ColumnDefinition>
                     <ColumnDefinition Width="200"></ColumnDefinition>
-                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="250"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <DataGrid Grid.Column="0" Grid.RowSpan="2" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding PlannedEmployeeList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="400">
-                    <DataGridTextColumn Header="Volledige naam" Binding="{Binding Employee.Fullname}"/>
+                <DataGrid Grid.Column="0" Grid.RowSpan="2" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding FilteredAvailableInspectorList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="350">
+                    <DataGrid.Columns>
+                    <DataGridTextColumn Header="Volledige naam" Binding="{Binding Fullname}"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -32,23 +36,28 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    </DataGrid.Columns>
                 </DataGrid>
-                <GroupBox Margin="7,10" Header="Ingeplande inspecteur" Grid.Column="1" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">
+                <GroupBox Margin="7,10" Header="Geselecteerde inspecteur" Grid.Column="1" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">
                     <StackPanel>
                         <Label FontSize="9" Content="Inspecteur"></Label>
                         <TextBox IsReadOnly="True" Text="{Binding PlannedEmployeeVM.Employee.Fullname, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                        <Label FontSize="9" Content="Status"></Label>
-                        <TextBox IsReadOnly="True" Text="{Binding PlannedEmployeeVM.Status, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Margin="7,10" Header="Ingeplande tijd" Grid.Column="2" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">
+                <GroupBox Margin="7,10" Header="Geselecteerde tijd" Grid.Column="2" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">
                     <StackPanel>
-                        <Label FontSize="9" Content="Dag"></Label>
-                        <TextBox IsReadOnly="True" Text="{Binding PlannedEmployeeVM.StartDay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                        <Label FontSize="9" Content="Starttijd"></Label>
-                        <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding PlannedEmployeeVM.PlannedStartTime}"></xctk:TimePicker>
-                        <Label FontSize="9" Content="Eindtijd"></Label>
-                        <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding PlannedEmployeeVM.PlannedEndTime}"></xctk:TimePicker>
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="9" Content="Dag"></Label>
+                            <DatePicker DisplayDateStart="{Binding EventVM.BeginDateDateUniversal, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateEnd="{Binding EventVM.EndDateDateUniversal, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedDate="{Binding PlannedEmployeeVM.PlannedStartTime}"></DatePicker>
+                            <Label FontSize="9" Content="Starttijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding PlannedEmployeeVM.PlannedStartTime}"></xctk:TimePicker>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="9" Content="Dag"></Label>
+                            <DatePicker DisplayDateStart="{Binding EventVM.BeginDateDateUniversal, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateEnd="{Binding EventVM.EndDateDateUniversal, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedDate="{Binding PlannedEmployeeVM.PlannedEndTime}"></DatePicker>
+                            <Label FontSize="9" Content="Eindtijd"></Label>
+                            <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding PlannedEmployeeVM.PlannedEndTime}"></xctk:TimePicker>
+                        </StackPanel>
                     </StackPanel>
                 </GroupBox>
             </Grid>

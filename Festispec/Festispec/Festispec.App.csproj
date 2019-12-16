@@ -148,6 +148,7 @@
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
     <Compile Include="Message\ChangeSelectedCustomerMessage.cs" />
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
+    <Compile Include="Message\ChangeSelectedPlannedEmployeeEventMessage.cs" />
     <Compile Include="Message\ChangeSelectedPlannedEmployeeMessage.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSessionVm.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="ViewModel\employee\SickVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PasswordBoxAssistant\PasswordBoxAssistant.cs" />
+    <Compile Include="ViewModel\planning\AddPlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\planning\DayVM.cs" />
     <Compile Include="ViewModel\planning\EditPlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />

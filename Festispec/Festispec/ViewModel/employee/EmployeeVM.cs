@@ -6,6 +6,10 @@ using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
+using Festispec.ViewModel.employee.availabilty;
+using System.Linq;
+using Festispec.ViewModel.planning.plannedEmployee;
 
 namespace Festispec.ViewModel.employee
 {
@@ -13,6 +17,10 @@ namespace Festispec.ViewModel.employee
     {
         private DepartmentVM _department;
         private Employee _employee;
+
+        public ObservableCollection<AvailabiltyVM> AvailabiltyVMs { get; set; }
+
+        public ObservableCollection<PlannedEmployeeVM> plannedEmployeeVMs { get; set; }
 
         public int Id => _employee.Id;
 
@@ -158,6 +166,8 @@ namespace Festispec.ViewModel.employee
         {
             _employee = employee;
             Department = new DepartmentVM(_employee.Department1);
+            AvailabiltyVMs = new ObservableCollection<AvailabiltyVM>(employee.AvailabilityInspectors.ToList().Select(availabilty => new AvailabiltyVM(availabilty)));
+            plannedEmployeeVMs = new ObservableCollection<PlannedEmployeeVM>(employee.InspectorPlannings.ToList().Select(InspectorPlanning => new PlannedEmployeeVM(InspectorPlanning,this)));
         }
 
         public Employee ToModel()
