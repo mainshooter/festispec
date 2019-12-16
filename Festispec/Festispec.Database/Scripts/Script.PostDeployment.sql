@@ -92,10 +92,10 @@ INSERT INTO [Event] VALUES (3,4,'Snollebollekes','ArenA Boulevard', 590, NULL, '
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO Quotation VALUES (1,1,1, 20000, 9, '20190708 10:00:00', 'Open', 'Rapportage Defqon 1 2019')
-INSERT INTO Quotation VALUES (1,1,2, 12000, 9, '20201001 10:00:00', 'Open', 'Rapportage Xqlusive Holland 2020')
-INSERT INTO Quotation VALUES (2,1,3, 6000, 9, '20210302 10:00:00', 'Open', 'Rapportage Ed Sheeran in Concert 2021')
-INSERT INTO Quotation VALUES (3,1,4, 9000, 9, '20200501 10:00:00', 'Open', 'Rapportage Snollebollekes 2020')
+INSERT INTO Quotation VALUES (1,1,1, 20000, 9, '20190708 10:00:00', 'Geaccepteerd', 'Rapportage Defqon 1 2019')
+INSERT INTO Quotation VALUES (1,1,2, 12000, 9, '20201001 10:00:00', 'Geaccepteerd', 'Rapportage Xqlusive Holland 2020')
+INSERT INTO Quotation VALUES (2,1,3, 6000, 9, '20210302 10:00:00', 'Geaccepteerd', 'Rapportage Ed Sheeran in Concert 2021')
+INSERT INTO Quotation VALUES (3,1,4, 9000, 9, '20200501 10:00:00', 'Geaccepteerd', 'Rapportage Snollebollekes 2020')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION

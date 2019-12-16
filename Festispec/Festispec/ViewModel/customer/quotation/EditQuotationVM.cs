@@ -11,16 +11,28 @@ namespace Festispec.ViewModel.customer.quotation
 {
     public class EditQuotationVM : ViewModelBase
     {
-        public QuotationVM Quotation { get; set; }
+        private QuotationVM _quotation;
+
         public ICommand EditQuotationCommand { get; set; }
         public ICommand CloseEditQuotationCommand { get; set; }
+        public QuotationVM Quotation 
+        {
+            get
+            {
+                return _quotation;
+            }
+            set
+            {
+                _quotation = value;
+                RaisePropertyChanged("Quotation");
+            } 
+        }
 
         public EditQuotationVM()
         {
             this.MessengerInstance.Register<ChangeSelectedQuotationMessage>(this, message =>
             {
                 Quotation = message.Quotation;
-                RaisePropertyChanged("Quotation");
             });
 
             EditQuotationCommand = new RelayCommand(EditQuotation, CanEditQuotation);

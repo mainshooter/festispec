@@ -26,6 +26,7 @@ namespace Festispec.ViewModel.employee.quotation
             {
                 _customer = value;
                 _quotation.CustomerId = value.Id;
+                RaisePropertyChanged("Customer");
             }
         }
         public EmployeeVM Employee
@@ -38,6 +39,7 @@ namespace Festispec.ViewModel.employee.quotation
             {
                 _employee = value;
                 _quotation.EmployeeId = value.Id;
+                RaisePropertyChanged("Employee");
             }
         }
         public EventVM Event
@@ -50,6 +52,7 @@ namespace Festispec.ViewModel.employee.quotation
             {
                 _event = value;
                 _quotation.EventId = value.Id;
+                RaisePropertyChanged("Event");
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using Festispec.Domain;
+using Festispec.Lib.Enums;
 using Festispec.Message;
 using Festispec.View.Pages.Customer.Quotation;
 using Festispec.ViewModel.auth;
@@ -13,10 +14,24 @@ namespace Festispec.ViewModel.customer.quotation
 {
     public class AddQuotationVM : ViewModelBase
     {
+        private QuotationVM _quotation;
+
         public EventVM Event { get; set; }
-        public QuotationVM Quotation { get; set; }
         public ICommand AddQuotationCommand { get; set; }
         public ICommand CloseAddQuotationCommand { get; set; }
+
+        public QuotationVM Quotation 
+        {
+            get
+            {
+                return _quotation;
+            }
+            set
+            {
+                _quotation = value;
+                RaisePropertyChanged("Quotation");
+            }
+        }
 
         public AddQuotationVM()
         {
@@ -25,11 +40,10 @@ namespace Festispec.ViewModel.customer.quotation
                 Event = message.Event;
                 Quotation.Event = message.Event;
                 Quotation.Customer = message.Event.Customer;
-                RaisePropertyChanged("Quotation");
             });
 
             Quotation = new QuotationVM();
-            Quotation.Status = "Open";
+            Quotation.Status = QuotationStatus.Open.ToString();
             AddQuotationCommand = new RelayCommand(AddQuotation, CanAddQuotation);
             CloseAddQuotationCommand = new RelayCommand(CloseAddQuotation);
 
@@ -64,8 +78,7 @@ namespace Festispec.ViewModel.customer.quotation
             Quotation = new QuotationVM();
             Quotation.Event = Event;
             Quotation.Customer = Event.Customer;
-            Quotation.Status = "Open";
-            RaisePropertyChanged("Quotation");
+            Quotation.Status = QuotationStatus.Open.ToString();
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(QuotationPage) });
         }
 

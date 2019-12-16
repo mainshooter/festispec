@@ -15,6 +15,7 @@ using System.Data.Entity;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.auth;
 using Festispec.ViewModel.planning;
+using Festispec.Lib.Enums;
 
 namespace Festispec.ViewModel.customer.quotation
 {
@@ -22,9 +23,9 @@ namespace Festispec.ViewModel.customer.quotation
     {
         private string _filter;
         private List<string> _filters;
+        private EventVM _event;
+        private ObservableCollection<QuotationVM> _quotationList;
 
-        public EventVM Event { get; set; }
-        public ObservableCollection<QuotationVM> QuotationList { get; set; }
         public ICommand OpenAddQuotationCommand { get; set; }
         public ICommand OpenEditQuotationCommand { get; set; }
         public ICommand DeleteQuotationCommand { get; set; }
@@ -33,6 +34,32 @@ namespace Festispec.ViewModel.customer.quotation
         public ICommand DeclineQuotationCommand { get; set; }
         public ICommand BackCommand { get; set; }
         public string SelectedFilter { get; set; }
+
+        public ObservableCollection<QuotationVM> QuotationList 
+        { 
+            get
+            {
+                return _quotationList;
+            }
+            set
+            {
+                _quotationList = value;
+                RaisePropertyChanged("QuotationListFiltered");
+            } 
+        }
+
+        public EventVM Event 
+        {
+            get
+            {
+                return _event;
+            }
+            set
+            {
+                _event = value;
+                RaisePropertyChanged("Title");
+            } 
+        }
 
         public string Title
         {
@@ -105,7 +132,6 @@ namespace Festispec.ViewModel.customer.quotation
                 Event = message.Event;
                 QuotationList = message.Event.Quotations;
                 RaisePropertyChanged("QuotationListFiltered");
-                RaisePropertyChanged("Title");
             });
 
             Filters = new List<string>();
@@ -146,7 +172,7 @@ namespace Festispec.ViewModel.customer.quotation
             }
             foreach (QuotationVM quot in QuotationList)
             {
-                if (quot.Status.Equals("Geaccepteerd"))
+                if (quot.Status.Equals(QuotationStatus.Geaccepteerd.ToString()))
                 {
                     return false;
                 }
@@ -191,7 +217,7 @@ namespace Festispec.ViewModel.customer.quotation
 
         private void AcceptQuotation(QuotationVM source)
         {
-            source.Status = "Geaccepteerd";
+            source.Status = QuotationStatus.Geaccepteerd.ToString();
 
             OrderVM order = new OrderVM();
             var userSession = UserSessionVm.Current;
@@ -234,7 +260,7 @@ namespace Festispec.ViewModel.customer.quotation
 
         private void DeclineQuotation(QuotationVM source)
         {
-            source.Status = "Geweigerd";
+            source.Status = QuotationStatus.Geweigerd.ToString();
 
             using (var context = new Entities())
             {
@@ -250,7 +276,7 @@ namespace Festispec.ViewModel.customer.quotation
             {
                 return false;
             }
-            if (source.Status.Equals("Geweigerd"))
+            if (source.Status.Equals(QuotationStatus.Geweigerd.ToString()))
             {
                 return false;
             }

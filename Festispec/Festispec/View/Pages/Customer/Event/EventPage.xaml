@@ -114,7 +114,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.OpenQuotationsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                <Button Command="{Binding DataContext.OpenQuotationsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Offertes beheren" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="CardsVariant"/>
                                 </Button>
                             </DataTemplate>
