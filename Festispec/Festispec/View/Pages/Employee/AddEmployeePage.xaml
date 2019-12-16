@@ -57,6 +57,7 @@
                 <ComboBox HorizontalAlignment="Left" Margin="0,0,15,0" VerticalAlignment="Top" Width="174" Text="{Binding Path=Employee.Status, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" ItemsSource="{Binding Path=Statuses}" SelectedValue="{Binding Employee.Status}" />
                 <Label Content="Afdeling" HorizontalAlignment="Left" VerticalAlignment="Top" Width="66"/>
                 <ComboBox HorizontalAlignment="Left" Margin="0,0,15,0" VerticalAlignment="Top" Width="174" SelectedIndex="0" ItemsSource="{Binding Path=Departments}" SelectedItem="{Binding Employee.Department, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name"/>
+                <CheckBox Margin="0,15,15,0" Content="Certificaat" Visibility="{Binding Path=Employee.IsInspector}" IsChecked="{Binding Path=Employee.Certificate}"></CheckBox>
             </StackPanel>
         </Grid>
         <Button CommandParameter="{Binding ElementName=pw}" Content="Add Employee" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="138" Command="{Binding AddEmployeeCommand}" Height="28"/>

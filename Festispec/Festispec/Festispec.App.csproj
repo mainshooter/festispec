@@ -176,7 +176,6 @@
     <Compile Include="ViewModel\employee\availabilty\AvailabilityWeekVM.cs" />
     <Compile Include="ViewModel\employee\availabilty\AvailabiltyVM.cs" />
     <Compile Include="ViewModel\employee\BetterReportVM.cs" />
-    <Compile Include="ViewModel\employee\certificate\CertificateVM.cs" />
     <Compile Include="ViewModel\employee\department\DepartmentVM.cs" />
     <Compile Include="ViewModel\employee\EditEmployeeVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeInformationVM.cs" />
