@@ -5,10 +5,38 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Festispec.View.Pages.Employee"
       mc:Ignorable="d" 
-      Title="SickPage">
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SickPage"     
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      DataContext="{Binding SickPageVM, Source={StaticResource Locator}}">
 
-    <Grid>
-        <Label Content="Sick" HorizontalAlignment="Left" Margin="42,36,0,0" VerticalAlignment="Top"/>
-
+    <Grid Margin="10">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Ziekmelden</TextBlock>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding ShowNoEvent}">
+                    <Label Content="Geen evenement vandaag"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding ShowEventInfo}">
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Evenement naam" FontWeight="Bold"/>
+                        <Label Content="{Binding EventName}"/>
+                        <Label Content="Ingepland vanaf" FontWeight="Bold"/>
+                        <Label Content="{Binding EventStartDate}"/>
+                        <Label Content="Ingepland tot" FontWeight="Bold"/>
+                        <Label Content="{Binding EventEndDate}"/>
+                        <Button Content="{Binding SickPageButton}" Command="{Binding SickButtonCommand}" IsEnabled="{Binding SickButtonDisable}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        
     </Grid>
 </Page>

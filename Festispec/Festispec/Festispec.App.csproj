@@ -197,14 +197,13 @@
     <Compile Include="ViewModel\employee\availabilty\AvailabilityWeekVM.cs" />
     <Compile Include="ViewModel\employee\availabilty\AvailabiltyVM.cs" />
     <Compile Include="ViewModel\employee\BetterReportVM.cs" />
-    <Compile Include="ViewModel\employee\certificate\CertificateVM.cs" />
     <Compile Include="ViewModel\employee\department\DepartmentVM.cs" />
     <Compile Include="ViewModel\employee\EditEmployeeVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeInformationVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeInfoVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeListVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeVM.cs" />
-    <Compile Include="ViewModel\employee\SickVM.cs" />
+    <Compile Include="ViewModel\employee\SickPageVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PasswordBoxAssistant\PasswordBoxAssistant.cs" />
     <Compile Include="ViewModel\planning\DayVM.cs" />
@@ -290,6 +289,9 @@
     </Compile>
     <Compile Include="View\Pages\Employee\EmployeeInformationPage.xaml.cs">
       <DependentUpon>EmployeeInformationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
+      <DependentUpon>SickPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
       <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
@@ -429,9 +431,6 @@
     <Compile Include="View\Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
-      <DependentUpon>SickPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Pages\Survey\QuestionTypes\OpenQuestion\EditOpenQuestionPage.xaml.cs">
       <DependentUpon>EditOpenQuestionPage.xaml</DependentUpon>
     </Compile>
@@ -496,6 +495,10 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Pages\Employee\SickPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Report\AddReportPage.xaml">
       <SubType>Designer</SubType>
@@ -684,10 +687,6 @@
     <Page Include="View\Pages\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\Employee\SickPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\Survey\QuestionTypes\OpenQuestion\EditOpenQuestionPage.xaml">
       <SubType>Designer</SubType>
