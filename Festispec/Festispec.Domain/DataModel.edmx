@@ -46,15 +46,6 @@
           </Key>
           <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
-        <EntityType Name="CertificateInspector">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeId" Type="int" Nullable="false" />
-          <Property Name="DateFrom" Type="datetime" Nullable="false" />
-          <Property Name="DateTill" Type="datetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="ContactPerson">
           <Key>
             <PropertyRef Name="Id" />
@@ -131,6 +122,7 @@
           <Property Name="PasswordResetToken" Type="nvarchar" MaxLength="255" />
           <Property Name="ResetTokenEndTime" Type="datetime" />
           <Property Name="Iban" Type="nvarchar" MaxLength="27" />
+          <Property Name="Certificate" Type="tinyint" />
         </EntityType>
         <EntityType Name="EmployeeStatus">
           <Key>
@@ -387,20 +379,6 @@
             </Principal>
             <Dependent Role="Case">
               <PropertyRef Name="SurveyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CertificateInspector_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CertificateInspector" Type="Self.CertificateInspector" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CertificateInspector">
-              <PropertyRef Name="EmployeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -768,7 +746,6 @@
           <EntitySet Name="BetterReportInspector" EntityType="Self.BetterReportInspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CaseStatus" EntityType="Self.CaseStatus" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CertificateInspector" EntityType="Self.CertificateInspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContactPerson" EntityType="Self.ContactPerson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Day" EntityType="Self.Day" Schema="dbo" store:Type="Tables" />
@@ -819,10 +796,6 @@
           <AssociationSet Name="FK_Case_Survey" Association="Self.FK_Case_Survey">
             <End Role="Survey" EntitySet="Survey" />
             <End Role="Case" EntitySet="Case" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CertificateInspector_Employee" Association="Self.FK_CertificateInspector_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="CertificateInspector" EntitySet="CertificateInspector" />
           </AssociationSet>
           <AssociationSet Name="FK_ContactPerson_Customer" Association="Self.FK_ContactPerson_Customer">
             <End Role="Customer" EntitySet="Customer" />
@@ -991,16 +964,6 @@
           <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Cases" Relationship="Self.FK_Case_CaseStatus" FromRole="CaseStatus" ToRole="Case" />
         </EntityType>
-        <EntityType Name="CertificateInspector">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
-          <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateTill" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_CertificateInspector_Employee" FromRole="CertificateInspector" ToRole="Employee" />
-        </EntityType>
         <EntityType Name="ContactPerson">
           <Key>
             <PropertyRef Name="Id" />
@@ -1091,13 +1054,13 @@
           <NavigationProperty Name="AvailabilityInspectors" Relationship="Self.FK_AvailabilityInspector_Employee" FromRole="Employee" ToRole="AvailabilityInspector" />
           <NavigationProperty Name="BetterReportInspectors" Relationship="Self.FK_BetterReportInspector_Employee" FromRole="Employee" ToRole="BetterReportInspector" />
           <NavigationProperty Name="Cases" Relationship="Self.FK_Case_Employee" FromRole="Employee" ToRole="Case" />
-          <NavigationProperty Name="CertificateInspectors" Relationship="Self.FK_CertificateInspector_Employee" FromRole="Employee" ToRole="CertificateInspector" />
           <NavigationProperty Name="Department1" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
           <NavigationProperty Name="EmployeeStatu" Relationship="Self.FK_Employee_EmployeeStatus" FromRole="Employee" ToRole="EmployeeStatus" />
           <NavigationProperty Name="InspectorPlannings" Relationship="Self.FK_InspectorPlanning_Employee" FromRole="Employee" ToRole="InspectorPlanning" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Employee" FromRole="Employee" ToRole="Order" />
           <NavigationProperty Name="Quotations" Relationship="Self.FK_Quotation_Employee" FromRole="Employee" ToRole="Quotation" />
           <NavigationProperty Name="SickReportInspectors" Relationship="Self.FK_SickReportInspector_Employee" FromRole="Employee" ToRole="SickReportInspector" />
+          <Property Name="Certificate" Type="Byte" />
         </EntityType>
         <EntityType Name="EmployeeStatu">
           <Key>
@@ -1395,20 +1358,6 @@
             </Principal>
             <Dependent Role="Case">
               <PropertyRef Name="SurveyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CertificateInspector_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CertificateInspector" Type="Self.CertificateInspector" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CertificateInspector">
-              <PropertyRef Name="EmployeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1776,7 +1725,6 @@
           <EntitySet Name="BetterReportInspectors" EntityType="Self.BetterReportInspector" />
           <EntitySet Name="Cases" EntityType="Self.Case" />
           <EntitySet Name="CaseStatus" EntityType="Self.CaseStatu" />
-          <EntitySet Name="CertificateInspectors" EntityType="Self.CertificateInspector" />
           <EntitySet Name="ContactPersons" EntityType="Self.ContactPerson" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Days" EntityType="Self.Day" />
@@ -1827,10 +1775,6 @@
           <AssociationSet Name="FK_Case_Survey" Association="Self.FK_Case_Survey">
             <End Role="Survey" EntitySet="Surveys" />
             <End Role="Case" EntitySet="Cases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CertificateInspector_Employee" Association="Self.FK_CertificateInspector_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="CertificateInspector" EntitySet="CertificateInspectors" />
           </AssociationSet>
           <AssociationSet Name="FK_ContactPerson_Customer" Association="Self.FK_ContactPerson_Customer">
             <End Role="Customer" EntitySet="Customers" />
@@ -1996,16 +1940,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CertificateInspectors">
-            <EntityTypeMapping TypeName="Festispec.Domain.CertificateInspector">
-              <MappingFragment StoreEntitySet="CertificateInspector">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
-                <ScalarProperty Name="DateTill" ColumnName="DateTill" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ContactPersons">
             <EntityTypeMapping TypeName="Festispec.Domain.ContactPerson">
               <MappingFragment StoreEntitySet="ContactPerson">
@@ -2067,6 +2001,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="Festispec.Domain.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Certificate" ColumnName="Certificate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="Status" ColumnName="Status" />

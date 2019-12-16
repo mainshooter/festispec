@@ -41,7 +41,6 @@
         <AssociationConnector Association="Festispec.Domain.FK_Case_CaseStatus" ManuallyRouted="false" />
         <AssociationConnector Association="Festispec.Domain.FK_Case_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="Festispec.Domain.FK_Case_Survey" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_CertificateInspector_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="Festispec.Domain.FK_ContactPerson_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="Festispec.Domain.FK_Event_ContactPerson" ManuallyRouted="false" />
         <AssociationConnector Association="Festispec.Domain.FK_Note_ContactPerson" ManuallyRouted="false" />

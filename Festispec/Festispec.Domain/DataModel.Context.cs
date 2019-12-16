@@ -30,7 +30,6 @@ namespace Festispec.Domain
         public virtual DbSet<BetterReportInspector> BetterReportInspectors { get; set; }
         public virtual DbSet<Case> Cases { get; set; }
         public virtual DbSet<CaseStatu> CaseStatus { get; set; }
-        public virtual DbSet<CertificateInspector> CertificateInspectors { get; set; }
         public virtual DbSet<ContactPerson> ContactPersons { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Day> Days { get; set; }
