@@ -1,8 +1,15 @@
-﻿using Festispec.Factory;
+﻿using Festispec.Domain;
+using Festispec.Factory;
 using Festispec.Interface;
+using Festispec.Message;
+using Festispec.View.Pages.Report;
+using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
+using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element
 {
@@ -14,6 +21,9 @@ namespace Festispec.ViewModel.report.element
         private List<IDataParser> _dataParsers;
         private int _selectedSurveyQuestionIndex;
         private int _selectedDataParserIndex;
+
+        public ICommand SaveElementCommand { get; set; }
+        public ICommand ReturnCommand { get; set; }
 
         public ReportElementVM ReportElementVM {
             get {
@@ -96,10 +106,56 @@ namespace Festispec.ViewModel.report.element
 
         public BaseElementEdit()
         {
+            SaveElementCommand = new RelayCommand(EditElement, CanAddElement);
+            ReturnCommand = new RelayCommand(CloseEditElement);
             _dataParserFactory = new DataParserFactory();
             SurveyQuestions = new ObservableCollection<IQuestion>();
             DataParsers = new List<IDataParser>();
             DataParsers = _dataParserFactory.DataParsers;
+        }
+
+        public void EditElement()
+        {
+            ToastVM toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
+            if (CanUseOptions())
+            {
+                using (var context = new Entities())
+                {
+                    context.ReportElements.Attach(this.ReportElementVM.ToModel());
+                    context.Entry(ReportElementVM.ToModel()).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+                toast.ShowInformation("Rapportelement bijgewerkt.");
+                CloseEditElement();
+            }
+            else
+            {
+                toast.ShowError("Deze query kan niet met dit element en/of vraag word niet ondersteunt door deze query");
+            }
+        }
+
+        public void CloseEditElement()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
+        }
+
+        public bool CanAddElement()
+        {
+            return ReportElementVM.IsValid;
+        }
+
+        private bool CanUseOptions()
+        {
+            if (ReportElementVM.DataParser != null && ReportElementVM.DataParser.QuestionTypeIsSupported)
+            {
+                var dataParser = ReportElementVM.DataParser;
+                bool containsSupportedType = dataParser.SupportedVisuals.Contains(ReportElementVM.Type);
+                if (containsSupportedType)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

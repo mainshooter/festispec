@@ -10,9 +10,6 @@ namespace Festispec.ViewModel.report.element.Add
 {
     public class AddTableVM : BaseElementAdd
     {
-        public ICommand SaveElementCommand { get; set; }
-        public ICommand ReturnCommand { get; set; }
-
         public AddTableVM() : base()
         {
             ReportElementVM = new TableVM();
@@ -27,52 +24,6 @@ namespace Festispec.ViewModel.report.element.Add
                     ReportElementVM = new TableVM();
                 }
             });
-
-            SaveElementCommand = new RelayCommand(SaveElement, CanAddElement);
-            ReturnCommand = new RelayCommand(CloseAddElement);
-        }
-
-        public void SaveElement()
-        {
-            ToastVM toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
-            ReportElementVM.DataParser.Question = ReportElementVM.SelectedSurveyQuestion;
-            if (CanUseOptions())
-            {
-                using (var context = new Entities())
-                {
-                    context.ReportElements.Add(ReportElementVM.ToModel());
-                    context.SaveChanges();
-                }
-                toast.ShowInformation("Rapportelement is toegevoegd.");
-                CloseAddElement();
-            }
-            else
-            {
-                toast.ShowError("Deze query kan niet met dit element en/of vraag word niet ondersteunt door deze query");
-            }
-        }
-
-        public void CloseAddElement()
-        {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
-        }
-        public bool CanAddElement()
-        {
-            return ReportElementVM.IsValid;
-        }
-
-        private bool CanUseOptions()
-        {
-            if (ReportElementVM.DataParser != null && ReportElementVM.DataParser.QuestionTypeIsSupported)
-            {
-                var dataParser = ReportElementVM.DataParser;
-                bool containsSupportedType = dataParser.SupportedVisuals.Contains(ReportElementVM.Type);
-                if (containsSupportedType)
-                {
-                    return true;
-                }
-            }
-            return false;
         }
     }
 }

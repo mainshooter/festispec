@@ -1,9 +1,14 @@
-﻿using Festispec.Factory;
+﻿using Festispec.Domain;
+using Festispec.Factory;
 using Festispec.Interface;
 using Festispec.Message;
+using Festispec.View.Pages.Report;
+using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element
 {
@@ -11,6 +16,8 @@ namespace Festispec.ViewModel.report.element
     {
         private DataParserFactory _dataParserFactory;
         private ReportElementVM _reportElementVM;
+        public ICommand SaveElementCommand { get; set; }
+        public ICommand ReturnCommand { get; set; }
 
         public ReportElementVM ReportElementVM 
         {
@@ -28,6 +35,8 @@ namespace Festispec.ViewModel.report.element
 
         public BaseElementAdd()
         {
+            SaveElementCommand = new RelayCommand(SaveElement, CanAddElement);
+            ReturnCommand = new RelayCommand(CloseSaveElement);
             _dataParserFactory = new DataParserFactory();
             SurveyQuestions = new ObservableCollection<IQuestion>();
             DataParsers = new List<IDataParser>();
@@ -73,7 +82,7 @@ namespace Festispec.ViewModel.report.element
             return ReportElementVM.IsValid;
         }
 
-        private bool CanUseOptions()
+        public bool CanUseOptions()
         {
             if (ReportElementVM.DataParser != null && ReportElementVM.DataParser.QuestionTypeIsSupported)
             {

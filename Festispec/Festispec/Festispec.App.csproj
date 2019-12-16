@@ -155,7 +155,6 @@
     <Compile Include="Message\ChangeSelectedReportMessage.cs" />
     <Compile Include="Message\ChangeSelectedCustomerMessage.cs" />
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
-    <Compile Include="Repository\SurveyRepository.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSessionVM.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
@@ -196,9 +195,9 @@
     <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
     <Compile Include="ViewModel\report\AddReportVM.cs" />
-    <Compile Include="ViewModel\report\data\AvgDataParser.cs" />
-    <Compile Include="ViewModel\report\data\CountDataParser.cs" />
-    <Compile Include="ViewModel\report\data\CountOptionsDataParser.cs" />
+    <Compile Include="ViewModel\report\data\AvgDataParserVM.cs" />
+    <Compile Include="ViewModel\report\data\CountDataParserVM.cs" />
+    <Compile Include="ViewModel\report\data\CountOptionsDataParserVM.cs" />
     <Compile Include="ViewModel\report\data\DataVM.cs" />
     <Compile Include="ViewModel\report\data\MaxDataParserVM.cs" />
     <Compile Include="ViewModel\report\data\MinDataParserVM.cs" />
@@ -209,8 +208,8 @@
     <Compile Include="ViewModel\report\element\Add\AddPieChartVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddTableVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddTextVM.cs" />
-    <Compile Include="ViewModel\report\element\Add\BaseElementAdd.cs" />
-    <Compile Include="ViewModel\report\element\Edit\BaseElementEdit.cs" />
+    <Compile Include="ViewModel\report\element\Add\BaseElementAddVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\BaseElementEditVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditBarChartVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditImageVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditLineChartVM.cs" />

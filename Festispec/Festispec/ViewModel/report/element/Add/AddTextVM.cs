@@ -15,6 +15,8 @@ namespace Festispec.ViewModel.report.Add
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
 
+        public ReportElementVM ReportElementVM { get; set; }
+
         public AddTextVM()
         {
             ReportElementVM = new TextVM();
