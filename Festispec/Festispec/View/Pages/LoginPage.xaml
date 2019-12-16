@@ -32,12 +32,11 @@
           <TextBlock Grid.Row="3" Grid.Column="1">
               <Hyperlink Command="{Binding GotoResetPassword}">Wachtwoord vergeten</Hyperlink>
           </TextBlock>
-      </Grid>
-      <Button Grid.Row="3" 
-                Grid.Column="1"
-                Command="{Binding OfflineCommand}"
-                Margin="0,10,0,0">
-            Offline evenementen inzien
-      </Button>
+          <Button Grid.Row="3" 
+                  Grid.Column="1"
+                  Command="{Binding OfflineCommand}"
+                  Margin="0,10,0,0">
+              Offline evenementen inzien
+          </Button>
     </Grid>
 </Page>
