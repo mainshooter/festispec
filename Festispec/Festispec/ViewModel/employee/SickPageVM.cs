@@ -69,6 +69,14 @@ namespace Festispec.ViewModel.employee
                         ShowEventInfo = "Visible";
                         ShowNoEvent = "Hidden";
 
+                        RaisePropertyChanged(() => ShowEventInfo);
+                        RaisePropertyChanged(() => ShowNoEvent);
+                        RaisePropertyChanged(() => EventName);
+                        RaisePropertyChanged(() => EventStartDate);
+                        RaisePropertyChanged(() => EventEndDate);
+
+                        //RaisePropertyChanged();
+
                         if (CheckIfAlreadySick())
                         {
                             SickButtonDisable = false;
@@ -76,7 +84,6 @@ namespace Festispec.ViewModel.employee
                         }
                         else
                         {
-
                             SickButtonDisable = true;
                             SickPageButton = "Ziekmelden";
                         }
