@@ -52,15 +52,13 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             }
         }
 
-        public DateTime PlannedStartTime {
+        public DateTime PlannedStartTime
+        {
             get => _plannedEmployee.PlannedFrom;
             set
             {
-                if (PlannedEndTime > value)
-                {
-                    _plannedEmployee.PlannedFrom = value;
-                    RaisePropertyChanged(() => PlannedStartTime);
-                }
+                _plannedEmployee.PlannedFrom = value;
+                RaisePropertyChanged(() => PlannedStartTime);
             }
         }
 
@@ -73,16 +71,14 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             }
         }
 
-        public DateTime PlannedEndTime {
+        public DateTime PlannedEndTime
+        {
             get => _plannedEmployee.PlannedTill;
             set
             {
-                if (PlannedStartTime < value)
-                {
-                    _plannedEmployee.PlannedTill = value;
-                    RaisePropertyChanged(() => PlannedEndTime);
-                }
-            } 
+                _plannedEmployee.PlannedTill = value;
+                RaisePropertyChanged(() => PlannedEndTime);
+            }
         }
 
         public string ActualEndDateTime
@@ -94,12 +90,14 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             }
         }
 
-        public DateTime WorkStartTime {
-            get => (DateTime) _plannedEmployee.WorkedFrom;
+        public DateTime WorkStartTime
+        {
+            get => (DateTime)_plannedEmployee.WorkedFrom;
             set => _plannedEmployee.WorkedFrom = value;
         }
 
-        public DateTime WorkEndTime {
+        public DateTime WorkEndTime
+        {
             get => (DateTime)_plannedEmployee.WorkedTill;
             set => _plannedEmployee.WorkedTill = value;
         }
@@ -120,7 +118,7 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         {
             _plannedEmployee = new InspectorPlanning();
         }
-        
+
         public InspectorPlanning ToModel()
         {
             return _plannedEmployee;

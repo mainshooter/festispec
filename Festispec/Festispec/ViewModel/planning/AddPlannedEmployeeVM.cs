@@ -96,7 +96,7 @@ namespace Festispec.ViewModel.planning
                 RaisePropertyChanged(() => FilteredAvailableInspectorList);
             });
             BackCommand = new RelayCommand(Back);
-            SaveChangesCommand = new RelayCommand(AddPlannedEmployee);
+            SaveChangesCommand = new RelayCommand(AddPlannedEmployee,CanSave);
             SelectInspectorCommand = new RelayCommand<EmployeeVM>(SelectEmployee);
         }
 
@@ -118,6 +118,15 @@ namespace Festispec.ViewModel.planning
                 context.SaveChanges();
             }
             Back();
+        }
+
+        private bool CanSave()
+        {
+            if (PlannedEmployeeVM == null || PlannedEmployeeVM.PlannedStartTime >= PlannedEmployeeVM.PlannedEndTime)
+            {
+                return false;
+            }
+            return true;
         }
 
         private void Back()

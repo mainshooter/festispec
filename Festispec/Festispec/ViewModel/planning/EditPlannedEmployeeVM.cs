@@ -5,6 +5,7 @@ using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.planning.plannedEmployee;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using System;
 using System.Data.Entity;
 using System.Windows.Input;
 
@@ -55,7 +56,16 @@ namespace Festispec.ViewModel.planning
                 EventVM = message.EventVM;
             });
             BackCommand = new RelayCommand(Back);
-            SaveChangesCommand = new RelayCommand(EditPlannedEmployee);
+            SaveChangesCommand = new RelayCommand(EditPlannedEmployee, CanSave);
+        }
+
+        private bool CanSave()
+        {
+            if (PlannedEmployeeVM == null || PlannedEmployeeVM.PlannedStartTime >= PlannedEmployeeVM.PlannedEndTime)
+            {
+                return false;
+            }
+            return true;
         }
 
         private void EditPlannedEmployee()
