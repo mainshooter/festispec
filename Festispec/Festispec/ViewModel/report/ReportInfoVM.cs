@@ -15,11 +15,12 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
 using Festispec.ViewModel.toast;
 using Festispec.Lib.ConvertToImage;
+using System.Windows.Xps.Packaging;
+using System.IO;
 
 namespace Festispec.ViewModel.report
 {
@@ -175,9 +176,9 @@ namespace Festispec.ViewModel.report
             }
 
             PrintDialog printDialog = new PrintDialog();
-            var fixedDocument = new FixedDocument();
+            var fixedDocument = new System.Windows.Documents.FixedDocument();
             List<TextBlock> frontpageTextBlocks = new List<TextBlock>();
-            FixedPage frontPage = new FixedPage();
+            System.Windows.Documents.FixedPage frontPage = new System.Windows.Documents.FixedPage();
             StackPanel horizontalPanel = new StackPanel();
             horizontalPanel.Orientation = Orientation.Horizontal;
             StackPanel frontPanel = new StackPanel();
@@ -236,13 +237,13 @@ namespace Festispec.ViewModel.report
 
             frontPage.Children.Add(horizontalPanel);
 
-            PageContent frontPageContent = new PageContent();
+            System.Windows.Documents.PageContent frontPageContent = new System.Windows.Documents.PageContent();
             ((IAddChild)frontPageContent).AddChild(frontPage);
             fixedDocument.Pages.Add(frontPageContent);
 
             var image = ConvertToImage.SnapShotPng(document, 1);
 
-            FixedPage page = new FixedPage();
+            System.Windows.Documents.FixedPage page = new System.Windows.Documents.FixedPage();
             StackPanel stackPanelSecondPage = new StackPanel();
 
             var header = new TextBlock();
@@ -256,30 +257,46 @@ namespace Festispec.ViewModel.report
             page.Height = document.ActualHeight + 100;
             page.Width = document.ActualWidth;
             page.Children.Add(stackPanelSecondPage);
-            PageContent pageContent = new PageContent();
+            System.Windows.Documents.PageContent pageContent = new System.Windows.Documents.PageContent();
             ((IAddChild)pageContent).AddChild(page);
             fixedDocument.Pages.Add(pageContent);
 
             try
             {
-                printDialog.PrintDocument(fixedDocument.DocumentPaginator, "Rapport");
+                SaveCurrentViewToXPS(fixedDocument);
             }
-            catch (Exception e)
+            catch
             {
-                if (e.Message.Equals("An object that does not derive from System.Exception has been wrapped in a RuntimeWrappedException."))
-                {
-                    _toast.ShowError("Gebruik een bestandsnaam die nog niet bestaat tijdens het 'opslaan als' process.");
-                }
-                else
-                {
-                    _toast.ShowError("Probeer het later opnieuw, of probeer het bestand te exporteren vanaf een andere computer.");
-                }
+                _toast.ShowError("Sluit eerst het bestand dat u probeerd te vervangen.");
             }
 
             foreach (var userControl in ReportElementUserControlls)
             {
                 ReportElementVM reportElementVM = (ReportElementVM)userControl.DataContext;
                 reportElementVM.VisibilityButtons = Visibility.Visible;
+            }
+        }
+
+        public void SaveCurrentViewToXPS(System.Windows.Documents.FixedDocument document)
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = String.Format("Rapport{0:ddMMyyyyHHmmss}", DateTime.Now);
+            dlg.DefaultExt = ".pdf";
+            dlg.Filter = "PDF Documents (.pdf)|*.pdf";
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+
+                string tempFilename = "temp.xps";
+                File.Delete(tempFilename);
+                XpsDocument xpsd = new XpsDocument(tempFilename, FileAccess.ReadWrite);
+                System.Windows.Xps.XpsDocumentWriter xw = XpsDocument.CreateXpsDocumentWriter(xpsd);
+                xw.Write(document);
+                xpsd.Close();
+                PdfSharp.Xps.XpsConverter.Convert(tempFilename, filename, 1);
             }
         }
     }
