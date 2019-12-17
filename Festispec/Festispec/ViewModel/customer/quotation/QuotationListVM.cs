@@ -16,6 +16,8 @@ using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.auth;
 using Festispec.ViewModel.planning;
 using Festispec.Lib.Enums;
+using Festispec.ViewModel.survey;
+using Festispec.ViewModel.report;
 
 namespace Festispec.ViewModel.customer.quotation
 {
@@ -226,6 +228,8 @@ namespace Festispec.ViewModel.customer.quotation
             order.Employee = userSession.Employee;
             order.Quotation = source;
             order.Customer = Event.Customer;
+            order.Survey = new SurveyVM();
+            order.Report = new ReportVM();
 
             Event.OrderVM = order;
 

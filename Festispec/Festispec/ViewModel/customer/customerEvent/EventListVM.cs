@@ -17,7 +17,6 @@ using Festispec.View.Pages.Report;
 using Festispec.ViewModel.toast;
 using Hanssens.Net;
 
-
 namespace Festispec.ViewModel.customer.customerEvent
 {
     public class EventListVM : ViewModelBase

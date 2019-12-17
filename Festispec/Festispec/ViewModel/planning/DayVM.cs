@@ -62,6 +62,7 @@ namespace Festispec.ViewModel.planning
         public DayVM()
         {
             _day = new Day();
+            InspectorPlannings = new ObservableCollection<PlannedEmployeeVM>();
         }
 
         public Day ToModel()

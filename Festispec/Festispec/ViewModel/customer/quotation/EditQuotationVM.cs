@@ -44,7 +44,7 @@ namespace Festispec.ViewModel.customer.quotation
         {
             using (var context = new Entities())
             {
-                Quotation temp = Quotation.ToModel();;
+                Quotation temp = Quotation.ToModel();
                 temp.Customer = null;
                 temp.Employee = null;
                 temp.Event = null;

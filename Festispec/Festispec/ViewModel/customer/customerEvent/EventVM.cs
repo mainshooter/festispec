@@ -48,6 +48,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
+        [JsonIgnore]
         public ObservableCollection<QuotationVM> Quotations
         {
             get
