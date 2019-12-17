@@ -43,19 +43,20 @@ namespace Festispec.ViewModel.report.element
                         {
                             SelectedSurveyQuestionIndex = index;
                         }
+                        index++;
                     }
 
                     if (_reportElementVM != null && _reportElementVM.DataParser != null)
                     {
-                        index = 0;
+                        int secondIndex = 0;
                         foreach (var item in DataParsers)
                         {
                             if (item.Type == _reportElementVM.DataParser.Type)
                             {
-                                SelectedDataParserIndex = index;
+                                SelectedDataParserIndex = secondIndex;
                                 break;
                             }
-                            index++;
+                            secondIndex++;
                         }
                     }
                 }
