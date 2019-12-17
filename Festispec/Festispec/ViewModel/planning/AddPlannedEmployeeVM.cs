@@ -84,10 +84,11 @@ namespace Festispec.ViewModel.planning
 
         public AddPlannedEmployeeVM()
         {
-            _plannedEmployeeVM = new PlannedEmployeeVM();
+            PlannedEmployeeVM = new PlannedEmployeeVM();
             AvailableInspectorList = new ObservableCollection<EmployeeVM>();
             this.MessengerInstance.Register<ChangeSelectedPlannedEmployeeEventMessage>(this, message =>
             {
+                PlannedEmployeeVM = new PlannedEmployeeVM();
                 EventVM = message.EventVM;
                 PlannedEmployeeVM.PlannedStartTime = message.EventVM.BeginDate;
                 PlannedEmployeeVM.PlannedEndTime = message.EventVM.BeginDate;
