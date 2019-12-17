@@ -513,6 +513,7 @@
     <Page Include="View\Pages\Planning\EditPlannedEmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Employee\SickPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

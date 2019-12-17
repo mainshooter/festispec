@@ -38,7 +38,7 @@ namespace Festispec.ViewModel.planning.plannedEmployee
                 _plannedEmployee.EmployeeId = value.Id;
             }
         }
-        public EmployeeVM Employee { get; set; }
+
         public int OrderId => _plannedEmployee.OrderId;
 
         public DayVM Day
