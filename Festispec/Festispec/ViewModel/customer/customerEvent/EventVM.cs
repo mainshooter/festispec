@@ -236,6 +236,7 @@ namespace Festispec.ViewModel.customer.customerEvent
                 return null;
             }
         }
+
         private string ValidateStreet
         {
             get
@@ -267,6 +268,7 @@ namespace Festispec.ViewModel.customer.customerEvent
                 return null;
             }
         }
+
         private string ValidateHouseNumberAddition
         {
             get
@@ -281,6 +283,7 @@ namespace Festispec.ViewModel.customer.customerEvent
                 return null;
             }
         }
+
         private string ValidatePostalCode
         {
             get
@@ -288,26 +291,27 @@ namespace Festispec.ViewModel.customer.customerEvent
                 string regexPostalCode = "\\b[0-9]{4} ?[a-zA-Z]{2}\\b";
                 if (String.IsNullOrWhiteSpace(PostalCode))
                 {
-                    return "Postcode mag niet nul zijn";
+                    return "Postcode mag niet leeg zijn";
                 }
                 else if (!Regex.IsMatch(PostalCode, regexPostalCode))
                 {
-                    return "Postcode voldoet niet aan een postcode formaat";
+                    return "Postcode voldoet niet aan het postcode format";
                 }
                 else if (PostalCode.Length > 6)
                 {
-                    return "Postcode mag niet langer zijn dan 6 karakter";
+                    return "Postcode mag niet langer zijn dan 6 karakters";
                 }
                 return null;
             }
         }
+
         private string ValidateBeginDate
         {
             get
             {
                 if (BeginDate == null)
                 {
-                    return "Begindatum mag niet nul zijn";
+                    return "Begindatum mag niet leeg zijn";
                 }
                 else if (BeginDate < DateTime.Today)
                 {
@@ -323,7 +327,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             {
                 if (EndDate == null)
                 {
-                    return "Einddatum mag niet nul zijn";
+                    return "Einddatum mag niet leeg zijn";
                 }
                 else if (EndDate < BeginDate)
                 {
@@ -332,6 +336,7 @@ namespace Festispec.ViewModel.customer.customerEvent
                 return null;
             }
         }
+
         private string ValidateAmountVisitors
         {
             get
@@ -343,6 +348,7 @@ namespace Festispec.ViewModel.customer.customerEvent
                 return null;
             }
         }
+
         private string ValidateSurfaceM2
         {
             get
@@ -425,6 +431,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
             return error;
         }
+
         public static readonly string[] ValidatedProperties =
         {
             "Name", "Street", "City", "HouseNumber", "HouseNumberAddition", "PostalCode", "BeginDate", "EndDate", "AmountVisitors", "SurfaceM2", "ContactPerson"
