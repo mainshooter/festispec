@@ -38,6 +38,8 @@ namespace Festispec.ViewModel.planning.plannedEmployee
                 _plannedEmployee.EmployeeId = value.Id;
             }
         }
+        public EmployeeVM Employee { get; set; }
+        public int OrderId => _plannedEmployee.OrderId;
 
         public DayVM Day
         {
@@ -101,6 +103,8 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             get => (DateTime)_plannedEmployee.WorkedTill;
             set => _plannedEmployee.WorkedTill = value;
         }
+
+        public int DayId => _plannedEmployee.DayId;
 
         public PlannedEmployeeVM(InspectorPlanning pe)
         {

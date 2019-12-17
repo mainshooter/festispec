@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using Festispec.ViewModel.employee.availabilty;
 using System.Linq;
 using Festispec.ViewModel.planning.plannedEmployee;
+using System.Windows;
 
 namespace Festispec.ViewModel.employee
 {
@@ -33,6 +34,7 @@ namespace Festispec.ViewModel.employee
                 _department = value;
                 _employee.Department = value.Name;
                 _employee.Department1 = value.ToModel();
+                RaisePropertyChanged("IsInspector");
             }
         }
 
@@ -116,6 +118,36 @@ namespace Festispec.ViewModel.employee
             set => _employee.Password = value;
         }
 
+        public byte Certificate
+        {
+            get
+            {
+                if (_employee.Certificate != null)
+                {
+                    return (byte)_employee.Certificate;
+                }
+                return 0;
+            }
+            set
+            {
+                if (Department != null)
+                {
+                    if (Department.Name.Equals("Inspectie"))
+                    {
+                        _employee.Certificate = value;
+                    }
+                    else
+                    {
+                        _employee.Certificate = null;
+                    }
+                }
+                else
+                {
+                    _employee.Certificate = null;
+                }
+            }
+        }
+
         private string PasswordResetToken
         {
             get => _employee.PasswordResetToken;
@@ -178,6 +210,21 @@ namespace Festispec.ViewModel.employee
         public bool IsInDepartment(string department)
         {
             throw new NotImplementedException();
+        }
+
+        public Visibility IsInspector
+        {
+            get
+            {
+                if (Department != null)
+                {
+                    if (Department.Name.Equals("Inspectie"))
+                    {
+                        return Visibility.Visible;
+                    }
+                }
+                return Visibility.Collapsed;
+            }
         }
 
         #region Validation

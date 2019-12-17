@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="Festispec.Domain.BetterReportInspector" Width="1.5" PointX="5.25" PointY="15.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.Case" Width="1.5" PointX="8.25" PointY="14.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.CaseStatu" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Festispec.Domain.CertificateInspector" Width="1.5" PointX="5.25" PointY="21" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.ContactPerson" Width="1.5" PointX="0.75" PointY="21.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.Customer" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.Day" Width="1.5" PointX="10.5" PointY="19" IsExpanded="true" />
@@ -40,7 +39,6 @@
         <AssociationConnector Association="Festispec.Domain.FK_Case_CaseStatus" ManuallyRouted="false" />
         <AssociationConnector Association="Festispec.Domain.FK_Case_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="Festispec.Domain.FK_Case_Survey" ManuallyRouted="false" />
-        <AssociationConnector Association="Festispec.Domain.FK_CertificateInspector_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="Festispec.Domain.FK_ContactPerson_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="Festispec.Domain.FK_Event_ContactPerson" ManuallyRouted="false" />
         <AssociationConnector Association="Festispec.Domain.FK_Note_ContactPerson" ManuallyRouted="false" />

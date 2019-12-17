@@ -23,7 +23,7 @@ namespace Festispec.ViewModel
         //privates
         private Page _page;
         private EmployeeVM _loggedInEmployee;
-        private Dictionary<string,Dictionary<string,ICommand>> _menu;
+        private Dictionary<string, Dictionary<string, ICommand>> _menu;
 
         //publics
         public ICommand CloseApplication { get; set; }
@@ -89,13 +89,13 @@ namespace Festispec.ViewModel
 
         private void CreateMenu()
         {
-            if(_loggedInEmployee == null)
+            if (_loggedInEmployee == null)
             {
                 return;
             }
             else
             {
-                foreach(KeyValuePair<string, ICommand> entry in _menu[_loggedInEmployee.Department.Name])
+                foreach (KeyValuePair<string, ICommand> entry in _menu[_loggedInEmployee.Department.Name])
                 {
                     Button menuItem = new Button();
                     menuItem.Content = entry.Key;
@@ -182,7 +182,7 @@ namespace Festispec.ViewModel
 
         private void OpenSickTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage)});
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage) });
         }
 
         private void OpenAccountInformation()
