@@ -25,7 +25,7 @@ namespace Festispec.ViewModel.auth
             OfflineCommand = new RelayCommand(ShowOffline);
         }
 
-        public void Login(PasswordBox passwordBox) 
+        public void Login(PasswordBox passwordBox)
         {
             var password = passwordBox.Password;
             using (var context = new Entities())
@@ -35,8 +35,9 @@ namespace Festispec.ViewModel.auth
 
                 if (employee == null)
                 {
-                    MessageBox.Show("Er is geen gebruiker gevonden met de ingevoerde email.", "Waarschuwing", MessageBoxButton.OK, MessageBoxImage.Information);
-                } else if (!passwordService.PasswordsCompare(password, employee.Password))
+                    MessageBox.Show("Er is geen gebruiker gevonden met het ingevoerde emailadres.", "Waarschuwing", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else if (!passwordService.PasswordsCompare(password, employee.Password))
                 {
                     MessageBox.Show("Ongeldig wachtwoord.", "Waarschuwing", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -46,7 +47,7 @@ namespace Festispec.ViewModel.auth
                     userSession.Employee = new EmployeeVM(employee);
                     //Vanuit hier kun je doorverwijzen naar een andere pagina oid
                     MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage) });
-                    MessengerInstance.Send<ChangeLoggedinUserMessage>(new ChangeLoggedinUserMessage() { LoggedinEmployee = userSession.Employee});
+                    MessengerInstance.Send<ChangeLoggedinUserMessage>(new ChangeLoggedinUserMessage() { LoggedinEmployee = userSession.Employee });
                 }
             }
         }

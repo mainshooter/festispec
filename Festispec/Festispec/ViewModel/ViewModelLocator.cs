@@ -47,7 +47,6 @@ namespace Festispec.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
             SimpleIoc.Default.Register<DashboardPage>();
             SimpleIoc.Default.Register<ReportPage>();
             SimpleIoc.Default.Register<CustomerPage>();
@@ -92,7 +91,6 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddPieChartPage>();
             SimpleIoc.Default.Register<AddTablePage>();
             SimpleIoc.Default.Register<AddTextPage>();
-
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<EmployeeVM>();
             SimpleIoc.Default.Register<EmployeeListVM>();
@@ -141,6 +139,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddEventVM>();
             SimpleIoc.Default.Register<EditEventVM>();
             SimpleIoc.Default.Register<EventInfoVM>();
+            SimpleIoc.Default.Register<SickPageVM>();
             SimpleIoc.Default.Register<OfflineEventListVM>();
             SimpleIoc.Default.Register<OfflineEventInfoVM>();
             SimpleIoc.Default.Register<ReportInfoVM>();
@@ -185,6 +184,7 @@ namespace Festispec.ViewModel
         public EditLineChartVM EditLineChartVM => ServiceLocator.Current.GetInstance<EditLineChartVM>();
         public EditTableVM EditTableVM => ServiceLocator.Current.GetInstance<EditTableVM>();
         public EmployeeInformationVM EmployeeInformationVM => ServiceLocator.Current.GetInstance<EmployeeInformationVM>();
+        public SickPageVM SickPageVM => ServiceLocator.Current.GetInstance<SickPageVM>();
         public EventListVM EventListVM => ServiceLocator.Current.GetInstance<EventListVM>();
         public AddEventVM AddEventVM => ServiceLocator.Current.GetInstance<AddEventVM>();
         public EditEventVM EditEventVM => ServiceLocator.Current.GetInstance<EditEventVM>();
