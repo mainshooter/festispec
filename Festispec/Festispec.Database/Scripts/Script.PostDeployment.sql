@@ -50,18 +50,19 @@ COMMIT TRANSACTION
 --- Password of users ---
 -- Inspectie: t.deenik@gmail.com, GamerBoy95
 -- Directie:  m.peeters@gmail.com, GamerBoy95
+-- Iedere gebruiker heeft als wachtwoord: GamerBoy95
 -------------------------
 BEGIN TRANSACTION
 INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
-VALUES ('Sales', 'Actief', 'Bart', NULL, 'Fransen', 'Burgemeester de leeuwstraat', 5, NULL, CAST('02-21-2012' AS DATETIME),'6651BW', 'Druten', '0642346706', 'Bartfransen66@gmail.com', 'JanSmitLover69')
+VALUES ('Sales', 'Actief', 'Bart', NULL, 'Fransen', 'Burgemeester de leeuwstraat', 5, NULL, CAST('02-21-2012' AS DATETIME),'6651BW', 'Druten', '0642346706', 'Bartfransen66@gmail.com', 'a???k*ix??t????;iL%???g?????$?')
 INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
-VALUES ('Inspectie', 'Actief', 'Jesse', NULL, 'Kuijpers', 'Roodhekkenpas', 16, 'a', CAST('02-21-2012' AS DATETIME),'6651CZ','Druten', '0487515968', 'j.Kuijpers@gmail.com', 'AnneJesse15')
+VALUES ('Inspectie', 'Actief', 'Jesse', NULL, 'Kuijpers', 'Roodhekkenpas', 16, 'a', CAST('02-21-2012' AS DATETIME),'6651CZ','Druten', '0487515968', 'j.Kuijpers@gmail.com', 'a???k*ix??t????;iL%???g?????$?')
 INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
 VALUES ('Inspectie', 'Actief', 'Thijs', NULL, 'Deenik', 'Hegakker', 74, NULL, CAST('02-21-2012' AS DATETIME),'6652BC', 'Druten','0487516859', 't.deenik@gmail.com', 'a???k*ix??t????;iL%???g?????$?')
 INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
-VALUES ('Marketing', 'Actief', 'Martina', 'van', 'Dinteren', 'De Tolboom', 15, NULL,CAST('02-21-2012' AS DATETIME),'6654BT','Affereden', '0685463584', 'MvDinteren@dinter.nl', 'bunny952')
+VALUES ('Marketing', 'Actief', 'Martina', 'van', 'Dinteren', 'De Tolboom', 15, NULL,CAST('02-21-2012' AS DATETIME),'6654BT','Affereden', '0685463584', 'MvDinteren@dinter.nl', 'a???k*ix??t????;iL%???g?????$?')
 INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
-VALUES ('Planning', 'Actief', 'Martijn', NULL, 'Huisman', 'Grasakker', 76, 'a', CAST('02-21-2012' AS DATETIME),'6652BC', 'Druten','0695438736', 'M.Huisman@hotmail.com', 'DafTrucks2006')
+VALUES ('Planning', 'Actief', 'Martijn', NULL, 'Huisman', 'Grasakker', 76, 'a', CAST('02-21-2012' AS DATETIME),'6652BC', 'Druten','0695438736', 'M.Huisman@hotmail.com', 'a???k*ix??t????;iL%???g?????$?')
 INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])  
 VALUES ('Directie', 'Actief', 'Mark', NULL, 'Peeters', 'Grasakker', 5, 'b', CAST('02-21-1960' AS DATETIME),'6652BC', 'Eindhoven','0695438736', 'm.peeters@gmail.com', 'a???k*ix??t????;iL%???g?????$?')
 COMMIT TRANSACTION
@@ -85,17 +86,17 @@ INSERT INTO ContactPerson VALUES ('Harrie', NULL, 'Manen', '068434834', 'H.Manen
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO [Event] VALUES (1,1,'Defqon 1','Spijkweg', 30, NULL, '8256RJ', 'Biddinghuizen', '20190628 11:00:00', '20190630 11:00:00', 30000, 20000, 'Dance evenement')
-INSERT INTO [Event] VALUES (1,2,'Xqlusive Holland','Holterbergweg', 3, NULL, '1101CE', 'Amsterdam', '20200919 23:00:00', '20200920 07:00:00', 8100, 6300, 'Hollands dance evenement')
-INSERT INTO [Event] VALUES (2,3,'Ed Sheeran in Concert','Holterbergweg', 3, NULL, '1101CE', 'Amsterdam', '20210216 17:00:00', '20210216 23:00:00', 8100, 17000, 'Concert van Ed Sheeran')
-INSERT INTO [Event] VALUES (3,4,'Snollebollekes','ArenA Boulevard', 590, NULL, '1101DS', 'Amsterdam Zuidoost', '20200420 17:00:00', '20200421 01:30:00', 3000, 6000, 'Snollebollekes in concert')
+INSERT INTO [Event] VALUES (1,1,'Defqon 1','Spijkweg', 30, NULL, '8256RJ', 'Biddinghuizen', '20190628 00:00:00', '20190630 00:00:00', 30000, 20000, 'Dance evenement omschrijving')
+INSERT INTO [Event] VALUES (1,2,'Xqlusive Holland','Holterbergweg', 3, NULL, '1101CE', 'Amsterdam', '20200919 00:00:00', '20200920 00:00:00', 8100, 6300, 'Hollands dance evenement omschrijving')
+INSERT INTO [Event] VALUES (2,3,'Ed Sheeran in Concert','Holterbergweg', 3, NULL, '1101CE', 'Amsterdam', '20210216 00:00:00', '20210216 00:00:00', 8100, 17000, 'Concert van Ed Sheeran omschrijving')
+INSERT INTO [Event] VALUES (3,4,'Snollebollekes','ArenA Boulevard', 590, NULL, '1101DS', 'Amsterdam Zuidoost', '20200420 00:00:00', '20200421 00:00:00', 3000, 6000, 'Snollebollekes in concert omschrijving')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO Quotation VALUES (1,1,1, 20000, 9, '20190708 10:00:00', 'Rapportage Defqon 1 2019')
-INSERT INTO Quotation VALUES (1,1,2, 12000, 9, '20201001 10:00:00', 'Rapportage Xqlusive Holland 2020')
-INSERT INTO Quotation VALUES (2,1,3, 6000, 9, '20210302 10:00:00', 'Rapportage Ed Sheeran in Concert 2021')
-INSERT INTO Quotation VALUES (3,1,4, 9000, 9, '20200501 10:00:00', 'Rapportage Snollebollekes 2020')
+INSERT INTO Quotation VALUES (1,1,1, 20000, 9, '20190708 10:00:00', 'Offerte Defqon 1 2019')
+INSERT INTO Quotation VALUES (1,1,2, 12000, 9, '20201001 10:00:00', 'Offerte Xqlusive Holland 2020')
+INSERT INTO Quotation VALUES (2,1,3, 6000, 9, '20210302 10:00:00', 'Offerte Ed Sheeran in Concert 2021')
+INSERT INTO Quotation VALUES (3,1,4, 9000, 9, '20200501 10:00:00', 'Offerte Snollebollekes 2020')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
@@ -117,10 +118,10 @@ COMMIT TRANSACTION
 
 -------- BEGIN SURVEY DATA ------------
 BEGIN TRANSACTION
-INSERT INTO Survey VALUES (1, 'Definitief', 'Survey voor Defqon 1')
-INSERT INTO Survey VALUES (2, 'Concept', 'Survey voor Xqlusive Holland')
-INSERT INTO Survey VALUES (3, 'Definitief', 'Survey voor Ed Sheeran in Concert')
-INSERT INTO Survey VALUES (4, 'Concept', 'Survey voor Snollebollekes')
+INSERT INTO Survey VALUES (1, 'Definitief', 'Instructies voor vragenlijst van Defqon 1')
+INSERT INTO Survey VALUES (2, 'Concept', 'Instructies voor vragenlijst van Xqlusive Holland')
+INSERT INTO Survey VALUES (3, 'Definitief', 'Instructies voor vragenlijst van Ed Sheeran in Concert')
+INSERT INTO Survey VALUES (4, 'Concept', 'Instructies voor vragenlijst van Snollebollekes')
 COMMIT TRANSACTION
 -------- END SURVEY DATA ------------
 
@@ -163,10 +164,6 @@ INSERT INTO Answer VALUES (2, 1, 'Poeh niet zoveel eigenlijk heb mijn lievelings
 INSERT INTO Answer VALUES (3, 1, 'Afsluiting was gaaf! hoeft niks aan toegevoegd te worden')
 INSERT INTO Answer VALUES (1, 2, 'Dit is mijn eerste keer')
 INSERT INTO Answer VALUES (2, 2, 'Ik miste toch wel Ran-D')
-INSERT INTO Answer VALUES (3, 2, '')
-INSERT INTO Answer VALUES (1, 3, '')
-INSERT INTO Answer VALUES (2, 3, '')
-INSERT INTO Answer VALUES (3, 3, '')
 COMMIT TRANSACTION
 -------- END QUESTION DATA ------------
 
@@ -241,7 +238,6 @@ INSERT INTO ElementType VALUES ('barchart')
 INSERT INTO ElementType VALUES ('image')
 INSERT INTO ElementType VALUES ('text')
 COMMIT TRANSACTION
-
 
 BEGIN TRANSACTION
 INSERT INTO ReportElement VALUES (1,'text', 'Begin tekst', 'Inleiding', 1, NULL ,NULL , NULL)
