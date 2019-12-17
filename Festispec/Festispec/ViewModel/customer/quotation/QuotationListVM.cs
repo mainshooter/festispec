@@ -228,8 +228,8 @@ namespace Festispec.ViewModel.customer.quotation
             order.Employee = userSession.Employee;
             order.Quotation = source;
             order.Customer = Event.Customer;
-            order.Survey = new SurveyVM();
-            order.Report = new ReportVM();
+            order.Survey = new SurveyVM(order);
+            order.Report = new ReportVM(order);
 
             Event.OrderVM = order;
 

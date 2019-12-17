@@ -74,11 +74,6 @@ namespace Festispec.ViewModel.survey
             SetStatuses();
         }
 
-        public SurveyVM()
-        {
-            _survey = new Survey();
-        }
-
         public Survey ToModel()
         {
             return _survey;
