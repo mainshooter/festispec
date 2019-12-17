@@ -18,6 +18,12 @@ INSERT INTO CaseStatus VALUES ('Klaar')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
+INSERT INTO QuotationStatus VALUES ('Open')
+INSERT INTO QuotationStatus VALUES ('Geaccepteerd')
+INSERT INTO QuotationStatus VALUES ('Geweigerd')
+COMMIT TRANSACTION
+
+BEGIN TRANSACTION
 INSERT INTO SurveyStatus VALUES ('Concept')
 INSERT INTO SurveyStatus VALUES ('Definitief')
 COMMIT TRANSACTION
@@ -25,12 +31,6 @@ COMMIT TRANSACTION
 BEGIN TRANSACTION
 INSERT INTO ReportStatus VALUES ('Concept')
 INSERT INTO ReportStatus VALUES ('Definitief')
-COMMIT TRANSACTION
-
-BEGIN TRANSACTION
-INSERT INTO OrderStatus VALUES ('Aanvraag')
-INSERT INTO OrderStatus VALUES ('Opgenomen')
-INSERT INTO OrderStatus VALUES ('Afgerond')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
@@ -63,7 +63,7 @@ INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street,
 VALUES ('Marketing', 'Actief', 'Martina', 'van', 'Dinteren', 'De Tolboom', 15, NULL,CAST('02-21-2012' AS DATETIME),'6654BT','Affereden', '0685463584', 'MvDinteren@dinter.nl', 'a???k*ix??t????;iL%???g?????$?')
 INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
 VALUES ('Planning', 'Actief', 'Martijn', NULL, 'Huisman', 'Grasakker', 76, 'a', CAST('02-21-2012' AS DATETIME),'6652BC', 'Druten','0695438736', 'M.Huisman@hotmail.com', 'a???k*ix??t????;iL%???g?????$?')
-INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])  
+INSERT INTO Employee (Department, [Status], Firstname, Prefix, Lastname, Street, HouseNumber, [HouseNumber Addition], Birthday, PostalCode, City, Phone, Email, [Password])
 VALUES ('Directie', 'Actief', 'Mark', NULL, 'Peeters', 'Grasakker', 5, 'b', CAST('02-21-1960' AS DATETIME),'6652BC', 'Eindhoven','0695438736', 'm.peeters@gmail.com', 'a???k*ix??t????;iL%???g?????$?')
 COMMIT TRANSACTION
 -------- END EMPLOYEE DATA ------------
@@ -93,10 +93,10 @@ INSERT INTO [Event] VALUES (3,4,'Snollebollekes','ArenA Boulevard', 590, NULL, '
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO Quotation VALUES (1,1,1, 20000, 9, '20190708 10:00:00', 'Offerte Defqon 1 2019')
-INSERT INTO Quotation VALUES (1,1,2, 12000, 9, '20201001 10:00:00', 'Offerte Xqlusive Holland 2020')
-INSERT INTO Quotation VALUES (2,1,3, 6000, 9, '20210302 10:00:00', 'Offerte Ed Sheeran in Concert 2021')
-INSERT INTO Quotation VALUES (3,1,4, 9000, 9, '20200501 10:00:00', 'Offerte Snollebollekes 2020')
+INSERT INTO Quotation VALUES (1,1,1, 20000, 9, '20190708 10:00:00', 'Geaccepteerd', 'Rapportage Defqon 1 2019')
+INSERT INTO Quotation VALUES (1,1,2, 12000, 9, '20201001 10:00:00', 'Geaccepteerd', 'Rapportage Xqlusive Holland 2020')
+INSERT INTO Quotation VALUES (2,1,3, 6000, 9, '20210302 10:00:00', 'Geaccepteerd', 'Rapportage Ed Sheeran in Concert 2021')
+INSERT INTO Quotation VALUES (3,1,4, 9000, 9, '20200501 10:00:00', 'Geaccepteerd', 'Rapportage Snollebollekes 2020')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
@@ -109,10 +109,10 @@ COMMIT TRANSACTION
 
 -------- BEGIN ORDER DATA ------------
 BEGIN TRANSACTION
-INSERT INTO [Order] VALUES (1,1,4,1,'Afgerond', 'Order is afgerond')
-INSERT INTO [Order] VALUES (1,2,4,2,'Opgenomen', 'Order is opgenomen en in behandeling')
-INSERT INTO [Order] VALUES (2,3,4,3,'Aanvraag', 'Order momenteel in aanvraag')
-INSERT INTO [Order] VALUES (3,4,4,4,'Aanvraag', 'Order momenteel in aanvraag')
+INSERT INTO [Order] VALUES (1,1,4,1, 'Order is afgerond')
+INSERT INTO [Order] VALUES (1,2,4,2, 'Order is opgenomen en in behandeling')
+INSERT INTO [Order] VALUES (2,3,4,3, 'Order momenteel in aanvraag')
+INSERT INTO [Order] VALUES (3,4,4,4, 'Order momenteel in aanvraag')
 COMMIT TRANSACTION
 -------- END ORDER DATA ------------
 
