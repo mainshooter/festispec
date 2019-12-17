@@ -305,6 +305,7 @@
     </Compile>
     <Compile Include="View\Pages\Planning\EditPlannedEmployeePage.xaml.cs">
       <DependentUpon>EditPlannedEmployeePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Report\AddReportPage.xaml.cs">
       <DependentUpon>AddReportPage.xaml</DependentUpon>
     </Compile>
