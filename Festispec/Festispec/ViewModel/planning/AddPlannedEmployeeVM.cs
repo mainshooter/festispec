@@ -111,7 +111,6 @@ namespace Festispec.ViewModel.planning
             PlannedEmployeeVM.Day = EventVM.OrderVM.Days.Select(day => day).Where(day => day.BeginTime.Date == PlannedEmployeeVM.PlannedStartTime.Date).FirstOrDefault();
             PlannedEmployeeVM.WorkStartTime = PlannedEmployeeVM.PlannedStartTime;
             PlannedEmployeeVM.WorkEndTime = PlannedEmployeeVM.PlannedEndTime;
-            PlannedEmployeeVM.Day.InspectorPlannings.Add(PlannedEmployeeVM);
             using (var context = new Entities())
             {
                 context.InspectorPlannings.Add(PlannedEmployeeVM.ToModel());
@@ -122,7 +121,7 @@ namespace Festispec.ViewModel.planning
 
         private bool CanSave()
         {
-            if (PlannedEmployeeVM == null || PlannedEmployeeVM.PlannedStartTime >= PlannedEmployeeVM.PlannedEndTime)
+            if (PlannedEmployeeVM == null || PlannedEmployeeVM.PlannedStartTime >= PlannedEmployeeVM.PlannedEndTime || PlannedEmployeeVM.Employee == null)
             {
                 return false;
             }

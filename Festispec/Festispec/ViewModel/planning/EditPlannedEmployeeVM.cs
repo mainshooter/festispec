@@ -5,7 +5,6 @@ using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.planning.plannedEmployee;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using System;
 using System.Data.Entity;
 using System.Windows.Input;
 
@@ -14,12 +13,11 @@ namespace Festispec.ViewModel.planning
     public class EditPlannedEmployeeVM : ViewModelBase
     {
         private PlannedEmployeeVM _plannedEmployeeVM;
+        private EventVM _eventVM;
 
         public ICommand BackCommand { get; set; }
         public ICommand SaveChangesCommand { get; set; }
-
-        private EventVM _eventVM { get; set; }
-
+               
         public EventVM EventVM
         {
             get
