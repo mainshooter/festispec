@@ -1,4 +1,7 @@
-﻿using Festispec.Domain;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using Festispec.Domain;
+using Festispec.ViewModel.customer.contactPerson.note;
 
 namespace Festispec.ViewModel.customer.contactPerson
 {
@@ -102,9 +105,12 @@ namespace Festispec.ViewModel.customer.contactPerson
             }
         }
 
+        public ObservableCollection<NoteVM> Notes { get; set; }
+
         public ContactPersonVM(ContactPerson contactPerson)
         {
             _contactPerson = contactPerson;
+            Notes = new ObservableCollection<NoteVM>(_contactPerson.Notes.Select(n => new NoteVM(n)).OrderBy(n => n.Time));
         }
 
         public ContactPersonVM()

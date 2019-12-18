@@ -182,6 +182,8 @@
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\ReportRepository.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
+    <Compile Include="ViewModel\customer\contactPerson\note\AddNoteVM.cs" />
+    <Compile Include="ViewModel\customer\contactPerson\note\NoteListVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EditEventVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\AddEventVM.cs" />
@@ -284,6 +286,12 @@
     </Compile>
     <Compile Include="View\Pages\Customer\Event\SingleOfflineEventPage.xaml.cs">
       <DependentUpon>SingleOfflineEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Note\AddNotePage.xaml.cs">
+      <DependentUpon>AddNotePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Note\NoteListPage.xaml.cs">
+      <DependentUpon>NoteListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Customer\Quotation\AddQuotationPage.xaml.cs">
       <DependentUpon>AddQuotationPage.xaml</DependentUpon>
@@ -502,6 +510,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\Customer\Event\SingleOfflineEventPage.xaml">
+    </Page>
+    <Page Include="View\Pages\Customer\Note\AddNotePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\Note\NoteListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Customer\Quotation\AddQuotationPage.xaml">
       <SubType>Designer</SubType>
@@ -754,6 +770,7 @@
   <ItemGroup>
     <Resource Include="PdfSharp.SharpZipLib\ReadMe.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -2,6 +2,7 @@ using CommonServiceLocator;
 using Festispec.View.Pages;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Customer.Event;
+using Festispec.View.Pages.Customer.Note;
 using Festispec.View.Pages.Employee;
 using Festispec.View.Pages.Employee.Availability;
 using Festispec.View.Pages.Planning;
@@ -38,6 +39,7 @@ using Festispec.ViewModel.report.element.Edit;
 using Festispec.ViewModel.report.element.Add;
 using Festispec.ViewModel.report.Add;
 using Festispec.View.Pages.Customer.Quotation;
+using Festispec.ViewModel.customer.contactPerson.note;
 using Festispec.ViewModel.customer.quotation;
 
 namespace Festispec.ViewModel
@@ -95,6 +97,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddQuotationPage>();
             SimpleIoc.Default.Register<EditQuotationPage>();
             SimpleIoc.Default.Register<SingleQuotationPage>();
+            SimpleIoc.Default.Register<NoteListPage>();
+            SimpleIoc.Default.Register<AddNotePage>();
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<EmployeeVM>();
@@ -157,7 +161,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddQuotationVM>();
             SimpleIoc.Default.Register<EditQuotationVM>();
             SimpleIoc.Default.Register<QuotationInfoVM>();
-
+            SimpleIoc.Default.Register<NoteListVM>();
+            SimpleIoc.Default.Register<AddNoteVM>();
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
@@ -212,6 +217,8 @@ namespace Festispec.ViewModel
         public AddQuotationVM AddQuotationVM => ServiceLocator.Current.GetInstance<AddQuotationVM>();
         public EditQuotationVM EditQuotationVM => ServiceLocator.Current.GetInstance<EditQuotationVM>();
         public QuotationInfoVM QuotationInfoVM => ServiceLocator.Current.GetInstance<QuotationInfoVM>();
+        public NoteListVM NoteListVM => ServiceLocator.Current.GetInstance<NoteListVM>();
+        public AddNoteVM AddNoteVM => ServiceLocator.Current.GetInstance<AddNoteVM>();
 
         public static void Cleanup()
         {
