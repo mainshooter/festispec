@@ -3,6 +3,7 @@ using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.employee.quotation;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.customer
@@ -37,6 +38,17 @@ namespace Festispec.ViewModel.customer
             set => _customer.Street = value;
         }
 
+        public int BranchNumber
+        {
+            get => _customer.BranchNumber;
+            set => _customer.BranchNumber = value;
+        }
+
+        public string Logo
+        {
+            get => _customer.Logo;
+            set => _customer.Logo = value;
+        }
         public int HouseNumber 
         {
             get => _customer.HouseNumber;
@@ -53,6 +65,18 @@ namespace Festispec.ViewModel.customer
         {
             get => _customer.Phone;
             set => _customer.Phone = value;
+        }
+
+        public string City
+        {
+            get => _customer.City;
+            set => _customer.City = value;
+        }
+
+        public string HouseNumberAddition
+        {
+            get => _customer.HouseNumber_Addition;
+            set => _customer.HouseNumber_Addition = value;
         }
 
         public string Email 

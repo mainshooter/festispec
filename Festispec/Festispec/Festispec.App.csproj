@@ -168,8 +168,13 @@
     <Compile Include="ViewModel\customer\customerEvent\EventVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\OfflineEventInfoVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\OfflineEventListVM.cs" />
+    <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="ViewModel\customer\CustomerVM.cs" />
     <Compile Include="ViewModel\customer\order\OrderVM.cs" />
+    <Compile Include="ViewModel\customer\pages\AddCustomerVm.cs" />
+    <Compile Include="ViewModel\customer\pages\CreateCustomerVm.cs" />
+    <Compile Include="ViewModel\customer\pages\CustomerOverviewVm.cs" />
+    <Compile Include="ViewModel\customer\pages\EditCustomerVm.cs" />
     <Compile Include="ViewModel\customer\quotation\QuotationVM.cs" />
     <Compile Include="ViewModel\employee\AddEmployeeVM.cs" />
     <Compile Include="ViewModel\employee\availabilty\AvailabilityManagerVM.cs" />
@@ -245,6 +250,15 @@
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
     <Compile Include="ViewModel\toast\ToastVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\Pages\Customer\AddCustomerPage.xaml.cs">
+      <DependentUpon>AddCustomerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\CustomerDetailsPage.xaml.cs">
+      <DependentUpon>CustomerDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\EditCustomerPage.xaml.cs">
+      <DependentUpon>EditCustomerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Customer\Event\EditEventPage.xaml.cs">
       <DependentUpon>EditEventPage.xaml</DependentUpon>
     </Compile>
@@ -448,6 +462,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\Pages\Customer\AddCustomerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\CustomerDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\EditCustomerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Customer\Event\EditEventPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
