@@ -66,6 +66,7 @@ namespace Festispec.ViewModel.report.element
             set 
             {
                 _reportElement.Image = value;
+                RaisePropertyChanged("Image");
             }
         }
 
