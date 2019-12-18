@@ -62,7 +62,6 @@
   <ItemGroup>
     <Compile Include="Auth\PasswordHashService.cs" />
     <Compile Include="Auth\PasswordResetService.cs" />
-    <Compile Include="Auth\PasswordService.cs" />
     <Compile Include="ConvertToImage\ConvertToImage.cs" />
     <Compile Include="Enums\QuotationStatus.cs" />
     <Compile Include="Enums\ReportElementType.cs" />
@@ -99,14 +98,4 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
-</Project>
-    <Content Include="Images\FestispecLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Images.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
