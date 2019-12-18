@@ -9,7 +9,7 @@
         <StackPanel>
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
             <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
-            <Image Source="{Binding Image}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Stretch="Fill" Height="300" Width="620"></Image>
+            <Image Source="{Binding Image}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Stretch="Uniform" Height="300" Width="620"></Image>
             <Grid HorizontalAlignment="Right">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"></ColumnDefinition>
