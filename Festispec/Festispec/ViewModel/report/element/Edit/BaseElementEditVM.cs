@@ -1,6 +1,7 @@
 ﻿using Festispec.Domain;
 using Festispec.Factory;
 using Festispec.Interface;
+using Festispec.Lib.Enums;
 using Festispec.Message;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.toast;
@@ -76,9 +77,15 @@ namespace Festispec.ViewModel.report.element.Edit
             set 
             {
                 _selectedDataParserIndex = value;
-                
-                ReportElementVM.DataParser = DataParsers[_selectedDataParserIndex];
-                RaisePropertyChanged("SelectedDataParserIndex");
+                if (_selectedDataParserIndex < 0)
+                {
+                    _selectedDataParserIndex = 0;
+                }
+                if (DataParsers.Count < 0)
+                {
+                    ReportElementVM.DataParser = DataParsers[_selectedDataParserIndex];
+                    RaisePropertyChanged("SelectedDataParserIndex");
+                }
             }
         }
 
@@ -91,8 +98,15 @@ namespace Festispec.ViewModel.report.element.Edit
             set 
             {
                 _selectedSurveyQuestionIndex = value;
-                ReportElementVM.SelectedSurveyQuestion = SurveyQuestions[_selectedSurveyQuestionIndex];
-                RaisePropertyChanged("SelectedSurveyQuestionIndex");
+                if (_selectedSurveyQuestionIndex < 0)
+                {
+                    _selectedSurveyQuestionIndex = 0;
+                }
+                if (SurveyQuestions.Count > 0)
+                {
+                    ReportElementVM.SelectedSurveyQuestion = SurveyQuestions[_selectedSurveyQuestionIndex];
+                    RaisePropertyChanged("SelectedSurveyQuestionIndex");
+                }
             }
         }
 
@@ -134,7 +148,10 @@ namespace Festispec.ViewModel.report.element.Edit
 
         public void EditElement()
         {
-            ReportElementVM.DataParser.Question = ReportElementVM.SelectedSurveyQuestion;
+            if (ReportElementVM.Type != ReportElementType.Image && ReportElementVM.Type != ReportElementType.Text)
+            {
+                ReportElementVM.DataParser.Question = ReportElementVM.SelectedSurveyQuestion;
+            }
             ToastVM toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
             if (CanUseOptions())
             {

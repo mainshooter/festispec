@@ -1,6 +1,7 @@
 ﻿using Festispec.Domain;
 using Festispec.Factory;
 using Festispec.Interface;
+using Festispec.Lib.Enums;
 using Festispec.Message;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.toast;
@@ -57,7 +58,11 @@ namespace Festispec.ViewModel.report.element.Add
         public void SaveElement()
         {
             ToastVM toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
-            ReportElementVM.DataParser.Question = ReportElementVM.SelectedSurveyQuestion;
+            if (ReportElementVM.Type != ReportElementType.Image && ReportElementVM.Type != ReportElementType.Text)
+            {
+                ReportElementVM.DataParser.Question = ReportElementVM.SelectedSurveyQuestion;
+            }
+            
             if (CanUseOptions())
             {
                 using (var context = new Entities())
