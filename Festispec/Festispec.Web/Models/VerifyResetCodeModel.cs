@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
-namespace Festispec.Web.Models
+﻿namespace Festispec.Web.Models
 {
     public class VerifyResetCodeModel
     {

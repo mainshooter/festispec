@@ -26,12 +26,12 @@ namespace Festispec.ViewModel.auth
                PasswordResetService.SaveResetCodeFor(Email, code); 
                PasswordResetService.SendEmailWithResetCode(Email, code);
 
-               MessageBox.Show("Er is een email vorzonden naar het ingevoerde emailadres.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+               MessageBox.Show("Er is een email vorzonden naar het ingevoerde emailadres.", "Informatie", MessageBoxButton.OK, MessageBoxImage.Information);
                MessengerInstance.Send(new ChangePageMessage() { NextPageType = typeof(VerifyCodePage) });
             }
             else
             { 
-                MessageBox.Show("Er is geen gebruiker gevonden met de ingevoerde email.", "Waarschuwing", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Er is geen gebruiker gevonden met het ingevoerde e-mailadres.", "Waarschuwing", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
