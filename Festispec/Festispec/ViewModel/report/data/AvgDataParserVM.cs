@@ -61,7 +61,6 @@ namespace Festispec.ViewModel.report.data
             {
             }
 
-
             result.Add(new List<string>() { Question.QuestionDetails.Question });
             result.Add(new List<string>() { answer });
 

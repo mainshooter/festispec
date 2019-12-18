@@ -2,8 +2,6 @@
 using Festispec.Message;
 using Festispec.View.Pages.Report.element.Edit;
 using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
 
 namespace Festispec.ViewModel.report.element
 {

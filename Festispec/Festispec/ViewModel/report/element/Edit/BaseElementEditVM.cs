@@ -81,11 +81,11 @@ namespace Festispec.ViewModel.report.element.Edit
                 {
                     _selectedDataParserIndex = 0;
                 }
-                if (DataParsers.Count < 0)
+                if (DataParsers.Count > 0)
                 {
                     ReportElementVM.DataParser = DataParsers[_selectedDataParserIndex];
-                    RaisePropertyChanged("SelectedDataParserIndex");
                 }
+                RaisePropertyChanged("SelectedDataParserIndex");
             }
         }
 
@@ -105,8 +105,8 @@ namespace Festispec.ViewModel.report.element.Edit
                 if (SurveyQuestions.Count > 0)
                 {
                     ReportElementVM.SelectedSurveyQuestion = SurveyQuestions[_selectedSurveyQuestionIndex];
-                    RaisePropertyChanged("SelectedSurveyQuestionIndex");
                 }
+                RaisePropertyChanged("SelectedSurveyQuestionIndex");
             }
         }
 

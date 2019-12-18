@@ -11,10 +11,6 @@ namespace Festispec.ViewModel.report.element
 {
     public class BarChartVM : ReportElementVM
     {
-        public string XaxisName { get; set; }
-
-        public string YaxisName { get; set; }
-
         public SeriesCollection SeriesCollection { set; get; }
 
         public BarChartVM()

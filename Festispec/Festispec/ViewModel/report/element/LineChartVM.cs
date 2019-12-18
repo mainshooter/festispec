@@ -11,14 +11,9 @@ namespace Festispec.ViewModel.report.element
 {
     public class LineChartVM : ReportElementVM
     {
-        public string XaxisName { get; set; }
-
-        public string YaxisName { get; set; }
-
         public SeriesCollection SeriesCollection { get; set; }
 
         public List<string> Labels { get; set; }
-        public ReportElementVM ReportElementVM { get; set; }
 
         public LineChartVM()
         {
@@ -116,7 +111,6 @@ namespace Festispec.ViewModel.report.element
             catch (Exception)
             {
             }
-
         }
     }
 }

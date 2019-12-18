@@ -57,11 +57,14 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public byte[] Image {
-            get {
+        public byte[] Image 
+        {
+            get 
+            {
                 return _reportElement.Image;
             }
-            set {
+            set 
+            {
                 _reportElement.Image = value;
             }
         }
