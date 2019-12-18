@@ -222,7 +222,7 @@ namespace Festispec.ViewModel.customer.quotation
             source.Status = QuotationStatus.Geaccepteerd.ToString();
 
             OrderVM order = new OrderVM();
-            var userSession = UserSessionVm.Current;
+            var userSession = UserSessionVM.Current;
 
             order.Event = Event;
             order.Employee = userSession.Employee;
