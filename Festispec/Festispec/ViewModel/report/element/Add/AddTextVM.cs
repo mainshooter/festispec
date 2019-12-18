@@ -1,12 +1,5 @@
-﻿using Festispec.Domain;
-using Festispec.Message;
-using Festispec.View.Pages.Report;
+﻿using Festispec.Message;
 using Festispec.View.Pages.Report.element.Add;
-using Festispec.ViewModel.report.element;
-using Festispec.ViewModel.toast;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element.Add
 {

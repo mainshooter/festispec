@@ -182,6 +182,10 @@ namespace Festispec.ViewModel.report.element.Edit
 
         private bool CanUseOptions()
         {
+            if (ReportElementVM.Type == ReportElementType.Image || ReportElementVM.Type == ReportElementType.Text)
+            {
+                return true;
+            }
             if (ReportElementVM.DataParser != null && ReportElementVM.DataParser.QuestionTypeIsSupported)
             {
                 var dataParser = ReportElementVM.DataParser;
