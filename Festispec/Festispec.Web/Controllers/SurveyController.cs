@@ -10,6 +10,7 @@ using Festispec.Web.Models.Auth;
 using Festispec.Web.Models.Questions;
 using Newtonsoft.Json;
 using System;
+using Festispec.Lib.Survey.Question.Validator;
 
 namespace Festispec.Web.Controllers
 {
@@ -112,6 +113,7 @@ namespace Festispec.Web.Controllers
         public ActionResult Conduct(int id)
         {
             Dictionary<string, string> request = new Dictionary<string, string>();
+            QuestionAnswerValidator questionAnswerValidator = new QuestionAnswerValidator();
             string[] keys = Request.Form.AllKeys;
             for (int i = 0; i < keys.Length; i++)
             {
@@ -137,7 +139,18 @@ namespace Festispec.Web.Controllers
                 if (question != null)
                 {
                     Answer answer = new Answer() { Case = surveyCase, QuestionId = question.Id, Answer1 = questionAnswer };
-                    answers.Add(answer);
+                    if (questionAnswerValidator.IsAnswerValid(question, answer))
+                    {
+                        answers.Add(answer);
+                    }
+                    else
+                    {
+                        return Json(new { result = "Answer not valid"});
+                    }
+                }
+                else
+                {
+                    return Json(new { result = "Not complete survey" });
                 }
             }
             _db.Cases.Add(surveyCase);
