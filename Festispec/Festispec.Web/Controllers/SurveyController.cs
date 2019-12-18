@@ -125,7 +125,7 @@ namespace Festispec.Web.Controllers
             Survey survey = _db.Surveys.Find(id);
             List<Question> questions = survey.Questions.ToList();
             List<Answer> answers = new List<Answer>();
-            Case surveyCase = new Case() { Survey = survey, EmployeeId = 1, Status = "Klaar" };
+            Case surveyCase = new Case() { Survey = survey, EmployeeId = 1};
             foreach (var givenAnswer in request)
             {
                 string questionVar = givenAnswer.Key;

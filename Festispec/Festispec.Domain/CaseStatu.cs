@@ -14,15 +14,6 @@ namespace Festispec.Domain
     
     public partial class CaseStatu
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CaseStatu()
-        {
-            this.Cases = new HashSet<Case>();
-        }
-    
         public string Status { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Case> Cases { get; set; }
     }
 }

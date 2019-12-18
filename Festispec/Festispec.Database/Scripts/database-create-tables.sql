@@ -56,7 +56,6 @@ CREATE TABLE [dbo].[Case](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[SurveyId] [int] NOT NULL,
 	[EmployeeId] [int] NULL,
-	[Status] [nvarchar](45) NOT NULL,
  CONSTRAINT [PK_Case] PRIMARY KEY CLUSTERED
 (
 	[Id] ASC
@@ -504,11 +503,6 @@ REFERENCES [dbo].[Employee] ([Id])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[BetterReportInspector] CHECK CONSTRAINT [FK_BetterReportInspector_Employee]
-GO
-ALTER TABLE [dbo].[Case]  WITH CHECK ADD  CONSTRAINT [FK_Case_CaseStatus] FOREIGN KEY([Status])
-REFERENCES [dbo].[CaseStatus] ([Status])
-GO
-ALTER TABLE [dbo].[Case] CHECK CONSTRAINT [FK_Case_CaseStatus]
 GO
 ALTER TABLE [dbo].[Case]  WITH CHECK ADD  CONSTRAINT [FK_Case_Employee] FOREIGN KEY([EmployeeId])
 REFERENCES [dbo].[Employee] ([Id])

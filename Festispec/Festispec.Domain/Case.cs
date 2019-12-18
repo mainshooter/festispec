@@ -23,11 +23,9 @@ namespace Festispec.Domain
         public int Id { get; set; }
         public int SurveyId { get; set; }
         public Nullable<int> EmployeeId { get; set; }
-        public string Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answer> Answers { get; set; }
-        public virtual CaseStatu CaseStatu { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Survey Survey { get; set; }
     }
