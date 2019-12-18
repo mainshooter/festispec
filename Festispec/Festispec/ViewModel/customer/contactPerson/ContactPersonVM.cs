@@ -102,6 +102,20 @@ namespace Festispec.ViewModel.customer.contactPerson
             }
         }
 
+        public int CustomerId 
+        {
+            get
+            {
+                return _contactPerson.CustomerId;
+            }
+            set
+            {
+                _contactPerson.CustomerId = value;
+            }
+        }
+
+
+
         public ContactPersonVM(ContactPerson contactPerson)
         {
             _contactPerson = contactPerson;

@@ -15,6 +15,7 @@ using Festispec.Domain;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Festispec.ViewModel.customer;
+using Festispec.View.Pages.Customer.ContactPerson;
 
 namespace Festispec.ViewModel
 {
@@ -160,7 +161,8 @@ namespace Festispec.ViewModel
 
         private void OpenCustomerTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
+            //MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ContactPersonPage) });
         }
 
         private void OpenAvailabilityTab()

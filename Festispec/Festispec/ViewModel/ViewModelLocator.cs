@@ -39,6 +39,8 @@ using Festispec.ViewModel.report.element.Add;
 using Festispec.ViewModel.report.Add;
 using Festispec.View.Pages.Customer.Quotation;
 using Festispec.ViewModel.customer.quotation;
+using Festispec.ViewModel.customer.contactPerson;
+using Festispec.View.Pages.Customer.ContactPerson;
 
 namespace Festispec.ViewModel
 {
@@ -157,6 +159,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddQuotationVM>();
             SimpleIoc.Default.Register<EditQuotationVM>();
             SimpleIoc.Default.Register<QuotationInfoVM>();
+            SimpleIoc.Default.Register<ContactPersonPageVM>();
+            SimpleIoc.Default.Register<ContactPersonPage>();
 
         }
 
@@ -212,6 +216,7 @@ namespace Festispec.ViewModel
         public AddQuotationVM AddQuotationVM => ServiceLocator.Current.GetInstance<AddQuotationVM>();
         public EditQuotationVM EditQuotationVM => ServiceLocator.Current.GetInstance<EditQuotationVM>();
         public QuotationInfoVM QuotationInfoVM => ServiceLocator.Current.GetInstance<QuotationInfoVM>();
+        public ContactPersonPageVM ContactPersonPageVM => ServiceLocator.Current.GetInstance<ContactPersonPageVM>();
 
         public static void Cleanup()
         {

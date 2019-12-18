@@ -181,6 +181,7 @@
     <Compile Include="Message\ChangeSelectedEmployeeMessage.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\ReportRepository.cs" />
+    <Compile Include="ViewModel\customer\contactPerson\ContactPersonPageVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EditEventVM.cs" />
@@ -270,6 +271,9 @@
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
     <Compile Include="ViewModel\toast\ToastVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\Pages\Customer\ContactPerson\ContactPersonPage.xaml.cs">
+      <DependentUpon>ContactPersonPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Customer\Event\EditEventPage.xaml.cs">
       <DependentUpon>EditEventPage.xaml</DependentUpon>
     </Compile>
@@ -485,6 +489,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\Pages\Customer\ContactPerson\ContactPersonPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Customer\Event\EditEventPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -746,7 +754,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\Pages\Customer\ContactPerson\" />
     <Resource Include="Resources\Messages.txt" />
   </ItemGroup>
   <ItemGroup>
