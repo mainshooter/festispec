@@ -27,6 +27,7 @@ namespace Festispec.Domain
         public decimal Price { get; set; }
         public int BtwPercentage { get; set; }
         public Nullable<System.DateTime> TimeSend { get; set; }
+        public string Status { get; set; }
         public string Content { get; set; }
     
         public virtual Customer Customer { get; set; }
@@ -34,5 +35,6 @@ namespace Festispec.Domain
         public virtual Event Event { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual QuotationStatu QuotationStatu { get; set; }
     }
 }

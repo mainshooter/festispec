@@ -6,6 +6,8 @@ using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Linq;
+using Festispec.ViewModel.employee.quotation;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
 namespace Festispec.ViewModel.customer.customerEvent
@@ -15,6 +17,8 @@ namespace Festispec.ViewModel.customer.customerEvent
         private Event _event;
         private CustomerVM _customer;
         private ContactPersonVM _contactPerson;
+        private OrderVM _order;
+        private ObservableCollection<QuotationVM> _quotations;
 
         public int Id => _event.Id;
 
@@ -32,7 +36,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             set => _event.ContactPerson = value;
         }
 
-        public CustomerVM Customer 
+        public CustomerVM Customer
         {
             get => _customer;
             set
@@ -44,7 +48,20 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
-        public ContactPersonVM ContactPerson 
+        [JsonIgnore]
+        public ObservableCollection<QuotationVM> Quotations
+        {
+            get
+            {
+                return _quotations;
+            }
+            set
+            {
+                _quotations = value;
+            }
+        }
+
+        public ContactPersonVM ContactPerson
         {
             get => _contactPerson;
             set
@@ -57,13 +74,14 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
-        public string Name 
+
+        public string Name
         {
             get => _event.Name;
             set => _event.Name = value;
         }
 
-        public DateTime BeginDate 
+        public DateTime BeginDate
         {
             get => _event.BeginDate.Date;
             set => _event.BeginDate = value.Date;
@@ -71,7 +89,7 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public string BeginDateDate => BeginDate.ToString("d");
 
-        public DateTime EndDate 
+        public DateTime EndDate
         {
             get => _event.EndDate.Date;
             set => _event.EndDate = value.Date;
@@ -79,26 +97,37 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public string EndDateDate => EndDate.ToString("d");
 
-        public int AmountVisitors 
+        public int AmountVisitors
         {
             get => _event.AmountVisitors;
             set => _event.AmountVisitors = value;
         }
 
-        public int SurfaceM2 
+        public int SurfaceM2
         {
             get => _event.SurfaceM2;
             set => _event.SurfaceM2 = value;
         }
 
-        public string Description 
+        public string Description
         {
             get => _event.Description;
             set => _event.Description = value;
         }
 
         [JsonIgnore]
-        public OrderVM OrderVM { get; set; }
+        public OrderVM OrderVM 
+        {
+            get
+            {
+                return _order;
+            }
+            set
+            {
+                _order = value;
+                _event.Orders.Add(value.ToModel());
+            }
+        }
 
         public string Street
         {
@@ -136,11 +165,13 @@ namespace Festispec.ViewModel.customer.customerEvent
             Customer = customer;
             OrderVM = eventCon.Orders.Count > 0 ? new OrderVM(eventCon.Orders.FirstOrDefault(), this) : new OrderVM();
             _contactPerson = new ContactPersonVM(_event.ContactPerson);
+            _quotations = new ObservableCollection<QuotationVM>(eventCon.Quotations.Select(quotation => new QuotationVM(quotation, customer, this)));
         }
 
         public EventVM()
         {
             _event = new Event();
+            _quotations = new ObservableCollection<QuotationVM>();
             BeginDate = DateTime.Today.Date;
             EndDate = DateTime.Today.Date;
         }
@@ -356,7 +387,7 @@ namespace Festispec.ViewModel.customer.customerEvent
                 return true;
             }
         }
-        
+
 
         string GetValidationError(string propertyName)
         {

@@ -53,6 +53,7 @@
     <Compile Include="Auth\PasswordService.cs" />
     <Compile Include="Enums\DataParserType.cs" />
     <Compile Include="ConvertToImage\ConvertToImage.cs" />
+    <Compile Include="Enums\QuotationStatus.cs" />
     <Compile Include="Enums\ReportElementType.cs" />
     <Compile Include="Enums\SurveyStatus.cs" />
     <Compile Include="Images.Designer.cs">
