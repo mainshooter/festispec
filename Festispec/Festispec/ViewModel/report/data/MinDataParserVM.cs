@@ -8,17 +8,22 @@ namespace Festispec.ViewModel.report.data
     public class MinDataParserVM : DataVM, IDataParser
     {
         public override string Type => DataParserType.MIN;
-        public List<string> SupportedQuestions => new List<string>() {
+
+        public List<string> SupportedQuestions => new List<string>() 
+        {
             Lib.Enums.QuestionType.OpenQuestion,
             Lib.Enums.QuestionType.MultipleChoiseQuestion,
             Lib.Enums.QuestionType.TableQuestion,
             Lib.Enums.QuestionType.SliderQuestion,
             Lib.Enums.QuestionType.ClosedQuestion
         };
+
         public List<string> SupportedVisuals => new List<string>() { ReportElementType.Table };
 
-        public bool QuestionTypeIsSupported {
-            get {
+        public bool QuestionTypeIsSupported 
+        {
+            get 
+            {
                 if (Question == null)
                 {
                     return false;
@@ -49,6 +54,7 @@ namespace Festispec.ViewModel.report.data
             }
             return ParseDataDefault();
         }
+
         private List<List<string>> ParseDataClosedQuestion()
         {
             var result = new List<List<string>>();
@@ -81,8 +87,6 @@ namespace Festispec.ViewModel.report.data
             {
                 result.Add(new List<string>() { "0" });
             }
-
-
             return result;
         }
 

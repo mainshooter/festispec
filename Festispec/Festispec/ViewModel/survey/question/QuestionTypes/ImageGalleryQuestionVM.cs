@@ -20,7 +20,8 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
 
         public int Id 
         {
-            get {
+            get 
+            {
                 return _surveyQuestion.Id;
             }
         }
@@ -108,7 +109,6 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
                 MessageBox.Show("Voer een getal in bij limiet aantal afbeeldingen.");
                 return false;
             }
-
             return true;
         }
 

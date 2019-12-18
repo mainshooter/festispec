@@ -8,7 +8,9 @@ namespace Festispec.ViewModel.report.data
     public class MaxDataParserVM : DataVM, IDataParser
     {
         public override string Type => DataParserType.MAX;
-        public List<string> SupportedQuestions => new List<string>() {
+
+        public List<string> SupportedQuestions => new List<string>() 
+        {
             Lib.Enums.QuestionType.OpenQuestion,
             Lib.Enums.QuestionType.MultipleChoiseQuestion,
             Lib.Enums.QuestionType.TableQuestion,
@@ -17,8 +19,10 @@ namespace Festispec.ViewModel.report.data
         };
         public List<string> SupportedVisuals => new List<string>() { ReportElementType.Table };
 
-        public bool QuestionTypeIsSupported {
-            get {
+        public bool QuestionTypeIsSupported 
+        {
+            get 
+            {
                 var questionCheckResult = SupportedQuestions.Where(s => s == Question.QuestionType);
                 if (questionCheckResult != null && questionCheckResult.Count() > 0)
                 {
@@ -78,8 +82,6 @@ namespace Festispec.ViewModel.report.data
             {
                 result.Add(new List<string>() { "0" });
             }
-
-
             return result;
         }
 

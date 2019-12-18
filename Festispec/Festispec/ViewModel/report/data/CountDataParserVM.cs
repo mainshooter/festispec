@@ -8,20 +8,26 @@ namespace Festispec.ViewModel.report.data
     public class CountDataParser : DataVM, IDataParser
     {
         public override string Type => DataParserType.COUNT;
-        public List<string> SupportedQuestions => new List<string>() {
+
+        public List<string> SupportedQuestions => new List<string>() 
+        {
             Lib.Enums.QuestionType.OpenQuestion,
             Lib.Enums.QuestionType.MultipleChoiseQuestion,
             Lib.Enums.QuestionType.TableQuestion,
             Lib.Enums.QuestionType.SliderQuestion,
             Lib.Enums.QuestionType.ClosedQuestion,
         };
-        public List<string> SupportedVisuals => new List<string>() {
+
+        public List<string> SupportedVisuals => new List<string>() 
+        {
             ReportElementType.Table,
             ReportElementType.Barchart,
         };
 
-        public bool QuestionTypeIsSupported {
-            get {
+        public bool QuestionTypeIsSupported 
+        {
+            get 
+            {
                 var questionCheckResult = SupportedQuestions.Where(s => s == Question.QuestionType);
                 if (questionCheckResult != null && questionCheckResult.Count() > 0)
                 {

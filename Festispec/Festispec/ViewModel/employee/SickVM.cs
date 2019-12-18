@@ -9,40 +9,52 @@ namespace Festispec.ViewModel.employee
         private PlannedEmployeeVM _day;
         private SickReportInspector _sick;
 
-        public int Id { 
-            get {
+        public int Id 
+        { 
+            get 
+            {
                 return _sick.Id;
             }
-            private set {
+            private set 
+            {
                 _sick.Id = value;
             }
         }
         
-        public EmployeeVM Employee {
-            get {
+        public EmployeeVM Employee 
+        {
+            get 
+            {
                 return _employee;
             }
-            set {
+            set 
+            {
                 _employee = value;
             }
         }
         
-        public PlannedEmployeeVM Day {
-            get {
+        public PlannedEmployeeVM Day 
+        {
+            get 
+            {
                 return _day;
             }
-            set {
+            set 
+            {
                 _day = value;
             }
         }
 
         public PlannedEmployeeVM PlannedEmployee { get; set; }
 
-        public string Reason {
-            get {
+        public string Reason 
+        {
+            get 
+            {
                 return _sick.Reason;
             }
-            set {
+            set 
+            {
                 Reason = value;
             }
         }

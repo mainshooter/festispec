@@ -17,8 +17,6 @@ namespace Festispec.ViewModel.report.element
 
         public SeriesCollection SeriesCollection { set; get; }
 
-        public List<string> Labels { set; get; }
-
         public BarChartVM()
         {
             Type = ReportElementType.Barchart;
@@ -108,7 +106,6 @@ namespace Festispec.ViewModel.report.element
                     }
                     columnSerie.Values = chartValues;
                 }
-                Labels = new List<string> { "test1", "test2", "test3", "test4", "test5" };
                 SeriesCollection = seriesCollection;
             }
             catch (Exception)

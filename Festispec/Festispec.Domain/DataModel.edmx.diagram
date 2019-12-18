@@ -33,7 +33,6 @@
         <EntityTypeShape EntityType="Festispec.Domain.SickReportInspector" Width="1.5" PointX="10.5" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.Survey" Width="1.5" PointX="13.5" PointY="18.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Festispec.Domain.SurveyStatu" Width="1.5" PointX="11.25" PointY="10.625" IsExpanded="true" />
->>>>>>> develop
         <AssociationConnector Association="Festispec.Domain.FK_Answer_Case" ManuallyRouted="false" />
         <AssociationConnector Association="Festispec.Domain.FK_Answer_Question" ManuallyRouted="false" />
         <AssociationConnector Association="Festispec.Domain.FK_AvailabilityInspector_Employee" ManuallyRouted="false" />

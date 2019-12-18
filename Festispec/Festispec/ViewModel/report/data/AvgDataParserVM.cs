@@ -9,15 +9,21 @@ namespace Festispec.ViewModel.report.data
     public class AvgDataParser : DataVM, IDataParser
     {
         public override string Type => DataParserType.AVG;
-        public List<string> SupportedQuestions => new List<string>() { 
+
+        public List<string> SupportedQuestions => new List<string>() 
+        { 
             Lib.Enums.QuestionType.SliderQuestion
         };
-        public List<string> SupportedVisuals => new List<string>() {
+
+        public List<string> SupportedVisuals => new List<string>() 
+        {
             ReportElementType.Table
         };
 
-        public bool QuestionTypeIsSupported {
-            get {
+        public bool QuestionTypeIsSupported 
+        {
+            get 
+            {
                 var questionCheckResult = SupportedQuestions.Where(s => s == Question.QuestionType);
                 if (questionCheckResult != null && questionCheckResult.Count() > 0)
                 {
@@ -45,7 +51,6 @@ namespace Festispec.ViewModel.report.data
 
             try
             {
-                
                 foreach (var item in answers)
                 {
                     intAnsers.Add(int.Parse(item.Answer));

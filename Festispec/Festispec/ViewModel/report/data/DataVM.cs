@@ -14,11 +14,14 @@ namespace Festispec.ViewModel.report.data
         private IQuestion _question;
         public virtual string Type { get; set; }
 
-        public IQuestion Question { 
-            get {
+        public IQuestion Question 
+        { 
+            get 
+            {
                 return _question;
             }
-            set {
+            set 
+            {
                 _question = value;
                 RaisePropertyChanged("Question");
             }

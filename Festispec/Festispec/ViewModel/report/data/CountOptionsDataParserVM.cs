@@ -8,11 +8,13 @@ namespace Festispec.ViewModel.report.data
     public class CountOptionsDataParser : DataVM, IDataParser
     {
         public override string Type => DataParserType.COUNTOPTIONS;
+
         public List<string> SupportedQuestions => new List<string>() {
             Lib.Enums.QuestionType.ClosedQuestion,
             Lib.Enums.QuestionType.MultipleChoiseQuestion,
             Lib.Enums.QuestionType.SliderQuestion
         };
+
         public List<string> SupportedVisuals => new List<string>() { 
             ReportElementType.Table,
             ReportElementType.Barchart,
@@ -20,8 +22,10 @@ namespace Festispec.ViewModel.report.data
             ReportElementType.Piechart,
         };
 
-        public bool QuestionTypeIsSupported {
-            get {
+        public bool QuestionTypeIsSupported 
+        {
+            get 
+            {
                 if (Question == null)
                 {
                     return false;

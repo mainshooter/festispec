@@ -18,11 +18,13 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private readonly Question _surveyQuestion;
 
         public QuestionDetails QuestionDetails { get; set; }
+
         public string QuestionType => _surveyQuestion.Type;
 
         public int Id 
         {
-            get {
+            get 
+            {
                 return _surveyQuestion.Id;
             }
         }
