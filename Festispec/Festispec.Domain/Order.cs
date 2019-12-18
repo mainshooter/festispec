@@ -27,7 +27,6 @@ namespace Festispec.Domain
         public int EventId { get; set; }
         public Nullable<int> EmployeeId { get; set; }
         public int QuotationId { get; set; }
-        public string Status { get; set; }
         public string Description { get; set; }
     
         public virtual Customer Customer { get; set; }
@@ -35,7 +34,6 @@ namespace Festispec.Domain
         public virtual ICollection<Day> Days { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Event Event { get; set; }
-        public virtual OrderStatu OrderStatu { get; set; }
         public virtual Quotation Quotation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Report> Reports { get; set; }

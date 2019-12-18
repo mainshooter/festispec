@@ -30,7 +30,6 @@ namespace Festispec.Domain
         public virtual DbSet<BetterReportInspector> BetterReportInspectors { get; set; }
         public virtual DbSet<Case> Cases { get; set; }
         public virtual DbSet<CaseStatu> CaseStatus { get; set; }
-        public virtual DbSet<CertificateInspector> CertificateInspectors { get; set; }
         public virtual DbSet<ContactPerson> ContactPersons { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Day> Days { get; set; }
@@ -43,11 +42,11 @@ namespace Festispec.Domain
         public virtual DbSet<InspectorPlanningStatu> InspectorPlanningStatus { get; set; }
         public virtual DbSet<Note> Notes { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<OrderStatu> OrderStatus { get; set; }
         public virtual DbSet<QueryTemplate> QueryTemplates { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<QuestionType> QuestionTypes { get; set; }
         public virtual DbSet<Quotation> Quotations { get; set; }
+        public virtual DbSet<QuotationStatu> QuotationStatus { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<ReportElement> ReportElements { get; set; }
         public virtual DbSet<ReportStatu> ReportStatus { get; set; }

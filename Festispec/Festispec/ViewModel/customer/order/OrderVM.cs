@@ -7,28 +7,78 @@ using System.Linq;
 using Festispec.ViewModel.survey;
 using Festispec.ViewModel.report;
 using GalaSoft.MvvmLight.Ioc;
+using Festispec.ViewModel.employee.quotation;
+using Festispec.ViewModel.customer;
 
 namespace Festispec.ViewModel.Customer.order
 {
     public class OrderVM
     {
         private Order _order;
+        private QuotationVM _quotation;
+        private EventVM _event;
+        private EmployeeVM _employee;
+        private CustomerVM _customer;
 
         public int Id => _order.Id;
-        public EmployeeVM Employee { get; set; }
-        public EventVM Event { get; set; }
         public ObservableCollection<DayVM> Days { get; set; }
         public ReportVM Report { get; set; }
         public SurveyVM Survey { get; set; }
 
-        public string Status
-        { 
-            get => _order.Status;
-            set => _order.Status = value;
+        public QuotationVM Quotation
+        {
+            get
+            {
+                return _quotation;
+            }
+            set
+            {
+                _quotation = value;
+                _order.QuotationId = value.Id;
+            }
+        }
+
+        public EmployeeVM Employee
+        {
+            get
+            {
+                return _employee;
+            }
+            set
+            {
+                _employee = value;
+                _order.EmployeeId = value.Id;
+            }
+        }
+
+        public EventVM Event
+        {
+            get
+            {
+                return _event;
+            }
+            set
+            {
+                _event = value;
+                _order.EventId = value.Id;
+            }
+        }
+
+        public CustomerVM Customer
+        {
+            get
+            {
+                return _customer;
+            }
+            set
+            {
+                _customer = value;
+                _order.CustomerId = value.Id;
+            }
         }
 
         public string Description
-        { 
+        {
             get => _order.Description;
             set => _order.Description = value;
         }
@@ -38,8 +88,9 @@ namespace Festispec.ViewModel.Customer.order
             _order = orderCon;
             Event = eventVM;
             Employee = new EmployeeVM(orderCon.Employee);
+            Customer = eventVM.Customer;
             Survey = orderCon.Surveys.Count > 0 ? new SurveyVM(this, orderCon.Surveys.First()) : new SurveyVM(this);
-            Report = orderCon.Reports.Count > 0 ? new ReportVM(orderCon.Reports.First()) : new ReportVM(this);
+            Report = orderCon.Reports.Count > 0 ? new ReportVM(orderCon.Reports.First(), this) : new ReportVM(this);
             Days = new ObservableCollection<DayVM>(_order.Days.ToList().Select(d => new DayVM(d, this)));
         }
 
