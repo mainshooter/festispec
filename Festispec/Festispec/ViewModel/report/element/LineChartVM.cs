@@ -111,8 +111,6 @@ namespace Festispec.ViewModel.report.element
                     }
                     columnSerie.Values = chartValues;
                 }
-                XaxisName = "Place";
-                YaxisName = "Amount";
                 SeriesCollection = seriesCollection;
             }
             catch (Exception)

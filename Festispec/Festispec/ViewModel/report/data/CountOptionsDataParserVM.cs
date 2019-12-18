@@ -20,7 +20,7 @@ namespace Festispec.ViewModel.report.data
             ReportElementType.Piechart,
         };
 
-        public override bool QuestionTypeIsSupported {
+        public bool QuestionTypeIsSupported {
             get {
                 if (Question == null)
                 {

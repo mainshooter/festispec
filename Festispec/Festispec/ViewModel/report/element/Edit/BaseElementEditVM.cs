@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Windows.Input;
 
-namespace Festispec.ViewModel.report.element
+namespace Festispec.ViewModel.report.element.Edit
 {
     public class BaseElementEdit: ViewModelBase
     {
@@ -25,11 +25,14 @@ namespace Festispec.ViewModel.report.element
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
 
-        public ReportElementVM ReportElementVM {
-            get {
+        public ReportElementVM ReportElementVM 
+        {
+            get 
+            {
                 return _reportElementVM;
             }
-            set {
+            set 
+            {
                 _reportElementVM = value;
                 if (_reportElementVM != null && _reportElementVM.ReportVM != null)
                 {
@@ -64,11 +67,14 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public int SelectedDataParserIndex {
-            get {
+        public int SelectedDataParserIndex 
+        {
+            get 
+            {
                 return _selectedDataParserIndex;
             }
-            set {
+            set 
+            {
                 _selectedDataParserIndex = value;
                 
                 ReportElementVM.DataParser = DataParsers[_selectedDataParserIndex];
@@ -76,33 +82,41 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public int SelectedSurveyQuestionIndex {
-            get {
+        public int SelectedSurveyQuestionIndex 
+        {
+            get 
+            {
                 return _selectedSurveyQuestionIndex;
             }
-            set {
+            set 
+            {
                 _selectedSurveyQuestionIndex = value;
                 ReportElementVM.SelectedSurveyQuestion = SurveyQuestions[_selectedSurveyQuestionIndex];
                 RaisePropertyChanged("SelectedSurveyQuestionIndex");
             }
         }
 
-        public List<IDataParser> DataParsers { 
-            get {
+        public List<IDataParser> DataParsers 
+        { 
+            get 
+            {
                 return _dataParsers;
             }
-            set {
+            set 
+            {
                 _dataParsers = value;
-
                 RaisePropertyChanged("DataParsers");
             }
         }
 
-        public ObservableCollection<IQuestion> SurveyQuestions { 
-            get {
+        public ObservableCollection<IQuestion> SurveyQuestions 
+        { 
+            get 
+            {
                 return _surveyQuestions;
             }
-            set {
+            set 
+            {
                 _surveyQuestions = value;
                 RaisePropertyChanged("SurveyQuestions");
             }

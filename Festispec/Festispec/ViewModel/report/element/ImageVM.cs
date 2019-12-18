@@ -7,7 +7,6 @@ namespace Festispec.ViewModel.report.element
 {
     public class ImageVM : ReportElementVM
     {
-        public ReportElementVM ReportElementVM { get; set; }
         public ImageVM()
         {
             Type = ReportElementType.Image;

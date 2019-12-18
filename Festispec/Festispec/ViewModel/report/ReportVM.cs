@@ -122,6 +122,7 @@ namespace Festispec.ViewModel.report
                 context.SaveChanges();
             }
         }
+
         public bool ValidateInputs()
         {
             if (Title == null || Title.Equals(""))

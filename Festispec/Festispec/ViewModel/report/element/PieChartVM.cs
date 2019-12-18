@@ -29,6 +29,7 @@ namespace Festispec.ViewModel.report.element
             Type = ReportElementType.Piechart;
             EditElement = new RelayCommand(() => Edit());
         }
+
         public PieChartVM(ReportElementVM element)
         {
             EditElement = new RelayCommand(() => Edit());

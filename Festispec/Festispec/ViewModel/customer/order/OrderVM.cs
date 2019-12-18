@@ -19,11 +19,15 @@ namespace Festispec.ViewModel.Customer.order
         public EmployeeVM Employee { get; set; }
         public EventVM Event { get; set; }
         public ObservableCollection<DayVM> Days { get; set; }
-        public ReportVM Report { 
-            get {
+
+        public ReportVM Report 
+        { 
+            get 
+            {
                 return _report;
             }
-            set {
+            set 
+            {
                 _report = value;
                 if (_report != null)
                 {
@@ -31,6 +35,7 @@ namespace Festispec.ViewModel.Customer.order
                 }
             }
         }
+
         public SurveyVM Survey { get; set; }
 
         public string Status
@@ -38,6 +43,7 @@ namespace Festispec.ViewModel.Customer.order
             get => _order.Status;
             set => _order.Status = value;
         }
+
         public string Description
         { 
             get => _order.Description;

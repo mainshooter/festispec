@@ -11,7 +11,6 @@ namespace Festispec.ViewModel.report.element
 {
     public class BarChartVM : ReportElementVM
     {
-
         public string XaxisName { get; set; }
 
         public string YaxisName { get; set; }
@@ -19,8 +18,6 @@ namespace Festispec.ViewModel.report.element
         public SeriesCollection SeriesCollection { set; get; }
 
         public List<string> Labels { set; get; }
-
-        public Func<double, string> Formatter { set; get; }
 
         public BarChartVM()
         {
@@ -112,8 +109,6 @@ namespace Festispec.ViewModel.report.element
                     columnSerie.Values = chartValues;
                 }
                 Labels = new List<string> { "test1", "test2", "test3", "test4", "test5" };
-                XaxisName = "Place";
-                YaxisName = "Amount";
                 SeriesCollection = seriesCollection;
             }
             catch (Exception)

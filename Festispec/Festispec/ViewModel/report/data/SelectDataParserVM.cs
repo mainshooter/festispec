@@ -19,7 +19,7 @@ namespace Festispec.ViewModel.report.data
         };
         public List<string> SupportedVisuals => new List<string>() { ReportElementType.Table };
 
-        public override bool QuestionTypeIsSupported {
+        public bool QuestionTypeIsSupported {
             get {
                 var questionCheckResult = SupportedQuestions.Where(s => s == Question.QuestionType);
                 if (questionCheckResult != null && questionCheckResult.Count() > 0)
@@ -152,8 +152,6 @@ namespace Festispec.ViewModel.report.data
                 }
                 result.Add(answerList);
             }
-
-
             return result;
         }
 
@@ -181,7 +179,6 @@ namespace Festispec.ViewModel.report.data
                 }
                 result.Add(listRow);
             }
-
             return result;
         }
 
@@ -195,10 +192,7 @@ namespace Festispec.ViewModel.report.data
             {
                 result.Add(new List<string>() { item.Answer});
             }
-
             return result;
         }
-
-
     }
 }

@@ -24,12 +24,6 @@ namespace Festispec.ViewModel.report.data
             }
         }
 
-        public virtual bool QuestionTypeIsSupported {
-            get {
-                return true;
-            }
-        }
-
         [PreferredConstructor]
         public DataVM()
         {

@@ -15,7 +15,6 @@ using Festispec.Domain;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Festispec.ViewModel.customer;
-using Festispec.ViewModel.Customer.order;
 
 namespace Festispec.ViewModel
 {

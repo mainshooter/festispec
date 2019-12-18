@@ -21,17 +21,17 @@ namespace Festispec.ViewModel.report.element
         private IQuestion _selectedSurveyQuestion;
         private Visibility _visibilityButtons;
 
+        public ICommand EditElement { get; set; }
+        public ICommand DeleteElement { get; set; }
+        public ICommand ElementUpCommand { get; set; }
+        public ICommand ElementDownCommand { get; set; }
+
         public ReportVM ReportVM { 
             get 
             {
                 return CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().ReportVM;
             }
         }
-        
-        public ICommand EditElement { get; set; }
-        public ICommand DeleteElement { get; set; }
-        public ICommand ElementUpCommand { get; set; }
-        public ICommand ElementDownCommand { get; set; }
 
         public int Id
         {
@@ -126,6 +126,7 @@ namespace Festispec.ViewModel.report.element
             set
             {
                 _reportElement.X_as = value;
+                RaisePropertyChanged("X_as");
             }
         }
 
@@ -138,24 +139,31 @@ namespace Festispec.ViewModel.report.element
             set
             {
                 _reportElement.Y_as = value;
+                RaisePropertyChanged("Y_as");
             }
         }
 
-        public List<List<string>> Data {
-            get {
+        public List<List<string>> Data 
+        {
+            get 
+            {
                 return _data;
             }
-            set {
+            set 
+            {
                 _data = value;
                 RaisePropertyChanged("Data");
             }
         }
 
-        public virtual IDataParser DataParser { 
-            get {
+        public virtual IDataParser DataParser 
+        { 
+            get 
+            {
                 return _dataParser;
             }
-            set {
+            set 
+            {
                 _dataParser = value;
                 if (_dataParser != null && _dataParser.Question != null)
                 {
@@ -172,11 +180,14 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public IQuestion SelectedSurveyQuestion { 
-            get {
+        public IQuestion SelectedSurveyQuestion 
+        { 
+            get 
+            {
                 return _selectedSurveyQuestion;
             }
-            set {
+            set 
+            {
                 _selectedSurveyQuestion = value;
                 if (DataParser != null)
                 {
@@ -187,11 +198,14 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public string JsonData {
-            get {
+        public string JsonData 
+        {
+            get 
+            {
                 return _reportElement.Data;
             }
-            set {
+            set 
+            {
                 _reportElement.Data = value;
             }
         }
@@ -226,7 +240,7 @@ namespace Festispec.ViewModel.report.element
 
         public void Delete()
         {
-            MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze element wilt verwijderen?", "Element Verwijderen", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show("Weet u zeker dat u dit element wilt verwijderen?", "Element Verwijderen", MessageBoxButton.YesNo);
             if (result.Equals(MessageBoxResult.Yes))
             {
                 using (var context = new Entities())

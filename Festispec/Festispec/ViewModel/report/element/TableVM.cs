@@ -13,9 +13,6 @@ namespace Festispec.ViewModel.report.element
 
         public Dictionary<string, List<string>> Dictionary { get; set; }
 
-        public ReportElementVM ReportElementVM { get; set; }
-
-
         public DataTable DataTable
         {
             get
@@ -113,7 +110,6 @@ namespace Festispec.ViewModel.report.element
                         {
                             dataRow[internIndex] = "";
                         }
-
                         internIndex++;
                     }
                     DataTable.Rows.Add(dataRow);

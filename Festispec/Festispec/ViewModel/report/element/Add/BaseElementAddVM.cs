@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
-namespace Festispec.ViewModel.report.element
+namespace Festispec.ViewModel.report.element.Add
 {
     public class BaseElementAdd: ViewModelBase
     {
@@ -21,10 +21,12 @@ namespace Festispec.ViewModel.report.element
 
         public ReportElementVM ReportElementVM 
         {
-            get {
+            get 
+            {
                 return _reportElementVM;
             }
-            set {
+            set 
+            {
                 _reportElementVM = value;
                 RaisePropertyChanged("ReportElementVM");
             }
@@ -43,7 +45,6 @@ namespace Festispec.ViewModel.report.element
             DataParsers = new List<IDataParser>();
             DataParsers = _dataParserFactory.DataParsers;
             MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
-                var report = message.NextReportVM;
                 var questions = message.NextReportVM.Order.Survey.Questions;
                 SurveyQuestions.Clear();
                 foreach (var item in questions)

@@ -17,7 +17,7 @@ namespace Festispec.ViewModel.report.data
         };
         public List<string> SupportedVisuals => new List<string>() { ReportElementType.Table };
 
-        public override bool QuestionTypeIsSupported {
+        public bool QuestionTypeIsSupported {
             get {
                 if (Question == null)
                 {

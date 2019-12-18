@@ -8,7 +8,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows.Input;
 
-namespace Festispec.ViewModel.report.Add
+namespace Festispec.ViewModel.report.element.Add
 {
     public class AddTextVM : ViewModelBase
     {

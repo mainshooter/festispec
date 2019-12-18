@@ -16,7 +16,7 @@ namespace Festispec.ViewModel.report.data
             ReportElementType.Table
         };
 
-        public override bool QuestionTypeIsSupported {
+        public bool QuestionTypeIsSupported {
             get {
                 var questionCheckResult = SupportedQuestions.Where(s => s == Question.QuestionType);
                 if (questionCheckResult != null && questionCheckResult.Count() > 0)
