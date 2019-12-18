@@ -1,4 +1,7 @@
-﻿using Festispec.Domain;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using Festispec.Domain;
+using Festispec.ViewModel.customer.contactPerson.note;
 
 namespace Festispec.ViewModel.customer.contactPerson
 {
@@ -6,25 +9,25 @@ namespace Festispec.ViewModel.customer.contactPerson
     {
         private ContactPerson _contactPerson;
 
-        public int Id 
-        { 
-            get 
+        public int Id
+        {
+            get
             {
                 return _contactPerson.Id;
             }
-            private set 
+            private set
             {
                 _contactPerson.Id = value;
             }
         }
 
-        public string Firstname 
-        { 
+        public string Firstname
+        {
             get
             {
                 return _contactPerson.Firstname;
             }
-            set 
+            set
             {
                 _contactPerson.Firstname = value;
             }
@@ -54,55 +57,55 @@ namespace Festispec.ViewModel.customer.contactPerson
             }
         }
 
-        public string Lastname 
+        public string Lastname
         {
-            get 
+            get
             {
                 return _contactPerson.Lastname;
             }
-            set 
+            set
             {
                 _contactPerson.Lastname = value;
             }
         }
 
-        public string Phone 
-        { 
-            get 
+        public string Phone
+        {
+            get
             {
                 return _contactPerson.Phone;
             }
-            set 
+            set
             {
                 _contactPerson.Phone = value;
             }
         }
 
-        public string Email 
-        { 
-            get 
+        public string Email
+        {
+            get
             {
                 return _contactPerson.Email;
             }
-            set 
+            set
             {
                 _contactPerson.Email = value;
             }
         }
 
-        public string Function 
-        { 
+        public string Function
+        {
             get
             {
                 return _contactPerson.Function;
             }
-            set 
+            set
             {
                 _contactPerson.Function = value;
             }
         }
 
-        public int CustomerId 
+        public int CustomerId
         {
             get
             {
@@ -113,12 +116,13 @@ namespace Festispec.ViewModel.customer.contactPerson
                 _contactPerson.CustomerId = value;
             }
         }
-
-
+        
+        public ObservableCollection<NoteVM> Notes { get; set; }
 
         public ContactPersonVM(ContactPerson contactPerson)
         {
             _contactPerson = contactPerson;
+            Notes = new ObservableCollection<NoteVM>(_contactPerson.Notes.Select(n => new NoteVM(n)).OrderBy(n => n.Time));
         }
 
         public ContactPersonVM()
