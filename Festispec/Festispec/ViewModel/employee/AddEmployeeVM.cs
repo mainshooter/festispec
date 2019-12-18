@@ -53,7 +53,7 @@ namespace Festispec.ViewModel.employee
                 if (employees.Select(employee => employee.Email).Where(email => email == Employee.Email).Count() > 0)
                 {
                     var toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
-                    toast.ShowError("Een gebeuiker met dit email adres bestaat al");
+                    toast.ShowError("Een gebruiker met dit emailadres bestaat al");
                     return;
                 }
             }
