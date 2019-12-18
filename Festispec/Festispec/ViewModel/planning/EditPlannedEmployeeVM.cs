@@ -5,6 +5,7 @@ using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.planning.plannedEmployee;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using System;
 using System.Data.Entity;
 using System.Windows.Input;
 
@@ -14,6 +15,8 @@ namespace Festispec.ViewModel.planning
     {
         private PlannedEmployeeVM _plannedEmployeeVM;
         private EventVM _eventVM;
+        private DateTime _plannedStartTime;
+        private DateTime _plannedEndTime;
 
         public ICommand BackCommand { get; set; }
         public ICommand SaveChangesCommand { get; set; }
@@ -24,7 +27,6 @@ namespace Festispec.ViewModel.planning
             {
                 return _eventVM;
             }
-
             set
             {
                 _eventVM = value;
@@ -38,7 +40,6 @@ namespace Festispec.ViewModel.planning
             {
                 return _plannedEmployeeVM;
             }
-
             set
             {
                 _plannedEmployeeVM = value;
@@ -52,6 +53,8 @@ namespace Festispec.ViewModel.planning
             {
                 PlannedEmployeeVM = message.PlannedEmployee;
                 EventVM = message.EventVM;
+                _plannedStartTime = PlannedEmployeeVM.PlannedStartTime;
+                _plannedEndTime = PlannedEmployeeVM.PlannedEndTime;
             });
             BackCommand = new RelayCommand(Back);
             SaveChangesCommand = new RelayCommand(EditPlannedEmployee, CanSave);
@@ -76,11 +79,13 @@ namespace Festispec.ViewModel.planning
                 context.Entry(PlannedEmployeeVM.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
             }
-            Back();
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
         }
 
         private void Back()
         {
+            PlannedEmployeeVM.PlannedStartTime = _plannedStartTime;
+            PlannedEmployeeVM.PlannedEndTime = _plannedEndTime;
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
         }
     }

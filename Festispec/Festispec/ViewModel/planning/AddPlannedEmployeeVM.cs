@@ -3,11 +3,15 @@ using Festispec.Message;
 using Festispec.View.Pages.Planning;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.employee;
+using Festispec.ViewModel.employee.availabilty;
 using Festispec.ViewModel.planning.plannedEmployee;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.planning
@@ -17,40 +21,27 @@ namespace Festispec.ViewModel.planning
         private PlannedEmployeeVM _plannedEmployeeVM;
         private ObservableCollection<EmployeeVM> _availableInspectorList;
         private EventVM _eventVM;
+        private DateTime _selectedBeginDate;
 
         public ICommand BackCommand { get; set; }
         public ICommand SaveChangesCommand { get; set; }
         public ICommand SelectInspectorCommand { get; set; }
-
-        public ObservableCollection<EmployeeVM> AvailableInspectorList
+        public ICommand ClearInspectorCommand { get; set; }
+        public ObservableCollection<EmployeeVM> InspectorList { get; set; }
+        public ObservableCollection<DayVM> EventDays { get; set; }
+        public Visibility VisibilityClearButton
         {
             get
             {
-                return _availableInspectorList;
-            }
-            set
-            {
-                _availableInspectorList = value;
-                RaisePropertyChanged(() => FilteredAvailableInspectorList);
-            }
-        }
-
-        public ObservableCollection<EmployeeVM> FilteredAvailableInspectorList
-        {
-            get
-            {
-                var filteredList = new ObservableCollection<EmployeeVM>();
-
-                foreach (EmployeeVM employee in AvailableInspectorList)
+                if (PlannedEmployeeVM == null)
                 {
-                    var availabilityVM = employee.AvailabiltyVMs.Select(availibility => availibility).Where(availability => availability.AvailabiltyStart.Value.Date == PlannedEmployeeVM.PlannedStartTime.Date).FirstOrDefault();
-                    var plannedEmployeeVM = employee.plannedEmployeeVMs.Select(plannedEmployee => plannedEmployee).Where(plannedEmployee => plannedEmployee.PlannedStartTime.Date == PlannedEmployeeVM.PlannedStartTime.Date).FirstOrDefault();
-                    if (availabilityVM != null && plannedEmployeeVM == null)
-                    {
-                        filteredList.Add(employee);
-                    }
+                    return Visibility.Collapsed;
                 }
-                return filteredList;
+                if (PlannedEmployeeVM.Employee == null)
+                {
+                    return Visibility.Collapsed;
+                }
+                return Visibility.Visible;
             }
         }
 
@@ -65,6 +56,35 @@ namespace Festispec.ViewModel.planning
             {
                 _eventVM = value;
                 RaisePropertyChanged(() => EventVM);
+            }
+        }
+
+
+        public DateTime SelectedBeginDate
+        {
+            get
+            {
+                return _selectedBeginDate;
+            }
+            set
+            {
+                PlannedEmployeeVM.PlannedDate = value;
+                _selectedBeginDate = value;
+                GetAvailability();
+                RaisePropertyChanged(() => SelectedBeginDate);
+            }
+        }
+
+        public ObservableCollection<EmployeeVM> FilteredAvailableInspectorList
+        {
+            get
+            {
+                return _availableInspectorList;
+            }
+            set
+            {
+                _availableInspectorList = value;
+                RaisePropertyChanged(() => FilteredAvailableInspectorList);
             }
         }
 
@@ -84,27 +104,38 @@ namespace Festispec.ViewModel.planning
 
         public AddPlannedEmployeeVM()
         {
-            PlannedEmployeeVM = new PlannedEmployeeVM();
-            AvailableInspectorList = new ObservableCollection<EmployeeVM>();
-            this.MessengerInstance.Register<ChangeSelectedPlannedEmployeeEventMessage>(this, message =>
+            InspectorList = new ObservableCollection<EmployeeVM>();
+            MessengerInstance.Register<ChangeSelectedPlannedEmployeeEventMessage>(this, message =>
             {
-                PlannedEmployeeVM = new PlannedEmployeeVM();
+                
                 EventVM = message.EventVM;
-                PlannedEmployeeVM.PlannedStartTime = message.EventVM.BeginDate;
+                PlannedEmployeeVM = new PlannedEmployeeVM(EventVM.OrderVM.Days.Select(day => day).Where(day => day.BeginTime.Date == message.EventVM.BeginDate.Date).FirstOrDefault());
+                SelectedBeginDate = message.EventVM.BeginDate;
+                PlannedEmployeeVM.PlannedDate = message.EventVM.BeginDate;
                 PlannedEmployeeVM.PlannedEndTime = message.EventVM.BeginDate;
-                PlannedEmployeeVM.OrderVM = message.EventVM.OrderVM;
-                GetAvailableInspectors();
-                RaisePropertyChanged(() => FilteredAvailableInspectorList);
+                PlannedEmployeeVM.Order = message.EventVM.OrderVM;
+                EventDays = message.EventVM.OrderVM.Days;
+                GetInspectors();
+                GetAvailability();
+
             });
             BackCommand = new RelayCommand(Back);
-            SaveChangesCommand = new RelayCommand(AddPlannedEmployee,CanSave);
+            ClearInspectorCommand = new RelayCommand(ClearInspector);
+            SaveChangesCommand = new RelayCommand(AddPlannedEmployee, CanSave);
             SelectInspectorCommand = new RelayCommand<EmployeeVM>(SelectEmployee);
+            RaisePropertyChanged(() => VisibilityClearButton);
+        }
+
+        private void ClearInspector()
+        {
+            PlannedEmployeeVM.Employee = null;
+            RaisePropertyChanged(() => VisibilityClearButton);
         }
 
         private void SelectEmployee(EmployeeVM source)
         {
-            _plannedEmployeeVM.Employee = source;
-            RaisePropertyChanged(() => PlannedEmployeeVM);
+            PlannedEmployeeVM.Employee = source;
+            RaisePropertyChanged(() => VisibilityClearButton);
         }
 
         private void AddPlannedEmployee()
@@ -112,9 +143,14 @@ namespace Festispec.ViewModel.planning
             PlannedEmployeeVM.Day = EventVM.OrderVM.Days.Select(day => day).Where(day => day.BeginTime.Date == PlannedEmployeeVM.PlannedStartTime.Date).FirstOrDefault();
             PlannedEmployeeVM.WorkStartTime = PlannedEmployeeVM.PlannedStartTime;
             PlannedEmployeeVM.WorkEndTime = PlannedEmployeeVM.PlannedEndTime;
+            PlannedEmployeeVM.Day.InspectorPlannings.Add(PlannedEmployeeVM);
+
             using (var context = new Entities())
             {
-                context.InspectorPlannings.Add(PlannedEmployeeVM.ToModel());
+                var temp = PlannedEmployeeVM.ToModel();
+                temp.Employee = null;
+                temp.Day = null;
+                context.InspectorPlannings.Add(temp);
                 context.SaveChanges();
             }
             Back();
@@ -122,7 +158,8 @@ namespace Festispec.ViewModel.planning
 
         private bool CanSave()
         {
-            if (PlannedEmployeeVM == null || PlannedEmployeeVM.PlannedStartTime >= PlannedEmployeeVM.PlannedEndTime || PlannedEmployeeVM.Employee == null)
+            if (PlannedEmployeeVM == null || PlannedEmployeeVM.PlannedStartTime >= PlannedEmployeeVM.PlannedEndTime || PlannedEmployeeVM.Employee == null
+                || PlannedEmployeeVM.PlannedStartTime < EventVM.BeginDate || PlannedEmployeeVM.PlannedEndTime > EventVM.EndDate)
             {
                 return false;
             }
@@ -134,12 +171,35 @@ namespace Festispec.ViewModel.planning
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
         }
 
-        public void GetAvailableInspectors()
+        public void GetInspectors()
         {
             using (var context = new Entities())
             {
-                AvailableInspectorList = new ObservableCollection<EmployeeVM>(context.Employees.ToList().Select(employee => new EmployeeVM(employee)).Where(employee => employee.Department.Name == "Inspectie"));
+                InspectorList = new ObservableCollection<EmployeeVM>(context.Employees.ToList().Select(employee => new EmployeeVM(employee)).Where(employee => employee.Department.Name == "Inspectie"));
             }
         }
-    }
+
+        public void GetAvailability()
+        {
+            List<AvailabiltyVM> AvailabilityList = new List<AvailabiltyVM>();
+            List<PlannedEmployeeVM> PlannedEmployeeList = new List<PlannedEmployeeVM>();
+            FilteredAvailableInspectorList = new ObservableCollection<EmployeeVM>();
+            using (var context = new Entities())
+            {
+                AvailabilityList = new List<AvailabiltyVM>(context.AvailabilityInspectors.ToList().Select(availableInspector => new AvailabiltyVM(availableInspector)).Where(availableInspector => availableInspector.AvailabiltyStart.Value.Date == SelectedBeginDate.Date && availableInspector.AvailabiltyEnd.Value >= SelectedBeginDate));
+                PlannedEmployeeList = new List<PlannedEmployeeVM>(context.InspectorPlannings.ToList().Select(plannedEmployee => new PlannedEmployeeVM(plannedEmployee)).Where(plannedEmployee => plannedEmployee.PlannedStartTime.Date == SelectedBeginDate.Date));
+            }
+
+            foreach (EmployeeVM employee in InspectorList)
+            {
+                var availabilityVM = AvailabilityList.Select(availibility => availibility).Where(availability => availability.EmployeeId == employee.Id).FirstOrDefault();
+                var plannedEmployeeVM = PlannedEmployeeList.Select(plannedEmployee => plannedEmployee).Where(plannedEmployee => plannedEmployee.Employee.Id == employee.Id).FirstOrDefault();
+                if (availabilityVM != null && plannedEmployeeVM == null)
+                {
+                    FilteredAvailableInspectorList.Add(employee);
+                }
+            }
+            RaisePropertyChanged(() => FilteredAvailableInspectorList);
+        }
+    } 
 }

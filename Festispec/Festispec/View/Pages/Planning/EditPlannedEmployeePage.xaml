@@ -22,25 +22,21 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"></ColumnDefinition>
-                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <GroupBox Margin="7,10" Header="Ingeplande inspecteur" Grid.Column="0" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">
                     <StackPanel>
                         <Label FontSize="9" Content="Inspecteur"></Label>
-                        <TextBox IsReadOnly="True" Text="{Binding PlannedEmployeeVM.Employee.Fullname, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <TextBlock Text="{Binding PlannedEmployeeVM.Employee.Fullname, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Margin="7,10" Header="Ingeplande tijd" Grid.Column="1" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">
                     <StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel>
                             <Label FontSize="9" Content="Dag"></Label>
-                            <TextBox IsReadOnly="True" Text="{Binding PlannedEmployeeVM.PlannedStartTime.Date,Mode=OneWay,StringFormat=dd/MM/yyyy}"> </TextBox>
+                            <TextBlock Text="{Binding PlannedEmployeeVM.PlannedStartTime.Date,Mode=OneWay,StringFormat=dd/MM/yyyy}"></TextBlock>
                             <Label FontSize="9" Content="Starttijd"></Label>
                             <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding PlannedEmployeeVM.PlannedStartTime}"></xctk:TimePicker>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label FontSize="9" Content="Dag"></Label>
-                            <DatePicker DisplayDateStart="{Binding EventVM.BeginDateDateUniversal, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateEnd="{Binding EventVM.EndDateDateUniversal, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedDate="{Binding PlannedEmployeeVM.PlannedEndTime}"></DatePicker>
                             <Label FontSize="9" Content="Eindtijd"></Label>
                             <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding PlannedEmployeeVM.PlannedEndTime}"></xctk:TimePicker>
                         </StackPanel>

@@ -62,13 +62,11 @@ namespace Festispec.ViewModel.planning
                             temp = new ObservableCollection<PlannedEmployeeVM>(_filteredPlannedEmployeeList.Select(i => i).Where(i => i.Day.Order.Event.Name.ToLower().Contains(Filter.ToLower())));
                             break;
                     }
-
                     if (_showOnlyFuture)
                     {
                         temp = new ObservableCollection<PlannedEmployeeVM>(temp.ToList().Where(i => i.PlannedEndTime >= DateTime.Today).ToList());
                     }
                 }
-
                 return temp;
             }
             set
@@ -168,8 +166,8 @@ namespace Festispec.ViewModel.planning
                                                                                                    .First());
                     context.SaveChanges();
                 }
-                _filteredPlannedEmployeeList.Remove(source);
-                RaisePropertyChanged("FilteredPlannedEmployeeList");
+                source.Day.InspectorPlannings.Remove(source);
+                GetInitialPlannedEmployeeList();
             }
         }
 

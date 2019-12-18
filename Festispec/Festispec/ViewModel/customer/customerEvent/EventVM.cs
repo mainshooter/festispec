@@ -65,8 +65,8 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public DateTime BeginDate 
         {
-            get => _event.BeginDate.Date;
-            set => _event.BeginDate = value.Date;
+            get => _event.BeginDate;
+            set => _event.BeginDate = value;
         }
 
         public string BeginDateDateUniversal => BeginDate.ToString("yyyy-MM-dd");
@@ -75,8 +75,8 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public DateTime EndDate 
         {
-            get => _event.EndDate.Date;
-            set => _event.EndDate = value.Date;
+            get => _event.EndDate;
+            set => _event.EndDate = value;
         }
 
         public string EndDateDateUniversal => EndDate.ToString("yyyy-MM-dd");

@@ -24,7 +24,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="350"></ColumnDefinition>
                     <ColumnDefinition Width="200"></ColumnDefinition>
-                    <ColumnDefinition Width="250"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <DataGrid Grid.Column="0" Grid.RowSpan="2" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding FilteredAvailableInspectorList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="350">
                     <DataGrid.Columns>
@@ -39,22 +39,18 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <GroupBox Margin="7,10" Header="Geselecteerde inspecteur" Grid.Column="1" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">
-                    <StackPanel>
-                        <Label FontSize="9" Content="Inspecteur"></Label>
-                        <TextBox IsReadOnly="True" Text="{Binding PlannedEmployeeVM.Employee.Fullname, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <StackPanel VerticalAlignment="Top">
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding PlannedEmployeeVM.Employee.Fullname, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Height="20"></TextBlock>
+                        <Button Visibility="{Binding VisibilityClearButton}" Width="125" Margin="0,20,0,0" Content="Deselecteer" Command="{Binding ClearInspectorCommand}"></Button>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Margin="7,10" Header="Geselecteerde tijd" Grid.Column="2" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">
                     <StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel>
                             <Label FontSize="9" Content="Dag"></Label>
-                            <DatePicker DisplayDateStart="{Binding EventVM.BeginDateDateUniversal, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateEnd="{Binding EventVM.EndDateDateUniversal, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedDate="{Binding PlannedEmployeeVM.PlannedStartTime}"></DatePicker>
+                            <DatePicker DisplayDateStart="{Binding EventVM.BeginDateDateUniversal, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateEnd="{Binding EventVM.EndDateDateUniversal, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedDate="{Binding SelectedBeginDate}"></DatePicker>
                             <Label FontSize="9" Content="Starttijd"></Label>
                             <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding PlannedEmployeeVM.PlannedStartTime}"></xctk:TimePicker>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label FontSize="9" Content="Dag"></Label>
-                            <DatePicker DisplayDateStart="{Binding EventVM.BeginDateDateUniversal, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateEnd="{Binding EventVM.EndDateDateUniversal, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedDate="{Binding PlannedEmployeeVM.PlannedEndTime}"></DatePicker>
                             <Label FontSize="9" Content="Eindtijd"></Label>
                             <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding PlannedEmployeeVM.PlannedEndTime}"></xctk:TimePicker>
                         </StackPanel>

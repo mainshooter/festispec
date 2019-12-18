@@ -23,6 +23,18 @@ namespace Festispec.ViewModel.employee.availabilty
             }
         }
 
+        public int EmployeeId
+        {
+            get
+            {
+                return _availabilityInspector.EmployeeId;
+            }
+            private set
+            {
+                _availabilityInspector.EmployeeId = value;
+            }
+        }
+
         public DateTime? AvailabiltyStart
         {
             get
