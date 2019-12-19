@@ -81,7 +81,6 @@ namespace Festispec.ViewModel
                 LoggedInEmployee = message.LoggedinEmployee;
             });
                 
-
             // Menu vullen
             FillMenuList();
             CreateMenu();

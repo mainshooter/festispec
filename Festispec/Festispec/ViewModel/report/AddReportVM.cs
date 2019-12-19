@@ -28,7 +28,8 @@ namespace Festispec.ViewModel.report
 
         public AddReportVM()
         {
-            MessengerInstance.Register<ChangeSelectedOrderMessage>(this, message => {
+            MessengerInstance.Register<ChangeSelectedOrderMessage>(this, message => 
+            {
                 ReportVM = new ReportVM(message.SelectedOrderVM);
             });
             
