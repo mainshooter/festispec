@@ -144,17 +144,19 @@ namespace Festispec.ViewModel.report.data
 
             foreach (var answer in answers)
             {
-                var parsedAnswer = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(answer.Answer);
-                var answerList = parsedAnswer["Answers"];
-                for (int i = 0; i < answerList.Count; i++)
+                var parsedAnswer = JsonConvert.DeserializeObject<List<List<string>>>(answer.Answer);
+                foreach (var item in parsedAnswer)
                 {
-                    if (i == selectedColIndex)
+                    for (int i = 0; i < item.Count; i++)
                     {
-                        var selectedOptionAnswer = int.Parse(answerList[i]);
-                        answerList[i] = Question.QuestionDetails.Choices.Options[selectedOptionAnswer];
+                        if (i == selectedColIndex)
+                        {
+                            var selectedOptionAnswer = int.Parse(item[i]);
+                            item[i] = Question.QuestionDetails.Choices.Options[selectedOptionAnswer];
+                        }
                     }
+                    result.Add(item);
                 }
-                result.Add(answerList);
             }
             return result;
         }
