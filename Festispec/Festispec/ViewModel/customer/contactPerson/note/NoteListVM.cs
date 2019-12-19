@@ -16,6 +16,7 @@ namespace Festispec.ViewModel.customer.contactPerson.note
         public ICommand BackCommand { get; set; }
         public ICommand OpenAddNoteCommand { get; set; }
         public ICommand SaveCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
         public NoteListVM()
         {
@@ -34,6 +35,7 @@ namespace Festispec.ViewModel.customer.contactPerson.note
             BackCommand = new RelayCommand(Back);
             OpenAddNoteCommand = new RelayCommand(OpenAddNote);
             SaveCommand = new RelayCommand<NoteVM>(SaveNote);
+            DeleteCommand = new RelayCommand<NoteVM>(DeleteNote);
         }
 
         private void Back()
@@ -69,6 +71,19 @@ namespace Festispec.ViewModel.customer.contactPerson.note
             }
 
             return true;
+        }
+
+        private void DeleteNote(NoteVM source)
+        {
+            if (MessageBox.Show("Weet je zeker dat je deze notitie wil verwijderen?", "Weet je het zeker?", MessageBoxButton.YesNo) == MessageBoxResult.No) return;
+
+            using (var context = new Entities())
+            {
+                context.Notes.Attach(source.ToModel());
+                context.Notes.Remove(source.ToModel());
+                context.SaveChanges();
+                ContactPerson.Notes.Remove(source);
+            }
         }
     }
 }
