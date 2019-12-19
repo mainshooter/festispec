@@ -52,27 +52,35 @@ namespace Festispec.Lib.Survey.Question.Validator
 
                 int selectedColIndex = 0;
                 string selectedColumnName = tableQuestionType.Details.Choices.SelectedCol;
-                foreach (var item in tableQuestionType.Details.Choices.Cols)
+                if (selectedColumnName != null)
                 {
-                    if (selectedColumnName.Equals(item))
+                    foreach (var item in tableQuestionType.Details.Choices.Cols)
                     {
-                        break;
+                        if (selectedColumnName.Equals(item))
+                        {
+                            break;
+                        }
+                        selectedColIndex++;
                     }
-                    selectedColIndex++;
-                }
+                    int maximumOptionCount = tableQuestionType.Details.Choices.Options.Count;
 
-                foreach (var parsedRow in answersParsed)
-                {
-                    var answerString = parsedRow[selectedColIndex];
-                    int parsedAnswer = int.Parse(answerString);
-                    //tableQuestionType.Details.
+
+                    foreach (var parsedRow in answersParsed)
+                    {
+                        var answerString = parsedRow[selectedColIndex];
+                        int parsedAnswer = int.Parse(answerString);
+                        if (parsedAnswer < 0 && parsedAnswer > maximumOptionCount)
+                        {
+                            return false;
+                        }
+                    }
                 }
             }
             catch (System.Exception)
             {
                 return false;
             }
-            return false;
+            return true;
         }
 
         private bool ValidateSliderQuestion(Domain.Question question, Answer answer)
@@ -113,7 +121,7 @@ namespace Festispec.Lib.Survey.Question.Validator
             {
                 MultipleChoiseQuestionType multipleChoiseQuestionType = new MultipleChoiseQuestionType(question);
                 int resultParse = int.Parse(answer.Answer1);
-                int range = multipleChoiseQuestionType.Details.Choices.Options.Count;
+                int range = multipleChoiseQuestionType.Details.Choices.Cols.Count;
                 if (resultParse <= range && resultParse > 0)
                 {
                     return true;

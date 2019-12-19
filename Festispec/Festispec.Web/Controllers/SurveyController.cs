@@ -145,7 +145,7 @@ namespace Festispec.Web.Controllers
                     }
                     else
                     {
-                        return Json(new { result = "Answer not valid"});
+                        return Json(new { result = "Answer not valid" + question.Question1});
                     }
                 }
                 else
@@ -158,7 +158,7 @@ namespace Festispec.Web.Controllers
             _db.SaveChanges();
 
 
-            return Json(new { }, JsonRequestBehavior.DenyGet);
+            return Json(new { result = "succes" }, JsonRequestBehavior.DenyGet);
         }
     }
 }
