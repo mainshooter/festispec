@@ -84,6 +84,7 @@ namespace Festispec.ViewModel.report.element.Add
         public void SaveElement()
         {
             ToastVM toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
+
             if (ReportElementVM.Type != ReportElementType.Image && ReportElementVM.Type != ReportElementType.Text)
             {
                 ReportElementVM.DataParser.Question = ReportElementVM.SelectedSurveyQuestion;
