@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Message;
+using Festispec.View.Pages.Customer.ContactPerson;
 using Festispec.View.Pages.Customer.Note;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
@@ -19,17 +20,10 @@ namespace Festispec.ViewModel.customer.contactPerson.note
 
         public NoteListVM()
         {
-            // Dit hieronder terugzetten wanneer de message er is
-//            MessengerInstance.Register<ChangeSelectedContactPersonMessage>(this, message =>
-//            {
-//                ContactPerson = message.ContactPerson;
-//            });
-
-            // Dit weghalen wanneer de message er is
-            using (var context = new Entities())
+            MessengerInstance.Register<ChangeSelectedContactPersonMessage>(this, message =>
             {
-                ContactPerson = new ContactPersonVM(context.ContactPersons.First(cp => cp.Id == 1));
-            }
+                ContactPerson = message.ActualContactPerson;
+            });
 
             BackCommand = new RelayCommand(Back);
             OpenAddNoteCommand = new RelayCommand(OpenAddNote);
@@ -38,8 +32,7 @@ namespace Festispec.ViewModel.customer.contactPerson.note
 
         private void Back()
         {
-            // Lijn hieronder terugzetten wanneer de message er is
-            //MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ContactPersonPage) });
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ContactPersonPage) });
         }
 
         private void OpenAddNote()

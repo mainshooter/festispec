@@ -22,8 +22,7 @@ namespace Festispec.ViewModel.customer.contactPerson.note
         {
             Note = new NoteVM();
 
-            // Lijn hieronder terugzetten wanneer de message er is
-            //MessengerInstance.Register<ChangeSelectedContactPersonMessage>(this, message => { _contactPerson = message.ContactPerson; });
+            MessengerInstance.Register<ChangeSelectedContactPersonMessage>(this, message => { _contactPerson = message.ActualContactPerson; });
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -49,15 +48,11 @@ namespace Festispec.ViewModel.customer.contactPerson.note
 
             using (var context = new Entities())
             {
-                // Lijn hieronder terugzetten wanneer de message er is
-                //Note.ContactPersonId = _contactPerson.Id;
-                // Lijn hieronder gehalen wanneer de message er is
-                Note.ContactPersonId = 1;
+                Note.ContactPersonId = _contactPerson.Id;
                 Note.Time = DateTime.Now;
                 context.Notes.Add(Note.ToModel());
                 context.SaveChanges();
-                // Lijn hieronder terugzetten wanneer de message er is
-                //_contactPerson.Notes.Add(Note);
+                _contactPerson.Notes.Add(Note);
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Opgeslagen");
                 Back();
             }

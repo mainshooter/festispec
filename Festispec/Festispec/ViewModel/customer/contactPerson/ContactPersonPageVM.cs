@@ -1,12 +1,15 @@
 ﻿using Festispec.Domain;
 using Festispec.Message;
+using Festispec.View.Pages.Customer.Note;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Festispec.ViewModel.customer.contactPerson
 {
@@ -16,7 +19,9 @@ namespace Festispec.ViewModel.customer.contactPerson
         private List<string> filterItems;
         private ObservableCollection<ContactPersonVM> _filteredContactPersonList;
         private CustomerVM customerVM;
+        private ContactPersonVM selectedContactPerson;
 
+        public ICommand OpenContactPersonNotes { get; set; }
         public string CustomerName => CustomerVM?.Name;
         public string SelectedFilter { get; set; }
 
@@ -89,7 +94,18 @@ namespace Festispec.ViewModel.customer.contactPerson
             }
         }
 
-        
+        public ContactPersonVM SelectedContactPerson
+        {
+            get => selectedContactPerson;
+            set
+            {
+                if(value != null)
+                {
+                    selectedContactPerson = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
 
         public ContactPersonPageVM()
         {
@@ -109,6 +125,8 @@ namespace Festispec.ViewModel.customer.contactPerson
             FilterItems = new List<string>();
             SelectedFilter = FilterItems.First();
             Filter = "";
+
+            OpenContactPersonNotes = new RelayCommand(OpenNotesPage);
         }
 
         public void FillList()
@@ -119,6 +137,15 @@ namespace Festispec.ViewModel.customer.contactPerson
                     .Select(cp => new ContactPersonVM(cp))
                     .Where(cp => cp.CustomerId == customerVM.Id));
             }
+        }
+
+        public void OpenNotesPage()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(NoteListPage)});
+            MessengerInstance.Send<ChangeSelectedContactPersonMessage>(new ChangeSelectedContactPersonMessage()
+            {
+                ActualContactPerson = SelectedContactPerson
+            });
         }
     }
 }

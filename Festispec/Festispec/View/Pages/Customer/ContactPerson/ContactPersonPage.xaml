@@ -22,13 +22,22 @@
         </WrapPanel>
         
         <Viewbox>
-            <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding FilteredContactPersonList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="900">
+            <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding FilteredContactPersonList}" SelectedItem="{Binding Path=SelectedContactPerson, Mode=TwoWay}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="900">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Volledige naam" Binding="{Binding Firstname}"/>
                     <DataGridTextColumn Header="Starttijd" Binding="{Binding Prefix}"/>
                     <DataGridTextColumn Header="Eindtijd" Binding="{Binding Lastname}"/>
                     <DataGridTextColumn Header="Telefoonnummer" Binding="{Binding Phone}"/>
                     <DataGridTextColumn Header="E-mail" Binding="{Binding Email}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding DataContext.OpenContactPersonNotes, RelativeSource={RelativeSource AncestorType=DataGrid}}" ToolTip="Notities" ToolTipService.ShowOnDisabled="True">
+                                    <materialDesign:PackIcon Kind="Notes"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Viewbox>
