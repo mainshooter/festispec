@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
+using Festispec.Domain;
 using Festispec.Lib.Survey.Question;
+using Newtonsoft.Json;
 
 namespace Festispec.Web.Models.Questions.Types
 {
@@ -16,6 +18,14 @@ namespace Festispec.Web.Models.Questions.Types
         public TableQuestionType()
         {
             Type = "Tabel vraag";
+        }
+
+        public TableQuestionType(Question question)
+        {
+            Id = question.Id;
+            Type = question.Type;
+            Details = JsonConvert.DeserializeObject<QuestionDetails>(question.Question1);
+            Variable = question.Variables;
         }
     }
 }

@@ -25,15 +25,6 @@ namespace Festispec.ViewModel.survey
 
         public EmployeeVM Employee { get; set; }
 
-        public string Status {
-            get {
-                return _surveyCase.Status;
-            }
-            set {
-                _surveyCase.Status = value;
-            }
-        }
-
         public ObservableCollection<SurveyAnswerVM> Answers { get; set; }
 
         public CaseVM(Case surveyCase)

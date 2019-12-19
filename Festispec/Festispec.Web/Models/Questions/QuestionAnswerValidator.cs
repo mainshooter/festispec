@@ -1,5 +1,7 @@
 ﻿using Festispec.Domain;
 using Festispec.Web.Models.Questions.Types;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Festispec.Lib.Survey.Question.Validator
 {
@@ -34,7 +36,7 @@ namespace Festispec.Lib.Survey.Question.Validator
 
         private bool ValidateDrawQuestion(Domain.Question question, Answer answer)
         {
-            if (string.IsNullOrEmpty(answer.Answer1) || string.IsNullOrWhiteSpace(answer.Answer1))
+            if (answer.Answer1 == null)
             {
                 return false;
             }
@@ -45,12 +47,30 @@ namespace Festispec.Lib.Survey.Question.Validator
         {
             try
             {
+                TableQuestionType tableQuestionType = new TableQuestionType(question);
+                List<List<string>> answersParsed = JsonConvert.DeserializeObject<List<List<string>>>(answer.Answer1);
 
+                int selectedColIndex = 0;
+                string selectedColumnName = tableQuestionType.Details.Choices.SelectedCol;
+                foreach (var item in tableQuestionType.Details.Choices.Cols)
+                {
+                    if (selectedColumnName.Equals(item))
+                    {
+                        break;
+                    }
+                    selectedColIndex++;
+                }
+
+                foreach (var parsedRow in answersParsed)
+                {
+                    var answerString = parsedRow[selectedColIndex];
+                    int parsedAnswer = int.Parse(answerString);
+                    //tableQuestionType.Details.
+                }
             }
             catch (System.Exception)
             {
-
-                throw;
+                return false;
             }
             return false;
         }
@@ -80,7 +100,7 @@ namespace Festispec.Lib.Survey.Question.Validator
 
         private bool ValidateOpenQuestion(Domain.Question question, Answer answer)
         {
-            if (string.IsNullOrEmpty(answer.Answer1) || string.IsNullOrWhiteSpace(answer.Answer1))
+            if (answer.Answer1 == null)
             {
                 return false;
             }
@@ -120,7 +140,7 @@ namespace Festispec.Lib.Survey.Question.Validator
 
         private bool ValidateGalleryQuestion(Domain.Question question, Answer answer)
         {
-            if (string.IsNullOrEmpty(answer.Answer1))
+            if (answer.Answer1 != null)
             {
                 return false;
             }
