@@ -10,33 +10,34 @@
       Title="NoteListPage"
       DataContext="{Binding NoteListVM,Source={StaticResource Locator}}">
 
-    <StackPanel>
-        <Grid>
-            <Button HorizontalAlignment="Left" Command="{Binding BackCommand}" Margin="10,0,0,0">Terug</Button>
-            <Label FontSize="23" Content="{Binding ContactPerson.Fullname}" ContentStringFormat="Notities van {0}" HorizontalAlignment="Center"/>
-        </Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
+        <Button Grid.Row="0" HorizontalAlignment="Left" Command="{Binding BackCommand}" Margin="10,0,0,0">Terug</Button>
+        <Label Grid.Row="0" FontSize="23" Content="{Binding ContactPerson.Fullname}" ContentStringFormat="Notities van {0}" HorizontalAlignment="Center"/>
 
-            <Button Grid.Row="0" Margin="0,0,10,0" Content="Notitie toevoegen" Command="{Binding OpenAddNoteCommand}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <ScrollViewer Grid.Row="1">
-                <ItemsControl ItemsSource="{ Binding ContactPerson.Notes }" HorizontalContentAlignment="Stretch">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Background="#eee" Margin="0,10,0,10">
-                                <TextBox Text="{Binding Note}" MinLines="4" Margin="10,5,10,5" BorderThickness="1" BorderBrush="#bbb" VerticalContentAlignment="Top" AcceptsReturn="True" Padding="1"></TextBox>
-                                <Label Content="{Binding Time, StringFormat=dd-MM-yyyy hh:mm}" ContentStringFormat="Aangemaakt op: {0}" Margin="10,0,10,0"></Label>
+        <Button Grid.Row="1" Margin="0,0,20,0" Content="Notitie toevoegen" Command="{Binding OpenAddNoteCommand}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+        <ScrollViewer Grid.Row="2">
+            <ItemsControl ItemsSource="{ Binding ContactPerson.Notes }" HorizontalContentAlignment="Stretch">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Background="#eee" Margin="0,10,0,10">
+                            <TextBox Text="{Binding Note}" MinLines="4" Margin="10,5,10,5" BorderThickness="1" BorderBrush="#bbb" VerticalContentAlignment="Top" AcceptsReturn="True" Padding="1"></TextBox>
+                            <Label Content="{Binding Time, StringFormat=dd-MM-yyyy hh:mm}" ContentStringFormat="Aangemaakt op: {0}" Margin="10,0,10,0"></Label>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Button Content="Opslaan" HorizontalAlignment="Right" Command="{Binding DataContext.SaveCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Margin="10,0,10,0"></Button>
-                                <Separator></Separator>
+                                <Button Content="Verwijderen" Background="Red" HorizontalAlignment="Right" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Margin="10,0,10,0"></Button>
                             </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
-        </Grid>
-    </StackPanel>
+                            <Separator></Separator>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
 </Page>
