@@ -20,7 +20,6 @@ namespace Festispec.ViewModel.report.data
 
         public bool QuestionTypeIsSupported {
             get {
-                return true;
                 var questionCheckResult = SupportedQuestions.Where(s => s == Question.QuestionType);
                 if (questionCheckResult != null && questionCheckResult.Count() > 0)
                 {
