@@ -18,6 +18,7 @@ namespace Festispec.Web.Models.Questions
                 ["Schuifbalk vraag"] = new SliderQuestionType(),
                 ["Tabel vraag"] = new TableQuestionType(),
                 ["Teken vraag"] = new DrawingQuestionType(),
+                ["Opmerking vraag"] = new CommentQuestionType(),
             };
         }
 

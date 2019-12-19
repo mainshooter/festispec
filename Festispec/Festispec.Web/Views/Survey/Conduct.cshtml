@@ -15,15 +15,17 @@
 
 	@foreach (var question in Model.Questions)
 	{
-		<h3>@question.Details.Question</h3>
-		<p><strong>Beschrijving: </strong> @question.Details.Description</p>
-		@Html.EditorFor(m => question);
-		<br />
+		<div class="question-container">
+			<h3>@question.Details.Question</h3>
+			<p><strong>Beschrijving: </strong> @question.Details.Description</p>
+			@Html.EditorFor(m => question)
+			<br />
+		</div>
 		if (question.Type == "Tabel vraag")
 		{
-				<script>
+			<script>
 				new TableQuestion("table-@question.Variable", "@question.Variable");
-				</script>
+			</script>
 		}
 
 	}

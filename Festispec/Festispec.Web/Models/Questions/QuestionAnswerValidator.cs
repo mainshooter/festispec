@@ -122,7 +122,7 @@ namespace Festispec.Lib.Survey.Question.Validator
                 MultipleChoiseQuestionType multipleChoiseQuestionType = new MultipleChoiseQuestionType(question);
                 int resultParse = int.Parse(answer.Answer1);
                 int range = multipleChoiseQuestionType.Details.Choices.Cols.Count;
-                if (resultParse <= range && resultParse > 0)
+                if (resultParse <= range && resultParse >= 0)
                 {
                     return true;
                 }
