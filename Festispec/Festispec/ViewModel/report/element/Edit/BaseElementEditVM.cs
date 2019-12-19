@@ -186,7 +186,7 @@ namespace Festispec.ViewModel.report.element.Edit
             {
                 return true;
             }
-            if (ReportElementVM.DataParser != null && ReportElementVM.DataParser.QuestionTypeIsSupported)
+            if (ReportElementVM.DataParser != null && ReportElementVM.DataParser.Question != null && ReportElementVM.DataParser.QuestionTypeIsSupported)
             {
                 var dataParser = ReportElementVM.DataParser;
                 bool containsSupportedType = dataParser.SupportedVisuals.Contains(ReportElementVM.Type);

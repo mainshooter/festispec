@@ -193,12 +193,12 @@ namespace Festispec.ViewModel.report.element
             set 
             {
                 _selectedSurveyQuestion = value;
+                RaisePropertyChanged("SelectedSurveyQuestion");
                 if (DataParser != null)
                 {
                     DataParser.Question = _selectedSurveyQuestion;
                     _reportElement.Data = _dataParser.ToJson();
                 }
-                RaisePropertyChanged("SelectedSurveyQuestion");
             }
         }
 

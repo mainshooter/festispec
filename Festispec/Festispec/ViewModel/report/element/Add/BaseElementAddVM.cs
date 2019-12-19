@@ -17,6 +17,8 @@ namespace Festispec.ViewModel.report.element.Add
     {
         private DataParserFactory _dataParserFactory;
         private ReportElementVM _reportElementVM;
+        private List<IDataParser> _dataParsers;
+        private ObservableCollection<IQuestion> _surveyQuestions;
         public ICommand SaveElementCommand { get; set; }
         public ICommand ReturnCommand { get; set; }
 
@@ -33,9 +35,25 @@ namespace Festispec.ViewModel.report.element.Add
             }
         }
 
-        public List<IDataParser> DataParsers { get; private set; }
+        public List<IDataParser> DataParsers { 
+            get {
+                return _dataParsers;
+            }
+            private set {
+                _dataParsers = value;
+                RaisePropertyChanged("DataParsers");
+            }
+        }
 
-        public ObservableCollection<IQuestion> SurveyQuestions { get; set; }
+        public ObservableCollection<IQuestion> SurveyQuestions { 
+            get {
+                return _surveyQuestions;
+            }
+            set {
+                _surveyQuestions = value;
+                RaisePropertyChanged("SurveyQuestions");
+            }
+        }
 
         public BaseElementAdd()
         {
@@ -95,7 +113,7 @@ namespace Festispec.ViewModel.report.element.Add
             {
                 return true;
             }
-            if (ReportElementVM.DataParser != null && ReportElementVM.DataParser.QuestionTypeIsSupported)
+            if (ReportElementVM.DataParser != null && ReportElementVM.DataParser.Question != null && ReportElementVM.DataParser.QuestionTypeIsSupported)
             {
                 var dataParser = ReportElementVM.DataParser;
                 bool containsSupportedType = dataParser.SupportedVisuals.Contains(ReportElementVM.Type);
