@@ -12,8 +12,8 @@
       DataContext="{Binding ContactPersonPageVM, Source={StaticResource Locator}}">
 
     <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Label Content="{Binding CustomerName}"></Label>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label FontSize="23" Content="{Binding CustomerVM.Name}" ContentStringFormat="Contactpersonen van {0}"/>
         </StackPanel>
         <WrapPanel>
             <Label Margin="3, 3, 10, 3">Filter:</Label>
@@ -32,7 +32,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.OpenContactPersonNotes, RelativeSource={RelativeSource AncestorType=DataGrid}}" ToolTip="Notities" ToolTipService.ShowOnDisabled="True">
+                                <Button Command="{Binding DataContext.OpenContactPersonNotesCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" ToolTip="Notities" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="Notes"/>
                                 </Button>
                             </DataTemplate>

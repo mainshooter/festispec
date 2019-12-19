@@ -3,59 +3,44 @@ using Festispec.Message;
 using Festispec.View.Pages.Customer.Note;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.customer.contactPerson
 {
     public class ContactPersonPageVM : ViewModelBase
     {
-        private string filter;
-        private List<string> filterItems;
+        private string _filter;
+        private List<string> _filterItems;
         private ObservableCollection<ContactPersonVM> _filteredContactPersonList;
-        private CustomerVM customerVM;
-        private ContactPersonVM selectedContactPerson;
 
-        public ICommand OpenContactPersonNotes { get; set; }
-        public string CustomerName => CustomerVM?.Name;
+        public ICommand OpenContactPersonNotesCommand { get; set; }
         public string SelectedFilter { get; set; }
-
-        public CustomerVM CustomerVM 
-        {
-            get => customerVM;
-            set
-            {
-                customerVM = value;
-                RaisePropertyChanged(() => CustomerName);
-            }
-        }
+        public CustomerVM CustomerVM { get; set; }
 
         public string Filter
         {
-            get => filter;
+            get => _filter;
             set
             {
-                filter = value;
+                _filter = value;
                 RaisePropertyChanged(() => FilteredContactPersonList);
             }
         }
 
         public List<string> FilterItems
         {
-            get => filterItems;
+            get => _filterItems;
             set
             {
-                filterItems = new List<string>();
-                filterItems.Add("Geen Filter");
-                filterItems.Add("Voornaam");
-                filterItems.Add("Achternaam");
-                filterItems.Add("Telefoonnummer");
-                filterItems.Add("E-mail");
+                _filterItems = new List<string>();
+                _filterItems.Add("Geen Filter");
+                _filterItems.Add("Voornaam");
+                _filterItems.Add("Achternaam");
+                _filterItems.Add("Telefoonnummer");
+                _filterItems.Add("E-mail");
             }
         }
 
@@ -94,18 +79,7 @@ namespace Festispec.ViewModel.customer.contactPerson
             }
         }
 
-        public ContactPersonVM SelectedContactPerson
-        {
-            get => selectedContactPerson;
-            set
-            {
-                if(value != null)
-                {
-                    selectedContactPerson = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
+        public ContactPersonVM SelectedContactPerson { get; set; }
 
         public ContactPersonPageVM()
         {
@@ -113,20 +87,20 @@ namespace Festispec.ViewModel.customer.contactPerson
             //MessengerInstance.Register<ChangeSelectedCustomerMessage>(this, message =>
             //{
             //    customerVM = message.Customer;
+            //    RaisePropertyChanged(() => CustomerVM);
             //});
 
-            using(var context = new Entities())
+            using (var context = new Entities())
             {
                 CustomerVM = new CustomerVM(context.Customers.First(c => c.Id == 1));
+                RaisePropertyChanged(() => CustomerVM);
             }
 
             FillList();
-
             FilterItems = new List<string>();
             SelectedFilter = FilterItems.First();
             Filter = "";
-
-            OpenContactPersonNotes = new RelayCommand(OpenNotesPage);
+            OpenContactPersonNotesCommand = new RelayCommand(OpenNotesPage);
         }
 
         public void FillList()
@@ -135,7 +109,7 @@ namespace Festispec.ViewModel.customer.contactPerson
             {
                 _filteredContactPersonList = new ObservableCollection<ContactPersonVM>(context.ContactPersons.ToList()
                     .Select(cp => new ContactPersonVM(cp))
-                    .Where(cp => cp.CustomerId == customerVM.Id));
+                    .Where(cp => cp.CustomerId == CustomerVM.Id));
             }
         }
 

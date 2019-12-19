@@ -23,6 +23,7 @@ namespace Festispec.ViewModel.customer.contactPerson.note
             MessengerInstance.Register<ChangeSelectedContactPersonMessage>(this, message =>
             {
                 ContactPerson = message.ActualContactPerson;
+                RaisePropertyChanged(() => ContactPerson);
             });
 
             BackCommand = new RelayCommand(Back);
@@ -38,6 +39,10 @@ namespace Festispec.ViewModel.customer.contactPerson.note
         private void OpenAddNote()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddNotePage) });
+            MessengerInstance.Send<ChangeSelectedContactPersonMessage>(new ChangeSelectedContactPersonMessage()
+            {
+                ActualContactPerson = ContactPerson
+            });
         }
 
         private void SaveNote(NoteVM source)
