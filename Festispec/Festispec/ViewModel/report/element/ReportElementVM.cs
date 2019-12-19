@@ -169,17 +169,6 @@ namespace Festispec.ViewModel.report.element
             set 
             {
                 _dataParser = value;
-                if (_dataParser != null && _dataParser.Question != null)
-                {
-                    _data = _dataParser.ParseData();
-                    SelectedSurveyQuestion = _dataParser.Question;
-                    _reportElement.Data = _dataParser.ToJson();
-                }
-                else
-                {
-                    _data = new List<List<string>>();
-                    _reportElement.Data = null;
-                }
                 RaisePropertyChanged("DataParser");
             }
         }
@@ -194,23 +183,6 @@ namespace Festispec.ViewModel.report.element
             {
                 _selectedSurveyQuestion = value;
                 RaisePropertyChanged("SelectedSurveyQuestion");
-                if (DataParser != null)
-                {
-                    DataParser.Question = _selectedSurveyQuestion;
-                    _reportElement.Data = _dataParser.ToJson();
-                }
-            }
-        }
-
-        public string JsonData 
-        {
-            get 
-            {
-                return _reportElement.Data;
-            }
-            set 
-            {
-                _reportElement.Data = value;
             }
         }
 
@@ -262,7 +234,7 @@ namespace Festispec.ViewModel.report.element
         {
             if (DataParser != null)
             {
-                DataParser.Question = _selectedSurveyQuestion;
+                DataParser.Question = SelectedSurveyQuestion;
                 _reportElement.Data = DataParser.ToJson();
             }
             return _reportElement;
