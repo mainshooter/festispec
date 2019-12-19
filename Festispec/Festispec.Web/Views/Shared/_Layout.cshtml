@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Festispec</title>
+    <link rel="shortcut icon"
+          href="@Url.Content("~/Festispec-icon.ico")">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -25,6 +27,9 @@
                     <li>@Html.ActionLink("Survey", "Index", "Survey")</li>
                     <li>@Html.ActionLink("Planning", "Index", "Planning")</li>
                 </ul>
+                @*<ul class="nav navbar-nav">
+                    <li><a @Url.Action("Logout", "User")> </a></li>
+                </ul>*@
             </div>
         </div>
     </div>
