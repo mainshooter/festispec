@@ -1,5 +1,6 @@
 ﻿using Festispec.Message;
 using Festispec.View.Pages.Report.element.Add;
+using System.Linq;
 
 namespace Festispec.ViewModel.report.element.Add
 {
@@ -18,6 +19,8 @@ namespace Festispec.ViewModel.report.element.Add
                 if (message.NextPageType == typeof(AddTablePage))
                 {
                     ReportElementVM = new TableVM();
+                    ReportElementVM.DataParser = DataParsers.First();
+                    ReportElementVM.SelectedSurveyQuestion = SurveyQuestions.First();
                 }
             });
         }

@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element.Add
@@ -70,7 +71,7 @@ namespace Festispec.ViewModel.report.element.Add
                 {
                     SurveyQuestions.Add(item);
                 }
-
+                ReportElementVM.SelectedSurveyQuestion = SurveyQuestions.First();
             });
         }
         public void SaveElement()
