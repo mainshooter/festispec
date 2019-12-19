@@ -249,7 +249,8 @@ namespace Festispec.ViewModel.report.element
             {
                 using (var context = new Entities())
                 {
-                    context.ReportElements.Remove(context.ReportElements.Where(reportElement => reportElement.Id == _reportElement.Id).First());
+                    context.ReportElements.Attach(_reportElement);
+                    context.ReportElements.Remove(_reportElement);
                     context.SaveChanges();
                 }
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().RefreshElements();
