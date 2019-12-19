@@ -141,9 +141,14 @@ BEGIN TRANSACTION
 INSERT INTO Question VALUES (1, 'Gesloten vraag', '{"Question":"Bent u vaker op dit festival geweest?","Choices":{"Cols":["Ja","Nee"],"Options":[]},"Description":"Vind ik gewoon interessant","Images":[]}', 1, 'V1Defqon1')
 INSERT INTO Question VALUES (1, 'Meerkeuze vraag', '{"Question":"Welke acts vond u een van de betere","Choices":{"Cols":["Act 1","Act 2"],"Options":[]},"Description":"Vind ik gewoon interessant","Images":[]}', 2, 'V2Defqon1')
 INSERT INTO Question VALUES (1, 'Open vraag', '{"Question":"Wat vond u van de kaartjes controlen?","Choices":{"Cols":[],"Options":[]},"Description":"Gewoon om te testen","Images":[]}', 3, 'V3Defqon1')
+
 INSERT INTO Question VALUES (2, 'Gesloten vraag', '{"Question":"Heeft u het naar uw zin?","Choices":{"Cols":["Ja","Nee"],"Options":[]},"Description":"Vind ik gewoon interessant","Images":[]}', 1, 'V1Xqlusive')
 INSERT INTO Question VALUES (2, 'Meerkeuze vraag', '{"Question":"Welke acts zou u liever gezien hebben?","Choices":{"Cols":["Ran-D","Bassmodulators", "Sefa"],"Options":[]},"Description":"Vind ik gewoon interessant","Images":[]}', 2, 'V2Xqlusive')
 INSERT INTO Question VALUES (2, 'Open vraag', '{"Question":"Wat vond u van de afsluiting en is hier verbetering?","Choices":{"Cols":[],"Options":[]},"Description":"Gewoon om te testen","Images":[]}', 3, 'V3Xqlusive')
+INSERT INTO Question VALUES (2, 'Schuifbalk vraag', '{"Question":"Schuifbalk vraag","Choices":{"Cols":["1","100"],"Options":[],"SelectedCol":null},"Description":"doei","Images":[]}', 3, 'schuifbalk-vraag')
+INSERT INTO Question VALUES (2, 'Opmerking vraag', '{"Question":"Dit is een opmerking","Choices":{"Cols":[],"Options":[],"SelectedCol":null},"Description":"","Images":[]}', 3, 'dit-is-een-opmerking')
+INSERT INTO Question VALUES (2, 'Tabel vraag', '{"Question":"Tabel vraag","Choices":{"Cols":["1","2","3"],"Options":["Mooi","doei"],"SelectedCol":"2"},"Description":"doei","Images":[]}', 3, 'tabel-vraag')
+
 INSERT INTO Question VALUES (3, 'Gesloten vraag', '{"Question":"Hoe vaak heeft u een concert van deze artiest bezocht?","Choices":{"Cols":["Eerste keer","al een paar keer"],"Options":[]},"Description":"Vind ik gewoon interessant","Images":[]}', 1, 'V1EdSheeran')
 INSERT INTO Question VALUES (3, 'Open vraag', '{"Question":"Hoe verliep de kaartjes controlen?","Choices":{"Cols":[],"Options":[]},"Description":"Gewoon om te testen","Images":[]}', 2, 'V2EdSheeran')
 INSERT INTO Question VALUES (3, 'Open vraag', '{"Question":"Zou u het concert aanraden aan anderen?","Choices":{"Cols":[],"Options":[]},"Description":"Gewoon om te testen","Images":[]}', 3, 'V2EdSheeran')
@@ -156,6 +161,10 @@ BEGIN TRANSACTION
 INSERT INTO [Case] VALUES (2, 3, 'Klaar')
 INSERT INTO [Case] VALUES (2, 2, 'Bezig')
 INSERT INTO [Case] VALUES (2, 3, 'Gestart')
+
+INSERT INTO [Case] VALUES (2, 1, 'Klaar')
+INSERT INTO [Case] VALUES (2, 1, 'Klaar')
+INSERT INTO [Case] VALUES (2, 1, 'Klaar')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
@@ -164,6 +173,25 @@ INSERT INTO Answer VALUES (2, 1, 'Poeh niet zoveel eigenlijk heb mijn lievelings
 INSERT INTO Answer VALUES (3, 1, 'Afsluiting was gaaf! hoeft niks aan toegevoegd te worden')
 INSERT INTO Answer VALUES (1, 2, 'Dit is mijn eerste keer')
 INSERT INTO Answer VALUES (2, 2, 'Ik miste toch wel Ran-D')
+
+INSERT INTO Answer VALUES (4, 4, 'Nee')
+INSERT INTO Answer VALUES (5, 4, '0')
+INSERT INTO Answer VALUES (6, 4, 'fds')
+INSERT INTO Answer VALUES (7, 4, '26')
+INSERT INTO Answer VALUES (9, 4, '[["Leuk","1","eo"],["jd","0","kd"],["jcn","0","h"],["b","0","h"],["b","0","f"]]')
+
+INSERT INTO Answer VALUES (4, 5, 'Ja')
+INSERT INTO Answer VALUES (5, 5, '1')
+INSERT INTO Answer VALUES (6, 5, 'fds')
+INSERT INTO Answer VALUES (7, 5, '26')
+INSERT INTO Answer VALUES (9, 5, '[["Leuk","1","eo"],["jd","0","kd"],["jcn","0","h"],["b","0","h"],["b","0","f"]]')
+
+INSERT INTO Answer VALUES (4, 6, 'Nee')
+INSERT INTO Answer VALUES (5, 6, '0')
+INSERT INTO Answer VALUES (6, 6, 'fds')
+INSERT INTO Answer VALUES (7, 6, '30')
+INSERT INTO Answer VALUES (9, 6, '[["Leuk","1","eo"],["jd","0","kd"],["jcn","0","h"],["b","0","h"],["b","0","f"]]')
+
 COMMIT TRANSACTION
 -------- END QUESTION DATA ------------
 
@@ -244,10 +272,8 @@ INSERT INTO ReportElement VALUES (1,'Text', 'Begin tekst', 'Inleiding', NULL,1, 
 INSERT INTO ReportElement VALUES (1,'Image', 'Loop Route', 'Inleiding', NULL,2, NULL ,NULL , NULL)
 INSERT INTO ReportElement VALUES (1,'Linechart', 'Tevredenheid', 'Inleiding',NULL, 3, NULL , 'Mensen ','Aantal')
 INSERT INTO ReportElement VALUES (2,'Text', 'Begin tekst', 'Inleiding', NULL,1, NULL, NULL , NULL)
-INSERT INTO ReportElement VALUES (2,'Image', 'Loop Route', 'Inleiding', NULL,2, NULL, NULL , NULL)
-INSERT INTO ReportElement VALUES (2,'Table', 'Artiest Lineup Rating', 'Inleiding', NULL,3, NULL, NULL , NULL)
+INSERT INTO ReportElement VALUES (2, 'Barchart', 'Doei', '2e teller', '{"Type":"COUNT","QuestionId":"9"}', 2, NULL, 'Lol', 'doei')
 INSERT INTO ReportElement VALUES (3,'Text', 'Begin tekst', 'Inleiding', NULL,1, NULL, NULL , NULL)
-INSERT INTO ReportElement VALUES (3,'Image', 'Loop Route', 'Inleiding', NULL,2, NULL, NULL , NULL)
 INSERT INTO ReportElement VALUES (3,'Piechart', 'Genuttigde dranken', 'Inleiding',NULL, 3, NULL , NULL , NULL)
 INSERT INTO ReportElement VALUES (4,'Text', 'Begin tekst', 'Inleiding', NULL,1, NULL , NULL , NULL)
 INSERT INTO ReportElement VALUES (4,'Image', 'Loop Route', 'Inleiding', NULL,2, NULL , NULL , NULL)
