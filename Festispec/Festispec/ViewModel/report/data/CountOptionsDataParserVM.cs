@@ -1,5 +1,6 @@
 ﻿using Festispec.Interface;
 using Festispec.Lib.Enums;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,7 +13,8 @@ namespace Festispec.ViewModel.report.data
         public List<string> SupportedQuestions => new List<string>() {
             Lib.Enums.QuestionType.ClosedQuestion,
             Lib.Enums.QuestionType.MultipleChoiseQuestion,
-            Lib.Enums.QuestionType.SliderQuestion
+            Lib.Enums.QuestionType.SliderQuestion,
+            Lib.Enums.QuestionType.TableQuestion,
         };
 
         public List<string> SupportedVisuals => new List<string>() { 
@@ -58,7 +60,60 @@ namespace Festispec.ViewModel.report.data
             {
                 return ParseSliderQuestion();
             }
+            if (questionType.Equals(Lib.Enums.QuestionType.TableQuestion))
+            {
+                return ParseTableQuestion();
+            }
             return new List<List<string>>();
+        }
+
+        private List<List<string>> ParseTableQuestion()
+        {
+            var result = new List<List<string>>();
+            var answers = GetQuestionAnswers();
+
+            List<string> headerRow = new List<string>();
+
+            int selectedColIndex = 0;
+            string selectedColumnName = Question.QuestionDetails.Choices.SelectedCol;
+            foreach (var item in Question.QuestionDetails.Choices.Cols)
+            {
+                if (selectedColumnName.Equals(item))
+                {
+                    selectedColIndex++;
+                }
+                headerRow.Add(item);
+            }
+            result.Add(headerRow);
+
+            List<int> totalChoises = new List<int>();
+            for (int i = 0; i < headerRow.Count; i++)
+            {
+                totalChoises.Add(0);
+            }
+
+            foreach (var answer in answers)
+            {
+                var parsedAnswer = JsonConvert.DeserializeObject<List<List<string>>>(answer.Answer);
+                foreach (var item in parsedAnswer)
+                {
+                    for (int i = 0; i < item.Count; i++)
+                    {
+                        if (selectedColIndex == i)
+                        {
+                            totalChoises[i]++;
+                        }
+                    }
+                }
+            }
+            List<string> totalChoisesAsString = new List<string>();
+            foreach (var item in totalChoises)
+            {
+                totalChoisesAsString.Add(item.ToString());
+            }
+            result.Add(totalChoisesAsString);
+
+            return result;
         }
 
         private List<List<string>> ParseSliderQuestion()
