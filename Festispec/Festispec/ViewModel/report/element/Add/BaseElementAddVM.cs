@@ -36,21 +36,27 @@ namespace Festispec.ViewModel.report.element.Add
             }
         }
 
-        public List<IDataParser> DataParsers { 
-            get {
+        public List<IDataParser> DataParsers 
+        { 
+            get 
+            {
                 return _dataParsers;
             }
-            private set {
+            private set 
+            {
                 _dataParsers = value;
                 RaisePropertyChanged("DataParsers");
             }
         }
 
-        public ObservableCollection<IQuestion> SurveyQuestions { 
-            get {
+        public ObservableCollection<IQuestion> SurveyQuestions 
+        { 
+            get 
+            {
                 return _surveyQuestions;
             }
-            set {
+            set 
+            {
                 _surveyQuestions = value;
                 RaisePropertyChanged("SurveyQuestions");
             }
