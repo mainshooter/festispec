@@ -10,12 +10,23 @@ namespace Festispec.ViewModel.planning
     public class DayVM
     {
         private Day _day;
+        private OrderVM _order;
 
         public int Id => _day.Id;
-
-        public OrderVM Order { get; set; }
-
         public ObservableCollection<PlannedEmployeeVM> InspectorPlannings { get; set; }
+
+        public OrderVM Order 
+        {
+            get
+            {
+                return _order;
+            }
+            set
+            {
+                _order = value;
+                _day.OrderId = value.Id;
+            }
+        }
 
         public DateTime BeginTime
         {
@@ -46,6 +57,17 @@ namespace Festispec.ViewModel.planning
             _day = day;
             Order = orderVM;
             InspectorPlannings = new ObservableCollection<PlannedEmployeeVM>(day.InspectorPlannings.ToList().Select(ip => new PlannedEmployeeVM(ip, this)));
+        }
+
+        public DayVM()
+        {
+            _day = new Day();
+            InspectorPlannings = new ObservableCollection<PlannedEmployeeVM>();
+        }
+
+        public Day ToModel()
+        {
+            return _day;
         }
     }
 }

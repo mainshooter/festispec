@@ -58,9 +58,6 @@ namespace Festispec.ViewModel.planning
                         case "Volledige naam":
                             temp = new ObservableCollection<PlannedEmployeeVM>(_filteredPlannedEmployeeList.Select(i => i).Where(i => i.Employee.Fullname.ToLower().Contains(Filter.ToLower())));
                             break;
-                        case "Evenement":
-                            temp = new ObservableCollection<PlannedEmployeeVM>(_filteredPlannedEmployeeList.Select(i => i).Where(i => i.Day.Order.Event.Name.ToLower().Contains(Filter.ToLower())));
-                            break;
                     }
                     if (_showOnlyFuture)
                     {
@@ -94,8 +91,6 @@ namespace Festispec.ViewModel.planning
                 _filteritems = new List<string>();
                 _filteritems.Add("Geen filter");
                 _filteritems.Add("Volledige naam");
-                _filteritems.Add("Evenement");
-                _filteritems.Add("Status");
             }
         }
 
@@ -189,7 +184,6 @@ namespace Festispec.ViewModel.planning
                         _filteredPlannedEmployeeList.Add(inspectorPlanning);
                     }
                 }
-                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess(_filteredPlannedEmployeeList.Count + " resultaten gefilterd!");
             }
             FilteredPlannedEmployeeList = _filteredPlannedEmployeeList;
         }

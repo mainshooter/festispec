@@ -41,11 +41,11 @@ namespace Festispec.Domain
         public virtual DbSet<InspectorPlanning> InspectorPlannings { get; set; }
         public virtual DbSet<Note> Notes { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<OrderStatu> OrderStatus { get; set; }
         public virtual DbSet<QueryTemplate> QueryTemplates { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<QuestionType> QuestionTypes { get; set; }
         public virtual DbSet<Quotation> Quotations { get; set; }
+        public virtual DbSet<QuotationStatu> QuotationStatus { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<ReportElement> ReportElements { get; set; }
         public virtual DbSet<ReportStatu> ReportStatus { get; set; }
