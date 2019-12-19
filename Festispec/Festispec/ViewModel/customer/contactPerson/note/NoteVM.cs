@@ -27,6 +27,8 @@ namespace Festispec.ViewModel.customer.contactPerson.note
             set => _note.Time = value;
         }
 
+        public string TimeString => Time.ToString("dd-MM-yyyy HH:mm");
+
         public NoteVM(Note note)
         {
             _note = note;

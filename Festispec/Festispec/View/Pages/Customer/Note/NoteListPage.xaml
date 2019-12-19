@@ -28,7 +28,7 @@
                     <DataTemplate>
                         <StackPanel Background="#eee" Margin="0,10,0,10">
                             <TextBox Text="{Binding Note}" MinLines="4" Margin="10,5,10,5" BorderThickness="1" BorderBrush="#bbb" VerticalContentAlignment="Top" AcceptsReturn="True" Padding="1"></TextBox>
-                            <Label Content="{Binding Time, StringFormat=dd-MM-yyyy hh:mm}" ContentStringFormat="Aangemaakt op: {0}" Margin="10,0,10,0"></Label>
+                            <Label Content="{Binding TimeString}" ContentStringFormat="Aangemaakt op: {0}" Margin="10,0,10,0"></Label>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Button Content="Opslaan" HorizontalAlignment="Right" Command="{Binding DataContext.SaveCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Margin="10,0,10,0"></Button>
                                 <Button Content="Verwijderen" Background="Red" HorizontalAlignment="Right" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Margin="10,0,10,0"></Button>
