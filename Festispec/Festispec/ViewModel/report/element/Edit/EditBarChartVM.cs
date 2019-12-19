@@ -9,7 +9,8 @@ namespace Festispec.ViewModel.report.element.Edit
         {
             ReportElementVM = new ReportElementVM();
             ReportElementVM.Type = ReportElementType.Barchart;
-            MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => {
+            MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => 
+            {
                 ReportElementVM = message.ReportElementVM;
             });
         }

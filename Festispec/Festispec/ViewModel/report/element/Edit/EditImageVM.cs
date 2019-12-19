@@ -16,7 +16,8 @@ namespace Festispec.ViewModel.report.element.Edit
         {
             ReportElementVM = new ReportElementVM();
             ReportElementVM.Type = ReportElementType.Image;
-            MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => {
+            MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => 
+            {
                 ReportElementVM = message.ReportElementVM;
             });
             ChooseImageCommand = new RelayCommand(ChooseImage);

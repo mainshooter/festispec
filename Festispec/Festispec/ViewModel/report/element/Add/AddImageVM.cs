@@ -21,7 +21,8 @@ namespace Festispec.ViewModel.report.element.Add
                 ReportElementVM.Order = message.NextReportVM.ReportElements.Count + 1;
             });
 
-            MessengerInstance.Register<ChangePageMessage>(this, message => {
+            MessengerInstance.Register<ChangePageMessage>(this, message => 
+            {
                 if (message.NextPageType == typeof(AddImagePage))
                 {
                     ReportElementVM = new ImageVM();

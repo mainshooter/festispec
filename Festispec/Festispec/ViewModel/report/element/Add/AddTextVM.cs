@@ -13,7 +13,8 @@ namespace Festispec.ViewModel.report.element.Add
                 ReportElementVM.ReportId = message.NextReportVM.Id;
                 ReportElementVM.Order = message.NextReportVM.ReportElements.Count + 1;
             });
-            MessengerInstance.Register<ChangePageMessage>(this, message => {
+            MessengerInstance.Register<ChangePageMessage>(this, message => 
+            {
                 if (message.NextPageType == typeof(AddTablePage))
                 {
                     ReportElementVM = new TextVM();

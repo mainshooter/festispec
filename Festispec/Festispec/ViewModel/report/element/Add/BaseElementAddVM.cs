@@ -70,7 +70,8 @@ namespace Festispec.ViewModel.report.element.Add
             SurveyQuestions = new ObservableCollection<IQuestion>();
             DataParsers = new List<IDataParser>();
             DataParsers = _dataParserFactory.DataParsers;
-            MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => {
+            MessengerInstance.Register<ChangeSelectedReportMessage>(this, message => 
+            {
                 var questions = message.NextReportVM.Order.Survey.Questions;
                 SurveyQuestions.Clear();
                 foreach (var item in questions)
