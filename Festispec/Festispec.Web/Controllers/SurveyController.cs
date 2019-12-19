@@ -125,6 +125,10 @@ namespace Festispec.Web.Controllers
                 request[key] = Request.Form[keys[i]];
             }
             Survey survey = _db.Surveys.Find(id);
+            if (survey == null)
+            {
+                return Json(new { result = "Survey not found" });
+            }
             List<Question> questions = survey.Questions.ToList();
             List<Answer> answers = new List<Answer>();
             Case surveyCase = new Case() { Survey = survey, EmployeeId = 1};
@@ -145,7 +149,7 @@ namespace Festispec.Web.Controllers
                     }
                     else
                     {
-                        return Json(new { result = "Answer not valid" + question.Question1});
+                        return Json(new { result = "Answer not valid" + question.Variables});
                     }
                 }
                 else

@@ -18,7 +18,6 @@ function saveAllFormInputs() {
 			}
 		}
 		else {
-			console.log(element);
 			if (element.type == "radio" && element.checked == true) {
 				promises.push(getInputValue(element));
 			}
@@ -40,7 +39,6 @@ function saveAllFormInputs() {
 				uploadingCase[item.name] = item.value;
 			}
 		});
-		console.log(uploadingCase);
 		saveToLocalStorage(uploadingCase);
 	});
 }
@@ -124,6 +122,24 @@ function uploadSurveyCase(allCases, surveyCases, index, currentCase) {
 		}
 	});
 }
+
+$(document).ready(() => {
+	$("#saveSurvey").click(() => {
+		console.log("click");
+		$("form").validate({
+			ignore: "input[type='file']",
+		});
+		if ($("form").valid()) {
+			saveAllFormInputs();
+			$("form").trigger("reset");
+			alert("Uw case is opgeslagen");
+		}
+		else {
+			alert("Survey is niet compleet ingevuld");
+		}
+	});
+
+});
 
 $("form").submit((event) => {
 	event.preventDefault();

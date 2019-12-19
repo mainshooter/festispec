@@ -35,7 +35,6 @@
 				});
 				rowAnswers.push(rowValues);
 			});
-			console.log(rowAnswers);
 			this.setNewValues(JSON.stringify(rowAnswers));
 		});
 	}
