@@ -2,6 +2,7 @@
 using Festispec.Message;
 using Festispec.View.Pages.Report.element.Edit;
 using GalaSoft.MvvmLight.CommandWpf;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -63,7 +64,21 @@ namespace Festispec.ViewModel.report.element
 
         public void ApplyChanges()
         {
-
+            try
+            {
+                //DotCollection = new ObservableCollection<DrawPoint>();
+                //foreach (var item in Data)
+                //{
+                //    var selectedData = item[0];
+                //    var ParsedItem = JsonConvert.DeserializeObject<Dictionary<string, string>>(selectedData);
+                //    DotCollection.Add(
+                //            new DrawPoint() { XPos = ParsedItem["x"], YPos = ParsedItem["y"]}
+                //        );
+                //}
+            }
+            catch (System.Exception)
+            {
+            }
         }
     }
 }

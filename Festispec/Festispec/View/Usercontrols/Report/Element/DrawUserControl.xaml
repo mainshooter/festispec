@@ -13,7 +13,11 @@
             <ItemsControl Height="260" Width="620" ItemsSource="{Binding DotCollection}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas IsItemsHost="true" Background="{Binding Photo}" />
+                        <Canvas IsItemsHost="true" >
+                            <Canvas.Background>
+                                <ImageBrush ImageSource="{Binding Path=Photo}" Stretch="Uniform"/>
+                            </Canvas.Background>
+                        </Canvas>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemContainerStyle>
