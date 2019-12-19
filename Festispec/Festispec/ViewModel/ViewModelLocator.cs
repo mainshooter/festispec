@@ -67,6 +67,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddCommentFieldPage>();
             SimpleIoc.Default.Register<EditCommentFieldPage>();
             SimpleIoc.Default.Register<AddDrawQuestionPage>();
+            SimpleIoc.Default.Register<AddDrawPage>();
             SimpleIoc.Default.Register<EditDrawQuestionPage>();
             SimpleIoc.Default.Register<AddImageGalleryQuestionPage>();
             SimpleIoc.Default.Register<EditImageGalleryQuestionPage>();
@@ -78,6 +79,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditSliderQuestionPage>();
             SimpleIoc.Default.Register<AddTableQuestionPage>();
             SimpleIoc.Default.Register<EditTableQuestionPage>();
+            SimpleIoc.Default.Register<EditDrawPage>();
             SimpleIoc.Default.Register<LoginPage>();
             SimpleIoc.Default.Register<AddReportPage>();
             SimpleIoc.Default.Register<AddEventPage>();
@@ -134,6 +136,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<UserLoginVM>();
             SimpleIoc.Default.Register<DataParserFactory>();
             SimpleIoc.Default.Register<AddReportVM>();
+            SimpleIoc.Default.Register<AddDrawVM>();
+            SimpleIoc.Default.Register<EditDrawVM>();
             SimpleIoc.Default.Register<EditTextVM>();
             SimpleIoc.Default.Register<EditImageVM>();
             SimpleIoc.Default.Register<EditBarChartVM>();
@@ -208,6 +212,8 @@ namespace Festispec.ViewModel
         public AddLineChartVM AddLineChartVM => ServiceLocator.Current.GetInstance<AddLineChartVM>();
         public AddTableVM AddTableVM => ServiceLocator.Current.GetInstance<AddTableVM>();
         public AddTextVM AddTextVM => ServiceLocator.Current.GetInstance<AddTextVM>();
+        public EditDrawVM EditDrawVM => ServiceLocator.Current.GetInstance<EditDrawVM>();
+        public AddDrawVM AddDrawVM => ServiceLocator.Current.GetInstance<AddDrawVM>();
         public QuotationListVM QuotationListVM => ServiceLocator.Current.GetInstance<QuotationListVM>();
         public AddQuotationVM AddQuotationVM => ServiceLocator.Current.GetInstance<AddQuotationVM>();
         public EditQuotationVM EditQuotationVM => ServiceLocator.Current.GetInstance<EditQuotationVM>();

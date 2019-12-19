@@ -118,7 +118,7 @@ namespace Festispec.ViewModel.report.element.Add
 
         public bool CanUseOptions()
         {
-            if (ReportElementVM.Type == ReportElementType.Image || ReportElementVM.Type == ReportElementType.Text)
+            if (ReportElementVM.Type == ReportElementType.Image || ReportElementVM.Type == ReportElementType.Text || ReportElementVM.Type == ReportElementType.Draw)
             {
                 return true;
             }

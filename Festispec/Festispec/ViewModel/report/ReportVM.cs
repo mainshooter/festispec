@@ -8,7 +8,6 @@ using Festispec.ViewModel.toast;
 using System;
 using System.Windows;
 using System.Data.Entity;
-using System.Windows.Controls;
 
 namespace Festispec.ViewModel.report
 {

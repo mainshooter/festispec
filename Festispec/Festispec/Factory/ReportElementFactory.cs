@@ -1,6 +1,6 @@
 ﻿using Festispec.Lib.Enums;
 using Festispec.View.Report.Element;
-using Festispec.ViewModel.report;
+using Festispec.View.Usercontrols.Report.Element;
 using Festispec.ViewModel.report.element;
 using System.Windows.Controls;
 
@@ -58,6 +58,14 @@ namespace Festispec.Factory
                 TextVM textVM = new TextVM(element);
                 text.DataContext = textVM;
                 returningUserControl = text;
+            }
+            else if (type.Equals(ReportElementType.Draw))
+            {
+                DrawUserControl draw = new DrawUserControl();
+                DrawVM drawVM = new DrawVM(element);
+                draw.DataContext = drawVM;
+                drawVM.ApplyChanges();
+                returningUserControl = draw;
             }
             return returningUserControl;
         }

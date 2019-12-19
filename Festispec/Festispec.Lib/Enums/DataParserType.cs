@@ -9,5 +9,6 @@ namespace Festispec.Lib.Enums
         public const string MIN = "MIN";
         public const string MAX = "MAX";
         public const string AVG = "AVG";
+        public const string DRAW = "DRAW";
     }
 }

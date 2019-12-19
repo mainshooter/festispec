@@ -136,6 +136,9 @@ namespace Festispec.ViewModel.report
                 case ReportElementType.Text:
                     MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddTextPage) });
                     break;
+                case ReportElementType.Draw:
+                    MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddDrawPage) });
+                    break;
             }
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage()
             {

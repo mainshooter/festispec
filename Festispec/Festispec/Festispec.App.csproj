@@ -225,18 +225,23 @@
     <Compile Include="ViewModel\report\data\CountDataParserVM.cs" />
     <Compile Include="ViewModel\report\data\CountOptionsDataParserVM.cs" />
     <Compile Include="ViewModel\report\data\DataVM.cs" />
+    <Compile Include="ViewModel\report\data\DrawDataParser.cs" />
     <Compile Include="ViewModel\report\data\MaxDataParserVM.cs" />
     <Compile Include="ViewModel\report\data\MinDataParserVM.cs" />
     <Compile Include="ViewModel\report\data\SelectDataParserVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddBarChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Add\AddDrawVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddImageVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddLineChartVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddPieChartVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddTableVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddTextVM.cs" />
     <Compile Include="ViewModel\report\element\Add\BaseElementAddVM.cs" />
+    <Compile Include="ViewModel\report\element\DrawPoint.cs" />
+    <Compile Include="ViewModel\report\element\DrawVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\BaseElementEditVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditBarChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\EditDrawVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditImageVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditLineChartVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditPieChartVM.cs" />
@@ -333,6 +338,9 @@
     <Compile Include="View\Pages\Report\element\Add\AddBarChartPage.xaml.cs">
       <DependentUpon>AddBarChartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Report\element\Add\AddDrawPage.xaml.cs">
+      <DependentUpon>AddDrawPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Report\element\Add\AddImagePage.xaml.cs">
       <DependentUpon>AddImagePage.xaml</DependentUpon>
     </Compile>
@@ -350,6 +358,9 @@
     </Compile>
     <Compile Include="View\Pages\Report\element\Edit\EditBarChartPage.xaml.cs">
       <DependentUpon>EditBarChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Edit\EditDrawPage.xaml.cs">
+      <DependentUpon>EditDrawPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Report\element\Edit\EditImagePage.xaml.cs">
       <DependentUpon>EditImagePage.xaml</DependentUpon>
@@ -419,6 +430,9 @@
     </Compile>
     <Compile Include="View\Usercontrols\Report\Element\BarChartUserControl.xaml.cs">
       <DependentUpon>BarChartUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usercontrols\Report\Element\DrawUserControl.xaml.cs">
+      <DependentUpon>DrawUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usercontrols\Report\Element\ImageUserControl.xaml.cs">
       <DependentUpon>ImageUserControl.xaml</DependentUpon>
@@ -547,6 +561,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Pages\Report\element\Add\AddDrawPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Report\element\Add\AddImagePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -568,6 +586,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\Report\element\Edit\EditBarChartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\Edit\EditDrawPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -672,6 +694,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Usercontrols\Report\Element\BarChartUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usercontrols\Report\Element\DrawUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -265,6 +265,7 @@ INSERT INTO ElementType VALUES ('Piechart')
 INSERT INTO ElementType VALUES ('Barchart')
 INSERT INTO ElementType VALUES ('Image')
 INSERT INTO ElementType VALUES ('Text')
+INSERT INTO ElementType VALUES ('Draw')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
