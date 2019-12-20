@@ -31,7 +31,7 @@
                         <Label Content="{Binding Employee.Birthday}"/>
                         <Label Content="Telefoonnummer" FontWeight="Bold"/>
                         <Label Content="{Binding Employee.Phone}"/>
-                        <Label Content="E-Mail" FontWeight="Bold"/>
+                        <Label Content="E-mail" FontWeight="Bold"/>
                         <Label Content="{Binding Employee.Email}"/>
                         <Label Content="IBAN" FontWeight="Bold"/>
                         <Label Content="{Binding Employee.Iban}"/>
@@ -41,7 +41,7 @@
                     <StackPanel>
                         <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Woongegevens</TextBlock>
                         <Separator/>
-                        <Label Content="Stad" FontWeight="Bold"/>
+                        <Label Content="Plaats" FontWeight="Bold"/>
                         <Label Content="{Binding Employee.City}"/>
                         <Label Content="Adres" FontWeight="Bold"/>
                         <StackPanel Orientation="Horizontal">

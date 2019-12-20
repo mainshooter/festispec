@@ -27,8 +27,8 @@
                 <ColumnDefinition Width="150"></ColumnDefinition>
                 <ColumnDefinition Width="45"></ColumnDefinition>
                 <ColumnDefinition Width="200"></ColumnDefinition>
-                <ColumnDefinition Width="100"></ColumnDefinition>
-                <ColumnDefinition Width="56"></ColumnDefinition>
+                <ColumnDefinition Width="95"></ColumnDefinition>
+                <ColumnDefinition Width="40"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0">Filter op:</Label>
@@ -36,7 +36,7 @@
             <ComboBox Grid.Column="1" SelectedIndex="0" SelectedValuePath="SelectedFilter" ItemsSource="{Binding Filters}" SelectedItem="{Binding SelectedFilter,Mode=TwoWay}"/>
             <TextBox Grid.Column="3" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label VerticalAlignment="Center" Grid.Column="4" Height="32">In de toekomst:</Label>
-            <ToggleButton VerticalAlignment="Top" IsChecked="{Binding ShowOnlyFuture, Mode=TwoWay}" Grid.Column="5" Height="32"></ToggleButton>
+            <ToggleButton VerticalAlignment="Top" IsChecked="{Binding ShowOnlyFuture, Mode=TwoWay}" Grid.Column="5" Height="30"></ToggleButton>
         </Grid>
 
         <Viewbox Grid.Row="2" VerticalAlignment="Top">
