@@ -4,7 +4,6 @@ using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Planning;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.planning.plannedEmployee;
-using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;

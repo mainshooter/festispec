@@ -1,5 +1,4 @@
 ﻿using Festispec.Domain;
-using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
@@ -42,6 +41,8 @@ namespace Festispec.ViewModel.planning.plannedEmployee
                 PlannedStartTime = value;
                 PlannedEndTime = value;
                 Employee = null;
+                RaisePropertyChanged(() => PlannedStartTime);
+                RaisePropertyChanged(() => PlannedEndTime);
                 RaisePropertyChanged(() => PlannedDate);
             }
         }
@@ -79,7 +80,7 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             get => _plannedEmployee.PlannedFrom;
             set
             {
-                if (value < Day.EndTime && PlannedStartTime >= Day.BeginTime)
+                if (value > Day.EndTime)
                 {
                     PlannedStartTime = Day.EndTime;
                     return;
