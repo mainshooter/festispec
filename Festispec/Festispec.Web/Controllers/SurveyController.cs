@@ -80,5 +80,26 @@ namespace Festispec.Web.Controllers
            
             return View(model);
         }
+
+        public ActionResult EventDetails(int? id)
+        {
+            if (UserSession.Current.Employee == null)
+            {
+                return Redirect("~/User/Login");
+            }
+
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var eventId = _db.Orders.Where(ordercon => ordercon.Id == id).First().EventId;
+            var model = new EventModel { Event = _db.Events.Find(eventId)};
+
+            if (model.Event == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
     }
 }

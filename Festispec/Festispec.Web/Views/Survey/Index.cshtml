@@ -36,6 +36,9 @@
             <td>
                 @Html.ActionLink("Afnemen","Details",new { id = item.Id })
             </td>
+            <td>
+                @Html.ActionLink("Evenement inzien", "EventDetails", new { id = item.Id})
+            </td>
         </tr>
     }
 

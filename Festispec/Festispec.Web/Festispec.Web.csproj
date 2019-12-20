@@ -136,6 +136,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Auth\UserSession.cs" />
+    <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\SurveyModel.cs" />
     <Compile Include="Models\LoginFormModel.cs" />
     <Compile Include="Models\Questions\IQuestion.cs" />
@@ -195,6 +196,7 @@
     <Content Include="Views\Shared\EditorTemplates\MultipleChoiseQuestionType.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SliderQuestionType.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TableQuestionType.cshtml" />
+    <Content Include="Views\Survey\EventDetails.cshtml" />
     <None Include="Web.config.example" />
     <None Include="Web.config.Debug.example">
       <DependentUpon>Web.config.example</DependentUpon>

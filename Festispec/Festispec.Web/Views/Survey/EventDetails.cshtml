@@ -1,0 +1,118 @@
+﻿@model Festispec.Web.Models.EventModel
+
+@{
+    ViewBag.Title = "EventDetails";
+}
+
+<h2>EventDetails</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Event.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Event.Street)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.Street)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Event.HouseNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.HouseNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Event.HouseNumber_Addition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.HouseNumber_Addition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Event.PostalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.PostalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Event.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Event.BeginDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.BeginDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Event.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Event.AmountVisitors)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.AmountVisitors)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Event.SurfaceM2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.SurfaceM2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Event.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Event.ContactPerson.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.ContactPerson.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Event.Customer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.Customer.Name)
+        </dd>
+
+    </dl>
+</div>
