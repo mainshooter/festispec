@@ -9,6 +9,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Festispec.View.Pages.Customer;
+using Festispec.View.Pages.Customer.Event;
 
 namespace Festispec.ViewModel.customer.pages
 {
@@ -22,6 +23,7 @@ namespace Festispec.ViewModel.customer.pages
         public ICommand OpenEditCustomer { get; set; }
         public ICommand OpenSingleCustomer { get; set; }
         public ICommand DeleteCustomerCommand { get; set; }
+        public ICommand OpenCustomerEventCommand { get; set; }
         public ObservableCollection<CustomerVM> CustomerList { get; set; }
         public string SelectedFilter { get; set; }
         public string Filter
@@ -92,6 +94,7 @@ namespace Festispec.ViewModel.customer.pages
             OpenEditCustomer = new RelayCommand(OpenEditCustomerPage);
             DeleteCustomerCommand = new RelayCommand(DeleteCustomer);
             OpenSingleCustomer = new RelayCommand(OpenCustomerDetailsPage);
+            OpenCustomerEventCommand = new RelayCommand(OpenEventsPage);
         }
 
         private void OpenAddCustomerPage()
@@ -118,6 +121,12 @@ namespace Festispec.ViewModel.customer.pages
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerDetailsPage) });
             MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage { Customer = SelectedCustomer, CustomerList = this});
+        }
+
+        public void OpenEventsPage()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
+            MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage { Customer = SelectedCustomer, CustomerList = this });
         }
 
         private void DeleteCustomer()
