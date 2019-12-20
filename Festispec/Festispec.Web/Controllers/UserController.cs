@@ -34,14 +34,14 @@ namespace Festispec.Web.Controllers
            {
                using (var context = new Entities())
                {
-                   var employee = context.Employees.FirstOrDefault(e => e.Email == "m.peeters@gmail.com");
+                   var employee = context.Employees.FirstOrDefault(e => e.Email == email);
                    IPasswordValidator passwordService = new PasswordService();
 
                    if (employee == null)
                    {
                        ModelState.AddModelError("", "Gebruiker niet gevonden met het ingevoerde emailadres.");
                    }
-                   else if (!passwordService.PasswordsCompare("GamerBoy95", employee.Password))
+                   else if (!passwordService.PasswordsCompare(password, employee.Password))
                    {
                        ModelState.AddModelError("", "Wachtwoord ongeldig");
                    }

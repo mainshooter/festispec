@@ -140,15 +140,3 @@ $(document).ready(() => {
 	});
 
 });
-
-$("form").submit((event) => {
-	event.preventDefault();
-	$("form").validate({
-		ignore: "input[type='file']",
-	});
-	if ($("form").valid()) {
-		saveAllFormInputs();
-		$("form").trigger("reset");
-		alert("Uw case is opgeslagen");
-	}
-});

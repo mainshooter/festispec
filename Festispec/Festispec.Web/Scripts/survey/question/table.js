@@ -1,11 +1,9 @@
 ﻿class TableQuestion {
 
 	constructor(tableId, inputName) {
-
 		this.scope = document.querySelector("#"+ tableId);
 		this.inputField = document.querySelector("input[name='" + inputName + "']");
 		this.addListners();
-		
 	}
 
 	addListners() {

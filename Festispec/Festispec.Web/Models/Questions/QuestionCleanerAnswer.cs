@@ -1,5 +1,4 @@
-﻿
-using Festispec.Domain;
+﻿using Festispec.Domain;
 using Festispec.Web.Models.Questions.Types;
 using Newtonsoft.Json;
 using System.Collections.Generic;

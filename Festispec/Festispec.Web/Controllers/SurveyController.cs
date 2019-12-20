@@ -26,12 +26,11 @@ namespace Festispec.Web.Controllers
                 return Redirect("~/User/Login");
             }
 
-            //var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
-            //                        .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
-            //                        DateTime.Today <= s.Order.Event.EndDate &&
-            //                        s.Status == SurveyStatus.Definitief.ToString())
-            //                        .ToList();
-            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event").ToList();
+            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
+                                    .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
+                                    DateTime.Today <= s.Order.Event.EndDate &&
+                                    s.Status == SurveyStatus.Definitief.ToString())
+                                    .ToList();
 
             CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
 
@@ -165,7 +164,6 @@ namespace Festispec.Web.Controllers
             _db.Cases.Add(surveyCase);
             _db.Answers.AddRange(answers);
             _db.SaveChanges();
-
 
             return Json(new { result = "succes" }, JsonRequestBehavior.DenyGet);
         }
