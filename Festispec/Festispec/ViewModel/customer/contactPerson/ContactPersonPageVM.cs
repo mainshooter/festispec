@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Festispec.ViewModel.customer.contactPerson
@@ -17,6 +18,7 @@ namespace Festispec.ViewModel.customer.contactPerson
         private ObservableCollection<ContactPersonVM> _filteredContactPersonList;
 
         public ICommand OpenContactPersonNotesCommand { get; set; }
+        public ICommand DeleteContactPersonCommand { get; set; }
         public string SelectedFilter { get; set; }
         public CustomerVM CustomerVM { get; set; }
 
@@ -101,6 +103,7 @@ namespace Festispec.ViewModel.customer.contactPerson
             SelectedFilter = FilterItems.First();
             Filter = "";
             OpenContactPersonNotesCommand = new RelayCommand(OpenNotesPage);
+            DeleteContactPersonCommand = new RelayCommand(DeleteContactPerson);
         }
 
         public void FillList()
@@ -120,6 +123,30 @@ namespace Festispec.ViewModel.customer.contactPerson
             {
                 ActualContactPerson = SelectedContactPerson
             });
+        }
+
+        public void DeleteContactPerson()
+        {
+            MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze contactperson wilt verwijderen?", "Contactpersoon Verwijderen", MessageBoxButton.YesNo);
+            if (result.Equals(MessageBoxResult.Yes) && CanDeleteContactPerson())
+            {
+                using(var context = new Entities())
+                {
+                    context.ContactPersons.Remove(SelectedContactPerson.ToModel());
+                }
+            }
+        }
+
+        private bool CanDeleteContactPerson()
+        {
+            using( var context = new Entities())
+            {
+                if (context.Events.Where(cp => cp.Id == SelectedContactPerson.Id).Count() > 0)
+                {
+                    return false;
+                }
+                return true;
+            }
         }
     }
 }
