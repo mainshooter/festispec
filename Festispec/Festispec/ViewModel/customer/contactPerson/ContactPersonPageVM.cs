@@ -1,10 +1,13 @@
 ﻿using Festispec.Domain;
 using Festispec.Message;
+using Festispec.View.Pages.Customer.ContactPerson;
 using Festispec.View.Pages.Customer.Note;
+using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -92,6 +95,15 @@ namespace Festispec.ViewModel.customer.contactPerson
             //    RaisePropertyChanged(() => CustomerVM);
             //});
 
+            MessengerInstance.Register<ChangePageMessage>(this, message =>
+            {
+                if (message.NextPageType == typeof(ContactPersonPage))
+                {
+                    FillList();
+                    RaisePropertyChanged(() => FilteredContactPersonList);
+                }
+            });
+
             using (var context = new Entities())
             {
                 CustomerVM = new CustomerVM(context.Customers.First(c => c.Id == 1));
@@ -125,6 +137,16 @@ namespace Festispec.ViewModel.customer.contactPerson
             });
         }
 
+        public void OpenAddContactPersonPage()
+        {
+            
+        }
+
+        public void OpenEditContactPersonPage()
+        {
+
+        }
+
         public void DeleteContactPerson()
         {
             MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze contactperson wilt verwijderen?", "Contactpersoon Verwijderen", MessageBoxButton.YesNo);
@@ -132,8 +154,13 @@ namespace Festispec.ViewModel.customer.contactPerson
             {
                 using(var context = new Entities())
                 {
-                    context.ContactPersons.Remove(SelectedContactPerson.ToModel());
+                    context.ContactPersons.Attach(SelectedContactPerson.ToModel());
+                    context.Entry(SelectedContactPerson.ToModel()).State = EntityState.Deleted;
+                    context.SaveChanges();
                 }
+                FillList();
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Gebruiker verwijderd");
+                RaisePropertyChanged(() => FilteredContactPersonList);
             }
         }
 
