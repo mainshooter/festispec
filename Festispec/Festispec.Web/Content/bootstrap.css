@@ -8184,10 +8184,17 @@ button.close {
 }
 
 .logout {
+    color: #999;
     border: none;
     display: inline;
     font-family: inherit;
     font-size: inherit;
-    padding: 0px;
+    padding: 15px;
     width: auto;
+    background: none;
+    float: right;
 }
+
+    .logout:hover {
+        color: #fff;
+    }
