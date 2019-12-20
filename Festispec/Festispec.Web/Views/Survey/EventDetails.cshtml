@@ -4,14 +4,13 @@
     ViewBag.Title = "EventDetails";
 }
 
-<h2>EventDetails</h2>
+<h2>Evenement Informatie</h2>
 
 <div>
-    <h4>Event</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(Model => Model.Event.Name)
+            @Html.DisplayName("Naam")
         </dt>
 
         <dd>
@@ -19,31 +18,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Model => Model.Event.Street)
+            @Html.DisplayName("Adres")
         </dt>
 
         <dd>
-            @Html.DisplayFor(Model => Model.Event.Street)
+            @Html.DisplayFor(Model => Model.Adress)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Model => Model.Event.HouseNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Model => Model.Event.HouseNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Model => Model.Event.HouseNumber_Addition)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Model => Model.Event.HouseNumber_Addition)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Model => Model.Event.PostalCode)
+            @Html.DisplayName("Postcode")
         </dt>
 
         <dd>
@@ -51,7 +34,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Model => Model.Event.City)
+            @Html.DisplayName("Plaats")
         </dt>
 
         <dd>
@@ -59,7 +42,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Model => Model.Event.BeginDate)
+            @Html.DisplayName("Begindatum")
         </dt>
 
         <dd>
@@ -67,7 +50,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Model => Model.Event.EndDate)
+            @Html.DisplayName("Einddatum")
         </dt>
 
         <dd>
@@ -75,7 +58,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Model => Model.Event.AmountVisitors)
+            @Html.DisplayName("Bezoekersaantal")
         </dt>
 
         <dd>
@@ -83,7 +66,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Model => Model.Event.SurfaceM2)
+            @Html.DisplayName("Oppervlakte (m²)")
         </dt>
 
         <dd>
@@ -91,27 +74,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Model => Model.Event.Description)
+            @Html.DisplayName("Contactpersoon")
         </dt>
 
         <dd>
-            @Html.DisplayFor(Model => Model.Event.Description)
+            @Html.DisplayFor(Model => Model.ContactName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Model => Model.Event.ContactPerson.Firstname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Model => Model.Event.ContactPerson.Firstname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Model => Model.Event.Customer.Name)
+            @Html.DisplayName("Klant")
         </dt>
 
         <dd>
             @Html.DisplayFor(Model => Model.Event.Customer.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Beschrijving")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.Description)
         </dd>
 
     </dl>
