@@ -35,6 +35,7 @@ namespace Festispec.ViewModel
         public ICommand OpenEvent { get; set; }
         public ICommand OpenSick { get; set; }
         public ICommand ShowAccountInformation { get; set; }
+        public ICommand OpenEmployeePlanningCommand { get; set; }
         public ObservableCollection<Button> MenuList { get; set; }
 
         public Page Page
@@ -71,6 +72,7 @@ namespace Festispec.ViewModel
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenSick = new RelayCommand(OpenSickTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
+            OpenEmployeePlanningCommand = new RelayCommand(OpenEmployeePlanning);
             Page = ServiceLocator.Current.GetInstance<LoginPage>();
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
@@ -117,7 +119,7 @@ namespace Festispec.ViewModel
             _menu.Add("Inspectie", new Dictionary<string, ICommand>());
             _menu["Inspectie"].Add("Dashboard", OpenDashboard);
             _menu["Inspectie"].Add("Beschikbaarheid", OpenAvailability);
-            _menu["Inspectie"].Add("EmployeePlanningPage", OpenEmployeePlanning);
+            _menu["Inspectie"].Add("EmployeePlanningPage", OpenEmployeePlanningCommand);
             _menu["Inspectie"].Add("Ziekmelden", OpenSick);
 
             // Sales Dictionary
