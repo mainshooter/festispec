@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Festispec.Interface;
 using Festispec.Lib.Enums;
@@ -10,16 +9,20 @@ namespace Festispec.ViewModel.report.data
     {
         public override string Type => DataParserType.DRAW;
 
-        public List<string> SupportedQuestions => new List<string>() {
+        public List<string> SupportedQuestions => new List<string>() 
+        {
             Lib.Enums.QuestionType.DrawQuestion
         };
 
-        public List<string> SupportedVisuals => new List<string>() {
+        public List<string> SupportedVisuals => new List<string>() 
+        {
             ReportElementType.Draw
         };
 
-        public bool QuestionTypeIsSupported {
-            get {
+        public bool QuestionTypeIsSupported 
+        {
+            get 
+            {
                 var questionCheckResult = SupportedQuestions.Where(s => s == Question.QuestionType);
                 if (questionCheckResult != null && questionCheckResult.Count() > 0)
                 {
