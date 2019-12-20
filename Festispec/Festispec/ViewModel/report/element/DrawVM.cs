@@ -11,13 +11,25 @@ namespace Festispec.ViewModel.report.element
     public class DrawVM : ReportElementVM
     {
         private byte[] _photo;
+        private ObservableCollection<DrawPoint> _dotCollection;
 
         public DrawVM()
         {
             Type = ReportElementType.Draw;
         }
 
-        public ObservableCollection<DrawPoint> DotCollection { get; set; }
+        public ObservableCollection<DrawPoint> DotCollection 
+        {
+            get
+            {
+                return _dotCollection;
+            }
+            set 
+            {
+                _dotCollection = value;
+                RaisePropertyChanged("DotCollection");
+            }
+        }
 
         public byte[] Photo 
         {
@@ -50,7 +62,6 @@ namespace Festispec.ViewModel.report.element
                 Photo = DataParser.Question.QuestionDetails.Images[0];
             }
             DotCollection = new ObservableCollection<DrawPoint>();
-            DotCollection.Add(new DrawPoint() { XPos = "30", YPos = "30"});
         }
 
         public void Edit()
@@ -66,15 +77,19 @@ namespace Festispec.ViewModel.report.element
         {
             try
             {
-                //DotCollection = new ObservableCollection<DrawPoint>();
-                //foreach (var item in Data)
-                //{
-                //    var selectedData = item[0];
-                //    var ParsedItem = JsonConvert.DeserializeObject<Dictionary<string, string>>(selectedData);
-                //    DotCollection.Add(
-                //            new DrawPoint() { XPos = ParsedItem["x"], YPos = ParsedItem["y"]}
-                //        );
-                //}
+                DotCollection.Clear();
+                foreach (var item in Data)
+                {
+                    var selectedData = item[0];
+                    var ParsedItems = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(selectedData);
+                    foreach (var ParsedItem in ParsedItems)
+                    {
+                        DotCollection.Add(
+                            new DrawPoint() { XPos = ParsedItem["x"], YPos = ParsedItem["y"] }
+                        );
+                    }
+
+                }
             }
             catch (System.Exception)
             {
