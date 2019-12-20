@@ -114,6 +114,7 @@ namespace Festispec.Web.Controllers
         {
             Dictionary<string, string> request = new Dictionary<string, string>();
             QuestionAnswerValidator questionAnswerValidator = new QuestionAnswerValidator();
+            QuestionCleanerAnswer questionCleanerAnswer = new QuestionCleanerAnswer();
             string[] keys = Request.Form.AllKeys;
             for (int i = 0; i < keys.Length; i++)
             {
@@ -145,7 +146,11 @@ namespace Festispec.Web.Controllers
                     Answer answer = new Answer() { Case = surveyCase, QuestionId = question.Id, Answer1 = questionAnswer };
                     if (questionAnswerValidator.IsAnswerValid(question, answer))
                     {
-                        answers.Add(answer);
+                        answer = questionCleanerAnswer.CleanAnswer(question, answer);
+                        if (answer != null)
+                        {
+                            answers.Add(answer);
+                        }
                     }
                     else
                     {

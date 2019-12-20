@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Models\Questions\QuestionAnswerValidator.cs" />
+    <Compile Include="Models\Questions\QuestionCleanerAnswer.cs" />
     <Compile Include="Models\Questions\QuestionTypeRepository.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\UserController.cs" />

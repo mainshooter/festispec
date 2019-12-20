@@ -52,7 +52,7 @@ namespace Festispec.Lib.Survey.Question.Validator
 
                 int selectedColIndex = 0;
                 string selectedColumnName = tableQuestionType.Details.Choices.SelectedCol;
-                if (selectedColumnName != null)
+                if (selectedColumnName != null && selectedColumnName != "Geen")
                 {
                     foreach (var item in tableQuestionType.Details.Choices.Cols)
                     {
