@@ -22,7 +22,7 @@ namespace Festispec.Web.Controllers
             var session = UserSession.Current;
             session.Clear();
 
-            return RedirectToAction("index", "Login");
+            return RedirectToAction("index", "User/Login");
         }
 
         [HttpPost]

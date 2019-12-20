@@ -27,9 +27,14 @@
                     <li>@Html.ActionLink("Survey", "Index", "Survey")</li>
                     <li>@Html.ActionLink("Planning", "Index", "Planning")</li>
                 </ul>
-                @*<ul class="nav navbar-nav">
-                    <li><a @Url.Action("Logout", "User")> </a></li>
-                </ul>*@
+                @using Festispec.Web.Models.Auth
+                @if (UserSession.Current.Employee != null)
+                {
+                    using (Html.BeginForm("Logout", "User", FormMethod.Post))
+                    {
+                        <input type="submit" value="Logout" class="logout">
+                    }
+                }
             </div>
         </div>
     </div>

@@ -8183,6 +8183,11 @@ button.close {
     color: #ffffff;
 }
 
-.logout{
-    color: #ffffff;
+.logout {
+    border: none;
+    display: inline;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0px;
+    width: auto;
 }
