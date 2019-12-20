@@ -32,7 +32,7 @@
         <ComboBox ItemsSource="{Binding SurveyQuestions}" SelectedItem="{Binding ReportElementVM.SelectedSurveyQuestion}" SelectedIndex="{Binding SelectedSurveyQuestionIndex}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding QuestionDetails.Question}"></TextBlock>
+                    <TextBlock><Label Content="{Binding QuestionDetails.Question}"></Label>   <Label Content="{Binding QuestionType}"></Label></TextBlock>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
