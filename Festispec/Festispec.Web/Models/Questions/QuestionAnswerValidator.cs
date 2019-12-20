@@ -15,19 +15,19 @@ namespace Festispec.Lib.Survey.Question.Validator
             }
             switch (question.Type)
             {
-                case "Afbeelding galerij vraag":
+                case Lib.Enums.QuestionType.ImageGaleryQuestion:
                     return ValidateGalleryQuestion(question, answer);
-                case "Gesloten vraag":
+                case Lib.Enums.QuestionType.ClosedQuestion:
                     return ValidateClosedQuestion(question, answer);
-                case "Meerkeuze vraag":
+                case Lib.Enums.QuestionType.MultipleChoiseQuestion:
                     return ValidateMultipleChoiseQuestion(question, answer);
-                case "Open vraag":
+                case Lib.Enums.QuestionType.OpenQuestion:
                     return ValidateOpenQuestion(question, answer);
-                case "Schuifbalk vraag":
+                case Lib.Enums.QuestionType.SliderQuestion:
                     return ValidateSliderQuestion(question, answer);
-                case "Tabel vraag":
+                case Lib.Enums.QuestionType.TableQuestion:
                     return ValidateTableQuestion(question, answer);
-                case "Teken vraag":
+                case Lib.Enums.QuestionType.DrawQuestion:
                     return ValidateDrawQuestion(question, answer);
                 default:
                     return false;

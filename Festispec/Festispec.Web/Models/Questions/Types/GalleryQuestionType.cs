@@ -15,7 +15,7 @@ namespace Festispec.Web.Models.Questions.Types
 
         public GalleryQuestionType()
         {
-            Type = "Afbeelding galerij vraag";
+            Type = Lib.Enums.QuestionType.ImageGaleryQuestion;
         }
     }
 }

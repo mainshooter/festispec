@@ -17,7 +17,7 @@ namespace Festispec.Web.Models.Questions.Types
 
         public TableQuestionType()
         {
-            Type = "Tabel vraag";
+            Type = Lib.Enums.QuestionType.TableQuestion;
         }
 
         public TableQuestionType(Question question)

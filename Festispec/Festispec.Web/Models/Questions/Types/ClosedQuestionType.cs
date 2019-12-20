@@ -14,7 +14,7 @@ namespace Festispec.Web.Models.Questions.Types
 
         public ClosedQuestionType()
         {
-            Type = "Gesloten vraag";
+            Type = Lib.Enums.QuestionType.ClosedQuestion;
         }
     }
 }

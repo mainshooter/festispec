@@ -15,7 +15,7 @@ namespace Festispec.Web.Models.Questions.Types
 
         public SliderQuestionType()
         {
-            Type = "Schuifbalk vraag";
+            Type = Lib.Enums.QuestionType.SliderQuestion;
         }
     }
 }

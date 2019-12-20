@@ -16,7 +16,7 @@ namespace Festispec.Web.Models.Questions.Types
 
         public OpenQuestionType()
         {
-            Type = "Open vraag";
+            Type = Lib.Enums.QuestionType.OpenQuestion;
         }
     }
 }

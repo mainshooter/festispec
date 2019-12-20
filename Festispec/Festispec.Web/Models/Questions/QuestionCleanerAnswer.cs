@@ -9,7 +9,7 @@ namespace Festispec.Web.Models.Questions
     {
         public Answer CleanAnswer(Question question, Answer answer)
         {
-            if (question.Type == "Tabel vraag")
+            if (question.Type == Lib.Enums.QuestionType.TableQuestion)
             {
                 return CleanTableAnswer(question, answer);
             }

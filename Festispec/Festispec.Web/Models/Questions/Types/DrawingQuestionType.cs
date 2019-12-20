@@ -15,7 +15,7 @@ namespace Festispec.Web.Models.Questions.Types
 
         public DrawingQuestionType()
         {
-            Type = "Teken vraag";
+            Type = Lib.Enums.QuestionType.DrawQuestion;
         }
     }
 }

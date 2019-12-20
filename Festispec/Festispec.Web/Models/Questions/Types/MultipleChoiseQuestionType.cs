@@ -16,7 +16,7 @@ namespace Festispec.Web.Models.Questions.Types
 
         public MultipleChoiseQuestionType()
         {
-            Type = "Meerkeuze vraag";
+            Type = Lib.Enums.QuestionType.MultipleChoiseQuestion;
         }
 
         public MultipleChoiseQuestionType(Question question)

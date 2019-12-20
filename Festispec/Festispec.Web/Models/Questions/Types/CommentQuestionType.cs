@@ -18,7 +18,7 @@ namespace Festispec.Web.Models.Questions.Types
 
         public CommentQuestionType()
         {
-            Type = "Opmerking vraag";
+            Type = Lib.Enums.QuestionType.NoteQuestion;
         }
     }
 }
