@@ -34,7 +34,6 @@ using Festispec.ViewModel.survey.question.QuestionTypes.TableQuestion;
 using GalaSoft.MvvmLight.Ioc;
 using Festispec.View.Pages.Report.element.Edit;
 using Festispec.View.Pages.Report.element.Add;
-using Festispec.ViewModel.customer;
 using Festispec.ViewModel.customer.pages;
 using Festispec.ViewModel.report.element.Edit;
 using Festispec.ViewModel.report.element.Add;
@@ -102,6 +101,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<CustomerOverviewVm>();
             SimpleIoc.Default.Register<AddCustomerVm>();
             SimpleIoc.Default.Register<AddCustomerPage>();
+            SimpleIoc.Default.Register<CustomerDetailsVm>();
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<EmployeeVM>();
@@ -162,12 +162,11 @@ namespace Festispec.ViewModel
         }
 
         public CustomerOverviewVm CustomerOverviewVm => ServiceLocator.Current.GetInstance<CustomerOverviewVm>();
-
+        public CustomerDetailsVm CustomerDetailsVm => ServiceLocator.Current.GetInstance<CustomerDetailsVm>();
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
         public PlanningOverviewVM PlanningOverviewVM => ServiceLocator.Current.GetInstance<PlanningOverviewVM>();
         public UserLoginVM UserLoginVM => ServiceLocator.Current.GetInstance<UserLoginVM>();
         public EditCustomerVm EditCustomerVm => ServiceLocator.Current.GetInstance<EditCustomerVm>();
-
         public AddEmployeeVM AddEmployeeVM => ServiceLocator.Current.GetInstance<AddEmployeeVM>();
         public EmployeeListVM EmployeeListVM => ServiceLocator.Current.GetInstance<EmployeeListVM>();
         public AddCustomerVm AddCustomerVm => ServiceLocator.Current.GetInstance<AddCustomerVm>();

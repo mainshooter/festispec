@@ -46,11 +46,11 @@
             </StackPanel>
             <StackPanel Margin="25" Width="200" HorizontalAlignment="Right">
                 <Label Content="Branch nummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84"/>
-                <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.PostalCode, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+                <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.BranchNumber, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
                 <Label Content="Logo URL" HorizontalAlignment="Left" VerticalAlignment="Top" Width="152"/>
-                <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.Phone, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+                <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.Logo, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
             </StackPanel>
         </Grid>
-        <Button Content="Klant toevoegen" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="138" Command="{Binding EditCustomerCommand}" Height="28"/>
+        <Button Content="Klant bijwerken" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="138" Command="{Binding EditCustomerCommand}" Height="28"/>
     </Grid>
 </Page>

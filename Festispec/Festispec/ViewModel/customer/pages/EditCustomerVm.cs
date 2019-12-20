@@ -17,15 +17,29 @@ namespace Festispec.ViewModel.customer.pages
 {
     public class EditCustomerVm : ViewModelBase
     {
+        private CustomerVM _customer;
         public CustomerOverviewVm CustomerList { get; set; }
-        public CustomerVM Customer { get; set; }
+        public CustomerVM Customer
+        {
+            get => _customer;
+            set
+            {
+                _customer = value;
+                RaisePropertyChanged();
+            }
+        }
         public ICommand EditCustomerCommand { get; set; }
         public ICommand CloseEditCustomerCommand { get; set; }
 
         public EditCustomerVm(CustomerOverviewVm customerList)
         {
+            MessengerInstance.Register<ChangeSelectedCustomerMessage>(this, message =>
+            {
+                CustomerList = message.CustomerList;
+                Customer = message.Customer;
+            });
+
             CustomerList = customerList;
-            Customer = new CustomerVM();
             EditCustomerCommand = new RelayCommand(EditCustomer);
             CloseEditCustomerCommand = new RelayCommand(CloseEditCustomer);
         }
@@ -42,17 +56,19 @@ namespace Festispec.ViewModel.customer.pages
                     return;
                 }
             }
+
             using (var context = new Entities())
             {
                 context.Entry(Customer.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
             }
+
             CloseEditCustomer();
         }
 
         private void CloseEditCustomer()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
+            MessengerInstance.Send(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
         }
     }
 }

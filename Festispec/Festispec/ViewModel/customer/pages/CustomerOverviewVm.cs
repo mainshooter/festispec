@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Input;
 using Festispec.View.Pages.Customer;
 
-namespace Festispec.ViewModel.customer
+namespace Festispec.ViewModel.customer.pages
 {
     public class CustomerOverviewVm : ViewModelBase
     {
@@ -97,6 +97,11 @@ namespace Festispec.ViewModel.customer
         private void OpenAddCustomerPage()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddCustomerPage) });
+            MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage()
+            {
+                Customer = SelectedCustomer,
+                CustomerList = this
+            });
         }
 
         private void OpenEditCustomerPage()
@@ -105,14 +110,14 @@ namespace Festispec.ViewModel.customer
             MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage()
             {
                 Customer = SelectedCustomer,
-                CustomerOverview = this
+                CustomerList = this
             });
         }
 
         public void OpenCustomerDetailsPage()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerDetailsPage) });
-            MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage { Customer = SelectedCustomer});
+            MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage { Customer = SelectedCustomer, CustomerList = this});
         }
 
         private void DeleteCustomer()
@@ -123,17 +128,21 @@ namespace Festispec.ViewModel.customer
                 using (var context = new Entities())
                 {
                     var temp = SelectedCustomer.ToModel();
-
-                    //TODO Remove rows that contain customers
-
                     var orders = context.Orders.Where(o => o.CustomerId == temp.Id);
 
-                    context.Customers.Remove(context.Customers.Select(customer => customer).First(customer => customer.Id == temp.Id));
-                    context.SaveChanges();
+                    if (orders.Any())
+                    {
+                        MessageBox.Show("Klant kan niet worden verwijderd, omdat deze nog opdracht(en) open heeft staan.", "Error", MessageBoxButton.OK);
+                    }
+                    else
+                    {
+                        context.Customers.Remove(context.Customers.Select(customer => customer).First(customer => customer.Id == temp.Id));
+                        context.SaveChanges();
+                        MessageBox.Show("Klant verwijderd", "Gelukt", MessageBoxButton.OK);
+                        CustomerList.Remove(SelectedCustomer);
+                        RaisePropertyChanged("CustomerListFiltered");
+                    }
                 }
-
-                CustomerList.Remove(SelectedCustomer);
-                RaisePropertyChanged("CustomerListFiltered");
             }
         }
 

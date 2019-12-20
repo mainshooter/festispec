@@ -173,6 +173,7 @@
     <Compile Include="ViewModel\customer\order\OrderVM.cs" />
     <Compile Include="ViewModel\customer\pages\AddCustomerVm.cs" />
     <Compile Include="ViewModel\customer\pages\CreateCustomerVm.cs" />
+    <Compile Include="ViewModel\customer\pages\CustomerDetailsVm.cs" />
     <Compile Include="ViewModel\customer\pages\CustomerOverviewVm.cs" />
     <Compile Include="ViewModel\customer\pages\EditCustomerVm.cs" />
     <Compile Include="ViewModel\customer\quotation\QuotationVM.cs" />
@@ -404,8 +405,8 @@
     <Compile Include="View\Pages\Employee\Availability\AvailablePage.xaml.cs">
       <DependentUpon>AvailablePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Customer\CustomerPage.xaml.cs">
-      <DependentUpon>CustomerPage.xaml</DependentUpon>
+    <Compile Include="View\Pages\Customer\CustomerOverviewPage.xaml.cs">
+      <DependentUpon>CustomerOverviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Customer\Event\EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
@@ -626,7 +627,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Customer\CustomerPage.xaml">
+    <Page Include="View\Pages\Customer\CustomerOverviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
