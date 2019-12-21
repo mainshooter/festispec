@@ -18,10 +18,11 @@
               <RowDefinition Height="Auto" />
               <RowDefinition Height="Auto" />
               <RowDefinition Height="Auto" />
+              <RowDefinition />
           </Grid.RowDefinitions>
-          <Label>Email:</Label>
+          <Label>E-mail:</Label>
           <TextBox Grid.Row="0" Grid.Column="1" Margin="0,0,0,10" Text="{Binding Email, Mode=TwoWay}"/>
-          <Label Grid.Row="1" Grid.Column="0">Password:</Label>
+          <Label Grid.Row="1" Grid.Column="0">Wachtwoord:</Label>
           <PasswordBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Name="pw"/>
           <Button Grid.Row="2" 
                   Grid.Column="1"
@@ -29,14 +30,14 @@
                   CommandParameter="{Binding ElementName=pw}">
               Login
           </Button>
-          <TextBlock Grid.Row="3" Grid.Column="1">
-              <Hyperlink Command="{Binding GotoResetPassword}">Wachtwoord vergeten</Hyperlink>
-          </TextBlock>
           <Button Grid.Row="3" 
                   Grid.Column="1"
                   Command="{Binding OfflineCommand}"
                   Margin="0,10,0,0">
               Offline evenementen inzien
           </Button>
+          <TextBlock Grid.Row="4" Grid.Column="1">
+              <Hyperlink Command="{Binding GotoResetPassword}">Wachtwoord vergeten</Hyperlink>
+          </TextBlock>
     </Grid>
 </Page>

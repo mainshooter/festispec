@@ -38,8 +38,8 @@ namespace Festispec.Lib.Auth
 
                 mail.From = new MailAddress("noreply@festispec.nl");
                 mail.To.Add(email);
-                mail.Subject = "Request for password reset";
-                mail.Body = "Your resetcode is: " + resetCode;
+                mail.Subject = "Verzoek voor wachtwoord reset";
+                mail.Body = "Je resetcode is: " + resetCode;
 
                 smtp.Port = 2525;
                 smtp.Credentials = new NetworkCredential("fffce1440f7eb2", "cbaaaf6b397a4a");
