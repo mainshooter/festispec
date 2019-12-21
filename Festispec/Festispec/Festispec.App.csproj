@@ -182,6 +182,7 @@
     <Compile Include="Message\ChangeSelectedEmployeeMessage.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\ReportRepository.cs" />
+    <Compile Include="ViewModel\customer\contactPerson\AddContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonPageVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\AddNoteVM.cs" />
@@ -274,6 +275,9 @@
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
     <Compile Include="ViewModel\toast\ToastVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\Pages\Customer\ContactPerson\AddContactPersonPage.xaml.cs">
+      <DependentUpon>AddContactPersonPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Customer\ContactPerson\ContactPersonPage.xaml.cs">
       <DependentUpon>ContactPersonPage.xaml</DependentUpon>
     </Compile>
@@ -498,6 +502,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\Pages\Customer\ContactPerson\AddContactPersonPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Customer\ContactPerson\ContactPersonPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

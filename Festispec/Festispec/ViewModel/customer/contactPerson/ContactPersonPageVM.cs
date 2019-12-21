@@ -22,6 +22,7 @@ namespace Festispec.ViewModel.customer.contactPerson
 
         public ICommand OpenContactPersonNotesCommand { get; set; }
         public ICommand DeleteContactPersonCommand { get; set; }
+        public ICommand OpenAddContactPerson { get; set; }
         public string SelectedFilter { get; set; }
         public CustomerVM CustomerVM { get; set; }
 
@@ -116,6 +117,7 @@ namespace Festispec.ViewModel.customer.contactPerson
             Filter = "";
             OpenContactPersonNotesCommand = new RelayCommand(OpenNotesPage);
             DeleteContactPersonCommand = new RelayCommand(DeleteContactPerson);
+            OpenAddContactPerson = new RelayCommand(OpenAddContactPersonPage);
         }
 
         public void FillList()
@@ -139,7 +141,11 @@ namespace Festispec.ViewModel.customer.contactPerson
 
         public void OpenAddContactPersonPage()
         {
-            
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddContactPersonPage) });
+            MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage()
+            {
+                Customer = CustomerVM
+            });
         }
 
         public void OpenEditContactPersonPage()
