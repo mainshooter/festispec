@@ -81,6 +81,15 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             get => (DateTime)_plannedEmployee.WorkedTill;
             set => _plannedEmployee.WorkedTill = value;
         }
+        public string Name { get; set; }
+
+        public string Street { get; set; }
+
+        public int HouseNumber { get; set; }
+
+        public string HouseNumberAddition { get; set; }
+
+        public string City { get; set; }
 
         public int DayId => _plannedEmployee.DayId;
 
@@ -90,8 +99,12 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             using (var context = new Entities())
             {
                 var currentOrder = context.Orders.Find(OrderId);
-                CustomerVM customer = new CustomerVM(currentOrder.Customer);
-                EventVM = new EventVM(currentOrder.Event, customer);
+                var currentEvent = currentOrder.Event;
+                Name = currentEvent.Name;
+                Street = currentEvent.Street;
+                HouseNumber = currentEvent.HouseNumber;
+                HouseNumberAddition = currentEvent.HouseNumber_Addition;
+                City = currentEvent.City;
             }
             Employee = new EmployeeVM(pe.Employee);
         }
