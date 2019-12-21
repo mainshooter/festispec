@@ -5,6 +5,7 @@ using Festispec.View.Pages.Customer.Note;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
@@ -23,6 +24,7 @@ namespace Festispec.ViewModel.customer.contactPerson
         public ICommand OpenContactPersonNotesCommand { get; set; }
         public ICommand DeleteContactPersonCommand { get; set; }
         public ICommand OpenAddContactPerson { get; set; }
+        public ICommand EditContactPersonCommand { get; set; }
         public string SelectedFilter { get; set; }
         public CustomerVM CustomerVM { get; set; }
 
@@ -118,6 +120,7 @@ namespace Festispec.ViewModel.customer.contactPerson
             OpenContactPersonNotesCommand = new RelayCommand(OpenNotesPage);
             DeleteContactPersonCommand = new RelayCommand(DeleteContactPerson);
             OpenAddContactPerson = new RelayCommand(OpenAddContactPersonPage);
+            EditContactPersonCommand = new RelayCommand(OpenEditContactPersonPage );
         }
 
         public void FillList()
@@ -150,7 +153,11 @@ namespace Festispec.ViewModel.customer.contactPerson
 
         public void OpenEditContactPersonPage()
         {
-
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditContactPersonPage) });
+            MessengerInstance.Send<ChangeSelectedContactPersonMessage>(new ChangeSelectedContactPersonMessage()
+            {
+                ActualContactPerson = SelectedContactPerson
+            }) ;
         }
 
         public void DeleteContactPerson()

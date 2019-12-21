@@ -185,6 +185,7 @@
     <Compile Include="ViewModel\customer\contactPerson\AddContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonPageVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
+    <Compile Include="ViewModel\customer\contactPerson\EditContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\AddNoteVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteListVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
@@ -280,6 +281,9 @@
     </Compile>
     <Compile Include="View\Pages\Customer\ContactPerson\ContactPersonPage.xaml.cs">
       <DependentUpon>ContactPersonPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\ContactPerson\EditContactPersonPage.xaml.cs">
+      <DependentUpon>EditContactPersonPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Customer\Event\EditEventPage.xaml.cs">
       <DependentUpon>EditEventPage.xaml</DependentUpon>
@@ -507,6 +511,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Customer\ContactPerson\ContactPersonPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\ContactPerson\EditContactPersonPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
