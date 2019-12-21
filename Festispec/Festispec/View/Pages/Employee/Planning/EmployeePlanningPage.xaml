@@ -9,13 +9,10 @@
       DataContext="{Binding EmployeePlanningInfoVM,Source={StaticResource Locator}}">
 
     <StackPanel Background="White">
-        <Grid>
-            <Button Margin="10" HorizontalAlignment="Left" Command="{Binding BackCommand}">Terug</Button>
-            <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="{Binding EventName }" ContentStringFormat="Ingeplande inspecteurs voor {0}"></Label>
-        </Grid>
-        <WrapPanel>
-            <ToggleButton VerticalAlignment="Center" IsChecked="{Binding ShowOnlyFuture, Mode=TwoWay}"></ToggleButton>
-        </WrapPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label VerticalAlignment="Center" >In de toekomst:</Label>
+            <ToggleButton VerticalAlignment="Center" IsChecked="{Binding ShowOnlyFuture, Mode=TwoWay}" Height="30"/>
+        </StackPanel>
 
         <Viewbox>
             <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding EmployeePlanning}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="900">

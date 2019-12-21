@@ -21,7 +21,7 @@ namespace Festispec.ViewModel.auth
 
         public UserLoginVM()
         {
-            Email = "m.peeters@gmail.com";
+            Email = "t.deenik@gmail.com";
             DoLogin = new RelayCommand<PasswordBox>(Login);
             OfflineCommand = new RelayCommand(ShowOffline);
         }

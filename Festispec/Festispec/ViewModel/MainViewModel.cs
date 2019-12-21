@@ -119,7 +119,7 @@ namespace Festispec.ViewModel
             _menu.Add("Inspectie", new Dictionary<string, ICommand>());
             _menu["Inspectie"].Add("Dashboard", OpenDashboard);
             _menu["Inspectie"].Add("Beschikbaarheid", OpenAvailability);
-            _menu["Inspectie"].Add("EmployeePlanningPage", OpenEmployeePlanningCommand);
+            _menu["Inspectie"].Add("Ingeplande dagen", OpenEmployeePlanningCommand);
             _menu["Inspectie"].Add("Ziekmelden", OpenSick);
 
             // Sales Dictionary
