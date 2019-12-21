@@ -34,15 +34,22 @@ namespace Festispec.ViewModel.customer.contactPerson
 
         private void AddContactPersonMethod()
         {
-            using (var context = new Entities())
+            if (ContactPerson.IsValid)
             {
-                ContactPerson.CustomerId = Customer.Id;
-                ContactPerson.Function = "Functie";
-                context.ContactPersons.Add(ContactPerson.ToModel());
-                context.SaveChanges();
+                using (var context = new Entities())
+                {
+                    ContactPerson.CustomerId = Customer.Id;
+                    ContactPerson.Function = "Functie";
+                    context.ContactPersons.Add(ContactPerson.ToModel());
+                    context.SaveChanges();
+                }
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Contactperson aangemaakt");
+                GoBackButton();
             }
-            CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Contactperson aangemaakt");
-            GoBackButton();
+            else
+            {
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowError("Kijk even of je alle velden hebt ingevuld!");
+            }
         }
 
         private void GoBackButton()

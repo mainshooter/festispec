@@ -239,6 +239,21 @@ namespace Festispec.ViewModel.customer.contactPerson
             }
         }
 
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var item in ValidatedProperties)
+                {
+                    if (GetValidationError(item) != null)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+
         string GetValidationError(string propertyName)
         {
             string error = null;
