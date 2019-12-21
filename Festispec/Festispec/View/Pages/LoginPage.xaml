@@ -36,6 +36,7 @@
                   Margin="0,10,0,0">
               Offline evenementen inzien
           </Button>
+
           <TextBlock Grid.Row="4" Grid.Column="1">
               <Hyperlink Command="{Binding GotoResetPassword}">Wachtwoord vergeten</Hyperlink>
           </TextBlock>
