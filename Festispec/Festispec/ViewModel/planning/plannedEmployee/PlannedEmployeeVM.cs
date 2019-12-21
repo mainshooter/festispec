@@ -11,30 +11,6 @@ namespace Festispec.ViewModel.planning.plannedEmployee
     public class PlannedEmployeeVM : ViewModelBase
     {
         private InspectorPlanning _plannedEmployee;
-        private OrderVM _order;
-        private EventVM _eventVM;
-
-        public OrderVM OrderVM 
-        { 
-            get 
-            {
-                return _order;
-            }
-            set 
-            {
-                _order = value;
-                RaisePropertyChanged("OrderVM");
-            }
-        }
-
-        public EventVM EventVM {
-            get {
-                return _eventVM;
-            }
-            set {
-                _eventVM = value;
-            }
-        }
 
         public EmployeeVM Employee { get; set; }
         public int OrderId => _plannedEmployee.OrderId;
