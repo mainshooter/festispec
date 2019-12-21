@@ -28,7 +28,7 @@
                   Grid.Column="1"
                   Command="{Binding DoLogin}" 
                   CommandParameter="{Binding ElementName=pw}">
-              Login
+              Inloggen
           </Button>
           <Button Grid.Row="3" 
                   Grid.Column="1"
