@@ -27,7 +27,7 @@ namespace Festispec.ViewModel.employee
 
         public SickPageVM()
         {
-            _employee = UserSessionVm.Current.Employee;
+            _employee = UserSessionVM.Current.Employee;
             SickButtonCommand = new RelayCommand(AddSickness);
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
@@ -100,7 +100,7 @@ namespace Festispec.ViewModel.employee
             using (var context = new Entities())
             {
                 var tempSickCheck = context.SickReportInspectors.ToList()
-                    .Where(e => e.InspectorPlanningEmployeeId == UserSessionVm.Current.Employee.Id)
+                    .Where(e => e.InspectorPlanningEmployeeId == UserSessionVM.Current.Employee.Id)
                     .Where(e => e.InspectorPlanningOrderId == _plannedEmployee.OrderId)
                     .Where(e => e.InspoctorPlanningDayId == _plannedEmployee.DayId)
                     .FirstOrDefault();
@@ -118,8 +118,8 @@ namespace Festispec.ViewModel.employee
             using(var context = new Entities())
             {
                 var sick = new SickReportInspector();
-                sick.EmployeeId = UserSessionVm.Current.Employee.Id;
-                sick.InspectorPlanningEmployeeId = UserSessionVm.Current.Employee.Id;
+                sick.EmployeeId = UserSessionVM.Current.Employee.Id;
+                sick.InspectorPlanningEmployeeId = UserSessionVM.Current.Employee.Id;
                 sick.InspectorPlanningOrderId = _plannedEmployee.OrderId;
                 sick.InspoctorPlanningDayId = _plannedEmployee.DayId;
                 sick.Reason = "Ziekmelden";

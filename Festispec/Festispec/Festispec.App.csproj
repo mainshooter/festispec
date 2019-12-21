@@ -174,7 +174,7 @@
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
     <Compile Include="Message\ChangeSelectedQuotationMessage.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
-    <Compile Include="ViewModel\auth\UserSessionVm.cs" />
+    <Compile Include="ViewModel\auth\UserSessionVM.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
     <Compile Include="Message\ChangeSelectedSurveyMessage.cs" />
     <Compile Include="Message\ChangeSelectedSurveyQuestionMessage.cs" />
@@ -208,6 +208,7 @@
     <Compile Include="ViewModel\employee\EmployeeInfoVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeListVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeVM.cs" />
+    <Compile Include="ViewModel\employee\planning\EmployeePlanningInfoVM.cs" />
     <Compile Include="ViewModel\employee\SickPageVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PasswordBoxAssistant\PasswordBoxAssistant.cs" />
@@ -306,6 +307,9 @@
     </Compile>
     <Compile Include="View\Pages\Employee\EmployeeInformationPage.xaml.cs">
       <DependentUpon>EmployeeInformationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Employee\Planning\EmployeePlanningPage.xaml.cs">
+      <DependentUpon>EmployeePlanningPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
       <DependentUpon>SickPage.xaml</DependentUpon>
@@ -526,6 +530,10 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Pages\Employee\Planning\EmployeePlanningPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Employee\SickPage.xaml">
       <SubType>Designer</SubType>
@@ -754,6 +762,7 @@
   <ItemGroup>
     <Resource Include="PdfSharp.SharpZipLib\ReadMe.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

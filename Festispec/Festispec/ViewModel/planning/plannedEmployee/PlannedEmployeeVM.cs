@@ -1,12 +1,40 @@
 ﻿using Festispec.Domain;
+using Festispec.ViewModel.customer;
+using Festispec.ViewModel.customer.customerEvent;
+using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.employee;
+using GalaSoft.MvvmLight;
 using System;
 
 namespace Festispec.ViewModel.planning.plannedEmployee
 {
-    public class PlannedEmployeeVM
+    public class PlannedEmployeeVM : ViewModelBase
     {
         private InspectorPlanning _plannedEmployee;
+        private OrderVM _order;
+        private EventVM _eventVM;
+
+        public OrderVM OrderVM 
+        { 
+            get 
+            {
+                return _order;
+            }
+            set 
+            {
+                _order = value;
+                RaisePropertyChanged("OrderVM");
+            }
+        }
+
+        public EventVM EventVM {
+            get {
+                return _eventVM;
+            }
+            set {
+                _eventVM = value;
+            }
+        }
 
         public EmployeeVM Employee { get; set; }
         public int OrderId => _plannedEmployee.OrderId;
@@ -59,6 +87,12 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         public PlannedEmployeeVM(InspectorPlanning pe)
         {
             _plannedEmployee = pe;
+            using (var context = new Entities())
+            {
+                var currentOrder = context.Orders.Find(OrderId);
+                CustomerVM customer = new CustomerVM(currentOrder.Customer);
+                EventVM = new EventVM(currentOrder.Event, customer);
+            }
             Employee = new EmployeeVM(pe.Employee);
         }
 

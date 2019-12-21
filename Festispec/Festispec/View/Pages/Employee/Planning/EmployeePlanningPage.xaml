@@ -20,8 +20,11 @@
         <Viewbox>
             <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding EmployeePlanning}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="900">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Event" Binding="{Binding EventName}" />
-                    <DataGridTextColumn Header="Adress" Binding="{Binding EventAdres}"/>
+                    <DataGridTextColumn Header="Event" Binding="{Binding EventVM.Name}" />
+                    <DataGridTextColumn Header="Straat" Binding="{Binding EventVM.Street}"/>
+                    <DataGridTextColumn Header="Huisnummer" Binding="{Binding EventVM.HouseNumber}"/>
+                    <DataGridTextColumn Header="Huisnummer toevoeging" Binding="{Binding EventVM.HouseNumberAddition}"/>
+                    <DataGridTextColumn Header="Stad" Binding="{Binding EventVM.City}"/>
                     <DataGridTextColumn Header="Starttijd" Binding="{Binding ActualStartDateTime}"/>
                     <DataGridTextColumn Header="Eindtijd" Binding="{Binding ActualEndDateTime}"/>
                 </DataGrid.Columns>

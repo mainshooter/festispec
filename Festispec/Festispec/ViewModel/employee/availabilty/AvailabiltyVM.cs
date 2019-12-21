@@ -114,7 +114,7 @@ namespace Festispec.ViewModel.employee.availabilty
         public AvailabiltyVM()
         {
             _availabilityInspector = new AvailabilityInspector();
-            _availabilityInspector.EmployeeId = UserSessionVm.Current.Employee.Id;
+            _availabilityInspector.EmployeeId = UserSessionVM.Current.Employee.Id;
         }
 
         public AvailabilityInspector ToModel()
