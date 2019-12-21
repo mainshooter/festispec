@@ -16,11 +16,13 @@ using Festispec.View.Pages.Customer.Quotation;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.toast;
 using Hanssens.Net;
+using Festispec.ViewModel.auth;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
     public class EventListVM : ViewModelBase
     {
+        private string Role = UserSessionVm.Current.Employee.Department.Name;
         private string _filter;
         private List<string> _filters;
         private bool _showOnlyFuture;
@@ -145,7 +147,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             DeleteEventCommand = new RelayCommand<EventVM>(DeleteEvent, CanOpenDelete);
             OpenSingleEventCommand = new RelayCommand<EventVM>(OpenSingleEventPage);
             OpenSurveyCommand = new RelayCommand<EventVM>(OpenSurveyPage, HasOrder);
-            OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage, HasOrder);
+            OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage,CanOpen);
             OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage, HasOrder);
             OpenQuotationsCommand = new RelayCommand<EventVM>(OpenQuotationPage);
             BackCommand = new RelayCommand(Back);
@@ -260,6 +262,18 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         private bool HasOrder(EventVM source)
         {
+            return source != null && source.HasOrder();
+        }
+
+        private bool CanOpen(EventVM source)
+        {
+            if(Role != "Directie" &&
+               Role != "Sales" &&
+               Role != "Planning"
+               )
+            {
+                return false;
+            }
             return source != null && source.HasOrder();
         }
 
