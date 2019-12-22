@@ -1,7 +1,4 @@
 ﻿using Festispec.Domain;
-using Festispec.ViewModel.customer;
-using Festispec.ViewModel.customer.customerEvent;
-using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
 using System;
@@ -57,13 +54,20 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             get => (DateTime)_plannedEmployee.WorkedTill;
             set => _plannedEmployee.WorkedTill = value;
         }
-        public string Name { get; set; }
+        public string EventName { get; set; }
 
         public string Street { get; set; }
 
         public int HouseNumber { get; set; }
 
         public string HouseNumberAddition { get; set; }
+
+        public string EventLocation 
+        { 
+            get {
+                return Street + " " + HouseNumber + HouseNumberAddition;
+            }
+        }
 
         public string City { get; set; }
 
@@ -76,7 +80,7 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             {
                 var currentOrder = context.Orders.Find(OrderId);
                 var currentEvent = currentOrder.Event;
-                Name = currentEvent.Name;
+                EventName = currentEvent.Name;
                 Street = currentEvent.Street;
                 HouseNumber = currentEvent.HouseNumber;
                 HouseNumberAddition = currentEvent.HouseNumber_Addition;
