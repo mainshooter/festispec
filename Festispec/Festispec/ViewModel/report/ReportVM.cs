@@ -137,6 +137,5 @@ namespace Festispec.ViewModel.report
             }
             return true;
         }
-
     }
 }
