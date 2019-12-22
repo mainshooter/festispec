@@ -9,11 +9,11 @@
       DataContext="{Binding EmployeePlanningInfoVM,Source={StaticResource Locator}}">
 
     <StackPanel Background="White">
+        <Label FontSize="23" Content="Ingeplande dagen" HorizontalAlignment="Center"/>
         <StackPanel Orientation="Horizontal">
             <Label VerticalAlignment="Center" >In de toekomst:</Label>
             <ToggleButton VerticalAlignment="Center" IsChecked="{Binding ShowOnlyFuture, Mode=TwoWay}" Height="30"/>
         </StackPanel>
-
         <Viewbox>
             <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding EmployeePlanning}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="900">
                 <DataGrid.Columns>
