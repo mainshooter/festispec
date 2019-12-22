@@ -95,7 +95,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddQuotationPage>();
             SimpleIoc.Default.Register<EditQuotationPage>();
             SimpleIoc.Default.Register<SingleQuotationPage>();
-
+            SimpleIoc.Default.Register<WorkedPlannedEmployeePage>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<EmployeeVM>();
             SimpleIoc.Default.Register<EmployeeListVM>();
@@ -157,7 +157,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddQuotationVM>();
             SimpleIoc.Default.Register<EditQuotationVM>();
             SimpleIoc.Default.Register<QuotationInfoVM>();
-
+            SimpleIoc.Default.Register<WorkedPlannedEmployeeVM>();
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
@@ -212,6 +212,7 @@ namespace Festispec.ViewModel
         public AddQuotationVM AddQuotationVM => ServiceLocator.Current.GetInstance<AddQuotationVM>();
         public EditQuotationVM EditQuotationVM => ServiceLocator.Current.GetInstance<EditQuotationVM>();
         public QuotationInfoVM QuotationInfoVM => ServiceLocator.Current.GetInstance<QuotationInfoVM>();
+        public WorkedPlannedEmployeeVM WorkedPlannedEmployeeVM => ServiceLocator.Current.GetInstance<WorkedPlannedEmployeeVM>();
 
         public static void Cleanup()
         {

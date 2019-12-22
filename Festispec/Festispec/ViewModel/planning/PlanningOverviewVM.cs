@@ -1,16 +1,15 @@
 ﻿using Festispec.Message;
+using Festispec.View.Pages.Customer.Event;
+using Festispec.View.Pages.Planning;
 using Festispec.ViewModel.customer.customerEvent;
 using Festispec.ViewModel.planning.plannedEmployee;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using Festispec.View.Pages.Customer.Event;
-using Festispec.View.Pages.Planning;
-using Festispec.ViewModel.toast;
-using GalaSoft.MvvmLight.CommandWpf;
 
 namespace Festispec.ViewModel.planning
 {
@@ -51,9 +50,6 @@ namespace Festispec.ViewModel.planning
                             break;
                         case "Volledige naam":
                             temp = new ObservableCollection<PlannedEmployeeVM>(_filteredPlannedEmployeeList.Select(i => i).Where(i => i.Employee.Fullname.ToLower().Contains(Filter.ToLower())));
-                            break;
-                        case "Status":
-                            temp = new ObservableCollection<PlannedEmployeeVM>(_filteredPlannedEmployeeList.Select(i => i).Where(i => i.Status.ToLower().Contains(Filter.ToLower())));
                             break;
                     }
 
@@ -106,12 +102,14 @@ namespace Festispec.ViewModel.planning
 
         public PlanningOverviewVM()
         {
-            MessengerInstance.Register<ChangeSelectedEventMessage>(this, message => {
+            MessengerInstance.Register<ChangeSelectedEventMessage>(this, message =>
+            {
                 EventVM = message.Event;
                 GetInitialPlannedEmployeeList();
             });
 
-            MessengerInstance.Register<ChangePageMessage>(this, message => {
+            MessengerInstance.Register<ChangePageMessage>(this, message =>
+            {
                 if (message.NextPageType == typeof(PlanningOverviewPage))
                 {
                     EventVM = null;
@@ -130,7 +128,7 @@ namespace Festispec.ViewModel.planning
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
         }
 
-        private void GetInitialPlannedEmployeeList() 
+        private void GetInitialPlannedEmployeeList()
         {
             if (EventVM != null)
             {

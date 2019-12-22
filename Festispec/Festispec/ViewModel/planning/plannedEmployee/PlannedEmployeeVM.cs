@@ -11,11 +11,6 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         public EmployeeVM Employee { get; set; }
         public int OrderId => _plannedEmployee.OrderId;
 
-        public string Status {
-            get => _plannedEmployee.Status;
-            set => _plannedEmployee.Status = value;
-        }
-
         public DateTime PlannedStartTime {
             get => _plannedEmployee.PlannedFrom;
             set => _plannedEmployee.PlannedFrom = value;

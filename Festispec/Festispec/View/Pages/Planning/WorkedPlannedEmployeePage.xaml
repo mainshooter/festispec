@@ -1,0 +1,59 @@
+﻿<Page x:Class="Festispec.View.Pages.Planning.WorkedPlannedEmployeePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Festispec.View.Pages.Planning"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="WorkedPlannedEmployeePage"
+      DataContext="{Binding WorkedPlannedEmployeeVM, Source={StaticResource Locator}}">
+
+    <StackPanel Background="White">
+        <Grid>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="{Binding EmployeeVM.Fullname }" ContentStringFormat="Gewerkte uren overzicht van {0}"></Label>
+        </Grid>
+        <WrapPanel>
+            <Label Margin="3, 3, 10, 3">Filter:</Label>
+            <ComboBox Margin="3, 3, 10, 3" SelectedIndex="0" SelectedValuePath="SelectedFilter" ItemsSource="{Binding FilterItems}" SelectedItem="{Binding SelectedFilter,Mode=TwoWay}" Width="128"></ComboBox>
+        </WrapPanel>
+        <StackPanel Orientation="Horizontal">
+            <Viewbox Width="500" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding WorkedList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="500" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Dag" Binding="{Binding WorkStartTime.Date, StringFormat=dd/MM/yyyy}"/>
+                        <DataGridTextColumn Header="Starttijd" Binding="{Binding WorkStartTime.TimeOfDay}"/>
+                        <DataGridTextColumn Header="Eindtijd" Binding="{Binding WorkEndTime.TimeOfDay}"/>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" ToolTip="Wijzig gewerkte tijd">
+                                        <materialDesign:PackIcon Kind="Pencil"/>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Viewbox>
+            <Button Visibility="{Binding ShowSelectedDay}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="50,10,0,0" Command="{Binding DeselectCommand}" >
+                <materialDesign:PackIcon Kind="ArrowBack"></materialDesign:PackIcon>
+            </Button>
+            <GroupBox Visibility="{Binding ShowSelectedDay}" Margin="0,10" Header="Geselecteerde Dag" Grid.Column="2" FontWeight="SemiBold" Height="250" Grid.RowSpan="2">
+                <StackPanel>
+                    <StackPanel>
+                        <Label FontSize="9" Content="Dag"></Label>
+                        <Label ContentStringFormat="dd/MM/yyyy" Content="{Binding SelectedPlannedEmployeeVM.WorkStartTime}"></Label>
+                        <Label FontSize="9" Content="Starttijd"></Label>
+                        <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedStartTime}"></xctk:TimePicker>
+                        <Label FontSize="9" Content="Eindtijd"></Label>
+                        <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding SelectedEndTime}"></xctk:TimePicker>
+                        <Button Margin="0,20" Content="Opslaan" Command="{Binding SaveCommand}"></Button>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        </StackPanel>
+</Page>

@@ -15,6 +15,7 @@ using Festispec.Domain;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Festispec.ViewModel.customer;
+using Festispec.View.Pages.Planning;
 
 namespace Festispec.ViewModel
 {
@@ -33,6 +34,7 @@ namespace Festispec.ViewModel
         public ICommand OpenAvailability { get; set; }
         public ICommand OpenEvent { get; set; }
         public ICommand OpenSick { get; set; }
+        public ICommand OpenWorkedHours { get; set; }
         public ICommand ShowAccountInformation { get; set; }
         public ObservableCollection<Button> MenuList { get; set; }
 
@@ -69,6 +71,7 @@ namespace Festispec.ViewModel
             OpenEvent = new RelayCommand(OpenEventTab);
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenSick = new RelayCommand(OpenSickTab);
+            OpenWorkedHours = new RelayCommand(OpenWorkedHoursTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
             Page = ServiceLocator.Current.GetInstance<LoginPage>();
 
@@ -117,7 +120,7 @@ namespace Festispec.ViewModel
             _menu["Inspectie"].Add("Dashboard", OpenDashboard);
             _menu["Inspectie"].Add("Beschikbaarheid", OpenAvailability);
             _menu["Inspectie"].Add("Ziekmelden", OpenSick);
-
+            _menu["Inspectie"].Add("Urenregistratie", OpenWorkedHours);
             // Sales Dictionary
             _menu.Add("Sales", new Dictionary<string, ICommand>());
             _menu["Sales"].Add("Dashboard", OpenDashboard);
@@ -166,6 +169,12 @@ namespace Festispec.ViewModel
         private void OpenAvailabilityTab()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AvailablePage) });
+        }
+
+        private void OpenWorkedHoursTab()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(WorkedPlannedEmployeePage) });
+            MessengerInstance.Send<ChangeSelectedWorkedEmployeeMessage>(new ChangeSelectedWorkedEmployeeMessage() { EmployeeVM = LoggedInEmployee });
         }
 
         private void OpenEventTab()

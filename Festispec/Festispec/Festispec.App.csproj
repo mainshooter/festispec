@@ -173,6 +173,7 @@
     <Compile Include="Message\ChangeSelectedCustomerMessage.cs" />
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
     <Compile Include="Message\ChangeSelectedQuotationMessage.cs" />
+    <Compile Include="Message\ChangeSelectedWorkedEmployeeMessage.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSessionVm.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
+    <Compile Include="ViewModel\planning\WorkedPlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\report\AddReportVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddBarChartVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddImageVM.cs" />
@@ -312,6 +314,9 @@
     </Compile>
     <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
       <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Planning\WorkedPlannedEmployeePage.xaml.cs">
+      <DependentUpon>WorkedPlannedEmployeePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Report\AddReportPage.xaml.cs">
       <DependentUpon>AddReportPage.xaml</DependentUpon>
@@ -528,6 +533,10 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="View\Pages\Employee\SickPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Planning\WorkedPlannedEmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
