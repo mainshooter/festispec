@@ -237,7 +237,6 @@
     <Compile Include="ViewModel\report\element\Add\AddTableVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddTextVM.cs" />
     <Compile Include="ViewModel\report\element\Add\BaseElementAddVM.cs" />
-    <Compile Include="ViewModel\report\element\DrawPoint.cs" />
     <Compile Include="ViewModel\report\element\DrawVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\BaseElementEditVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditBarChartVM.cs" />
