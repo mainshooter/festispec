@@ -153,7 +153,7 @@ namespace Festispec.ViewModel.employee
                     context.SaveChanges();
                 }
                 EmployeeList.Remove(SelectedEmployee);
-                RaisePropertyChanged("EmployeeList");
+                RaisePropertyChanged("EmployeeListFiltered");
             }
         }
 
