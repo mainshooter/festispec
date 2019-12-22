@@ -25,7 +25,8 @@ namespace Festispec.ViewModel.report.element
         public ICommand ElementUpCommand { get; set; }
         public ICommand ElementDownCommand { get; set; }
 
-        public ReportVM ReportVM { 
+        public ReportVM ReportVM 
+        { 
             get 
             {
                 return CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().ReportVM;
