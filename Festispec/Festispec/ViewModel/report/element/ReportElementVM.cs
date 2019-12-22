@@ -1,6 +1,7 @@
 ﻿using Festispec.Domain;
 using Festispec.Factory;
 using Festispec.Interface;
+using Festispec.Lib.Enums;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -329,6 +330,18 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
+        private string Validate_image 
+        {
+            get 
+            {
+                if (Image == null || Image.Length < 0)
+                {
+                    return "Er is geen afbeelding ge-upload";
+                }
+                return null;
+            }
+        }
+
         string GetValidationError(string propertyName)
         {
             string error = null;
@@ -346,6 +359,9 @@ namespace Festispec.ViewModel.report.element
                 case "X_as":
                     error = ValidateX_as;
                     break;
+                case "Image":
+                    error = Validate_image;
+                    break;
             }
             return error;
         }
@@ -360,11 +376,15 @@ namespace Festispec.ViewModel.report.element
             "Title", "Content"
         };
 
+        public static readonly string[] ValidateImage = {
+            "Image"
+        };
+
         public bool IsValid
         {
             get
             {
-                if (Type.Equals("barchart") || Type.Equals("linechart"))
+                if (Type.Equals(ReportElementType.Barchart) || Type.Equals(ReportElementType.Linechart))
                 {
                     foreach (var property in ValidatedProperties)
                     {
@@ -380,6 +400,13 @@ namespace Festispec.ViewModel.report.element
                     foreach (var property in ValidatedPropertiesShort)
                     {
                         if (GetValidationError(property) != null)
+                        {
+                            return false;
+                        }
+                    }
+                    if (Type == ReportElementType.Image)
+                    {
+                        if (GetValidationError(ValidateImage[0]) != null)
                         {
                             return false;
                         }
