@@ -289,9 +289,9 @@ namespace Festispec.ViewModel.report.element
                 {
                     return "Beschrijving moet ingevuld zijn";
                 }
-                else if (Content.Length > 100)
+                else if (Content.Length > 10000)
                 {
-                    return "Beschrijving mag niet langer zijn dan 100 karakters";
+                    return "Beschrijving mag niet langer zijn dan 10000 karakters";
                 }
                 return null;
             }

@@ -1,4 +1,5 @@
 ﻿using Festispec.Lib.Enums;
+using Festispec.Lib.Report;
 using Festispec.Message;
 using Festispec.View.Pages.Report.element.Edit;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -12,11 +13,6 @@ namespace Festispec.ViewModel.report.element
     {
         private byte[] _photo;
         private ObservableCollection<DrawPoint> _dotCollection;
-
-        public DrawVM()
-        {
-            Type = ReportElementType.Draw;
-        }
 
         public ObservableCollection<DrawPoint> DotCollection 
         {
@@ -42,6 +38,11 @@ namespace Festispec.ViewModel.report.element
                 _photo = value;
                 RaisePropertyChanged("Photo");
             }
+        }
+
+        public DrawVM()
+        {
+            Type = ReportElementType.Draw;
         }
 
         public DrawVM(ReportElementVM element)

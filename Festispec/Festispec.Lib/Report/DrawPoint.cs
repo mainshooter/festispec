@@ -1,5 +1,5 @@
 ﻿
-namespace Festispec.ViewModel.report.element
+namespace Festispec.Lib.Report 
 {
     public class DrawPoint
     {
