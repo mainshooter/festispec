@@ -1,25 +1,5 @@
 ﻿@model Festispec.Web.Models.Questions.Types.DrawingQuestionType
 
-<style>
-    body {
-        overflow-x: hidden;
-    }
-
-    .draw-question {
-        position: relative;
-        display: inline-block;
-        user-select: none;
-        margin-left: 5%;
-    }
-
-        .draw-question .inkt {
-            height: 5px;
-            width: 5px;
-            background-color: red;
-            position: absolute;
-        }
-</style>
-
 @{
     var base64 = Convert.ToBase64String(@Model.Details.Images[0]);
     var imgSrc = String.Format("data:image/png;base64,{0}", base64);
@@ -35,23 +15,3 @@
         new DrawQuestion("#draw-canvas-@Model.Id");
     });
 </script>
-
-
-
-
-
-
-
-
-@*<div style="display: inline-block; border: 1px solid black; background: url('../../@Model.ImageUrl'); background-size: contain; width: 30%; height: 30%; background-position:center; background-repeat: no-repeat;">
-        <canvas id="draw-canvas-@Model.Id" max-width="400" max-height="400">
-        </canvas>
-    </div>*@
-
-@*<script>
-        var canvas = new fabric.Canvas('draw-canvas-@Model.Id');
-        canvas.isDrawingMode = true;
-        canvas.freeDrawingBrush.width = 3;
-        canvas.freeDrawingBrush.color = "#ff0000";
-        canvasDict.addCanvas(canvas, @Model.Id);
-    </script>*@
