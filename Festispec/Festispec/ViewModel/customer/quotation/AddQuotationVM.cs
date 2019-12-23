@@ -52,7 +52,7 @@ namespace Festispec.ViewModel.customer.quotation
         public void AddQuotation()
         {
             Quotation.TimeSend = DateTime.Now;
-            var userSession = UserSessionVm.Current;
+            var userSession = UserSessionVM.Current;
             Quotation.Employee = userSession.Employee;
 
             using (var context = new Entities())
