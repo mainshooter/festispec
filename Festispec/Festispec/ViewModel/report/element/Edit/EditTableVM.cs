@@ -7,11 +7,12 @@ namespace Festispec.ViewModel.report.element.Edit
     {
         public EditTableVM() : base()
         {
-            ReportElementVM = new ReportElementVM();
-            ReportElementVM.Type = ReportElementType.Table;
             MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => 
             {
-                ReportElementVM = message.ReportElementVM;
+                if (message.ReportElementVM.Type == ReportElementType.Table)
+                {
+                    ReportElementVM = message.ReportElementVM;
+                }
             });
         }
     }

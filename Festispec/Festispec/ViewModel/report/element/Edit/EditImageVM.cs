@@ -14,11 +14,12 @@ namespace Festispec.ViewModel.report.element.Edit
         
         public EditImageVM()
         {
-            ReportElementVM = new ReportElementVM();
-            ReportElementVM.Type = ReportElementType.Image;
             MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => 
             {
-                ReportElementVM = message.ReportElementVM;
+                if (message.ReportElementVM.Type == ReportElementType.Image)
+                {
+                    ReportElementVM = message.ReportElementVM;
+                }
             });
             ChooseImageCommand = new RelayCommand(ChooseImage);
         }

@@ -177,6 +177,10 @@ namespace Festispec.ViewModel.report.element.Edit
 
         public bool CanAddElement()
         {
+            if (ReportElementVM == null)
+            {
+                return false;
+            }
             return ReportElementVM.IsValid;
         }
 

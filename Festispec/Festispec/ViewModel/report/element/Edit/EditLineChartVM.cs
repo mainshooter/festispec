@@ -8,11 +8,12 @@ namespace Festispec.ViewModel.report.element.Edit
 
         public EditLineChartVM(): base()
         {
-            ReportElementVM = new ReportElementVM();
-            ReportElementVM.Type = ReportElementType.Linechart;
             MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => 
             {
-                ReportElementVM = message.ReportElementVM;
+                if (message.ReportElementVM.Type == ReportElementType.Linechart)
+                {
+                    ReportElementVM = message.ReportElementVM;
+                }
             });
         }
     }

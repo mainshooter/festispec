@@ -7,11 +7,12 @@ namespace Festispec.ViewModel.report.element.Edit
     {
         public EditDrawVM()
         {
-            ReportElementVM = new ReportElementVM();
-            ReportElementVM.Type = ReportElementType.Barchart;
             MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message =>
             {
-                ReportElementVM = message.ReportElementVM;
+                if (message.ReportElementVM.Type == ReportElementType.Draw)
+                {
+                    ReportElementVM = message.ReportElementVM;
+                }
             });
         }
     }

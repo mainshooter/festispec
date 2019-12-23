@@ -7,11 +7,12 @@ namespace Festispec.ViewModel.report.element.Edit
     {
         public EditPieChartVM(): base()
         {
-            ReportElementVM = new ReportElementVM();
-            ReportElementVM.Type = ReportElementType.Piechart;
             MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => 
             {
-                ReportElementVM = message.ReportElementVM;
+                if (message.ReportElementVM.Type == ReportElementType.Piechart)
+                {
+                    ReportElementVM = message.ReportElementVM;
+                }
             });
         }
     }

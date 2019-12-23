@@ -9,11 +9,12 @@ namespace Festispec.ViewModel.report.element.Edit
     {
         public EditTextVM()
         {
-            ReportElementVM = new ReportElementVM();
-            ReportElementVM.Type = ReportElementType.Text;
             MessengerInstance.Register<ChangeSelectedReportElementMessage>(this, message => 
             {
-                ReportElementVM = message.ReportElementVM;
+                if (message.ReportElementVM.Type == ReportElementType.Text)
+                {
+                    ReportElementVM = message.ReportElementVM;
+                }
             });
         }
     }
