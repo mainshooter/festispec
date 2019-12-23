@@ -12,12 +12,14 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         public EmployeeVM Employee { get; set; }
         public int OrderId => _plannedEmployee.OrderId;
 
-        public string Status {
+        public string Status 
+        {
             get => _plannedEmployee.Status;
             set => _plannedEmployee.Status = value;
         }
 
-        public DateTime PlannedStartTime {
+        public DateTime PlannedStartTime 
+        {
             get => _plannedEmployee.PlannedFrom;
             set => _plannedEmployee.PlannedFrom = value;
         }
@@ -31,7 +33,8 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             }
         }
 
-        public DateTime PlannedEndTime {
+        public DateTime PlannedEndTime 
+        {
             get => _plannedEmployee.PlannedTill;
             set => _plannedEmployee.PlannedTill = value;
         }
@@ -45,15 +48,6 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             }
         }
 
-        public DateTime WorkStartTime {
-            get => (DateTime) _plannedEmployee.WorkedFrom;
-            set => _plannedEmployee.WorkedFrom = value;
-        }
-
-        public DateTime WorkEndTime {
-            get => (DateTime)_plannedEmployee.WorkedTill;
-            set => _plannedEmployee.WorkedTill = value;
-        }
         public string EventName { get; set; }
 
         public string Street { get; set; }
@@ -64,7 +58,8 @@ namespace Festispec.ViewModel.planning.plannedEmployee
 
         public string EventLocation 
         { 
-            get {
+            get 
+            {
                 return Street + " " + HouseNumber + HouseNumberAddition;
             }
         }
