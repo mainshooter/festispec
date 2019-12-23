@@ -57,6 +57,8 @@ namespace Festispec.ViewModel.survey
             }
         }
 
+        public ObservableCollection<CaseVM> Cases { get; set; }
+
         [PreferredConstructor]
         public SurveyVM(OrderVM orderVM)
         {
@@ -69,6 +71,7 @@ namespace Festispec.ViewModel.survey
         public SurveyVM(OrderVM orderVM, Survey survey)
         {
             _survey = survey;
+            Cases = new ObservableCollection<CaseVM>(survey.Cases.ToList().Select(c => new CaseVM(c)));
             Questions = new ObservableCollection<IQuestion>(survey.Questions.ToList().Select(CreateQuestionType).OrderBy(q => q.Order));
             OrderVM = orderVM;
             SetStatuses();

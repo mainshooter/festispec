@@ -73,7 +73,7 @@ namespace Festispec.ViewModel
             OpenSick = new RelayCommand(OpenSickTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
             OpenEmployeePlanningCommand = new RelayCommand(OpenEmployeePlanning);
-            Page = ServiceLocator.Current.GetInstance<LoginPage>();
+
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -84,10 +84,12 @@ namespace Festispec.ViewModel
             {
                 LoggedInEmployee = message.LoggedinEmployee;
             });
-
+                
             // Menu vullen
             FillMenuList();
             CreateMenu();
+
+            Page = ServiceLocator.Current.GetInstance<LoginPage>();
         }
 
         private void CreateMenu()

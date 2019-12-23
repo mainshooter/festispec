@@ -19,6 +19,14 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private string _columnName;
         private ObservableCollection<string> _comboBoxItems;
 
+        public int Id 
+        {
+            get 
+            {
+                return _surveyQuestion.Id;
+            }
+        }
+
         public QuestionDetails QuestionDetails
         {
             get => _questionDetails;
@@ -107,6 +115,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public TableQuestionVM()
         {
             _surveyQuestion = new Question();
+            Type = Lib.Enums.QuestionType.TableQuestion;
             QuestionDetails = new QuestionDetails();
             ComboBoxItems = new ObservableCollection<string>();
         }
