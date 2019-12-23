@@ -233,7 +233,7 @@ namespace Festispec.ViewModel.report.element
 
         public ReportElement ToModel()
         {
-            if (DataParser != null)
+            if (DataParser != null && SelectedSurveyQuestion != null)
             {
                 DataParser.Question = SelectedSurveyQuestion;
                 _reportElement.Data = DataParser.ToJson();
