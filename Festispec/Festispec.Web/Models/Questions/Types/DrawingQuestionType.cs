@@ -10,21 +10,11 @@ namespace Festispec.Web.Models.Questions.Types
         
         public int Id { get; set; }
         
-        public QuestionDetails Details
-        {
-            get => _details;
-            set
-            {
-                _details = value;
-                ByteArrayToImageUrl();
-            }
-        }
+        public QuestionDetails Details { get; set; }
 
         public string ImageUrl { get => "Content/question-" + Details.Question + ".jpeg"; }
         public string DetailsJson { get; set; }
         public int AnswerValue { get; set; }
         public int AnswerText { get; set; }
-
-        public void ByteArrayToImageUrl() => File.WriteAllBytes(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Content/question-" + Details.Question + ".jpeg"), Details.Images[0]);
     }
 }

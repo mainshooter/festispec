@@ -24,7 +24,15 @@
             let x = event.clientX - rect.left; //x position within the element.
             let y = event.clientY - rect.top;  //y position within the element.
 			this.handleEvent(x, y);
-        });
+		});
+		this.scope.addEventListener('touchstart', (event) => {
+			document.querySelector("body").style.height = "100%";
+			document.querySelector("body").style.overflow = "hidden";
+		});
+		this.scope.addEventListener('touchend', (event) => {
+			document.querySelector("body").style.height = "100%";
+			document.querySelector("body").style.overflow = "";
+		});
 		this.scope.addEventListener('touchmove', (event) => {
 			this.canDraw = true;
 			let backgroundImage = this.scope.querySelector("img");
@@ -42,7 +50,7 @@
         });
     }
 
-	async handleEvent(x, y) {
+	handleEvent(x, y) {
         if (this.canDraw === false) {
             return;
 		}

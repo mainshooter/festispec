@@ -32,7 +32,7 @@ textarea {
 	position: relative;
 	display: inline-block;
 	user-select: none;
-	margin-left: 5%;
+	margin: 4rem;
 }
 
 .draw-question .inkt {
