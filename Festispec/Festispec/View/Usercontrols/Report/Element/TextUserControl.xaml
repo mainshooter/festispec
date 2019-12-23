@@ -20,9 +20,6 @@
             </Grid>
         </StackPanel>
         <StackPanel>
-            <StackPanel Height="220">
-
-            </StackPanel>
             <StackPanel VerticalAlignment="Center">
                 <Grid>
                     <Grid.RowDefinitions>
