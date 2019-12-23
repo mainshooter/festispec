@@ -1,0 +1,50 @@
+﻿<Page x:Class="Festispec.View.Pages.Report.element.Edit.EditLineChartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditLineChartPage"
+      DataContext="{Binding EditLineChartVM,Source={StaticResource Locator}}">
+
+
+    <StackPanel Margin="10">
+        <Button Width="50" HorizontalAlignment="Left" ToolTip="Terug" ToolTipService.ShowOnDisabled="True" Command="{Binding ReturnCommand}" Content="{materialDesign:PackIcon keyboardreturn}"/>
+        <Label FontSize="15" HorizontalAlignment="Center" Content="{Binding ReportElementVM.Type}" ContentStringFormat="Bewerken element type {0}"/>
+        <StackPanel>
+            <Label Content="Titel: "></Label>
+            <TextBox Text="{Binding ReportElementVM.Title, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
+        </StackPanel>
+        <StackPanel>
+            <Label Content="Beschrijving: "></Label>
+            <TextBox Text="{Binding ReportElementVM.Content, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
+        </StackPanel>
+        <Label>Type query</Label>
+        <ComboBox ItemsSource="{Binding DataParsers}" SelectedItem="{Binding ReportElementVM.DataParser}"  SelectedIndex="{Binding SelectedDataParserIndex}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Type}"></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label>Kies een vraag</Label>
+        <ComboBox ItemsSource="{Binding SurveyQuestions}" SelectedItem="{Binding ReportElementVM.SelectedSurveyQuestion}" SelectedIndex="{Binding SelectedSurveyQuestionIndex}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock><Label Content="{Binding QuestionDetails.Question}"></Label>   <Label Content="{Binding QuestionType}"></Label></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <StackPanel>
+            <Label Content="X-as: "></Label>
+            <TextBox Text="{Binding ReportElementVM.X_as, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
+        </StackPanel>
+        <StackPanel>
+            <Label Content="Y-as: "></Label>
+            <TextBox Text="{Binding ReportElementVM.Y_as, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
+        </StackPanel>
+        <Button HorizontalAlignment="Right" Width="50" Command="{Binding SaveElementCommand}" ToolTip="Element opslaan" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ContentSave}"/>
+    </StackPanel>
+</Page>

@@ -1,28 +1,41 @@
 ﻿<Page x:Class="Festispec.View.Pages.Report.ReportPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Festispec.View.Report"
-      xmlns:control="clr-namespace:Festispec.View.Report.Element" 
-      DataContext="{Binding ReportVM, Source={StaticResource Locator}}"
-      mc:Ignorable="d" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      DataContext="{Binding ReportInfoVM, Source={StaticResource Locator}}"
+      mc:Ignorable="d"
       Title="Report">
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"></ColumnDefinition>
-                <ColumnDefinition Width="700"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Margin="5">
-                <local:ReportControlUserControl></local:ReportControlUserControl>
-                <local:AddReportElementUserControl Margin="0,50,0,0"></local:AddReportElementUserControl>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="720"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="5">
+            <Button Grid.Row="0" HorizontalAlignment="Left" Command="{Binding GoBackCommand}" Margin="0,0,0,10" Width="78">Terug</Button>
+            <StackPanel Orientation="Horizontal">
+                <Label>Titel:</Label>
+                <TextBox Text="{Binding ReportVM.Title, UpdateSourceTrigger=PropertyChanged}" Width="255"></TextBox>
             </StackPanel>
-            <ScrollViewer Grid.Column="1" Margin="5">
-                <StackPanel >
-                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Content="{Binding Title}"></Label>
-                    <ItemsControl ItemsSource="{Binding ReportElementUserControlls}"></ItemsControl>
-                </StackPanel>
-            </ScrollViewer>
+
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0,5,0,0">
+                <Label HorizontalAlignment="Left" Content="Status: " Height="30"/>
+                <ComboBox Margin="0,1,15,1"  Width="242" SelectedIndex="0" ItemsSource="{Binding Statuses}" SelectedValue="{Binding ReportVM.Status}" />
+            </StackPanel>
+            <Separator Margin="0,10,0,0"></Separator>
+            <Button Margin="0 10 0 0" Command="{Binding SaveReportCommand}">Raport opslaan</Button>
+            <Separator Margin="0,10,0,0"></Separator>
+            <ComboBox ItemsSource="{Binding ElementTypes}" SelectedItem="{Binding SelectedElementType}" SelectedIndex="0"></ComboBox>
+            <Button Margin="0 10 0 0" Command="{Binding AddElementCommand}">Voeg een element toe</Button>
+            <Button Margin="0 10 0 0" Command="{Binding ExportToPDFCommand}" CommandParameter="{Binding ElementName=ReportElements}">Rapport exporteren naar PDF</Button>
+        </StackPanel>
+        <ScrollViewer Grid.Column="1">
+            <StackPanel Name="ReportElements">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Content="{Binding ReportVM.Title}"></Label>
+                <ItemsControl ItemsSource="{Binding ReportElementUserControlls}"></ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

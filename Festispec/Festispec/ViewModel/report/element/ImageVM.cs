@@ -1,38 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+using GalaSoft.MvvmLight.CommandWpf;
+﻿using Festispec.Message;
+﻿using Festispec.Lib.Enums;
+using Festispec.View.Pages.Report.element.Edit;
 
 namespace Festispec.ViewModel.report.element
 {
-    class ImageVM : ReportElementVM
+    public class ImageVM : ReportElementVM
     {
-        private object _data;
-
-        public byte[] Photo { get; set; }
-
-        public override Object Data
+        public ImageVM()
         {
-            get {
-                return _data;
-            }
-            set {
-                _data = value;
-                Dictionary = (Dictionary<string, Object>)Data;
-                ApplyChanges();
-            }
+            Type = ReportElementType.Image;
         }
-
-        public Dictionary<string, Object> Dictionary { get; set; }
 
         public ImageVM(ReportElementVM element)
         {
-            Data = element.Data;
+            EditElement = new RelayCommand(() => Edit());
+            Id = element.Id;
+            Type = element.Type;
             Title = element.Title;
             Content = element.Content;
+            Order = element.Order;
+            ReportId = element.ReportId;
+            Image = element.Image;
         }
 
-        private void ApplyChanges()
+        public void Edit()
         {
-            Photo = (byte[])Dictionary["image"];
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditImagePage) });
+            MessengerInstance.Send<ChangeSelectedReportElementMessage>(new ChangeSelectedReportElementMessage()
+            {
+                ReportElementVM = this
+            });
         }
     }
 }

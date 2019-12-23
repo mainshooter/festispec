@@ -1,87 +1,87 @@
 ﻿using Festispec.Domain;
-using Festispec.Factory;
-using Festispec.View.Pages.Report.element;
 using Festispec.ViewModel.report.element;
-using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Input;
 using GalaSoft.MvvmLight;
-using Festispec.Repository;
-using Festispec.Message;
-using Festispec.View.Pages.Report;
 using Festispec.ViewModel.Customer.order;
+using Festispec.ViewModel.toast;
+using System;
+using System.Windows;
+using System.Data.Entity;
 
 namespace Festispec.ViewModel.report
 {
     public class ReportVM : ViewModelBase
     {
         private Report _report;
-        private ReportElementFactory _reportElementFactory;
+        private ObservableCollection<ReportElementVM> _reportElements;
 
-        public int Id {
-            get {
+        public int Id
+        {
+            get
+            {
                 return _report.Id;
             }
-            private set {
+            private set
+            {
                 _report.Id = value;
             }
         }
 
         public OrderVM Order { get; set; }
 
-        public string Title {
-            get {
+        public string Title
+        {
+            get
+            {
                 return _report.Title;
             }
-            set {
+            set
+            {
                 _report.Title = value;
                 RaisePropertyChanged("Title");
             }
         }
 
-        public string Status {
-            get {
+        public string Status
+        {
+            get
+            {
                 return _report.Status;
             }
-            set {
+            set
+            {
                 _report.Status = value;
+                RaisePropertyChanged("Status");
             }
         }
 
-        public ObservableCollection<ReportElementVM> ReportElements { get; set; }
-        
-        public ObservableCollection<UserControl> ReportElementUserControlls { get; set; }
-
-        public MainViewModel MainViewModel { get; set; }
-
-        public ICommand SaveReportCommand { get; set; }
-
-        public ICommand AddElementCommand { get; set; }
-
-        public ReportVM()
+        public ObservableCollection<ReportElementVM> ReportElements
         {
-            _report = new Report();
-            var reportRepository = new ReportRepository();
-            this.ReportElements = new ObservableCollection<ReportElementVM>(reportRepository.GetReportElements());
-            ReportElementUserControlls = new ObservableCollection<UserControl>();
-            _reportElementFactory = new ReportElementFactory();
-            ReportElements.CollectionChanged += RenderReportElements;
-            SaveReportCommand = new RelayCommand(Save);
-            AddElementCommand = new RelayCommand(GoToAddElementPage);
-            _report.Title = "Test titel";
-            this.RenderReportElements(null, null);
+            get
+            {
+                return _reportElements;
+            }
+            set
+            {
+                _reportElements = value;
+                RaisePropertyChanged();
+            }
         }
 
-        private void GoToAddElementPage()
+        public ReportVM(Report report, OrderVM order)
         {
-            Page addElementPage = new AddElementPage();
-            AddElementVM addElementVM = new AddElementVM();
-            addElementVM.Report = this;
-            addElementPage.DataContext = addElementVM;
-            MainViewModel.Page = addElementPage;
+            Order = order;
+            _report = report;
+            ReportElements = new ObservableCollection<ReportElementVM>(_report.ReportElements.Select(e => new ReportElementVM(e)).ToList());
+        }
+
+        public ReportVM(OrderVM OrderVM)
+        {
+            _report = new Report();
+            Order = OrderVM;
+            _report.OrderId = OrderVM.ToModel().Id;
+            ReportElements = new ObservableCollection<ReportElementVM>();
         }
 
         public Report ToModel()
@@ -89,40 +89,53 @@ namespace Festispec.ViewModel.report
             return _report;
         }
 
-        public void Save()
+        public void MoveElement(ReportElementVM element, int direction)
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage { NextPageType = typeof(ReportPage) });
-            return;
-            if (Id == 0)
+            try
             {
-                Insert();
-                return;
+                var nextElement = ReportElements[ReportElements.IndexOf(ReportElements.Where(e => e.Id == element.Id).FirstOrDefault()) + direction];
+                var nextElementOrder = nextElement.Order;
+                nextElement.Order = element.Order;
+                element.Order = nextElementOrder;
+                SaveElementOrder(nextElement, element);
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().RefreshElements();
+            }
+            catch (Exception)
+            {
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowError("Dit element kan niet verder.");
+            }
+        }
+
+        public void SaveElementOrder(ReportElementVM element1, ReportElementVM element2)
+        {
+            using (var context = new Entities())
+            {
+                context.ReportElements.Attach(element1.ToModel());
+                context.Entry(element1.ToModel()).State = EntityState.Modified;
+                context.SaveChanges();
             }
             using (var context = new Entities())
             {
-                context.Reports.Attach(_report);
-                context.Entry(_report).State = System.Data.Entity.EntityState.Modified;
+                context.ReportElements.Attach(element2.ToModel());
+                context.Entry(element2.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
 
-        private void Insert()
+        public bool ValidateInputs()
         {
-            using (var context = new Entities())
+            if (Title == null || Title.Equals(""))
             {
-                context.Reports.Add(_report);
-                context.SaveChanges();
+                MessageBox.Show("Titel mag niet leeg zijn.");
+                return false;
             }
-        }
 
-        public void RenderReportElements(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            ReportElementUserControlls.Clear();
-            var reportElements = ReportElements.OrderBy(el => el.Order);
-            foreach (var element in reportElements)
+            if (Title.Length > 100)
             {
-                ReportElementUserControlls.Add(_reportElementFactory.CreateElement(element));
+                MessageBox.Show("Titel mag niet langer zijn dan 100 karakters.");
+                return false;
             }
+            return true;
         }
     }
 }

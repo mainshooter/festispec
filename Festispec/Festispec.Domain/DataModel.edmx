@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Festispec.Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Festispec.Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="Id" />
@@ -45,15 +45,6 @@
             <PropertyRef Name="Status" />
           </Key>
           <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CertificateInspector">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeId" Type="int" Nullable="false" />
-          <Property Name="DateFrom" Type="datetime" Nullable="false" />
-          <Property Name="DateTill" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ContactPerson">
           <Key>
@@ -131,6 +122,7 @@
           <Property Name="PasswordResetToken" Type="nvarchar" MaxLength="255" />
           <Property Name="ResetTokenEndTime" Type="datetime" />
           <Property Name="Iban" Type="nvarchar" MaxLength="27" />
+          <Property Name="Certificate" Type="tinyint" />
         </EntityType>
         <EntityType Name="EmployeeStatus">
           <Key>
@@ -196,14 +188,7 @@
           <Property Name="EventId" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" />
           <Property Name="QuotationId" Type="int" Nullable="false" />
-          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="Description" Type="text" />
-        </EntityType>
-        <EntityType Name="OrderStatus">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="QueryTemplate">
           <Key>
@@ -241,7 +226,14 @@
           <Property Name="Price" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="BtwPercentage" Type="int" Nullable="false" />
           <Property Name="TimeSend" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="Content" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuotationStatus">
+          <Key>
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="Report">
           <Key>
@@ -261,7 +253,11 @@
           <Property Name="ElementType" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Content" Type="text" Nullable="false" />
+          <Property Name="Data" Type="text" />
           <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="X-as" Type="nvarchar" MaxLength="100" />
+          <Property Name="Y-as" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="ReportStatus">
           <Key>
@@ -384,20 +380,6 @@
             </Principal>
             <Dependent Role="Case">
               <PropertyRef Name="SurveyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CertificateInspector_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CertificateInspector" Type="Self.CertificateInspector" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CertificateInspector">
-              <PropertyRef Name="EmployeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -567,18 +549,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_OrderStatus">
-          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OrderStatus">
-              <PropertyRef Name="Status" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="Status" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Quotation">
           <End Role="Quotation" Type="Self.Quotation" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -650,6 +620,18 @@
             </Principal>
             <Dependent Role="Quotation">
               <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Quotation_QuotationStatus">
+          <End Role="QuotationStatus" Type="Self.QuotationStatus" Multiplicity="1" />
+          <End Role="Quotation" Type="Self.Quotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuotationStatus">
+              <PropertyRef Name="Status" />
+            </Principal>
+            <Dependent Role="Quotation">
+              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -765,7 +747,6 @@
           <EntitySet Name="BetterReportInspector" EntityType="Self.BetterReportInspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CaseStatus" EntityType="Self.CaseStatus" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CertificateInspector" EntityType="Self.CertificateInspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContactPerson" EntityType="Self.ContactPerson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Day" EntityType="Self.Day" Schema="dbo" store:Type="Tables" />
@@ -778,11 +759,11 @@
           <EntitySet Name="InspectorPlanningStatus" EntityType="Self.InspectorPlanningStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Note" EntityType="Self.Note" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QueryTemplate" EntityType="Self.QueryTemplate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionType" EntityType="Self.QuestionType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Quotation" EntityType="Self.Quotation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuotationStatus" EntityType="Self.QuotationStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportElement" EntityType="Self.ReportElement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportStatus" EntityType="Self.ReportStatus" Schema="dbo" store:Type="Tables" />
@@ -816,10 +797,6 @@
           <AssociationSet Name="FK_Case_Survey" Association="Self.FK_Case_Survey">
             <End Role="Survey" EntitySet="Survey" />
             <End Role="Case" EntitySet="Case" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CertificateInspector_Employee" Association="Self.FK_CertificateInspector_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="CertificateInspector" EntitySet="CertificateInspector" />
           </AssociationSet>
           <AssociationSet Name="FK_ContactPerson_Customer" Association="Self.FK_ContactPerson_Customer">
             <End Role="Customer" EntitySet="Customer" />
@@ -873,10 +850,6 @@
             <End Role="Event" EntitySet="Event" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_OrderStatus" Association="Self.FK_Order_OrderStatus">
-            <End Role="OrderStatus" EntitySet="OrderStatus" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Quotation" Association="Self.FK_Order_Quotation">
             <End Role="Quotation" EntitySet="Quotation" />
             <End Role="Order" EntitySet="Order" />
@@ -899,6 +872,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Quotation_Event" Association="Self.FK_Quotation_Event">
             <End Role="Event" EntitySet="Event" />
+            <End Role="Quotation" EntitySet="Quotation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quotation_QuotationStatus" Association="Self.FK_Quotation_QuotationStatus">
+            <End Role="QuotationStatus" EntitySet="QuotationStatus" />
             <End Role="Quotation" EntitySet="Quotation" />
           </AssociationSet>
           <AssociationSet Name="FK_Report_Order" Association="Self.FK_Report_Order">
@@ -934,7 +911,8 @@
             <End Role="Survey" EntitySet="Survey" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Festispec.Domain" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -987,16 +965,6 @@
           </Key>
           <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Cases" Relationship="Self.FK_Case_CaseStatus" FromRole="CaseStatus" ToRole="Case" />
-        </EntityType>
-        <EntityType Name="CertificateInspector">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
-          <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateTill" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_CertificateInspector_Employee" FromRole="CertificateInspector" ToRole="Employee" />
         </EntityType>
         <EntityType Name="ContactPerson">
           <Key>
@@ -1085,10 +1053,10 @@
           <Property Name="PasswordResetToken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ResetTokenEndTime" Type="DateTime" Precision="3" />
           <Property Name="Iban" Type="String" MaxLength="27" FixedLength="false" Unicode="true" />
+          <Property Name="Certificate" Type="Byte" />
           <NavigationProperty Name="AvailabilityInspectors" Relationship="Self.FK_AvailabilityInspector_Employee" FromRole="Employee" ToRole="AvailabilityInspector" />
           <NavigationProperty Name="BetterReportInspectors" Relationship="Self.FK_BetterReportInspector_Employee" FromRole="Employee" ToRole="BetterReportInspector" />
           <NavigationProperty Name="Cases" Relationship="Self.FK_Case_Employee" FromRole="Employee" ToRole="Case" />
-          <NavigationProperty Name="CertificateInspectors" Relationship="Self.FK_CertificateInspector_Employee" FromRole="Employee" ToRole="CertificateInspector" />
           <NavigationProperty Name="Department1" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
           <NavigationProperty Name="EmployeeStatu" Relationship="Self.FK_Employee_EmployeeStatus" FromRole="Employee" ToRole="EmployeeStatus" />
           <NavigationProperty Name="InspectorPlannings" Relationship="Self.FK_InspectorPlanning_Employee" FromRole="Employee" ToRole="InspectorPlanning" />
@@ -1171,23 +1139,14 @@
           <Property Name="EventId" Type="Int32" Nullable="false" />
           <Property Name="EmployeeId" Type="Int32" />
           <Property Name="QuotationId" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="Days" Relationship="Self.FK_Day_Order" FromRole="Order" ToRole="Day" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Order_Employee" FromRole="Order" ToRole="Employee" />
           <NavigationProperty Name="Event" Relationship="Self.FK_Order_Event" FromRole="Order" ToRole="Event" />
-          <NavigationProperty Name="OrderStatu" Relationship="Self.FK_Order_OrderStatus" FromRole="Order" ToRole="OrderStatus" />
           <NavigationProperty Name="Quotation" Relationship="Self.FK_Order_Quotation" FromRole="Order" ToRole="Quotation" />
           <NavigationProperty Name="Reports" Relationship="Self.FK_Report_Order" FromRole="Order" ToRole="Report" />
           <NavigationProperty Name="Surveys" Relationship="Self.FK_Survey_Order" FromRole="Order" ToRole="Survey" />
-        </EntityType>
-        <EntityType Name="OrderStatu">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_OrderStatus" FromRole="OrderStatus" ToRole="Order" />
         </EntityType>
         <EntityType Name="QueryTemplate">
           <Key>
@@ -1229,11 +1188,20 @@
           <Property Name="Price" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="BtwPercentage" Type="Int32" Nullable="false" />
           <Property Name="TimeSend" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Quotation_Customer" FromRole="Quotation" ToRole="Customer" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Quotation_Employee" FromRole="Quotation" ToRole="Employee" />
           <NavigationProperty Name="Event" Relationship="Self.FK_Quotation_Event" FromRole="Quotation" ToRole="Event" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Quotation" FromRole="Quotation" ToRole="Order" />
+          <NavigationProperty Name="QuotationStatu" Relationship="Self.FK_Quotation_QuotationStatus" FromRole="Quotation" ToRole="QuotationStatus" />
+        </EntityType>
+        <EntityType Name="QuotationStatu">
+          <Key>
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Quotations" Relationship="Self.FK_Quotation_QuotationStatus" FromRole="QuotationStatus" ToRole="Quotation" />
         </EntityType>
         <EntityType Name="Report">
           <Key>
@@ -1256,7 +1224,11 @@
           <Property Name="ElementType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="X_as" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Y_as" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ElementType1" Relationship="Self.FK_ReportElement_ElementType" FromRole="ReportElement" ToRole="ElementType" />
           <NavigationProperty Name="Report" Relationship="Self.FK_ReportElement_Report" FromRole="ReportElement" ToRole="Report" />
         </EntityType>
@@ -1389,20 +1361,6 @@
             </Principal>
             <Dependent Role="Case">
               <PropertyRef Name="SurveyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CertificateInspector_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CertificateInspector" Type="Self.CertificateInspector" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CertificateInspector">
-              <PropertyRef Name="EmployeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1652,18 +1610,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_OrderStatus">
-          <End Role="OrderStatus" Type="Self.OrderStatu" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OrderStatus">
-              <PropertyRef Name="Status" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="Status" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Quotation">
           <End Role="Quotation" Type="Self.Quotation" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -1726,6 +1672,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Quotation_QuotationStatus">
+          <End Role="QuotationStatus" Type="Self.QuotationStatu" Multiplicity="1" />
+          <End Role="Quotation" Type="Self.Quotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuotationStatus">
+              <PropertyRef Name="Status" />
+            </Principal>
+            <Dependent Role="Quotation">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Report_ReportStatus">
           <End Role="ReportStatus" Type="Self.ReportStatu" Multiplicity="1" />
           <End Role="Report" Type="Self.Report" Multiplicity="*" />
@@ -1770,7 +1728,6 @@
           <EntitySet Name="BetterReportInspectors" EntityType="Self.BetterReportInspector" />
           <EntitySet Name="Cases" EntityType="Self.Case" />
           <EntitySet Name="CaseStatus" EntityType="Self.CaseStatu" />
-          <EntitySet Name="CertificateInspectors" EntityType="Self.CertificateInspector" />
           <EntitySet Name="ContactPersons" EntityType="Self.ContactPerson" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Days" EntityType="Self.Day" />
@@ -1783,11 +1740,11 @@
           <EntitySet Name="InspectorPlanningStatus" EntityType="Self.InspectorPlanningStatu" />
           <EntitySet Name="Notes" EntityType="Self.Note" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
-          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatu" />
           <EntitySet Name="QueryTemplates" EntityType="Self.QueryTemplate" />
           <EntitySet Name="Questions" EntityType="Self.Question" />
           <EntitySet Name="QuestionTypes" EntityType="Self.QuestionType" />
           <EntitySet Name="Quotations" EntityType="Self.Quotation" />
+          <EntitySet Name="QuotationStatus" EntityType="Self.QuotationStatu" />
           <EntitySet Name="Reports" EntityType="Self.Report" />
           <EntitySet Name="ReportElements" EntityType="Self.ReportElement" />
           <EntitySet Name="ReportStatus" EntityType="Self.ReportStatu" />
@@ -1821,10 +1778,6 @@
           <AssociationSet Name="FK_Case_Survey" Association="Self.FK_Case_Survey">
             <End Role="Survey" EntitySet="Surveys" />
             <End Role="Case" EntitySet="Cases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CertificateInspector_Employee" Association="Self.FK_CertificateInspector_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="CertificateInspector" EntitySet="CertificateInspectors" />
           </AssociationSet>
           <AssociationSet Name="FK_ContactPerson_Customer" Association="Self.FK_ContactPerson_Customer">
             <End Role="Customer" EntitySet="Customers" />
@@ -1902,10 +1855,6 @@
             <End Role="InspectorPlanning" EntitySet="InspectorPlannings" />
             <End Role="SickReportInspector" EntitySet="SickReportInspectors" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_OrderStatus" Association="Self.FK_Order_OrderStatus">
-            <End Role="OrderStatus" EntitySet="OrderStatus" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Quotation" Association="Self.FK_Order_Quotation">
             <End Role="Quotation" EntitySet="Quotations" />
             <End Role="Order" EntitySet="Orders" />
@@ -1925,6 +1874,10 @@
           <AssociationSet Name="FK_Question_Survey" Association="Self.FK_Question_Survey">
             <End Role="Survey" EntitySet="Surveys" />
             <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quotation_QuotationStatus" Association="Self.FK_Quotation_QuotationStatus">
+            <End Role="QuotationStatus" EntitySet="QuotationStatus" />
+            <End Role="Quotation" EntitySet="Quotations" />
           </AssociationSet>
           <AssociationSet Name="FK_Report_ReportStatus" Association="Self.FK_Report_ReportStatus">
             <End Role="ReportStatus" EntitySet="ReportStatus" />
@@ -1987,16 +1940,6 @@
             <EntityTypeMapping TypeName="Festispec.Domain.CaseStatu">
               <MappingFragment StoreEntitySet="CaseStatus">
                 <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CertificateInspectors">
-            <EntityTypeMapping TypeName="Festispec.Domain.CertificateInspector">
-              <MappingFragment StoreEntitySet="CertificateInspector">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
-                <ScalarProperty Name="DateTill" ColumnName="DateTill" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2079,6 +2022,7 @@
                 <ScalarProperty Name="PasswordResetToken" ColumnName="PasswordResetToken" />
                 <ScalarProperty Name="ResetTokenEndTime" ColumnName="ResetTokenEndTime" />
                 <ScalarProperty Name="Iban" ColumnName="Iban" />
+                <ScalarProperty Name="Certificate" ColumnName="Certificate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2148,15 +2092,7 @@
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="QuotationId" ColumnName="QuotationId" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.OrderStatu">
-              <MappingFragment StoreEntitySet="OrderStatus">
-                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2198,7 +2134,15 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="BtwPercentage" ColumnName="BtwPercentage" />
                 <ScalarProperty Name="TimeSend" ColumnName="TimeSend" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuotationStatus">
+            <EntityTypeMapping TypeName="Festispec.Domain.QuotationStatu">
+              <MappingFragment StoreEntitySet="QuotationStatus">
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2220,7 +2164,11 @@
                 <ScalarProperty Name="ElementType" ColumnName="ElementType" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="X_as" ColumnName="X-as" />
+                <ScalarProperty Name="Y_as" ColumnName="Y-as" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

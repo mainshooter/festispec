@@ -11,7 +11,7 @@
       DataContext="{Binding EventInfoVM,Source={StaticResource Locator}}">
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button Command="{Binding CloseSingleEventCommand}" Margin="0,0,758,432"  Height="17" Width="43" VerticalAlignment="Top" HorizontalAlignment="Left" >
+        <Button Command="{Binding CloseSingleEventCommand}" Margin="0,0,758,432"  Height="17" Width="43" VerticalAlignment="Top" HorizontalAlignment="Left" ToolTip="Terug" ToolTipService.ShowOnDisabled="True">
             <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
         </Button>
         <Label HorizontalAlignment="Left" Height="30" Margin="110,35,0,0" Content="{Binding Path=Event.Name, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
@@ -19,7 +19,7 @@
         <Label HorizontalAlignment="Left" Height="30" Margin="110,95,0,0" Content="{Binding Path=Event.Street, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>
         <Label FontWeight="Bold" Content="Straat" HorizontalAlignment="Left" Margin="110,70,0,0" VerticalAlignment="Top" Width="76"/>
         <Label HorizontalAlignment="Left" Height="30" Margin="110,155,0,0" Content="{Binding Path=Event.HouseNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="75"/>
-        <Label FontWeight="Bold" Content="Huisnummer" HorizontalAlignment="Left" Margin="110,130,0,0" VerticalAlignment="Top" Width="82"/>
+        <Label FontWeight="Bold" Content="Huisnummer" HorizontalAlignment="Left" Margin="110,130,0,0" VerticalAlignment="Top" Width="85"/>
         <Label HorizontalAlignment="Left" Height="30" Margin="210,155,0,0" Content="{Binding Path=Event.HouseNumberAddition, Mode=TwoWay}" VerticalAlignment="Top" Width="75"/>
         <Label FontWeight="Bold" Content="Toevoeging" HorizontalAlignment="Left" Margin="202,130,0,0" VerticalAlignment="Top" Width="82"/>
         <Label HorizontalAlignment="Left" Height="30" Margin="110,215,0,0" Content="{Binding Path=Event.City, Mode=TwoWay}" VerticalAlignment="Top" Width="175"/>

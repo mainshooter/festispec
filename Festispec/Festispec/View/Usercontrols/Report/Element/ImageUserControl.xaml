@@ -3,20 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Festispec.View.Report.Element"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d">
-    <StackPanel>
+    <StackPanel Orientation="Horizontal">
+        <StackPanel>
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
-        <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
-        <Image Source="{Binding Photo}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Stretch="Fill" Height="300" Width="670"></Image>
-        <Grid HorizontalAlignment="Right">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"></ColumnDefinition>
-                <ColumnDefinition Width="50"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="{materialDesign:PackIcon Pencil}"/>
-            <Button Grid.Column="1" Content="{materialDesign:PackIcon DeleteForever}"/>
-        </Grid>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
+            <Image Source="{Binding Image}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Stretch="Uniform" Height="300" Width="620"></Image>
+            <Grid HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Command="{Binding EditElement}" Visibility="{Binding VisibilityButtons, Mode=TwoWay}" ToolTip="Wijzig element" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon Pencil}"/>
+                <Button Grid.Column="1" Command="{Binding DeleteElement}" Visibility="{Binding VisibilityButtons, Mode=TwoWay}" ToolTip="Verwijder element" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon DeleteForever}"/>
+            </Grid>
+        </StackPanel>
+        <StackPanel>
+            <StackPanel VerticalAlignment="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Command="{Binding ElementUpCommand}" Visibility="{Binding VisibilityButtons, Mode=TwoWay}" ToolTip="Schuif element naar boven" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ArrowUp}"/>
+                    <Button Grid.Row="1" Command="{Binding ElementDownCommand}" Visibility="{Binding VisibilityButtons, Mode=TwoWay}" ToolTip="Schuif element naar beneden" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ArrowDown}"/>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 </UserControl>
