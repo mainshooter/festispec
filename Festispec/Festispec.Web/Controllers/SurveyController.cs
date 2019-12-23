@@ -91,8 +91,7 @@ namespace Festispec.Web.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var eventId = _db.Orders.Where(ordercon => ordercon.Id == id).First().EventId;
-            var model = new EventModel { Event = _db.Events.Find(eventId)};
+            var model = new EventModel { Event = _db.Events.Find(id)};
 
             if (model.Event == null)
             {
