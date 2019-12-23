@@ -65,9 +65,6 @@
     <Compile Include="Case.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CaseStatu.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ContactPerson.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>

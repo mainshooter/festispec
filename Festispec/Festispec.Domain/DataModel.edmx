@@ -39,12 +39,6 @@
           <Property Name="SurveyId" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" />
         </EntityType>
-        <EntityType Name="CaseStatus">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
-        </EntityType>
         <EntityType Name="ContactPerson">
           <Key>
             <PropertyRef Name="Id" />
@@ -732,7 +726,6 @@
           <EntitySet Name="AvailabilityInspector" EntityType="Self.AvailabilityInspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BetterReportInspector" EntityType="Self.BetterReportInspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CaseStatus" EntityType="Self.CaseStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContactPerson" EntityType="Self.ContactPerson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Day" EntityType="Self.Day" Schema="dbo" store:Type="Tables" />
@@ -938,12 +931,6 @@
           <NavigationProperty Name="Answers" Relationship="Self.FK_Answer_Case" FromRole="Case" ToRole="Answer" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Case_Employee" FromRole="Case" ToRole="Employee" />
           <NavigationProperty Name="Survey" Relationship="Self.FK_Case_Survey" FromRole="Case" ToRole="Survey" />
-        </EntityType>
-        <EntityType Name="CaseStatu">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="ContactPerson">
           <Key>
@@ -1693,7 +1680,6 @@
           <EntitySet Name="AvailabilityInspectors" EntityType="Self.AvailabilityInspector" />
           <EntitySet Name="BetterReportInspectors" EntityType="Self.BetterReportInspector" />
           <EntitySet Name="Cases" EntityType="Self.Case" />
-          <EntitySet Name="CaseStatus" EntityType="Self.CaseStatu" />
           <EntitySet Name="ContactPersons" EntityType="Self.ContactPerson" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Days" EntityType="Self.Day" />
@@ -1894,13 +1880,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CaseStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.CaseStatu">
-              <MappingFragment StoreEntitySet="CaseStatus">
-                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
