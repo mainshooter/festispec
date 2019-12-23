@@ -12,6 +12,7 @@ namespace Festispec.ViewModel.report.element
     public class BarChartVM : ReportElementVM
     {
         public SeriesCollection SeriesCollection { set; get; }
+        public string[] Labels { get; set; }
 
         public BarChartVM()
         {
@@ -103,6 +104,7 @@ namespace Festispec.ViewModel.report.element
                     columnSerie.Values = chartValues;
                 }
                 SeriesCollection = seriesCollection;
+                Labels = new[] { DataParser.Question.QuestionDetails.Question };
             }
             catch (Exception)
             {
