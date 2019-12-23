@@ -41,3 +41,6 @@ textarea {
 	background-color: red;
 	position: absolute;
 }
+.draw-question img {
+	width: 100%;
+}

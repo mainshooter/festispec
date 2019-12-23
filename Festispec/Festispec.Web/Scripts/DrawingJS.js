@@ -42,7 +42,7 @@
         });
     }
 
-	handleEvent(x, y) {
+	async handleEvent(x, y) {
         if (this.canDraw === false) {
             return;
 		}
