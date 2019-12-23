@@ -50,21 +50,21 @@ namespace Festispec.ViewModel.planning.plannedEmployee
 
         public string EventName { get; set; }
 
-        public string Street { get; set; }
+        public string EventStreet { get; set; }
 
-        public int HouseNumber { get; set; }
+        public int EventHouseNumber { get; set; }
 
-        public string HouseNumberAddition { get; set; }
+        public string EventHouseNumberAddition { get; set; }
 
         public string EventLocation 
         { 
             get 
             {
-                return Street + " " + HouseNumber + HouseNumberAddition;
+                return EventStreet + " " + EventHouseNumber + EventHouseNumberAddition;
             }
         }
 
-        public string City { get; set; }
+        public string EventCity { get; set; }
 
         public int DayId => _plannedEmployee.DayId;
 
@@ -76,10 +76,10 @@ namespace Festispec.ViewModel.planning.plannedEmployee
                 var currentOrder = context.Orders.Find(OrderId);
                 var currentEvent = currentOrder.Event;
                 EventName = currentEvent.Name;
-                Street = currentEvent.Street;
-                HouseNumber = currentEvent.HouseNumber;
-                HouseNumberAddition = currentEvent.HouseNumber_Addition;
-                City = currentEvent.City;
+                EventStreet = currentEvent.Street;
+                EventHouseNumber = currentEvent.HouseNumber;
+                EventHouseNumberAddition = currentEvent.HouseNumber_Addition;
+                EventCity = currentEvent.City;
             }
             Employee = new EmployeeVM(pe.Employee);
         }
