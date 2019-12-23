@@ -40,6 +40,10 @@ namespace Festispec.ViewModel.report.data
 
         public string ToJson()
         {
+            if (Type == null || Question == null)
+            {
+                return null;
+            }
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("Type", Type);
             dic.Add("QuestionId", Question.Id.ToString());
