@@ -1,5 +1,4 @@
-﻿using Festispec.Domain;
-using Festispec.Lib.Survey.Question;
+﻿using Festispec.Lib.Survey.Question;
 
 namespace Festispec.Web.Models.Questions.Types
 {
