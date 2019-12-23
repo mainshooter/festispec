@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Auth\PasswordService.cs" />
     <Compile Include="ConvertToImage\ConvertToImage.cs" />
+    <Compile Include="Enums\QuestionType.cs" />
     <Compile Include="Enums\QuotationStatus.cs" />
     <Compile Include="Enums\ReportElementType.cs" />
     <Compile Include="Enums\SurveyStatus.cs" />

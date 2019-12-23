@@ -8,7 +8,5 @@ namespace Festispec.Web.Models
     {
         public Survey Survey { get; set; }
         public ICollection<IQuestion> Questions { get; } = new List<IQuestion>();
-
-        public string QuestionVars { get; set; }
     }
 }
