@@ -125,7 +125,6 @@ function uploadSurveyCase(allCases, surveyCases, index, currentCase) {
 
 $(document).ready(() => {
 	$("#saveSurvey").click(() => {
-		console.log("click");
 		$("form").validate({
 			ignore: "input[type='file']",
 		});

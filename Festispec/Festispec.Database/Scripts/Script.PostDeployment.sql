@@ -12,12 +12,6 @@ INSERT INTO EmployeeStatus VALUES ('Ontslagen')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION
-INSERT INTO CaseStatus VALUES ('Gestart')
-INSERT INTO CaseStatus VALUES ('Bezig')
-INSERT INTO CaseStatus VALUES ('Klaar')
-COMMIT TRANSACTION
-
-BEGIN TRANSACTION
 INSERT INTO QuotationStatus VALUES ('Open')
 INSERT INTO QuotationStatus VALUES ('Geaccepteerd')
 INSERT INTO QuotationStatus VALUES ('Geweigerd')
