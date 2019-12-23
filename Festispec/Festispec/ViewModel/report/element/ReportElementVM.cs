@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -224,6 +225,15 @@ namespace Festispec.ViewModel.report.element
                 {
                     context.ReportElements.Attach(_reportElement);
                     context.ReportElements.Remove(_reportElement);
+                    context.SaveChanges();
+
+                    var newElementOrder = context.ReportElements.Where(r => r.ReportId == ReportVM.Id).OrderBy(e => e.Order).ToList();
+                    int index = 1;
+                    foreach (var item in newElementOrder)
+                    {
+                        item.Order = index;
+                        index++;
+                    }
                     context.SaveChanges();
                 }
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().RefreshElements();
