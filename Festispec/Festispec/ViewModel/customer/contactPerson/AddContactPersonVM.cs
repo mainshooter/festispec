@@ -22,11 +22,11 @@ namespace Festispec.ViewModel.customer.contactPerson
 
         public AddContactPersonVM()
         {
+            ContactPerson = new ContactPersonVM();
             this.MessengerInstance.Register<ChangeSelectedCustomerMessage>(this, message =>
             {
                 Customer = message.Customer;
             });
-            ContactPerson = new ContactPersonVM();
 
             BackCommand = new RelayCommand(GoBackButton);
             AddContactPerson = new RelayCommand(AddContactPersonMethod);
@@ -44,6 +44,8 @@ namespace Festispec.ViewModel.customer.contactPerson
                     context.SaveChanges();
                 }
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Contactperson aangemaakt");
+                ContactPerson = new ContactPersonVM();
+                RaisePropertyChanged(() => ContactPerson);
                 GoBackButton();
             }
             else

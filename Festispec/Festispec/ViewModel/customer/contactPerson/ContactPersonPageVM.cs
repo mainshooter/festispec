@@ -2,6 +2,7 @@
 using Festispec.Message;
 using Festispec.View.Pages.Customer.ContactPerson;
 using Festispec.View.Pages.Customer.Note;
+using Festispec.ViewModel.customer.contactPerson.note;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -91,12 +92,11 @@ namespace Festispec.ViewModel.customer.contactPerson
 
         public ContactPersonPageVM()
         {
-            //Als er message met customer is deze weghalen
-            //MessengerInstance.Register<ChangeSelectedCustomerMessage>(this, message =>
-            //{
-            //    customerVM = message.Customer;
-            //    RaisePropertyChanged(() => CustomerVM);
-            //});
+            MessengerInstance.Register<ChangeSelectedCustomerMessage>(this, message =>
+            {
+                CustomerVM = message.Customer;
+                RaisePropertyChanged(() => CustomerVM);
+            });
 
             MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -165,6 +165,7 @@ namespace Festispec.ViewModel.customer.contactPerson
             MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze contactperson wilt verwijderen?", "Contactpersoon Verwijderen", MessageBoxButton.YesNo);
             if (result.Equals(MessageBoxResult.Yes) && CanDeleteContactPerson())
             {
+                DeleteContactPersonNotes();
                 using(var context = new Entities())
                 {
                     context.ContactPersons.Attach(SelectedContactPerson.ToModel());
@@ -174,6 +175,19 @@ namespace Festispec.ViewModel.customer.contactPerson
                 FillList();
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Gebruiker verwijderd");
                 RaisePropertyChanged(() => FilteredContactPersonList);
+            }
+        }
+
+        private void DeleteContactPersonNotes()
+        {
+            using (var context = new Entities())
+            {
+                var ContactPersonNotes = context.Notes.Where(cp => cp.ContactPersonId == SelectedContactPerson.Id);
+                foreach (var note in ContactPersonNotes)
+                {
+                    context.Notes.Remove(note);
+                }
+                context.SaveChanges();
             }
         }
 

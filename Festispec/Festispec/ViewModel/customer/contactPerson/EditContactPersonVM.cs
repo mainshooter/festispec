@@ -39,7 +39,7 @@ namespace Festispec.ViewModel.customer.contactPerson
             this.MessengerInstance.Register<ChangeSelectedContactPersonMessage>(this, message =>
             {
                 ContactPerson = message.ActualContactPerson;
-                RaisePropertyChanged();
+                RaisePropertyChanged(() => ContactPerson);
             });
 
             BackCommand = new RelayCommand(GoBackButton);

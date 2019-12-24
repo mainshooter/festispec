@@ -12,14 +12,21 @@
       DataContext="{Binding ContactPersonPageVM, Source={StaticResource Locator}}">
 
     <StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Label FontSize="23" Content="{Binding CustomerVM.Name}" ContentStringFormat="Contactpersonen van {0}"/>
-            <Button Command="{Binding OpenAddContactPerson}" Content="Medewerker toevoegen" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        </StackPanel>
+        <Label FontSize="23" Content="{Binding CustomerVM.Name}" ContentStringFormat="Contactpersonen van {0}" HorizontalAlignment="Center"/>
         <WrapPanel>
-            <Label Margin="3, 3, 10, 3">Filter:</Label>
-            <ComboBox Margin="3, 3, 10, 3" SelectedIndex="0" SelectedValuePath="SelectedFilter" ItemsSource="{Binding FilterItems}" SelectedItem="{Binding SelectedFilter,Mode=TwoWay}" Width="128"></ComboBox>
-            <TextBox Margin="3, 3, 10, 3" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="122"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="56"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Margin="3, 3, 10, 3">Filter:</Label>
+                <ComboBox Grid.Column="1" Margin="3, 3, 10, 3" SelectedIndex="0" SelectedValuePath="SelectedFilter" ItemsSource="{Binding FilterItems}" SelectedItem="{Binding SelectedFilter,Mode=TwoWay}" Width="128"></ComboBox>
+                <TextBox Grid.Column="2" Margin="3, 3, 10, 3" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="122"/>
+                <Button Grid.Column="3" Command="{Binding OpenAddContactPerson}" Content="Medewerker toevoegen" HorizontalAlignment="Right"/>
+            </Grid>
+
         </WrapPanel>
         
         <Viewbox>
