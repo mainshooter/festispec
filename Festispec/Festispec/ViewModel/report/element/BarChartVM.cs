@@ -1,8 +1,9 @@
+using LiveCharts;
+using LiveCharts.Wpf;
+﻿using Festispec.Message;
 ﻿using Festispec.Lib.Enums;
-using Festispec.Message;
 using Festispec.View.Pages.Report.element.Edit;
 using GalaSoft.MvvmLight.Command;
-using LiveCharts;
 using System;
 using System.Collections.Generic;
 
@@ -10,33 +11,8 @@ namespace Festispec.ViewModel.report.element
 {
     public class BarChartVM : ReportElementVM
     {
-        private Object _data;
-
-        public Dictionary<string, Object> Dictionary { get; set; }
-
-        public string XaxisName { get; set; }
-
-        public string YaxisName { get; set; }
-
         public SeriesCollection SeriesCollection { set; get; }
-
-        public List<string> Labels { set; get; }
-
-        public Func<double, string> Formatter { set; get; }
-
-        public override Object Data
-        {
-            get
-            {
-                return _data;
-            }
-            set
-            {
-                _data = value;
-                Dictionary = (Dictionary<string, Object>)Data;
-                ApplyChanges();
-            }
-        }
+        public string[] Labels { get; set; }
 
         public BarChartVM()
         {
@@ -54,6 +30,11 @@ namespace Festispec.ViewModel.report.element
             ReportId = element.ReportId;
             X_as = element.X_as;
             Y_as = element.Y_as;
+            if (element.DataParser != null)
+            {
+                DataParser = element.DataParser;
+                Data = DataParser.ParseData();
+            }
         }
 
         public void Edit()
@@ -65,12 +46,69 @@ namespace Festispec.ViewModel.report.element
             });
         }
 
-        private void ApplyChanges()
+        public void ApplyChanges()
         {
-            Labels = (List<string>)Dictionary["labels"];
-            XaxisName = (string)Dictionary["xaxisName"];
-            YaxisName = (string)Dictionary["yaxisName"];
-            SeriesCollection = (SeriesCollection)Dictionary["seriescollection"];
+            try
+            {
+                List<List<string>> dataList = Data;
+
+                var dataCollectionList = new List<List<string>>();
+
+                var headers = dataList[0];
+                foreach (var item in headers)
+                {
+                    dataCollectionList.Add(new List<string> { item });
+                }
+                dataList.RemoveAt(0);
+
+                while (dataList.Count > 0)
+                {
+                    List<string> dataListItem = dataList[0];
+                    int index = 0;
+                    foreach (var listItem in dataCollectionList)
+                    {
+                        listItem.Add(dataListItem[index]);
+                        index++;
+                    }
+                    dataList.RemoveAt(0);
+                }
+
+                var seriesCollection = new SeriesCollection();
+                foreach (var title in headers)
+                {
+                    seriesCollection.Add(new ColumnSeries() { Title = title });
+                }
+
+                List<List<int>> IntCollection = new List<List<int>>();
+                for (int i = 0; i < dataCollectionList.Count; i++)
+                {
+                    var item = dataCollectionList[i];
+                    List<int> intList = new List<int>();
+                    for (int j = 0; j < item.Count; j++)
+                    {
+                        if (j > 0)
+                        {
+                            intList.Add(int.Parse(item[j]));
+                        }
+                    }
+                    IntCollection.Add(intList);
+                }
+                for (int i = 0; i < seriesCollection.Count; i++)
+                {
+                    var columnSerie = seriesCollection[i];
+                    var chartValues = new ChartValues<int>();
+                    foreach (var item in IntCollection[i])
+                    {
+                        chartValues.Add(item);
+                    }
+                    columnSerie.Values = chartValues;
+                }
+                SeriesCollection = seriesCollection;
+                Labels = new[] { DataParser.Question.QuestionDetails.Question };
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

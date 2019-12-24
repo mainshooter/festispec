@@ -23,11 +23,13 @@ namespace Festispec.ViewModel.report
         }
 
         public ICommand SaveEditCommand { get; set; }
+
         public ICommand BackCommand { get; set; }
 
         public AddReportVM()
         {
-            MessengerInstance.Register<ChangeSelectedOrderMessage>(this, message => {
+            MessengerInstance.Register<ChangeSelectedOrderMessage>(this, message => 
+            {
                 ReportVM = new ReportVM(message.SelectedOrderVM);
             });
             
@@ -45,7 +47,6 @@ namespace Festispec.ViewModel.report
             using (var context = new Entities())
             {
                 if (!ReportVM.ValidateInputs()) return false;
-
                 ReportVM.Status = "Concept";
                 context.Reports.Add(ReportVM.ToModel());
                 context.SaveChanges();
