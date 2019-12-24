@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -196,7 +197,7 @@
     <Content Include="Views\Shared\EditorTemplates\MultipleChoiseQuestionType.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SliderQuestionType.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TableQuestionType.cshtml" />
-    <Content Include="Views\Survey\EventDetails.cshtml" />
+    <Content Include="Views\Event\EventDetails.cshtml" />
     <None Include="Web.config.example" />
     <None Include="Web.config.Debug.example">
       <DependentUpon>Web.config.example</DependentUpon>
