@@ -142,14 +142,14 @@ namespace Festispec.ViewModel.customer.customerEvent
             SelectedFilter = Filters.First();
             Filter = "";
             ShowOnlyFuture = true;
-            OpenAddEventCommand = new RelayCommand(OpenAddEventPage);
+            OpenAddEventCommand = new RelayCommand(OpenAddEventPage, CanAddEvent);
             OpenEditEventCommand = new RelayCommand<EventVM>(OpenEditEventPage, CanOpenEdit);
             DeleteEventCommand = new RelayCommand<EventVM>(DeleteEvent, CanOpenDelete);
-            OpenSingleEventCommand = new RelayCommand<EventVM>(OpenSingleEventPage);
-            OpenSurveyCommand = new RelayCommand<EventVM>(OpenSurveyPage, HasOrder);
+            OpenSingleEventCommand = new RelayCommand<EventVM>(OpenSingleEventPage, CanOpenDirectieAndSales);
+            OpenSurveyCommand = new RelayCommand<EventVM>(OpenSurveyPage, HasOrderSurvey);
             OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage,CanOpen);
-            OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage, HasOrder);
-            OpenQuotationsCommand = new RelayCommand<EventVM>(OpenQuotationPage);
+            OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage, HasOrderPlanning);
+            OpenQuotationsCommand = new RelayCommand<EventVM>(OpenQuotationPage, CanOpenDirectieAndSales);
             BackCommand = new RelayCommand(Back);
             SynchEventCommand = new RelayCommand<EventVM>(SynchEvent);
 
@@ -184,7 +184,8 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         private bool CanOpenEdit(EventVM source)
         {
-            return source != null && source.EndDate >= DateTime.Today;
+            if(Role == "Directie" || Role == "Sales") return source != null && source.EndDate >= DateTime.Today;
+            return false;
         }
 
         public void DeleteEvent(EventVM source)
@@ -208,6 +209,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             if (source == null) return false;
             if (source.ContainsModelOrder()) return false;
             if (source.EndDate < DateTime.Today) return false;
+            if (Role != "Directie") return false;
             return true;
         }
 
@@ -260,21 +262,34 @@ namespace Festispec.ViewModel.customer.customerEvent
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { NextReportVM = source.OrderVM.Report });
         }
 
-        private bool HasOrder(EventVM source)
+        private bool HasOrderSurvey(EventVM source)
         {
-            return source != null && source.HasOrder();
+            if (Role == "Marketing" || Role == "Directie") return source != null && source.HasOrder();
+            return false;
+        }
+
+        private bool HasOrderPlanning(EventVM source)
+        {
+            if(Role == "Planning" || Role == "Directie") return source != null && source.HasOrder();
+            return false;
         }
 
         private bool CanOpen(EventVM source)
         {
-            if(Role != "Directie" &&
-               Role != "Sales" &&
-               Role != "Planning"
-               )
-            {
-                return false;
-            }
-            return source != null && source.HasOrder();
+            if(Role == "Directie" || Role == "Sales" || Role == "Marketing" ) return source != null && source.HasOrder();
+            return false;
+        }
+
+        private bool CanOpenDirectieAndSales(EventVM source)
+        {
+            if(Role == "Directie" || Role == "Sales") return true;
+            return false;
+        }
+
+        private bool CanAddEvent()
+        {
+            if(Role == "Directie" || Role == "Sales") return true;
+            return false;
         }
 
         public void OpenQuotationPage(EventVM source)

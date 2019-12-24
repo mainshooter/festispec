@@ -117,15 +117,18 @@ namespace Festispec.ViewModel
             _menu["Inspectie"].Add("Dashboard", OpenDashboard);
             _menu["Inspectie"].Add("Beschikbaarheid", OpenAvailability);
             _menu["Inspectie"].Add("Ziekmelden", OpenSick);
+            // gewerkte uren aanpassen
 
             // Sales Dictionary
             _menu.Add("Sales", new Dictionary<string, ICommand>());
             _menu["Sales"].Add("Dashboard", OpenDashboard);
             _menu["Sales"].Add("Klanten", OpenCustomer);
+            _menu["Sales"].Add("Evenementen", OpenEvent);
 
             // Planning Dictionary
             _menu.Add("Planning", new Dictionary<string, ICommand>());
             _menu["Planning"].Add("Dashboard", OpenDashboard);
+            _menu["Planning"].Add("Evenementen", OpenEvent);
 
             // Directie Dictionary
             _menu.Add("Directie", new Dictionary<string, ICommand>());
@@ -140,6 +143,7 @@ namespace Festispec.ViewModel
             _menu.Add("Marketing", new Dictionary<string, ICommand>());
             _menu["Marketing"].Add("Dashboard", OpenDashboard);
             _menu["Marketing"].Add("Werknemers", OpenEmployee);
+            _menu["Marketing"].Add("Evenementen", OpenEvent);
         }
 
         //methodes
