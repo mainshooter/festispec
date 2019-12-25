@@ -14,10 +14,10 @@
             <TextBlock TextWrapping="Wrap" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
             <lvc:CartesianChart Series="{Binding SeriesCollection}" Height="300" Width="620">
                 <lvc:CartesianChart.AxisY>
-                    <lvc:Axis Title="{Binding YaxisName}" LabelFormatter="{Binding YaxisLabelFormat}" FontSize="20" Foreground="Black"></lvc:Axis>
+                    <lvc:Axis Title="{Binding Y_as}" LabelFormatter="{Binding YaxisLabelFormat}" Foreground="Gray"></lvc:Axis>
                 </lvc:CartesianChart.AxisY>
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Title="{Binding XaxisName}" Labels="{Binding Labels}" FontSize="20" Foreground="Black"></lvc:Axis>
+                    <lvc:Axis Title="{Binding X_as}" Labels="{Binding Labels}" Foreground="Gray"></lvc:Axis>
                 </lvc:CartesianChart.AxisX>
             </lvc:CartesianChart>
             <Grid HorizontalAlignment="Right">

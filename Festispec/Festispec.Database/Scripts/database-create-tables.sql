@@ -397,6 +397,7 @@ CREATE TABLE [dbo].[ReportElement](
 	[ElementType] [nvarchar](100) NOT NULL,
 	[Title] [nvarchar](100) NOT NULL,
 	[Content] [text] NOT NULL,
+	[Data] [text] NULL,
 	[Order] [int] NOT NULL,
 	[Image] VARBINARY(MAX) NULL,
 	[X-as] [nvarchar](100) NULL,

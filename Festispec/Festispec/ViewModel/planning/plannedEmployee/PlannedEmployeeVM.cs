@@ -148,12 +148,40 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             get => (DateTime)_plannedEmployee.WorkedTill;
             set => _plannedEmployee.WorkedTill = value;
         }
+        
+        public string EventName { get; set; }
+
+        public string EventStreet { get; set; }
+
+        public int EventHouseNumber { get; set; }
+
+        public string EventHouseNumberAddition { get; set; }
+
+        public string EventLocation 
+        { 
+            get 
+            {
+                return EventStreet + " " + EventHouseNumber + EventHouseNumberAddition;
+            }
+        }
+
+        public string EventCity { get; set; }
 
         public int DayId => _plannedEmployee.DayId;
 
         public PlannedEmployeeVM(InspectorPlanning pe)
         {
             _plannedEmployee = pe;
+            using (var context = new Entities())
+            {
+                var currentOrder = context.Orders.Find(OrderId);
+                var currentEvent = currentOrder.Event;
+                EventName = currentEvent.Name;
+                EventStreet = currentEvent.Street;
+                EventHouseNumber = currentEvent.HouseNumber;
+                EventHouseNumberAddition = currentEvent.HouseNumber_Addition;
+                EventCity = currentEvent.City;
+            }
             Employee = new EmployeeVM(pe.Employee);
         }
 

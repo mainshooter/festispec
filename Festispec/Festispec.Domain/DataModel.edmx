@@ -246,6 +246,7 @@
           <Property Name="ElementType" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Content" Type="text" Nullable="false" />
+          <Property Name="Data" Type="text" />
           <Property Name="Order" Type="int" Nullable="false" />
           <Property Name="Image" Type="varbinary(max)" />
           <Property Name="X-as" Type="nvarchar" MaxLength="100" />
@@ -1190,6 +1191,7 @@
           <Property Name="ElementType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Order" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="X_as" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -2104,6 +2106,7 @@
                 <ScalarProperty Name="ElementType" ColumnName="ElementType" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="X_as" ColumnName="X-as" />
