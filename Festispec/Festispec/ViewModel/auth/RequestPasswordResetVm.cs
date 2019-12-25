@@ -26,7 +26,7 @@ namespace Festispec.ViewModel.auth
                PasswordResetService.SaveResetCodeFor(Email, code); 
                PasswordResetService.SendEmailWithResetCode(Email, code);
 
-               MessageBox.Show("Er is een email vorzonden naar het ingevoerde emailadres.", "Informatie", MessageBoxButton.OK, MessageBoxImage.Information);
+               MessageBox.Show("Er is een email verzonden naar het ingevoerde emailadres.", "Informatie", MessageBoxButton.OK, MessageBoxImage.Information);
                MessengerInstance.Send(new ChangePageMessage() { NextPageType = typeof(VerifyCodePage) });
             }
             else
