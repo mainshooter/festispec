@@ -15,6 +15,7 @@ namespace Festispec.ViewModel.Customer.order
     public class OrderVM
     {
         private Order _order;
+        private ReportVM _report;
         private QuotationVM _quotation;
         private EventVM _event;
         private EmployeeVM _employee;
@@ -22,7 +23,23 @@ namespace Festispec.ViewModel.Customer.order
 
         public int Id => _order.Id;
         public ObservableCollection<DayVM> Days { get; set; }
-        public ReportVM Report { get; set; }
+
+        public ReportVM Report 
+        { 
+            get 
+            {
+                return _report;
+            }
+            set 
+            {
+                _report = value;
+                if (_report != null)
+                {
+                    _report.Order = this;
+                }
+            }
+        }
+
         public SurveyVM Survey { get; set; }
 
         public QuotationVM Quotation

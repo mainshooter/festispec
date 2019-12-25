@@ -8,7 +8,6 @@ using Festispec.ViewModel.toast;
 using System;
 using System.Windows;
 using System.Data.Entity;
-using System.Windows.Controls;
 
 namespace Festispec.ViewModel.report
 {
@@ -136,9 +135,7 @@ namespace Festispec.ViewModel.report
                 MessageBox.Show("Titel mag niet langer zijn dan 100 karakters.");
                 return false;
             }
-
             return true;
         }
-
     }
 }

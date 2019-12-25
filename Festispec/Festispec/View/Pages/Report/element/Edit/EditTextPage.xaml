@@ -16,8 +16,8 @@
             <TextBox Text="{Binding ReportElementVM.Title, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
         </StackPanel>
         <StackPanel>
-            <Label Content="Beschrijving: "></Label>
-            <TextBox Text="{Binding ReportElementVM.Content, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15" ></TextBox>
+            <Label Content="Tekst: "></Label>
+            <TextBox VerticalAlignment="Top" Text="{Binding ReportElementVM.Content, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" MinLines="6" VerticalContentAlignment="Top" Height="81" Margin="0,0,0,20"></TextBox>
         </StackPanel>
         <Button HorizontalAlignment="Right" Width="50" Command="{Binding SaveElementCommand}" ToolTip="Element opslaan" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ContentSave}"/>
     </StackPanel>
