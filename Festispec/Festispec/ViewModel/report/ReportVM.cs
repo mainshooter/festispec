@@ -16,13 +16,13 @@ namespace Festispec.ViewModel.report
         private Report _report;
         private ObservableCollection<ReportElementVM> _reportElements;
 
-        public int Id 
+        public int Id
         {
-            get 
+            get
             {
                 return _report.Id;
             }
-            private set 
+            private set
             {
                 _report.Id = value;
             }
@@ -30,34 +30,35 @@ namespace Festispec.ViewModel.report
 
         public OrderVM Order { get; set; }
 
-        public string Title 
+        public string Title
         {
-            get 
+            get
             {
                 return _report.Title;
             }
-            set 
+            set
             {
                 _report.Title = value;
                 RaisePropertyChanged("Title");
             }
         }
 
-        public string Status 
+        public string Status
         {
-            get 
+            get
             {
                 return _report.Status;
             }
-            set 
+            set
             {
                 _report.Status = value;
                 RaisePropertyChanged("Status");
             }
         }
 
-        public ObservableCollection<ReportElementVM> ReportElements {
-            get 
+        public ObservableCollection<ReportElementVM> ReportElements
+        {
+            get
             {
                 return _reportElements;
             }
@@ -68,10 +69,11 @@ namespace Festispec.ViewModel.report
             }
         }
 
-        public ReportVM(Report report)
+        public ReportVM(Report report, OrderVM order)
         {
+            Order = order;
             _report = report;
-            ReportElements = new ObservableCollection<ReportElementVM>(_report.ReportElements.Select(e => new ReportElementVM(e)).ToList());         
+            ReportElements = new ObservableCollection<ReportElementVM>(_report.ReportElements.Select(e => new ReportElementVM(e)).ToList());
         }
 
         public ReportVM(OrderVM OrderVM)
@@ -133,7 +135,6 @@ namespace Festispec.ViewModel.report
                 MessageBox.Show("Titel mag niet langer zijn dan 100 karakters.");
                 return false;
             }
-
             return true;
         }
     }

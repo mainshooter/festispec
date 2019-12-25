@@ -18,6 +18,14 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public QuestionDetails QuestionDetails { get; set; }
         public string QuestionType => _surveyQuestion.Type;
 
+        public int Id 
+        {
+            get 
+            {
+                return _surveyQuestion.Id;
+            }
+        }
+
         public int SurveyId
         {
             get => _surveyQuestion.SurveyId;
@@ -52,6 +60,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public SliderQuestionVM()
         {
             _surveyQuestion = new Question();
+            Type = Lib.Enums.QuestionType.SliderQuestion;
             QuestionDetails = new QuestionDetails();
             QuestionDetails.Choices.Cols.Add("");
             QuestionDetails.Choices.Cols.Add("");

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Report
+namespace Festispec.View.Pages.Customer.Quotation
 {
     /// <summary>
-    /// Interaction logic for ReportControl.xaml
+    /// Interaction logic for QuotationPage.xaml
     /// </summary>
-    public partial class ReportControlUserControl : UserControl
+    public partial class QuotationPage : Page
     {
-        public ReportControlUserControl()
+        public QuotationPage()
         {
             InitializeComponent();
         }

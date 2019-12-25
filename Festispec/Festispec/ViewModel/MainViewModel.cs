@@ -15,6 +15,7 @@ using Festispec.Domain;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Festispec.ViewModel.customer;
+using Festispec.View.Pages.Employee.Planning;
 
 namespace Festispec.ViewModel
 {
@@ -23,7 +24,7 @@ namespace Festispec.ViewModel
         //privates
         private Page _page;
         private EmployeeVM _loggedInEmployee;
-        private Dictionary<string,Dictionary<string,ICommand>> _menu;
+        private Dictionary<string, Dictionary<string, ICommand>> _menu;
 
         //publics
         public ICommand CloseApplication { get; set; }
@@ -34,6 +35,7 @@ namespace Festispec.ViewModel
         public ICommand OpenEvent { get; set; }
         public ICommand OpenSick { get; set; }
         public ICommand ShowAccountInformation { get; set; }
+        public ICommand OpenEmployeePlanningCommand { get; set; }
         public ObservableCollection<Button> MenuList { get; set; }
 
         public Page Page
@@ -70,7 +72,8 @@ namespace Festispec.ViewModel
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenSick = new RelayCommand(OpenSickTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
-            Page = ServiceLocator.Current.GetInstance<LoginPage>();
+            OpenEmployeePlanningCommand = new RelayCommand(OpenEmployeePlanning);
+
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -81,21 +84,23 @@ namespace Festispec.ViewModel
             {
                 LoggedInEmployee = message.LoggedinEmployee;
             });
-
+                
             // Menu vullen
             FillMenuList();
             CreateMenu();
+
+            Page = ServiceLocator.Current.GetInstance<LoginPage>();
         }
 
         private void CreateMenu()
         {
-            if(_loggedInEmployee == null)
+            if (_loggedInEmployee == null)
             {
                 return;
             }
             else
             {
-                foreach(KeyValuePair<string, ICommand> entry in _menu[_loggedInEmployee.Department.Name])
+                foreach (KeyValuePair<string, ICommand> entry in _menu[_loggedInEmployee.Department.Name])
                 {
                     Button menuItem = new Button();
                     menuItem.Content = entry.Key;
@@ -116,7 +121,8 @@ namespace Festispec.ViewModel
             _menu.Add("Inspectie", new Dictionary<string, ICommand>());
             _menu["Inspectie"].Add("Dashboard", OpenDashboard);
             _menu["Inspectie"].Add("Beschikbaarheid", OpenAvailability);
-            _menu["Inspectie"].Add("Ziek melden", OpenSick);
+            _menu["Inspectie"].Add("Ingeplande dagen", OpenEmployeePlanningCommand);
+            _menu["Inspectie"].Add("Ziekmelden", OpenSick);
 
             // Sales Dictionary
             _menu.Add("Sales", new Dictionary<string, ICommand>());
@@ -168,6 +174,11 @@ namespace Festispec.ViewModel
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AvailablePage) });
         }
 
+        private void OpenEmployeePlanning()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePlanningPage)} );
+        }
+
         private void OpenEventTab()
         {
             using (var context = new Entities())
@@ -182,7 +193,7 @@ namespace Festispec.ViewModel
 
         private void OpenSickTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage)});
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage) });
         }
 
         private void OpenAccountInformation()

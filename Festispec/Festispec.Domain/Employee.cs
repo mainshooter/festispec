@@ -20,7 +20,6 @@ namespace Festispec.Domain
             this.AvailabilityInspectors = new HashSet<AvailabilityInspector>();
             this.BetterReportInspectors = new HashSet<BetterReportInspector>();
             this.Cases = new HashSet<Case>();
-            this.CertificateInspectors = new HashSet<CertificateInspector>();
             this.InspectorPlannings = new HashSet<InspectorPlanning>();
             this.Orders = new HashSet<Order>();
             this.Quotations = new HashSet<Quotation>();
@@ -45,6 +44,7 @@ namespace Festispec.Domain
         public string PasswordResetToken { get; set; }
         public Nullable<System.DateTime> ResetTokenEndTime { get; set; }
         public string Iban { get; set; }
+        public Nullable<byte> Certificate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AvailabilityInspector> AvailabilityInspectors { get; set; }
@@ -52,8 +52,6 @@ namespace Festispec.Domain
         public virtual ICollection<BetterReportInspector> BetterReportInspectors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Case> Cases { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CertificateInspector> CertificateInspectors { get; set; }
         public virtual Department Department1 { get; set; }
         public virtual EmployeeStatu EmployeeStatu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

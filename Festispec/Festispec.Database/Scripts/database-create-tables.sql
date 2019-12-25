@@ -76,22 +76,6 @@ CREATE TABLE [dbo].[CaseStatus](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CertificateInspector]    Script Date: 5-11-2019 21:03:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[CertificateInspector](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[EmployeeId] [int] NOT NULL,
-	[DateFrom] [datetime] NOT NULL,
-	[DateTill] [datetime] NOT NULL,
- CONSTRAINT [PK_CertificateInspector] PRIMARY KEY CLUSTERED
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
 /****** Object:  Table [dbo].[ContactPerson]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
 GO
@@ -205,6 +189,7 @@ CREATE TABLE [dbo].[Employee](
 	[PasswordResetToken] [nvarchar](255) NULL,
 	[ResetTokenEndTime] [datetime] NULL,
 	[Iban] [nvarchar](27) NULL,
+	[Certificate] [tinyint] NULL,
  CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED
 (
 	[Id] ASC
@@ -312,26 +297,12 @@ CREATE TABLE [dbo].[Order](
 	[EventId] [int] NOT NULL,
 	[EmployeeId] [int] NULL,
 	[QuotationId] [int] NOT NULL,
-	[Status] [nvarchar](45) NOT NULL,
 	[Description] [text] NULL,
  CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[OrderStatus]    Script Date: 5-11-2019 21:03:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[OrderStatus](
-	[Status] [nvarchar](45) NOT NULL,
- CONSTRAINT [PK_OrderStatus] PRIMARY KEY CLUSTERED
-(
-	[Status] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
 GO
 /****** Object:  Table [dbo].[QueryTemplate]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
@@ -392,12 +363,26 @@ CREATE TABLE [dbo].[Quotation](
 	[Price] [decimal](8, 2) NOT NULL,
 	[BtwPercentage] [int] NOT NULL,
 	[TimeSend] [datetime] NULL,
+	[Status] [nvarchar](45) NOT NULL,
 	[Content] [text] NOT NULL,
  CONSTRAINT [PK_Quotation] PRIMARY KEY CLUSTERED
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[QuotationStatus]    Script Date: 5-11-2019 21:03:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[QuotationStatus](
+	[Status] [nvarchar](45) NOT NULL,
+ CONSTRAINT [PK_QuotationStatus] PRIMARY KEY CLUSTERED
+(
+	[Status] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 /****** Object:  Table [dbo].[Report]    Script Date: 5-11-2019 21:03:16 ******/
 SET ANSI_NULLS ON
@@ -426,6 +411,7 @@ CREATE TABLE [dbo].[ReportElement](
 	[ElementType] [nvarchar](100) NOT NULL,
 	[Title] [nvarchar](100) NOT NULL,
 	[Content] [text] NOT NULL,
+	[Data] [text] NULL,
 	[Order] [int] NOT NULL,
 	[Image] VARBINARY(MAX) NULL,
 	[X-as] [nvarchar](100) NULL,
@@ -535,12 +521,6 @@ REFERENCES [dbo].[Survey] ([Id])
 GO
 ALTER TABLE [dbo].[Case] CHECK CONSTRAINT [FK_Case_Survey]
 GO
-ALTER TABLE [dbo].[CertificateInspector]  WITH CHECK ADD  CONSTRAINT [FK_CertificateInspector_Employee] FOREIGN KEY([EmployeeId])
-REFERENCES [dbo].[Employee] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[CertificateInspector] CHECK CONSTRAINT [FK_CertificateInspector_Employee]
-GO
 ALTER TABLE [dbo].[ContactPerson]  WITH CHECK ADD  CONSTRAINT [FK_ContactPerson_Customer] FOREIGN KEY([CustomerId])
 REFERENCES [dbo].[Customer] ([Id])
 GO
@@ -610,11 +590,6 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Order] CHECK CONSTRAINT [FK_Order_Event]
 GO
-ALTER TABLE [dbo].[Order]  WITH CHECK ADD  CONSTRAINT [FK_Order_OrderStatus] FOREIGN KEY([Status])
-REFERENCES [dbo].[OrderStatus] ([Status])
-GO
-ALTER TABLE [dbo].[Order] CHECK CONSTRAINT [FK_Order_OrderStatus]
-GO
 ALTER TABLE [dbo].[Order]  WITH CHECK ADD  CONSTRAINT [FK_Order_Quotation] FOREIGN KEY([QuotationId])
 REFERENCES [dbo].[Quotation] ([Id])
 GO
@@ -645,6 +620,11 @@ REFERENCES [dbo].[Event] ([Id])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Quotation] CHECK CONSTRAINT [FK_Quotation_Event]
+GO
+ALTER TABLE [dbo].Quotation  WITH CHECK ADD  CONSTRAINT [FK_Quotation_QuotationStatus] FOREIGN KEY([Status])
+REFERENCES [dbo].[QuotationStatus] ([Status])
+GO
+ALTER TABLE [dbo].[Quotation] CHECK CONSTRAINT [FK_Quotation_QuotationStatus]
 GO
 ALTER TABLE [dbo].[Report]  WITH CHECK ADD  CONSTRAINT [FK_Report_Order] FOREIGN KEY([OrderId])
 REFERENCES [dbo].[Order] ([Id])

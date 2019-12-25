@@ -32,6 +32,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -42,6 +43,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,6 +53,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Festispec-icon.ico</ApplicationIcon>
@@ -77,6 +80,9 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
@@ -95,10 +101,25 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PdfSharp-WPF, Version=1.31.5377.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\kenjiuno.PdfSharp-WPF.1.31.5377\lib\net40\PdfSharp-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Xps, Version=1.1.4.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\kenjiuno.PdfSharp.Xps.1.1.4\lib\net40\PdfSharp.Xps.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationBuildTasks" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="Syncfusion.Compression.Base, Version=17.3460.0.34, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Compression.Base.17.3.0.34\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=17.3460.0.34, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.17.3.0.34\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -145,14 +166,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Factory\DataParserFactory.cs" />
+    <Compile Include="Factory\QuestionFactory.cs" />
+    <Compile Include="Interface\IDataParser.cs" />
+    <Compile Include="Interface\IReportElement.cs" />
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
     <Compile Include="Message\ChangeSelectedOrderMessage.cs" />
     <Compile Include="Message\ChangeSelectedReportElementMessage.cs" />
     <Compile Include="Message\ChangeSelectedReportMessage.cs" />
     <Compile Include="Message\ChangeSelectedCustomerMessage.cs" />
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
+    <Compile Include="Message\ChangeSelectedQuotationMessage.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
-    <Compile Include="ViewModel\auth\UserSessionVm.cs" />
+    <Compile Include="ViewModel\auth\UserSessionVM.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
     <Compile Include="Message\ChangeSelectedSurveyMessage.cs" />
     <Compile Include="Message\ChangeSelectedSurveyQuestionMessage.cs" />
@@ -176,19 +202,24 @@
     <Compile Include="ViewModel\customer\pages\CustomerDetailsVm.cs" />
     <Compile Include="ViewModel\customer\pages\CustomerOverviewVm.cs" />
     <Compile Include="ViewModel\customer\pages\EditCustomerVm.cs" />
+    <Compile Include="ViewModel\customer\quotation\AddQuotationVM.cs" />
+    <Compile Include="ViewModel\customer\quotation\EditQuotationVM.cs" />
+    <Compile Include="ViewModel\customer\quotation\QuotationInfoVM.cs" />
+    <Compile Include="ViewModel\customer\quotation\QuotationListVM.cs" />
     <Compile Include="ViewModel\customer\quotation\QuotationVM.cs" />
     <Compile Include="ViewModel\employee\AddEmployeeVM.cs" />
     <Compile Include="ViewModel\employee\availabilty\AvailabilityManagerVM.cs" />
     <Compile Include="ViewModel\employee\availabilty\AvailabilityWeekVM.cs" />
     <Compile Include="ViewModel\employee\availabilty\AvailabiltyVM.cs" />
     <Compile Include="ViewModel\employee\BetterReportVM.cs" />
-    <Compile Include="ViewModel\employee\certificate\CertificateVM.cs" />
     <Compile Include="ViewModel\employee\department\DepartmentVM.cs" />
     <Compile Include="ViewModel\employee\EditEmployeeVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeInformationVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeInfoVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeListVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeVM.cs" />
+    <Compile Include="ViewModel\employee\planning\EmployeePlanningInfoVM.cs" />
+    <Compile Include="ViewModel\employee\SickPageVM.cs" />
     <Compile Include="ViewModel\employee\SickVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PasswordBoxAssistant\PasswordBoxAssistant.cs" />
@@ -197,13 +228,26 @@
     <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
     <Compile Include="ViewModel\report\AddReportVM.cs" />
+    <Compile Include="ViewModel\report\data\AvgDataParserVM.cs" />
+    <Compile Include="ViewModel\report\data\CountDataParserVM.cs" />
+    <Compile Include="ViewModel\report\data\CountOptionsDataParserVM.cs" />
+    <Compile Include="ViewModel\report\data\DataVM.cs" />
+    <Compile Include="ViewModel\report\data\DrawDataParser.cs" />
+    <Compile Include="ViewModel\report\data\MaxDataParserVM.cs" />
+    <Compile Include="ViewModel\report\data\MinDataParserVM.cs" />
+    <Compile Include="ViewModel\report\data\SelectDataParserVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddBarChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Add\AddDrawVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddImageVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddLineChartVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddPieChartVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddTableVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddTextVM.cs" />
+    <Compile Include="ViewModel\report\element\Add\BaseElementAddVM.cs" />
+    <Compile Include="ViewModel\report\element\DrawVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\BaseElementEditVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditBarChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\EditDrawVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditImageVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditLineChartVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditPieChartVM.cs" />
@@ -275,6 +319,18 @@
     <Compile Include="View\Pages\Customer\Event\SingleOfflineEventPage.xaml.cs">
       <DependentUpon>SingleOfflineEventPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Customer\Quotation\AddQuotationPage.xaml.cs">
+      <DependentUpon>AddQuotationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Quotation\EditQuotationPage.xaml.cs">
+      <DependentUpon>EditQuotationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Quotation\QuotationPage.xaml.cs">
+      <DependentUpon>QuotationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Quotation\SingleQuotationPage.xaml.cs">
+      <DependentUpon>SingleQuotationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Employee\AddEmployeePage.xaml.cs">
       <DependentUpon>AddEmployeePage.xaml</DependentUpon>
     </Compile>
@@ -285,6 +341,12 @@
     <Compile Include="View\Pages\Employee\EmployeeInformationPage.xaml.cs">
       <DependentUpon>EmployeeInformationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Employee\Planning\EmployeePlanningPage.xaml.cs">
+      <DependentUpon>EmployeePlanningPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
+      <DependentUpon>SickPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
       <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
     </Compile>
@@ -293,6 +355,9 @@
     </Compile>
     <Compile Include="View\Pages\Report\element\Add\AddBarChartPage.xaml.cs">
       <DependentUpon>AddBarChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Add\AddDrawPage.xaml.cs">
+      <DependentUpon>AddDrawPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Report\element\Add\AddImagePage.xaml.cs">
       <DependentUpon>AddImagePage.xaml</DependentUpon>
@@ -311,6 +376,9 @@
     </Compile>
     <Compile Include="View\Pages\Report\element\Edit\EditBarChartPage.xaml.cs">
       <DependentUpon>EditBarChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Edit\EditDrawPage.xaml.cs">
+      <DependentUpon>EditDrawPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Report\element\Edit\EditImagePage.xaml.cs">
       <DependentUpon>EditImagePage.xaml</DependentUpon>
@@ -378,11 +446,11 @@
     <Compile Include="View\Pages\Survey\QuestionTypes\OpenQuestion\AddOpenQuestionPage.xaml.cs">
       <DependentUpon>AddOpenQuestionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrols\Report\AddReportElementUserControl.xaml.cs">
-      <DependentUpon>AddReportElementUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Usercontrols\Report\Element\BarChartUserControl.xaml.cs">
       <DependentUpon>BarChartUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usercontrols\Report\Element\DrawUserControl.xaml.cs">
+      <DependentUpon>DrawUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usercontrols\Report\Element\ImageUserControl.xaml.cs">
       <DependentUpon>ImageUserControl.xaml</DependentUpon>
@@ -423,17 +491,11 @@
     <Compile Include="View\Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
-      <DependentUpon>SickPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Pages\Survey\QuestionTypes\OpenQuestion\EditOpenQuestionPage.xaml.cs">
       <DependentUpon>EditOpenQuestionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Planning\PlanningOverviewPage.xaml.cs">
       <DependentUpon>PlanningOverviewPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Usercontrols\Report\ReportControlUserControl.xaml.cs">
-      <DependentUpon>ReportControlUserControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -492,6 +554,20 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\Customer\Event\SingleOfflineEventPage.xaml">
+    </Page>
+    <Page Include="View\Pages\Customer\Quotation\AddQuotationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\Quotation\EditQuotationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\Quotation\QuotationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\Quotation\SingleQuotationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -503,6 +579,14 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="View\Pages\Employee\Planning\EmployeePlanningPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Employee\SickPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Report\AddReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -510,6 +594,10 @@
     <Page Include="View\Pages\Report\element\Add\AddBarChartPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\Report\element\Add\AddDrawPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Report\element\Add\AddImagePage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -532,6 +620,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\Report\element\Edit\EditBarChartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\Edit\EditDrawPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -635,11 +727,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrols\Report\AddReportElementUserControl.xaml">
+    <Page Include="View\Usercontrols\Report\Element\BarChartUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrols\Report\Element\BarChartUserControl.xaml">
+    <Page Include="View\Usercontrols\Report\Element\DrawUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -691,19 +783,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Employee\SickPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\Pages\Survey\QuestionTypes\OpenQuestion\EditOpenQuestionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Planning\PlanningOverviewPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Usercontrols\Report\ReportControlUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -720,6 +804,15 @@
       <Project>{3dcba89e-3bee-4324-a8ec-d33519d47f1c}</Project>
       <Name>Festispec.Lib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Messages.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Messages.de.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PdfSharp.SharpZipLib\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

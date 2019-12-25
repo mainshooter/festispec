@@ -19,6 +19,7 @@ namespace Festispec.Domain
         public string ElementType { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        public string Data { get; set; }
         public int Order { get; set; }
         public byte[] Image { get; set; }
         public string X_as { get; set; }

@@ -9,28 +9,25 @@
     <StackPanel Orientation="Horizontal">
         <StackPanel>
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
-            <TextBlock TextWrapping="Wrap" Height="260" Width="620" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock TextWrapping="Wrap" FontSize="15" Width="620" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
             <Grid HorizontalAlignment="Right">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"></ColumnDefinition>
                     <ColumnDefinition Width="50"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Command="{Binding EditElement}" ToolTip="Wijzig element" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon Pencil}"/>
-                <Button Grid.Column="1" Command="{Binding DeleteElement}" ToolTip="Verwijder element" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon DeleteForever}"/>
+                <Button Grid.Column="0" Command="{Binding EditElement}" Visibility="{Binding VisibilityButtons, Mode=TwoWay}" ToolTip="Wijzig element" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon Pencil}"/>
+                <Button Grid.Column="1" Command="{Binding DeleteElement}" Visibility="{Binding VisibilityButtons, Mode=TwoWay}" ToolTip="Verwijder element" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon DeleteForever}"/>
             </Grid>
         </StackPanel>
         <StackPanel>
-            <StackPanel Height="220">
-
-            </StackPanel>
             <StackPanel VerticalAlignment="Center">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" Command="{Binding ElementUpCommand}" ToolTip="Schuif element naar boven" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ArrowUp}"/>
-                    <Button Grid.Row="1" Command="{Binding ElementDownCommand}" ToolTip="Schuif element naar beneden" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ArrowDown}"/>
+                    <Button Grid.Row="0" Command="{Binding ElementUpCommand}" Visibility="{Binding VisibilityButtons, Mode=TwoWay}" ToolTip="Schuif element naar boven" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ArrowUp}"/>
+                    <Button Grid.Row="1" Command="{Binding ElementDownCommand}" Visibility="{Binding VisibilityButtons, Mode=TwoWay}" ToolTip="Schuif element naar beneden" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ArrowDown}"/>
                 </Grid>
             </StackPanel>
         </StackPanel>

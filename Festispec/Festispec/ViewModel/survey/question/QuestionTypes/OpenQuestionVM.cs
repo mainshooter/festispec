@@ -13,9 +13,16 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
     public class OpenQuestionVM : ViewModelBase, IQuestion
     {
         private readonly Question _surveyQuestion;
-
         public QuestionDetails QuestionDetails { get; set; }
         public string QuestionType => _surveyQuestion.Type;
+
+        public int Id 
+        {
+            get 
+            {
+                return _surveyQuestion.Id;
+            }
+        }
 
         public int SurveyId
         {
@@ -51,6 +58,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public OpenQuestionVM()
         {
             _surveyQuestion = new Question();
+            Type = Lib.Enums.QuestionType.OpenQuestion;
             QuestionDetails = new QuestionDetails();
         }
 
