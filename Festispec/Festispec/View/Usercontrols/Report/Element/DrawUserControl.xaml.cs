@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Report
+namespace Festispec.View.Usercontrols.Report.Element
 {
     /// <summary>
-    /// Interaction logic for ReportControl.xaml
+    /// Interaction logic for DrawUserControl.xaml
     /// </summary>
-    public partial class ReportControlUserControl : UserControl
+    public partial class DrawUserControl : UserControl
     {
-        public ReportControlUserControl()
+        public DrawUserControl()
         {
             InitializeComponent();
         }

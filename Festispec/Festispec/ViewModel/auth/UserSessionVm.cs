@@ -3,14 +3,14 @@ using Festispec.ViewModel.employee;
 
 namespace Festispec.ViewModel.auth
 {
-    class UserSessionVm
+    class UserSessionVM
     {
-        public static UserSessionVm Current { 
+        public static UserSessionVM Current { 
             get
             {
-                if (Application.Current.Resources["session"] is UserSessionVm current) return current;
+                if (Application.Current.Resources["session"] is UserSessionVM current) return current;
 
-                current = new UserSessionVm();
+                current = new UserSessionVM();
                 Application.Current.Resources["session"] = current;
 
                 return current;

@@ -1,17 +1,19 @@
 ﻿using Festispec.Domain;
 using Festispec.ViewModel.employee;
+using GalaSoft.MvvmLight;
 using System;
 
 namespace Festispec.ViewModel.planning.plannedEmployee
 {
-    public class PlannedEmployeeVM
+    public class PlannedEmployeeVM : ViewModelBase
     {
         private InspectorPlanning _plannedEmployee;
 
         public EmployeeVM Employee { get; set; }
         public int OrderId => _plannedEmployee.OrderId;
 
-        public DateTime PlannedStartTime {
+        public DateTime PlannedStartTime 
+        {
             get => _plannedEmployee.PlannedFrom;
             set => _plannedEmployee.PlannedFrom = value;
         }
@@ -25,7 +27,8 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             }
         }
 
-        public DateTime PlannedEndTime {
+        public DateTime PlannedEndTime 
+        {
             get => _plannedEmployee.PlannedTill;
             set => _plannedEmployee.PlannedTill = value;
         }
@@ -39,21 +42,39 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             }
         }
 
-        public DateTime WorkStartTime {
-            get => (DateTime) _plannedEmployee.WorkedFrom;
-            set => _plannedEmployee.WorkedFrom = value;
+        public string EventName { get; set; }
+
+        public string EventStreet { get; set; }
+
+        public int EventHouseNumber { get; set; }
+
+        public string EventHouseNumberAddition { get; set; }
+
+        public string EventLocation 
+        { 
+            get 
+            {
+                return EventStreet + " " + EventHouseNumber + EventHouseNumberAddition;
+            }
         }
 
-        public DateTime WorkEndTime {
-            get => (DateTime)_plannedEmployee.WorkedTill;
-            set => _plannedEmployee.WorkedTill = value;
-        }
+        public string EventCity { get; set; }
 
         public int DayId => _plannedEmployee.DayId;
 
         public PlannedEmployeeVM(InspectorPlanning pe)
         {
             _plannedEmployee = pe;
+            using (var context = new Entities())
+            {
+                var currentOrder = context.Orders.Find(OrderId);
+                var currentEvent = currentOrder.Event;
+                EventName = currentEvent.Name;
+                EventStreet = currentEvent.Street;
+                EventHouseNumber = currentEvent.HouseNumber;
+                EventHouseNumberAddition = currentEvent.HouseNumber_Addition;
+                EventCity = currentEvent.City;
+            }
             Employee = new EmployeeVM(pe.Employee);
         }
 

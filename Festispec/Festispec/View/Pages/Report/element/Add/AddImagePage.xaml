@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Festispec.View.Pages.Report.element"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -24,7 +23,7 @@
         </StackPanel>
         <Button Width="50" HorizontalAlignment="Left" Command="{Binding ChooseImageCommand}" Content="{materialDesign:PackIcon folderopen}"/>
 
-        <Image Source="{Binding ReportElementVM.Image}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Stretch="Fill" Height="300" Width="620"></Image>
+        <Image Source="{Binding ReportElementVM.Image}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Stretch="Uniform" Height="300" Width="620"></Image>
 
         <Button HorizontalAlignment="Right" Width="50" Command="{Binding SaveElementCommand}" ToolTip="Element opslaan" ToolTipService.ShowOnDisabled="True" Content="{materialDesign:PackIcon ContentSave}"/>
     </StackPanel>

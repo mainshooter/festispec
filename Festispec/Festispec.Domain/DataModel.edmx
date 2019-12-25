@@ -246,6 +246,7 @@
           <Property Name="ElementType" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Content" Type="text" Nullable="false" />
+          <Property Name="Data" Type="text" />
           <Property Name="Order" Type="int" Nullable="false" />
           <Property Name="Image" Type="varbinary(max)" />
           <Property Name="X-as" Type="nvarchar" MaxLength="100" />
@@ -1351,9 +1352,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ReportId" Type="Int32" Nullable="false" />
-          <Property Name="ElementType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ElementType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Order" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="X_as" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -2098,15 +2100,16 @@
           <EntitySetMapping Name="ReportElements">
             <EntityTypeMapping TypeName="Festispec.Domain.ReportElement">
               <MappingFragment StoreEntitySet="ReportElement">
-                <ScalarProperty Name="Y_as" ColumnName="Y-as" />
-                <ScalarProperty Name="X_as" ColumnName="X-as" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ElementType" ColumnName="ElementType" />
-                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="ElementType" ColumnName="ElementType" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="X_as" ColumnName="X-as" />
+                <ScalarProperty Name="Y_as" ColumnName="Y-as" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

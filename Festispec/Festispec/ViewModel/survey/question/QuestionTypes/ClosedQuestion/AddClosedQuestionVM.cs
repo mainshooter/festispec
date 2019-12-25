@@ -50,7 +50,6 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes.ClosedQuestion
             using (var context = new Entities())
             {
                 if (!QuestionVm.ValidateQuestionDetails()) return;
-
                 QuestionVm.QuestionDetails.Choices.Cols.Add("Ja");
                 QuestionVm.QuestionDetails.Choices.Cols.Add("Nee");
                 QuestionVm.Question = JsonConvert.SerializeObject(QuestionVm.QuestionDetails);

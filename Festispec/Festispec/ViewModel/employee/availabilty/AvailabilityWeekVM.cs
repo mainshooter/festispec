@@ -32,7 +32,7 @@ namespace Festispec.ViewModel.employee.availabilty
 
             using (var context = new Entities())
             {
-                var availabilities = context.AvailabilityInspectors.Select(availabilty => availabilty).Where(availabilty => availabilty.Employee.Id == UserSessionVm.Current.Employee.Id);
+                var availabilities = context.AvailabilityInspectors.Select(availabilty => availabilty).Where(availabilty => availabilty.Employee.Id == UserSessionVM.Current.Employee.Id);
                 foreach (var availability in availabilities)
                 {
                     if (DatesAreInTheSameWeek(week, availability.AvailableFrom))
