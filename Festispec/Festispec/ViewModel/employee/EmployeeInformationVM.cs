@@ -9,7 +9,7 @@ namespace Festispec.ViewModel.employee
 
         public EmployeeInformationVM()
         {
-            Employee = UserSessionVm.Current.Employee;
+            Employee = UserSessionVM.Current.Employee;
         }
     }
 }
