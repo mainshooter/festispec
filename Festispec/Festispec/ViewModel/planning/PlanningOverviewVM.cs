@@ -37,6 +37,7 @@ namespace Festispec.ViewModel.planning
             set
             {
                 _eventVM = value;
+                RaisePropertyChanged(()=> EventVM);
                 RaisePropertyChanged(() => EventName);
             }
         }

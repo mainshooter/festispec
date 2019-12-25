@@ -25,6 +25,7 @@
                     <ColumnDefinition Width="350"></ColumnDefinition>
                     <ColumnDefinition Width="200"></ColumnDefinition>
                     <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <DataGrid Grid.Column="0" Grid.RowSpan="2" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding FilteredAvailableInspectorList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="350">
                     <DataGrid.Columns>
@@ -54,6 +55,14 @@
                             <Label FontSize="9" Content="Eindtijd"></Label>
                             <xctk:TimePicker FontSize="11" FontWeight="Normal" Value="{Binding PlannedEmployeeEndTime}"></xctk:TimePicker>
                         </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Margin="7,10" Header="Evenementtijden" Grid.Column="3" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">
+                    <StackPanel>
+                        <Label FontSize="9" Content="van"></Label>
+                        <TextBlock FontSize="12" Text="{Binding EventVM.BeginDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
+                        <Label FontSize="9" Content="tot"></Label>
+                        <TextBlock FontSize="12" Text="{Binding EventVM.EndDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
                     </StackPanel>
                 </GroupBox>
             </Grid>
