@@ -22,6 +22,8 @@ namespace Festispec.ViewModel.planning
         private ObservableCollection<EmployeeVM> _availableInspectorList;
         private EventVM _eventVM;
         private DateTime _selectedBeginDate;
+        private DateTime _selectedAvailabilityStartDate;
+        private DateTime _selectedAvailabilityEndDate;
 
         public ICommand BackCommand { get; set; }
         public ICommand SaveChangesCommand { get; set; }
@@ -31,6 +33,27 @@ namespace Festispec.ViewModel.planning
         public ObservableCollection<DayVM> EventDays { get; set; }
 
         public List<AvailabiltyVM> AvailabilityList;
+
+        public DateTime SelectedAvailabilityStartDate
+        {
+            get => _selectedAvailabilityStartDate;
+            set
+            {
+               _selectedAvailabilityStartDate = value;
+                RaisePropertyChanged(() => SelectedAvailabilityStartDate);
+            }
+        }
+
+        public DateTime SelectedAvailabilityEndDate
+        {
+            get => _selectedAvailabilityEndDate;
+            set
+            {
+                _selectedAvailabilityEndDate = value;
+                RaisePropertyChanged(() => SelectedAvailabilityEndDate);
+            }
+        }
+
         public DateTime PlannedEmployeeStartTime
         {
             get
@@ -47,7 +70,6 @@ namespace Festispec.ViewModel.planning
                 {
                     if (value < AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyStart)
                     {
-                        var temp = (DateTime)AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyStart;
                         PlannedEmployeeVM.PlannedStartTime = (DateTime)AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyStart;
                     }
                     else
@@ -217,6 +239,8 @@ namespace Festispec.ViewModel.planning
         private void SelectEmployee(EmployeeVM source)
         {
             PlannedEmployeeVM.Employee = source;
+            SelectedAvailabilityStartDate = (DateTime)AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyStart;
+            SelectedAvailabilityEndDate = (DateTime)AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyEnd;
             RaisePropertyChanged(() => VisibilityClearButton);
         }
 

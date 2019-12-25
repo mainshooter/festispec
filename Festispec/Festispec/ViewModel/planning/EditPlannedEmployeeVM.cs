@@ -20,10 +20,31 @@ namespace Festispec.ViewModel.planning
         private EventVM _eventVM;
         private DateTime _plannedStartTime;
         private DateTime _plannedEndTime;
+        private DateTime _selectedAvailabilityStartDate;
+        private DateTime _selectedAvailabilityEndDate;
 
         public ICommand BackCommand { get; set; }
         public ICommand SaveChangesCommand { get; set; }
         public List<AvailabiltyVM> AvailabilityList;
+
+        public DateTime SelectedAvailabilityStartDate
+        {
+            get => _selectedAvailabilityStartDate;
+            set
+            {
+                _selectedAvailabilityStartDate = value;
+                RaisePropertyChanged(() => SelectedAvailabilityStartDate);
+            }
+        }
+        public DateTime SelectedAvailabilityEndDate
+        {
+            get => _selectedAvailabilityEndDate;
+            set
+            {
+                _selectedAvailabilityEndDate = value;
+                RaisePropertyChanged(() => SelectedAvailabilityEndDate);
+            }
+        }
 
         public DateTime PlannedEmployeeStartTime
         {
@@ -139,6 +160,8 @@ namespace Festispec.ViewModel.planning
                 PlannedEmployeeEndTime = PlannedEmployeeVM.PlannedEndTime;
                 _plannedStartTime = PlannedEmployeeVM.PlannedStartTime;
                 _plannedEndTime = PlannedEmployeeVM.PlannedEndTime;
+                SelectedAvailabilityStartDate = (DateTime)AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyStart;
+                SelectedAvailabilityEndDate = (DateTime)AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyEnd;
             });
             BackCommand = new RelayCommand(Back);
             SaveChangesCommand = new RelayCommand(EditPlannedEmployee, CanSave);

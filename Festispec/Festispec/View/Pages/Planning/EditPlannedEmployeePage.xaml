@@ -24,6 +24,7 @@
                     <ColumnDefinition Width="200"></ColumnDefinition>
                     <ColumnDefinition Width="150"></ColumnDefinition>
                     <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <GroupBox Margin="7,10" Header="Ingeplande inspecteur" Grid.Column="0" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">
                     <StackPanel>
@@ -49,6 +50,14 @@
                         <TextBlock FontSize="12" Text="{Binding EventVM.BeginDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
                         <Label FontSize="9" Content="tot"></Label>
                         <TextBlock FontSize="12" Text="{Binding EventVM.EndDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Margin="7,10" Header="Beschikbaarheid" Grid.Column="4" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">
+                    <StackPanel>
+                        <Label FontSize="9" Content="van"></Label>
+                        <TextBlock FontSize="12" Text="{Binding SelectedAvailabilityStartDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
+                        <Label FontSize="9" Content="tot"></Label>
+                        <TextBlock FontSize="12" Text="{Binding SelectedAvailabilityEndDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
                     </StackPanel>
                 </GroupBox>
             </Grid>

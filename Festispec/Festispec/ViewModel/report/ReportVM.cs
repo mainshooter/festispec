@@ -8,6 +8,7 @@ using Festispec.ViewModel.toast;
 using System;
 using System.Windows;
 using System.Data.Entity;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace Festispec.ViewModel.report
 {

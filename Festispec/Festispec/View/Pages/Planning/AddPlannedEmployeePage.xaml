@@ -26,6 +26,7 @@
                     <ColumnDefinition Width="200"></ColumnDefinition>
                     <ColumnDefinition Width="150"></ColumnDefinition>
                     <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <DataGrid Grid.Column="0" Grid.RowSpan="2" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding FilteredAvailableInspectorList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="350">
                     <DataGrid.Columns>
@@ -63,6 +64,14 @@
                         <TextBlock FontSize="12" Text="{Binding EventVM.BeginDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
                         <Label FontSize="9" Content="tot"></Label>
                         <TextBlock FontSize="12" Text="{Binding EventVM.EndDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Visibility="{Binding VisibilityClearButton}" Margin="7,10" Header="Beschikbaarheid" Grid.Column="4" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">
+                    <StackPanel>
+                        <Label FontSize="9" Content="van"></Label>
+                        <TextBlock FontSize="12" Text="{Binding SelectedAvailabilityStartDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
+                        <Label FontSize="9" Content="tot"></Label>
+                        <TextBlock FontSize="12" Text="{Binding SelectedAvailabilityEndDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
                     </StackPanel>
                 </GroupBox>
             </Grid>
