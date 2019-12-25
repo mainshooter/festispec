@@ -174,7 +174,7 @@ namespace Festispec.ViewModel
         private void OpenWorkedHoursTab()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(WorkedPlannedEmployeePage) });
-            MessengerInstance.Send<ChangeSelectedWorkedEmployeeMessage>(new ChangeSelectedWorkedEmployeeMessage() { EmployeeVM = LoggedInEmployee });
+            MessengerInstance.Send<ChangeSelectedEmployeeMessage>(new ChangeSelectedEmployeeMessage() { Employee = LoggedInEmployee });
         }
 
         private void OpenEventTab()

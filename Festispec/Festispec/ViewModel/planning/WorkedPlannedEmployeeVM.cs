@@ -145,10 +145,10 @@ namespace Festispec.ViewModel.planning
 
         public WorkedPlannedEmployeeVM()
         {
-            this.MessengerInstance.Register<ChangeSelectedWorkedEmployeeMessage>(this, message =>
+            this.MessengerInstance.Register<ChangeSelectedEmployeeMessage>(this, message =>
             {
-                EmployeeVM = message.EmployeeVM;
-                GetWorkedHours();
+                EmployeeVM = message.Employee;
+                FillWorkedList();
             });
             EditCommand = new RelayCommand<PlannedEmployeeVM>(EditWorkedTime, CanEdit);
             SaveCommand = new RelayCommand(SaveWorkedTime, CanSave);
@@ -188,7 +188,7 @@ namespace Festispec.ViewModel.planning
             RaisePropertyChanged(() => ShowSelectedDay);
         }
 
-        public void GetWorkedHours()
+        public void FillWorkedList()
         {
             using (var context = new Entities())
             {
