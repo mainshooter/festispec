@@ -39,7 +39,6 @@ namespace Festispec.Domain
         public virtual DbSet<EmployeeStatu> EmployeeStatus { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<InspectorPlanning> InspectorPlannings { get; set; }
-        public virtual DbSet<InspectorPlanningStatu> InspectorPlanningStatus { get; set; }
         public virtual DbSet<Note> Notes { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<QueryTemplate> QueryTemplates { get; set; }
