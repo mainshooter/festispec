@@ -110,9 +110,6 @@
     <Compile Include="InspectorPlanning.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="InspectorPlanningStatu.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Note.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
