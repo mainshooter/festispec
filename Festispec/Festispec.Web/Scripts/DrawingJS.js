@@ -10,12 +10,10 @@
 
     addListeners() {
 		this.scope.addEventListener('mousedown', (event) => {
-			window.addEventListener('scroll', noScroll);
 			this.canDraw = true;
         });
 
 		document.addEventListener('mouseup', (event) => {
-			window.removeEventListener('scroll', noScroll);
 			this.canDraw = false;
 
         });
