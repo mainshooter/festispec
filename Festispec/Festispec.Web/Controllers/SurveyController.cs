@@ -25,13 +25,12 @@ namespace Festispec.Web.Controllers
                 return Redirect("~/User/Login");
             }
 
-            //var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
-            //                        .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
-            //                        DateTime.Today <= s.Order.Event.EndDate &&
-            //                        s.Status == SurveyStatus.Definitief.ToString())
-            //                        .ToList();
-            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event");
-            //CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
+            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
+                                    .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
+                                    DateTime.Today <= s.Order.Event.EndDate &&
+                                    s.Status == SurveyStatus.Definitief.ToString())
+                                    .ToList();
+            CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
 
             return View(surveysTodayWithOrderAndEvent);
         }
@@ -63,11 +62,11 @@ namespace Festispec.Web.Controllers
 
             if (model.Survey == null)
                 return HttpNotFound();
-            
-            //if (CheckAllowenceCurrentEmployeeWithSurveys(new List<Survey> { model.Survey }).Count == 0)
-            //{
-            //    Response.Redirect("~/Survey");
-            //}
+
+            if (CheckAllowenceCurrentEmployeeWithSurveys(new List<Survey> { model.Survey }).Count == 0)
+            {
+                Response.Redirect("~/Survey");
+            }
 
             foreach (var q in model.Survey.Questions)
             {

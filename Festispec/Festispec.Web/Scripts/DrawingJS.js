@@ -13,26 +13,31 @@
 			window.addEventListener('scroll', noScroll);
 			this.canDraw = true;
         });
+
 		document.addEventListener('mouseup', (event) => {
 			window.removeEventListener('scroll', noScroll);
 			this.canDraw = false;
 
         });
+
         this.scope.addEventListener('mousemove', (event) => {
             let target = event.target;
             var rect = target.getBoundingClientRect();
             let x = event.clientX - rect.left; //x position within the element.
             let y = event.clientY - rect.top;  //y position within the element.
 			this.handleEvent(x, y);
-		});
+        });
+
 		this.scope.addEventListener('touchstart', (event) => {
 			document.querySelector("body").style.height = "100%";
 			document.querySelector("body").style.overflow = "hidden";
-		});
+        });
+
 		this.scope.addEventListener('touchend', (event) => {
 			document.querySelector("body").style.height = "100%";
 			document.querySelector("body").style.overflow = "";
-		});
+        });
+
 		this.scope.addEventListener('touchmove', (event) => {
 			this.canDraw = true;
 			let backgroundImage = this.scope.querySelector("img");
@@ -86,11 +91,4 @@
 		});
 		this.scope.querySelector("input").value = JSON.stringify(this.drawings);
 	}
-
-
-
-
-}
-function noScroll() {
-	window.scrollTo(0, 0);
 }
