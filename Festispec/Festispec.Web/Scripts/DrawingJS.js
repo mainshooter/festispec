@@ -41,12 +41,29 @@
 				let target = event.target;
 				var rect = target.getBoundingClientRect();
 				let x = event.touches[0].clientX - rect.left; //x position within the element.
-				let y = event.touches[0].clientY - rect.top;  //y position within the element.
-
-				this.handleEvent(x, y);
+                let y = event.touches[0].clientY - rect.top;  //y position within the element.
+                this.handleEvent(x, y);
 			}
-
 			this.canDraw = false;
+        });
+    }
+
+    convertXAndYToCorrectPosition(x, y) {
+        let userControlWidth = 620;
+        let userControlHeight = 300;
+
+        let image = this.scope.querySelector("img");
+        let imageWidth = image.offsetWidth;
+        let imageHeight = image.offsetHeight;
+
+        let widthRatio = imageWidth / userControlWidth;
+        let heightRatio = imageHeight / userControlHeight;
+
+        x = x * widthRatio;
+        y = y * heightRatio;
+        return ({
+            x: x,
+			y: y,
         });
     }
 
@@ -60,15 +77,14 @@
         inkt.style.top = y + "px";
         inkt.style.left = x + "px";
 
+        let convertResult = this.convertXAndYToCorrectPosition(x, y);
+
         this.scope.appendChild(inkt);
         this.drawings.push({
-            "x": x,
-            "y": y
+            "x": convertResult["x"],
+            "y": convertResult["y"]
 		});
-
-		console.log(document.body.style.overflow);
 		this.scope.querySelector("input").value = JSON.stringify(this.drawings);
-
 	}
 
 
