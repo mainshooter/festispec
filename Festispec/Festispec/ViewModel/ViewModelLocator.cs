@@ -102,7 +102,6 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<SingleQuotationPage>();
             SimpleIoc.Default.Register<EmployeePlanningPage>();
 
-            SimpleIoc.Default.Register<CreateCustomerVm>();
             SimpleIoc.Default.Register<CustomerPage>();
             SimpleIoc.Default.Register<CustomerDetailsPage>();
             SimpleIoc.Default.Register<EditCustomerPage>();

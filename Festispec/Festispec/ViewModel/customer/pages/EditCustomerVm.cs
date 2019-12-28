@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using Festispec.Domain;
 using Festispec.Message;
@@ -40,7 +36,7 @@ namespace Festispec.ViewModel.customer.pages
             });
 
             CustomerList = customerList;
-            EditCustomerCommand = new RelayCommand(EditCustomer);
+            EditCustomerCommand = new RelayCommand(EditCustomer, CanAddCustomer);
             CloseEditCustomerCommand = new RelayCommand(CloseEditCustomer);
         }
 
@@ -69,6 +65,11 @@ namespace Festispec.ViewModel.customer.pages
         private void CloseEditCustomer()
         {
             MessengerInstance.Send(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
+        }
+
+        private bool CanAddCustomer()
+        {
+            return Customer != null && Customer.IsValid;
         }
     }
 }

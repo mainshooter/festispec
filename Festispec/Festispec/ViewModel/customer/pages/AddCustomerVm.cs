@@ -20,9 +20,16 @@ namespace Festispec.ViewModel.customer.pages
 
         public AddCustomerVm(CustomerOverviewVm customerList)
         {
-            CustomerList = customerList;
             Customer = new CustomerVM();
-            AddCustomerCommand = new RelayCommand(AddCustomer);
+            CustomerList = customerList;
+
+            MessengerInstance.Register<ChangeSelectedCustomerMessage>(this, message =>
+            {
+                CustomerList = message.CustomerList;
+                Customer = message.Customer;
+            });
+
+            AddCustomerCommand = new RelayCommand(AddCustomer, CanAddCustomer);
             CloseAddCustomerCommand = new RelayCommand(CloseAddCustomer);
         }
 
@@ -48,13 +55,20 @@ namespace Festispec.ViewModel.customer.pages
 
             CustomerList.CustomerList.Add(Customer);
             CustomerList.RaisePropertyChanged("EmployeeListFiltered");
-            MessageBox.Show("Customer added", "Bla", MessageBoxButton.OK, MessageBoxImage.Hand);
+            MessageBox.Show("Klant toegevoegd", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             CloseAddCustomer();
         }
 
         private void CloseAddCustomer()
         {
+            Customer = new CustomerVM();
+            RaisePropertyChanged("Customer");
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
+        }
+
+        private bool CanAddCustomer()
+        {
+            return Customer != null && Customer.IsValid;
         }
     }
 }

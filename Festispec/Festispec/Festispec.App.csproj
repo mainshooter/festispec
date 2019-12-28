@@ -198,7 +198,6 @@
     <Compile Include="ViewModel\customer\CustomerVM.cs" />
     <Compile Include="ViewModel\customer\order\OrderVM.cs" />
     <Compile Include="ViewModel\customer\pages\AddCustomerVm.cs" />
-    <Compile Include="ViewModel\customer\pages\CreateCustomerVm.cs" />
     <Compile Include="ViewModel\customer\pages\CustomerDetailsVm.cs" />
     <Compile Include="ViewModel\customer\pages\CustomerOverviewVm.cs" />
     <Compile Include="ViewModel\customer\pages\EditCustomerVm.cs" />

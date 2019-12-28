@@ -17,7 +17,7 @@
             <StackPanel Margin="25" Width="200" HorizontalAlignment="Left">
                 <Label Content="Naam:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
                 <TextBlock HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Customer.Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-                <Label Content="COC Nummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105"/>
+                <Label Content="KVK Nummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105"/>
                 <TextBlock HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Customer.COC, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
                 <Label Content="Straat" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
                 <TextBlock HorizontalAlignment="Left" Height="25 " Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Customer.Street, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>

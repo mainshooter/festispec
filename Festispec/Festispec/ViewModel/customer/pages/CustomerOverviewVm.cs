@@ -102,7 +102,7 @@ namespace Festispec.ViewModel.customer.pages
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddCustomerPage) });
             MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage()
             {
-                Customer = SelectedCustomer,
+                Customer = new CustomerVM(),
                 CustomerList = this
             });
         }
@@ -117,13 +117,13 @@ namespace Festispec.ViewModel.customer.pages
             });
         }
 
-        public void OpenCustomerDetailsPage()
+        private void OpenCustomerDetailsPage()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerDetailsPage) });
             MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage { Customer = SelectedCustomer, CustomerList = this});
         }
 
-        public void OpenEventsPage()
+        private void OpenEventsPage()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
             MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage { Customer = SelectedCustomer, CustomerList = this });
@@ -141,7 +141,7 @@ namespace Festispec.ViewModel.customer.pages
 
                     if (orders.Any())
                     {
-                        MessageBox.Show("Klant kan niet worden verwijderd, omdat deze nog opdracht(en) open heeft staan.", "Error", MessageBoxButton.OK);
+                        MessageBox.Show("Klant kan niet worden verwijderd omdat hij opdrachten heeft", "Error", MessageBoxButton.OK);
                     }
                     else
                     {
