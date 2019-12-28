@@ -4,68 +4,69 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+
       <Diagram DiagramId="fde7bdda45ab4021b73ebf373a3987ec" Name="Diagram1">
-        <EntityTypeShape EntityType="Festispec.Domain.Answer" Width="1.5" PointX="10.5" PointY="10.125" />
-        <EntityTypeShape EntityType="Festispec.Domain.AvailabilityInspector" Width="1.5" PointX="5.25" PointY="21.75" />
-        <EntityTypeShape EntityType="Festispec.Domain.BetterReportInspector" Width="1.5" PointX="5.25" PointY="31.5" />
-        <EntityTypeShape EntityType="Festispec.Domain.Case" Width="1.5" PointX="5.25" PointY="9.875" />
-        <EntityTypeShape EntityType="Festispec.Domain.CaseStatu" Width="1.5" PointX="3" PointY="3.125" />
-        <EntityTypeShape EntityType="Festispec.Domain.ContactPerson" Width="1.5" PointX="3" PointY="26" />
-        <EntityTypeShape EntityType="Festispec.Domain.Customer" Width="1.5" PointX="5.25" PointY="4.375" />
-        <EntityTypeShape EntityType="Festispec.Domain.Day" Width="1.5" PointX="9.75" PointY="17.25" />
-        <EntityTypeShape EntityType="Festispec.Domain.Department" Width="1.5" PointX="0.75" PointY="14.375" />
-        <EntityTypeShape EntityType="Festispec.Domain.ElementType" Width="1.5" PointX="12.75" PointY="17.5" />
-        <EntityTypeShape EntityType="Festispec.Domain.Employee" Width="1.5" PointX="3" PointY="12" />
-        <EntityTypeShape EntityType="Festispec.Domain.EmployeeStatu" Width="1.5" PointX="0.75" PointY="11.5" />
-        <EntityTypeShape EntityType="Festispec.Domain.Event" Width="1.5" PointX="5.25" PointY="25.375" />
-        <EntityTypeShape EntityType="Festispec.Domain.InspectorPlanning" Width="1.5" PointX="8.25" PointY="9.75" />
-        <EntityTypeShape EntityType="Festispec.Domain.Note" Width="1.5" PointX="5.25" PointY="34.625" />
-        <EntityTypeShape EntityType="Festispec.Domain.Order" Width="1.5" PointX="7.5" PointY="13.375" />
-        <EntityTypeShape EntityType="Festispec.Domain.QueryTemplate" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Festispec.Domain.Question" Width="1.5" PointX="15" PointY="9.75" />
-        <EntityTypeShape EntityType="Festispec.Domain.QuestionType" Width="1.5" PointX="12.75" PointY="7.5" />
-        <EntityTypeShape EntityType="Festispec.Domain.Quotation" Width="1.5" PointX="5.25" PointY="13.375" />
-        <EntityTypeShape EntityType="Festispec.Domain.QuotationStatu" Width="1.5" PointX="3" PointY="9.5" />
-        <EntityTypeShape EntityType="Festispec.Domain.Report" Width="1.5" PointX="12.75" PointY="14" />
-        <EntityTypeShape EntityType="Festispec.Domain.ReportElement" Width="1.5" PointX="15" PointY="13.625" />
-        <EntityTypeShape EntityType="Festispec.Domain.ReportStatu" Width="1.5" PointX="10.5" PointY="20.5" />
-        <EntityTypeShape EntityType="Festispec.Domain.SickReportInspector" Width="1.5" PointX="10.5" PointY="13.75" />
-        <EntityTypeShape EntityType="Festispec.Domain.Survey" Width="1.5" PointX="12.75" PointY="9.875" />
-        <EntityTypeShape EntityType="Festispec.Domain.SurveyStatu" Width="1.5" PointX="10.5" PointY="4.25" />
-        <AssociationConnector Association="Festispec.Domain.FK_Answer_Case" />
-        <AssociationConnector Association="Festispec.Domain.FK_Answer_Question" />
-        <AssociationConnector Association="Festispec.Domain.FK_AvailabilityInspector_Employee" />
-        <AssociationConnector Association="Festispec.Domain.FK_BetterReportInspector_Employee" />
-        <AssociationConnector Association="Festispec.Domain.FK_Case_CaseStatus" />
-        <AssociationConnector Association="Festispec.Domain.FK_Case_Employee" />
-        <AssociationConnector Association="Festispec.Domain.FK_Case_Survey" />
-        <AssociationConnector Association="Festispec.Domain.FK_ContactPerson_Customer" />
-        <AssociationConnector Association="Festispec.Domain.FK_Event_ContactPerson" />
-        <AssociationConnector Association="Festispec.Domain.FK_Note_ContactPerson" />
-        <AssociationConnector Association="Festispec.Domain.FK_Event_Customer" />
-        <AssociationConnector Association="Festispec.Domain.FK_Order_Customer" />
-        <AssociationConnector Association="Festispec.Domain.FK_Quotation_Customer" />
-        <AssociationConnector Association="Festispec.Domain.FK_Day_Order" />
-        <AssociationConnector Association="Festispec.Domain.FK_InspectorPlanning_Day" />
-        <AssociationConnector Association="Festispec.Domain.FK_Employee_Department" />
-        <AssociationConnector Association="Festispec.Domain.FK_ReportElement_ElementType" />
-        <AssociationConnector Association="Festispec.Domain.FK_Employee_EmployeeStatus" />
-        <AssociationConnector Association="Festispec.Domain.FK_InspectorPlanning_Employee" />
-        <AssociationConnector Association="Festispec.Domain.FK_Order_Employee" />
-        <AssociationConnector Association="Festispec.Domain.FK_Quotation_Employee" />
-        <AssociationConnector Association="Festispec.Domain.FK_SickReportInspector_Employee" />
-        <AssociationConnector Association="Festispec.Domain.FK_Order_Event" />
-        <AssociationConnector Association="Festispec.Domain.FK_Quotation_Event" />
-        <AssociationConnector Association="Festispec.Domain.FK_SickReportInspector_InspectorPlanning" />
-        <AssociationConnector Association="Festispec.Domain.FK_Order_Quotation" />
-        <AssociationConnector Association="Festispec.Domain.FK_Report_Order" />
-        <AssociationConnector Association="Festispec.Domain.FK_Survey_Order" />
-        <AssociationConnector Association="Festispec.Domain.FK_Question_QuestionType" />
-        <AssociationConnector Association="Festispec.Domain.FK_Question_Survey" />
-        <AssociationConnector Association="Festispec.Domain.FK_Quotation_QuotationStatus" />
-        <AssociationConnector Association="Festispec.Domain.FK_Report_ReportStatus" />
-        <AssociationConnector Association="Festispec.Domain.FK_ReportElement_Report" />
-        <AssociationConnector Association="Festispec.Domain.FK_Survey_SurveyStatus" />
+        <EntityTypeShape EntityType="Festispec.Domain.Answer" Width="1.5" PointX="13.5" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.AvailabilityInspector" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.BetterReportInspector" Width="1.5" PointX="5.25" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.Case" Width="1.5" PointX="8.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.CaseStatu" Width="1.5" PointX="6" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.ContactPerson" Width="1.5" PointX="0.75" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.Customer" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.Day" Width="1.5" PointX="10.5" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.Department" Width="1.5" PointX="0.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.ElementType" Width="1.5" PointX="10.5" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.Employee" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.EmployeeStatu" Width="1.5" PointX="0.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.Event" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.InspectorPlanning" Width="1.5" PointX="8.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.Note" Width="1.5" PointX="3" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.Order" Width="1.5" PointX="8.25" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.QueryTemplate" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.Question" Width="1.5" PointX="15.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.QuestionType" Width="1.5" PointX="13.5" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.Quotation" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.QuotationStatu" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.Report" Width="1.5" PointX="10.5" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.ReportElement" Width="1.5" PointX="12.75" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.ReportStatu" Width="1.5" PointX="8.25" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.SickReportInspector" Width="1.5" PointX="10.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.Survey" Width="1.5" PointX="13.5" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Festispec.Domain.SurveyStatu" Width="1.5" PointX="11.25" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="Festispec.Domain.FK_Answer_Case" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Answer_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_AvailabilityInspector_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_BetterReportInspector_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Case_CaseStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Case_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Case_Survey" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_ContactPerson_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Event_ContactPerson" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Note_ContactPerson" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Event_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Quotation_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Day_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_InspectorPlanning_Day" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Employee_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_ReportElement_ElementType" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Employee_EmployeeStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_InspectorPlanning_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Order_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Quotation_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_SickReportInspector_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Order_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Quotation_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_SickReportInspector_InspectorPlanning" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Order_Quotation" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Report_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Survey_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Question_QuestionType" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Question_Survey" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Quotation_QuotationStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Report_ReportStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_ReportElement_Report" ManuallyRouted="false" />
+        <AssociationConnector Association="Festispec.Domain.FK_Survey_SurveyStatus" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

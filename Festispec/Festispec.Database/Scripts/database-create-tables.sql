@@ -246,7 +246,6 @@ CREATE TABLE [dbo].[InspectorPlanning](
 	[OrderId] [int] NOT NULL,
 	[PlannedFrom] [datetime] NOT NULL,
 	[PlannedTill] [datetime] NOT NULL,
-	[Status] [nvarchar](45) NOT NULL,
 	[WorkedFrom] [datetime] NULL,
 	[WorkedTill] [datetime] NULL,
  CONSTRAINT [PK_InspectorPlanning] PRIMARY KEY CLUSTERED
@@ -549,11 +548,6 @@ ALTER TABLE [dbo].[InspectorPlanning]  WITH CHECK ADD  CONSTRAINT [FK_InspectorP
 REFERENCES [dbo].[Employee] ([Id])
 GO
 ALTER TABLE [dbo].[InspectorPlanning] CHECK CONSTRAINT [FK_InspectorPlanning_Employee]
-GO
-ALTER TABLE [dbo].[InspectorPlanning]  WITH CHECK ADD  CONSTRAINT [FK_InspectorPlanning_InspectorPlanningStatus] FOREIGN KEY([Status])
-REFERENCES [dbo].[InspectorPlanningStatus] ([Status])
-GO
-ALTER TABLE [dbo].[InspectorPlanning] CHECK CONSTRAINT [FK_InspectorPlanning_InspectorPlanningStatus]
 GO
 ALTER TABLE [dbo].[Note]  WITH CHECK ADD  CONSTRAINT [FK_Note_ContactPerson] FOREIGN KEY([ContactPersonId])
 REFERENCES [dbo].[ContactPerson] ([Id])

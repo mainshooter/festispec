@@ -89,6 +89,9 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<SingleEventPage>();
             SimpleIoc.Default.Register<OfflineEventListPage>();
             SimpleIoc.Default.Register<SingleOfflineEventPage>();
+            SimpleIoc.Default.Register<EditPlannedEmployeePage>();
+            SimpleIoc.Default.Register<AddPlannedEmployeePage>();
+            SimpleIoc.Default.Register<ReportVM>();
             SimpleIoc.Default.Register<AddBarChartPage>();
             SimpleIoc.Default.Register<AddImagePage>();
             SimpleIoc.Default.Register<AddLineChartPage>();
@@ -155,6 +158,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<SickPageVM>();
             SimpleIoc.Default.Register<OfflineEventListVM>();
             SimpleIoc.Default.Register<OfflineEventInfoVM>();
+            SimpleIoc.Default.Register<EditPlannedEmployeeVM>();
+            SimpleIoc.Default.Register<AddPlannedEmployeeVM>();
             SimpleIoc.Default.Register<ReportInfoVM>();
             SimpleIoc.Default.Register<AddBarChartVM>();
             SimpleIoc.Default.Register<AddImageVM>();
@@ -226,6 +231,8 @@ namespace Festispec.ViewModel
         public QuotationInfoVM QuotationInfoVM => ServiceLocator.Current.GetInstance<QuotationInfoVM>();
         public WorkedPlannedEmployeeVM WorkedPlannedEmployeeVM => ServiceLocator.Current.GetInstance<WorkedPlannedEmployeeVM>();
 
+        public EditPlannedEmployeeVM EditPlannedEmployeeVM => ServiceLocator.Current.GetInstance<EditPlannedEmployeeVM>();
+        public AddPlannedEmployeeVM AddPlannedEmployeeVM => ServiceLocator.Current.GetInstance<AddPlannedEmployeeVM>();
         public EmployeePlanningInfoVM EmployeePlanningInfoVM => ServiceLocator.Current.GetInstance<EmployeePlanningInfoVM>();
 
         public static void Cleanup()
