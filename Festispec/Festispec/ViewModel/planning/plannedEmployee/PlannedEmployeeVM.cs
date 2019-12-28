@@ -41,6 +41,16 @@ namespace Festispec.ViewModel.planning.plannedEmployee
                 return Convert.ToDateTime(time).ToString("dd-MM-yyyy HH:mm");
             }
         }
+        public DateTime WorkStartTime
+        {
+            get => (DateTime)_plannedEmployee.WorkedFrom;
+            set => _plannedEmployee.WorkedFrom = value;
+        }
+        public DateTime WorkEndTime
+        {
+            get => (DateTime)_plannedEmployee.WorkedTill;
+            set => _plannedEmployee.WorkedTill = value;
+        }
 
         public string EventName { get; set; }
 

@@ -177,7 +177,6 @@
     <Compile Include="Message\ChangeSelectedCustomerMessage.cs" />
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
     <Compile Include="Message\ChangeSelectedQuotationMessage.cs" />
-    <Compile Include="Message\ChangeSelectedWorkedEmployeeMessage.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSessionVM.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
