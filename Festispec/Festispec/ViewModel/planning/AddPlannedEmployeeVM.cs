@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -179,16 +180,11 @@ namespace Festispec.ViewModel.planning
             }
         }
 
-        public ObservableCollection<EmployeeVM> FilteredAvailableInspectorList
-        {
+        public ObservableCollection<EmployeeVM> SortedAvailableInspectorList {
             get
             {
-                return _availableInspectorList;
-            }
-            set
-            {
-                _availableInspectorList = value;
-                RaisePropertyChanged(() => FilteredAvailableInspectorList);
+                if (_availableInspectorList == null) return null;
+                return new ObservableCollection<EmployeeVM>(_availableInspectorList.OrderBy(e => e.DistanceFromEvent));
             }
         }
 
@@ -285,10 +281,11 @@ namespace Festispec.ViewModel.planning
             }
         }
 
-        public void GetAvailability()
+        public async Task GetAvailability()
         {
             List<PlannedEmployeeVM> PlannedEmployeeList = new List<PlannedEmployeeVM>();
-            FilteredAvailableInspectorList = new ObservableCollection<EmployeeVM>();
+            _availableInspectorList = new ObservableCollection<EmployeeVM>();
+
             using (var context = new Entities())
             {
                 AvailabilityList = new List<AvailabiltyVM>(context.AvailabilityInspectors.ToList().Select(availableInspector => new AvailabiltyVM(availableInspector)).Where(availableInspector => availableInspector.AvailabiltyStart.Value.Date == SelectedBeginDate.Date && availableInspector.AvailabiltyEnd.Value >= SelectedBeginDate));
@@ -299,12 +296,33 @@ namespace Festispec.ViewModel.planning
             {
                 var availabilityVM = AvailabilityList.Select(availibility => availibility).Where(availability => availability.EmployeeId == employee.Id).FirstOrDefault();
                 var plannedEmployeeVM = PlannedEmployeeList.Select(plannedEmployee => plannedEmployee).Where(plannedEmployee => plannedEmployee.Employee.Id == employee.Id).FirstOrDefault();
+
                 if (availabilityVM != null && plannedEmployeeVM == null)
                 {
-                    FilteredAvailableInspectorList.Add(employee);
+                    employee.DistanceFromEvent = await DistanceFromEventAsync(employee, EventVM);
+                    _availableInspectorList.Add(employee);
+                    _availableInspectorList.OrderBy(e => e.DistanceFromEvent);
                 }
             }
-            RaisePropertyChanged(() => FilteredAvailableInspectorList);
+
+            RaisePropertyChanged(() => SortedAvailableInspectorList);
+        }
+
+        public async Task<int> DistanceFromEventAsync(EmployeeVM employeeVM, EventVM eventVM)
+        {
+            var distanceCalculator = new DistanceCalculator.DistanceCalculator();
+            var employeeHouseNumberAddition = "";
+            var eventHouseNumberAddition = "";
+
+            if (employeeVM.HouseNumberAddition == "") employeeHouseNumberAddition = " " + employeeVM.HouseNumberAddition;
+
+            if (eventVM.HouseNumberAddition == "") eventHouseNumberAddition = " " + eventVM.HouseNumberAddition;
+
+            var employeeddressToCoor = await distanceCalculator.AdressToCoor(employeeVM.Street, employeeVM.HouseNumber + employeeHouseNumberAddition, employeeVM.City, employeeVM.PostalCode);
+            var eventAddressToCoor = await distanceCalculator.AdressToCoor(eventVM.Street, eventVM.HouseNumber + eventHouseNumberAddition, eventVM.City, eventVM.PostalCode);
+
+            var distance = await distanceCalculator.TravelDistance(employeeddressToCoor, eventAddressToCoor);
+            return Convert.ToInt32(Math.Round(distance));
         }
     }
 }

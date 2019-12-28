@@ -7,6 +7,8 @@ using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows;
+using BingMapsRESTToolkit;
+using Festispec.ViewModel.customer.customerEvent;
 
 namespace Festispec.ViewModel.employee
 {
@@ -178,6 +180,8 @@ namespace Festispec.ViewModel.employee
         }
 
         public string BirthdayDate => Birthday.ToString("dd-MM-yyyy");
+
+        public int DistanceFromEvent { get; set; }
 
         [PreferredConstructor]
         public EmployeeVM()

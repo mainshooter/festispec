@@ -42,7 +42,7 @@ namespace DistanceCalculator
         }
 
         //Gebaseerd op adres, stad en postcode returned deze methode een SimpleWaypoint van die plek in longtitude en latitude
-        public async Task<SimpleWaypoint> AdressToCoor(string street, int houseNumber, string city ,string postalCode)
+        public async Task<SimpleWaypoint> AdressToCoor(string street, string houseNumber, string city ,string postalCode)
         {
             GeocodeRequest geocode = new GeocodeRequest();
             SimpleAddress address = new SimpleAddress();
