@@ -8,7 +8,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Festispec.Lib.Auth;
 using System.Collections.Generic;
 using Festispec.ViewModel.toast;
 

@@ -26,7 +26,7 @@ namespace Festispec.ViewModel.auth
             }
             else
             {
-                MessageBox.Show("Code ongeldig.", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Code ongeldig.", "Informatie", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
