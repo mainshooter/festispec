@@ -63,6 +63,9 @@ namespace DistanceCalculator
                 response.ResourceSets[0].Resources.Length > 0)
             {
                 Location result = response.ResourceSets[0].Resources[0] as BingMapsRESTToolkit.Location;
+
+                if (result.GeocodePoints.Length == 1) return null;
+
                 SimpleWaypoint waypoint = new SimpleWaypoint(result.GeocodePoints[1].Coordinates[0], result.GeocodePoints[1].Coordinates[1]);
                 return waypoint;
             }

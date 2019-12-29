@@ -208,6 +208,7 @@ namespace Festispec.ViewModel.planning
             InspectorList = new ObservableCollection<EmployeeVM>();
             MessengerInstance.Register<ChangeSelectedPlannedEmployeeEventMessage>(this, message =>
             {
+                GetInspectors();
                 EventVM = message.EventVM;
                 PlannedEmployeeVM = new PlannedEmployeeVM(EventVM.OrderVM.Days.Select(day => day).Where(day => day.BeginTime.Date == message.EventVM.BeginDate.Date).FirstOrDefault());
                 SelectedBeginDate = message.EventVM.BeginDate;
@@ -215,8 +216,6 @@ namespace Festispec.ViewModel.planning
                 PlannedEmployeeVM.PlannedEndTime = message.EventVM.BeginDate;
                 PlannedEmployeeVM.Order = message.EventVM.OrderVM;
                 EventDays = message.EventVM.OrderVM.Days;
-                GetInspectors();
-                GetAvailability();
                 RaisePropertyChanged(() => VisibilityClearButton);
             });
             BackCommand = new RelayCommand(Back);
@@ -283,7 +282,7 @@ namespace Festispec.ViewModel.planning
 
         public async Task GetAvailability()
         {
-            List<PlannedEmployeeVM> PlannedEmployeeList = new List<PlannedEmployeeVM>();
+            var PlannedEmployeeList = new List<PlannedEmployeeVM>();
             _availableInspectorList = new ObservableCollection<EmployeeVM>();
 
             using (var context = new Entities())
@@ -292,16 +291,15 @@ namespace Festispec.ViewModel.planning
                 PlannedEmployeeList = new List<PlannedEmployeeVM>(context.InspectorPlannings.ToList().Select(plannedEmployee => new PlannedEmployeeVM(plannedEmployee)).Where(plannedEmployee => plannedEmployee.PlannedStartTime.Date == SelectedBeginDate.Date));
             }
 
-            foreach (EmployeeVM employee in InspectorList)
+            foreach (var employee in InspectorList)
             {
-                var availabilityVM = AvailabilityList.Select(availibility => availibility).Where(availability => availability.EmployeeId == employee.Id).FirstOrDefault();
-                var plannedEmployeeVM = PlannedEmployeeList.Select(plannedEmployee => plannedEmployee).Where(plannedEmployee => plannedEmployee.Employee.Id == employee.Id).FirstOrDefault();
+                var availabilityVM = AvailabilityList.FirstOrDefault(availability => availability.EmployeeId == employee.Id);
+                var plannedEmployeeVM = PlannedEmployeeList.FirstOrDefault(plannedEmployee => plannedEmployee.Employee.Id == employee.Id);
 
                 if (availabilityVM != null && plannedEmployeeVM == null)
                 {
                     employee.DistanceFromEvent = await DistanceFromEventAsync(employee, EventVM);
                     _availableInspectorList.Add(employee);
-                    _availableInspectorList.OrderBy(e => e.DistanceFromEvent);
                 }
             }
 
@@ -314,12 +312,14 @@ namespace Festispec.ViewModel.planning
             var employeeHouseNumberAddition = "";
             var eventHouseNumberAddition = "";
 
-            if (employeeVM.HouseNumberAddition == "") employeeHouseNumberAddition = " " + employeeVM.HouseNumberAddition;
+            if (string.IsNullOrEmpty(employeeVM.HouseNumberAddition)) employeeHouseNumberAddition = " " + employeeVM.HouseNumberAddition;
 
-            if (eventVM.HouseNumberAddition == "") eventHouseNumberAddition = " " + eventVM.HouseNumberAddition;
+            if (string.IsNullOrEmpty(eventVM.HouseNumberAddition)) eventHouseNumberAddition = " " + eventVM.HouseNumberAddition;
 
             var employeeddressToCoor = await distanceCalculator.AdressToCoor(employeeVM.Street, employeeVM.HouseNumber + employeeHouseNumberAddition, employeeVM.City, employeeVM.PostalCode);
             var eventAddressToCoor = await distanceCalculator.AdressToCoor(eventVM.Street, eventVM.HouseNumber + eventHouseNumberAddition, eventVM.City, eventVM.PostalCode);
+
+            if (employeeddressToCoor == null || eventAddressToCoor == null) return 0;
 
             var distance = await distanceCalculator.TravelDistance(employeeddressToCoor, eventAddressToCoor);
             return Convert.ToInt32(Math.Round(distance));
