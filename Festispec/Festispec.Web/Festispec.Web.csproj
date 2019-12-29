@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -136,6 +137,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Auth\UserSession.cs" />
+    <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\SurveyModel.cs" />
     <Compile Include="Models\LoginFormModel.cs" />
     <Compile Include="Models\RequestPasswordModel.cs" />
@@ -192,6 +194,7 @@
     <Content Include="Views\Shared\EditorTemplates\MultipleChoiseQuestionType.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SliderQuestionType.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TableQuestionType.cshtml" />
+    <Content Include="Views\Event\EventDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

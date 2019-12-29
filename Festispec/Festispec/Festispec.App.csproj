@@ -178,6 +178,8 @@
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
     <Compile Include="ViewModel\auth\ResetPasswordVm.cs" />
     <Compile Include="ViewModel\auth\RequestPasswordResetVm.cs" />
+    <Compile Include="Message\ChangeSelectedPlannedEmployeeEventMessage.cs" />
+    <Compile Include="Message\ChangeSelectedPlannedEmployeeMessage.cs" />
     <Compile Include="Message\ChangeSelectedQuotationMessage.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
     <Compile Include="ViewModel\auth\UserSessionVM.cs" />
@@ -220,7 +222,9 @@
     <Compile Include="ViewModel\employee\SickVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PasswordBoxAssistant\PasswordBoxAssistant.cs" />
+    <Compile Include="ViewModel\planning\AddPlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\planning\DayVM.cs" />
+    <Compile Include="ViewModel\planning\EditPlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
@@ -346,6 +350,12 @@
     </Compile>
     <Compile Include="View\Pages\PasswordReset\VerifyCodePage.xaml.cs">
       <DependentUpon>VerifyCodePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Planning\AddPlannedEmployeePage.xaml.cs">
+      <DependentUpon>AddPlannedEmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Planning\EditPlannedEmployeePage.xaml.cs">
+      <DependentUpon>EditPlannedEmployeePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Report\AddReportPage.xaml.cs">
       <DependentUpon>AddReportPage.xaml</DependentUpon>
@@ -576,6 +586,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
 	</Page>
+    <Page Include="View\Pages\Planning\AddPlannedEmployeePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Planning\EditPlannedEmployeePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Employee\Planning\EmployeePlanningPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

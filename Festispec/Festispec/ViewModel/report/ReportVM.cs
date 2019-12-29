@@ -8,6 +8,7 @@ using Festispec.ViewModel.toast;
 using System;
 using System.Windows;
 using System.Data.Entity;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace Festispec.ViewModel.report
 {
@@ -76,6 +77,7 @@ namespace Festispec.ViewModel.report
             ReportElements = new ObservableCollection<ReportElementVM>(_report.ReportElements.Select(e => new ReportElementVM(e)).ToList());
         }
 
+        [PreferredConstructor]
         public ReportVM(OrderVM OrderVM)
         {
             _report = new Report();
