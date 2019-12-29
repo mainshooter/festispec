@@ -150,7 +150,8 @@ namespace Festispec.ViewModel.planning
         private void DeleteInspector(PlannedEmployeeVM source)
         {
             MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze inspecteur wilt verwijderen?", "Inspecteur Verwijderen", MessageBoxButton.YesNo);
-            if (result.Equals(MessageBoxResult.Yes))
+
+            if (result.Equals(MessageBoxResult.Yes) && source.EditMessageIfNotWithinWeek(EventVM))
             {
                 using (var context = new Entities())
                 {
