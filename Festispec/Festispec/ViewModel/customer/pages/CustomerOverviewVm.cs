@@ -54,7 +54,7 @@ namespace Festispec.ViewModel.customer.pages
                 {
                     switch (SelectedFilter)
                     {
-                        case "Voornaam":
+                        case "Naam":
                             return new ObservableCollection<CustomerVM>(CustomerList.Select(customer => customer).Where(customer => customer.Name.ToLower().Contains(Filter.ToLower())).ToList());
                         case "Straat":
                             return new ObservableCollection<CustomerVM>(CustomerList.Select(customer => customer).Where(customer => customer.Street.ToLower().Contains(Filter.ToLower())).ToList());

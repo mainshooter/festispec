@@ -23,12 +23,6 @@ namespace Festispec.ViewModel.customer.pages
             Customer = new CustomerVM();
             CustomerList = customerList;
 
-            MessengerInstance.Register<ChangeSelectedCustomerMessage>(this, message =>
-            {
-                CustomerList = message.CustomerList;
-                Customer = message.Customer;
-            });
-
             AddCustomerCommand = new RelayCommand(AddCustomer, CanAddCustomer);
             CloseAddCustomerCommand = new RelayCommand(CloseAddCustomer);
         }
