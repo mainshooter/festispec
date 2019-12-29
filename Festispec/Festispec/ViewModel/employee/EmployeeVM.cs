@@ -7,8 +7,6 @@ using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows;
-using BingMapsRESTToolkit;
-using Festispec.ViewModel.customer.customerEvent;
 
 namespace Festispec.ViewModel.employee
 {
