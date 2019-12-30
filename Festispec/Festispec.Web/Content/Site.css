@@ -33,6 +33,7 @@ textarea {
 	display: inline-block;
 	user-select: none;
 	margin: 4rem;
+	border: 2px solid black;
 }
 
 .draw-question .inkt {
