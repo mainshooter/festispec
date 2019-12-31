@@ -9,7 +9,7 @@
     <StackPanel Orientation="Horizontal">
         <StackPanel>
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" Content="{Binding Title}"></Label>
-            <TextBlock TextWrapping="Wrap" Height="260" Width="620" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock TextWrapping="Wrap" FontSize="15" Width="620" Text="{Binding Content}" HorizontalAlignment="Left"></TextBlock>
             <Grid HorizontalAlignment="Right">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"></ColumnDefinition>
@@ -20,9 +20,6 @@
             </Grid>
         </StackPanel>
         <StackPanel>
-            <StackPanel Height="220">
-
-            </StackPanel>
             <StackPanel VerticalAlignment="Center">
                 <Grid>
                     <Grid.RowDefinitions>

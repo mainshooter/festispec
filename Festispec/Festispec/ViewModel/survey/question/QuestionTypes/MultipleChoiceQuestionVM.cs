@@ -16,6 +16,14 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private QuestionDetails _questionDetails;
         private string _optionName;
 
+        public int Id 
+        {
+            get 
+            {
+                return _surveyQuestion.Id;
+            }
+        }
+
         public QuestionDetails QuestionDetails
         {
             get => _questionDetails;
@@ -74,6 +82,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         public MultipleChoiceQuestionVM()
         {
             _surveyQuestion = new Question();
+            Type = Lib.Enums.QuestionType.MultipleChoiseQuestion;
             QuestionDetails = new QuestionDetails();
         }
 

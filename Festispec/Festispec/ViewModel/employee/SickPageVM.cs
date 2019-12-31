@@ -14,8 +14,8 @@ namespace Festispec.ViewModel.employee
 {
     public class SickPageVM : ViewModelBase
     {
-        private EmployeeVM _employee { get; set; }
-        private PlannedEmployeeVM _plannedEmployee { get; set; }
+        private EmployeeVM _employee;
+        private PlannedEmployeeVM _plannedEmployee;
         public string ShowEventInfo { get; set; }
         public string ShowNoEvent { get; set; }
         public string SickPageButton { get; set; }

@@ -36,6 +36,9 @@
             <td>
                 @Html.ActionLink("Vragenlijst afnemen", "Conduct", new { id = item.Id })
             </td>
+            <td>
+                @Html.ActionLink("Evenement inzien", "EventDetails", "Event", new { id = item.Order.EventId}, null)
+            </td>
         </tr>
     }
 </table>

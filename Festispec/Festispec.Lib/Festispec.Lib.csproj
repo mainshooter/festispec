@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\PasswordService.cs" />
+    <Compile Include="Enums\DataParserType.cs" />
     <Compile Include="ConvertToImage\ConvertToImage.cs" />
     <Compile Include="Enums\QuestionType.cs" />
     <Compile Include="Enums\QuotationStatus.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Interfaces\IPasswordValidator.cs" />
     <Compile Include="DistanceCalculator\DistanceCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\DrawPoint.cs" />
     <Compile Include="Slugify\StringToSlug.cs" />
     <Compile Include="Survey\Question\QuestionChoices.cs" />
     <Compile Include="Survey\Question\QuestionDetails.cs" />

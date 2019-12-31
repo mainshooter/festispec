@@ -1,8 +1,12 @@
 ﻿using Festispec.Domain;
+using Festispec.Factory;
+using Festispec.Interface;
+using Festispec.Lib.Enums;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -10,9 +14,12 @@ using System.Windows.Input;
 
 namespace Festispec.ViewModel.report.element
 {
-    public class ReportElementVM : ViewModelBase, IDataErrorInfo
+    public class ReportElementVM : ViewModelBase, IDataErrorInfo  
     {
         private ReportElement _reportElement;
+        private IDataParser _dataParser;
+        private List<List<string>> _data;
+        private IQuestion _selectedSurveyQuestion;
         private Visibility _visibilityButtons;
 
         public ICommand EditElement { get; set; }
@@ -20,7 +27,13 @@ namespace Festispec.ViewModel.report.element
         public ICommand ElementUpCommand { get; set; }
         public ICommand ElementDownCommand { get; set; }
 
-        public virtual Object Data { get; set; }
+        public ReportVM ReportVM 
+        { 
+            get 
+            {
+                return CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().ReportVM;
+            }
+        }
 
         public int Id
         {
@@ -43,6 +56,19 @@ namespace Festispec.ViewModel.report.element
             set
             {
                 _reportElement.ReportId = value;
+            }
+        }
+
+        public byte[] Image 
+        {
+            get 
+            {
+                return _reportElement.Image;
+            }
+            set 
+            {
+                _reportElement.Image = value;
+                RaisePropertyChanged("Image");
             }
         }
 
@@ -97,19 +123,6 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
-        public byte[] Image
-        {
-            get
-            {
-                return _reportElement.Image;
-            }
-            set
-            {
-                _reportElement.Image = value;
-                RaisePropertyChanged("Image");
-            }
-        }
-
         public string X_as
         {
             get
@@ -119,6 +132,7 @@ namespace Festispec.ViewModel.report.element
             set
             {
                 _reportElement.X_as = value;
+                RaisePropertyChanged("X_as");
             }
         }
 
@@ -131,20 +145,54 @@ namespace Festispec.ViewModel.report.element
             set
             {
                 _reportElement.Y_as = value;
+                RaisePropertyChanged("Y_as");
             }
         }
 
-        public ReportVM ReportVM
+        public List<List<string>> Data 
         {
-            get
+            get 
             {
-                return CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().ReportVM;
+                return _data;
+            }
+            set 
+            {
+                _data = value;
+                RaisePropertyChanged("Data");
+            }
+        }
+
+        public virtual IDataParser DataParser 
+        { 
+            get 
+            {
+                return _dataParser;
+            }
+            set 
+            {
+                _dataParser = value;
+                RaisePropertyChanged("DataParser");
+            }
+        }
+
+        public IQuestion SelectedSurveyQuestion 
+        { 
+            get 
+            {
+                return _selectedSurveyQuestion;
+            }
+            set 
+            {
+                _selectedSurveyQuestion = value;
+                RaisePropertyChanged("SelectedSurveyQuestion");
             }
         }
 
         public ReportElementVM(ReportElement element)
         {
             _reportElement = element;
+            DataParser = DataParserFactory.GetDataParserByJson(element.Data);
+            
             DeleteElement = new RelayCommand(() => Delete());
             ElementUpCommand = new RelayCommand(MoveElementUp);
             ElementDownCommand = new RelayCommand(MoveElementDown);
@@ -170,12 +218,22 @@ namespace Festispec.ViewModel.report.element
 
         public void Delete()
         {
-            MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze element wilt verwijderen?", "Element Verwijderen", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show("Weet u zeker dat u dit element wilt verwijderen?", "Element Verwijderen", MessageBoxButton.YesNo);
             if (result.Equals(MessageBoxResult.Yes))
             {
                 using (var context = new Entities())
                 {
-                    context.ReportElements.Remove(context.ReportElements.Where(reportElement => reportElement.Id == _reportElement.Id).First());
+                    context.ReportElements.Attach(_reportElement);
+                    context.ReportElements.Remove(_reportElement);
+                    context.SaveChanges();
+
+                    var newElementOrder = context.ReportElements.Where(r => r.ReportId == ReportVM.Id).OrderBy(e => e.Order).ToList();
+                    int index = 1;
+                    foreach (var item in newElementOrder)
+                    {
+                        item.Order = index;
+                        index++;
+                    }
                     context.SaveChanges();
                 }
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ReportInfoVM>().RefreshElements();
@@ -185,6 +243,10 @@ namespace Festispec.ViewModel.report.element
 
         public ReportElement ToModel()
         {
+            if (DataParser != null)
+            {
+                _reportElement.Data = DataParser.ToJson();
+            }
             return _reportElement;
         }
 
@@ -237,9 +299,9 @@ namespace Festispec.ViewModel.report.element
                 {
                     return "Beschrijving moet ingevuld zijn";
                 }
-                else if (Content.Length > 100)
+                else if (Content.Length > 10000)
                 {
-                    return "Beschrijving mag niet langer zijn dan 100 karakters";
+                    return "Beschrijving mag niet langer zijn dan 10000 karakters";
                 }
                 return null;
             }
@@ -277,6 +339,18 @@ namespace Festispec.ViewModel.report.element
             }
         }
 
+        private string Validate_image 
+        {
+            get 
+            {
+                if (Image == null || Image.Length < 0)
+                {
+                    return "Er is geen afbeelding ge-upload";
+                }
+                return null;
+            }
+        }
+
         string GetValidationError(string propertyName)
         {
             string error = null;
@@ -294,6 +368,9 @@ namespace Festispec.ViewModel.report.element
                 case "X_as":
                     error = ValidateX_as;
                     break;
+                case "Image":
+                    error = Validate_image;
+                    break;
             }
             return error;
         }
@@ -308,11 +385,15 @@ namespace Festispec.ViewModel.report.element
             "Title", "Content"
         };
 
+        public static readonly string[] ValidateImage = {
+            "Image"
+        };
+
         public bool IsValid
         {
             get
             {
-                if (Type.Equals("barchart") || Type.Equals("linechart"))
+                if (Type.Equals(ReportElementType.Barchart) || Type.Equals(ReportElementType.Linechart))
                 {
                     foreach (var property in ValidatedProperties)
                     {
@@ -328,6 +409,13 @@ namespace Festispec.ViewModel.report.element
                     foreach (var property in ValidatedPropertiesShort)
                     {
                         if (GetValidationError(property) != null)
+                        {
+                            return false;
+                        }
+                    }
+                    if (Type == ReportElementType.Image)
+                    {
+                        if (GetValidationError(ValidateImage[0]) != null)
                         {
                             return false;
                         }

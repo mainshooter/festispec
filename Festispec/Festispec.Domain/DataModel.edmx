@@ -153,15 +153,8 @@
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="PlannedFrom" Type="datetime" Nullable="false" />
           <Property Name="PlannedTill" Type="datetime" Nullable="false" />
-          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="WorkedFrom" Type="datetime" />
           <Property Name="WorkedTill" Type="datetime" />
-        </EntityType>
-        <EntityType Name="InspectorPlanningStatus">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="Note">
           <Key>
@@ -246,6 +239,7 @@
           <Property Name="ElementType" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Content" Type="text" Nullable="false" />
+          <Property Name="Data" Type="text" />
           <Property Name="Order" Type="int" Nullable="false" />
           <Property Name="Image" Type="varbinary(max)" />
           <Property Name="X-as" Type="nvarchar" MaxLength="100" />
@@ -462,18 +456,6 @@
             </Principal>
             <Dependent Role="InspectorPlanning">
               <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_InspectorPlanning_InspectorPlanningStatus">
-          <End Role="InspectorPlanningStatus" Type="Self.InspectorPlanningStatus" Multiplicity="1" />
-          <End Role="InspectorPlanning" Type="Self.InspectorPlanning" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InspectorPlanningStatus">
-              <PropertyRef Name="Status" />
-            </Principal>
-            <Dependent Role="InspectorPlanning">
-              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -735,7 +717,6 @@
           <EntitySet Name="EmployeeStatus" EntityType="Self.EmployeeStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InspectorPlanning" EntityType="Self.InspectorPlanning" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="InspectorPlanningStatus" EntityType="Self.InspectorPlanningStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Note" EntityType="Self.Note" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QueryTemplate" EntityType="Self.QueryTemplate" Schema="dbo" store:Type="Tables" />
@@ -803,10 +784,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_InspectorPlanning_Employee" Association="Self.FK_InspectorPlanning_Employee">
             <End Role="Employee" EntitySet="Employee" />
-            <End Role="InspectorPlanning" EntitySet="InspectorPlanning" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InspectorPlanning_InspectorPlanningStatus" Association="Self.FK_InspectorPlanning_InspectorPlanningStatus">
-            <End Role="InspectorPlanningStatus" EntitySet="InspectorPlanningStatus" />
             <End Role="InspectorPlanning" EntitySet="InspectorPlanning" />
           </AssociationSet>
           <AssociationSet Name="FK_Note_ContactPerson" Association="Self.FK_Note_ContactPerson">
@@ -1071,20 +1048,11 @@
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <Property Name="PlannedFrom" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PlannedTill" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="WorkedFrom" Type="DateTime" Precision="3" />
           <Property Name="WorkedTill" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Day" Relationship="Self.FK_InspectorPlanning_Day" FromRole="InspectorPlanning" ToRole="Day" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_InspectorPlanning_Employee" FromRole="InspectorPlanning" ToRole="Employee" />
-          <NavigationProperty Name="InspectorPlanningStatu" Relationship="Self.FK_InspectorPlanning_InspectorPlanningStatus" FromRole="InspectorPlanning" ToRole="InspectorPlanningStatus" />
           <NavigationProperty Name="SickReportInspectors" Relationship="Self.FK_SickReportInspector_InspectorPlanning" FromRole="InspectorPlanning" ToRole="SickReportInspector" />
-        </EntityType>
-        <EntityType Name="InspectorPlanningStatu">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="InspectorPlannings" Relationship="Self.FK_InspectorPlanning_InspectorPlanningStatus" FromRole="InspectorPlanningStatus" ToRole="InspectorPlanning" />
         </EntityType>
         <EntityType Name="Note">
           <Key>
@@ -1190,6 +1158,7 @@
           <Property Name="ElementType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Order" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="X_as" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -1535,18 +1504,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_InspectorPlanning_InspectorPlanningStatus">
-          <End Role="InspectorPlanningStatus" Type="Self.InspectorPlanningStatu" Multiplicity="1" />
-          <End Role="InspectorPlanning" Type="Self.InspectorPlanning" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InspectorPlanningStatus">
-              <PropertyRef Name="Status" />
-            </Principal>
-            <Dependent Role="InspectorPlanning">
-              <PropertyRef Name="Status" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SickReportInspector_InspectorPlanning">
           <End Role="InspectorPlanning" Type="Self.InspectorPlanning" Multiplicity="1" />
           <End Role="SickReportInspector" Type="Self.SickReportInspector" Multiplicity="*" />
@@ -1689,7 +1646,6 @@
           <EntitySet Name="EmployeeStatus" EntityType="Self.EmployeeStatu" />
           <EntitySet Name="Events" EntityType="Self.Event" />
           <EntitySet Name="InspectorPlannings" EntityType="Self.InspectorPlanning" />
-          <EntitySet Name="InspectorPlanningStatus" EntityType="Self.InspectorPlanningStatu" />
           <EntitySet Name="Notes" EntityType="Self.Note" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="QueryTemplates" EntityType="Self.QueryTemplate" />
@@ -1794,10 +1750,6 @@
           <AssociationSet Name="FK_Quotation_Event" Association="Self.FK_Quotation_Event">
             <End Role="Event" EntitySet="Events" />
             <End Role="Quotation" EntitySet="Quotations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InspectorPlanning_InspectorPlanningStatus" Association="Self.FK_InspectorPlanning_InspectorPlanningStatus">
-            <End Role="InspectorPlanningStatus" EntitySet="InspectorPlanningStatus" />
-            <End Role="InspectorPlanning" EntitySet="InspectorPlannings" />
           </AssociationSet>
           <AssociationSet Name="FK_SickReportInspector_InspectorPlanning" Association="Self.FK_SickReportInspector_InspectorPlanning">
             <End Role="InspectorPlanning" EntitySet="InspectorPlannings" />
@@ -2001,16 +1953,8 @@
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="PlannedFrom" ColumnName="PlannedFrom" />
                 <ScalarProperty Name="PlannedTill" ColumnName="PlannedTill" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="WorkedFrom" ColumnName="WorkedFrom" />
                 <ScalarProperty Name="WorkedTill" ColumnName="WorkedTill" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="InspectorPlanningStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.InspectorPlanningStatu">
-              <MappingFragment StoreEntitySet="InspectorPlanningStatus">
-                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2104,6 +2048,7 @@
                 <ScalarProperty Name="ElementType" ColumnName="ElementType" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="X_as" ColumnName="X-as" />

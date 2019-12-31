@@ -10,7 +10,6 @@ using Festispec.Web.Models.Auth;
 using Festispec.Web.Models.Questions;
 using Newtonsoft.Json;
 using System;
-using Festispec.Lib.Survey.Question.Validator;
 
 namespace Festispec.Web.Controllers
 {
