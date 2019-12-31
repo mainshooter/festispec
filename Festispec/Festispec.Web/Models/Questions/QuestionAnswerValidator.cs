@@ -3,7 +3,7 @@ using Festispec.Web.Models.Questions.Types;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Festispec.Lib.Survey.Question.Validator
+namespace Festispec.Web.Models.Questions
 {
     public class QuestionAnswerValidator
     {
@@ -16,25 +16,25 @@ namespace Festispec.Lib.Survey.Question.Validator
             switch (question.Type)
             {
                 case Lib.Enums.QuestionType.ImageGaleryQuestion:
-                    return ValidateGalleryQuestion(question, answer);
+                    return ValidateGalleryQuestion(answer);
                 case Lib.Enums.QuestionType.ClosedQuestion:
-                    return ValidateClosedQuestion(question, answer);
+                    return ValidateClosedQuestion(answer);
                 case Lib.Enums.QuestionType.MultipleChoiseQuestion:
                     return ValidateMultipleChoiseQuestion(question, answer);
                 case Lib.Enums.QuestionType.OpenQuestion:
-                    return ValidateOpenQuestion(question, answer);
+                    return ValidateOpenQuestion(answer);
                 case Lib.Enums.QuestionType.SliderQuestion:
                     return ValidateSliderQuestion(question, answer);
                 case Lib.Enums.QuestionType.TableQuestion:
                     return ValidateTableQuestion(question, answer);
                 case Lib.Enums.QuestionType.DrawQuestion:
-                    return ValidateDrawQuestion(question, answer);
+                    return ValidateDrawQuestion(answer);
                 default:
                     return false;
             }
         }
 
-        private bool ValidateDrawQuestion(Domain.Question question, Answer answer)
+        private bool ValidateDrawQuestion(Answer answer)
         {
             if (answer.Answer1 == null)
             {
@@ -106,7 +106,7 @@ namespace Festispec.Lib.Survey.Question.Validator
             return false;
         }
 
-        private bool ValidateOpenQuestion(Domain.Question question, Answer answer)
+        private bool ValidateOpenQuestion(Answer answer)
         {
             if (answer.Answer1 == null)
             {
@@ -137,7 +137,7 @@ namespace Festispec.Lib.Survey.Question.Validator
             return false;
         }
 
-        private bool ValidateClosedQuestion(Domain.Question question, Answer answer)
+        private bool ValidateClosedQuestion(Answer answer)
         {
             if (answer.Answer1 == "Ja" || answer.Answer1 == "Nee")
             {
@@ -146,7 +146,7 @@ namespace Festispec.Lib.Survey.Question.Validator
             return false;
         }
 
-        private bool ValidateGalleryQuestion(Domain.Question question, Answer answer)
+        private bool ValidateGalleryQuestion(Answer answer)
         {
             if (answer.Answer1 != null)
             {
