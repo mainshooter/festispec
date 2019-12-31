@@ -25,13 +25,13 @@ namespace Festispec.Web.Controllers
                 return Redirect("~/User/Login");
             }
 
-            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
-                                    .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
-                                    DateTime.Today <= s.Order.Event.EndDate &&
-                                    s.Status == SurveyStatus.Definitief.ToString())
-                                    .ToList();
-
-            CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
+            //var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
+            //                        .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
+            //                        DateTime.Today <= s.Order.Event.EndDate &&
+            //                        s.Status == SurveyStatus.Definitief.ToString())
+            //                        .ToList();
+            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event");
+            //CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
 
             return View(surveysTodayWithOrderAndEvent);
         }
@@ -54,11 +54,15 @@ namespace Festispec.Web.Controllers
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            var model = new SurveyModel { Survey = _db.Surveys.Find(id) };
+            Survey survey = _db.Surveys.Find(id);
+            var model = new SurveyModel { Survey = survey };
             var questionVars = new List<string>();
             var repo = new QuestionTypeRepository();
-
+            List<Survey> surveyList = new List<Survey>();
+            surveyList.Add(survey);
+            if (CheckAllowenceCurrentEmployeeWithSurveys(surveyList).Count == 0){
+                return RedirectToAction("Index");
+            }
             if (model.Survey == null)
                 return HttpNotFound();
             var question = model.Survey.Questions;
@@ -98,6 +102,14 @@ namespace Festispec.Web.Controllers
             if (survey == null)
             {
                 return Json(new { result = "Survey not found" });
+            }
+
+            List<Survey> surveyList = new List<Survey>();
+            surveyList.Add(survey);
+
+            if (CheckAllowenceCurrentEmployeeWithSurveys(surveyList).Count == 0)
+            {
+                return Json(new { result = "No Access"});
             }
 
             List<Question> questions = survey.Questions.ToList();
