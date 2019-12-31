@@ -179,6 +179,8 @@ namespace Festispec.ViewModel.employee
 
         public string BirthdayDate => Birthday.ToString("dd-MM-yyyy");
 
+        public int DistanceFromEvent { get; set; }
+
         [PreferredConstructor]
         public EmployeeVM()
         {
