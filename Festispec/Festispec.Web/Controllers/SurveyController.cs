@@ -25,13 +25,12 @@ namespace Festispec.Web.Controllers
                 return Redirect("~/User/Login");
             }
 
-            //var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
-            //                        .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
-            //                        DateTime.Today <= s.Order.Event.EndDate &&
-            //                        s.Status == SurveyStatus.Definitief.ToString())
-            //                        .ToList();
-            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event");
-            //CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
+            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
+                                    .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
+                                    DateTime.Today <= s.Order.Event.EndDate &&
+                                    s.Status == SurveyStatus.Definitief.ToString())
+                                    .ToList();
+            CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
 
             return View(surveysTodayWithOrderAndEvent);
         }
