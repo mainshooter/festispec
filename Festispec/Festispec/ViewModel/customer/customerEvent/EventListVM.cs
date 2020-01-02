@@ -22,7 +22,7 @@ namespace Festispec.ViewModel.customer.customerEvent
 {
     public class EventListVM : ViewModelBase
     {
-        private string Role = UserSessionVm.Current.Employee.Department.Name;
+        private string _role = UserSessionVm.Current.Employee.Department.Name;
         private string _filter;
         private List<string> _filters;
         private bool _showOnlyFuture;
@@ -146,9 +146,9 @@ namespace Festispec.ViewModel.customer.customerEvent
             OpenEditEventCommand = new RelayCommand<EventVM>(OpenEditEventPage, CanOpenEdit);
             DeleteEventCommand = new RelayCommand<EventVM>(DeleteEvent, CanOpenDelete);
             OpenSingleEventCommand = new RelayCommand<EventVM>(OpenSingleEventPage, CanOpenDirectieAndSales);
-            OpenSurveyCommand = new RelayCommand<EventVM>(OpenSurveyPage, HasOrderSurvey);
-            OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage,CanOpen);
-            OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage, HasOrderPlanning);
+            OpenSurveyCommand = new RelayCommand<EventVM>(OpenSurveyPage, CanOpenOrderSurvey);
+            OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage, CanOpenReport);
+            OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage,CanOpenOrderPlanning);
             OpenQuotationsCommand = new RelayCommand<EventVM>(OpenQuotationPage, CanOpenDirectieAndSales);
             BackCommand = new RelayCommand(Back);
             SynchEventCommand = new RelayCommand<EventVM>(SynchEvent);
@@ -184,7 +184,7 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         private bool CanOpenEdit(EventVM source)
         {
-            if(Role == "Directie" || Role == "Sales") return source != null && source.EndDate >= DateTime.Today;
+            if(_role == "Directie" || _role == "Sales") return source != null && source.EndDate >= DateTime.Today;
             return false;
         }
 
@@ -209,7 +209,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             if (source == null) return false;
             if (source.ContainsModelOrder()) return false;
             if (source.EndDate < DateTime.Today) return false;
-            if (Role != "Directie") return false;
+            if (_role != "Directie") return false;
             return true;
         }
 
@@ -262,33 +262,33 @@ namespace Festispec.ViewModel.customer.customerEvent
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { NextReportVM = source.OrderVM.Report });
         }
 
-        private bool HasOrderSurvey(EventVM source)
+        private bool CanOpenOrderSurvey(EventVM source)
         {
-            if (Role == "Marketing" || Role == "Directie") return source != null && source.HasOrder();
+            if (_role == "Marketing" || _role == "Directie") return source != null && source.HasOrder();
             return false;
         }
 
-        private bool HasOrderPlanning(EventVM source)
+        private bool CanOpenOrderPlanning(EventVM source)
         {
-            if(Role == "Planning" || Role == "Directie") return source != null && source.HasOrder();
+            if(_role == "Planning" || _role == "Directie") return source != null && source.HasOrder();
             return false;
         }
 
-        private bool CanOpen(EventVM source)
+        private bool CanOpenReport(EventVM source)
         {
-            if(Role == "Directie" || Role == "Sales" || Role == "Marketing" ) return source != null && source.HasOrder();
+            if(_role == "Directie" || _role == "Sales" || _role == "Marketing" ) return source != null && source.HasOrder();
             return false;
         }
 
         private bool CanOpenDirectieAndSales(EventVM source)
         {
-            if(Role == "Directie" || Role == "Sales") return true;
+            if(_role == "Directie" || _role == "Sales") return true;
             return false;
         }
 
         private bool CanAddEvent()
         {
-            if(Role == "Directie" || Role == "Sales") return true;
+            if(_role == "Directie" || _role == "Sales") return true;
             return false;
         }
 
