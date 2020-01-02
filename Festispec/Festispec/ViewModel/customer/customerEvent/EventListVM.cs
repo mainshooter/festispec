@@ -146,9 +146,9 @@ namespace Festispec.ViewModel.customer.customerEvent
             OpenEditEventCommand = new RelayCommand<EventVM>(OpenEditEventPage, CanOpenEdit);
             DeleteEventCommand = new RelayCommand<EventVM>(DeleteEvent, CanOpenDelete);
             OpenSingleEventCommand = new RelayCommand<EventVM>(OpenSingleEventPage, CanOpenDirectieAndSales);
-            OpenSurveyCommand = new RelayCommand<EventVM>(OpenSurveyPage, CanOpenOrderSurvey);
-            OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage, CanOpenReport);
-            OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage,CanOpenOrderPlanning);
+            OpenSurveyCommand = new RelayCommand<EventVM>(OpenSurveyPage,CanOpenSurveyHasOrder);
+            OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage,CanOpenReportHasOrder);
+            OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage,CanOpenPlanningHasOrder);
             OpenQuotationsCommand = new RelayCommand<EventVM>(OpenQuotationPage, CanOpenDirectieAndSales);
             BackCommand = new RelayCommand(Back);
             SynchEventCommand = new RelayCommand<EventVM>(SynchEvent);
@@ -262,19 +262,19 @@ namespace Festispec.ViewModel.customer.customerEvent
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { NextReportVM = source.OrderVM.Report });
         }
 
-        private bool CanOpenOrderSurvey(EventVM source)
+        private bool CanOpenSurveyHasOrder(EventVM source)
         {
             if (_role == "Marketing" || _role == "Directie") return source != null && source.HasOrder();
             return false;
         }
 
-        private bool CanOpenOrderPlanning(EventVM source)
+        private bool CanOpenPlanningHasOrder(EventVM source)
         {
             if(_role == "Planning" || _role == "Directie") return source != null && source.HasOrder();
             return false;
         }
 
-        private bool CanOpenReport(EventVM source)
+        private bool CanOpenReportHasOrder(EventVM source)
         {
             if(_role == "Directie" || _role == "Sales" || _role == "Marketing" ) return source != null && source.HasOrder();
             return false;
