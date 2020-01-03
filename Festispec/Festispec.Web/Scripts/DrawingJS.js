@@ -15,7 +15,6 @@
 
 		document.addEventListener('mouseup', (event) => {
 			this.canDraw = false;
-
         });
 
         this.scope.addEventListener('mousemove', (event) => {
