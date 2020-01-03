@@ -113,7 +113,7 @@ namespace Festispec.Web.Controllers
 
             List<Question> questions = survey.Questions.ToList();
             List<Answer> answers = new List<Answer>();
-            Case surveyCase = new Case() { Survey = survey, EmployeeId = 1};
+            Case surveyCase = new Case() { Survey = survey, EmployeeId = UserSession.Current.Employee.Id };
 
             foreach (var givenAnswer in request)
             {
