@@ -59,6 +59,7 @@ namespace Festispec.Web.Controllers
             var repo = new QuestionTypeRepository();
             List<Survey> surveyList = new List<Survey>();
             surveyList.Add(survey);
+
             if (CheckAllowenceCurrentEmployeeWithSurveys(surveyList).Count == 0){
                 return RedirectToAction("Index");
             }
@@ -81,6 +82,8 @@ namespace Festispec.Web.Controllers
         [HttpPost]
         public ActionResult Conduct(int id)
         {
+
+
             Dictionary<string, string> request = new Dictionary<string, string>();
             QuestionAnswerValidator questionAnswerValidator = new QuestionAnswerValidator();
             QuestionCleanerAnswer questionCleanerAnswer = new QuestionCleanerAnswer();
@@ -97,6 +100,7 @@ namespace Festispec.Web.Controllers
             }
 
             Survey survey = _db.Surveys.Find(id);
+
 
             if (survey == null)
             {
