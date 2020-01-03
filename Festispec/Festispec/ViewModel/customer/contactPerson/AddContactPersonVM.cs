@@ -26,6 +26,7 @@ namespace Festispec.ViewModel.customer.contactPerson
             this.MessengerInstance.Register<ChangeSelectedCustomerMessage>(this, message =>
             {
                 Customer = message.Customer;
+                RaisePropertyChanged(() => ContactPerson);
             });
 
             BackCommand = new RelayCommand(GoBackButton);
@@ -45,7 +46,6 @@ namespace Festispec.ViewModel.customer.contactPerson
                 }
                 CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Contactperson aangemaakt");
                 ContactPerson = new ContactPersonVM();
-                RaisePropertyChanged(() => ContactPerson);
                 GoBackButton();
             }
             else

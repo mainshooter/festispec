@@ -58,7 +58,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.DeleteContactPersonCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" ToolTip="Delete ContactPerson" ToolTipService.ShowOnDisabled="True">
+                                <Button Command="{Binding DataContext.DeleteContactPersonCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" ToolTip="Contactpersoon verwijderen" ToolTipService.ShowOnDisabled="True">
                                     <materialDesign:PackIcon Kind="Delete"/>
                                 </Button>
                             </DataTemplate>

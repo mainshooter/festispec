@@ -2,14 +2,12 @@
 using Festispec.Message;
 using Festispec.View.Pages.Customer.ContactPerson;
 using Festispec.View.Pages.Customer.Note;
-using Festispec.ViewModel.customer.contactPerson.note;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -166,10 +164,10 @@ namespace Festispec.ViewModel.customer.contactPerson
             if (result.Equals(MessageBoxResult.Yes) && CanDeleteContactPerson())
             {
                 DeleteContactPersonNotes();
+                SelectedContactPerson.Notes.Clear();
                 using(var context = new Entities())
                 {
-                    context.ContactPersons.Attach(SelectedContactPerson.ToModel());
-                    context.Entry(SelectedContactPerson.ToModel()).State = EntityState.Deleted;
+                    context.ContactPersons.Remove(context.ContactPersons.Where(p => p.Id == SelectedContactPerson.Id).First());
                     context.SaveChanges();
                 }
                 FillList();
@@ -193,7 +191,7 @@ namespace Festispec.ViewModel.customer.contactPerson
 
         private bool CanDeleteContactPerson()
         {
-            using( var context = new Entities())
+            using(var context = new Entities())
             {
                 if (context.Events.Where(cp => cp.Id == SelectedContactPerson.Id).Count() > 0)
                 {

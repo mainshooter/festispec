@@ -22,7 +22,7 @@
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Prefix, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
                 <Label Content="Achternaam" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
                 <TextBox HorizontalAlignment="Left" Height="25 " Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Lastname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-                <Label Content="Telefoonnummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="49"/>
+                <Label Content="Telefoonnummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Phone, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
                 <Label Content="E-Mail" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Email, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
