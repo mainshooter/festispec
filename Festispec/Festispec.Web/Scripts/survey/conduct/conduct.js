@@ -10,7 +10,6 @@ function getAllFormInputs() {
         let formElements = form.elements;
         for (let i = 0; i < formElements.length; i++) {
             let element = formElements[i];
-            console.log(element);
             let type = element.type;
             if (type == "file") {
                 let files = element.files;
@@ -29,7 +28,6 @@ function getAllFormInputs() {
             }
         }
         Promise.all(promises).then((values) => {
-            console.log(values);
             resolve(values);
         });
     });
@@ -132,12 +130,39 @@ function uploadSurveyCase(allCases, surveyCases, index, currentCase) {
 	});
 }
 
+function validateTableQuestions() {
+    let tableQuestionsAreValid = true;
+    for (let a = 0; a < tableQuestions.length; a++) {
+        let tableQuestion = tableQuestions[a];
+        let tableQuestionValues = tableQuestion.getValues();
+        for (let i = 0; i < tableQuestionValues.length; i++) {
+            let tableQuestionRow = tableQuestionValues[i];
+            let foundCorrectValues = 0;
+            for (var j = 0; j < tableQuestionRow.length; j++) {
+                let tableColValue = tableQuestionRow[j];
+                console.log(tableColValue);
+                if (tableColValue && tableColValue != "") {
+                    foundCorrectValues++;
+                }
+            }
+            if (foundCorrectValues != tableQuestionRow.length) {
+                tableQuestionsAreValid = false;
+                tableQuestion.displayNotCompleted();
+            }
+        }
+    }
+    return tableQuestionsAreValid;
+}
+
 $(document).ready(() => {
+    $.extend(jQuery.validator.messages, {
+        required: "Dit veld is verplicht",
+    });
 	$("#saveSurvey").click(() => {
         $(".survey-container").validate({
-			ignore: "input[type='file']",
+			ignore: ["input[type='file']"],
 		});
-        if ($(".survey-container").valid()) {
+        if ($(".survey-container").valid() && validateTableQuestions()) {
 			saveAllFormInputs();
             $(".survey-container").trigger("reset");
 			alert("Uw case is opgeslagen");

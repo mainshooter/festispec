@@ -6,7 +6,8 @@
 
 
 	<script>
-		let surveyId = @Html.Raw(Model.Survey.Id);
+        let surveyId = @Html.Raw(Model.Survey.Id);
+        let tableQuestions = [];
 	</script>
 
 
@@ -21,13 +22,6 @@
 			@Html.EditorFor(m => question)
 			<br />
 		</div>
-		if (question.Type == "Tabel vraag")
-		{
-			<script>
-				new TableQuestion("table-@question.Variable", "@question.Variable");
-			</script>
-		}
-
 	}
 	<button type="button" class="btn btn-primary" id="saveSurvey">Opslaan</button>
 </form>
