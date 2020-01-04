@@ -7,6 +7,9 @@
     <link rel="shortcut icon"
           href="@Url.Content("~/Festispec-icon.ico")">
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("/Scripts/DrawingJS.js")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -25,7 +28,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Survey", "Index", "Survey")</li>
-                    <li>@Html.ActionLink("Planning", "Index", "Planning")</li>
                 </ul>
                 @using Festispec.Web.Models.Auth
                 @if (UserSession.Current.Employee != null)
@@ -46,8 +48,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
