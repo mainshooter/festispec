@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Festispec.Lib.Auth;
@@ -21,6 +22,12 @@ namespace Festispec.ViewModel.auth
 
         private void Reset(PasswordBox password)
         {
+            if (password.Password.Length > 999999 || password.Password.Length <= 0)
+            {
+                MessageBox.Show("Wachtwoord is te lang of te kort.", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var result = PasswordResetService.UpdatePasswordFor(Email, password.Password);
 
             if (result)

@@ -14,6 +14,12 @@ namespace Festispec.Web.Controllers
         [HttpPost]
         public ActionResult Reset(string email, string password)
         {
+            if (password.Length > 99999 || password.Length <= 0)
+            {
+                ModelState.AddModelError("", "Lengte van wachtwoord ongeldig.");
+                return View();
+            }
+
             var result = PasswordResetService.UpdatePasswordFor(email, password);
 
             if (result)

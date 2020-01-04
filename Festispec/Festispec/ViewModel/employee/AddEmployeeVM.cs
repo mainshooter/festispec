@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Collections.Generic;
 using Festispec.ViewModel.toast;
+using Festispec.Lib.Auth;
 
 namespace Festispec.ViewModel.employee
 {

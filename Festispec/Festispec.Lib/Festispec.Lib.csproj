@@ -96,6 +96,12 @@
   <ItemGroup>
     <Content Include="Images\FestispecLogo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images.resx">		
+	<Generator>PublicResXFileCodeGenerator</Generator>		
+		<LastGenOutput>Images.Designer.cs</LastGenOutput>		
+    </EmbeddedResource>		
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
