@@ -171,7 +171,7 @@ namespace Festispec.ViewModel.customer.contactPerson
                     context.SaveChanges();
                 }
                 FillList();
-                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Gebruiker verwijderd");
+                CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Contactpersoon verwijderd");
                 RaisePropertyChanged(() => FilteredContactPersonList);
             }
         }
@@ -195,6 +195,7 @@ namespace Festispec.ViewModel.customer.contactPerson
             {
                 if (context.Events.Where(cp => cp.Id == SelectedContactPerson.Id).Count() > 0)
                 {
+                    CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowError("Contactpersoon kan niet verwijderd worden.");
                     return false;
                 }
                 return true;
