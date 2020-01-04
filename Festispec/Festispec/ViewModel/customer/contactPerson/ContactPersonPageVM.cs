@@ -5,7 +5,6 @@ using Festispec.View.Pages.Customer.Note;
 using Festispec.ViewModel.toast;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -160,7 +159,7 @@ namespace Festispec.ViewModel.customer.contactPerson
 
         public void DeleteContactPerson()
         {
-            MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze contactperson wilt verwijderen?", "Contactpersoon Verwijderen", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show("Weet u zeker dat u deze contactpersoon wilt verwijderen?", "Contactpersoon Verwijderen", MessageBoxButton.YesNo);
             if (result.Equals(MessageBoxResult.Yes) && CanDeleteContactPerson())
             {
                 DeleteContactPersonNotes();
@@ -193,9 +192,9 @@ namespace Festispec.ViewModel.customer.contactPerson
         {
             using(var context = new Entities())
             {
-                if (context.Events.Where(cp => cp.Id == SelectedContactPerson.Id).Count() > 0)
+                if (context.Events.Where(e => e.ContactPersonId == SelectedContactPerson.Id).Any())
                 {
-                    CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowError("Contactpersoon kan niet verwijderd worden.");
+                    MessageBox.Show("Contactpersoon kan niet verwijderd worden omdat deze gekoppeld is aan een of meerdere evenementen.", "Waarschuwing", MessageBoxButton.OK);
                     return false;
                 }
                 return true;

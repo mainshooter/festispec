@@ -14,6 +14,7 @@ using Festispec.Message;
 using Festispec.Domain;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Festispec.View.Pages.Customer.ContactPerson;
 using Festispec.ViewModel.customer;
 using Festispec.View.Pages.Employee.Planning;
 
@@ -193,7 +194,7 @@ namespace Festispec.ViewModel
 
         private void OpenSickTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(SickPage) });
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ContactPersonPage) });
         }
 
         private void OpenAccountInformation()
