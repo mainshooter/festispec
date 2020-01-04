@@ -1,6 +1,12 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿html, body {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+	position: relative;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,6 +28,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
 .error {
 	color: #e74c3c;
 }
@@ -37,4 +44,21 @@ textarea {
 .delete-row {
     color: blue;
     cursor: pointer;
+}
+.draw-question {
+	position: relative;
+	display: inline-block;
+	user-select: none;
+	margin: 4rem;
+	border: 2px solid black;
+}
+
+.draw-question .inkt {
+	height: 5px;
+	width: 5px;
+	background-color: red;
+	position: absolute;
+}
+.draw-question img {
+	width: 100%;
 }

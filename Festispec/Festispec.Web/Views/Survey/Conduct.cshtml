@@ -13,15 +13,16 @@
 
 <h2>Vragenlijst afnemen</h2>
 <form class="survey-container" method="post" enctype="multipart/form-data">
-
-	@foreach (var question in Model.Questions)
-	{
-		<div class="question-container">
-			<h3>@question.Details.Question</h3>
-			<p><strong>Beschrijving: </strong> @question.Details.Description</p>
-			@Html.EditorFor(m => question)
-			<br />
-		</div>
-	}
-	<button type="button" class="btn btn-primary" id="saveSurvey">Opslaan</button>
+        @foreach (var question in Model.Questions)
+        {
+            <div class="row">
+                <div class="question-container col-12">
+                    <h3>@question.Details.Question</h3>
+                    <p><strong>Beschrijving: </strong> @question.Details.Description</p>
+                    @Html.EditorFor(m => question)
+                    <br />
+                </div>
+            </div>
+        }
+        <button type="button" class="btn btn-primary" id="saveSurvey">Opslaan</button>
 </form>

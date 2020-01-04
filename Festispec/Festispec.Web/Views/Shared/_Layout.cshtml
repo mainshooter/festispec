@@ -7,6 +7,9 @@
     <link rel="shortcut icon"
           href="@Url.Content("~/Festispec-icon.ico")">
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("/Scripts/DrawingJS.js")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -51,8 +54,6 @@
 			<p>&copy; @DateTime.Now.Year - Festispec vragenlijsten app</p>
         </footer>
     </div>
-
-
     @RenderSection("scripts", required: false)
 </body>
 </html>
