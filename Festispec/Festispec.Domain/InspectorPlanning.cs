@@ -25,13 +25,11 @@ namespace Festispec.Domain
         public int OrderId { get; set; }
         public System.DateTime PlannedFrom { get; set; }
         public System.DateTime PlannedTill { get; set; }
-        public string Status { get; set; }
         public Nullable<System.DateTime> WorkedFrom { get; set; }
         public Nullable<System.DateTime> WorkedTill { get; set; }
     
         public virtual Day Day { get; set; }
         public virtual Employee Employee { get; set; }
-        public virtual InspectorPlanningStatu InspectorPlanningStatu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SickReportInspector> SickReportInspectors { get; set; }
     }
