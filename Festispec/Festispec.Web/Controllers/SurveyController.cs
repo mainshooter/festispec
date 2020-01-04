@@ -25,13 +25,13 @@ namespace Festispec.Web.Controllers
                 return Redirect("~/User/Login");
             }
 
-            //var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
-            //                        .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
-            //                        DateTime.Today <= s.Order.Event.EndDate &&
-            //                        s.Status == SurveyStatus.Definitief.ToString())
-            //                        .ToList();
-            //CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
-            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event");
+            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
+                                    .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
+                                    DateTime.Today <= s.Order.Event.EndDate &&
+                                    s.Status == SurveyStatus.Definitief.ToString())
+                                    .ToList();
+            CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
+
             return View(surveysTodayWithOrderAndEvent);
         }
 
@@ -114,10 +114,10 @@ namespace Festispec.Web.Controllers
             List<Survey> surveyList = new List<Survey>();
             surveyList.Add(survey);
 
-            //if (CheckAllowenceCurrentEmployeeWithSurveys(surveyList).Count == 0)
-            //{
-            //    return Json(new { result = "No Access"});
-            //}
+            if (CheckAllowenceCurrentEmployeeWithSurveys(surveyList).Count == 0)
+            {
+                return Json(new { result = "No Access" });
+            }
 
             List<Question> questions = survey.Questions.ToList();
             List<Answer> answers = new List<Answer>();
