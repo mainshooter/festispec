@@ -1,0 +1,101 @@
+﻿@model Festispec.Web.Models.EventModel
+
+@{
+    ViewBag.Title = "EventDetails";
+}
+
+<h2>Evenement Informatie</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Naam")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Adres")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Adress)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Postcode")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.PostalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Plaats")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Begindatum")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.BeginDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Einddatum")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Bezoekersaantal")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.AmountVisitors)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Oppervlakte (m²)")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.SurfaceM2)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Contactpersoon")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.ContactName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Klant")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.Customer.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Beschrijving")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Event.Description)
+        </dd>
+
+    </dl>
+</div>

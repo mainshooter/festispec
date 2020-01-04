@@ -2,10 +2,10 @@
 using Festispec.ViewModel.employee.department;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
 using System.Windows;
 
 namespace Festispec.ViewModel.employee
@@ -178,6 +178,8 @@ namespace Festispec.ViewModel.employee
         }
 
         public string BirthdayDate => Birthday.ToString("dd-MM-yyyy");
+
+        public int DistanceFromEvent { get; set; }
 
         [PreferredConstructor]
         public EmployeeVM()

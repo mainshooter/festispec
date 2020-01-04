@@ -18,7 +18,16 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         private readonly Question _surveyQuestion;
 
         public QuestionDetails QuestionDetails { get; set; }
+
         public string QuestionType => _surveyQuestion.Type;
+
+        public int Id 
+        {
+            get 
+            {
+                return _surveyQuestion.Id;
+            }
+        }
 
         public int SurveyId
         {
@@ -55,6 +64,7 @@ namespace Festispec.ViewModel.survey.question.QuestionTypes
         {
             _surveyQuestion = new Question();
             QuestionDetails = new QuestionDetails();
+            Type = Lib.Enums.QuestionType.DrawQuestion;
             QuestionDetails.Images.Add(new byte[0]);
         }
 

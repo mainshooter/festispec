@@ -166,6 +166,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Factory\DataParserFactory.cs" />
+    <Compile Include="Factory\QuestionFactory.cs" />
+    <Compile Include="Interface\IDataParser.cs" />
+    <Compile Include="Interface\IReportElement.cs" />
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
     <Compile Include="Message\ChangeSelectedContactPersonMessage.cs" />
     <Compile Include="Message\ChangeSelectedOrderMessage.cs" />
@@ -173,9 +177,11 @@
     <Compile Include="Message\ChangeSelectedReportMessage.cs" />
     <Compile Include="Message\ChangeSelectedCustomerMessage.cs" />
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
+    <Compile Include="Message\ChangeSelectedPlannedEmployeeEventMessage.cs" />
+    <Compile Include="Message\ChangeSelectedPlannedEmployeeMessage.cs" />
     <Compile Include="Message\ChangeSelectedQuotationMessage.cs" />
     <Compile Include="ViewModel\auth\UserLoginVM.cs" />
-    <Compile Include="ViewModel\auth\UserSessionVm.cs" />
+    <Compile Include="ViewModel\auth\UserSessionVM.cs" />
     <Compile Include="Factory\ReportElementFactory.cs" />
     <Compile Include="Message\ChangeSelectedSurveyMessage.cs" />
     <Compile Include="Message\ChangeSelectedSurveyQuestionMessage.cs" />
@@ -214,21 +220,38 @@
     <Compile Include="ViewModel\employee\EmployeeInfoVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeListVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeVM.cs" />
+    <Compile Include="ViewModel\employee\planning\EmployeePlanningInfoVM.cs" />
     <Compile Include="ViewModel\employee\SickPageVM.cs" />
+    <Compile Include="ViewModel\employee\SickVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PasswordBoxAssistant\PasswordBoxAssistant.cs" />
+    <Compile Include="ViewModel\planning\AddPlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\planning\DayVM.cs" />
+    <Compile Include="ViewModel\planning\EditPlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
     <Compile Include="ViewModel\report\AddReportVM.cs" />
+    <Compile Include="ViewModel\report\data\AvgDataParserVM.cs" />
+    <Compile Include="ViewModel\report\data\CountDataParserVM.cs" />
+    <Compile Include="ViewModel\report\data\CountOptionsDataParserVM.cs" />
+    <Compile Include="ViewModel\report\data\DataVM.cs" />
+    <Compile Include="ViewModel\report\data\DrawDataParser.cs" />
+    <Compile Include="ViewModel\report\data\MaxDataParserVM.cs" />
+    <Compile Include="ViewModel\report\data\MinDataParserVM.cs" />
+    <Compile Include="ViewModel\report\data\SelectDataParserVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddBarChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Add\AddDrawVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddImageVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddLineChartVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddPieChartVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddTableVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddTextVM.cs" />
+    <Compile Include="ViewModel\report\element\Add\BaseElementAddVM.cs" />
+    <Compile Include="ViewModel\report\element\DrawVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\BaseElementEditVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditBarChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\EditDrawVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditImageVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditLineChartVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditPieChartVM.cs" />
@@ -328,17 +351,29 @@
     <Compile Include="View\Pages\Employee\EmployeeInformationPage.xaml.cs">
       <DependentUpon>EmployeeInformationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Employee\Planning\EmployeePlanningPage.xaml.cs">
+      <DependentUpon>EmployeePlanningPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Employee\SickPage.xaml.cs">
       <DependentUpon>SickPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
       <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Planning\AddPlannedEmployeePage.xaml.cs">
+      <DependentUpon>AddPlannedEmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Planning\EditPlannedEmployeePage.xaml.cs">
+      <DependentUpon>EditPlannedEmployeePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Report\AddReportPage.xaml.cs">
       <DependentUpon>AddReportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Report\element\Add\AddBarChartPage.xaml.cs">
       <DependentUpon>AddBarChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Add\AddDrawPage.xaml.cs">
+      <DependentUpon>AddDrawPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Report\element\Add\AddImagePage.xaml.cs">
       <DependentUpon>AddImagePage.xaml</DependentUpon>
@@ -357,6 +392,9 @@
     </Compile>
     <Compile Include="View\Pages\Report\element\Edit\EditBarChartPage.xaml.cs">
       <DependentUpon>EditBarChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Edit\EditDrawPage.xaml.cs">
+      <DependentUpon>EditDrawPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Report\element\Edit\EditImagePage.xaml.cs">
       <DependentUpon>EditImagePage.xaml</DependentUpon>
@@ -424,11 +462,11 @@
     <Compile Include="View\Pages\Survey\QuestionTypes\OpenQuestion\AddOpenQuestionPage.xaml.cs">
       <DependentUpon>AddOpenQuestionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrols\Report\AddReportElementUserControl.xaml.cs">
-      <DependentUpon>AddReportElementUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Usercontrols\Report\Element\BarChartUserControl.xaml.cs">
       <DependentUpon>BarChartUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usercontrols\Report\Element\DrawUserControl.xaml.cs">
+      <DependentUpon>DrawUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usercontrols\Report\Element\ImageUserControl.xaml.cs">
       <DependentUpon>ImageUserControl.xaml</DependentUpon>
@@ -474,9 +512,6 @@
     </Compile>
     <Compile Include="View\Pages\Planning\PlanningOverviewPage.xaml.cs">
       <DependentUpon>PlanningOverviewPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Usercontrols\Report\ReportControlUserControl.xaml.cs">
-      <DependentUpon>ReportControlUserControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -568,6 +603,18 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="View\Pages\Planning\AddPlannedEmployeePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Planning\EditPlannedEmployeePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Employee\Planning\EmployeePlanningPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Employee\SickPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -579,6 +626,10 @@
     <Page Include="View\Pages\Report\element\Add\AddBarChartPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\Report\element\Add\AddDrawPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Report\element\Add\AddImagePage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -601,6 +652,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\Report\element\Edit\EditBarChartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\Edit\EditDrawPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -704,11 +759,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrols\Report\AddReportElementUserControl.xaml">
+    <Page Include="View\Usercontrols\Report\Element\BarChartUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrols\Report\Element\BarChartUserControl.xaml">
+    <Page Include="View\Usercontrols\Report\Element\DrawUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -765,10 +820,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Planning\PlanningOverviewPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Usercontrols\Report\ReportControlUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -246,7 +246,6 @@ CREATE TABLE [dbo].[InspectorPlanning](
 	[OrderId] [int] NOT NULL,
 	[PlannedFrom] [datetime] NOT NULL,
 	[PlannedTill] [datetime] NOT NULL,
-	[Status] [nvarchar](45) NOT NULL,
 	[WorkedFrom] [datetime] NULL,
 	[WorkedTill] [datetime] NULL,
  CONSTRAINT [PK_InspectorPlanning] PRIMARY KEY CLUSTERED
@@ -254,19 +253,6 @@ CREATE TABLE [dbo].[InspectorPlanning](
 	[EmployeeId] ASC,
 	[DayId] ASC,
 	[OrderId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[InspectorPlanningStatus]    Script Date: 5-11-2019 21:03:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[InspectorPlanningStatus](
-	[Status] [nvarchar](45) NOT NULL,
- CONSTRAINT [PK_InspectorPlanningStatus] PRIMARY KEY CLUSTERED
-(
-	[Status] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -411,6 +397,7 @@ CREATE TABLE [dbo].[ReportElement](
 	[ElementType] [nvarchar](100) NOT NULL,
 	[Title] [nvarchar](100) NOT NULL,
 	[Content] [text] NOT NULL,
+	[Data] [text] NULL,
 	[Order] [int] NOT NULL,
 	[Image] VARBINARY(MAX) NULL,
 	[X-as] [nvarchar](100) NULL,
@@ -561,11 +548,6 @@ ALTER TABLE [dbo].[InspectorPlanning]  WITH CHECK ADD  CONSTRAINT [FK_InspectorP
 REFERENCES [dbo].[Employee] ([Id])
 GO
 ALTER TABLE [dbo].[InspectorPlanning] CHECK CONSTRAINT [FK_InspectorPlanning_Employee]
-GO
-ALTER TABLE [dbo].[InspectorPlanning]  WITH CHECK ADD  CONSTRAINT [FK_InspectorPlanning_InspectorPlanningStatus] FOREIGN KEY([Status])
-REFERENCES [dbo].[InspectorPlanningStatus] ([Status])
-GO
-ALTER TABLE [dbo].[InspectorPlanning] CHECK CONSTRAINT [FK_InspectorPlanning_InspectorPlanningStatus]
 GO
 ALTER TABLE [dbo].[Note]  WITH CHECK ADD  CONSTRAINT [FK_Note_ContactPerson] FOREIGN KEY([ContactPersonId])
 REFERENCES [dbo].[ContactPerson] ([Id])

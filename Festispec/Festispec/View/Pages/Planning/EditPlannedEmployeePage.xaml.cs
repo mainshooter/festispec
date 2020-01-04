@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Festispec.View.Report
+namespace Festispec.View.Pages.Planning
 {
     /// <summary>
-    /// Interaction logic for ReportControl.xaml
+    /// Interaction logic for EditPlannedEmployeePage.xaml
     /// </summary>
-    public partial class ReportControlUserControl : UserControl
+    public partial class EditPlannedEmployeePage : Page
     {
-        public ReportControlUserControl()
+        public EditPlannedEmployeePage()
         {
             InitializeComponent();
         }
