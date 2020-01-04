@@ -138,14 +138,13 @@ function validateTableQuestions() {
         for (let i = 0; i < tableQuestionValues.length; i++) {
             let tableQuestionRow = tableQuestionValues[i];
             let foundCorrectValues = 0;
-            for (var j = 0; j < tableQuestionRow.length; j++) {
+            for (let j = 0; j < tableQuestionRow.length; j++) {
                 let tableColValue = tableQuestionRow[j];
-                console.log(tableColValue);
                 if (tableColValue && tableColValue != "") {
                     foundCorrectValues++;
                 }
             }
-            if (foundCorrectValues != tableQuestionRow.length) {
+            if (foundCorrectValues != tableQuestionRow.length - 1) {
                 tableQuestionsAreValid = false;
                 tableQuestion.displayNotCompleted();
             }
@@ -160,7 +159,7 @@ $(document).ready(() => {
     });
 	$("#saveSurvey").click(() => {
         $(".survey-container").validate({
-			ignore: ["input[type='file']"],
+			ignore: "input[type='file']",
 		});
         if ($(".survey-container").valid() && validateTableQuestions()) {
 			saveAllFormInputs();

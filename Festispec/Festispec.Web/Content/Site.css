@@ -34,3 +34,7 @@ textarea {
 .slider-question-container .range-value {
     text-align: center;
 }
+.delete-row {
+    color: blue;
+    cursor: pointer;
+}

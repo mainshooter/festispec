@@ -25,13 +25,13 @@ namespace Festispec.Web.Controllers
                 return Redirect("~/User/Login");
             }
 
-            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
-                                    .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
-                                    DateTime.Today <= s.Order.Event.EndDate &&
-                                    s.Status == SurveyStatus.Definitief.ToString())
-                                    .ToList();
-            CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
-
+            //var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
+            //                        .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
+            //                        DateTime.Today <= s.Order.Event.EndDate &&
+            //                        s.Status == SurveyStatus.Definitief.ToString())
+            //                        .ToList();
+            //CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
+            var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event");
             return View(surveysTodayWithOrderAndEvent);
         }
 
@@ -64,9 +64,9 @@ namespace Festispec.Web.Controllers
             List<Survey> surveyList = new List<Survey>();
             surveyList.Add(survey);
 
-            if (CheckAllowenceCurrentEmployeeWithSurveys(surveyList).Count == 0){
-                return RedirectToAction("Index");
-            }
+            //if (CheckAllowenceCurrentEmployeeWithSurveys(surveyList).Count == 0){
+            //    return RedirectToAction("Index");
+            //}
             if (model.Survey == null)
                 return HttpNotFound();
             var question = model.Survey.Questions;
@@ -86,8 +86,6 @@ namespace Festispec.Web.Controllers
         [HttpPost]
         public ActionResult Conduct(int id)
         {
-
-
             Dictionary<string, string> request = new Dictionary<string, string>();
             QuestionAnswerValidator questionAnswerValidator = new QuestionAnswerValidator();
             QuestionCleanerAnswer questionCleanerAnswer = new QuestionCleanerAnswer();
@@ -114,10 +112,10 @@ namespace Festispec.Web.Controllers
             List<Survey> surveyList = new List<Survey>();
             surveyList.Add(survey);
 
-            if (CheckAllowenceCurrentEmployeeWithSurveys(surveyList).Count == 0)
-            {
-                return Json(new { result = "No Access" });
-            }
+            //if (CheckAllowenceCurrentEmployeeWithSurveys(surveyList).Count == 0)
+            //{
+            //    return Json(new { result = "No Access" });
+            //}
 
             List<Question> questions = survey.Questions.ToList();
             List<Answer> answers = new List<Answer>();

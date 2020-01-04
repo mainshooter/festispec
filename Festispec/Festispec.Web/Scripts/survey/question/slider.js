@@ -8,9 +8,7 @@
             element.addEventListener("change", (event) => {
                 let target = event.target;
                 let container = target.parentNode;
-                console.log(target.value);
                 container.querySelector(".range-value").innerHTML = target.value;
-                console.log(event);
             });
 
         }

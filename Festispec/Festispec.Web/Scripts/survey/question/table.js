@@ -40,6 +40,32 @@
         this.table.addEventListener('change', (event) => {
             this.setNewValues(JSON.stringify(this.getValues()));
         });
+        this.table.querySelector(".delete-row").addEventListener('click', (event) => {
+            if (this.table.querySelectorAll("tbody tr").length > 1) {
+                let row = event.currentTarget.parentNode.parentNode;
+                console.log(row);
+                row.remove();
+            }
+        });
+        this.scope.querySelector(".add-row").addEventListener('click', () => {
+            let row = this.table.querySelector("tbody tr");
+            let clonedItem = row.cloneNode(true);
+            let tds = clonedItem.querySelectorAll("td");
+            tds.forEach((td) => {
+                let input = td.querySelector("input");
+                if (input) {
+                    input.value = "";
+                }
+            });
+            clonedItem.querySelector(".delete-row").addEventListener('click', (event) => {
+                if (this.table.querySelectorAll("tbody tr").length > 1) {
+                    let row = event.currentTarget.parentNode.parentNode;
+                    console.log(row);
+                    row.remove();
+                }
+            });
+            this.table.querySelector("tbody").appendChild(clonedItem);
+        });
         let event = new Event('change');
         this.table.dispatchEvent(event);
     }
