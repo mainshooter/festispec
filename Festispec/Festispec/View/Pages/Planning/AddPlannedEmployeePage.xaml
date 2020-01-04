@@ -28,9 +28,10 @@
                     <ColumnDefinition Width="150"></ColumnDefinition>
                     <ColumnDefinition Width="150"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <DataGrid Grid.Column="0" Grid.RowSpan="2" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding FilteredAvailableInspectorList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="350">
+                <DataGrid Grid.Column="0" Grid.RowSpan="2" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly ="true" AutoGenerateColumns="False" ItemsSource="{Binding SortedAvailableInspectorList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="350">
                     <DataGrid.Columns>
                     <DataGridTextColumn Header="Volledige naam" Binding="{Binding Fullname}"/>
+                    <DataGridTextColumn Header="Afstand (km)" Binding="{Binding DistanceFromEvent}"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
