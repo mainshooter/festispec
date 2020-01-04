@@ -3,44 +3,53 @@
 }
 Festispec.storage = window.localStorage;
 
+function getAllFormInputs() {
+    return new Promise((resolve, error) => {
+        let promises = [];
+        let form = document.querySelector(".survey-container");
+        let formElements = form.elements;
+        for (let i = 0; i < formElements.length; i++) {
+            let element = formElements[i];
+            console.log(element);
+            let type = element.type;
+            if (type == "file") {
+                let files = element.files;
+                for (let j = 0; j < files.length; j++) {
+                    let file = files[j];
+                    promises.push(blobToBase64(element.name, file));
+                }
+            }
+            else {
+                if (element.type == "radio" && element.checked == true) {
+                    promises.push(getInputValue(element));
+                }
+                else if (element.type != 'radio' && element.type != 'submit') {
+                    promises.push(getInputValue(element));
+                }
+            }
+        }
+        Promise.all(promises).then((values) => {
+            console.log(values);
+            resolve(values);
+        });
+    });
+}
+
 function saveAllFormInputs() {
-	let promises = [];
-	let form = document.querySelector("form");
-	let formElements = form.elements;
-	for (let i = 0; i < formElements.length; i++) {
-		let element = formElements[i];
-		let type = element.type;
-		if (type == "file") {
-			let files = element.files;
-			for (let j = 0; j < files.length; j++) {
-				let file = files[j];
-				promises.push(blobToBase64(element.name, file));
-			}
-		}
-		else {
-			if (element.type == "radio" && element.checked == true) {
-				promises.push(getInputValue(element));
-			}
-			else if (element.type != 'radio' && element.type != 'submit') {
-				promises.push(getInputValue(element));
-			}
-			
-		}
-	}
-	Promise.all(promises).then((values) => {
-		let uploadingCase = {};
-		values.forEach((item, index, array) => {
-			if (uploadingCase.hasOwnProperty(item.name)) {
-				if (Array.isArray(item.value)) {
-					uploadingCase[item.name].push(item.value[0]);
-				}
-			}
-			else {
-				uploadingCase[item.name] = item.value;
-			}
-		});
-		saveToLocalStorage(uploadingCase);
-	});
+    getAllFormInputs().then((values) => {
+        let uploadingCase = {};
+        values.forEach((item, index, array) => {
+            if (uploadingCase.hasOwnProperty(item.name)) {
+                if (Array.isArray(item.value)) {
+                    uploadingCase[item.name].push(item.value[0]);
+                }
+            }
+            else {
+                uploadingCase[item.name] = item.value;
+            }
+        });
+        saveToLocalStorage(uploadingCase);
+    });
 }
 
 
@@ -125,12 +134,12 @@ function uploadSurveyCase(allCases, surveyCases, index, currentCase) {
 
 $(document).ready(() => {
 	$("#saveSurvey").click(() => {
-		$("form").validate({
+        $(".survey-container").validate({
 			ignore: "input[type='file']",
 		});
-		if ($("form").valid()) {
+        if ($(".survey-container").valid()) {
 			saveAllFormInputs();
-			$("form").trigger("reset");
+            $(".survey-container").trigger("reset");
 			alert("Uw case is opgeslagen");
 		}
 		else {

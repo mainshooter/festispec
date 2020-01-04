@@ -25,3 +25,12 @@ textarea {
 .error {
 	color: #e74c3c;
 }
+.slider-question-container {
+    max-width: 331px;
+}
+.slider-question-container input[type="range"] {
+    display: inline-block;
+}
+.slider-question-container .range-value {
+    text-align: center;
+}
