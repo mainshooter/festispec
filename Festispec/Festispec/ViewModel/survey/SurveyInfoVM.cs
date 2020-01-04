@@ -46,7 +46,6 @@ namespace Festispec.ViewModel.survey
         public ICommand DeleteQuestionCommand { get; set; }
         public ICommand SaveCommand { get; set; }
         public ICommand ResetCommand { get; set; }
-        public ICommand CasesCommand { get; set; }
         public ICommand QuestionUpCommand { get; set; }
         public ICommand QuestionDownCommand { get; set; }
         public ICommand BackCommand { get; set; }
@@ -85,7 +84,6 @@ namespace Festispec.ViewModel.survey
             DeleteQuestionCommand = new RelayCommand(DeleteQuestion, IsConcept);
             SaveCommand = new RelayCommand(Save);
             ResetCommand = new RelayCommand(Reset, IsConcept);
-            CasesCommand = new RelayCommand(ShowCases);
             QuestionUpCommand = new RelayCommand(MoveQuestionUp, IsConcept);
             QuestionDownCommand = new RelayCommand(MoveQuestionDown, IsConcept);
             BackCommand = new RelayCommand(Back);
@@ -163,11 +161,6 @@ namespace Festispec.ViewModel.survey
             }
 
             CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>().ShowSuccess("Vragen verwijderd.");
-        }
-
-        private void ShowCases()
-        {
-            throw new NotImplementedException();
         }
 
         private bool IsConcept()
