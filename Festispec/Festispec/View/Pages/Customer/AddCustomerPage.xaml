@@ -44,7 +44,7 @@
                 <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.Website, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
             </StackPanel>
             <StackPanel Margin="25" Width="200" HorizontalAlignment="Right">
-                <Label Content="Branch nummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100"/>
+                <Label Content="Filiaalnummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100"/>
                 <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.BranchNumber, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
                 <Label Content="Logo URL" HorizontalAlignment="Left" VerticalAlignment="Top" Width="152"/>
                 <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.Logo, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>

@@ -21,7 +21,7 @@ namespace Festispec.ViewModel.customer.pages
             set
             {
                 _customer = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged("Customer");
             }
         }
         public ICommand EditCustomerCommand { get; set; }
@@ -48,7 +48,7 @@ namespace Festispec.ViewModel.customer.pages
                 if (customers.Select(employee => employee).Any(employee => employee.Email == Customer.Email && employee.Id != Customer.Id))
                 {
                     var toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
-                    toast.ShowError("Een gebeuiker met dit email adres bestaat al");
+                    toast.ShowError("Een gebruiker met dit email adres bestaat al");
                     return;
                 }
             }

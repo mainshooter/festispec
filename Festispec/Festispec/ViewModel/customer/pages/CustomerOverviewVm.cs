@@ -76,7 +76,7 @@ namespace Festispec.ViewModel.customer.pages
                 if (value != null)
                 {
                     _selectedCustomer = value;
-                    RaisePropertyChanged();
+                    RaisePropertyChanged("SelectedCustomer");
                 }
             }
         }

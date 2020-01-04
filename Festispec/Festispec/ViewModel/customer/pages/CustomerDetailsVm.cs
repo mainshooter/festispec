@@ -16,7 +16,7 @@ namespace Festispec.ViewModel.customer.pages
             set
             {
                 _customer = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged("Customer");
             }
         }
         public ICommand CloseCustomerOverviewCommand { get; set; }

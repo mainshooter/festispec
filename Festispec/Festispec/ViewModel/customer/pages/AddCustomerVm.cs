@@ -36,7 +36,7 @@ namespace Festispec.ViewModel.customer.pages
                 if (customers.Select(c => c.Email).Any(email => email == Customer.Email))
                 {
                     var toast = CommonServiceLocator.ServiceLocator.Current.GetInstance<ToastVM>();
-                    toast.ShowError("Een gebeuiker met dit email adres bestaat al");
+                    toast.ShowError("Een gebruiker met dit email adres bestaat al");
                     return;
                 }
             }
