@@ -66,11 +66,11 @@ COMMIT TRANSACTION
 -------- BEGIN CUSTOMER DATA ------------
 BEGIN TRANSACTION
 INSERT INTO Customer ([Name], COC, BranchNumber, Street, HouseNumber, [HouseNumber Addition], PostalCode, City, Phone, Email, Website)
-VALUES ('Qdance', 34212891, 000019745419, 'Noordeinde', 124, 'B', '1121AL', 'Landsmeer', '0642346760', 'info@qdance.nl', 'q-dance.com')
+VALUES ('Qdance', 34212891, 000019745419, 'Noordeinde', 124, 'B', '1121AL', 'Landsmeer', '0642346760', 'info@qdance.nl', 'http://q-dance.com')
 INSERT INTO Customer ([Name], COC, BranchNumber, Street, HouseNumber, [HouseNumber Addition], PostalCode, City, Phone, Email, Website)
-VALUES ('ZiggoDome', 27284868, 000016205022, 'Holterbergweg', 3, NULL, '1101CE', 'Amsterdam', '0900-2353663', 'info@musicdome.nl', 'ziggodome.nl')
+VALUES ('ZiggoDome', 27284868, 000016205022, 'Holterbergweg', 3, NULL, '1101CE', 'Amsterdam', '0900-2353663', 'info@musicdome.nl', 'http://ziggodome.nl')
 INSERT INTO Customer ([Name], COC, BranchNumber, Street, HouseNumber, [HouseNumber Addition], PostalCode, City, Phone, Email, Website)
-VALUES ('AFAS live', 27173176, 000018225950, 'ArenA Boulevard', 590, NULL, '1101DS', 'Amsterdam Zuidoost', '0900-6874242', 'info@afaslive.nl', 'afaslive.nl')
+VALUES ('AFAS live', 27173176, 000018225950, 'ArenA Boulevard', 590, NULL, '1101DS', 'Amsterdam Zuidoost', '0900-6874242', 'info@afaslive.nl', 'http://afaslive.nl')
 COMMIT TRANSACTION
 
 BEGIN TRANSACTION

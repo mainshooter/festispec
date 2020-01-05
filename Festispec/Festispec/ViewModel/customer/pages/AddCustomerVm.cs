@@ -13,13 +13,31 @@ namespace Festispec.ViewModel.customer.pages
 {
     public class AddCustomerVm : ViewModelBase
     {
+        private CustomerVM _customer;
         public CustomerOverviewVm CustomerList { get; set; }
-        public CustomerVM Customer { get; set; }
+        public CustomerVM Customer 
+        { 
+            get 
+           {
+                return _customer;
+            }
+            set 
+            {
+                _customer = value;
+                RaisePropertyChanged(() => Customer);
+            }
+        }
         public ICommand AddCustomerCommand { get; set; }
         public ICommand CloseAddCustomerCommand { get; set; }
 
         public AddCustomerVm(CustomerOverviewVm customerList)
         {
+            MessengerInstance.Register<ChangePageMessage>(this, message => { 
+                if (message.NextPageType == typeof(AddCustomerPage))
+                {
+                    Customer = new CustomerVM();
+                }
+            });
             Customer = new CustomerVM();
             CustomerList = customerList;
 
@@ -43,7 +61,8 @@ namespace Festispec.ViewModel.customer.pages
 
             using (var context = new Entities())
             {
-                context.Customers.Add(Customer.ToModel());
+                var contactPersonModel = Customer.ToModel();
+                context.Customers.Add(contactPersonModel);
                 context.SaveChanges();
             }
 
@@ -55,9 +74,7 @@ namespace Festispec.ViewModel.customer.pages
 
         private void CloseAddCustomer()
         {
-            Customer = new CustomerVM();
-            RaisePropertyChanged("Customer");
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerOverviewPage) });
         }
 
         private bool CanAddCustomer()

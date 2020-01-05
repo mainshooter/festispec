@@ -15,88 +15,73 @@ namespace Festispec.ViewModel.customer
     {
         private Domain.Customer _customer;
 
-        public int Id 
-        {
+        public int Id {
             get => _customer.Id;
             private set => _customer.Id = value;
         }
 
-        public string Name 
-        {
+        public string Name {
             get => _customer.Name;
             set => _customer.Name = value;
         }
 
-        public int COC 
-        {
+        public int COC {
             get => _customer.COC;
             set => _customer.COC = value;
         }
 
         public int EstablishmentNumber => _customer.BranchNumber;
 
-        public string Street 
-        {
+        public string Street {
             get => _customer.Street;
             set => _customer.Street = value;
         }
 
-        public int BranchNumber
-        {
+        public int BranchNumber {
             get => _customer.BranchNumber;
             set => _customer.BranchNumber = value;
         }
 
-        public string Logo
-        {
+        public string Logo {
             get => _customer.Logo;
             set => _customer.Logo = value;
         }
-        public int HouseNumber 
-        {
+        public int HouseNumber {
             get => _customer.HouseNumber;
             set => _customer.HouseNumber = value;
         }
 
-        public string PostalCode 
-        {
+        public string PostalCode {
             get => _customer.PostalCode;
             set => _customer.PostalCode = value;
         }
 
-        public string Phone 
-        {
+        public string Phone {
             get => _customer.Phone;
             set => _customer.Phone = value;
         }
 
-        public string City
-        {
+        public string City {
             get => _customer.City;
             set => _customer.City = value;
         }
 
-        public string HouseNumberAddition
-        {
+        public string HouseNumberAddition {
             get => _customer.HouseNumber_Addition;
             set => _customer.HouseNumber_Addition = value;
         }
 
-        public string Email 
-        {
+        public string Email {
             get => _customer.Email;
             set => _customer.Email = value;
         }
 
-        public string Website 
-        {
+        public string Website {
             get => _customer.Website;
             set => _customer.Website = value;
         }
-        public bool IsValid
-        {
-            get
-            {
+        public bool IsValid {
+            get {
                 foreach (var property in ValidatedProperties)
                 {
                     if (GetValidationError(property) != null)
@@ -112,8 +97,6 @@ namespace Festispec.ViewModel.customer
         public ObservableCollection<EventVM> Events { get; set; }
 
         public ObservableCollection<ContactPersonVM> ContactPersons { get; set; }
-
-        public ObservableCollection<QuotationVM> Quotations { get; set; }
 
         public CustomerVM(Domain.Customer customer)
         {
@@ -172,10 +155,10 @@ namespace Festispec.ViewModel.customer
                     result = ValidateWebsite;
                     break;
                 case "Logo":
-                    result = ValidateWebsite;
+                    result = ValidateLogo;
                     break;
                 case "BranchNumber":
-                    result = ValidateNumber;
+                    result = ValidateBranch;
                     break;
             }
 
@@ -184,22 +167,65 @@ namespace Festispec.ViewModel.customer
 
         public static readonly string[] ValidatedProperties =
         {
-            "Name", "COC", "Street", "Street", "HouseNumber", "HouseNumberAddition", "HouseNumberAddition", "City", 
+            "Name", "COC", "Street", "Street", "HouseNumber", "HouseNumberAddition", "HouseNumberAddition", "City",
             "PostalCode", "Phone", "Email", "Website", "Logo", "BranchNumber"
         };
 
+        private string ValidateLogo 
+        {
+            get 
+            {
+                if (string.IsNullOrEmpty(Logo))
+                {
+                    return null;
+                }
+                else if (!Uri.IsWellFormedUriString(Logo, UriKind.Absolute))
+                {
+                    return "Link ongeldig";
+                }
+                return null;
+            }
+        }
 
-        private string ValidateWebsite => !Uri.IsWellFormedUriString(Website, UriKind.Absolute) ? "Link ongeldig" : null;
+        private string ValidateWebsite {
+            get 
+            {
+                if (string.IsNullOrEmpty(Website))
+                {
+                    return "Er moet een link zijn ingevuld";
+                }
+                if (!Uri.IsWellFormedUriString(Website, UriKind.Absolute))
+                {
+                    return "Link ongeldig";
+                }
+                return null;
+            }
+        }
 
         private string ValidateNumber
         {
             get
             {
-                if (COC == 0)
+                if (COC == null)
                 {
-                    return "Nummer mag niet nul zijn";
+                    return "Mag niet leeg zijn";
                 }
                 else if (COC > 999999999)
+                {
+                    return "Nummer is te lang";
+                }
+                return null;
+            }
+        }
+
+        private string ValidateBranch 
+        {
+            get {
+                if (BranchNumber == null)
+                {
+                    return "Mag niet leeg zijn";
+                }
+                else if (BranchNumber > 999999999)
                 {
                     return "Nummer is te lang";
                 }

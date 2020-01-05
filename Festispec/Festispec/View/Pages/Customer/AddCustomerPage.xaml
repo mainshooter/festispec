@@ -13,32 +13,32 @@
             <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
         </Button>
         <Grid HorizontalAlignment="Center" Width="800">
-            <StackPanel Margin="25" Width="200" HorizontalAlignment="Left">
-                <Label Content="Naam:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Customer.Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+            <StackPanel Margin="25" Width="249" HorizontalAlignment="Left">
+                <Label Content="Naam" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Customer.Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="224"/>
                 <Label Content="KVK Nummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Customer.COC, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Customer.COC, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="224"/>
                 <Label Content="Straat" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
-                <TextBox HorizontalAlignment="Left" Height="25 " Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Customer.Street, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+                <TextBox HorizontalAlignment="Left" Height="25 " Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=Customer.Street, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="224"/>
                 <StackPanel Orientation="Horizontal">
                     <StackPanel>
                         <Label Content="Huisnummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94"/>
                         <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.HouseNumber, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="80"/>
                     </StackPanel>
                     <StackPanel>
-                        <Label Content="Toevoeging" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94"/>
-                        <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.HouseNumberAddition, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="76"/>
+                        <Label Content="Toevoeging (optioneel)" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135"/>
+                        <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.HouseNumberAddition, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="126"/>
                     </StackPanel>
                 </StackPanel>
-                <Label Content="Stad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="49"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,10" TextWrapping="Wrap" Text="{Binding Path=Customer.City, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+                <Label Content="Plaats" HorizontalAlignment="Left" VerticalAlignment="Top" Width="49"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,10" TextWrapping="Wrap" Text="{Binding Path=Customer.City, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="224"/>
             </StackPanel>
             <StackPanel Margin="25" Width="200">
                 <Label Content="Postcode" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84"/>
                 <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.PostalCode, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
                 <Label Content="Telefoonnummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="152"/>
                 <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.Phone, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-                <Label Content="Email" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="55"/>
+                <Label Content="E-mail" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="55"/>
                 <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.Email, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
                 <Label Content="Website" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="55"/>
                 <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.Website, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
@@ -46,7 +46,7 @@
             <StackPanel Margin="25" Width="200" HorizontalAlignment="Right">
                 <Label Content="Filiaalnummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100"/>
                 <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.BranchNumber, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-                <Label Content="Logo URL" HorizontalAlignment="Left" VerticalAlignment="Top" Width="152"/>
+                <Label Content="Logo URL (optioneel)" HorizontalAlignment="Left" VerticalAlignment="Top" Width="152"/>
                 <TextBox HorizontalAlignment="Left" Height="25"  Margin="0,0,0,30" TextWrapping="Wrap" Text="{Binding Path=Customer.Logo, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
             </StackPanel>
         </Grid>

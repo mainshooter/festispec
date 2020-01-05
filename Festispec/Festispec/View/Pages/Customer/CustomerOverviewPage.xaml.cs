@@ -18,11 +18,16 @@ namespace Festispec.View.Pages.Customer
     /// <summary>
     /// Interaction logic for CustomerPage.xaml
     /// </summary>
-    public partial class CustomerPage : Page
+    public partial class CustomerOverviewPage : Page
     {
-        public CustomerPage()
+        public CustomerOverviewPage()
         {
             InitializeComponent();
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

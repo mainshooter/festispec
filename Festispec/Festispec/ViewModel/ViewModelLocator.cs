@@ -57,7 +57,7 @@ namespace Festispec.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<DashboardPage>();
             SimpleIoc.Default.Register<ReportPage>();
-            SimpleIoc.Default.Register<CustomerPage>();
+            SimpleIoc.Default.Register<CustomerOverviewPage>();
             SimpleIoc.Default.Register<EventPage>();
             SimpleIoc.Default.Register<AvailablePage>();
             SimpleIoc.Default.Register<EmployeePage>();
@@ -112,7 +112,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddNotePage>();
             SimpleIoc.Default.Register<EmployeePlanningPage>();
 
-            SimpleIoc.Default.Register<CustomerPage>();
+            SimpleIoc.Default.Register<CustomerOverviewPage>();
             SimpleIoc.Default.Register<CustomerDetailsPage>();
             SimpleIoc.Default.Register<EditCustomerPage>();
             SimpleIoc.Default.Register<EditCustomerVm>();

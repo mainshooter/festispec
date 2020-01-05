@@ -35,7 +35,7 @@ namespace Festispec.ViewModel.customer.pages
 
         private void CloseEditCustomer()
         {
-            MessengerInstance.Send(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
+            MessengerInstance.Send(new ChangePageMessage() { NextPageType = typeof(CustomerOverviewPage) });
         }
     }
 }

@@ -34,7 +34,6 @@ namespace Festispec.ViewModel
         public ICommand OpenEmployee { get; set; }
         public ICommand OpenCustomer { get; set; }
         public ICommand OpenAvailability { get; set; }
-        public ICommand OpenEvent { get; set; }
         public ICommand OpenSick { get; set; }
         public ICommand ShowAccountInformation { get; set; }
         public ICommand OpenEmployeePlanningCommand { get; set; }
@@ -81,7 +80,6 @@ namespace Festispec.ViewModel
             OpenDashboard = new RelayCommand(OpenDashboardTab);
             OpenEmployee = new RelayCommand(OpenEmployeeTab);
             OpenCustomer = new RelayCommand(OpenCustomerTab);
-            OpenEvent = new RelayCommand(OpenEventTab);
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenSick = new RelayCommand(OpenSickTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
@@ -195,7 +193,7 @@ namespace Festispec.ViewModel
 
         private void OpenCustomerTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerOverviewPage) });
         }
 
         private void OpenAvailabilityTab()
@@ -206,18 +204,6 @@ namespace Festispec.ViewModel
         private void OpenEmployeePlanning()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePlanningPage)} );
-        }
-
-        private void OpenEventTab()
-        {
-            using (var context = new Entities())
-            {
-                var customerDomain = context.Customers.First();
-                var customer = new CustomerVM(customerDomain);
-
-                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
-                MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage() { Customer = customer });
-            }
         }
 
         private void OpenSickTab()

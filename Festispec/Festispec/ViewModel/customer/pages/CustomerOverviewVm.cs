@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Input;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Customer.Event;
+using Festispec.View.Pages.Customer.ContactPerson;
 
 namespace Festispec.ViewModel.customer.pages
 {
@@ -24,6 +25,7 @@ namespace Festispec.ViewModel.customer.pages
         public ICommand OpenSingleCustomer { get; set; }
         public ICommand DeleteCustomerCommand { get; set; }
         public ICommand OpenCustomerEventCommand { get; set; }
+        public ICommand OpenContactPersonCommand { get; set; }
         public ObservableCollection<CustomerVM> CustomerList { get; set; }
         public string SelectedFilter { get; set; }
         public string Filter
@@ -42,7 +44,7 @@ namespace Festispec.ViewModel.customer.pages
                 _filters = new List<string>
                 {
                     "Naam",
-                    "Straat",
+                    "Plaats",
                     "E-mail"
                 };
         }
@@ -56,8 +58,8 @@ namespace Festispec.ViewModel.customer.pages
                     {
                         case "Naam":
                             return new ObservableCollection<CustomerVM>(CustomerList.Select(customer => customer).Where(customer => customer.Name.ToLower().Contains(Filter.ToLower())).ToList());
-                        case "Straat":
-                            return new ObservableCollection<CustomerVM>(CustomerList.Select(customer => customer).Where(customer => customer.Street.ToLower().Contains(Filter.ToLower())).ToList());
+                        case "Plaats":
+                            return new ObservableCollection<CustomerVM>(CustomerList.Select(customer => customer).Where(customer => customer.City.ToLower().Contains(Filter.ToLower())).ToList());
                         case "E-mail":
                             return new ObservableCollection<CustomerVM>(CustomerList.Select(customer => customer).Where(customer => customer.Email.ToLower().Contains(Filter.ToLower())).ToList());
                         case "Website":
@@ -85,6 +87,14 @@ namespace Festispec.ViewModel.customer.pages
         {
             var customerRepository = new CustomerRepository();
 
+            MessengerInstance.Register<ChangePageMessage>(this, message =>
+            {
+                if (message.NextPageType == typeof(CustomerOverviewPage))
+                {
+                    RefreshCustomers();
+                }
+            });
+
             Filters = new List<string>();
             SelectedFilter = Filters.First();
             Filter = "";
@@ -95,6 +105,13 @@ namespace Festispec.ViewModel.customer.pages
             DeleteCustomerCommand = new RelayCommand(DeleteCustomer);
             OpenSingleCustomer = new RelayCommand(OpenCustomerDetailsPage);
             OpenCustomerEventCommand = new RelayCommand(OpenEventsPage);
+            OpenContactPersonCommand = new RelayCommand(OpenContactPerson);
+        }
+
+        public void OpenContactPerson()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ContactPersonPage) });
+            MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage() { Customer = SelectedCustomer });
         }
 
         private void OpenAddCustomerPage()
