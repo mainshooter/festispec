@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Festispec.ViewModel.customer;
 using Festispec.View.Pages.Employee.Planning;
+using Festispec.ViewModel.auth;
 
 namespace Festispec.ViewModel
 {
@@ -25,6 +26,7 @@ namespace Festispec.ViewModel
         private Page _page;
         private EmployeeVM _loggedInEmployee;
         private Dictionary<string, Dictionary<string, ICommand>> _menu;
+        private string _rightTopMenuVisablity;
 
         //publics
         public ICommand CloseApplication { get; set; }
@@ -36,7 +38,18 @@ namespace Festispec.ViewModel
         public ICommand OpenSick { get; set; }
         public ICommand ShowAccountInformation { get; set; }
         public ICommand OpenEmployeePlanningCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
         public ObservableCollection<Button> MenuList { get; set; }
+
+        public string RightTopMenuVisablity
+        { 
+            get => _rightTopMenuVisablity;
+            set
+            {
+                _rightTopMenuVisablity = value;
+                RaisePropertyChanged("RightTopMenuVisablity");
+            }
+        }
 
         public Page Page
         {
@@ -73,11 +86,21 @@ namespace Festispec.ViewModel
             OpenSick = new RelayCommand(OpenSickTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
             OpenEmployeePlanningCommand = new RelayCommand(OpenEmployeePlanning);
-
+            LogoutCommand = new RelayCommand(Logout);
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
                 this.Page = ServiceLocator.Current.GetInstance(message.NextPageType) as Page;
+
+                if (message.NextPageType == typeof(LoginPage))
+                {
+                    RightTopMenuVisablity = "Collapsed";
+                    LoggedInEmployee = null;
+                }
+                else if (message.NextPageType == typeof(DashboardPage))
+                {
+                    RightTopMenuVisablity = "Visible";
+                }
             });
 
             this.MessengerInstance.Register<ChangeLoggedinUserMessage>(this, message =>
@@ -88,12 +111,13 @@ namespace Festispec.ViewModel
             // Menu vullen
             FillMenuList();
             CreateMenu();
-
+            RightTopMenuVisablity = "Collapsed";
             Page = ServiceLocator.Current.GetInstance<LoginPage>();
         }
 
         private void CreateMenu()
         {
+            MenuList.Clear();
             if (_loggedInEmployee == null)
             {
                 return;
@@ -151,6 +175,12 @@ namespace Festispec.ViewModel
         private void CloseApp()
         {
             System.Windows.Application.Current.Shutdown();
+        }
+
+        public void Logout()
+        {
+            UserSessionVM.Current.Employee = null;
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(LoginPage) });
         }
 
         private void OpenDashboardTab()
