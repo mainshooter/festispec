@@ -8,9 +8,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Festispec.Lib.Auth;
 using System.Collections.Generic;
 using Festispec.ViewModel.toast;
+using Festispec.Lib.Auth;
 
 namespace Festispec.ViewModel.employee
 {
@@ -41,7 +41,7 @@ namespace Festispec.ViewModel.employee
 
         private void Encrypt()
         {
-            var passwordService = new PasswordService();
+            var passwordService = new PasswordHashService();
             Employee.Password = passwordService.StringToPassword(Employee.Password);
         }
 

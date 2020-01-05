@@ -3,6 +3,9 @@ using Festispec.ViewModel.Customer.order;
 using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
 using System;
+using System.Windows;
+using Festispec.Lib;
+using Festispec.ViewModel.customer.customerEvent;
 
 namespace Festispec.ViewModel.planning.plannedEmployee
 {
@@ -201,6 +204,13 @@ namespace Festispec.ViewModel.planning.plannedEmployee
         public InspectorPlanning ToModel()
         {
             return _plannedEmployee;
+        }
+
+        public bool EditMessageIfNotWithinWeek(EventVM eventVM)
+        {
+            if (!DateHelpers.DatesAreInTheSameWeek(eventVM.BeginDate)) return true;
+
+            return MessageBox.Show("Je past de planning aan in de laatste week voordat het evenement begint.\n Weet je zeker dat je de planning aan wilt passen?", "Waarschuwing", MessageBoxButton.YesNo) == MessageBoxResult.Yes;
         }
     }
 }

@@ -177,6 +177,8 @@
     <Compile Include="Message\ChangeSelectedReportMessage.cs" />
     <Compile Include="Message\ChangeSelectedCustomerMessage.cs" />
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
+    <Compile Include="ViewModel\auth\ResetPasswordVm.cs" />
+    <Compile Include="ViewModel\auth\RequestPasswordResetVm.cs" />
     <Compile Include="Message\ChangeSelectedPlannedEmployeeEventMessage.cs" />
     <Compile Include="Message\ChangeSelectedPlannedEmployeeMessage.cs" />
     <Compile Include="Message\ChangeSelectedQuotationMessage.cs" />
@@ -190,6 +192,7 @@
     <Compile Include="Repository\ReportRepository.cs" />
     <Compile Include="ViewModel\customer\contactPerson\AddContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonPageVM.cs" />
+    <Compile Include="ViewModel\auth\VerifyCodeVm.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\EditContactPersonVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\AddNoteVM.cs" />
@@ -359,6 +362,15 @@
     </Compile>
     <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
       <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\PasswordReset\RequestPasswordResetPage.xaml.cs">
+      <DependentUpon>RequestPasswordResetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\PasswordReset\ResetPasswordPage.xaml.cs">
+      <DependentUpon>ResetPasswordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\PasswordReset\VerifyCodePage.xaml.cs">
+      <DependentUpon>VerifyCodePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Planning\AddPlannedEmployeePage.xaml.cs">
       <DependentUpon>AddPlannedEmployeePage.xaml</DependentUpon>
@@ -603,6 +615,18 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="View\Pages\PasswordReset\RequestPasswordResetPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\PasswordReset\ResetPasswordPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\PasswordReset\VerifyCodePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+	</Page>
     <Page Include="View\Pages\Planning\AddPlannedEmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
