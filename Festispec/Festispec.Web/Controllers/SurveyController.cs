@@ -60,7 +60,7 @@ namespace Festispec.Web.Controllers
             Survey survey = _db.Surveys.Find(id);
             var model = new SurveyModel { Survey = survey };
             var questionVars = new List<string>();
-            var repo = new QuestionTypeRepository();
+            var repo = new QuestionTypeFactory();
             List<Survey> surveyList = new List<Survey>();
             surveyList.Add(survey);
 

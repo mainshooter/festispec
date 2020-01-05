@@ -3,11 +3,11 @@ using Festispec.Web.Models.Questions.Types;
 
 namespace Festispec.Web.Models.Questions
 {
-    public class QuestionTypeRepository
+    public class QuestionTypeFactory
     {
         private readonly Dictionary<string, IQuestion> _questionTypes;
 
-        public QuestionTypeRepository()
+        public QuestionTypeFactory()
         {
             _questionTypes = new Dictionary<string, IQuestion>
             {
