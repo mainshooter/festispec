@@ -205,8 +205,13 @@
     <Compile Include="ViewModel\customer\customerEvent\EventVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\OfflineEventInfoVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\OfflineEventListVM.cs" />
+    <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="ViewModel\customer\CustomerVM.cs" />
     <Compile Include="ViewModel\customer\order\OrderVM.cs" />
+    <Compile Include="ViewModel\customer\pages\AddCustomerVm.cs" />
+    <Compile Include="ViewModel\customer\pages\CustomerDetailsVm.cs" />
+    <Compile Include="ViewModel\customer\pages\CustomerOverviewVm.cs" />
+    <Compile Include="ViewModel\customer\pages\EditCustomerVm.cs" />
     <Compile Include="ViewModel\customer\quotation\AddQuotationVM.cs" />
     <Compile Include="ViewModel\customer\quotation\EditQuotationVM.cs" />
     <Compile Include="ViewModel\customer\quotation\QuotationInfoVM.cs" />
@@ -311,6 +316,15 @@
     </Compile>
     <Compile Include="View\Pages\Customer\ContactPerson\EditContactPersonPage.xaml.cs">
       <DependentUpon>EditContactPersonPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\AddCustomerPage.xaml.cs">
+      <DependentUpon>AddCustomerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\CustomerDetailsPage.xaml.cs">
+      <DependentUpon>CustomerDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\EditCustomerPage.xaml.cs">
+      <DependentUpon>EditCustomerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Customer\Event\EditEventPage.xaml.cs">
       <DependentUpon>EditEventPage.xaml</DependentUpon>
@@ -505,8 +519,8 @@
     <Compile Include="View\Pages\Employee\Availability\AvailablePage.xaml.cs">
       <DependentUpon>AvailablePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Customer\CustomerPage.xaml.cs">
-      <DependentUpon>CustomerPage.xaml</DependentUpon>
+    <Compile Include="View\Pages\Customer\CustomerOverviewPage.xaml.cs">
+      <DependentUpon>CustomerOverviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Customer\Event\EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
@@ -566,6 +580,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Customer\ContactPerson\EditContactPersonPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\AddCustomerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\CustomerDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\EditCustomerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -783,7 +809,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Customer\CustomerPage.xaml">
+    <Page Include="View\Pages\Customer\CustomerOverviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

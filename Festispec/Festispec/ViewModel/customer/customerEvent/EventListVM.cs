@@ -286,7 +286,7 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         private void Back()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerOverviewPage) });
         }
 
         private void SynchEvent(EventVM source)

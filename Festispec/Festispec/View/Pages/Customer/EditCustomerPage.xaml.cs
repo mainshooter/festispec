@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Festispec.View.Pages.Customer
 {
     /// <summary>
-    /// Interaction logic for CustomerPage.xaml
+    /// Interaction logic for EditCustomerPage.xaml
     /// </summary>
-    public partial class CustomerPage : Page
+    public partial class EditCustomerPage : Page
     {
-        public CustomerPage()
+        public EditCustomerPage()
         {
             InitializeComponent();
         }
