@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\PasswordService.cs" />
+    <Compile Include="DateHelpers.cs" />
     <Compile Include="Enums\DataParserType.cs" />
     <Compile Include="ConvertToImage\ConvertToImage.cs" />
     <Compile Include="Enums\QuotationStatus.cs" />

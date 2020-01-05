@@ -178,14 +178,18 @@ namespace Festispec.ViewModel.planning
 
         private void EditPlannedEmployee()
         {
+            if (!PlannedEmployeeVM.EditMessageIfNotWithinWeek(EventVM)) return;
+
             PlannedEmployeeVM.WorkStartTime = PlannedEmployeeVM.PlannedStartTime;
             PlannedEmployeeVM.WorkEndTime = PlannedEmployeeVM.PlannedEndTime;
+
             using (var context = new Entities())
             {
                 context.InspectorPlannings.Attach(PlannedEmployeeVM.ToModel());
                 context.Entry(PlannedEmployeeVM.ToModel()).State = EntityState.Modified;
                 context.SaveChanges();
             }
+
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(PlanningOverviewPage) });
         }
 
