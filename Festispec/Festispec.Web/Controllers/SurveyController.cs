@@ -30,7 +30,6 @@ namespace Festispec.Web.Controllers
                                     DateTime.Today <= s.Order.Event.EndDate &&
                                     s.Status == SurveyStatus.Definitief.ToString())
                                     .ToList();
-
             CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
 
             return View(surveysTodayWithOrderAndEvent);
@@ -63,7 +62,7 @@ namespace Festispec.Web.Controllers
 
             if (model.Survey == null)
                 return HttpNotFound();
-            
+
             if (CheckAllowenceCurrentEmployeeWithSurveys(new List<Survey> { model.Survey }).Count == 0)
             {
                 Response.Redirect("~/Survey");
