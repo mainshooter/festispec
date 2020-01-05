@@ -12,6 +12,7 @@
       DataContext="{Binding ContactPersonPageVM, Source={StaticResource Locator}}">
 
     <StackPanel>
+        <Button Command="{Binding BackCommand}" Width="80" Content="Terug" HorizontalAlignment="Left" Margin="10,10,0,0"/>
         <Label FontSize="23" Content="{Binding CustomerVM.Name}" ContentStringFormat="Contactpersonen van {0}" HorizontalAlignment="Center"/>
         <WrapPanel>
             <Grid>
