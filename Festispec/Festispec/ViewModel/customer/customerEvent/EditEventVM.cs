@@ -32,6 +32,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             {
                 _event = value;
                 RaisePropertyChanged("Event");
+                RaisePropertyChanged("CanEditDate");
             }
         }
 
@@ -84,6 +85,18 @@ namespace Festispec.ViewModel.customer.customerEvent
         private void CloseEditEvent()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
+        }
+
+        public bool CanEditDate
+        {
+            get
+            {
+                if(Event == null || Event.OrderVM != null)
+                {
+                    return false;
+                }
+                return true;
+            }
         }
 
         public bool CanEditEvent()
