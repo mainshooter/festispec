@@ -2,7 +2,7 @@
 
 namespace Festispec.Web.Models.Questions.Types
 {
-    public class DrawingQuestionType : IQuestion
+    public class CommentQuestionType: IQuestion
     {
         public int Id { get; set; }
         public string Type { get; set; }
@@ -12,9 +12,9 @@ namespace Festispec.Web.Models.Questions.Types
         public int AnswerValue { get; set; }
         public int AnswerText { get; set; }
 
-        public DrawingQuestionType()
+        public CommentQuestionType()
         {
-            Type = Lib.Enums.QuestionType.DrawQuestion;
+            Type = Lib.Enums.QuestionType.NoteQuestion;
         }
     }
 }

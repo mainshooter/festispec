@@ -38,13 +38,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SurveyId" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" />
-          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CaseStatus">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="ContactPerson">
           <Key>
@@ -337,18 +330,6 @@
             </Principal>
             <Dependent Role="BetterReportInspector">
               <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Case_CaseStatus">
-          <End Role="CaseStatus" Type="Self.CaseStatus" Multiplicity="1" />
-          <End Role="Case" Type="Self.Case" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CaseStatus">
-              <PropertyRef Name="Status" />
-            </Principal>
-            <Dependent Role="Case">
-              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -727,7 +708,6 @@
           <EntitySet Name="AvailabilityInspector" EntityType="Self.AvailabilityInspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BetterReportInspector" EntityType="Self.BetterReportInspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CaseStatus" EntityType="Self.CaseStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContactPerson" EntityType="Self.ContactPerson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Day" EntityType="Self.Day" Schema="dbo" store:Type="Tables" />
@@ -765,10 +745,6 @@
           <AssociationSet Name="FK_BetterReportInspector_Employee" Association="Self.FK_BetterReportInspector_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="BetterReportInspector" EntitySet="BetterReportInspector" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Case_CaseStatus" Association="Self.FK_Case_CaseStatus">
-            <End Role="CaseStatus" EntitySet="CaseStatus" />
-            <End Role="Case" EntitySet="Case" />
           </AssociationSet>
           <AssociationSet Name="FK_Case_Employee" Association="Self.FK_Case_Employee">
             <End Role="Employee" EntitySet="Employee" />
@@ -1093,18 +1069,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SurveyId" Type="Int32" Nullable="false" />
           <Property Name="EmployeeId" Type="Int32" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Answers" Relationship="Festispec.Domain.FK_Answer_Case" FromRole="Case" ToRole="Answer" />
-          <NavigationProperty Name="CaseStatu" Relationship="Festispec.Domain.FK_Case_CaseStatus" FromRole="Case" ToRole="CaseStatu" />
-          <NavigationProperty Name="Employee" Relationship="Festispec.Domain.FK_Case_Employee" FromRole="Case" ToRole="Employee" />
-          <NavigationProperty Name="Survey" Relationship="Festispec.Domain.FK_Case_Survey" FromRole="Case" ToRole="Survey" />
-        </EntityType>
-        <EntityType Name="CaseStatu">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Cases" Relationship="Festispec.Domain.FK_Case_CaseStatus" FromRole="CaseStatu" ToRole="Case" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK_Answer_Case" FromRole="Case" ToRole="Answer" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Case_Employee" FromRole="Case" ToRole="Employee" />
+          <NavigationProperty Name="Survey" Relationship="Self.FK_Case_Survey" FromRole="Case" ToRole="Survey" />
         </EntityType>
         <EntityType Name="ContactPerson">
           <Key>
@@ -1456,18 +1423,6 @@
             </Principal>
             <Dependent Role="BetterReportInspector">
               <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Case_CaseStatus">
-          <End Type="Festispec.Domain.CaseStatu" Role="CaseStatu" Multiplicity="1" />
-          <End Type="Festispec.Domain.Case" Role="Case" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CaseStatu">
-              <PropertyRef Name="Status" />
-            </Principal>
-            <Dependent Role="Case">
-              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1841,6 +1796,166 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="Self.Answer" />
+          <EntitySet Name="AvailabilityInspectors" EntityType="Self.AvailabilityInspector" />
+          <EntitySet Name="BetterReportInspectors" EntityType="Self.BetterReportInspector" />
+          <EntitySet Name="Cases" EntityType="Self.Case" />
+          <EntitySet Name="ContactPersons" EntityType="Self.ContactPerson" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Days" EntityType="Self.Day" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="ElementTypes" EntityType="Self.ElementType" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="EmployeeStatus" EntityType="Self.EmployeeStatu" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="InspectorPlannings" EntityType="Self.InspectorPlanning" />
+          <EntitySet Name="Notes" EntityType="Self.Note" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="QueryTemplates" EntityType="Self.QueryTemplate" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="QuestionTypes" EntityType="Self.QuestionType" />
+          <EntitySet Name="Quotations" EntityType="Self.Quotation" />
+          <EntitySet Name="QuotationStatus" EntityType="Self.QuotationStatu" />
+          <EntitySet Name="Reports" EntityType="Self.Report" />
+          <EntitySet Name="ReportElements" EntityType="Self.ReportElement" />
+          <EntitySet Name="ReportStatus" EntityType="Self.ReportStatu" />
+          <EntitySet Name="SickReportInspectors" EntityType="Self.SickReportInspector" />
+          <EntitySet Name="Surveys" EntityType="Self.Survey" />
+          <EntitySet Name="SurveyStatus" EntityType="Self.SurveyStatu" />
+          <AssociationSet Name="FK_Answer_Case" Association="Self.FK_Answer_Case">
+            <End Role="Case" EntitySet="Cases" />
+            <End Role="Answer" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_Question" Association="Self.FK_Answer_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="Answer" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityInspector_Employee" Association="Self.FK_AvailabilityInspector_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="AvailabilityInspector" EntitySet="AvailabilityInspectors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BetterReportInspector_Employee" Association="Self.FK_BetterReportInspector_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="BetterReportInspector" EntitySet="BetterReportInspectors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Case_Employee" Association="Self.FK_Case_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Case_Survey" Association="Self.FK_Case_Survey">
+            <End Role="Survey" EntitySet="Surveys" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactPerson_Customer" Association="Self.FK_ContactPerson_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="ContactPerson" EntitySet="ContactPersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_ContactPerson" Association="Self.FK_Event_ContactPerson">
+            <End Role="ContactPerson" EntitySet="ContactPersons" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Note_ContactPerson" Association="Self.FK_Note_ContactPerson">
+            <End Role="ContactPerson" EntitySet="ContactPersons" />
+            <End Role="Note" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Customer" Association="Self.FK_Event_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quotation_Customer" Association="Self.FK_Quotation_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Quotation" EntitySet="Quotations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Day_Order" Association="Self.FK_Day_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Day" EntitySet="Days" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InspectorPlanning_Day" Association="Self.FK_InspectorPlanning_Day">
+            <End Role="Day" EntitySet="Days" />
+            <End Role="InspectorPlanning" EntitySet="InspectorPlannings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportElement_ElementType" Association="Self.FK_ReportElement_ElementType">
+            <End Role="ElementType" EntitySet="ElementTypes" />
+            <End Role="ReportElement" EntitySet="ReportElements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_EmployeeStatus" Association="Self.FK_Employee_EmployeeStatus">
+            <End Role="EmployeeStatus" EntitySet="EmployeeStatus" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InspectorPlanning_Employee" Association="Self.FK_InspectorPlanning_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="InspectorPlanning" EntitySet="InspectorPlannings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Employee" Association="Self.FK_Order_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quotation_Employee" Association="Self.FK_Quotation_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Quotation" EntitySet="Quotations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SickReportInspector_Employee" Association="Self.FK_SickReportInspector_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="SickReportInspector" EntitySet="SickReportInspectors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Event" Association="Self.FK_Order_Event">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quotation_Event" Association="Self.FK_Quotation_Event">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Quotation" EntitySet="Quotations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SickReportInspector_InspectorPlanning" Association="Self.FK_SickReportInspector_InspectorPlanning">
+            <End Role="InspectorPlanning" EntitySet="InspectorPlannings" />
+            <End Role="SickReportInspector" EntitySet="SickReportInspectors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Quotation" Association="Self.FK_Order_Quotation">
+            <End Role="Quotation" EntitySet="Quotations" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_Order" Association="Self.FK_Report_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Survey_Order" Association="Self.FK_Survey_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Survey" EntitySet="Surveys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_QuestionType" Association="Self.FK_Question_QuestionType">
+            <End Role="QuestionType" EntitySet="QuestionTypes" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Survey" Association="Self.FK_Question_Survey">
+            <End Role="Survey" EntitySet="Surveys" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quotation_QuotationStatus" Association="Self.FK_Quotation_QuotationStatus">
+            <End Role="QuotationStatus" EntitySet="QuotationStatus" />
+            <End Role="Quotation" EntitySet="Quotations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_ReportStatus" Association="Self.FK_Report_ReportStatus">
+            <End Role="ReportStatus" EntitySet="ReportStatus" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportElement_Report" Association="Self.FK_ReportElement_Report">
+            <End Role="Report" EntitySet="Reports" />
+            <End Role="ReportElement" EntitySet="ReportElements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Survey_SurveyStatus" Association="Self.FK_Survey_SurveyStatus">
+            <End Role="SurveyStatus" EntitySet="SurveyStatus" />
+            <End Role="Survey" EntitySet="Surveys" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1878,17 +1993,9 @@
           <EntitySetMapping Name="Cases">
             <EntityTypeMapping TypeName="Festispec.Domain.Case">
               <MappingFragment StoreEntitySet="Case">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CaseStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.CaseStatu">
-              <MappingFragment StoreEntitySet="CaseStatus">
-                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

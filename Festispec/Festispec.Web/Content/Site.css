@@ -28,12 +28,29 @@ select,
 textarea {
     max-width: 280px;
 }
-.draw-question {
-	position: relative;
-	display: inline-block;
-	user-select: none;
-	margin: 4rem;
-	border: 2px solid black;
+
+.error {
+	color: #e74c3c;
+}
+.slider-question-container {
+    max-width: 331px;
+}
+.slider-question-container input[type="range"] {
+    display: inline-block;
+}
+.slider-question-container .range-value {
+    text-align: center;
+}
+.delete-row {
+    color: blue;
+    cursor: pointer;
+}
+.draw-question .container {
+    position: relative;
+    display: inline-block;
+    user-select: none;
+    margin: 4rem;
+    border: 2px solid black;
 }
 
 .draw-question .inkt {

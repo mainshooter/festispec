@@ -1,2 +1,9 @@
 ﻿@model Festispec.Web.Models.Questions.Types.OpenQuestionType
-@Html.TextAreaFor(m => m.AnswerText, new { rows="7", cols="100"})
+
+<textarea
+		  rows="7"
+		  cols="100"
+		  class="survey-question"
+		  name="@Html.Raw(Model.Variable)"
+		  required>
+</textarea>
