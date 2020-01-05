@@ -38,7 +38,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Viewbox>
-            <Button Visibility="{Binding ShowSelectedDay}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="50,10,0,0" Command="{Binding DeselectCommand}" >
+            <Button Visibility="{Binding ShowSelectedDay}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10,10" Command="{Binding DeselectCommand}"  ToolTip="Deselecteer" >
                 <materialDesign:PackIcon Kind="ArrowBack"></materialDesign:PackIcon>
             </Button>
             <GroupBox Visibility="{Binding ShowSelectedDay}" Margin="0,10" Header="Geselecteerde Dag" Grid.Column="2" FontWeight="SemiBold" Height="250" Grid.RowSpan="2">
