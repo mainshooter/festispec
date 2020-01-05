@@ -2,10 +2,12 @@
 
     constructor(id) {
         this.scope = document.querySelector(id);
+        this.input = this.scope.querySelector("input");
+        this.container = this.scope.querySelector(".container");
         this.canDraw = false;
         this.addListeners();
 		this.drawings = [];
-		this.scope.querySelector("img").setAttribute('draggable', false);
+        this.container.querySelector("img").setAttribute('draggable', false);
     }
 
     addListeners() {
@@ -17,7 +19,7 @@
 			this.canDraw = false;
         });
 
-        this.scope.addEventListener('mousemove', (event) => {
+        this.container.addEventListener('mousemove', (event) => {
             let target = event.target;
             var rect = target.getBoundingClientRect();
             let x = event.clientX - rect.left; //x position within the element.
@@ -25,17 +27,17 @@
 			this.handleEvent(x, y);
         });
 
-		this.scope.addEventListener('touchstart', (event) => {
+        this.container.addEventListener('touchstart', (event) => {
 			document.querySelector("body").style.height = "100%";
 			document.querySelector("body").style.overflow = "hidden";
         });
 
-		this.scope.addEventListener('touchend', (event) => {
+        this.container.addEventListener('touchend', (event) => {
 			document.querySelector("body").style.height = "100%";
 			document.querySelector("body").style.overflow = "";
         });
 
-		this.scope.addEventListener('touchmove', (event) => {
+        this.container.addEventListener('touchmove', (event) => {
 			this.canDraw = true;
 			let backgroundImage = this.scope.querySelector("img");
 			var realTarget = document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY);
@@ -81,11 +83,37 @@
 
         let convertResult = this.convertXAndYToCorrectPosition(x, y);
 
-        this.scope.appendChild(inkt);
+        this.container.appendChild(inkt);
         this.drawings.push({
             "x": convertResult["x"],
             "y": convertResult["y"]
 		});
-		this.scope.querySelector("input").value = JSON.stringify(this.drawings);
-	}
+		this.input.value = JSON.stringify(this.drawings);
+    }
+
+    displayNotCompleted() {
+        this.scope.querySelector(".draw-error").innerHTML = "Niet goed ingevuld";
+    }
+
+    getValue() {
+        return this.drawings;
+    }
+
+    isValid() {
+        let drawValue = this.getValue();
+        if (drawValue && drawValue.length == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    clear() {
+        this.drawings = [];
+        this.input.value = JSON.stringify(this.drawings);
+        let inkts = this.container.querySelectorAll(".inkt");
+        for (let i = 0; i < inkts.length; i++) {
+            inkts[i].remove();
+        }
+        this.scope.querySelector(".draw-error").innerHTML = "";
+    }
 }

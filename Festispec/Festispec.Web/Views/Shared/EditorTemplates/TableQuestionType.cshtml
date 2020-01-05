@@ -1,35 +1,47 @@
 ﻿@model Festispec.Web.Models.Questions.Types.TableQuestionType
 
-<table id="table-@Model.Id" class="table">
-    <thead>
-        <tr>
-            @foreach (var col in Model.Details.Choices.Cols)
-            {
-                <th scope="col">@col</th>
-            }
-    </tr>
-    @for (var i = 5; i > 0; i--)
-    {
-        <tr>
-            @foreach (var col in Model.Details.Choices.Cols)
-            {
-                <td>
-                @if (Model.Details.Choices.SelectedCol == col)
-                {
-                    <select name="tabel_@Model.Id-vraag_@i">
-                        @foreach (var opt in @Model.Details.Choices.Options)
-                        {
-                            <option value="@opt">@opt</option>
-                        }
-                    </select>
-                }
-                else
-                {
-                    <input type="text" class="form-control" name="tabel_@Model.Id-vraag_@i"/>
-                }
-                </td>
-            }
-        </tr>
-    }
-    </thead>
-</table>
+    <div id="table-@Model.Variable" class="survey-question">
+        <div class="table-error error"></div>
+        <table class="table">
+
+            <thead>
+                <tr>
+                    @foreach (var col in Model.Details.Choices.Cols)
+                    {
+                        <th scope="col">@col</th>
+                    }
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach (var col in Model.Details.Choices.Cols)
+                    {
+                        <td>
+                            @if (Model.Details.Choices.SelectedCol == col)
+                            {
+                                int index = 0;
+                                <select>
+                                    @foreach (var opt in @Model.Details.Choices.Options)
+                                    {
+                                        <option value="@index">@opt</option>
+                                        index++;
+                                    }
+                                </select>
+                            }
+                            else
+                            {
+                                <input type="text" class="form-control" />
+                            }
+                        </td>
+                    }
+                    <td><span class="delete-row">Delete row</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="add-row btn btn-primary">Kolom toevoegen</button>
+        <input type="hidden" name="@Model.Variable">
+        <script>
+				    tableQuestions.push(new TableQuestion("table-@Model.Variable", "@Model.Variable"));
+        </script>
+    </div>

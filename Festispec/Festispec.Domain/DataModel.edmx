@@ -38,13 +38,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SurveyId" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" />
-          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CaseStatus">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="ContactPerson">
           <Key>
@@ -337,18 +330,6 @@
             </Principal>
             <Dependent Role="BetterReportInspector">
               <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Case_CaseStatus">
-          <End Role="CaseStatus" Type="Self.CaseStatus" Multiplicity="1" />
-          <End Role="Case" Type="Self.Case" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CaseStatus">
-              <PropertyRef Name="Status" />
-            </Principal>
-            <Dependent Role="Case">
-              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -727,7 +708,6 @@
           <EntitySet Name="AvailabilityInspector" EntityType="Self.AvailabilityInspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BetterReportInspector" EntityType="Self.BetterReportInspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CaseStatus" EntityType="Self.CaseStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContactPerson" EntityType="Self.ContactPerson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Day" EntityType="Self.Day" Schema="dbo" store:Type="Tables" />
@@ -765,10 +745,6 @@
           <AssociationSet Name="FK_BetterReportInspector_Employee" Association="Self.FK_BetterReportInspector_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="BetterReportInspector" EntitySet="BetterReportInspector" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Case_CaseStatus" Association="Self.FK_Case_CaseStatus">
-            <End Role="CaseStatus" EntitySet="CaseStatus" />
-            <End Role="Case" EntitySet="Case" />
           </AssociationSet>
           <AssociationSet Name="FK_Case_Employee" Association="Self.FK_Case_Employee">
             <End Role="Employee" EntitySet="Employee" />
@@ -929,18 +905,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SurveyId" Type="Int32" Nullable="false" />
           <Property Name="EmployeeId" Type="Int32" />
-          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Answers" Relationship="Self.FK_Answer_Case" FromRole="Case" ToRole="Answer" />
-          <NavigationProperty Name="CaseStatu" Relationship="Self.FK_Case_CaseStatus" FromRole="Case" ToRole="CaseStatus" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Case_Employee" FromRole="Case" ToRole="Employee" />
           <NavigationProperty Name="Survey" Relationship="Self.FK_Case_Survey" FromRole="Case" ToRole="Survey" />
-        </EntityType>
-        <EntityType Name="CaseStatu">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Cases" Relationship="Self.FK_Case_CaseStatus" FromRole="CaseStatus" ToRole="Case" />
         </EntityType>
         <EntityType Name="ContactPerson">
           <Key>
@@ -1292,18 +1259,6 @@
             </Principal>
             <Dependent Role="BetterReportInspector">
               <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Case_CaseStatus">
-          <End Role="CaseStatus" Type="Self.CaseStatu" Multiplicity="1" />
-          <End Role="Case" Type="Self.Case" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CaseStatus">
-              <PropertyRef Name="Status" />
-            </Principal>
-            <Dependent Role="Case">
-              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1682,7 +1637,6 @@
           <EntitySet Name="AvailabilityInspectors" EntityType="Self.AvailabilityInspector" />
           <EntitySet Name="BetterReportInspectors" EntityType="Self.BetterReportInspector" />
           <EntitySet Name="Cases" EntityType="Self.Case" />
-          <EntitySet Name="CaseStatus" EntityType="Self.CaseStatu" />
           <EntitySet Name="ContactPersons" EntityType="Self.ContactPerson" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Days" EntityType="Self.Day" />
@@ -1720,10 +1674,6 @@
           <AssociationSet Name="FK_BetterReportInspector_Employee" Association="Self.FK_BetterReportInspector_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="BetterReportInspector" EntitySet="BetterReportInspectors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Case_CaseStatus" Association="Self.FK_Case_CaseStatus">
-            <End Role="CaseStatus" EntitySet="CaseStatus" />
-            <End Role="Case" EntitySet="Cases" />
           </AssociationSet>
           <AssociationSet Name="FK_Case_Employee" Association="Self.FK_Case_Employee">
             <End Role="Employee" EntitySet="Employees" />
@@ -1882,14 +1832,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CaseStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.CaseStatu">
-              <MappingFragment StoreEntitySet="CaseStatus">
-                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

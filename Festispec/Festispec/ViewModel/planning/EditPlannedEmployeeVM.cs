@@ -60,14 +60,15 @@ namespace Festispec.ViewModel.planning
             {
                 if (PlannedEmployeeVM.Employee != null)
                 {
-                    if (value < AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyStart)
+                    var foundAvailbility = AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault();
+                    if (foundAvailbility != null && value < foundAvailbility.AvailabiltyStart)
                     {
                         var temp = (DateTime)AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyStart;
                         PlannedEmployeeVM.PlannedStartTime = (DateTime)AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyStart;
                     }
                     else
                     {
-                        if (value > AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyEnd)
+                        if (foundAvailbility != null && value > foundAvailbility.AvailabiltyEnd)
                         {
                             PlannedEmployeeVM.PlannedStartTime = (DateTime)AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyEnd;
                         }
@@ -105,7 +106,8 @@ namespace Festispec.ViewModel.planning
             {
                 if (PlannedEmployeeVM.Employee != null)
                 {
-                    if (value > AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyEnd)
+                    var foundAvailbility = AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault();
+                    if (foundAvailbility != null && value > foundAvailbility.AvailabiltyEnd)
                     {
                         PlannedEmployeeVM.PlannedEndTime = (DateTime)AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyEnd;
                     }
@@ -160,8 +162,12 @@ namespace Festispec.ViewModel.planning
                 PlannedEmployeeEndTime = PlannedEmployeeVM.PlannedEndTime;
                 _plannedStartTime = PlannedEmployeeVM.PlannedStartTime;
                 _plannedEndTime = PlannedEmployeeVM.PlannedEndTime;
-                SelectedAvailabilityStartDate = (DateTime)AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyStart;
-                SelectedAvailabilityEndDate = (DateTime)AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault().AvailabiltyEnd;
+                var foundAvailability = AvailabilityList.Select(availability => availability).Where(availability => availability.EmployeeId == PlannedEmployeeVM.Employee.Id).FirstOrDefault();
+                if (foundAvailability != null)
+                {
+                    SelectedAvailabilityStartDate = (DateTime)foundAvailability.AvailabiltyStart;
+                    SelectedAvailabilityEndDate = (DateTime)foundAvailability.AvailabiltyEnd;
+                }
             });
             BackCommand = new RelayCommand(Back);
             SaveChangesCommand = new RelayCommand(EditPlannedEmployee, CanSave);
