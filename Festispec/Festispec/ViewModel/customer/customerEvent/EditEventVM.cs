@@ -49,6 +49,17 @@ namespace Festispec.ViewModel.customer.customerEvent
             }
         }
 
+        public bool CanEditDate
+        {
+            get
+            {
+                if (Event == null) return false;
+                if (Event.OrderVM == null) return true;
+                if (Event.OrderVM.Id == 0) return true;
+                return false;
+            }
+        }
+
         public EditEventVM()
         {
             this.MessengerInstance.Register<ChangeSelectedEventMessage>(this, message =>
@@ -85,18 +96,6 @@ namespace Festispec.ViewModel.customer.customerEvent
         private void CloseEditEvent()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
-        }
-
-        public bool CanEditDate
-        {
-            get
-            {
-                if(Event == null || Event.OrderVM != null)
-                {
-                    return false;
-                }
-                return true;
-            }
         }
 
         public bool CanEditEvent()
