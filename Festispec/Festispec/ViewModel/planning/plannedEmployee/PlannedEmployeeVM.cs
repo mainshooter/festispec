@@ -85,17 +85,17 @@ namespace Festispec.ViewModel.planning.plannedEmployee
             {
                 if (value > Day.EndTime)
                 {
-                    PlannedStartTime = Day.EndTime;
+                    _plannedEmployee.PlannedFrom = Day.EndTime;
                     return;
                 }
                 if (value < Day.BeginTime)
                 {
-                    PlannedStartTime = Day.BeginTime;
+                    _plannedEmployee.PlannedFrom = Day.BeginTime;
                     return;
                 }
                 if (value > PlannedEndTime)
                 {
-                    PlannedEndTime = value;
+                    _plannedEmployee.PlannedFrom = value;
                 }
                 _plannedEmployee.PlannedFrom = value;
                 RaisePropertyChanged(() => PlannedStartTime);

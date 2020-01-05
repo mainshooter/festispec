@@ -62,9 +62,9 @@
                 <GroupBox Margin="7,10" Header="Evenementtijden" Grid.Column="3" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">
                     <StackPanel>
                         <Label FontSize="9" Content="van"></Label>
-                        <TextBlock FontSize="12" Text="{Binding EventVM.BeginDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
+                        <TextBlock FontSize="12" Text="{Binding EventVM.BeginDate, StringFormat=dd/MM/yyyy}"></TextBlock>
                         <Label FontSize="9" Content="tot"></Label>
-                        <TextBlock FontSize="12" Text="{Binding EventVM.EndDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
+                        <TextBlock FontSize="12" Text="{Binding EventVM.EndDate, StringFormat=dd/MM/yyyy}"></TextBlock>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Visibility="{Binding VisibilityClearButton}" Margin="7,10" Header="Beschikbaarheid" Grid.Column="4" FontWeight="SemiBold" Height="200" Grid.RowSpan="2">

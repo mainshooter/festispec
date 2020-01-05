@@ -95,7 +95,6 @@ namespace Festispec.ViewModel.planning
                     PlannedEmployeeVM.PlannedStartTime = EventVM.BeginDate;
                 }
                 RaisePropertyChanged(() => PlannedEmployeeStartTime);
-                RaisePropertyChanged(() => PlannedEmployeeEndTime);
             }
         }
 
