@@ -138,7 +138,6 @@ namespace Festispec.ViewModel
             _menu["Directie"].Add("Dashboard", OpenDashboard);
             _menu["Directie"].Add("Werknemers", OpenEmployee);
             _menu["Directie"].Add("Ziek melden", OpenSick);
-            _menu["Directie"].Add("Evenementen", OpenEvent);
             _menu["Directie"].Add("Beschikbaarheid", OpenAvailability);
             _menu["Directie"].Add("Klanten", OpenCustomer);
 
