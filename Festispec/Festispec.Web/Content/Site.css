@@ -45,12 +45,12 @@ textarea {
     color: blue;
     cursor: pointer;
 }
-.draw-question {
-	position: relative;
-	display: inline-block;
-	user-select: none;
-	margin: 4rem;
-	border: 2px solid black;
+.draw-question .container {
+    position: relative;
+    display: inline-block;
+    user-select: none;
+    margin: 4rem;
+    border: 2px solid black;
 }
 
 .draw-question .inkt {

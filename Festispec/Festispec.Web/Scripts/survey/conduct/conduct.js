@@ -105,7 +105,7 @@ setInterval(() => {
 	let allCases = getCasesFromLocalStorage();
 	for (surveyCaseKey in allCases) {
 		let cases = allCases[surveyCaseKey];
-		if (cases == null && cases.length < 0) {
+		if (cases == null && cases.length <= 0) {
 			continue;
 		}
 		for (var i = 0; i < cases.length; i++) {
@@ -113,7 +113,6 @@ setInterval(() => {
 			uploadSurveyCase(allCases, cases, i, surveyCase);
 		}
 	}
-	localStorage.setItem("survey", JSON.stringify(allCases));
 }, 5000);
 
 function uploadSurveyCase(allCases, surveyCases, index, currentCase) {
@@ -134,23 +133,34 @@ function validateTableQuestions() {
     let tableQuestionsAreValid = true;
     for (let a = 0; a < tableQuestions.length; a++) {
         let tableQuestion = tableQuestions[a];
-        let tableQuestionValues = tableQuestion.getValues();
-        for (let i = 0; i < tableQuestionValues.length; i++) {
-            let tableQuestionRow = tableQuestionValues[i];
-            let foundCorrectValues = 0;
-            for (let j = 0; j < tableQuestionRow.length; j++) {
-                let tableColValue = tableQuestionRow[j];
-                if (tableColValue && tableColValue != "") {
-                    foundCorrectValues++;
-                }
-            }
-            if (foundCorrectValues != tableQuestionRow.length - 1) {
-                tableQuestionsAreValid = false;
-                tableQuestion.displayNotCompleted();
-            }
+        if (tableQuestion.isValid() === false) {
+            tableQuestionsAreValid = false;
+            tableQuestion.displayNotCompleted();
         }
     }
     return tableQuestionsAreValid;
+}
+
+function validateDrawQuestion() {
+    let drawQuestionsAreValid = true;
+    for (let a = 0; a < drawQuestions.length; a++) {
+        let drawQuestion = drawQuestions[a];
+        if (drawQuestion.isValid() === false) {
+            drawQuestionsAreValid = false;
+            drawQuestion.displayNotCompleted();
+        }
+    }
+    return drawQuestionsAreValid;
+}
+
+function clearInputFields() {
+    $(".survey-container").trigger("reset");
+    for (let i = 0; i < drawQuestions.length; i++) {
+        drawQuestions[i].clear();
+    }
+    for (let i = 0; i < tableQuestions.length; i++) {
+        tableQuestions[i].clear();
+    }
 }
 
 $(document).ready(() => {
@@ -160,15 +170,20 @@ $(document).ready(() => {
 	$("#saveSurvey").click(() => {
         $(".survey-container").validate({
 			ignore: "input[type='file']",
-		});
-        if ($(".survey-container").valid() && validateTableQuestions()) {
-			saveAllFormInputs();
-            $(".survey-container").trigger("reset");
+        });
+
+        $(".survey-container").valid();
+        validateTableQuestions();
+        validateDrawQuestion();
+
+        if ($(".survey-container").valid() && validateTableQuestions() && validateDrawQuestion()) {
+            saveAllFormInputs();
+            clearInputFields();
+            
 			alert("Uw case is opgeslagen");
 		}
 		else {
 			alert("Survey is niet compleet ingevuld");
 		}
 	});
-
 });

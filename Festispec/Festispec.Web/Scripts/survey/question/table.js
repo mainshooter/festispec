@@ -15,12 +15,12 @@
             let rowValues = [];
             tds.forEach((tdElement) => {
                 let inputElement = tdElement.firstElementChild;
-                if (inputElement.hasAttribute("type")) {
+                if (inputElement.hasAttribute("type") && inputElement.className != "delete-row") {
                     // Is it a text field
                     let value = inputElement.value;
                     rowValues.push(value);
                 }
-                else {
+                else if (inputElement.tagName == "SELECT"){
                     // It is a select
                     let selectedValue = inputElement.querySelector("option:checked");
                     if (selectedValue == null) {
@@ -60,7 +60,6 @@
             clonedItem.querySelector(".delete-row").addEventListener('click', (event) => {
                 if (this.table.querySelectorAll("tbody tr").length > 1) {
                     let row = event.currentTarget.parentNode.parentNode;
-                    console.log(row);
                     row.remove();
                 }
             });
@@ -76,5 +75,34 @@
 
 	setNewValues(value) {
 		this.inputField.value = value;
-	}
+    }
+
+    clear() {
+        this.scope.querySelector(".table-error").innerHTML = "";
+    }
+
+    loadAnswer() {
+        let event = new Event('change');
+        this.table.dispatchEvent(event);
+    }
+
+    isValid() {
+        let tableQuestionIsValid = true;
+        this.loadAnswer();
+        let tableQuestionValues = this.getValues();
+        for (let i = 0; i < tableQuestionValues.length; i++) {
+            let tableQuestionRow = tableQuestionValues[i];
+            let foundCorrectValues = 0;
+            for (let j = 0; j < tableQuestionRow.length; j++) {
+                let tableColValue = tableQuestionRow[j];
+                if (tableColValue && tableColValue != "") {
+                    foundCorrectValues++;
+                }
+            }
+            if (foundCorrectValues != tableQuestionRow.length) {
+                tableQuestionIsValid = false;
+            }
+        }
+        return tableQuestionIsValid;
+    }
 }
