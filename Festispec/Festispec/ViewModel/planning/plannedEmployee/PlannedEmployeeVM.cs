@@ -127,7 +127,7 @@ namespace Festispec.ViewModel.planning.plannedEmployee
                     return;
                 }
                 _plannedEmployee.PlannedTill = value;
-                RaisePropertyChanged(() => PlannedEndTime);
+                RaisePropertyChanged(() => PlannedEndTime); 
             }
         }
 
