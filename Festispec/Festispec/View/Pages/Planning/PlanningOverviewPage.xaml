@@ -56,9 +56,9 @@
             <GroupBox HorizontalAlignment="Right" Margin="20,10" Header="Evenementtijden" Grid.Column="0" FontWeight="SemiBold" Grid.RowSpan="2">
                 <StackPanel>
                     <Label FontSize="9" Content="van"></Label>
-                    <TextBlock FontSize="12" Text="{Binding EventVM.BeginDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
+                    <TextBlock FontSize="12" Text="{Binding EventVM.BeginDate, StringFormat=dd/MM/yyyy}"></TextBlock>
                     <Label FontSize="9" Content="tot"></Label>
-                    <TextBlock FontSize="12" Text="{Binding EventVM.EndDate, StringFormat=dd/MM/yyyy  HH:mm}"></TextBlock>
+                    <TextBlock FontSize="12" Text="{Binding EventVM.EndDate, StringFormat=dd/MM/yyyy}"></TextBlock>
                 </StackPanel>
             </GroupBox>
         </StackPanel>
