@@ -30,6 +30,7 @@ namespace Festispec.Web.Controllers
                                     DateTime.Today <= s.Order.Event.EndDate &&
                                     s.Status == SurveyStatus.Definitief.ToString())
                                     .ToList();
+
             CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
 
             return View(surveysTodayWithOrderAndEvent);
@@ -39,10 +40,6 @@ namespace Festispec.Web.Controllers
         {
             foreach(var s in surveysList.ToList())
             {
-                if (UserSession.Current.Employee == null)
-                {
-                    surveysList.Remove(s);
-                }
                 if(_db.InspectorPlannings.ToList().Any(i => i.EmployeeId == UserSession.Current.Employee.Id && i.OrderId == s.Order.Id) == false && UserSession.Current.Employee.Department != "Directie")
                 {
                     surveysList.Remove(s);
@@ -55,8 +52,14 @@ namespace Festispec.Web.Controllers
         [HttpGet]
         public ActionResult Conduct(int? id)
         {
+            if (UserSession.Current.Employee == null)
+            {
+                return Redirect("~/User/Login");
+            }
+
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
             Survey survey = _db.Surveys.Find(id);
             var model = new SurveyModel { Survey = survey };
             var questionVars = new List<string>();
@@ -68,9 +71,12 @@ namespace Festispec.Web.Controllers
             {
                 return RedirectToAction("Index");
             }
+
             if (model.Survey == null)
                 return HttpNotFound();
+
             var question = model.Survey.Questions;
+
             foreach (var q in question)
             {
                 var qType = repo.GetQuestionType(q.Type);
@@ -80,30 +86,36 @@ namespace Festispec.Web.Controllers
                 questionVars.Add(q.Variables);
                 model.Questions.Add(qType);
             }
+
             return View(model);
         }
-
 
         [HttpPost]
         public ActionResult Conduct(int id)
         {
+            if (UserSession.Current.Employee == null)
+            {
+                return Redirect("~/User/Login");
+            }
+
             Dictionary<string, string> request = new Dictionary<string, string>();
             QuestionAnswerValidator questionAnswerValidator = new QuestionAnswerValidator();
             QuestionCleanerAnswer questionCleanerAnswer = new QuestionCleanerAnswer();
-
             string[] keys = Request.Form.AllKeys;
+
             for (int i = 0; i < keys.Length; i++)
             {
                 var key = keys[i];
+
                 if (key == "")
                 {
                     continue;
                 }
+
                 request[key] = Request.Form[keys[i]];
             }
 
             Survey survey = _db.Surveys.Find(id);
-
 
             if (survey == null)
             {
