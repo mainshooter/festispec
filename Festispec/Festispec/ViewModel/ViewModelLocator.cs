@@ -5,6 +5,7 @@ using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Customer.Note;
 using Festispec.View.Pages.Employee;
 using Festispec.View.Pages.Employee.Availability;
+using Festispec.View.Pages.PasswordReset;
 using Festispec.View.Pages.Planning;
 using Festispec.View.Pages.Report;
 using Festispec.View.Pages.Survey;
@@ -145,7 +146,15 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<EditMultipleChoiceQuestionVM>();
             SimpleIoc.Default.Register<AddTableQuestionVM>();
             SimpleIoc.Default.Register<EditTableQuestionVM>();
+
             SimpleIoc.Default.Register<UserLoginVM>();
+            SimpleIoc.Default.Register<ResetPasswordVm>();
+            SimpleIoc.Default.Register<ResetPasswordPage>();
+            SimpleIoc.Default.Register<RequestPasswordResetVm>();
+            SimpleIoc.Default.Register<RequestPasswordPage>();
+            SimpleIoc.Default.Register<VerifyCodeVm>();
+            SimpleIoc.Default.Register<VerifyCodePage>();
+
             SimpleIoc.Default.Register<DataParserFactory>();
             SimpleIoc.Default.Register<AddReportVM>();
             SimpleIoc.Default.Register<AddDrawVM>();
@@ -189,6 +198,9 @@ namespace Festispec.ViewModel
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
         public PlanningOverviewVM PlanningOverviewVM => ServiceLocator.Current.GetInstance<PlanningOverviewVM>();
         public UserLoginVM UserLoginVM => ServiceLocator.Current.GetInstance<UserLoginVM>();
+        public ResetPasswordVm ResetPasswordVm => ServiceLocator.Current.GetInstance<ResetPasswordVm>();
+        public VerifyCodeVm VerifyCodeVm => ServiceLocator.Current.GetInstance<VerifyCodeVm>();
+        public RequestPasswordResetVm RequestPasswordResetVm => ServiceLocator.Current.GetInstance<RequestPasswordResetVm>();
         public AddEmployeeVM AddEmployeeVM => ServiceLocator.Current.GetInstance<AddEmployeeVM>();
         public EmployeeListVM EmployeeListVM => ServiceLocator.Current.GetInstance<EmployeeListVM>();
         public EmployeeInfoVM EmployeeInfoVM => ServiceLocator.Current.GetInstance<EmployeeInfoVM>();

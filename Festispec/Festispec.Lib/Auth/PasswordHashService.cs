@@ -6,7 +6,7 @@ using Festispec.Lib.Interfaces;
 
 namespace Festispec.Lib.Auth
 {
-    public class PasswordService : IPasswordValidator
+    public class PasswordHashService : IPasswordValidator
     {
         public string StringToPassword(string text)
         {
