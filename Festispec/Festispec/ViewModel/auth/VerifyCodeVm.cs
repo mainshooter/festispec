@@ -20,6 +20,11 @@ namespace Festispec.ViewModel.auth
 
         private void Verify()
         {
+            if (Code == null || Code.Length <= 0)
+            {
+                MessageBox.Show("Code mag niet leeg zijn.", "Informatie", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             if (PasswordResetService.ValidateResetCode(Code))
             {
                 MessengerInstance.Send(new ChangePageMessage() { NextPageType = typeof(ResetPasswordPage) });
