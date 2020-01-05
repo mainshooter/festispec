@@ -55,7 +55,6 @@ namespace Festispec.Web.Controllers
                     }
                 }
             }
-
             return result;
         }
     }

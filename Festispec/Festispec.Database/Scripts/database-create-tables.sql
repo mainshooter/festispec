@@ -56,23 +56,9 @@ CREATE TABLE [dbo].[Case](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[SurveyId] [int] NOT NULL,
 	[EmployeeId] [int] NULL,
-	[Status] [nvarchar](45) NOT NULL,
  CONSTRAINT [PK_Case] PRIMARY KEY CLUSTERED
 (
 	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[CaseStatus]    Script Date: 5-11-2019 21:03:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[CaseStatus](
-	[Status] [nvarchar](45) NOT NULL,
- CONSTRAINT [PK_CaseStatus] PRIMARY KEY CLUSTERED
-(
-	[Status] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -491,11 +477,6 @@ REFERENCES [dbo].[Employee] ([Id])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[BetterReportInspector] CHECK CONSTRAINT [FK_BetterReportInspector_Employee]
-GO
-ALTER TABLE [dbo].[Case]  WITH CHECK ADD  CONSTRAINT [FK_Case_CaseStatus] FOREIGN KEY([Status])
-REFERENCES [dbo].[CaseStatus] ([Status])
-GO
-ALTER TABLE [dbo].[Case] CHECK CONSTRAINT [FK_Case_CaseStatus]
 GO
 ALTER TABLE [dbo].[Case]  WITH CHECK ADD  CONSTRAINT [FK_Case_Employee] FOREIGN KEY([EmployeeId])
 REFERENCES [dbo].[Employee] ([Id])

@@ -1,6 +1,9 @@
 ﻿@model Festispec.Web.Models.Questions.Types.MultipleChoiseQuestionType
 
+@{int index = 0; }
 @foreach (var q in Model.Details.Choices.Cols)
 {
-    @Html.RadioButton(Model.Id.ToString(), q);@q <br />
+
+    @Html.RadioButton(Model.Variable, index, new { @class = "survey-question", id = "", required = "true" });@q <br />
+	index++;
 }

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Festispec.Web.Models
+namespace Festispec.Web.ViewModels
 {
-    public class LoginFormModel
+    public class LoginFormViewModel
     {
         [Required(ErrorMessage = "Email niet ingevuld")]
         [EmailAddress(ErrorMessage = "Ongeldige email")]
