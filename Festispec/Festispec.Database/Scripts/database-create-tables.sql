@@ -232,8 +232,8 @@ CREATE TABLE [dbo].[InspectorPlanning](
 	[OrderId] [int] NOT NULL,
 	[PlannedFrom] [datetime] NOT NULL,
 	[PlannedTill] [datetime] NOT NULL,
-	[WorkedFrom] [datetime] NULL,
-	[WorkedTill] [datetime] NULL,
+	[WorkedFrom] [datetime] NOT NULL,
+	[WorkedTill] [datetime] NOT NULL,
  CONSTRAINT [PK_InspectorPlanning] PRIMARY KEY CLUSTERED
 (
 	[EmployeeId] ASC,

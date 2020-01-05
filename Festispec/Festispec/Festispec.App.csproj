@@ -239,6 +239,7 @@
     <Compile Include="ViewModel\planning\plannedEmployee\PlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\planning\PlanningOverviewVM.cs" />
     <Compile Include="Message\ChangePageMessage.cs" />
+    <Compile Include="ViewModel\planning\WorkedPlannedEmployeeVM.cs" />
     <Compile Include="ViewModel\report\AddReportVM.cs" />
     <Compile Include="ViewModel\report\data\AvgDataParserVM.cs" />
     <Compile Include="ViewModel\report\data\CountDataParserVM.cs" />
@@ -376,6 +377,9 @@
     </Compile>
     <Compile Include="View\Pages\Employee\SingleEmployeePage.xaml.cs">
       <DependentUpon>SingleEmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Planning\WorkedPlannedEmployeePage.xaml.cs">
+      <DependentUpon>WorkedPlannedEmployeePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\PasswordReset\RequestPasswordResetPage.xaml.cs">
       <DependentUpon>RequestPasswordResetPage.xaml</DependentUpon>
@@ -666,6 +670,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Employee\SickPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Planning\WorkedPlannedEmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

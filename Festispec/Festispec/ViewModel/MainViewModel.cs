@@ -11,6 +11,7 @@ using Festispec.View.Pages.Employee.Availability;
 using Festispec.Message;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Festispec.View.Pages.Planning;
 using Festispec.View.Pages.Employee.Planning;
 using Festispec.ViewModel.auth;
 
@@ -31,6 +32,7 @@ namespace Festispec.ViewModel
         public ICommand OpenCustomer { get; set; }
         public ICommand OpenAvailability { get; set; }
         public ICommand OpenSick { get; set; }
+        public ICommand OpenWorkedHours { get; set; }
         public ICommand ShowAccountInformation { get; set; }
         public ICommand OpenEmployeePlanningCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
@@ -78,6 +80,7 @@ namespace Festispec.ViewModel
             OpenCustomer = new RelayCommand(OpenCustomerTab);
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenSick = new RelayCommand(OpenSickTab);
+            OpenWorkedHours = new RelayCommand(OpenWorkedHoursTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
             OpenEmployeePlanningCommand = new RelayCommand(OpenEmployeePlanning);
             LogoutCommand = new RelayCommand(Logout);
@@ -141,7 +144,7 @@ namespace Festispec.ViewModel
             _menu["Inspectie"].Add("Beschikbaarheid", OpenAvailability);
             _menu["Inspectie"].Add("Ingeplande dagen", OpenEmployeePlanningCommand);
             _menu["Inspectie"].Add("Ziekmelden", OpenSick);
-
+            _menu["Inspectie"].Add("Urenregistratie", OpenWorkedHours);
             // Sales Dictionary
             _menu.Add("Sales", new Dictionary<string, ICommand>());
             _menu["Sales"].Add("Dashboard", OpenDashboard);
@@ -197,6 +200,11 @@ namespace Festispec.ViewModel
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AvailablePage) });
         }
 
+        private void OpenWorkedHoursTab()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(WorkedPlannedEmployeePage) });
+            MessengerInstance.Send<ChangeSelectedEmployeeMessage>(new ChangeSelectedEmployeeMessage() { Employee = LoggedInEmployee });
+        }
         private void OpenEmployeePlanning()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePlanningPage)} );

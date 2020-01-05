@@ -108,6 +108,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddQuotationPage>();
             SimpleIoc.Default.Register<EditQuotationPage>();
             SimpleIoc.Default.Register<SingleQuotationPage>();
+            SimpleIoc.Default.Register<WorkedPlannedEmployeePage>();
             SimpleIoc.Default.Register<NoteListPage>();
             SimpleIoc.Default.Register<AddNotePage>();
             SimpleIoc.Default.Register<EmployeePlanningPage>();
@@ -196,6 +197,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<AddQuotationVM>();
             SimpleIoc.Default.Register<EditQuotationVM>();
             SimpleIoc.Default.Register<QuotationInfoVM>();
+            SimpleIoc.Default.Register<WorkedPlannedEmployeeVM>();
             SimpleIoc.Default.Register<ContactPersonPageVM>();
             SimpleIoc.Default.Register<ContactPersonPage>();
             SimpleIoc.Default.Register<AddContactPersonPage>();
@@ -268,6 +270,7 @@ namespace Festispec.ViewModel
         public AddQuotationVM AddQuotationVM => ServiceLocator.Current.GetInstance<AddQuotationVM>();
         public EditQuotationVM EditQuotationVM => ServiceLocator.Current.GetInstance<EditQuotationVM>();
         public QuotationInfoVM QuotationInfoVM => ServiceLocator.Current.GetInstance<QuotationInfoVM>();
+        public WorkedPlannedEmployeeVM WorkedPlannedEmployeeVM => ServiceLocator.Current.GetInstance<WorkedPlannedEmployeeVM>();
         public ContactPersonPageVM ContactPersonPageVM => ServiceLocator.Current.GetInstance<ContactPersonPageVM>();
         public AddContactPersonVM AddContactPersonVM => ServiceLocator.Current.GetInstance<AddContactPersonVM>();
         public EditContactPersonVM EditContactPersonVM => ServiceLocator.Current.GetInstance<EditContactPersonVM>();
