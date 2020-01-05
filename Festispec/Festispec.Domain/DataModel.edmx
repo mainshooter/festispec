@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Festispec.Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="festispec.Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="Id" />
@@ -703,7 +703,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FestispecDomainStoreContainer">
+        <EntityContainer Name="festispecDomainStoreContainer">
           <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AvailabilityInspector" EntityType="Self.AvailabilityInspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BetterReportInspector" EntityType="Self.BetterReportInspector" Schema="dbo" store:Type="Tables" />
@@ -863,175 +863,11 @@
             <End Role="Survey" EntitySet="Survey" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Festispec.Domain" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Answers" EntityType="Festispec.Domain.Answer" />
-          <EntitySet Name="AvailabilityInspectors" EntityType="Festispec.Domain.AvailabilityInspector" />
-          <EntitySet Name="BetterReportInspectors" EntityType="Festispec.Domain.BetterReportInspector" />
-          <EntitySet Name="Cases" EntityType="Festispec.Domain.Case" />
-          <EntitySet Name="CaseStatus" EntityType="Festispec.Domain.CaseStatu" />
-          <EntitySet Name="ContactPersons" EntityType="Festispec.Domain.ContactPerson" />
-          <EntitySet Name="Customers" EntityType="Festispec.Domain.Customer" />
-          <EntitySet Name="Days" EntityType="Festispec.Domain.Day" />
-          <EntitySet Name="Departments" EntityType="Festispec.Domain.Department" />
-          <EntitySet Name="ElementTypes" EntityType="Festispec.Domain.ElementType" />
-          <EntitySet Name="Employees" EntityType="Festispec.Domain.Employee" />
-          <EntitySet Name="EmployeeStatus" EntityType="Festispec.Domain.EmployeeStatu" />
-          <EntitySet Name="Events" EntityType="Festispec.Domain.Event" />
-          <EntitySet Name="InspectorPlannings" EntityType="Festispec.Domain.InspectorPlanning" />
-          <EntitySet Name="Notes" EntityType="Festispec.Domain.Note" />
-          <EntitySet Name="Orders" EntityType="Festispec.Domain.Order" />
-          <EntitySet Name="QueryTemplates" EntityType="Festispec.Domain.QueryTemplate" />
-          <EntitySet Name="Questions" EntityType="Festispec.Domain.Question" />
-          <EntitySet Name="QuestionTypes" EntityType="Festispec.Domain.QuestionType" />
-          <EntitySet Name="Quotations" EntityType="Festispec.Domain.Quotation" />
-          <EntitySet Name="QuotationStatus" EntityType="Festispec.Domain.QuotationStatu" />
-          <EntitySet Name="Reports" EntityType="Festispec.Domain.Report" />
-          <EntitySet Name="ReportElements" EntityType="Festispec.Domain.ReportElement" />
-          <EntitySet Name="ReportStatus" EntityType="Festispec.Domain.ReportStatu" />
-          <EntitySet Name="SickReportInspectors" EntityType="Festispec.Domain.SickReportInspector" />
-          <EntitySet Name="Surveys" EntityType="Festispec.Domain.Survey" />
-          <EntitySet Name="SurveyStatus" EntityType="Festispec.Domain.SurveyStatu" />
-          <AssociationSet Name="FK_Answer_Case" Association="Festispec.Domain.FK_Answer_Case">
-            <End Role="Case" EntitySet="Cases" />
-            <End Role="Answer" EntitySet="Answers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Answer_Question" Association="Festispec.Domain.FK_Answer_Question">
-            <End Role="Question" EntitySet="Questions" />
-            <End Role="Answer" EntitySet="Answers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AvailabilityInspector_Employee" Association="Festispec.Domain.FK_AvailabilityInspector_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="AvailabilityInspector" EntitySet="AvailabilityInspectors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BetterReportInspector_Employee" Association="Festispec.Domain.FK_BetterReportInspector_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="BetterReportInspector" EntitySet="BetterReportInspectors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Case_CaseStatus" Association="Festispec.Domain.FK_Case_CaseStatus">
-            <End Role="CaseStatu" EntitySet="CaseStatus" />
-            <End Role="Case" EntitySet="Cases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Case_Employee" Association="Festispec.Domain.FK_Case_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Case" EntitySet="Cases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Case_Survey" Association="Festispec.Domain.FK_Case_Survey">
-            <End Role="Survey" EntitySet="Surveys" />
-            <End Role="Case" EntitySet="Cases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ContactPerson_Customer" Association="Festispec.Domain.FK_ContactPerson_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="ContactPerson" EntitySet="ContactPersons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Event_ContactPerson" Association="Festispec.Domain.FK_Event_ContactPerson">
-            <End Role="ContactPerson" EntitySet="ContactPersons" />
-            <End Role="Event" EntitySet="Events" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Note_ContactPerson" Association="Festispec.Domain.FK_Note_ContactPerson">
-            <End Role="ContactPerson" EntitySet="ContactPersons" />
-            <End Role="Note" EntitySet="Notes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Event_Customer" Association="Festispec.Domain.FK_Event_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Event" EntitySet="Events" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Customer" Association="Festispec.Domain.FK_Order_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Quotation_Customer" Association="Festispec.Domain.FK_Quotation_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Quotation" EntitySet="Quotations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Day_Order" Association="Festispec.Domain.FK_Day_Order">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="Day" EntitySet="Days" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InspectorPlanning_Day" Association="Festispec.Domain.FK_InspectorPlanning_Day">
-            <End Role="Day" EntitySet="Days" />
-            <End Role="InspectorPlanning" EntitySet="InspectorPlannings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Department" Association="Festispec.Domain.FK_Employee_Department">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReportElement_ElementType" Association="Festispec.Domain.FK_ReportElement_ElementType">
-            <End Role="ElementType" EntitySet="ElementTypes" />
-            <End Role="ReportElement" EntitySet="ReportElements" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_EmployeeStatus" Association="Festispec.Domain.FK_Employee_EmployeeStatus">
-            <End Role="EmployeeStatu" EntitySet="EmployeeStatus" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InspectorPlanning_Employee" Association="Festispec.Domain.FK_InspectorPlanning_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="InspectorPlanning" EntitySet="InspectorPlannings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Employee" Association="Festispec.Domain.FK_Order_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Quotation_Employee" Association="Festispec.Domain.FK_Quotation_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Quotation" EntitySet="Quotations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SickReportInspector_Employee" Association="Festispec.Domain.FK_SickReportInspector_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="SickReportInspector" EntitySet="SickReportInspectors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Event" Association="Festispec.Domain.FK_Order_Event">
-            <End Role="Event" EntitySet="Events" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Quotation_Event" Association="Festispec.Domain.FK_Quotation_Event">
-            <End Role="Event" EntitySet="Events" />
-            <End Role="Quotation" EntitySet="Quotations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SickReportInspector_InspectorPlanning" Association="Festispec.Domain.FK_SickReportInspector_InspectorPlanning">
-            <End Role="InspectorPlanning" EntitySet="InspectorPlannings" />
-            <End Role="SickReportInspector" EntitySet="SickReportInspectors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Quotation" Association="Festispec.Domain.FK_Order_Quotation">
-            <End Role="Quotation" EntitySet="Quotations" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Report_Order" Association="Festispec.Domain.FK_Report_Order">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="Report" EntitySet="Reports" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Survey_Order" Association="Festispec.Domain.FK_Survey_Order">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="Survey" EntitySet="Surveys" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Question_QuestionType" Association="Festispec.Domain.FK_Question_QuestionType">
-            <End Role="QuestionType" EntitySet="QuestionTypes" />
-            <End Role="Question" EntitySet="Questions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Question_Survey" Association="Festispec.Domain.FK_Question_Survey">
-            <End Role="Survey" EntitySet="Surveys" />
-            <End Role="Question" EntitySet="Questions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Quotation_QuotationStatus" Association="Festispec.Domain.FK_Quotation_QuotationStatus">
-            <End Role="QuotationStatu" EntitySet="QuotationStatus" />
-            <End Role="Quotation" EntitySet="Quotations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Report_ReportStatus" Association="Festispec.Domain.FK_Report_ReportStatus">
-            <End Role="ReportStatu" EntitySet="ReportStatus" />
-            <End Role="Report" EntitySet="Reports" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReportElement_Report" Association="Festispec.Domain.FK_ReportElement_Report">
-            <End Role="Report" EntitySet="Reports" />
-            <End Role="ReportElement" EntitySet="ReportElements" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Survey_SurveyStatus" Association="Festispec.Domain.FK_Survey_SurveyStatus">
-            <End Role="SurveyStatu" EntitySet="SurveyStatus" />
-            <End Role="Survey" EntitySet="Surveys" />
-          </AssociationSet>
-        </EntityContainer>
+      <Schema Namespace="festispec.Domain" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="Id" />
@@ -1039,9 +875,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="QuestionId" Type="Int32" Nullable="false" />
           <Property Name="CaseId" Type="Int32" Nullable="false" />
-          <Property Name="Answer1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Case" Relationship="Festispec.Domain.FK_Answer_Case" FromRole="Answer" ToRole="Case" />
-          <NavigationProperty Name="Question" Relationship="Festispec.Domain.FK_Answer_Question" FromRole="Answer" ToRole="Question" />
+          <Property Name="Answer1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Case" Relationship="Self.FK_Answer_Case" FromRole="Answer" ToRole="Case" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Answer_Question" FromRole="Answer" ToRole="Question" />
         </EntityType>
         <EntityType Name="AvailabilityInspector">
           <Key>
@@ -1051,7 +887,7 @@
           <Property Name="EmployeeId" Type="Int32" Nullable="false" />
           <Property Name="AvailableFrom" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="AvailableTill" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Employee" Relationship="Festispec.Domain.FK_AvailabilityInspector_Employee" FromRole="AvailabilityInspector" ToRole="Employee" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_AvailabilityInspector_Employee" FromRole="AvailabilityInspector" ToRole="Employee" />
         </EntityType>
         <EntityType Name="BetterReportInspector">
           <Key>
@@ -1060,7 +896,7 @@
           </Key>
           <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EmployeeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Festispec.Domain.FK_BetterReportInspector_Employee" FromRole="BetterReportInspector" ToRole="Employee" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_BetterReportInspector_Employee" FromRole="BetterReportInspector" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Case">
           <Key>
@@ -1078,38 +914,38 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Firstname" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Prefix" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Function" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Function" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="Festispec.Domain.FK_ContactPerson_Customer" FromRole="ContactPerson" ToRole="Customer" />
-          <NavigationProperty Name="Events" Relationship="Festispec.Domain.FK_Event_ContactPerson" FromRole="ContactPerson" ToRole="Event" />
-          <NavigationProperty Name="Notes" Relationship="Festispec.Domain.FK_Note_ContactPerson" FromRole="ContactPerson" ToRole="Note" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_ContactPerson_Customer" FromRole="ContactPerson" ToRole="Customer" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Event_ContactPerson" FromRole="ContactPerson" ToRole="Event" />
+          <NavigationProperty Name="Notes" Relationship="Self.FK_Note_ContactPerson" FromRole="ContactPerson" ToRole="Note" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="COC" Type="Int32" Nullable="false" />
           <Property Name="BranchNumber" Type="Int32" Nullable="false" />
-          <Property Name="Street" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HouseNumber" Type="Int32" Nullable="false" />
           <Property Name="HouseNumber_Addition" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Website" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ContactPersons" Relationship="Festispec.Domain.FK_ContactPerson_Customer" FromRole="Customer" ToRole="ContactPerson" />
-          <NavigationProperty Name="Events" Relationship="Festispec.Domain.FK_Event_Customer" FromRole="Customer" ToRole="Event" />
-          <NavigationProperty Name="Orders" Relationship="Festispec.Domain.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
-          <NavigationProperty Name="Quotations" Relationship="Festispec.Domain.FK_Quotation_Customer" FromRole="Customer" ToRole="Quotation" />
+          <NavigationProperty Name="ContactPersons" Relationship="Self.FK_ContactPerson_Customer" FromRole="Customer" ToRole="ContactPerson" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Event_Customer" FromRole="Customer" ToRole="Event" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+          <NavigationProperty Name="Quotations" Relationship="Self.FK_Quotation_Customer" FromRole="Customer" ToRole="Quotation" />
         </EntityType>
         <EntityType Name="Day">
           <Key>
@@ -1120,63 +956,63 @@
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <Property Name="BeginTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Order" Relationship="Festispec.Domain.FK_Day_Order" FromRole="Day" ToRole="Order" />
-          <NavigationProperty Name="InspectorPlannings" Relationship="Festispec.Domain.FK_InspectorPlanning_Day" FromRole="Day" ToRole="InspectorPlanning" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Day_Order" FromRole="Day" ToRole="Order" />
+          <NavigationProperty Name="InspectorPlannings" Relationship="Self.FK_InspectorPlanning_Day" FromRole="Day" ToRole="InspectorPlanning" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="Name" />
           </Key>
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Employees" Relationship="Festispec.Domain.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
         </EntityType>
         <EntityType Name="ElementType">
           <Key>
             <PropertyRef Name="Type" />
           </Key>
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ReportElements" Relationship="Festispec.Domain.FK_ReportElement_ElementType" FromRole="ElementType" ToRole="ReportElement" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ReportElements" Relationship="Self.FK_ReportElement_ElementType" FromRole="ElementType" ToRole="ReportElement" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Department" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Prefix" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Street" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HouseNumber" Type="Int32" Nullable="false" />
           <Property Name="HouseNumber_Addition" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PasswordResetToken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ResetTokenEndTime" Type="DateTime" Precision="3" />
           <Property Name="Iban" Type="String" MaxLength="27" FixedLength="false" Unicode="true" />
           <Property Name="Certificate" Type="Byte" />
-          <NavigationProperty Name="AvailabilityInspectors" Relationship="Festispec.Domain.FK_AvailabilityInspector_Employee" FromRole="Employee" ToRole="AvailabilityInspector" />
-          <NavigationProperty Name="BetterReportInspectors" Relationship="Festispec.Domain.FK_BetterReportInspector_Employee" FromRole="Employee" ToRole="BetterReportInspector" />
-          <NavigationProperty Name="Cases" Relationship="Festispec.Domain.FK_Case_Employee" FromRole="Employee" ToRole="Case" />
-          <NavigationProperty Name="Department1" Relationship="Festispec.Domain.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
-          <NavigationProperty Name="EmployeeStatu" Relationship="Festispec.Domain.FK_Employee_EmployeeStatus" FromRole="Employee" ToRole="EmployeeStatu" />
-          <NavigationProperty Name="InspectorPlannings" Relationship="Festispec.Domain.FK_InspectorPlanning_Employee" FromRole="Employee" ToRole="InspectorPlanning" />
-          <NavigationProperty Name="Orders" Relationship="Festispec.Domain.FK_Order_Employee" FromRole="Employee" ToRole="Order" />
-          <NavigationProperty Name="Quotations" Relationship="Festispec.Domain.FK_Quotation_Employee" FromRole="Employee" ToRole="Quotation" />
-          <NavigationProperty Name="SickReportInspectors" Relationship="Festispec.Domain.FK_SickReportInspector_Employee" FromRole="Employee" ToRole="SickReportInspector" />
+          <NavigationProperty Name="AvailabilityInspectors" Relationship="Self.FK_AvailabilityInspector_Employee" FromRole="Employee" ToRole="AvailabilityInspector" />
+          <NavigationProperty Name="BetterReportInspectors" Relationship="Self.FK_BetterReportInspector_Employee" FromRole="Employee" ToRole="BetterReportInspector" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Case_Employee" FromRole="Employee" ToRole="Case" />
+          <NavigationProperty Name="Department1" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
+          <NavigationProperty Name="EmployeeStatu" Relationship="Self.FK_Employee_EmployeeStatus" FromRole="Employee" ToRole="EmployeeStatus" />
+          <NavigationProperty Name="InspectorPlannings" Relationship="Self.FK_InspectorPlanning_Employee" FromRole="Employee" ToRole="InspectorPlanning" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Employee" FromRole="Employee" ToRole="Order" />
+          <NavigationProperty Name="Quotations" Relationship="Self.FK_Quotation_Employee" FromRole="Employee" ToRole="Quotation" />
+          <NavigationProperty Name="SickReportInspectors" Relationship="Self.FK_SickReportInspector_Employee" FromRole="Employee" ToRole="SickReportInspector" />
         </EntityType>
         <EntityType Name="EmployeeStatu">
           <Key>
             <PropertyRef Name="Status" />
           </Key>
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Employees" Relationship="Festispec.Domain.FK_Employee_EmployeeStatus" FromRole="EmployeeStatu" ToRole="Employee" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_EmployeeStatus" FromRole="EmployeeStatus" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -1185,21 +1021,21 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
           <Property Name="ContactPersonId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Street" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HouseNumber" Type="Int32" Nullable="false" />
           <Property Name="HouseNumber_Addition" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="BeginDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="AmountVisitors" Type="Int32" Nullable="false" />
           <Property Name="SurfaceM2" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ContactPerson" Relationship="Festispec.Domain.FK_Event_ContactPerson" FromRole="Event" ToRole="ContactPerson" />
-          <NavigationProperty Name="Customer" Relationship="Festispec.Domain.FK_Event_Customer" FromRole="Event" ToRole="Customer" />
-          <NavigationProperty Name="Orders" Relationship="Festispec.Domain.FK_Order_Event" FromRole="Event" ToRole="Order" />
-          <NavigationProperty Name="Quotations" Relationship="Festispec.Domain.FK_Quotation_Event" FromRole="Event" ToRole="Quotation" />
+          <NavigationProperty Name="ContactPerson" Relationship="Self.FK_Event_ContactPerson" FromRole="Event" ToRole="ContactPerson" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Event_Customer" FromRole="Event" ToRole="Customer" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Event" FromRole="Event" ToRole="Order" />
+          <NavigationProperty Name="Quotations" Relationship="Self.FK_Quotation_Event" FromRole="Event" ToRole="Quotation" />
         </EntityType>
         <EntityType Name="InspectorPlanning">
           <Key>
@@ -1224,9 +1060,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ContactPersonId" Type="Int32" Nullable="false" />
-          <Property Name="Note1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Note1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="ContactPerson" Relationship="Festispec.Domain.FK_Note_ContactPerson" FromRole="Note" ToRole="ContactPerson" />
+          <NavigationProperty Name="ContactPerson" Relationship="Self.FK_Note_ContactPerson" FromRole="Note" ToRole="ContactPerson" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -1238,21 +1074,21 @@
           <Property Name="EmployeeId" Type="Int32" />
           <Property Name="QuotationId" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Customer" Relationship="Festispec.Domain.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
-          <NavigationProperty Name="Days" Relationship="Festispec.Domain.FK_Day_Order" FromRole="Order" ToRole="Day" />
-          <NavigationProperty Name="Employee" Relationship="Festispec.Domain.FK_Order_Employee" FromRole="Order" ToRole="Employee" />
-          <NavigationProperty Name="Event" Relationship="Festispec.Domain.FK_Order_Event" FromRole="Order" ToRole="Event" />
-          <NavigationProperty Name="Quotation" Relationship="Festispec.Domain.FK_Order_Quotation" FromRole="Order" ToRole="Quotation" />
-          <NavigationProperty Name="Reports" Relationship="Festispec.Domain.FK_Report_Order" FromRole="Order" ToRole="Report" />
-          <NavigationProperty Name="Surveys" Relationship="Festispec.Domain.FK_Survey_Order" FromRole="Order" ToRole="Survey" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="Days" Relationship="Self.FK_Day_Order" FromRole="Order" ToRole="Day" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Order_Employee" FromRole="Order" ToRole="Employee" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Order_Event" FromRole="Order" ToRole="Event" />
+          <NavigationProperty Name="Quotation" Relationship="Self.FK_Order_Quotation" FromRole="Order" ToRole="Quotation" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Report_Order" FromRole="Order" ToRole="Report" />
+          <NavigationProperty Name="Surveys" Relationship="Self.FK_Survey_Order" FromRole="Order" ToRole="Survey" />
         </EntityType>
         <EntityType Name="QueryTemplate">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Query" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Query" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -1260,20 +1096,20 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SurveyId" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Question1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Question1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Order" Type="Int32" Nullable="false" />
-          <Property Name="Variables" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Answers" Relationship="Festispec.Domain.FK_Answer_Question" FromRole="Question" ToRole="Answer" />
-          <NavigationProperty Name="QuestionType" Relationship="Festispec.Domain.FK_Question_QuestionType" FromRole="Question" ToRole="QuestionType" />
-          <NavigationProperty Name="Survey" Relationship="Festispec.Domain.FK_Question_Survey" FromRole="Question" ToRole="Survey" />
+          <Property Name="Variables" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK_Answer_Question" FromRole="Question" ToRole="Answer" />
+          <NavigationProperty Name="QuestionType" Relationship="Self.FK_Question_QuestionType" FromRole="Question" ToRole="QuestionType" />
+          <NavigationProperty Name="Survey" Relationship="Self.FK_Question_Survey" FromRole="Question" ToRole="Survey" />
         </EntityType>
         <EntityType Name="QuestionType">
           <Key>
             <PropertyRef Name="Type" />
           </Key>
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Questions" Relationship="Festispec.Domain.FK_Question_QuestionType" FromRole="QuestionType" ToRole="Question" />
+          <Property Name="Type" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Question_QuestionType" FromRole="QuestionType" ToRole="Question" />
         </EntityType>
         <EntityType Name="Quotation">
           <Key>
@@ -1283,23 +1119,23 @@
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
           <Property Name="EmployeeId" Type="Int32" />
           <Property Name="EventId" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Price" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="BtwPercentage" Type="Int32" Nullable="false" />
           <Property Name="TimeSend" Type="DateTime" Precision="3" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Customer" Relationship="Festispec.Domain.FK_Quotation_Customer" FromRole="Quotation" ToRole="Customer" />
-          <NavigationProperty Name="Employee" Relationship="Festispec.Domain.FK_Quotation_Employee" FromRole="Quotation" ToRole="Employee" />
-          <NavigationProperty Name="Event" Relationship="Festispec.Domain.FK_Quotation_Event" FromRole="Quotation" ToRole="Event" />
-          <NavigationProperty Name="Orders" Relationship="Festispec.Domain.FK_Order_Quotation" FromRole="Quotation" ToRole="Order" />
-          <NavigationProperty Name="QuotationStatu" Relationship="Festispec.Domain.FK_Quotation_QuotationStatus" FromRole="Quotation" ToRole="QuotationStatu" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Quotation_Customer" FromRole="Quotation" ToRole="Customer" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Quotation_Employee" FromRole="Quotation" ToRole="Employee" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Quotation_Event" FromRole="Quotation" ToRole="Event" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Quotation" FromRole="Quotation" ToRole="Order" />
+          <NavigationProperty Name="QuotationStatu" Relationship="Self.FK_Quotation_QuotationStatus" FromRole="Quotation" ToRole="QuotationStatus" />
         </EntityType>
         <EntityType Name="QuotationStatu">
           <Key>
             <PropertyRef Name="Status" />
           </Key>
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Quotations" Relationship="Festispec.Domain.FK_Quotation_QuotationStatus" FromRole="QuotationStatu" ToRole="Quotation" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Quotations" Relationship="Self.FK_Quotation_QuotationStatus" FromRole="QuotationStatus" ToRole="Quotation" />
         </EntityType>
         <EntityType Name="Report">
           <Key>
@@ -1307,11 +1143,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderId" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Order" Relationship="Festispec.Domain.FK_Report_Order" FromRole="Report" ToRole="Order" />
-          <NavigationProperty Name="ReportStatu" Relationship="Festispec.Domain.FK_Report_ReportStatus" FromRole="Report" ToRole="ReportStatu" />
-          <NavigationProperty Name="ReportElements" Relationship="Festispec.Domain.FK_ReportElement_Report" FromRole="Report" ToRole="ReportElement" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Report_Order" FromRole="Report" ToRole="Order" />
+          <NavigationProperty Name="ReportStatu" Relationship="Self.FK_Report_ReportStatus" FromRole="Report" ToRole="ReportStatus" />
+          <NavigationProperty Name="ReportElements" Relationship="Self.FK_ReportElement_Report" FromRole="Report" ToRole="ReportElement" />
         </EntityType>
         <EntityType Name="ReportElement">
           <Key>
@@ -1327,15 +1163,15 @@
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="X_as" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Y_as" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ElementType1" Relationship="Festispec.Domain.FK_ReportElement_ElementType" FromRole="ReportElement" ToRole="ElementType" />
-          <NavigationProperty Name="Report" Relationship="Festispec.Domain.FK_ReportElement_Report" FromRole="ReportElement" ToRole="Report" />
+          <NavigationProperty Name="ElementType1" Relationship="Self.FK_ReportElement_ElementType" FromRole="ReportElement" ToRole="ElementType" />
+          <NavigationProperty Name="Report" Relationship="Self.FK_ReportElement_Report" FromRole="ReportElement" ToRole="Report" />
         </EntityType>
         <EntityType Name="ReportStatu">
           <Key>
             <PropertyRef Name="Status" />
           </Key>
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Reports" Relationship="Festispec.Domain.FK_Report_ReportStatus" FromRole="ReportStatu" ToRole="Report" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Report_ReportStatus" FromRole="ReportStatus" ToRole="Report" />
         </EntityType>
         <EntityType Name="SickReportInspector">
           <Key>
@@ -1346,9 +1182,9 @@
           <Property Name="InspectorPlanningEmployeeId" Type="Int32" Nullable="false" />
           <Property Name="InspoctorPlanningDayId" Type="Int32" Nullable="false" />
           <Property Name="InspectorPlanningOrderId" Type="Int32" Nullable="false" />
-          <Property Name="Reason" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Employee" Relationship="Festispec.Domain.FK_SickReportInspector_Employee" FromRole="SickReportInspector" ToRole="Employee" />
-          <NavigationProperty Name="InspectorPlanning" Relationship="Festispec.Domain.FK_SickReportInspector_InspectorPlanning" FromRole="SickReportInspector" ToRole="InspectorPlanning" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_SickReportInspector_Employee" FromRole="SickReportInspector" ToRole="Employee" />
+          <NavigationProperty Name="InspectorPlanning" Relationship="Self.FK_SickReportInspector_InspectorPlanning" FromRole="SickReportInspector" ToRole="InspectorPlanning" />
         </EntityType>
         <EntityType Name="Survey">
           <Key>
@@ -1356,25 +1192,25 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderId" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cases" Relationship="Festispec.Domain.FK_Case_Survey" FromRole="Survey" ToRole="Case" />
-          <NavigationProperty Name="Order" Relationship="Festispec.Domain.FK_Survey_Order" FromRole="Survey" ToRole="Order" />
-          <NavigationProperty Name="Questions" Relationship="Festispec.Domain.FK_Question_Survey" FromRole="Survey" ToRole="Question" />
-          <NavigationProperty Name="SurveyStatu" Relationship="Festispec.Domain.FK_Survey_SurveyStatus" FromRole="Survey" ToRole="SurveyStatu" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Case_Survey" FromRole="Survey" ToRole="Case" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Survey_Order" FromRole="Survey" ToRole="Order" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Question_Survey" FromRole="Survey" ToRole="Question" />
+          <NavigationProperty Name="SurveyStatu" Relationship="Self.FK_Survey_SurveyStatus" FromRole="Survey" ToRole="SurveyStatus" />
         </EntityType>
         <EntityType Name="SurveyStatu">
           <Key>
             <PropertyRef Name="Status" />
           </Key>
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Surveys" Relationship="Festispec.Domain.FK_Survey_SurveyStatus" FromRole="SurveyStatu" ToRole="Survey" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Surveys" Relationship="Self.FK_Survey_SurveyStatus" FromRole="SurveyStatus" ToRole="Survey" />
         </EntityType>
         <Association Name="FK_Answer_Case">
-          <End Type="Festispec.Domain.Case" Role="Case" Multiplicity="1">
+          <End Role="Case" Type="Self.Case" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Festispec.Domain.Answer" Role="Answer" Multiplicity="*" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Case">
               <PropertyRef Name="Id" />
@@ -1385,10 +1221,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Answer_Question">
-          <End Type="Festispec.Domain.Question" Role="Question" Multiplicity="1">
+          <End Role="Question" Type="Self.Question" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Festispec.Domain.Answer" Role="Answer" Multiplicity="*" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Question">
               <PropertyRef Name="Id" />
@@ -1399,10 +1235,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AvailabilityInspector_Employee">
-          <End Type="Festispec.Domain.Employee" Role="Employee" Multiplicity="1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Festispec.Domain.AvailabilityInspector" Role="AvailabilityInspector" Multiplicity="*" />
+          <End Role="AvailabilityInspector" Type="Self.AvailabilityInspector" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Id" />
@@ -1413,10 +1249,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BetterReportInspector_Employee">
-          <End Type="Festispec.Domain.Employee" Role="Employee" Multiplicity="1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Festispec.Domain.BetterReportInspector" Role="BetterReportInspector" Multiplicity="*" />
+          <End Role="BetterReportInspector" Type="Self.BetterReportInspector" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Id" />
@@ -1427,8 +1263,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Case_Employee">
-          <End Type="Festispec.Domain.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="Festispec.Domain.Case" Role="Case" Multiplicity="*" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Case" Type="Self.Case" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Id" />
@@ -1439,8 +1275,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Case_Survey">
-          <End Type="Festispec.Domain.Survey" Role="Survey" Multiplicity="1" />
-          <End Type="Festispec.Domain.Case" Role="Case" Multiplicity="*" />
+          <End Role="Survey" Type="Self.Survey" Multiplicity="1" />
+          <End Role="Case" Type="Self.Case" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Survey">
               <PropertyRef Name="Id" />
@@ -1451,8 +1287,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ContactPerson_Customer">
-          <End Type="Festispec.Domain.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="Festispec.Domain.ContactPerson" Role="ContactPerson" Multiplicity="*" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="ContactPerson" Type="Self.ContactPerson" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -1463,8 +1299,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Event_ContactPerson">
-          <End Type="Festispec.Domain.ContactPerson" Role="ContactPerson" Multiplicity="1" />
-          <End Type="Festispec.Domain.Event" Role="Event" Multiplicity="*" />
+          <End Role="ContactPerson" Type="Self.ContactPerson" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ContactPerson">
               <PropertyRef Name="Id" />
@@ -1475,10 +1311,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Note_ContactPerson">
-          <End Type="Festispec.Domain.ContactPerson" Role="ContactPerson" Multiplicity="1">
+          <End Role="ContactPerson" Type="Self.ContactPerson" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Festispec.Domain.Note" Role="Note" Multiplicity="*" />
+          <End Role="Note" Type="Self.Note" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ContactPerson">
               <PropertyRef Name="Id" />
@@ -1489,8 +1325,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Event_Customer">
-          <End Type="Festispec.Domain.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="Festispec.Domain.Event" Role="Event" Multiplicity="*" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -1501,8 +1337,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Customer">
-          <End Type="Festispec.Domain.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="Festispec.Domain.Order" Role="Order" Multiplicity="*" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -1513,8 +1349,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Quotation_Customer">
-          <End Type="Festispec.Domain.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="Festispec.Domain.Quotation" Role="Quotation" Multiplicity="*" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Quotation" Type="Self.Quotation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -1525,10 +1361,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Day_Order">
-          <End Type="Festispec.Domain.Order" Role="Order" Multiplicity="1">
+          <End Role="Order" Type="Self.Order" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Festispec.Domain.Day" Role="Day" Multiplicity="*" />
+          <End Role="Day" Type="Self.Day" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
               <PropertyRef Name="Id" />
@@ -1539,10 +1375,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InspectorPlanning_Day">
-          <End Type="Festispec.Domain.Day" Role="Day" Multiplicity="1">
+          <End Role="Day" Type="Self.Day" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Festispec.Domain.InspectorPlanning" Role="InspectorPlanning" Multiplicity="*" />
+          <End Role="InspectorPlanning" Type="Self.InspectorPlanning" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Day">
               <PropertyRef Name="Id" />
@@ -1555,8 +1391,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Department">
-          <End Type="Festispec.Domain.Department" Role="Department" Multiplicity="1" />
-          <End Type="Festispec.Domain.Employee" Role="Employee" Multiplicity="*" />
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Department">
               <PropertyRef Name="Name" />
@@ -1567,8 +1403,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ReportElement_ElementType">
-          <End Type="Festispec.Domain.ElementType" Role="ElementType" Multiplicity="1" />
-          <End Type="Festispec.Domain.ReportElement" Role="ReportElement" Multiplicity="*" />
+          <End Role="ElementType" Type="Self.ElementType" Multiplicity="1" />
+          <End Role="ReportElement" Type="Self.ReportElement" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ElementType">
               <PropertyRef Name="Type" />
@@ -1579,10 +1415,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_EmployeeStatus">
-          <End Type="Festispec.Domain.EmployeeStatu" Role="EmployeeStatu" Multiplicity="1" />
-          <End Type="Festispec.Domain.Employee" Role="Employee" Multiplicity="*" />
+          <End Role="EmployeeStatus" Type="Self.EmployeeStatu" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="EmployeeStatu">
+            <Principal Role="EmployeeStatus">
               <PropertyRef Name="Status" />
             </Principal>
             <Dependent Role="Employee">
@@ -1591,8 +1427,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InspectorPlanning_Employee">
-          <End Type="Festispec.Domain.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="Festispec.Domain.InspectorPlanning" Role="InspectorPlanning" Multiplicity="*" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="InspectorPlanning" Type="Self.InspectorPlanning" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Id" />
@@ -1603,8 +1439,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Employee">
-          <End Type="Festispec.Domain.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="Festispec.Domain.Order" Role="Order" Multiplicity="*" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Id" />
@@ -1615,8 +1451,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Quotation_Employee">
-          <End Type="Festispec.Domain.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="Festispec.Domain.Quotation" Role="Quotation" Multiplicity="*" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Quotation" Type="Self.Quotation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Id" />
@@ -1627,10 +1463,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SickReportInspector_Employee">
-          <End Type="Festispec.Domain.Employee" Role="Employee" Multiplicity="1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Festispec.Domain.SickReportInspector" Role="SickReportInspector" Multiplicity="*" />
+          <End Role="SickReportInspector" Type="Self.SickReportInspector" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Id" />
@@ -1641,10 +1477,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Event">
-          <End Type="Festispec.Domain.Event" Role="Event" Multiplicity="1">
+          <End Role="Event" Type="Self.Event" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Festispec.Domain.Order" Role="Order" Multiplicity="*" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Event">
               <PropertyRef Name="Id" />
@@ -1655,10 +1491,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Quotation_Event">
-          <End Type="Festispec.Domain.Event" Role="Event" Multiplicity="1">
+          <End Role="Event" Type="Self.Event" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Festispec.Domain.Quotation" Role="Quotation" Multiplicity="*" />
+          <End Role="Quotation" Type="Self.Quotation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Event">
               <PropertyRef Name="Id" />
@@ -1669,8 +1505,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SickReportInspector_InspectorPlanning">
-          <End Type="Festispec.Domain.InspectorPlanning" Role="InspectorPlanning" Multiplicity="1" />
-          <End Type="Festispec.Domain.SickReportInspector" Role="SickReportInspector" Multiplicity="*" />
+          <End Role="InspectorPlanning" Type="Self.InspectorPlanning" Multiplicity="1" />
+          <End Role="SickReportInspector" Type="Self.SickReportInspector" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InspectorPlanning">
               <PropertyRef Name="EmployeeId" />
@@ -1685,8 +1521,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Quotation">
-          <End Type="Festispec.Domain.Quotation" Role="Quotation" Multiplicity="1" />
-          <End Type="Festispec.Domain.Order" Role="Order" Multiplicity="*" />
+          <End Role="Quotation" Type="Self.Quotation" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Quotation">
               <PropertyRef Name="Id" />
@@ -1697,10 +1533,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Report_Order">
-          <End Type="Festispec.Domain.Order" Role="Order" Multiplicity="1">
+          <End Role="Order" Type="Self.Order" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Festispec.Domain.Report" Role="Report" Multiplicity="*" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
               <PropertyRef Name="Id" />
@@ -1711,8 +1547,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Survey_Order">
-          <End Type="Festispec.Domain.Order" Role="Order" Multiplicity="1" />
-          <End Type="Festispec.Domain.Survey" Role="Survey" Multiplicity="*" />
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Survey" Type="Self.Survey" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
               <PropertyRef Name="Id" />
@@ -1723,8 +1559,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Question_QuestionType">
-          <End Type="Festispec.Domain.QuestionType" Role="QuestionType" Multiplicity="1" />
-          <End Type="Festispec.Domain.Question" Role="Question" Multiplicity="*" />
+          <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="QuestionType">
               <PropertyRef Name="Type" />
@@ -1735,8 +1571,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Question_Survey">
-          <End Type="Festispec.Domain.Survey" Role="Survey" Multiplicity="1" />
-          <End Type="Festispec.Domain.Question" Role="Question" Multiplicity="*" />
+          <End Role="Survey" Type="Self.Survey" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Survey">
               <PropertyRef Name="Id" />
@@ -1747,10 +1583,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Quotation_QuotationStatus">
-          <End Type="Festispec.Domain.QuotationStatu" Role="QuotationStatu" Multiplicity="1" />
-          <End Type="Festispec.Domain.Quotation" Role="Quotation" Multiplicity="*" />
+          <End Role="QuotationStatus" Type="Self.QuotationStatu" Multiplicity="1" />
+          <End Role="Quotation" Type="Self.Quotation" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="QuotationStatu">
+            <Principal Role="QuotationStatus">
               <PropertyRef Name="Status" />
             </Principal>
             <Dependent Role="Quotation">
@@ -1759,10 +1595,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Report_ReportStatus">
-          <End Type="Festispec.Domain.ReportStatu" Role="ReportStatu" Multiplicity="1" />
-          <End Type="Festispec.Domain.Report" Role="Report" Multiplicity="*" />
+          <End Role="ReportStatus" Type="Self.ReportStatu" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ReportStatu">
+            <Principal Role="ReportStatus">
               <PropertyRef Name="Status" />
             </Principal>
             <Dependent Role="Report">
@@ -1771,10 +1607,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ReportElement_Report">
-          <End Type="Festispec.Domain.Report" Role="Report" Multiplicity="1">
+          <End Role="Report" Type="Self.Report" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Festispec.Domain.ReportElement" Role="ReportElement" Multiplicity="*" />
+          <End Role="ReportElement" Type="Self.ReportElement" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Report">
               <PropertyRef Name="Id" />
@@ -1785,10 +1621,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Survey_SurveyStatus">
-          <End Type="Festispec.Domain.SurveyStatu" Role="SurveyStatu" Multiplicity="1" />
-          <End Type="Festispec.Domain.Survey" Role="Survey" Multiplicity="*" />
+          <End Role="SurveyStatus" Type="Self.SurveyStatu" Multiplicity="1" />
+          <End Role="Survey" Type="Self.Survey" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SurveyStatu">
+            <Principal Role="SurveyStatus">
               <PropertyRef Name="Status" />
             </Principal>
             <Dependent Role="Survey">
@@ -1961,37 +1797,37 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FestispecDomainStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="festispecDomainStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Answers">
-            <EntityTypeMapping TypeName="Festispec.Domain.Answer">
+            <EntityTypeMapping TypeName="festispec.Domain.Answer">
               <MappingFragment StoreEntitySet="Answer">
-                <ScalarProperty Name="Answer1" ColumnName="Answer" />
-                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
-                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+                <ScalarProperty Name="Answer1" ColumnName="Answer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AvailabilityInspectors">
-            <EntityTypeMapping TypeName="Festispec.Domain.AvailabilityInspector">
+            <EntityTypeMapping TypeName="festispec.Domain.AvailabilityInspector">
               <MappingFragment StoreEntitySet="AvailabilityInspector">
-                <ScalarProperty Name="AvailableTill" ColumnName="AvailableTill" />
-                <ScalarProperty Name="AvailableFrom" ColumnName="AvailableFrom" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="AvailableFrom" ColumnName="AvailableFrom" />
+                <ScalarProperty Name="AvailableTill" ColumnName="AvailableTill" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BetterReportInspectors">
-            <EntityTypeMapping TypeName="Festispec.Domain.BetterReportInspector">
+            <EntityTypeMapping TypeName="festispec.Domain.BetterReportInspector">
               <MappingFragment StoreEntitySet="BetterReportInspector">
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cases">
-            <EntityTypeMapping TypeName="Festispec.Domain.Case">
+            <EntityTypeMapping TypeName="festispec.Domain.Case">
               <MappingFragment StoreEntitySet="Case">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
@@ -2000,117 +1836,117 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ContactPersons">
-            <EntityTypeMapping TypeName="Festispec.Domain.ContactPerson">
+            <EntityTypeMapping TypeName="festispec.Domain.ContactPerson">
               <MappingFragment StoreEntitySet="ContactPerson">
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="Function" ColumnName="Function" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
-                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
-                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Function" ColumnName="Function" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="Festispec.Domain.Customer">
+            <EntityTypeMapping TypeName="festispec.Domain.Customer">
               <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="Logo" ColumnName="Logo" />
-                <ScalarProperty Name="Website" ColumnName="Website" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-                <ScalarProperty Name="HouseNumber_Addition" ColumnName="HouseNumber Addition" />
-                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="BranchNumber" ColumnName="BranchNumber" />
-                <ScalarProperty Name="COC" ColumnName="COC" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="COC" ColumnName="COC" />
+                <ScalarProperty Name="BranchNumber" ColumnName="BranchNumber" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="HouseNumber_Addition" ColumnName="HouseNumber Addition" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Days">
-            <EntityTypeMapping TypeName="Festispec.Domain.Day">
+            <EntityTypeMapping TypeName="festispec.Domain.Day">
               <MappingFragment StoreEntitySet="Day">
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="BeginTime" ColumnName="BeginTime" />
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="BeginTime" ColumnName="BeginTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="Festispec.Domain.Department">
+            <EntityTypeMapping TypeName="festispec.Domain.Department">
               <MappingFragment StoreEntitySet="Department">
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ElementTypes">
-            <EntityTypeMapping TypeName="Festispec.Domain.ElementType">
+            <EntityTypeMapping TypeName="festispec.Domain.ElementType">
               <MappingFragment StoreEntitySet="ElementType">
                 <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="Festispec.Domain.Employee">
+            <EntityTypeMapping TypeName="festispec.Domain.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="Certificate" ColumnName="Certificate" />
-                <ScalarProperty Name="Iban" ColumnName="Iban" />
-                <ScalarProperty Name="ResetTokenEndTime" ColumnName="ResetTokenEndTime" />
-                <ScalarProperty Name="PasswordResetToken" ColumnName="PasswordResetToken" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-                <ScalarProperty Name="HouseNumber_Addition" ColumnName="HouseNumber Addition" />
-                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
-                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
-                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="HouseNumber_Addition" ColumnName="HouseNumber Addition" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordResetToken" ColumnName="PasswordResetToken" />
+                <ScalarProperty Name="ResetTokenEndTime" ColumnName="ResetTokenEndTime" />
+                <ScalarProperty Name="Iban" ColumnName="Iban" />
+                <ScalarProperty Name="Certificate" ColumnName="Certificate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmployeeStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.EmployeeStatu">
+            <EntityTypeMapping TypeName="festispec.Domain.EmployeeStatu">
               <MappingFragment StoreEntitySet="EmployeeStatus">
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Events">
-            <EntityTypeMapping TypeName="Festispec.Domain.Event">
+            <EntityTypeMapping TypeName="festispec.Domain.Event">
               <MappingFragment StoreEntitySet="Event">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="SurfaceM2" ColumnName="SurfaceM2" />
-                <ScalarProperty Name="AmountVisitors" ColumnName="AmountVisitors" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="BeginDate" ColumnName="BeginDate" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-                <ScalarProperty Name="HouseNumber_Addition" ColumnName="HouseNumber Addition" />
-                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ContactPersonId" ColumnName="ContactPersonId" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ContactPersonId" ColumnName="ContactPersonId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="HouseNumber_Addition" ColumnName="HouseNumber Addition" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="BeginDate" ColumnName="BeginDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="AmountVisitors" ColumnName="AmountVisitors" />
+                <ScalarProperty Name="SurfaceM2" ColumnName="SurfaceM2" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InspectorPlannings">
-            <EntityTypeMapping TypeName="Festispec.Domain.InspectorPlanning">
+            <EntityTypeMapping TypeName="festispec.Domain.InspectorPlanning">
               <MappingFragment StoreEntitySet="InspectorPlanning">
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="DayId" ColumnName="DayId" />
@@ -2123,89 +1959,89 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Notes">
-            <EntityTypeMapping TypeName="Festispec.Domain.Note">
+            <EntityTypeMapping TypeName="festispec.Domain.Note">
               <MappingFragment StoreEntitySet="Note">
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="Note1" ColumnName="Note" />
-                <ScalarProperty Name="ContactPersonId" ColumnName="ContactPersonId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ContactPersonId" ColumnName="ContactPersonId" />
+                <ScalarProperty Name="Note1" ColumnName="Note" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="Festispec.Domain.Order">
+            <EntityTypeMapping TypeName="festispec.Domain.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="QuotationId" ColumnName="QuotationId" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="EventId" ColumnName="EventId" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="QuotationId" ColumnName="QuotationId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QueryTemplates">
-            <EntityTypeMapping TypeName="Festispec.Domain.QueryTemplate">
+            <EntityTypeMapping TypeName="festispec.Domain.QueryTemplate">
               <MappingFragment StoreEntitySet="QueryTemplate">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Query" ColumnName="Query" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="Festispec.Domain.Question">
+            <EntityTypeMapping TypeName="festispec.Domain.Question">
               <MappingFragment StoreEntitySet="Question">
-                <ScalarProperty Name="Variables" ColumnName="Variables" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="Question1" ColumnName="Question" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Question1" ColumnName="Question" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Variables" ColumnName="Variables" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QuestionTypes">
-            <EntityTypeMapping TypeName="Festispec.Domain.QuestionType">
+            <EntityTypeMapping TypeName="festispec.Domain.QuestionType">
               <MappingFragment StoreEntitySet="QuestionType">
                 <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Quotations">
-            <EntityTypeMapping TypeName="Festispec.Domain.Quotation">
+            <EntityTypeMapping TypeName="festispec.Domain.Quotation">
               <MappingFragment StoreEntitySet="Quotation">
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="TimeSend" ColumnName="TimeSend" />
-                <ScalarProperty Name="BtwPercentage" ColumnName="BtwPercentage" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="EventId" ColumnName="EventId" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="BtwPercentage" ColumnName="BtwPercentage" />
+                <ScalarProperty Name="TimeSend" ColumnName="TimeSend" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QuotationStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.QuotationStatu">
+            <EntityTypeMapping TypeName="festispec.Domain.QuotationStatu">
               <MappingFragment StoreEntitySet="QuotationStatus">
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reports">
-            <EntityTypeMapping TypeName="Festispec.Domain.Report">
+            <EntityTypeMapping TypeName="festispec.Domain.Report">
               <MappingFragment StoreEntitySet="Report">
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReportElements">
-            <EntityTypeMapping TypeName="Festispec.Domain.ReportElement">
+            <EntityTypeMapping TypeName="festispec.Domain.ReportElement">
               <MappingFragment StoreEntitySet="ReportElement">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ReportId" ColumnName="ReportId" />
@@ -2221,36 +2057,36 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReportStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.ReportStatu">
+            <EntityTypeMapping TypeName="festispec.Domain.ReportStatu">
               <MappingFragment StoreEntitySet="ReportStatus">
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SickReportInspectors">
-            <EntityTypeMapping TypeName="Festispec.Domain.SickReportInspector">
+            <EntityTypeMapping TypeName="festispec.Domain.SickReportInspector">
               <MappingFragment StoreEntitySet="SickReportInspector">
-                <ScalarProperty Name="Reason" ColumnName="Reason" />
-                <ScalarProperty Name="InspectorPlanningOrderId" ColumnName="InspectorPlanningOrderId" />
-                <ScalarProperty Name="InspoctorPlanningDayId" ColumnName="InspoctorPlanningDayId" />
-                <ScalarProperty Name="InspectorPlanningEmployeeId" ColumnName="InspectorPlanningEmployeeId" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="InspectorPlanningEmployeeId" ColumnName="InspectorPlanningEmployeeId" />
+                <ScalarProperty Name="InspoctorPlanningDayId" ColumnName="InspoctorPlanningDayId" />
+                <ScalarProperty Name="InspectorPlanningOrderId" ColumnName="InspectorPlanningOrderId" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Surveys">
-            <EntityTypeMapping TypeName="Festispec.Domain.Survey">
+            <EntityTypeMapping TypeName="festispec.Domain.Survey">
               <MappingFragment StoreEntitySet="Survey">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SurveyStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.SurveyStatu">
+            <EntityTypeMapping TypeName="festispec.Domain.SurveyStatu">
               <MappingFragment StoreEntitySet="SurveyStatus">
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
