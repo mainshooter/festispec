@@ -15,18 +15,17 @@ namespace Festispec.ViewModel.customer.pages
     {
         private CustomerVM _customer;
         public CustomerOverviewVm CustomerList { get; set; }
+
         public CustomerVM Customer 
         { 
-            get 
-           {
-                return _customer;
-            }
+            get => _customer;
             set 
             {
                 _customer = value;
                 RaisePropertyChanged(() => Customer);
             }
         }
+
         public ICommand AddCustomerCommand { get; set; }
         public ICommand CloseAddCustomerCommand { get; set; }
 
@@ -38,9 +37,9 @@ namespace Festispec.ViewModel.customer.pages
                     Customer = new CustomerVM();
                 }
             });
+
             Customer = new CustomerVM();
             CustomerList = customerList;
-
             AddCustomerCommand = new RelayCommand(AddCustomer, CanAddCustomer);
             CloseAddCustomerCommand = new RelayCommand(CloseAddCustomer);
         }

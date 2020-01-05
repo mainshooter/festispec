@@ -1,7 +1,6 @@
 ﻿using System;
 using Festispec.ViewModel.customer.contactPerson;
 using Festispec.ViewModel.customer.customerEvent;
-using Festispec.ViewModel.employee.quotation;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -15,73 +14,88 @@ namespace Festispec.ViewModel.customer
     {
         private Domain.Customer _customer;
 
-        public int Id {
+        public int Id
+        {
             get => _customer.Id;
             private set => _customer.Id = value;
         }
 
-        public string Name {
+        public string Name
+        {
             get => _customer.Name;
             set => _customer.Name = value;
         }
 
-        public int COC {
+        public int COC
+        {
             get => _customer.COC;
             set => _customer.COC = value;
         }
 
-        public int EstablishmentNumber => _customer.BranchNumber;
-
-        public string Street {
+        public string Street
+        {
             get => _customer.Street;
             set => _customer.Street = value;
         }
 
-        public int BranchNumber {
+        public int BranchNumber
+        {
             get => _customer.BranchNumber;
             set => _customer.BranchNumber = value;
         }
 
-        public string Logo {
+        public string Logo
+        {
             get => _customer.Logo;
             set => _customer.Logo = value;
         }
-        public int HouseNumber {
+
+        public int HouseNumber
+        {
             get => _customer.HouseNumber;
             set => _customer.HouseNumber = value;
         }
 
-        public string PostalCode {
+        public string PostalCode
+        {
             get => _customer.PostalCode;
             set => _customer.PostalCode = value;
         }
 
-        public string Phone {
+        public string Phone
+        {
             get => _customer.Phone;
             set => _customer.Phone = value;
         }
 
-        public string City {
+        public string City
+        {
             get => _customer.City;
             set => _customer.City = value;
         }
 
-        public string HouseNumberAddition {
+        public string HouseNumberAddition
+        {
             get => _customer.HouseNumber_Addition;
             set => _customer.HouseNumber_Addition = value;
         }
 
-        public string Email {
+        public string Email
+        {
             get => _customer.Email;
             set => _customer.Email = value;
         }
 
-        public string Website {
+        public string Website
+        {
             get => _customer.Website;
             set => _customer.Website = value;
         }
-        public bool IsValid {
-            get {
+
+        public bool IsValid
+        {
+            get
+            {
                 foreach (var property in ValidatedProperties)
                 {
                     if (GetValidationError(property) != null)

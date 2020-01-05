@@ -45,7 +45,8 @@ namespace Festispec.ViewModel.customer.pages
                 {
                     "Naam",
                     "Plaats",
-                    "E-mail"
+                    "E-mail",
+                    "Telefoonnummer"
                 };
         }
         public ObservableCollection<CustomerVM> CustomerListFiltered
@@ -62,8 +63,8 @@ namespace Festispec.ViewModel.customer.pages
                             return new ObservableCollection<CustomerVM>(CustomerList.Select(customer => customer).Where(customer => customer.City.ToLower().Contains(Filter.ToLower())).ToList());
                         case "E-mail":
                             return new ObservableCollection<CustomerVM>(CustomerList.Select(customer => customer).Where(customer => customer.Email.ToLower().Contains(Filter.ToLower())).ToList());
-                        case "Website":
-                            return new ObservableCollection<CustomerVM>(CustomerList.Select(customer => customer).Where(customer => customer.Website.ToLower().Contains(Filter.ToLower())).ToList());
+                        case "Telefoonnummer":
+                            return new ObservableCollection<CustomerVM>(CustomerList.Select(customer => customer).Where(customer => customer.Phone.ToLower().Contains(Filter.ToLower())).ToList());
                     }
                 }
 

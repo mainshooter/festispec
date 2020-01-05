@@ -1,4 +1,3 @@
-using System.Linq;
 using Festispec.View.Pages.Employee;
 using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
@@ -9,12 +8,9 @@ using CommonServiceLocator;
 using Festispec.View.Pages;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Employee.Availability;
-using Festispec.View.Pages.Customer.Event;
 using Festispec.Message;
-using Festispec.Domain;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Festispec.ViewModel.customer;
 using Festispec.View.Pages.Employee.Planning;
 using Festispec.ViewModel.auth;
 
