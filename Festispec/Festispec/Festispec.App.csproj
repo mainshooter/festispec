@@ -171,11 +171,14 @@
     <Compile Include="Interface\IDataParser.cs" />
     <Compile Include="Interface\IReportElement.cs" />
     <Compile Include="Message\ChangeLoggedinUserMessage.cs" />
+    <Compile Include="Message\ChangeSelectedContactPersonMessage.cs" />
     <Compile Include="Message\ChangeSelectedOrderMessage.cs" />
     <Compile Include="Message\ChangeSelectedReportElementMessage.cs" />
     <Compile Include="Message\ChangeSelectedReportMessage.cs" />
     <Compile Include="Message\ChangeSelectedCustomerMessage.cs" />
     <Compile Include="Message\ChangeSelectedEventMessage.cs" />
+    <Compile Include="ViewModel\auth\ResetPasswordVm.cs" />
+    <Compile Include="ViewModel\auth\RequestPasswordResetVm.cs" />
     <Compile Include="Message\ChangeSelectedPlannedEmployeeEventMessage.cs" />
     <Compile Include="Message\ChangeSelectedPlannedEmployeeMessage.cs" />
     <Compile Include="Message\ChangeSelectedQuotationMessage.cs" />
@@ -187,7 +190,13 @@
     <Compile Include="Message\ChangeSelectedEmployeeMessage.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\ReportRepository.cs" />
+    <Compile Include="ViewModel\customer\contactPerson\AddContactPersonVM.cs" />
+    <Compile Include="ViewModel\customer\contactPerson\ContactPersonPageVM.cs" />
+    <Compile Include="ViewModel\auth\VerifyCodeVm.cs" />
     <Compile Include="ViewModel\customer\contactPerson\ContactPersonVM.cs" />
+    <Compile Include="ViewModel\customer\contactPerson\EditContactPersonVM.cs" />
+    <Compile Include="ViewModel\customer\contactPerson\note\AddNoteVM.cs" />
+    <Compile Include="ViewModel\customer\contactPerson\note\NoteListVM.cs" />
     <Compile Include="ViewModel\customer\contactPerson\note\NoteVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\EditEventVM.cs" />
     <Compile Include="ViewModel\customer\customerEvent\AddEventVM.cs" />
@@ -294,6 +303,15 @@
     <Compile Include="ViewModel\survey\SurveyVM.cs" />
     <Compile Include="ViewModel\toast\ToastVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\Pages\Customer\ContactPerson\AddContactPersonPage.xaml.cs">
+      <DependentUpon>AddContactPersonPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\ContactPerson\ContactPersonPage.xaml.cs">
+      <DependentUpon>ContactPersonPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\ContactPerson\EditContactPersonPage.xaml.cs">
+      <DependentUpon>EditContactPersonPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Customer\Event\EditEventPage.xaml.cs">
       <DependentUpon>EditEventPage.xaml</DependentUpon>
     </Compile>
@@ -308,6 +326,12 @@
     </Compile>
     <Compile Include="View\Pages\Customer\Event\SingleOfflineEventPage.xaml.cs">
       <DependentUpon>SingleOfflineEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Note\AddNotePage.xaml.cs">
+      <DependentUpon>AddNotePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Customer\Note\NoteListPage.xaml.cs">
+      <DependentUpon>NoteListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Customer\Quotation\AddQuotationPage.xaml.cs">
       <DependentUpon>AddQuotationPage.xaml</DependentUpon>
@@ -342,6 +366,15 @@
     </Compile>
     <Compile Include="View\Pages\Planning\WorkedPlannedEmployeePage.xaml.cs">
       <DependentUpon>WorkedPlannedEmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\PasswordReset\RequestPasswordResetPage.xaml.cs">
+      <DependentUpon>RequestPasswordResetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\PasswordReset\ResetPasswordPage.xaml.cs">
+      <DependentUpon>ResetPasswordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\PasswordReset\VerifyCodePage.xaml.cs">
+      <DependentUpon>VerifyCodePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Planning\AddPlannedEmployeePage.xaml.cs">
       <DependentUpon>AddPlannedEmployeePage.xaml</DependentUpon>
@@ -524,6 +557,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\Pages\Customer\ContactPerson\AddContactPersonPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\ContactPerson\ContactPersonPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\ContactPerson\EditContactPersonPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Customer\Event\EditEventPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -541,6 +586,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\Customer\Event\SingleOfflineEventPage.xaml">
+    </Page>
+    <Page Include="View\Pages\Customer\Note\AddNotePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Customer\Note\NoteListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Customer\Quotation\AddQuotationPage.xaml">
       <SubType>Designer</SubType>
@@ -566,6 +619,18 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="View\Pages\PasswordReset\RequestPasswordResetPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\PasswordReset\ResetPasswordPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\PasswordReset\VerifyCodePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+	</Page>
     <Page Include="View\Pages\Planning\AddPlannedEmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -30,12 +30,12 @@ namespace Festispec.Web.Controllers
         {
             ActionResult result = View();
 
-            if (ModelState.IsValid)
-            {
-                using (var context = new Entities())
-                {
-                    var employee = context.Employees.FirstOrDefault(e => e.Email == email);
-                    IPasswordValidator passwordService = new PasswordService();
+           if (ModelState.IsValid)
+           {
+               using (var context = new Entities())
+               {
+                   var employee = context.Employees.FirstOrDefault(e => e.Email == email);
+                   IPasswordValidator passwordService = new PasswordHashService();
 
                     if (employee == null)
                     {
