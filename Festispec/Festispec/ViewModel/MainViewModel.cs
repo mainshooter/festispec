@@ -40,11 +40,12 @@ namespace Festispec.ViewModel
         public ICommand OpenEmployeePlanningCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
         public ObservableCollection<Button> MenuList { get; set; }
-        public string RightTopMenuVisablity { 
-            get {
-                return _rightTopMenuVisablity;
-            }
-            set {
+
+        public string RightTopMenuVisablity
+        { 
+            get => _rightTopMenuVisablity;
+            set
+            {
                 _rightTopMenuVisablity = value;
                 RaisePropertyChanged("RightTopMenuVisablity");
             }
@@ -87,10 +88,10 @@ namespace Festispec.ViewModel
             OpenEmployeePlanningCommand = new RelayCommand(OpenEmployeePlanning);
             LogoutCommand = new RelayCommand(Logout);
 
-
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
                 this.Page = ServiceLocator.Current.GetInstance(message.NextPageType) as Page;
+
                 if (message.NextPageType == typeof(LoginPage))
                 {
                     RightTopMenuVisablity = "Collapsed";
