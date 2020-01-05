@@ -241,6 +241,8 @@ namespace Festispec.ViewModel.planning
 
         private void AddPlannedEmployee()
         {
+            if (!PlannedEmployeeVM.EditMessageIfNotWithinWeek(EventVM)) return;
+
             PlannedEmployeeVM.Day = EventVM.OrderVM.Days.Select(day => day).Where(day => day.BeginTime.Date == PlannedEmployeeVM.PlannedStartTime.Date).FirstOrDefault();
             PlannedEmployeeVM.WorkStartTime = PlannedEmployeeVM.PlannedStartTime;
             PlannedEmployeeVM.WorkEndTime = PlannedEmployeeVM.PlannedEndTime;
@@ -254,6 +256,7 @@ namespace Festispec.ViewModel.planning
                 context.InspectorPlannings.Add(temp);
                 context.SaveChanges();
             }
+
             Back();
         }
 
