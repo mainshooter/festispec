@@ -11,7 +11,6 @@ using Festispec.View.Pages.Employee.Availability;
 using Festispec.Message;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Festispec.ViewModel.customer;
 using Festispec.View.Pages.Planning;
 using Festispec.View.Pages.Employee.Planning;
 using Festispec.ViewModel.auth;

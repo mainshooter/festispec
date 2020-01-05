@@ -20,12 +20,14 @@
             <ComboBox Margin="3, 3, 10, 3" SelectedIndex="0" SelectedValuePath="SelectedFilter" ItemsSource="{Binding FilterItems}" SelectedItem="{Binding SelectedFilter,Mode=TwoWay}" Width="128"></ComboBox>
         </WrapPanel>
         <StackPanel Orientation="Horizontal">
-            <Viewbox Width="500" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding WorkedList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="500" >
+            <Viewbox Width="720" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding WorkedList}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="720" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Dag" Binding="{Binding WorkStartTime.Date, StringFormat=dd/MM/yyyy}"/>
-                        <DataGridTextColumn Header="Starttijd" Binding="{Binding WorkStartTime.TimeOfDay}"/>
-                        <DataGridTextColumn Header="Eindtijd" Binding="{Binding WorkEndTime.TimeOfDay}"/>
+                        <DataGridTextColumn Header="Dag" Binding="{Binding WorkStartTime.Date, StringFormat=dd-MM-yyyy}"/>
+                        <DataGridTextColumn Header="Ingeplande starttijd" Binding="{Binding PlannedStartTime.TimeOfDay}"/>
+                        <DataGridTextColumn Header="Ingeplande eindtijd" Binding="{Binding PlannedEndTime.TimeOfDay}"/>
+                        <DataGridTextColumn Header="Gewerkte starttijd" Binding="{Binding WorkStartTime.TimeOfDay}"/>
+                        <DataGridTextColumn Header="Gewerkte eindtijd" Binding="{Binding WorkEndTime.TimeOfDay}"/>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
