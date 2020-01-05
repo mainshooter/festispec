@@ -34,14 +34,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Survey", "Index", "Survey")</li>
+                    <li>@Html.ActionLink("Vragenlijsten", "Index", "Survey")</li>
                 </ul>
                 @using Festispec.Web.Models.Auth
                 @if (UserSession.Current.Employee != null)
                 {
                     using (Html.BeginForm("Logout", "User", FormMethod.Post))
                     {
-                        <input type="submit" value="Logout" class="logout">
+                        <input type="submit" value="Uitloggen" class="logout">
                     }
                 }
             </div>

@@ -1,18 +1,17 @@
 ﻿@model Festispec.Web.Models.SurveyModel
 
 @{
-	ViewBag.Title = "Survey afnemen";
+	ViewBag.Title = "Survey afnemen voor " +  Model.Survey.Order.Event.Name;
 }
 
+<script>
+    let surveyId = @Html.Raw(Model.Survey.Id);
+    let tableQuestions = [];
+    let drawQuestions = [];
+</script>
 
-	<script>
-        let surveyId = @Html.Raw(Model.Survey.Id);
-        let tableQuestions = [];
-        let drawQuestions = [];
-	</script>
+<h2>Vragenlijst afnemen voor @(Model.Survey.Order.Event.Name)</h2>
 
-
-<h2>Vragenlijst afnemen</h2>
 <form class="survey-container" method="post" enctype="multipart/form-data">
         @foreach (var question in Model.Questions)
         {
