@@ -83,10 +83,20 @@ namespace Festispec.ViewModel.customer.customerEvent
 
             using (var context = new Entities())
             {
-                Event.CustomerModel = null;
-                Event.ContactPersonModel = null;
+                var eventModel = context.Events.Find(Event.Id);
+                eventModel.Name = Event.Name;
+                eventModel.PostalCode = Event.PostalCode;
+                eventModel.Street = Event.Street;
+                eventModel.SurfaceM2 = Event.SurfaceM2;
+                eventModel.AmountVisitors = Event.AmountVisitors;
+                eventModel.BeginDate = Event.BeginDate;
+                eventModel.City = Event.City;
+                eventModel.ContactPersonId = Event.ContactPerson.CustomerId;
+                eventModel.Description = Event.Description;
+                eventModel.EndDate = Event.EndDate;
+                eventModel.HouseNumber = Event.HouseNumber;
 
-                context.Entry(eventCon).State = EntityState.Modified;
+                context.Entry(eventModel).State = EntityState.Modified;
                 context.SaveChanges();
             }
             eventCon.Orders = order;
