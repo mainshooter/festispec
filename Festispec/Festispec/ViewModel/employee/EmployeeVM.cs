@@ -173,7 +173,7 @@ namespace Festispec.ViewModel.employee
 
         public DateTime Birthday
         {
-            get => _employee.Birthday.Date;
+            get => _employee.Birthday;
             set => _employee.Birthday = value.Date;
         }
 
@@ -374,6 +374,10 @@ namespace Festispec.ViewModel.employee
                 {
                     return "Geboortedatum moet minimaal in het jaar 1800 zijn";
                 }
+                else if (Birthday > DateTime.Today)
+                {
+                    return "Geboortedatum mag niet in de toekomst liggen";
+                }
                 return null;
             }
         }
@@ -408,7 +412,7 @@ namespace Festispec.ViewModel.employee
                 {
                     return "Telefoonnummer moet ingevuld zijn";
                 }
-                else if (Phone.Length > 100)
+                else if (Phone.Length > 15)
                 {
                     return "Telefoonnummer mag niet langer zijn dan 15 karakters";
                 }
