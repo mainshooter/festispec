@@ -91,7 +91,7 @@ namespace Festispec.ViewModel.customer.customerEvent
                 eventModel.AmountVisitors = Event.AmountVisitors;
                 eventModel.BeginDate = Event.BeginDate;
                 eventModel.City = Event.City;
-                eventModel.ContactPersonId = Event.ContactPerson.CustomerId;
+                eventModel.ContactPersonId = Event.ContactPerson.Id;
                 eventModel.Description = Event.Description;
                 eventModel.EndDate = Event.EndDate;
                 eventModel.HouseNumber = Event.HouseNumber;
