@@ -35,7 +35,6 @@ namespace Festispec.ViewModel
         public ICommand OpenWorkedHours { get; set; }
         public ICommand ShowAccountInformation { get; set; }
         public ICommand OpenEmployeePlanningCommand { get; set; }
-        public ICommand LogoutCommand { get; set; }
         public ObservableCollection<Button> MenuList { get; set; }
 
         public string RightTopMenuVisablity
@@ -83,7 +82,6 @@ namespace Festispec.ViewModel
             OpenWorkedHours = new RelayCommand(OpenWorkedHoursTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
             OpenEmployeePlanningCommand = new RelayCommand(OpenEmployeePlanning);
-            LogoutCommand = new RelayCommand(Logout);
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -91,12 +89,7 @@ namespace Festispec.ViewModel
 
                 if (message.NextPageType == typeof(LoginPage))
                 {
-                    RightTopMenuVisablity = "Collapsed";
                     LoggedInEmployee = null;
-                }
-                else if (message.NextPageType == typeof(DashboardPage))
-                {
-                    RightTopMenuVisablity = "Visible";
                 }
             });
 
@@ -173,12 +166,6 @@ namespace Festispec.ViewModel
         private void CloseApp()
         {
             System.Windows.Application.Current.Shutdown();
-        }
-
-        public void Logout()
-        {
-            UserSessionVM.Current.Employee = null;
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(LoginPage) });
         }
 
         private void OpenDashboardTab()

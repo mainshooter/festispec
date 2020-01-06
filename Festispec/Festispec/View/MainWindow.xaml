@@ -43,12 +43,8 @@
                 <TextBlock Text="{Binding LoggedInEmployee.Fullname}" VerticalAlignment="Center" FontSize="18"/>
                 <materialDesign:PopupBox Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                     <StackPanel Width="150">
-                        <StackPanel Visibility="{Binding RightTopMenuVisablity}">
-                            <Button Content="Account" Command="{Binding ShowAccountInformation}"/>
-                            <Separator/>
-                            <Button Content="Uitloggen" Command="{Binding LogoutCommand}"/>
-                            <Separator/>
-                        </StackPanel>
+                        <Button Content="Account" Command="{Binding ShowAccountInformation}"/>
+                        <Separator/>
                         <Button Content="Afsluiten" Command="{Binding CloseApplication}"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
