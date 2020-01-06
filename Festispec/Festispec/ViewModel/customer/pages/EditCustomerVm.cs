@@ -55,7 +55,9 @@ namespace Festispec.ViewModel.customer.pages
 
             using (var context = new Entities())
             {
-                context.Entry(Customer.ToModel()).State = EntityState.Modified;
+                var customerModel = Customer.ToModel();
+                context.Customers.Attach(customerModel);
+                context.Entry(customerModel).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
