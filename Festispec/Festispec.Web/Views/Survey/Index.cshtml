@@ -14,17 +14,20 @@
         <th>
             Acties
         </th>
+		<th>Evenement inzien</th>
     </tr>
 
     @if(!Model.Any())
     {
-        <tr>
-            <td>
-                Geen vragenlijsten gevonden voor vandaag
-            </td>
-            <td>
-            </td>
-        </tr>
+    <tr>
+        <td>
+            Geen vragenlijsten gevonden voor vandaag
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+    </tr>
     }
 
     @foreach(var item in Model)
@@ -34,9 +37,11 @@
                 @Html.DisplayFor(modelItem => item.Order.Event.Name)
             </td>
             <td>
-                @Html.ActionLink("Afnemen","Details",new { id = item.Id })
+                @Html.ActionLink("Vragenlijst afnemen", "Conduct", new { id = item.Id })
+            </td>
+            <td>
+                @Html.ActionLink("Evenement inzien", "EventDetails", "Event", new { id = item.Order.EventId}, null)
             </td>
         </tr>
     }
-
 </table>

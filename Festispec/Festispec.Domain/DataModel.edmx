@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Festispec.Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="festispec.Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="Id" />
@@ -38,13 +38,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SurveyId" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" />
-          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CaseStatus">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="ContactPerson">
           <Key>
@@ -160,15 +153,8 @@
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="PlannedFrom" Type="datetime" Nullable="false" />
           <Property Name="PlannedTill" Type="datetime" Nullable="false" />
-          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="WorkedFrom" Type="datetime" />
           <Property Name="WorkedTill" Type="datetime" />
-        </EntityType>
-        <EntityType Name="InspectorPlanningStatus">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="Note">
           <Key>
@@ -253,6 +239,7 @@
           <Property Name="ElementType" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Content" Type="text" Nullable="false" />
+          <Property Name="Data" Type="text" />
           <Property Name="Order" Type="int" Nullable="false" />
           <Property Name="Image" Type="varbinary(max)" />
           <Property Name="X-as" Type="nvarchar" MaxLength="100" />
@@ -343,18 +330,6 @@
             </Principal>
             <Dependent Role="BetterReportInspector">
               <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Case_CaseStatus">
-          <End Role="CaseStatus" Type="Self.CaseStatus" Multiplicity="1" />
-          <End Role="Case" Type="Self.Case" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CaseStatus">
-              <PropertyRef Name="Status" />
-            </Principal>
-            <Dependent Role="Case">
-              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -481,18 +456,6 @@
             </Principal>
             <Dependent Role="InspectorPlanning">
               <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_InspectorPlanning_InspectorPlanningStatus">
-          <End Role="InspectorPlanningStatus" Type="Self.InspectorPlanningStatus" Multiplicity="1" />
-          <End Role="InspectorPlanning" Type="Self.InspectorPlanning" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InspectorPlanningStatus">
-              <PropertyRef Name="Status" />
-            </Principal>
-            <Dependent Role="InspectorPlanning">
-              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -740,12 +703,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FestispecDomainStoreContainer">
+        <EntityContainer Name="festispecDomainStoreContainer">
           <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AvailabilityInspector" EntityType="Self.AvailabilityInspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BetterReportInspector" EntityType="Self.BetterReportInspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CaseStatus" EntityType="Self.CaseStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContactPerson" EntityType="Self.ContactPerson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Day" EntityType="Self.Day" Schema="dbo" store:Type="Tables" />
@@ -755,7 +717,6 @@
           <EntitySet Name="EmployeeStatus" EntityType="Self.EmployeeStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InspectorPlanning" EntityType="Self.InspectorPlanning" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="InspectorPlanningStatus" EntityType="Self.InspectorPlanningStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Note" EntityType="Self.Note" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QueryTemplate" EntityType="Self.QueryTemplate" Schema="dbo" store:Type="Tables" />
@@ -784,10 +745,6 @@
           <AssociationSet Name="FK_BetterReportInspector_Employee" Association="Self.FK_BetterReportInspector_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="BetterReportInspector" EntitySet="BetterReportInspector" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Case_CaseStatus" Association="Self.FK_Case_CaseStatus">
-            <End Role="CaseStatus" EntitySet="CaseStatus" />
-            <End Role="Case" EntitySet="Case" />
           </AssociationSet>
           <AssociationSet Name="FK_Case_Employee" Association="Self.FK_Case_Employee">
             <End Role="Employee" EntitySet="Employee" />
@@ -827,10 +784,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_InspectorPlanning_Employee" Association="Self.FK_InspectorPlanning_Employee">
             <End Role="Employee" EntitySet="Employee" />
-            <End Role="InspectorPlanning" EntitySet="InspectorPlanning" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InspectorPlanning_InspectorPlanningStatus" Association="Self.FK_InspectorPlanning_InspectorPlanningStatus">
-            <End Role="InspectorPlanningStatus" EntitySet="InspectorPlanningStatus" />
             <End Role="InspectorPlanning" EntitySet="InspectorPlanning" />
           </AssociationSet>
           <AssociationSet Name="FK_Note_ContactPerson" Association="Self.FK_Note_ContactPerson">
@@ -914,7 +867,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Festispec.Domain" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="festispec.Domain" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="Id" />
@@ -952,18 +905,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SurveyId" Type="Int32" Nullable="false" />
           <Property Name="EmployeeId" Type="Int32" />
-          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Answers" Relationship="Self.FK_Answer_Case" FromRole="Case" ToRole="Answer" />
-          <NavigationProperty Name="CaseStatu" Relationship="Self.FK_Case_CaseStatus" FromRole="Case" ToRole="CaseStatus" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Case_Employee" FromRole="Case" ToRole="Employee" />
           <NavigationProperty Name="Survey" Relationship="Self.FK_Case_Survey" FromRole="Case" ToRole="Survey" />
-        </EntityType>
-        <EntityType Name="CaseStatu">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Cases" Relationship="Self.FK_Case_CaseStatus" FromRole="CaseStatus" ToRole="Case" />
         </EntityType>
         <EntityType Name="ContactPerson">
           <Key>
@@ -1104,20 +1048,11 @@
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <Property Name="PlannedFrom" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PlannedTill" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="WorkedFrom" Type="DateTime" Precision="3" />
           <Property Name="WorkedTill" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Day" Relationship="Self.FK_InspectorPlanning_Day" FromRole="InspectorPlanning" ToRole="Day" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_InspectorPlanning_Employee" FromRole="InspectorPlanning" ToRole="Employee" />
-          <NavigationProperty Name="InspectorPlanningStatu" Relationship="Self.FK_InspectorPlanning_InspectorPlanningStatus" FromRole="InspectorPlanning" ToRole="InspectorPlanningStatus" />
           <NavigationProperty Name="SickReportInspectors" Relationship="Self.FK_SickReportInspector_InspectorPlanning" FromRole="InspectorPlanning" ToRole="SickReportInspector" />
-        </EntityType>
-        <EntityType Name="InspectorPlanningStatu">
-          <Key>
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="InspectorPlannings" Relationship="Self.FK_InspectorPlanning_InspectorPlanningStatus" FromRole="InspectorPlanningStatus" ToRole="InspectorPlanning" />
         </EntityType>
         <EntityType Name="Note">
           <Key>
@@ -1223,6 +1158,7 @@
           <Property Name="ElementType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Order" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="X_as" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -1323,18 +1259,6 @@
             </Principal>
             <Dependent Role="BetterReportInspector">
               <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Case_CaseStatus">
-          <End Role="CaseStatus" Type="Self.CaseStatu" Multiplicity="1" />
-          <End Role="Case" Type="Self.Case" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CaseStatus">
-              <PropertyRef Name="Status" />
-            </Principal>
-            <Dependent Role="Case">
-              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1580,18 +1504,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_InspectorPlanning_InspectorPlanningStatus">
-          <End Role="InspectorPlanningStatus" Type="Self.InspectorPlanningStatu" Multiplicity="1" />
-          <End Role="InspectorPlanning" Type="Self.InspectorPlanning" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InspectorPlanningStatus">
-              <PropertyRef Name="Status" />
-            </Principal>
-            <Dependent Role="InspectorPlanning">
-              <PropertyRef Name="Status" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SickReportInspector_InspectorPlanning">
           <End Role="InspectorPlanning" Type="Self.InspectorPlanning" Multiplicity="1" />
           <End Role="SickReportInspector" Type="Self.SickReportInspector" Multiplicity="*" />
@@ -1725,7 +1637,6 @@
           <EntitySet Name="AvailabilityInspectors" EntityType="Self.AvailabilityInspector" />
           <EntitySet Name="BetterReportInspectors" EntityType="Self.BetterReportInspector" />
           <EntitySet Name="Cases" EntityType="Self.Case" />
-          <EntitySet Name="CaseStatus" EntityType="Self.CaseStatu" />
           <EntitySet Name="ContactPersons" EntityType="Self.ContactPerson" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Days" EntityType="Self.Day" />
@@ -1735,7 +1646,6 @@
           <EntitySet Name="EmployeeStatus" EntityType="Self.EmployeeStatu" />
           <EntitySet Name="Events" EntityType="Self.Event" />
           <EntitySet Name="InspectorPlannings" EntityType="Self.InspectorPlanning" />
-          <EntitySet Name="InspectorPlanningStatus" EntityType="Self.InspectorPlanningStatu" />
           <EntitySet Name="Notes" EntityType="Self.Note" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="QueryTemplates" EntityType="Self.QueryTemplate" />
@@ -1764,10 +1674,6 @@
           <AssociationSet Name="FK_BetterReportInspector_Employee" Association="Self.FK_BetterReportInspector_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="BetterReportInspector" EntitySet="BetterReportInspectors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Case_CaseStatus" Association="Self.FK_Case_CaseStatus">
-            <End Role="CaseStatus" EntitySet="CaseStatus" />
-            <End Role="Case" EntitySet="Cases" />
           </AssociationSet>
           <AssociationSet Name="FK_Case_Employee" Association="Self.FK_Case_Employee">
             <End Role="Employee" EntitySet="Employees" />
@@ -1845,10 +1751,6 @@
             <End Role="Event" EntitySet="Events" />
             <End Role="Quotation" EntitySet="Quotations" />
           </AssociationSet>
-          <AssociationSet Name="FK_InspectorPlanning_InspectorPlanningStatus" Association="Self.FK_InspectorPlanning_InspectorPlanningStatus">
-            <End Role="InspectorPlanningStatus" EntitySet="InspectorPlanningStatus" />
-            <End Role="InspectorPlanning" EntitySet="InspectorPlannings" />
-          </AssociationSet>
           <AssociationSet Name="FK_SickReportInspector_InspectorPlanning" Association="Self.FK_SickReportInspector_InspectorPlanning">
             <End Role="InspectorPlanning" EntitySet="InspectorPlannings" />
             <End Role="SickReportInspector" EntitySet="SickReportInspectors" />
@@ -1895,9 +1797,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FestispecDomainStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="festispecDomainStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Answers">
-            <EntityTypeMapping TypeName="Festispec.Domain.Answer">
+            <EntityTypeMapping TypeName="festispec.Domain.Answer">
               <MappingFragment StoreEntitySet="Answer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
@@ -1907,7 +1809,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AvailabilityInspectors">
-            <EntityTypeMapping TypeName="Festispec.Domain.AvailabilityInspector">
+            <EntityTypeMapping TypeName="festispec.Domain.AvailabilityInspector">
               <MappingFragment StoreEntitySet="AvailabilityInspector">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
@@ -1917,7 +1819,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BetterReportInspectors">
-            <EntityTypeMapping TypeName="Festispec.Domain.BetterReportInspector">
+            <EntityTypeMapping TypeName="festispec.Domain.BetterReportInspector">
               <MappingFragment StoreEntitySet="BetterReportInspector">
                 <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
@@ -1925,24 +1827,16 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cases">
-            <EntityTypeMapping TypeName="Festispec.Domain.Case">
+            <EntityTypeMapping TypeName="festispec.Domain.Case">
               <MappingFragment StoreEntitySet="Case">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CaseStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.CaseStatu">
-              <MappingFragment StoreEntitySet="CaseStatus">
-                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ContactPersons">
-            <EntityTypeMapping TypeName="Festispec.Domain.ContactPerson">
+            <EntityTypeMapping TypeName="festispec.Domain.ContactPerson">
               <MappingFragment StoreEntitySet="ContactPerson">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Firstname" ColumnName="Firstname" />
@@ -1956,7 +1850,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="Festispec.Domain.Customer">
+            <EntityTypeMapping TypeName="festispec.Domain.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1975,7 +1869,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Days">
-            <EntityTypeMapping TypeName="Festispec.Domain.Day">
+            <EntityTypeMapping TypeName="festispec.Domain.Day">
               <MappingFragment StoreEntitySet="Day">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
@@ -1985,7 +1879,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="Festispec.Domain.Department">
+            <EntityTypeMapping TypeName="festispec.Domain.Department">
               <MappingFragment StoreEntitySet="Department">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1993,14 +1887,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ElementTypes">
-            <EntityTypeMapping TypeName="Festispec.Domain.ElementType">
+            <EntityTypeMapping TypeName="festispec.Domain.ElementType">
               <MappingFragment StoreEntitySet="ElementType">
                 <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="Festispec.Domain.Employee">
+            <EntityTypeMapping TypeName="festispec.Domain.Employee">
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
@@ -2025,14 +1919,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmployeeStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.EmployeeStatu">
+            <EntityTypeMapping TypeName="festispec.Domain.EmployeeStatu">
               <MappingFragment StoreEntitySet="EmployeeStatus">
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Events">
-            <EntityTypeMapping TypeName="Festispec.Domain.Event">
+            <EntityTypeMapping TypeName="festispec.Domain.Event">
               <MappingFragment StoreEntitySet="Event">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
@@ -2052,28 +1946,20 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InspectorPlannings">
-            <EntityTypeMapping TypeName="Festispec.Domain.InspectorPlanning">
+            <EntityTypeMapping TypeName="festispec.Domain.InspectorPlanning">
               <MappingFragment StoreEntitySet="InspectorPlanning">
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="DayId" ColumnName="DayId" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="PlannedFrom" ColumnName="PlannedFrom" />
                 <ScalarProperty Name="PlannedTill" ColumnName="PlannedTill" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="WorkedFrom" ColumnName="WorkedFrom" />
                 <ScalarProperty Name="WorkedTill" ColumnName="WorkedTill" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="InspectorPlanningStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.InspectorPlanningStatu">
-              <MappingFragment StoreEntitySet="InspectorPlanningStatus">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Notes">
-            <EntityTypeMapping TypeName="Festispec.Domain.Note">
+            <EntityTypeMapping TypeName="festispec.Domain.Note">
               <MappingFragment StoreEntitySet="Note">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ContactPersonId" ColumnName="ContactPersonId" />
@@ -2083,7 +1969,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="Festispec.Domain.Order">
+            <EntityTypeMapping TypeName="festispec.Domain.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
@@ -2095,7 +1981,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QueryTemplates">
-            <EntityTypeMapping TypeName="Festispec.Domain.QueryTemplate">
+            <EntityTypeMapping TypeName="festispec.Domain.QueryTemplate">
               <MappingFragment StoreEntitySet="QueryTemplate">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Query" ColumnName="Query" />
@@ -2104,7 +1990,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="Festispec.Domain.Question">
+            <EntityTypeMapping TypeName="festispec.Domain.Question">
               <MappingFragment StoreEntitySet="Question">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
@@ -2116,14 +2002,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QuestionTypes">
-            <EntityTypeMapping TypeName="Festispec.Domain.QuestionType">
+            <EntityTypeMapping TypeName="festispec.Domain.QuestionType">
               <MappingFragment StoreEntitySet="QuestionType">
                 <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Quotations">
-            <EntityTypeMapping TypeName="Festispec.Domain.Quotation">
+            <EntityTypeMapping TypeName="festispec.Domain.Quotation">
               <MappingFragment StoreEntitySet="Quotation">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
@@ -2138,14 +2024,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QuotationStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.QuotationStatu">
+            <EntityTypeMapping TypeName="festispec.Domain.QuotationStatu">
               <MappingFragment StoreEntitySet="QuotationStatus">
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reports">
-            <EntityTypeMapping TypeName="Festispec.Domain.Report">
+            <EntityTypeMapping TypeName="festispec.Domain.Report">
               <MappingFragment StoreEntitySet="Report">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
@@ -2155,13 +2041,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReportElements">
-            <EntityTypeMapping TypeName="Festispec.Domain.ReportElement">
+            <EntityTypeMapping TypeName="festispec.Domain.ReportElement">
               <MappingFragment StoreEntitySet="ReportElement">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ReportId" ColumnName="ReportId" />
                 <ScalarProperty Name="ElementType" ColumnName="ElementType" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="X_as" ColumnName="X-as" />
@@ -2170,14 +2057,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReportStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.ReportStatu">
+            <EntityTypeMapping TypeName="festispec.Domain.ReportStatu">
               <MappingFragment StoreEntitySet="ReportStatus">
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SickReportInspectors">
-            <EntityTypeMapping TypeName="Festispec.Domain.SickReportInspector">
+            <EntityTypeMapping TypeName="festispec.Domain.SickReportInspector">
               <MappingFragment StoreEntitySet="SickReportInspector">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
@@ -2189,7 +2076,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Surveys">
-            <EntityTypeMapping TypeName="Festispec.Domain.Survey">
+            <EntityTypeMapping TypeName="festispec.Domain.Survey">
               <MappingFragment StoreEntitySet="Survey">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
@@ -2199,7 +2086,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SurveyStatus">
-            <EntityTypeMapping TypeName="Festispec.Domain.SurveyStatu">
+            <EntityTypeMapping TypeName="festispec.Domain.SurveyStatu">
               <MappingFragment StoreEntitySet="SurveyStatus">
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>

@@ -164,6 +164,12 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         private void OpenAddEventPage()
         {
+            if (!Customer.ContactPersons.Any())
+            {
+                MessageBox.Show("Je kan geen evenement aanmaken, omdat deze klant geen contactpersonen heeft.");
+                return;
+            }
+
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddEventPage) });
             MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage()
             {
@@ -309,7 +315,7 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         private void Back()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerOverviewPage) });
         }
 
         private void SynchEvent(EventVM source)

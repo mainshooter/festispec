@@ -23,6 +23,18 @@ namespace Festispec.ViewModel.employee.availabilty
             }
         }
 
+        public int EmployeeId
+        {
+            get
+            {
+                return _availabilityInspector.EmployeeId;
+            }
+            private set
+            {
+                _availabilityInspector.EmployeeId = value;
+            }
+        }
+
         public DateTime? AvailabiltyStart
         {
             get
@@ -109,12 +121,14 @@ namespace Festispec.ViewModel.employee.availabilty
         public AvailabiltyVM(AvailabilityInspector av)
         {
             _availabilityInspector = av;
+            AvailabiltyStart = av.AvailableFrom;
+            AvailabiltyEnd = av.AvailableTill;
         }
 
         public AvailabiltyVM()
         {
             _availabilityInspector = new AvailabilityInspector();
-            _availabilityInspector.EmployeeId = UserSessionVm.Current.Employee.Id;
+            _availabilityInspector.EmployeeId = UserSessionVM.Current.Employee.Id;
         }
 
         public AvailabilityInspector ToModel()

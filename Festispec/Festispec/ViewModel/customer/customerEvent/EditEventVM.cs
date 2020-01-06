@@ -32,6 +32,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             {
                 _event = value;
                 RaisePropertyChanged("Event");
+                RaisePropertyChanged("CanEditDate");
             }
         }
 
@@ -45,6 +46,17 @@ namespace Festispec.ViewModel.customer.customerEvent
             {
                 _contactIndex = value;
                 RaisePropertyChanged("ContactIndex");
+            }
+        }
+
+        public bool CanEditDate
+        {
+            get
+            {
+                if (Event == null) return false;
+                if (Event.OrderVM == null) return true;
+                if (Event.OrderVM.Id == 0) return true;
+                return false;
             }
         }
 

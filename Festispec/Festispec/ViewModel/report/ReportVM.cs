@@ -8,7 +8,7 @@ using Festispec.ViewModel.toast;
 using System;
 using System.Windows;
 using System.Data.Entity;
-using System.Windows.Controls;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace Festispec.ViewModel.report
 {
@@ -77,6 +77,7 @@ namespace Festispec.ViewModel.report
             ReportElements = new ObservableCollection<ReportElementVM>(_report.ReportElements.Select(e => new ReportElementVM(e)).ToList());
         }
 
+        [PreferredConstructor]
         public ReportVM(OrderVM OrderVM)
         {
             _report = new Report();
@@ -136,9 +137,7 @@ namespace Festispec.ViewModel.report
                 MessageBox.Show("Titel mag niet langer zijn dan 100 karakters.");
                 return false;
             }
-
             return true;
         }
-
     }
 }

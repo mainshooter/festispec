@@ -6,6 +6,7 @@ using Festispec.Domain;
 using Festispec.Lib.Auth;
 using Festispec.Message;
 using Festispec.View.Pages;
+using Festispec.View.Pages.PasswordReset;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
@@ -17,22 +18,23 @@ namespace Festispec.ViewModel.auth
     {
         public string Email { get; set; }
         public ICommand DoLogin { get; set; }
+        public ICommand GotoResetPassword { get; set; }
         public ICommand OfflineCommand { get; set; }
 
         public UserLoginVM()
         {
             DoLogin = new RelayCommand<PasswordBox>(Login);
+            GotoResetPassword = new RelayCommand(ToResetPassword);
             OfflineCommand = new RelayCommand(ShowOffline);
         }
 
         public void Login(PasswordBox passwordBox)
         {
             var password = passwordBox.Password;
-
             using (var context = new Entities())
             {
                 var employee = context.Employees.FirstOrDefault(e => e.Email == Email);
-                var passwordService = new PasswordService();
+                var passwordService = new PasswordHashService();
 
                 if (employee == null)
                 {
@@ -44,7 +46,7 @@ namespace Festispec.ViewModel.auth
                 }
                 else
                 {
-                    var userSession = UserSessionVm.Current;
+                    var userSession = UserSessionVM.Current;
                     userSession.Employee = new EmployeeVM(employee);
                     //Vanuit hier kun je doorverwijzen naar een andere pagina oid
                     MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(DashboardPage) });
@@ -53,6 +55,10 @@ namespace Festispec.ViewModel.auth
             }
         }
 
+        private void ToResetPassword()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(RequestPasswordPage) });
+        }
         private void ShowOffline()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(OfflineEventListPage) });

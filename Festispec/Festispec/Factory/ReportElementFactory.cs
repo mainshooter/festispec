@@ -1,4 +1,6 @@
-﻿using Festispec.View.Report.Element;
+﻿using Festispec.Lib.Enums;
+using Festispec.View.Report.Element;
+using Festispec.View.Usercontrols.Report.Element;
 using Festispec.ViewModel.report.element;
 using System.Windows.Controls;
 
@@ -10,48 +12,60 @@ namespace Festispec.Factory
         {
             UserControl returningUserControl = null;
             string type = element.Type;
-            if (type.Equals("table"))
+            if (type.Equals(ReportElementType.Table))
             {
                 TableUserControl table = new TableUserControl();
                 TableVM tableVm = new TableVM(element);
+                tableVm.ApplyChanges();
                 table.DataContext = tableVm;
                 returningUserControl = table;
             }
-            else if (type.Equals("linechart"))
+            else if (type.Equals(ReportElementType.Linechart))
             {
                 LineChartUserControl lineChart = new LineChartUserControl();
                 LineChartVM lineChartVm = new LineChartVM(element);
+                lineChartVm.ApplyChanges();
                 lineChart.DataContext = lineChartVm;
                 returningUserControl = lineChart;
             }
-            else if (type.Equals("piechart"))
+            else if (type.Equals(ReportElementType.Piechart))
             {
                 PieChartUserControl pieChart = new PieChartUserControl();
                 PieChartVM pieChartVm = new PieChartVM(element);
+                pieChartVm.ApplyChanges();
                 pieChart.DataContext = pieChartVm;
                 returningUserControl = pieChart;
             }
-            else if (type.Equals("barchart"))
+            else if (type.Equals(ReportElementType.Barchart))
             {
                 BarChartUserControl barChart = new BarChartUserControl();
                 BarChartVM barChartVm = new BarChartVM(element);
+                barChartVm.ApplyChanges();
                 barChart.DataContext = barChartVm;
                 returningUserControl = barChart;
 
             }
-            else if (type.Equals("image"))
+            else if (type.Equals(ReportElementType.Image))
             {
                 ImageUserControl image = new ImageUserControl();
                 ImageVM imageVm = new ImageVM(element);
                 image.DataContext = imageVm;
                 returningUserControl = image;
             }
-            else if (type.Equals("text"))
+            else if (type.Equals(ReportElementType.Text))
             {
                 TextUserControl text = new TextUserControl();
                 TextVM textVM = new TextVM(element);
                 text.DataContext = textVM;
                 returningUserControl = text;
+            }
+            else if (type.Equals(ReportElementType.Draw))
+            {
+                DrawUserControl draw = new DrawUserControl();
+                DrawVM drawVM = new DrawVM(element);
+                draw.DataContext = drawVM;
+                drawVM.ApplyChanges();
+                returningUserControl = draw;
             }
             return returningUserControl;
         }

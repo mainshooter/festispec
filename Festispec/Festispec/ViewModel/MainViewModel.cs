@@ -1,4 +1,3 @@
-using System.Linq;
 using Festispec.View.Pages.Employee;
 using Festispec.ViewModel.employee;
 using GalaSoft.MvvmLight;
@@ -9,12 +8,12 @@ using CommonServiceLocator;
 using Festispec.View.Pages;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Employee.Availability;
-using Festispec.View.Pages.Customer.Event;
 using Festispec.Message;
-using Festispec.Domain;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Festispec.ViewModel.customer;
+using Festispec.View.Pages.Planning;
+using Festispec.View.Pages.Employee.Planning;
+using Festispec.ViewModel.auth;
 
 namespace Festispec.ViewModel
 {
@@ -24,6 +23,7 @@ namespace Festispec.ViewModel
         private Page _page;
         private EmployeeVM _loggedInEmployee;
         private Dictionary<string, Dictionary<string, ICommand>> _menu;
+        private string _rightTopMenuVisablity;
 
         //publics
         public ICommand CloseApplication { get; set; }
@@ -31,10 +31,22 @@ namespace Festispec.ViewModel
         public ICommand OpenEmployee { get; set; }
         public ICommand OpenCustomer { get; set; }
         public ICommand OpenAvailability { get; set; }
-        public ICommand OpenEvent { get; set; }
         public ICommand OpenSick { get; set; }
+        public ICommand OpenWorkedHours { get; set; }
         public ICommand ShowAccountInformation { get; set; }
+        public ICommand OpenEmployeePlanningCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
         public ObservableCollection<Button> MenuList { get; set; }
+
+        public string RightTopMenuVisablity
+        { 
+            get => _rightTopMenuVisablity;
+            set
+            {
+                _rightTopMenuVisablity = value;
+                RaisePropertyChanged("RightTopMenuVisablity");
+            }
+        }
 
         public Page Page
         {
@@ -66,29 +78,43 @@ namespace Festispec.ViewModel
             OpenDashboard = new RelayCommand(OpenDashboardTab);
             OpenEmployee = new RelayCommand(OpenEmployeeTab);
             OpenCustomer = new RelayCommand(OpenCustomerTab);
-            OpenEvent = new RelayCommand(OpenEventTab);
             OpenAvailability = new RelayCommand(OpenAvailabilityTab);
             OpenSick = new RelayCommand(OpenSickTab);
+            OpenWorkedHours = new RelayCommand(OpenWorkedHoursTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
-            Page = ServiceLocator.Current.GetInstance<LoginPage>();
+            OpenEmployeePlanningCommand = new RelayCommand(OpenEmployeePlanning);
+            LogoutCommand = new RelayCommand(Logout);
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
                 this.Page = ServiceLocator.Current.GetInstance(message.NextPageType) as Page;
+
+                if (message.NextPageType == typeof(LoginPage))
+                {
+                    RightTopMenuVisablity = "Collapsed";
+                    LoggedInEmployee = null;
+                }
+                else if (message.NextPageType == typeof(DashboardPage))
+                {
+                    RightTopMenuVisablity = "Visible";
+                }
             });
 
             this.MessengerInstance.Register<ChangeLoggedinUserMessage>(this, message =>
             {
                 LoggedInEmployee = message.LoggedinEmployee;
             });
-
+                
             // Menu vullen
             FillMenuList();
             CreateMenu();
+            RightTopMenuVisablity = "Collapsed";
+            Page = ServiceLocator.Current.GetInstance<LoginPage>();
         }
 
         private void CreateMenu()
         {
+            MenuList.Clear();
             if (_loggedInEmployee == null)
             {
                 return;
@@ -116,38 +142,43 @@ namespace Festispec.ViewModel
             _menu.Add("Inspectie", new Dictionary<string, ICommand>());
             _menu["Inspectie"].Add("Dashboard", OpenDashboard);
             _menu["Inspectie"].Add("Beschikbaarheid", OpenAvailability);
+            _menu["Inspectie"].Add("Ingeplande dagen", OpenEmployeePlanningCommand);
             _menu["Inspectie"].Add("Ziekmelden", OpenSick);
-            // gewerkte uren aanpassen
+            _menu["Inspectie"].Add("Urenregistratie", OpenWorkedHours);
 
             // Sales Dictionary
             _menu.Add("Sales", new Dictionary<string, ICommand>());
             _menu["Sales"].Add("Dashboard", OpenDashboard);
             _menu["Sales"].Add("Klanten", OpenCustomer);
-            _menu["Sales"].Add("Evenementen", OpenEvent);
 
             // Planning Dictionary
             _menu.Add("Planning", new Dictionary<string, ICommand>());
             _menu["Planning"].Add("Dashboard", OpenDashboard);
-            _menu["Planning"].Add("Evenementen", OpenEvent);
+            _menu["Planning"].Add("Klanten", OpenCustomer);
 
             // Directie Dictionary
             _menu.Add("Directie", new Dictionary<string, ICommand>());
             _menu["Directie"].Add("Dashboard", OpenDashboard);
             _menu["Directie"].Add("Werknemers", OpenEmployee);
-            _menu["Directie"].Add("Evenementen", OpenEvent);
             _menu["Directie"].Add("Klanten", OpenCustomer);
 
             // Marketing Dictionary
             _menu.Add("Marketing", new Dictionary<string, ICommand>());
             _menu["Marketing"].Add("Dashboard", OpenDashboard);
             _menu["Marketing"].Add("Werknemers", OpenEmployee);
-            _menu["Marketing"].Add("Evenementen", OpenEvent);
+            _menu["Marketing"].Add("Klanten", OpenCustomer);
         }
 
         //methodes
         private void CloseApp()
         {
             System.Windows.Application.Current.Shutdown();
+        }
+
+        public void Logout()
+        {
+            UserSessionVM.Current.Employee = null;
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(LoginPage) });
         }
 
         private void OpenDashboardTab()
@@ -162,7 +193,7 @@ namespace Festispec.ViewModel
 
         private void OpenCustomerTab()
         {
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerPage) });
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(CustomerOverviewPage) });
         }
 
         private void OpenAvailabilityTab()
@@ -170,16 +201,14 @@ namespace Festispec.ViewModel
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AvailablePage) });
         }
 
-        private void OpenEventTab()
+        private void OpenWorkedHoursTab()
         {
-            using (var context = new Entities())
-            {
-                var customerDomain = context.Customers.First();
-                var customer = new CustomerVM(customerDomain);
-
-                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EventPage) });
-                MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage() { Customer = customer });
-            }
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(WorkedPlannedEmployeePage) });
+            MessengerInstance.Send<ChangeSelectedEmployeeMessage>(new ChangeSelectedEmployeeMessage() { Employee = LoggedInEmployee });
+        }
+        private void OpenEmployeePlanning()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EmployeePlanningPage)} );
         }
 
         private void OpenSickTab()
