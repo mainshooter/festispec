@@ -118,11 +118,6 @@ namespace Festispec.ViewModel.customer.pages
         private void OpenAddCustomerPage()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(AddCustomerPage) });
-            MessengerInstance.Send<ChangeSelectedCustomerMessage>(new ChangeSelectedCustomerMessage()
-            {
-                Customer = new CustomerVM(),
-                CustomerList = this
-            });
         }
 
         private void OpenEditCustomerPage()

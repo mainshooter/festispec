@@ -132,7 +132,7 @@ namespace Festispec.ViewModel.customer.contactPerson
         {
             using(var context = new Entities())
             {
-                _filteredContactPersonList = new ObservableCollection<ContactPersonVM>(context.ContactPersons.ToList()
+                FilteredContactPersonList = new ObservableCollection<ContactPersonVM>(context.ContactPersons.ToList()
                     .Select(cp => new ContactPersonVM(cp))
                     .Where(cp => cp.CustomerId == CustomerVM.Id));
             }

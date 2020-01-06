@@ -40,7 +40,6 @@ namespace Festispec.ViewModel.customer.contactPerson
                 using (var context = new Entities())
                 {
                     ContactPerson.CustomerId = Customer.Id;
-                    ContactPerson.Function = "Functie";
                     context.ContactPersons.Add(ContactPerson.ToModel());
                     context.SaveChanges();
                 }

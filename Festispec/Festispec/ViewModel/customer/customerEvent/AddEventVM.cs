@@ -12,8 +12,19 @@ namespace Festispec.ViewModel.customer.customerEvent
 {
     public class AddEventVM : ViewModelBase
     {
+        private EventVM _eventVM;
         public EventListVM EventList { get; set; }
-        public EventVM Event { get; set; }
+        public EventVM Event 
+        { 
+            get 
+            {
+                return _eventVM;
+            }
+            set {
+                _eventVM = value;
+                RaisePropertyChanged(() => Event);
+            }
+        }
         public ICommand AddEventCommand { get; set; }
         public ICommand CloseAddEventCommand { get; set; }
         public ObservableCollection<ContactPersonVM> ContactPersons { get; set; }

@@ -60,8 +60,8 @@
         let imageWidth = image.offsetWidth;
         let imageHeight = image.offsetHeight;
 
-        let widthRatio = imageWidth / userControlWidth;
-        let heightRatio = imageHeight / userControlHeight;
+        let widthRatio = userControlWidth / imageWidth;
+        let heightRatio = userControlHeight / imageHeight;
 
         x = x * widthRatio;
         y = y * heightRatio;
