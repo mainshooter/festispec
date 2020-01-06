@@ -30,7 +30,7 @@ namespace Festispec.ViewModel.customer.contactPerson
             set
             {
                 contactPerson = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged(() => ContactPerson);
             }
         }
 
