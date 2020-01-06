@@ -106,8 +106,8 @@ namespace Festispec.ViewModel.customer.pages
             OpenAddCustomer = new RelayCommand(OpenAddCustomerPage, AccessToCustomer);
             OpenEditCustomer = new RelayCommand(OpenEditCustomerPage, AccessToCustomer);
             DeleteCustomerCommand = new RelayCommand(DeleteCustomer, AccessToCustomer);
-            OpenSingleCustomer = new RelayCommand(OpenCustomerDetailsPage, AccessToEvents);
-            OpenCustomerEventCommand = new RelayCommand(OpenEventsPage, AccessToCustomer);
+            OpenSingleCustomer = new RelayCommand(OpenCustomerDetailsPage, AccessToCustomer);
+            OpenCustomerEventCommand = new RelayCommand(OpenEventsPage, AccessToEvents);
             OpenContactPersonCommand = new RelayCommand(OpenContactPerson, AccessToCustomer);
         }
 
