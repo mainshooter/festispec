@@ -22,7 +22,7 @@ namespace Festispec.ViewModel.customer.customerEvent
 {
     public class EventListVM : ViewModelBase
     {
-        private string _role = UserSessionVm.Current.Employee.Department.Name;
+        private string _role = UserSessionVM.Current.Employee.Department.Name;
         private string _filter;
         private List<string> _filters;
         private bool _showOnlyFuture;

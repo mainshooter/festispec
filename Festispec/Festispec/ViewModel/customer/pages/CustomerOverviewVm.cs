@@ -11,11 +11,13 @@ using System.Windows.Input;
 using Festispec.View.Pages.Customer;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Customer.ContactPerson;
+using Festispec.ViewModel.auth;
 
 namespace Festispec.ViewModel.customer.pages
 {
     public class CustomerOverviewVm : ViewModelBase
     {
+        private string _role = UserSessionVM.Current.Employee.Department.Name;
         private string _filter;
         private List<string> _filters;
         private CustomerVM _selectedCustomer;
@@ -101,12 +103,12 @@ namespace Festispec.ViewModel.customer.pages
             Filter = "";
             CustomerList = new ObservableCollection<CustomerVM>(customerRepository.GetCustomers());
 
-            OpenAddCustomer = new RelayCommand(OpenAddCustomerPage);
-            OpenEditCustomer = new RelayCommand(OpenEditCustomerPage);
-            DeleteCustomerCommand = new RelayCommand(DeleteCustomer);
-            OpenSingleCustomer = new RelayCommand(OpenCustomerDetailsPage);
-            OpenCustomerEventCommand = new RelayCommand(OpenEventsPage);
-            OpenContactPersonCommand = new RelayCommand(OpenContactPerson);
+            OpenAddCustomer = new RelayCommand(OpenAddCustomerPage, AccessToCustomer);
+            OpenEditCustomer = new RelayCommand(OpenEditCustomerPage, AccessToCustomer);
+            DeleteCustomerCommand = new RelayCommand(DeleteCustomer, AccessToCustomer);
+            OpenSingleCustomer = new RelayCommand(OpenCustomerDetailsPage, AccessToEvents);
+            OpenCustomerEventCommand = new RelayCommand(OpenEventsPage, AccessToCustomer);
+            OpenContactPersonCommand = new RelayCommand(OpenContactPerson, AccessToCustomer);
         }
 
         public void OpenContactPerson()
@@ -171,6 +173,24 @@ namespace Festispec.ViewModel.customer.pages
                     }
                 }
             }
+        }
+
+        private bool AccessToCustomer()
+        {
+            if (_role == "Sales" || _role == "Directie")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool AccessToEvents()
+        {
+            if (_role == "Sales" || _role == "Directie" || _role == "Marketing" || _role == "Planning")
+            {
+                return true;
+            }
+            return false;
         }
 
         public void RefreshCustomers()
