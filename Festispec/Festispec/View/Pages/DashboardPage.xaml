@@ -9,7 +9,6 @@
       Title="DashboardPage">
 
     <Grid>
-        <Label Content="Dashbaord" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-
+        <Label Content="Festispec vragenlijst en rapport software pakket" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>
