@@ -195,7 +195,7 @@ namespace Festispec.ViewModel.customer
                 }
                 else if (!Uri.IsWellFormedUriString(Logo, UriKind.Absolute))
                 {
-                    return "Link ongeldig";
+                    return "Link ongeldig http(s)://url";
                 }
                 return null;
             }
@@ -210,7 +210,7 @@ namespace Festispec.ViewModel.customer
                 }
                 if (!Uri.IsWellFormedUriString(Website, UriKind.Absolute))
                 {
-                    return "Link ongeldig";
+                    return "Link ongeldig http(s)://url";
                 }
                 return null;
             }

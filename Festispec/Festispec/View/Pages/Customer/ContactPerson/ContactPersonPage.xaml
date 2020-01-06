@@ -25,7 +25,7 @@
                 <Label Grid.Column="0" Margin="3, 3, 10, 3">Filter:</Label>
                 <ComboBox Grid.Column="1" Margin="3, 3, 10, 3" SelectedIndex="0" SelectedValuePath="SelectedFilter" ItemsSource="{Binding FilterItems}" SelectedItem="{Binding SelectedFilter,Mode=TwoWay}" Width="128"></ComboBox>
                 <TextBox Grid.Column="2" Margin="3, 3, 10, 3" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="122"/>
-                <Button Grid.Column="3" Command="{Binding OpenAddContactPerson}" Content="Medewerker toevoegen" HorizontalAlignment="Right"/>
+                <Button Grid.Column="3" Command="{Binding OpenAddContactPerson}" Content="Contactpersoon toevoegen" HorizontalAlignment="Right"/>
             </Grid>
 
         </WrapPanel>
@@ -33,9 +33,8 @@
         <Viewbox>
             <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly =" true" AutoGenerateColumns="False" ItemsSource="{Binding FilteredContactPersonList}" SelectedItem="{Binding Path=SelectedContactPerson, Mode=TwoWay}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="900">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Volledige naam" Binding="{Binding Firstname}"/>
-                    <DataGridTextColumn Header="Starttijd" Binding="{Binding Prefix}"/>
-                    <DataGridTextColumn Header="Eindtijd" Binding="{Binding Lastname}"/>
+                    <DataGridTextColumn Header="Volledige naam" Binding="{Binding Fullname}"/>
+                    <DataGridTextColumn Header="Functie" Binding="{Binding Function}" />
                     <DataGridTextColumn Header="Telefoonnummer" Binding="{Binding Phone}"/>
                     <DataGridTextColumn Header="E-mail" Binding="{Binding Email}"/>
                     <DataGridTemplateColumn>

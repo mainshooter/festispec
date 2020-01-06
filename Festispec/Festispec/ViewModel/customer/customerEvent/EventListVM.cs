@@ -294,7 +294,6 @@ namespace Festispec.ViewModel.customer.customerEvent
                 }
                 if(_role == "Directie" || _role == "Sales") return source != null && source.HasOrder();
             }
-            
             return false;
         }
 

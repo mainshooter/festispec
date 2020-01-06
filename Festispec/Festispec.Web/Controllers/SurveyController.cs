@@ -27,13 +27,11 @@ namespace Festispec.Web.Controllers
 
             var surveysTodayWithOrderAndEvent = _db.Surveys.Include("Order.Event")
                                     .Where(s => DateTime.Today >= s.Order.Event.BeginDate &&
-                                    DateTime.Today <= s.Order.Event.EndDate &&
-                                    s.Status == SurveyStatus.Definitief.ToString())
+                                                DateTime.Today <= s.Order.Event.EndDate &&
+                                                s.Status == SurveyStatus.Definitief.ToString())
                                     .ToList();
 
-            CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent);
-
-            return View(surveysTodayWithOrderAndEvent);
+            return View(CheckAllowenceCurrentEmployeeWithSurveys(surveysTodayWithOrderAndEvent));
         }
 
         private List<Survey> CheckAllowenceCurrentEmployeeWithSurveys(List<Survey> surveysList)
@@ -60,20 +58,23 @@ namespace Festispec.Web.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            Survey survey = _db.Surveys.Find(id);
+            var survey = _db.Surveys
+                .Include("Order.Event").FirstOrDefault(s => s.Id == id &&
+                                                            DateTime.Today >= s.Order.Event.BeginDate &&
+                                                            DateTime.Today <= s.Order.Event.EndDate &&
+                                                            s.Status == SurveyStatus.Definitief.ToString());
+
+            if (survey == null)
+                return HttpNotFound();
+
             var model = new SurveyModel { Survey = survey };
             var questionVars = new List<string>();
             var repo = new QuestionTypeFactory();
-            List<Survey> surveyList = new List<Survey>();
-            surveyList.Add(survey);
 
-            if (CheckAllowenceCurrentEmployeeWithSurveys(surveyList).Count == 0)
+            if (CheckAllowenceCurrentEmployeeWithSurveys(new List<Survey> { survey }).Count == 0)
             {
                 return RedirectToAction("Index");
             }
-
-            if (model.Survey == null)
-                return HttpNotFound();
 
             var question = model.Survey.Questions;
 

@@ -14,20 +14,26 @@
         <Button Command="{Binding BackCommand}" Margin="0,0,758,432"  Height="17" Width="43" VerticalAlignment="Top" HorizontalAlignment="Left" ToolTip="Terug" ToolTipService.ShowOnDisabled="True">
             <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="ArrowBack" Width="28" RenderTransformOrigin="0,0.625"/>
         </Button>
-        <Grid HorizontalAlignment="Center" Width="800">
-            <StackPanel Margin="25" Width="200" HorizontalAlignment="Center">
-                <Label Content="Voornaam" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Firstname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-                <Label Content="Tussenvoegsel (optioneel)" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Prefix, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-                <Label Content="Achternaam" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
-                <TextBox HorizontalAlignment="Left" Height="25 " Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Lastname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-                <Label Content="Telefoonnummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Phone, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
-                <Label Content="E-Mail" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Email, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+        <StackPanel HorizontalAlignment="Center" Width="800">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="25,25,25,15" Width="200" HorizontalAlignment="Center">
+                    <Label Content="Voornaam" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
+                    <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Firstname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+                    <Label Content="Tussenvoegsel (optioneel)" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
+                    <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Prefix, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+                    <Label Content="Achternaam" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
+                    <TextBox HorizontalAlignment="Left" Height="25 " Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Lastname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+                </StackPanel>
+                <StackPanel Margin="0,25,0,201">
+                    <Label Content="Functie" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"></Label>
+                    <TextBox HorizontalAlignment="Left" Height="25 " Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Function, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+                    <Label Content="Telefoonnummer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100"/>
+                    <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Phone, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+                    <Label Content="E-Mail" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94"/>
+                    <TextBox HorizontalAlignment="Left" Height="25" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Path=ContactPerson.Email, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="176"/>
+                </StackPanel>
             </StackPanel>
             <Button Content="Opslaan" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding EditContactPersonCommand}" Height="28"/>
-        </Grid>
+        </StackPanel>
     </Grid>
 </Page>
