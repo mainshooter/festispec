@@ -2,6 +2,7 @@
 using Festispec.Message;
 using Festispec.View.Pages.Customer.Event;
 using Festispec.View.Pages.Report;
+using Festispec.ViewModel.auth;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
@@ -10,6 +11,7 @@ namespace Festispec.ViewModel.report
 {
     public class AddReportVM : ViewModelBase
     {
+        private string _role = UserSessionVM.Current.Employee.Department.Name;
         private ReportVM _reportVM;
 
         public ReportVM ReportVM
@@ -63,8 +65,12 @@ namespace Festispec.ViewModel.report
         private void SaveEdit()
         {
             if (!Save()) return;
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
-            MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { NextReportVM = _reportVM });
+            if (_role == "Directie" || _role == "Sales")
+            {
+                MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(ReportPage) });
+                MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { NextReportVM = _reportVM });
+            }
+            Back();
         }
     }
 }

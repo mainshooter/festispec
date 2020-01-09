@@ -239,6 +239,22 @@ namespace Festispec.ViewModel.customer.contactPerson
             }
         }
 
+        private string ValidateFunction 
+        {
+            get 
+            {
+                if (string.IsNullOrEmpty(Function))
+                {
+                    return "Functienaam mag niet leeg zijn";
+                }
+                else if (Function.Length > 1000)
+                {
+                    return "Functie naam is te lang";
+                }
+                return null;
+            }
+        }
+
         public bool IsValid
         {
             get
@@ -274,13 +290,16 @@ namespace Festispec.ViewModel.customer.contactPerson
                 case "Phone":
                     error = ValidatePhone;
                     break;
+                case "Function":
+                    error = ValidateFunction;
+                    break;
             }
             return error;
         }
 
         public static readonly string[] ValidatedProperties =
         {
-            "Firstname", "Lastname", "Prefix",  "Email", "Phone"
+            "Firstname", "Lastname", "Prefix",  "Email", "Phone", "Function"
         };
 
         #endregion

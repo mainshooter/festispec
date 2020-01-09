@@ -35,7 +35,6 @@ namespace Festispec.ViewModel
         public ICommand OpenWorkedHours { get; set; }
         public ICommand ShowAccountInformation { get; set; }
         public ICommand OpenEmployeePlanningCommand { get; set; }
-        public ICommand LogoutCommand { get; set; }
         public ObservableCollection<Button> MenuList { get; set; }
 
         public string RightTopMenuVisablity
@@ -83,7 +82,6 @@ namespace Festispec.ViewModel
             OpenWorkedHours = new RelayCommand(OpenWorkedHoursTab);
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
             OpenEmployeePlanningCommand = new RelayCommand(OpenEmployeePlanning);
-            LogoutCommand = new RelayCommand(Logout);
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -91,12 +89,7 @@ namespace Festispec.ViewModel
 
                 if (message.NextPageType == typeof(LoginPage))
                 {
-                    RightTopMenuVisablity = "Collapsed";
                     LoggedInEmployee = null;
-                }
-                else if (message.NextPageType == typeof(DashboardPage))
-                {
-                    RightTopMenuVisablity = "Visible";
                 }
             });
 
@@ -145,6 +138,7 @@ namespace Festispec.ViewModel
             _menu["Inspectie"].Add("Ingeplande dagen", OpenEmployeePlanningCommand);
             _menu["Inspectie"].Add("Ziekmelden", OpenSick);
             _menu["Inspectie"].Add("Urenregistratie", OpenWorkedHours);
+
             // Sales Dictionary
             _menu.Add("Sales", new Dictionary<string, ICommand>());
             _menu["Sales"].Add("Dashboard", OpenDashboard);
@@ -153,31 +147,25 @@ namespace Festispec.ViewModel
             // Planning Dictionary
             _menu.Add("Planning", new Dictionary<string, ICommand>());
             _menu["Planning"].Add("Dashboard", OpenDashboard);
+            _menu["Planning"].Add("Klanten", OpenCustomer);
 
             // Directie Dictionary
             _menu.Add("Directie", new Dictionary<string, ICommand>());
             _menu["Directie"].Add("Dashboard", OpenDashboard);
             _menu["Directie"].Add("Klanten", OpenCustomer);
             _menu["Directie"].Add("Werknemers", OpenEmployee);
-            _menu["Directie"].Add("Ziek melden", OpenSick);
-            _menu["Directie"].Add("Beschikbaarheid", OpenAvailability);
 
             // Marketing Dictionary
             _menu.Add("Marketing", new Dictionary<string, ICommand>());
             _menu["Marketing"].Add("Dashboard", OpenDashboard);
             _menu["Marketing"].Add("Werknemers", OpenEmployee);
+            _menu["Marketing"].Add("Klanten", OpenCustomer);
         }
 
         //methodes
         private void CloseApp()
         {
             System.Windows.Application.Current.Shutdown();
-        }
-
-        public void Logout()
-        {
-            UserSessionVM.Current.Employee = null;
-            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(LoginPage) });
         }
 
         private void OpenDashboardTab()

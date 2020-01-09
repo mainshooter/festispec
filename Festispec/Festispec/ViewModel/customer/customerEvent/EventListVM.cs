@@ -16,11 +16,13 @@ using Festispec.View.Pages.Customer.Quotation;
 using Festispec.View.Pages.Report;
 using Festispec.ViewModel.toast;
 using Hanssens.Net;
+using Festispec.ViewModel.auth;
 
 namespace Festispec.ViewModel.customer.customerEvent
 {
     public class EventListVM : ViewModelBase
     {
+        private string _role = UserSessionVM.Current.Employee.Department.Name;
         private string _filter;
         private List<string> _filters;
         private bool _showOnlyFuture;
@@ -140,14 +142,14 @@ namespace Festispec.ViewModel.customer.customerEvent
             SelectedFilter = Filters.First();
             Filter = "";
             ShowOnlyFuture = true;
-            OpenAddEventCommand = new RelayCommand(OpenAddEventPage);
+            OpenAddEventCommand = new RelayCommand(OpenAddEventPage, CanAddEvent);
             OpenEditEventCommand = new RelayCommand<EventVM>(OpenEditEventPage, CanOpenEdit);
             DeleteEventCommand = new RelayCommand<EventVM>(DeleteEvent, CanOpenDelete);
-            OpenSingleEventCommand = new RelayCommand<EventVM>(OpenSingleEventPage);
-            OpenSurveyCommand = new RelayCommand<EventVM>(OpenSurveyPage, HasOrder);
-            OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage, HasOrder);
-            OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage, HasOrder);
-            OpenQuotationsCommand = new RelayCommand<EventVM>(OpenQuotationPage);
+            OpenSingleEventCommand = new RelayCommand<EventVM>(OpenSingleEventPage, CanOpenDirectieAndSales);
+            OpenSurveyCommand = new RelayCommand<EventVM>(OpenSurveyPage,CanOpenSurveyHasOrder);
+            OpenReportCommand = new RelayCommand<EventVM>(OpenReportPage,CanOpenReportHasOrder);
+            OpenPlanningCommand = new RelayCommand<EventVM>(OpenPlanningPage,CanOpenPlanningHasOrder);
+            OpenQuotationsCommand = new RelayCommand<EventVM>(OpenQuotationPage, CanOpenDirectieAndSales);
             BackCommand = new RelayCommand(Back);
             SynchEventCommand = new RelayCommand<EventVM>(SynchEvent);
 
@@ -188,7 +190,8 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         private bool CanOpenEdit(EventVM source)
         {
-            return source != null && source.EndDate >= DateTime.Today;
+            if(_role == "Directie" || _role == "Sales") return source != null && source.EndDate >= DateTime.Today;
+            return false;
         }
 
         public void DeleteEvent(EventVM source)
@@ -212,6 +215,7 @@ namespace Festispec.ViewModel.customer.customerEvent
             if (source == null) return false;
             if (source.ContainsModelOrder()) return false;
             if (source.EndDate < DateTime.Today) return false;
+            if (_role != "Directie") return false;
             return true;
         }
 
@@ -264,9 +268,45 @@ namespace Festispec.ViewModel.customer.customerEvent
             MessengerInstance.Send<ChangeSelectedReportMessage>(new ChangeSelectedReportMessage() { NextReportVM = source.OrderVM.Report });
         }
 
-        private bool HasOrder(EventVM source)
+        private bool CanOpenSurveyHasOrder(EventVM source)
         {
-            return source != null && source.HasOrder();
+            if (_role == "Marketing" || _role == "Directie") return source != null && source.HasOrder();
+            return false;
+        }
+
+        private bool CanOpenPlanningHasOrder(EventVM source)
+        {
+            if(_role == "Planning" || _role == "Directie") return source != null && source.HasOrder();
+            return false;
+        }
+
+        private bool CanOpenReportHasOrder(EventVM source)
+        {
+            if(source == null) return false;
+            if (source.OrderVM.Report != null)
+            {
+                if (source.OrderVM.Report.Id == 0)
+                {
+                    if (_role == "Directie" || _role == "Marketing")
+                    {
+                        return source != null && source.HasOrder();
+                    }
+                }
+                if(_role == "Directie" || _role == "Sales") return source != null && source.HasOrder();
+            }
+            return false;
+        }
+
+        private bool CanOpenDirectieAndSales(EventVM source)
+        {
+            if(_role == "Directie" || _role == "Sales") return true;
+            return false;
+        }
+
+        private bool CanAddEvent()
+        {
+            if(_role == "Directie" || _role == "Sales") return true;
+            return false;
         }
 
         public void OpenQuotationPage(EventVM source)
