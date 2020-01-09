@@ -85,12 +85,7 @@ namespace Festispec.ViewModel.planning
                         }
                     }
                 }
-                if (value > EventVM.EndDate)
-                {
-                    PlannedEmployeeVM.PlannedStartTime = EventVM.EndDate;
-                    PlannedEmployeeVM.PlannedEndTime = EventVM.EndDate;
-                }
-                if (value < EventVM.BeginDate)
+                if (value.Date < EventVM.BeginDate)
                 {
                     PlannedEmployeeVM.PlannedStartTime = EventVM.BeginDate;
                 }
@@ -121,7 +116,7 @@ namespace Festispec.ViewModel.planning
                         PlannedEmployeeVM.PlannedEndTime = value;
                     }
                 }
-                if (value > EventVM.EndDate)
+                if (value.Date > EventVM.EndDate)
                 {
                     PlannedEmployeeVM.PlannedEndTime = EventVM.EndDate;
                 }
@@ -266,7 +261,7 @@ namespace Festispec.ViewModel.planning
         private bool CanSave()
         {
             if (PlannedEmployeeVM == null || PlannedEmployeeVM.PlannedStartTime >= PlannedEmployeeVM.PlannedEndTime || PlannedEmployeeVM.Employee == null
-                || PlannedEmployeeVM.PlannedStartTime < EventVM.BeginDate || PlannedEmployeeVM.PlannedEndTime > EventVM.EndDate)
+                || PlannedEmployeeVM.PlannedStartTime.Date < EventVM.BeginDate || PlannedEmployeeVM.PlannedEndTime.Date > EventVM.EndDate)
             {
                 return false;
             }
