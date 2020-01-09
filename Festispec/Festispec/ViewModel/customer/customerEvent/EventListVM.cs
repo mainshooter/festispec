@@ -283,6 +283,10 @@ namespace Festispec.ViewModel.customer.customerEvent
         private bool CanOpenReportHasOrder(EventVM source)
         {
             if(source == null) return false;
+            if (source.OrderVM == null)
+            {
+                return false;
+            }
             if (source.OrderVM.Report != null)
             {
                 if (source.OrderVM.Report.Id == 0)
