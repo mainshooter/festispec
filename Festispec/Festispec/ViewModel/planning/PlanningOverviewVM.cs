@@ -177,7 +177,11 @@ namespace Festispec.ViewModel.planning
             if (EventVM != null)
             {
                 _filteredPlannedEmployeeList = new ObservableCollection<PlannedEmployeeVM>();
-
+                if (EventVM.OrderVM == null)
+                {
+                    FilteredPlannedEmployeeList = _filteredPlannedEmployeeList;
+                    return;
+                }
                 foreach (var day in EventVM.OrderVM.Days)
                 {
                     foreach (var inspectorPlanning in day.InspectorPlannings)
