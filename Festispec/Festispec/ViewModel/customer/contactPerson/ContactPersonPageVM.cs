@@ -94,6 +94,7 @@ namespace Festispec.ViewModel.customer.contactPerson
             MessengerInstance.Register<ChangeSelectedCustomerMessage>(this, message =>
             {
                 CustomerVM = message.Customer;
+                FillList();
                 RaisePropertyChanged(() => CustomerVM);
             });
 
