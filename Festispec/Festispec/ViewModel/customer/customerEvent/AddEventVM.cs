@@ -36,7 +36,7 @@ namespace Festispec.ViewModel.customer.customerEvent
                 ContactPersons = message.Customer.ContactPersons;
                 RaisePropertyChanged("ContactPersons");
                 Event.Customer = message.Customer;
-                Event.ContactPerson = ContactPersons.First();
+                Event.ContactPerson = ContactPersons.FirstOrDefault();
                 RaisePropertyChanged("Event");
             });
 
