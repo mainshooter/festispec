@@ -78,12 +78,12 @@ namespace Festispec.ViewModel.planning
                         }
                     }
                 }
-                if (value > EventVM.EndDate)
+                if (value.Date > EventVM.EndDate)
                 {
                     PlannedEmployeeVM.PlannedStartTime = EventVM.EndDate;
                     PlannedEmployeeVM.PlannedEndTime = EventVM.EndDate;
                 }
-                if (value < EventVM.BeginDate)
+                if (value.Date < EventVM.BeginDate)
                 {
                     PlannedEmployeeVM.PlannedStartTime = EventVM.BeginDate;
                 }
@@ -116,7 +116,7 @@ namespace Festispec.ViewModel.planning
                         PlannedEmployeeVM.PlannedEndTime = value;
                     }
                 }
-                if (value > EventVM.EndDate)
+                if (value.Date > EventVM.EndDate)
                 {
                     PlannedEmployeeVM.PlannedEndTime = EventVM.EndDate;
                 }
