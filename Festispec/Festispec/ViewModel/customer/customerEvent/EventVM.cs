@@ -194,7 +194,7 @@ namespace Festispec.ViewModel.customer.customerEvent
 
         public bool ContainsModelOrder()
         {
-            return _event.Orders.Any();
+            return _event.Orders.Any(e => e.Id != 0);
         }
 
         #region Validation
