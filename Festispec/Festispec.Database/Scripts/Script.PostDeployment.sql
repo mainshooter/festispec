@@ -131,7 +131,7 @@ INSERT [dbo].[SurveyStatus] ([Status]) VALUES (N'Concept')
 INSERT [dbo].[SurveyStatus] ([Status]) VALUES (N'Definitief')
 SET IDENTITY_INSERT [dbo].[Survey] ON 
 
-INSERT [dbo].[Survey] ([Id], [OrderId], [Status], [Description]) VALUES (1, 1, N'Concept', N'Vandaag gaan jullie een inspectie uitvoeren op bij de Grasso. Het doel van de inspectie is het in kaart
+INSERT [dbo].[Survey] ([Id], [OrderId], [Status], [Description]) VALUES (1, 1, N'Definitief', N'Vandaag gaan jullie een inspectie uitvoeren op bij de Grasso. Het doel van de inspectie is het in kaart
 brengen van de mogelijkheden van het terrein en de fabriekspand met als doelstemming kantoor
 ruimte voor start ups.
 Om de Grasso te promoten willen ze graag een evenement organiseren. Voor dat het zo ver is willen
