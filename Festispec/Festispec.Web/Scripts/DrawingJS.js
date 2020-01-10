@@ -4,6 +4,7 @@
         this.scope = document.querySelector(id);
         this.input = this.scope.querySelector("input");
         this.container = this.scope.querySelector(".container");
+        this.button = this.scope.querySelector(".clear-button");
         this.canDraw = false;
         this.addListeners();
 		this.drawings = [];
@@ -49,6 +50,9 @@
                 this.handleEvent(x, y);
 			}
 			this.canDraw = false;
+        });
+        this.button.addEventListener('click', () => {
+            this.clear();
         });
     }
 
