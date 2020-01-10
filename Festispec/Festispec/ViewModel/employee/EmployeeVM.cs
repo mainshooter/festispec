@@ -408,7 +408,7 @@ namespace Festispec.ViewModel.employee
                 {
                     return "Telefoonnummer moet ingevuld zijn";
                 }
-                else if (Phone.Length > 100)
+                else if (Phone.Length > 15)
                 {
                     return "Telefoonnummer mag niet langer zijn dan 15 karakters";
                 }

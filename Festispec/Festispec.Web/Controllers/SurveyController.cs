@@ -74,7 +74,7 @@ namespace Festispec.Web.Controllers
             if (CheckAllowenceCurrentEmployeeWithSurveys(new List<Survey> { survey }).Count == 0)
             {
                 return RedirectToAction("Index");
-            }
+            } 
 
             var question = model.Survey.Questions;
 
