@@ -244,7 +244,19 @@ namespace Festispec.ViewModel.report
             System.Windows.Documents.PageContent frontPageContent = new System.Windows.Documents.PageContent();
             ((IAddChild)frontPageContent).AddChild(frontPage);
             fixedDocument.Pages.Add(frontPageContent);
-
+            if (ReportElementUserControlls.Count < 1)
+            {
+                var label = (Label)document.Children[0];
+                label.Height = 288;
+                label.UpdateLayout();
+            }
+            else
+            {
+                var label = (Label)document.Children[0];
+                label.Height = 45;
+                label.UpdateLayout();
+            }
+            var test = document.Children;
             var image = ConvertToImage.SnapShotPng(document, 1);
 
             System.Windows.Documents.FixedPage page = new System.Windows.Documents.FixedPage();
