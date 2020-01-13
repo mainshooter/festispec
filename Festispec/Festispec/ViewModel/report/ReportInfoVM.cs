@@ -190,6 +190,8 @@ namespace Festispec.ViewModel.report
             frontPageText1.Text = ("Festispec Rapportage - " + ReportVM.Order.Event.BeginDate.ToString("dd-MM-yyyy") + " tot " + ReportVM.Order.Event.EndDate.ToString("dd-MM-yyyy"));
             frontpageTextBlocks.Add(frontPageText1);
             var frontPageText6 = new TextBlock();
+            frontPageText6.MaxWidth = 410;
+            frontPageText6.TextWrapping = TextWrapping.Wrap;
             frontPageText6.Text = ("Rapportage - " + ReportVM.Title);
             frontpageTextBlocks.Add(frontPageText6);
             var frontPageText2 = new TextBlock();
@@ -244,7 +246,19 @@ namespace Festispec.ViewModel.report
             System.Windows.Documents.PageContent frontPageContent = new System.Windows.Documents.PageContent();
             ((IAddChild)frontPageContent).AddChild(frontPage);
             fixedDocument.Pages.Add(frontPageContent);
-
+            if (ReportElementUserControlls.Count < 1)
+            {
+                var label = (Label)document.Children[0];
+                label.Height = 288;
+                label.UpdateLayout();
+            }
+            else
+            {
+                var label = (Label)document.Children[0];
+                label.Height = 45;
+                label.UpdateLayout();
+            }
+            var test = document.Children;
             var image = ConvertToImage.SnapShotPng(document, 1);
 
             System.Windows.Documents.FixedPage page = new System.Windows.Documents.FixedPage();
