@@ -190,6 +190,8 @@ namespace Festispec.ViewModel.report
             frontPageText1.Text = ("Festispec Rapportage - " + ReportVM.Order.Event.BeginDate.ToString("dd-MM-yyyy") + " tot " + ReportVM.Order.Event.EndDate.ToString("dd-MM-yyyy"));
             frontpageTextBlocks.Add(frontPageText1);
             var frontPageText6 = new TextBlock();
+            frontPageText6.MaxWidth = 410;
+            frontPageText6.TextWrapping = TextWrapping.Wrap;
             frontPageText6.Text = ("Rapportage - " + ReportVM.Title);
             frontpageTextBlocks.Add(frontPageText6);
             var frontPageText2 = new TextBlock();
