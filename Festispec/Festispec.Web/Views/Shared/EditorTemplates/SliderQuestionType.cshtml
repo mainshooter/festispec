@@ -2,13 +2,14 @@
 
 
 <div class="form-group slider-question-container">
-    <div class="range-value">@Convert.ToInt32(Convert.ToInt32(Model.Details.Choices.Cols[1]) / 2)</div>
+    <div class="range-value">@Model.Details.Choices.Cols[0]</div>
     <label>@Html.DisplayFor(m => m.Details.Choices.Cols[0])</label>
     <input type="range"
             name="@Html.DisplayFor(m => m.Variable)"
             min="@Html.DisplayFor(m => m.Details.Choices.Cols[0])"
             max="@Html.DisplayFor(m => m.Details.Choices.Cols[1])"
             class="survey-question"
+            value="@Model.Details.Choices.Cols[0]"
             required />
     <label>@Html.DisplayFor(m => m.Details.Choices.Cols[1])</label>
 </div>

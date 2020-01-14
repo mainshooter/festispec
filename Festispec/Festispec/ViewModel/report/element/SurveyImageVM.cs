@@ -53,7 +53,6 @@ namespace Festispec.ViewModel.report.element
                 foreach (var item in Data)
                 {
                     string base64 = item[0];
-                    base64 = base64.Split(',')[1];
 
                     byte[] bytes = System.Convert.FromBase64String(base64);
                     Images.Add(bytes);

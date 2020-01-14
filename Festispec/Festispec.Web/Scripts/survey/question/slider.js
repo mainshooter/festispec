@@ -6,11 +6,13 @@
         let type = element.type;
         if (type == "range") {
             element.addEventListener("change", (event) => {
+                console.log(event);
                 let target = event.target;
                 let container = target.parentNode;
                 container.querySelector(".range-value").innerHTML = target.value;
             });
-
+            let event = new Event('change');
+            element.dispatchEvent(event);
         }
     }
 });

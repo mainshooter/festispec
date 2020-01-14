@@ -35,7 +35,7 @@ namespace Festispec.Web.Controllers
 
         private List<Survey> CheckAllowenceCurrentEmployeeWithSurveys(List<Survey> surveysList)
         {
-            foreach(var s in surveysList.ToList())
+            foreach (var s in surveysList.ToList())
             {
                 if(_db.InspectorPlannings.ToList().Any(i => i.EmployeeId == UserSession.Current.Employee.Id && i.OrderId == s.Order.Id) == false && UserSession.Current.Employee.Department != "Directie")
                 {
@@ -62,7 +62,6 @@ namespace Festispec.Web.Controllers
                                                 DateTime.Today >= s.Order.Event.BeginDate &&
                                                 DateTime.Today <= s.Order.Event.EndDate &&
                                                 s.Status == SurveyStatus.Definitief.ToString());
-
             if (survey == null)
                 return HttpNotFound();
 
@@ -145,18 +144,50 @@ namespace Festispec.Web.Controllers
 
                 if (question != null)
                 {
-                    Answer answer = new Answer() { Case = surveyCase, QuestionId = question.Id, Answer1 = questionAnswer };
-                    if (questionAnswerValidator.IsAnswerValid(question, answer))
+                    if (question.Type == Lib.Enums.QuestionType.ImageGaleryQuestion)
                     {
-                        answer = questionCleanerAnswer.CleanAnswer(question, answer);
-                        if (answer != null)
+                        List<string> base64Strings = new List<string>();
+                        string[] imageAnswers = questionAnswer.Split(',');
+                        for (int i = 0; i < imageAnswers.Length; i++)
                         {
-                            answers.Add(answer);
+                            if (i % 2 == 0)
+                            {
+                                // DO nothing
+                            }
+                            else
+                            {
+                                base64Strings.Add(imageAnswers[i]);
+                            }
+                        }
+
+                        foreach (var imageAnswer in base64Strings)
+                        {
+                            Answer answer = new Answer() { Case = surveyCase, QuestionId = question.Id, Answer1 = imageAnswer };
+                            if (questionAnswerValidator.IsAnswerValid(question, answer))
+                            {
+                                answer = questionCleanerAnswer.CleanAnswer(question, answer);
+                                if (answer != null)
+                                {
+                                    answers.Add(answer);
+                                }
+                            }
                         }
                     }
                     else
                     {
-                        return Json(new { result = "Answer not valid" + question.Variables});
+                        Answer answer = new Answer() { Case = surveyCase, QuestionId = question.Id, Answer1 = questionAnswer };
+                        if (questionAnswerValidator.IsAnswerValid(question, answer))
+                        {
+                            answer = questionCleanerAnswer.CleanAnswer(question, answer);
+                            if (answer != null)
+                            {
+                                answers.Add(answer);
+                            }
+                        }
+                        else
+                        {
+                            return Json(new { result = "Answer not valid" + question.Variables });
+                        }
                     }
                 }
                 else
