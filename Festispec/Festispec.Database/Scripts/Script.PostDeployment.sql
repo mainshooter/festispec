@@ -182,6 +182,7 @@ INSERT [dbo].[ElementType] ([Type]) VALUES (N'Linechart')
 INSERT [dbo].[ElementType] ([Type]) VALUES (N'Piechart')
 INSERT [dbo].[ElementType] ([Type]) VALUES (N'Table')
 INSERT [dbo].[ElementType] ([Type]) VALUES (N'Text')
+INSERT [dbo].[ElementType] ([Type]) VALUES (N'SurveyImages')
 INSERT [dbo].[ReportStatus] ([Status]) VALUES (N'Concept')
 INSERT [dbo].[ReportStatus] ([Status]) VALUES (N'Definitief')
 SET IDENTITY_INSERT [dbo].[AvailabilityInspector] ON 

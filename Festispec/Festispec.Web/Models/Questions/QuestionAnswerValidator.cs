@@ -150,9 +150,9 @@ namespace Festispec.Web.Models.Questions
         {
             if (answer.Answer1 != null)
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
     }
 }
