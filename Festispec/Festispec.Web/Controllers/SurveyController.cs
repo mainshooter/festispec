@@ -30,7 +30,7 @@ namespace Festispec.Web.Controllers
                                                 DateTime.Today <= s.Order.Event.EndDate &&
                                                 s.Status == SurveyStatus.Definitief.ToString())
                                     .ToList();
-            return View(surveysTodayWithOrderAndEvent);
+            return View(CheckAllowenceCurrentEmployeeWithSurveyssurveysTodayWithOrderAndEvent));
         }
 
         private List<Survey> CheckAllowenceCurrentEmployeeWithSurveys(List<Survey> surveysList)
