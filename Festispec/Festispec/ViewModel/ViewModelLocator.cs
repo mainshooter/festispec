@@ -211,6 +211,10 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<NoteListVM>();
             SimpleIoc.Default.Register<AddNoteVM>();
             SimpleIoc.Default.Register<EmployeePlanningInfoVM>();
+            SimpleIoc.Default.Register<AddSurveyImagesVM>();
+            SimpleIoc.Default.Register<AddSurveyImagesPage>();
+            SimpleIoc.Default.Register<EditSurveyImagesVM>();
+            SimpleIoc.Default.Register<EditSurveyImagesPage>();
         }
 
         public CustomerOverviewVm CustomerOverviewVm => ServiceLocator.Current.GetInstance<CustomerOverviewVm>();
@@ -284,6 +288,10 @@ namespace Festispec.ViewModel
         public AddPlannedEmployeeVM AddPlannedEmployeeVM => ServiceLocator.Current.GetInstance<AddPlannedEmployeeVM>();
         public EmployeePlanningInfoVM EmployeePlanningInfoVM => ServiceLocator.Current.GetInstance<EmployeePlanningInfoVM>();
         public MapVM MapVM => ServiceLocator.Current.GetInstance<MapVM>();
+
+        public AddSurveyImagesVM AddSurveyImagesVM => ServiceLocator.Current.GetInstance<AddSurveyImagesVM>();
+
+        public EditSurveyImagesVM EditSurveyImagesVM => ServiceLocator.Current.GetInstance<EditSurveyImagesVM>();
 
         public static void Cleanup()
         {

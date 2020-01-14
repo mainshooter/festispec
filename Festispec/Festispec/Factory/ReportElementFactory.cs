@@ -67,6 +67,14 @@ namespace Festispec.Factory
                 drawVM.ApplyChanges();
                 returningUserControl = draw;
             }
+            else if (type.Equals(ReportElementType.SurveyImages))
+            {
+                SurveyImagesUserControl surveyImages = new SurveyImagesUserControl();
+                SurveyImageVM surveyImageVM = new SurveyImageVM(element);
+                surveyImageVM.ApplyChanges();
+                surveyImages.DataContext = surveyImageVM;
+                returningUserControl = surveyImages;
+            }
             return returningUserControl;
         }
     }

@@ -253,11 +253,13 @@
     <Compile Include="ViewModel\report\data\MaxDataParserVM.cs" />
     <Compile Include="ViewModel\report\data\MinDataParserVM.cs" />
     <Compile Include="ViewModel\report\data\SelectDataParserVM.cs" />
+    <Compile Include="ViewModel\report\data\SurveyImagesDataParserVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddBarChartVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddDrawVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddImageVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddLineChartVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddPieChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Add\AddSurveyImagesVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddTableVM.cs" />
     <Compile Include="ViewModel\report\element\Add\AddTextVM.cs" />
     <Compile Include="ViewModel\report\element\Add\BaseElementAddVM.cs" />
@@ -268,6 +270,7 @@
     <Compile Include="ViewModel\report\element\Edit\EditImageVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditLineChartVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditPieChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\EditSurveyImagesVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditTableVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditTextVM.cs" />
     <Compile Include="ViewModel\report\element\BarChartVM.cs" />
@@ -276,6 +279,7 @@
     <Compile Include="ViewModel\report\element\PieChartVM.cs" />
     <Compile Include="Repository\ReportElementTypesRepository.cs" />
     <Compile Include="ViewModel\report\element\ReportElementVM.cs" />
+    <Compile Include="ViewModel\report\element\SurveyImageVM.cs" />
     <Compile Include="ViewModel\report\element\TableVM.cs" />
     <Compile Include="ViewModel\report\element\TextVM.cs" />
     <Compile Include="ViewModel\report\ReportInfoVM.cs" />
@@ -421,6 +425,9 @@
     <Compile Include="View\Pages\Report\element\Add\AddPieChartPage.xaml.cs">
       <DependentUpon>AddPieChartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Report\element\Add\AddSurveyImagesPage.xaml.cs">
+      <DependentUpon>AddSurveyImagesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Report\element\Add\AddTablePage.xaml.cs">
       <DependentUpon>AddTablePage.xaml</DependentUpon>
     </Compile>
@@ -441,6 +448,9 @@
     </Compile>
     <Compile Include="View\Pages\Report\element\Edit\EditPieChartPage.xaml.cs">
       <DependentUpon>EditPieChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Edit\EditSurveyImagesPage.xaml.cs">
+      <DependentUpon>EditSurveyImagesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Report\element\Edit\EditTablePage.xaml.cs">
       <DependentUpon>EditTablePage.xaml</DependentUpon>
@@ -513,6 +523,9 @@
     </Compile>
     <Compile Include="View\Usercontrols\Report\Element\PieChartUserControl.xaml.cs">
       <DependentUpon>PieChartUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usercontrols\Report\Element\SurveyImagesUserControl.xaml.cs">
+      <DependentUpon>SurveyImagesUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usercontrols\Report\Element\TableUserControl.xaml.cs">
       <DependentUpon>TableUserControl.xaml</DependentUpon>
@@ -712,6 +725,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Pages\Report\element\Add\AddSurveyImagesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Report\element\Add\AddTablePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -737,6 +754,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Report\element\Edit\EditPieChartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\Edit\EditSurveyImagesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -845,6 +866,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Usercontrols\Report\Element\PieChartUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usercontrols\Report\Element\SurveyImagesUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

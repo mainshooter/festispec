@@ -3,7 +3,7 @@
 @{int index = 0; }
 @foreach (var q in Model.Details.Choices.Cols)
 {
-
-    @Html.RadioButton(Model.Variable, index, new { @class = "survey-question", id = "", required = "true" });@q <br />
-	index++;
+    <input class="survey-question" name="@Model.Variable" required="true" type="radio" value="@index">@q
+    <br />
+    index++;
 }

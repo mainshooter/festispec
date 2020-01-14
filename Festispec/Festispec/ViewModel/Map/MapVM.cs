@@ -71,13 +71,21 @@ namespace Festispec.ViewModel.Map
 
         private async void CreatePushPin(string name, string type, string street, string houseNumber, string city, string postalCode, Color color)
         {
-            var pin = new Pushpin { Content = type.ToCharArray()[0], Background = new SolidColorBrush(color) };
-            var tooltip = new ToolTip { Content = name };
-            var location = await _distanceCalculator.AdressToCoor(street, houseNumber, city, postalCode);
-            pin.Location = new Location(location.Coordinate.Latitude, location.Coordinate.Longitude);
-            pin.ToolTip = tooltip;
-            PushPins.Add(pin);
-            RaisePropertyChanged(() => PushPins);
+            try
+            {
+                var pin = new Pushpin { Content = type.ToCharArray()[0], Background = new SolidColorBrush(color) };
+                var tooltip = new ToolTip { Content = name };
+                var location = await _distanceCalculator.AdressToCoor(street, houseNumber, city, postalCode);
+                pin.Location = new Location(location.Coordinate.Latitude, location.Coordinate.Longitude);
+                pin.ToolTip = tooltip;
+                PushPins.Add(pin);
+                RaisePropertyChanged(() => PushPins);
+            }
+            catch (System.Exception)
+            {
+
+            }
+
         }
     }
 }

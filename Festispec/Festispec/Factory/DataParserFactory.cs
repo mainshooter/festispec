@@ -25,6 +25,7 @@ namespace Festispec.Factory
                 DataParserType.COUNT,
                 DataParserType.COUNTOPTIONS,
                 DataParserType.DRAW,
+                DataParserType.IMAGE,
             };
             DataParsers = new List<IDataParser>();
             DataParsers.Add(new SelectDataParserVM());
@@ -34,6 +35,7 @@ namespace Festispec.Factory
             DataParsers.Add(new MaxDataParserVM());
             DataParsers.Add(new AvgDataParser());
             DataParsers.Add(new DrawDataParser());
+            DataParsers.Add(new SurveyImagesDataParserVM());
         }
 
         public static IDataParser GetDataParserByJson(string json)
@@ -89,6 +91,10 @@ namespace Festispec.Factory
             if (type.Equals(DataParserType.DRAW))
             {
                 return new DrawDataParser();
+            }
+            if (type.Equals(DataParserType.IMAGE))
+            {
+                return new SurveyImagesDataParserVM();
             }
             return null;
         }
