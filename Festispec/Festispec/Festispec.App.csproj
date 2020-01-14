@@ -270,6 +270,7 @@
     <Compile Include="ViewModel\report\element\Edit\EditImageVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditLineChartVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditPieChartVM.cs" />
+    <Compile Include="ViewModel\report\element\Edit\EditSurveyImagesVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditTableVM.cs" />
     <Compile Include="ViewModel\report\element\Edit\EditTextVM.cs" />
     <Compile Include="ViewModel\report\element\BarChartVM.cs" />
@@ -447,6 +448,9 @@
     </Compile>
     <Compile Include="View\Pages\Report\element\Edit\EditPieChartPage.xaml.cs">
       <DependentUpon>EditPieChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Report\element\Edit\EditSurveyImagesPage.xaml.cs">
+      <DependentUpon>EditSurveyImagesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Report\element\Edit\EditTablePage.xaml.cs">
       <DependentUpon>EditTablePage.xaml</DependentUpon>
@@ -750,6 +754,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Report\element\Edit\EditPieChartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Report\element\Edit\EditSurveyImagesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
