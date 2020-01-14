@@ -47,6 +47,8 @@ using Festispec.ViewModel.customer.contactPerson;
 using Festispec.View.Pages.Customer.ContactPerson;
 using Festispec.ViewModel.employee.planning;
 using Festispec.View.Pages.Employee.Planning;
+using Festispec.View.Pages.Map;
+using Festispec.ViewModel.Map;
 
 namespace Festispec.ViewModel
 {
@@ -56,6 +58,7 @@ namespace Festispec.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<DashboardPage>();
+            SimpleIoc.Default.Register<MapPage>();
             SimpleIoc.Default.Register<ReportPage>();
             SimpleIoc.Default.Register<CustomerOverviewPage>();
             SimpleIoc.Default.Register<EventPage>();
@@ -124,6 +127,7 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<CustomerDetailsVm>();
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<MapVM>();
             SimpleIoc.Default.Register<EmployeeVM>();
             SimpleIoc.Default.Register<EmployeeListVM>();
             SimpleIoc.Default.Register<AddEmployeeVM>();
@@ -276,10 +280,10 @@ namespace Festispec.ViewModel
         public EditContactPersonVM EditContactPersonVM => ServiceLocator.Current.GetInstance<EditContactPersonVM>();
         public NoteListVM NoteListVM => ServiceLocator.Current.GetInstance<NoteListVM>();
         public AddNoteVM AddNoteVM => ServiceLocator.Current.GetInstance<AddNoteVM>();
-
         public EditPlannedEmployeeVM EditPlannedEmployeeVM => ServiceLocator.Current.GetInstance<EditPlannedEmployeeVM>();
         public AddPlannedEmployeeVM AddPlannedEmployeeVM => ServiceLocator.Current.GetInstance<AddPlannedEmployeeVM>();
         public EmployeePlanningInfoVM EmployeePlanningInfoVM => ServiceLocator.Current.GetInstance<EmployeePlanningInfoVM>();
+        public MapVM MapVM => ServiceLocator.Current.GetInstance<MapVM>();
 
         public static void Cleanup()
         {
