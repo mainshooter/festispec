@@ -141,6 +141,23 @@ function validateTableQuestions() {
     return tableQuestionsAreValid;
 }
 
+function validateImageQuestion() {
+    let imageQuestionsAreValid = true;
+    let imageUploads = document.querySelectorAll("input[type=file]");
+    for (var i = 0; i < imageUploads.length; i++) {
+        let image = imageUploads[i];
+        let files = image.files;
+        let maxNumberOfImages = image.getAttribute("max");
+        if (files.length > maxNumberOfImages || files.length == 0) {
+            let container = document.querySelector("input[type=file]").parentElement;
+            let errorHolder = container.querySelector(".error");
+            errorHolder.innerHTML = "Je mag maar " + maxNumberOfImages + " uploaden en je moet minimaal 1 afbeelding uploaden";
+            imageQuestionsAreValid = false;
+        }
+    }
+    return imageQuestionsAreValid;
+}
+
 function validateDrawQuestion() {
     let drawQuestionsAreValid = true;
     for (let a = 0; a < drawQuestions.length; a++) {
@@ -161,6 +178,10 @@ function clearInputFields() {
     for (let i = 0; i < tableQuestions.length; i++) {
         tableQuestions[i].clear();
     }
+    let errorContainers = document.querySelectorAll(".error");
+    for (let i = 0; i < errorContainers.length; i++) {
+        errorContainers[i].innerHTML = "";
+    }
 }
 
 $(document).ready(() => {
@@ -175,8 +196,9 @@ $(document).ready(() => {
         $(".survey-container").valid();
         validateTableQuestions();
         validateDrawQuestion();
+        validateImageQuestion();
 
-        if ($(".survey-container").valid() && validateTableQuestions() && validateDrawQuestion()) {
+        if ($(".survey-container").valid() && validateTableQuestions() && validateDrawQuestion() && validateImageQuestion()) {
             saveAllFormInputs();
             clearInputFields();
             
