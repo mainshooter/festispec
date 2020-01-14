@@ -11,7 +11,7 @@ namespace Festispec.ViewModel.report.element
 {
     public class SurveyImageVM : ReportElementVM
     {
-        public ObservableCollection<BitmapImage> Images { get; set; }
+        public ObservableCollection<byte[]> Images { get; set; }
 
         public SurveyImageVM()
         {
@@ -20,7 +20,7 @@ namespace Festispec.ViewModel.report.element
 
         public SurveyImageVM(ReportElementVM element)
         {
-            Images = new ObservableCollection<BitmapImage>();
+            Images = new ObservableCollection<byte[]>();
             EditElement = new RelayCommand(() => Edit());
             Id = element.Id;
             Type = element.Type;
@@ -35,7 +35,7 @@ namespace Festispec.ViewModel.report.element
                 Data = DataParser.ParseData();
             }
         }
-
+        
         public void Edit()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(EditImagePage) });
@@ -52,26 +52,15 @@ namespace Festispec.ViewModel.report.element
                 Images.Clear();
                 foreach (var item in Data)
                 {
-                    var bytes = Convert.FromBase64String(item[0]);
-                    var image = new BitmapImage();
-                    using (var mem = new MemoryStream(bytes))
-                    {
-                        mem.Position = 0;
-                        image.BeginInit();
-                        image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-                        image.CacheOption = BitmapCacheOption.OnLoad;
-                        image.UriSource = null;
-                        image.StreamSource = mem;
-                        image.EndInit();
-                    }
-                    image.Freeze();
-                    Images.Add(image);
+                    string base64 = item[0];
+                    base64 = base64.Split(',')[1];
+
+                    byte[] bytes = System.Convert.FromBase64String(base64);
+                    Images.Add(bytes);
                 }
             }
             catch (Exception)
             {
-
-                throw;
             }
         }
     }

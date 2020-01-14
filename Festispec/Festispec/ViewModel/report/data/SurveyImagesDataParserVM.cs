@@ -40,16 +40,13 @@ namespace Festispec.ViewModel.report.data
             List<List<string>> result = new List<List<string>>();
             var answers = GetQuestionAnswers();
 
-            //foreach (var answer in answers)
-            //{
-            //    List<byte[]> images = JsonConvert.DeserializeObject<List<Byte[]>>(answer.Answer);
-            //    foreach (var image in images)
-            //    {
-            //        result.Add(new List<string>() {
-            //        Encoding.UTF8.GetString(image, 0, image.Length)
-            //    });
-            //    }
-            //}
+            foreach (var answer in answers)
+            {
+
+                result.Add(new List<string>() {
+                    answer.Answer
+                });
+            }
 
             return result;
         }
