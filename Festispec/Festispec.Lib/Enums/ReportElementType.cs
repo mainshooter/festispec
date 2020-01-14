@@ -10,5 +10,6 @@ namespace Festispec.Lib.Enums
         public const string Image = "Image";
         public const string Text = "Text";
         public const string Draw = "Draw";
+        public const string SurveyImages = "SurveyImages";
     }
 }
