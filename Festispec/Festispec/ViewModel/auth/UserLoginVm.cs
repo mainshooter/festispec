@@ -23,7 +23,6 @@ namespace Festispec.ViewModel.auth
 
         public UserLoginVM()
         {
-            Email = "m.peeters@gmail.com";
             DoLogin = new RelayCommand<PasswordBox>(Login);
             GotoResetPassword = new RelayCommand(ToResetPassword);
             OfflineCommand = new RelayCommand(ShowOffline);
@@ -31,10 +30,9 @@ namespace Festispec.ViewModel.auth
 
         public void Login(PasswordBox passwordBox)
         {
-            //var password = passwordBox.Password;
+            var password = passwordBox.Password;
             using (var context = new Entities())
             {
-                var password = "GamerBoy95";
                 var employee = context.Employees.FirstOrDefault(e => e.Email == Email);
                 var passwordService = new PasswordHashService();
 
