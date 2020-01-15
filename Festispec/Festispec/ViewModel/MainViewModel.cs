@@ -11,6 +11,7 @@ using Festispec.View.Pages.Employee.Availability;
 using Festispec.Message;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Festispec.View.Pages.Employee.Inspector;
 using Festispec.View.Pages.Planning;
 using Festispec.View.Pages.Employee.Planning;
 using Festispec.View.Pages.Map;
@@ -36,6 +37,7 @@ namespace Festispec.ViewModel
         public ICommand ShowAccountInformation { get; set; }
         public ICommand OpenEmployeePlanningCommand { get; set; }
         public ICommand OpenMapCommand { get; set; }
+        public ICommand OpenInspectorInfoCommand { get; set; }
         public ObservableCollection<Button> MenuList { get; set; }
 
         public string RightTopMenuVisablity
@@ -84,6 +86,7 @@ namespace Festispec.ViewModel
             ShowAccountInformation = new RelayCommand(OpenAccountInformation);
             OpenEmployeePlanningCommand = new RelayCommand(OpenEmployeePlanning);
             OpenMapCommand = new RelayCommand(OpenMap);
+            OpenInspectorInfoCommand = new RelayCommand(OpenInspectorInfo);
 
             this.MessengerInstance.Register<ChangePageMessage>(this, message =>
             {
@@ -160,6 +163,7 @@ namespace Festispec.ViewModel
             _menu["Directie"].Add("Klanten", OpenCustomer);
             _menu["Directie"].Add("Werknemers", OpenEmployee);
             _menu["Directie"].Add("Kaart", OpenMapCommand);
+            _menu["Directie"].Add("Inspecteur info", OpenInspectorInfoCommand);
 
             // Marketing Dictionary
             _menu.Add("Marketing", new Dictionary<string, ICommand>());
@@ -218,6 +222,11 @@ namespace Festispec.ViewModel
         private void OpenMap()
         {
             MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(MapPage) });
+        }
+
+        private void OpenInspectorInfo()
+        {
+            MessengerInstance.Send<ChangePageMessage>(new ChangePageMessage() { NextPageType = typeof(InspectorInfoPage) });
         }
     }
 }

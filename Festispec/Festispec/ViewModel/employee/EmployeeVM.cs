@@ -14,6 +14,9 @@ namespace Festispec.ViewModel.employee
     {
         private DepartmentVM _department;
         private Employee _employee;
+        private int _amountPlanned;
+        private int _amountSick;
+        private int _workedHoures;
 
         public int Id => _employee.Id;
 
@@ -27,6 +30,36 @@ namespace Festispec.ViewModel.employee
                 _employee.Department = value.Name;
                 _employee.Department1 = value.ToModel();
                 RaisePropertyChanged("IsInspector");
+            }
+        }
+
+        public int AmountPlanned
+        {
+            get => _amountPlanned;
+            set
+            {
+                _amountPlanned = value;
+                RaisePropertyChanged(() => AmountPlanned);
+            }
+        }
+
+        public int AmountSick
+        {
+            get => _amountSick;
+            set
+            {
+                _amountSick = value;
+                RaisePropertyChanged(() => AmountSick);
+            }
+        }
+
+        public int WorkedHoures
+        {
+            get => _workedHoures;
+            set
+            {
+                _workedHoures = value;
+                RaisePropertyChanged(() => WorkedHoures);
             }
         }
 
@@ -197,11 +230,6 @@ namespace Festispec.ViewModel.employee
         public Employee ToModel()
         {
             return _employee;
-        }
-
-        public bool IsInDepartment(string department)
-        {
-            throw new NotImplementedException();
         }
 
         public Visibility IsInspector
