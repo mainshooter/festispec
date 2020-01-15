@@ -231,6 +231,7 @@
     <Compile Include="ViewModel\employee\EmployeeInfoVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeListVM.cs" />
     <Compile Include="ViewModel\employee\EmployeeVM.cs" />
+    <Compile Include="ViewModel\employee\Inspector\InspectorInfoVM.cs" />
     <Compile Include="ViewModel\employee\planning\EmployeePlanningInfoVM.cs" />
     <Compile Include="ViewModel\employee\SickPageVM.cs" />
     <Compile Include="ViewModel\employee\SickVM.cs" />
@@ -376,6 +377,9 @@
     </Compile>
     <Compile Include="View\Pages\Employee\EmployeeInformationPage.xaml.cs">
       <DependentUpon>EmployeeInformationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Employee\Inspector\InspectorInfoPage.xaml.cs">
+      <DependentUpon>InspectorInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Employee\Planning\EmployeePlanningPage.xaml.cs">
       <DependentUpon>EmployeePlanningPage.xaml</DependentUpon>
@@ -664,6 +668,10 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Pages\Employee\Inspector\InspectorInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Map\MapPage.xaml">
       <SubType>Designer</SubType>

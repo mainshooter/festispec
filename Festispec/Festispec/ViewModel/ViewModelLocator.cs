@@ -45,9 +45,11 @@ using Festispec.ViewModel.customer.contactPerson.note;
 using Festispec.ViewModel.customer.quotation;
 using Festispec.ViewModel.customer.contactPerson;
 using Festispec.View.Pages.Customer.ContactPerson;
+using Festispec.View.Pages.Employee.Inspector;
 using Festispec.ViewModel.employee.planning;
 using Festispec.View.Pages.Employee.Planning;
 using Festispec.View.Pages.Map;
+using Festispec.ViewModel.employee.Inspector;
 using Festispec.ViewModel.Map;
 
 namespace Festispec.ViewModel
@@ -115,6 +117,8 @@ namespace Festispec.ViewModel
             SimpleIoc.Default.Register<NoteListPage>();
             SimpleIoc.Default.Register<AddNotePage>();
             SimpleIoc.Default.Register<EmployeePlanningPage>();
+            SimpleIoc.Default.Register<InspectorInfoPage>();
+            SimpleIoc.Default.Register<InspectorInfoVM>();
 
             SimpleIoc.Default.Register<CustomerOverviewPage>();
             SimpleIoc.Default.Register<CustomerDetailsPage>();
@@ -288,6 +292,7 @@ namespace Festispec.ViewModel
         public AddPlannedEmployeeVM AddPlannedEmployeeVM => ServiceLocator.Current.GetInstance<AddPlannedEmployeeVM>();
         public EmployeePlanningInfoVM EmployeePlanningInfoVM => ServiceLocator.Current.GetInstance<EmployeePlanningInfoVM>();
         public MapVM MapVM => ServiceLocator.Current.GetInstance<MapVM>();
+        public InspectorInfoVM InspectorInfoVM => ServiceLocator.Current.GetInstance<InspectorInfoVM>();
 
         public AddSurveyImagesVM AddSurveyImagesVM => ServiceLocator.Current.GetInstance<AddSurveyImagesVM>();
 
